@@ -437,14 +437,16 @@
     "version": "v1.0.0",
     "status": "BUILT",
     "engine": "Java + XML",
-    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-grainline/grainline.apk",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-grainline/grainline.apk",
     "icon_path": "assets/icons/grainline.svg",
     "web_url": "https://apps.kimrosil.com/grainline/",
     "features": [
       "100% Offline",
       "Bolt Yardage Scanner & Presets",
       "Pure Native ARM64"
-    ]
+    ],
+    "tag": "v1.1.0-grainline",
+    "updated_at": "2026-10-11T12:14:50.355806+00:00"
   },
   {
     "slug": "volt-drop",
