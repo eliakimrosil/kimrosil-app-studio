@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/m3_surface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- TopBar Header with Accessible Semantics -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAppTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GrainRun: Wood Planing Aide"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_surface"
+                    android:accessibilityHeading="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Offline Lumber Grain &amp; Tearout Direction Utility"
+                    android:textSize="12sp"
+                    android:textColor="@color/m3_on_surface_variant" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnQuickTorch"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:text="Raking Torch: OFF"
+                android:textSize="11sp"
+                android:textColor="@color/m3_on_primary"
+                android:background="@drawable/bg_button_tool"
+                android:contentDescription="Toggle camera flash raking light with 3-minute safety guard"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginEnd="6dp" />
+
+            <Button
+                android:id="@+id/btnThemeToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:text="Auto Theme"
+                android:textSize="11sp"
+                android:textColor="@color/m3_on_surface"
+                android:background="@drawable/bg_card_outline"
+                android:contentDescription="Switch between Auto, Light, and Dark workbench themes"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+        </LinearLayout>
+
+        <!-- Timber Selector & Search -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_container"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WORKBENCH TIMBER SPECIES"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface_variant"
+                android:accessibilityHeading="true"
+                android:layout_marginBottom="6dp" />
+
+            <EditText
+                android:id="@+id/etSearchTimber"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:hint="Fuzzy search timber (e.g., Maple, Walnut, Oak)..."
+                android:textSize="14sp"
+                android:background="@drawable/bg_input_field"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColor="@color/m3_on_surface"
+                android:textColorHint="@color/m3_on_surface_variant"
+                android:contentDescription="Type wood name to search offline species database" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:id="@+id/tvSelectedSpecies"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Hard Maple (Sugar Maple)"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/m3_on_surface"
+                    android:contentDescription="Currently selected lumber species" />
+
+                <TextView
+                    android:id="@+id/tvJankaBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Janka: 1450 lbf"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_primary"
+                    android:padding="6dp"
+                    android:background="@drawable/bg_badge_pill"
+                    android:contentDescription="Janka hardness rating in pounds force" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Tool Mode Selection Deck -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <Button
+                android:id="@+id/btnToolHandPlane"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:layout_weight="1"
+                android:text="Hand Plane"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:background="@drawable/bg_toggle_selector"
+                android:contentDescription="Select Bench Hand Plane cutting direction guidance"
+                android:layout_marginEnd="4dp" />
+
+            <Button
+                android:id="@+id/btnToolSurfacePlaner"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:layout_weight="1"
+                android:text="Thicknesser"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:background="@drawable/bg_toggle_selector"
+                android:contentDescription="Select Rotary Surface Planer infeed direction guidance"
+                android:layout_marginEnd="4dp" />
+
+            <Button
+                android:id="@+id/btnToolRouter"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:layout_weight="1"
+                android:text="Router Feed"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:background="@drawable/bg_toggle_selector"
+                android:contentDescription="Select Router Table conventional vs climb feed guidance" />
+        </LinearLayout>
+
+        <!-- Hero Card: Directional Vector & Guidance HUD -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_hero_card"
+            android:padding="16dp"
+            android:layout_marginBottom="14dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/tvToolModeLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TOOL: BENCH HAND PLANE (Sole Direction)"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_surface_variant" />
+
+                <TextView
+                    android:id="@+id/tvRiskBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MODERATE ATTENTION"
+                    android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:textColor="#E65100" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvFeedDirectionHeading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PLANING DIRECTION: WITH THE RUNNING APEX"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface"
+                android:accessibilityHeading="true"
+                android:layout_marginBottom="6dp" />
+
+            <TextView
+                android:id="@+id/tvFeedExplanation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Feed the hand plane along the timber so blade enters downhill with grain slope."
+                android:textSize="13sp"
+                android:textColor="@color/m3_on_surface"
+                android:layout_marginBottom="10dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/m3_outline"
+                android:layout_marginBottom="10dp" />
+
+            <!-- Offline Visual Grain Pattern Diagram -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_telemetry_box"
+                android:padding="8dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/tvGrainDiagramPattern"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="PLANE VECTOR ➔➔ [ ^ ^ ^ Cathedral Apex ^ ^ ^ ]"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_primary"
+                    android:gravity="center"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/tvGrainDiagramDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Face view: Plane in the direction the cathedral points. Side view: Rings slope upward in cut direction."
+                    android:textSize="11sp"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvCathedralRule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Face Cathedrals: Plane TOWARDS the pointy apex of the cathedral arches."
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvRingOrientationRule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Side Grain: Growth rings should run up &amp; away from cutter, peeling fibers forward."
+                android:textSize="13sp"
+                android:textColor="@color/m3_on_surface_variant" />
+        </LinearLayout>
+
+        <!-- Control Deck: Cutting Angle & Janka Hardness Tuning -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_container"
+            android:padding="14dp"
+            android:layout_marginBottom="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BEVEL &amp; CUTTING ANGLE TUNER"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface_variant"
+                android:accessibilityHeading="true"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cutter Angle (Bed + Hone Bevel):"
+                    android:textSize="13sp"
+                    android:textColor="@color/m3_on_surface" />
+
+                <TextView
+                    android:id="@+id/tvCuttingAngleVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="45°"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/m3_primary" />
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/sbCuttingAngle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:contentDescription="Adjust cutting bed and hone micro-bevel angle between 30 and 70 degrees" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="6dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Timber Janka Hardness:"
+                    android:textSize="13sp"
+                    android:textColor="@color/m3_on_surface" />
+
+                <TextView
+                    android:id="@+id/tvJankaHardnessVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1450 lbf"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/m3_primary" />
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/sbJankaHardness"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:contentDescription="Adjust lumber hardness from 300 to 3000 pounds force" />
+
+            <!-- Tearout telemetry banner -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_telemetry_box"
+                android:padding="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/tvRiskPercentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="42% TEAROUT RISK"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_surface" />
+
+                <TextView
+                    android:id="@+id/tvRiskAdvice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tighten chipbreaker within 0.4mm of cutting edge. Close plane throat to 0.5mm."
+                    android:textSize="12sp"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnCalculateSave"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:layout_weight="1"
+                    android:text="Record Session"
+                    android:textSize="13sp"
+                    android:textColor="@color/m3_on_primary"
+                    android:background="@drawable/bg_button_tool"
+                    android:contentDescription="Save calculation setup into local workshop ledger"
+                    android:layout_marginEnd="6dp" />
+
+                <Button
+                    android:id="@+id/btnOpenDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:text="Detail &amp; Export"
+                    android:textSize="13sp"
+                    android:textColor="@color/m3_on_surface"
+                    android:background="@drawable/bg_card_outline"
+                    android:contentDescription="Open comprehensive detail inspector and export specs"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Quick Glance Nominal-to-Actual Lumber HUD -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_container"
+            android:padding="12dp"
+            android:layout_marginBottom="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NOMINAL TO ACTUAL LUMBER THICKNESS GLANCE"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface_variant"
+                android:accessibilityHeading="true"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnThicknessQuarter"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:layout_weight="1"
+                    android:text="2/4 (1/4&quot;)"
+                    android:textSize="11sp"
+                    android:textColor="@color/m3_on_surface"
+                    android:background="@drawable/bg_card_outline"
+                    android:contentDescription="Inspect 1/4 inch nominal lumber thickness"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnThicknessHalf"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:layout_weight="1"
+                    android:text="1/2&quot;"
+                    android:textSize="11sp"
+                    android:textColor="@color/m3_on_surface"
+                    android:background="@drawable/bg_card_outline"
+                    android:contentDescription="Inspect 1/2 inch nominal lumber thickness"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnThicknessFourQuarter"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:layout_weight="1"
+                    android:text="4/4 (1&quot;)"
+                    android:textSize="11sp"
+                    android:textColor="@color/m3_on_surface"
+                    android:background="@drawable/bg_card_outline"
+                    android:contentDescription="Inspect 4/4 nominal standard lumber thickness"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnThicknessEightQuarter"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:layout_weight="1"
+                    android:text="8/4 (2&quot;)"
+                    android:textSize="11sp"
+                    android:textColor="@color/m3_on_surface"
+                    android:background="@drawable/bg_card_outline"
+                    android:contentDescription="Inspect 8/4 nominal heavy lumber stock" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvNominalActualDisplay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NOMINAL: 4/4 (1&quot;)  ==>  SURFACED ACTUAL: 3/4&quot; (19.05 mm) Standard Board"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_primary"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <!-- Auxiliary Deck: Recent Sessions Ledger -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OFFLINE WORKBENCH SESSIONS"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface_variant"
+            android:accessibilityHeading="true"
+            android:layout_marginBottom="6dp" />
+
+        <!-- 3-Phase State: Empty State Container -->
+        <LinearLayout
+            android:id="@+id/llEmptyState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/bg_card_container"
+            android:padding="20dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No workshop sessions recorded yet"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Configure cutting angle and press 'Record Session' to log species direction setups."
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <!-- Recent Sessions List Container -->
+        <LinearLayout
+            android:id="@+id/llRecentSessionsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Bottom Monetization / Ad Container -->
+        <LinearLayout
+            android:id="@+id/llAdContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_container"
+            android:padding="8dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvAdNotice"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:gravity="center"
+                android:text="Crafted by KimRosil Studios • Tap to explore fine woodworking tools"
+                android:textSize="11sp"
+                android:textColor="@color/m3_on_surface_variant"
+                android:contentDescription="Visit KimRosil Studio developer applications" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

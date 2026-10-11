@@ -1,0 +1,5 @@
+Initial release (v1.0.0):
+- Visual grain direction and runout diagnostic reference.
+- End-grain growth ring orientation guide.
+- Figured wood and interlocked grain inspection tips.
+- Fully offline functionality with zero network requirements.

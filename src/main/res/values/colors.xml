@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Domain Woodworking Workbench Warm Palette: Amber, Timber Walnut & Contrast HUD -->
+    <color name="m3_primary">#B86B2B</color>
+    <color name="m3_on_primary">#FFFFFF</color>
+    <color name="m3_surface">#181411</color>
+    <color name="m3_surface_container">#251F19</color>
+    <color name="m3_on_surface">#EDE0D4</color>
+    <color name="m3_on_surface_variant">#BFAFA0</color>
+    <color name="m3_outline">#3E332B</color>
+</resources>

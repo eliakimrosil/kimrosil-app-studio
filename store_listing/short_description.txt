@@ -1,0 +1,1 @@
+Determine timber grain direction to prevent tearout during hand planing.
