@@ -41,18 +41,6 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btn_toggle_history"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:text="⏱ History"
-            android:textColor="@color/text_mid"
-            android:background="@drawable/chip_btn"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:textSize="11sp"
-            android:layout_marginEnd="6dp" />
-
-        <Button
             android:id="@+id/btn_theme"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
@@ -503,52 +491,6 @@
                     android:text="Formula: Net = Amount ÷ 1.12 | VAT = Net × 12%"
                     android:textColor="@color/text_muted"
                     android:textSize="10sp" />
-            </LinearLayout>
-
-            <!-- ── 4. Collapsible History Card ── -->
-            <LinearLayout
-                android:id="@+id/card_history"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/card_background"
-                android:padding="12dp"
-                android:layout_marginBottom="8dp"
-                android:visibility="gone">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingBottom="6dp">
-
-                    <TextView
-                        android:id="@+id/tv_history_label"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/history_label"
-                        android:textColor="@color/text_mid"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/btn_clear_history"
-                        android:layout_width="wrap_content"
-                        android:layout_height="24dp"
-                        android:text="Clear All"
-                        android:background="@drawable/chip_btn"
-                        android:textSize="10sp"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="8dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_history_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" />
             </LinearLayout>
 
         </LinearLayout>

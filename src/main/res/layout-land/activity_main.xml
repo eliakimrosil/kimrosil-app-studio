@@ -347,18 +347,6 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/btn_toggle_history"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:text="⏱ History"
-                    android:textColor="@color/text_mid"
-                    android:background="@drawable/chip_btn"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    android:textSize="10sp"
-                    android:layout_marginEnd="4dp" />
-
-                <Button
                     android:id="@+id/btn_theme"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
@@ -721,52 +709,6 @@
                     android:text="Net = Amount ÷ 1.12 | VAT = Net × 12%"
                     android:textColor="@color/text_muted"
                     android:textSize="9sp" />
-            </LinearLayout>
-
-            <!-- History Card -->
-            <LinearLayout
-                android:id="@+id/card_history"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/card_background"
-                android:padding="8dp"
-                android:layout_marginBottom="6dp"
-                android:visibility="gone">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:paddingBottom="4dp">
-
-                    <TextView
-                        android:id="@+id/tv_history_label"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/history_label"
-                        android:textColor="@color/text_mid"
-                        android:textSize="10sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/btn_clear_history"
-                        android:layout_width="wrap_content"
-                        android:layout_height="22dp"
-                        android:text="Clear"
-                        android:background="@drawable/chip_btn"
-                        android:textSize="9sp"
-                        android:paddingStart="6dp"
-                        android:paddingEnd="6dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_history_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" />
             </LinearLayout>
 
             <!-- Bottom Actions -->

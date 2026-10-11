@@ -13,5 +13,4 @@
     <string name="total_amount">Total Amount Payable</string>
     <string name="clear">⌫ Clear</string>
     <string name="copy">⎘ Copy Invoice</string>
-    <string name="history_label">Recent Calculations</string>
 </resources>

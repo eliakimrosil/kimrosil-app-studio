@@ -26,10 +26,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 public class MainActivity extends Activity {
 
@@ -37,7 +33,6 @@ public class MainActivity extends Activity {
     private LinearLayout rootLayout;
     private TextView tvAppTitle;
     private TextView tvAppSubtitle;
-    private Button btnToggleHistory;
     private Button btnTheme;
 
     // ─── Hero Input ───────────────────────────────────────────────────────────
@@ -81,12 +76,6 @@ public class MainActivity extends Activity {
     private TextView tvNetAfterWhtLabel, tvNetAfterWhtVal;
     private TextView tvFormulaNote;
 
-    // ─── Collapsible History ──────────────────────────────────────────────────
-    private LinearLayout cardHistory;
-    private TextView tvHistoryLabel;
-    private LinearLayout llHistoryList;
-    private Button btnClearHistory;
-
     // ─── In-App Numpad Keys ───────────────────────────────────────────────────
     private LinearLayout layoutNumpad;
     private Button btnKey0, btnKey1, btnKey2, btnKey3, btnKey4;
@@ -101,17 +90,12 @@ public class MainActivity extends Activity {
     private boolean isDarkTheme = true;
     private double customVatRate = 0.12;   // 12% standard
     private double whtRate = 0.0;          // 0 = no WHT selected
-    private boolean isHistoryVisible = false;
     private SharedPreferences prefs;
     private Vibrator vibrator;
-
-    private static final int MAX_HISTORY = 10;
-    private static final String PREF_HISTORY = "calc_history";
 
     private final DecimalFormat currencyFmt = new DecimalFormat("₱#,##0.00");
     private final DecimalFormat plainFmt    = new DecimalFormat("#.##");
     private final DecimalFormat pctFmt      = new DecimalFormat("0.##'%'");
-    private final SimpleDateFormat timeFmt  = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
     // ─────────────────────────────────────────────────────────────────────────
     @Override
@@ -126,7 +110,6 @@ public class MainActivity extends Activity {
         initViews();
         setupListeners();
         applyTheme(isDarkTheme);
-        refreshHistoryCard();
         calculate();
     }
 
@@ -139,7 +122,6 @@ public class MainActivity extends Activity {
         boolean isWht      = swWht       != null && swWht.isChecked();
         double  vatR       = customVatRate;
         double  whtR       = whtRate;
-        boolean histVis    = isHistoryVisible;
 
         setContentView(R.layout.activity_main);
         initViews();
@@ -148,7 +130,6 @@ public class MainActivity extends Activity {
 
         customVatRate    = vatR;
         whtRate          = whtR;
-        isHistoryVisible = histVis;
 
         if (etAmount != null) etAmount.setText(savedAmount);
         if (rbInclusive != null) rbInclusive.setChecked(isInc);
@@ -159,7 +140,6 @@ public class MainActivity extends Activity {
         refreshVatRateChips();
         refreshWhtRateChips();
         updateWhtVisibility();
-        refreshHistoryCard();
         calculate();
     }
 
@@ -168,7 +148,6 @@ public class MainActivity extends Activity {
         rootLayout        = findViewById(R.id.root_layout);
         tvAppTitle        = findViewById(R.id.tv_app_title);
         tvAppSubtitle     = findViewById(R.id.tv_app_subtitle);
-        btnToggleHistory  = findViewById(R.id.btn_toggle_history);
         btnTheme          = findViewById(R.id.btn_theme);
 
         cardAmount        = findViewById(R.id.card_amount);
@@ -224,11 +203,6 @@ public class MainActivity extends Activity {
         tvNetAfterWhtVal  = findViewById(R.id.tv_net_after_wht_val);
         tvFormulaNote     = findViewById(R.id.tv_formula_note);
 
-        cardHistory       = findViewById(R.id.card_history);
-        tvHistoryLabel    = findViewById(R.id.tv_history_label);
-        llHistoryList     = findViewById(R.id.ll_history_list);
-        btnClearHistory   = findViewById(R.id.btn_clear_history);
-
         // Numpad Keys
         layoutNumpad      = findViewById(R.id.layout_numpad);
         btnKey0           = findViewById(R.id.btn_key_0);
@@ -260,16 +234,6 @@ public class MainActivity extends Activity {
             applyTheme(isDarkTheme);
             calculate();
         });
-
-        if (btnToggleHistory != null) {
-            btnToggleHistory.setOnClickListener(v -> {
-                isHistoryVisible = !isHistoryVisible;
-                if (cardHistory != null) {
-                    cardHistory.setVisibility(isHistoryVisible ? View.VISIBLE : View.GONE);
-                }
-                haptic(20);
-            });
-        }
 
         etAmount.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int st, int c, int a) {}
@@ -344,12 +308,6 @@ public class MainActivity extends Activity {
         }
 
         btnCopy.setOnClickListener(v -> copySummary());
-
-        btnClearHistory.setOnClickListener(v -> {
-            prefs.edit().remove(PREF_HISTORY).apply();
-            refreshHistoryCard();
-            haptic(30);
-        });
     }
 
     private void setupNumpadKey(Button btn, final String text) {
@@ -440,16 +398,10 @@ public class MainActivity extends Activity {
         btnTheme.setTextColor(accentEmerald);
         applyChipBg(btnTheme, isDark ? 0xFF182235 : 0xFFF1F5F9, strokeColor);
 
-        if (btnToggleHistory != null) {
-            applyChipBg(btnToggleHistory, isDark ? 0xFF182235 : 0xFFF1F5F9, strokeColor);
-            btnToggleHistory.setTextColor(textMid);
-        }
-
         // Cards
         applyCardBg(cardAmount,    bgCard, strokeColor);
         applyCardBg(cardMode,      bgCard, strokeColor);
         applyCardBg(cardBreakdown, bgCard, strokeColor);
-        applyCardBg(cardHistory,   bgCard, strokeColor);
 
         // Input Box
         GradientDrawable inputDraw = new GradientDrawable();
@@ -496,11 +448,6 @@ public class MainActivity extends Activity {
         tvNetAfterWhtLabel.setTextColor(textMid);
         tvNetAfterWhtVal.setTextColor(accentEmerald);
         tvFormulaNote.setTextColor(textMuted);
-
-        // History Card
-        tvHistoryLabel.setTextColor(textMid);
-        applyChipBg(btnClearHistory, isDark ? 0xFF182235 : 0xFFF1F5F9, strokeColor);
-        btnClearHistory.setTextColor(textMuted);
 
         // Numpad Keys Styling
         Button[] digitKeys = {
@@ -559,8 +506,6 @@ public class MainActivity extends Activity {
         copyDraw.setCornerRadius(dpToPx(14));
         btnCopy.setBackground(copyDraw);
         btnCopy.setTextColor(isDark ? 0xFFFFFFFF : 0xFF064E3B);
-
-        refreshHistoryCard();
     }
 
     private void applyCardBg(LinearLayout card, int bg, int stroke) {
@@ -770,145 +715,6 @@ public class MainActivity extends Activity {
             llWhtResultRow.setVisibility(View.GONE);
             llNetAfterWhtRow.setVisibility(View.GONE);
         }
-
-        if (input > 0) {
-            saveToHistory(input, isInclusive, isSeniorPwd, vatRate, vatableSales, vatAmount,
-                          discount, total, useWht, whtRate);
-        }
-    }
-
-    // ─── Calculation History ─────────────────────────────────────────────────
-    private void saveToHistory(double input, boolean inclusive, boolean seniorPwd,
-                                double vatRate, double vatable, double vat,
-                                double discount, double total,
-                                boolean hasWht, double whtRate) {
-        String mode   = inclusive ? "INC" : "EXC";
-        String entry  = timeFmt.format(new Date()) + "|"
-                      + plainFmt.format(input)     + "|"
-                      + mode                        + "|"
-                      + (seniorPwd ? "1" : "0")    + "|"
-                      + vatRate                     + "|"
-                      + Math.round(vatable * 100)   + "|"
-                      + Math.round(vat * 100)       + "|"
-                      + Math.round(discount * 100)  + "|"
-                      + Math.round(total * 100)     + "|"
-                      + (hasWht ? whtRate : 0.0);
-
-        String raw = prefs.getString(PREF_HISTORY, "");
-        String[] parts = raw.isEmpty() ? new String[0] : raw.split("\n");
-
-        if (parts.length > 0 && parts[parts.length - 1].equals(entry)) return;
-
-        ArrayList<String> list = new ArrayList<>();
-        for (String p : parts) if (!p.isEmpty()) list.add(p);
-        list.add(entry);
-        while (list.size() > MAX_HISTORY) list.remove(0);
-
-        StringBuilder sb = new StringBuilder();
-        for (String s : list) sb.append(s).append("\n");
-        prefs.edit().putString(PREF_HISTORY, sb.toString().trim()).apply();
-        refreshHistoryCard();
-    }
-
-    private void refreshHistoryCard() {
-        if (llHistoryList == null || cardHistory == null) return;
-        llHistoryList.removeAllViews();
-
-        String raw = prefs.getString(PREF_HISTORY, "");
-        String[] parts = raw.isEmpty() ? new String[0] : raw.split("\n");
-        int count = parts.length;
-
-        if (btnToggleHistory != null) {
-            btnToggleHistory.setText("⏱ History" + (count > 0 ? " (" + count + ")" : ""));
-        }
-
-        if (count == 0) {
-            cardHistory.setVisibility(View.GONE);
-            isHistoryVisible = false;
-            return;
-        }
-
-        cardHistory.setVisibility(isHistoryVisible ? View.VISIBLE : View.GONE);
-
-        int textMid     = isDarkTheme ? 0xFF94A3B8 : 0xFF475569;
-        int textMuted   = isDarkTheme ? 0xFF64748B : 0xFF94A3B8;
-        int accentEmerald = isDarkTheme ? 0xFF10B981 : 0xFF059669;
-        int strokeColor = isDarkTheme ? 0xFF1F2E45 : 0xFFE2E8F0;
-
-        for (int i = parts.length - 1; i >= 0; i--) {
-            String entry = parts[i].trim();
-            if (entry.isEmpty()) continue;
-            String[] f = entry.split("\\|");
-            if (f.length < 9) continue;
-
-            try {
-                String time    = f[0];
-                double input   = Double.parseDouble(f[1]);
-                String mode    = f[2];
-                boolean senior = f[3].equals("1");
-                double vatRate = Double.parseDouble(f[4]);
-                double total   = Long.parseLong(f[8]) / 100.0;
-
-                LinearLayout row = new LinearLayout(this);
-                row.setOrientation(LinearLayout.VERTICAL);
-                row.setPadding(0, dpToPx(6), 0, dpToPx(6));
-
-                if (i < parts.length - 1) {
-                    View div = new View(this);
-                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(1));
-                    lp.setMargins(0, 0, 0, dpToPx(6));
-                    div.setLayoutParams(lp);
-                    div.setBackgroundColor(strokeColor);
-                    llHistoryList.addView(div);
-                }
-
-                LinearLayout topLine = new LinearLayout(this);
-                topLine.setOrientation(LinearLayout.HORIZONTAL);
-
-                TextView tvTime = new TextView(this);
-                tvTime.setText(time);
-                tvTime.setTextColor(textMuted);
-                tvTime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 11);
-                LinearLayout.LayoutParams lpTime = new LinearLayout.LayoutParams(
-                        0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
-                tvTime.setLayoutParams(lpTime);
-                topLine.addView(tvTime);
-
-                String badge = mode + (senior ? " · Senior" : "") +
-                               (vatRate == 0.0 && !senior ? " · Exempt" : "");
-                TextView tvBadge = new TextView(this);
-                tvBadge.setText(badge);
-                tvBadge.setTextColor(textMuted);
-                tvBadge.setTextSize(TypedValue.COMPLEX_UNIT_SP, 11);
-                topLine.addView(tvBadge);
-                row.addView(topLine);
-
-                LinearLayout botLine = new LinearLayout(this);
-                botLine.setOrientation(LinearLayout.HORIZONTAL);
-                botLine.setPadding(0, dpToPx(2), 0, 0);
-
-                TextView tvAmt = new TextView(this);
-                tvAmt.setText("₱" + plainFmt.format(input));
-                tvAmt.setTextColor(textMid);
-                tvAmt.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
-                LinearLayout.LayoutParams lpAmt = new LinearLayout.LayoutParams(
-                        0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
-                tvAmt.setLayoutParams(lpAmt);
-                botLine.addView(tvAmt);
-
-                TextView tvTot = new TextView(this);
-                tvTot.setText("= " + currencyFmt.format(total));
-                tvTot.setTextColor(accentEmerald);
-                tvTot.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
-                tvTot.setTypeface(null, android.graphics.Typeface.BOLD);
-                botLine.addView(tvTot);
-
-                row.addView(botLine);
-                llHistoryList.addView(row);
-
-            } catch (Exception ignored) {}
-        }
     }
 
     // ─── Copy Summary ─────────────────────────────────────────────────────────
@@ -966,7 +772,6 @@ public class MainActivity extends Activity {
             }
             if (event.isAltPressed()) {
                 if (kc == KeyEvent.KEYCODE_T) { btnTheme.performClick(); return true; }
-                if (kc == KeyEvent.KEYCODE_H && btnToggleHistory != null) { btnToggleHistory.performClick(); return true; }
                 if (kc == KeyEvent.KEYCODE_I) { rbInclusive.setChecked(true); return true; }
                 if (kc == KeyEvent.KEYCODE_E) { rbExclusive.setChecked(true); return true; }
                 if (kc == KeyEvent.KEYCODE_S) { swSeniorPwd.setChecked(!swSeniorPwd.isChecked()); return true; }
