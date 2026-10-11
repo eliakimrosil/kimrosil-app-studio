@@ -1,2 +1,2 @@
 Release v1.2.4 - VatCal PH
-v1.2.4: Renamed cleanly to VatCal PH; refined adaptive icon to fit all launcher device shapes
+Simplify title and app name strictly to VatCal PH
