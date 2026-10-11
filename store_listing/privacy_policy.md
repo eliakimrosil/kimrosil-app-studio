@@ -1,8 +1,8 @@
-# Privacy Policy for VatCal PH: BIR Tax & EWT Ledger
+# Privacy Policy for VatCal PH
 
 *Last Updated: October 2026*
 
-This privacy policy applies to the Android mobile application **VatCal PH: BIR Tax & EWT Ledger** (the "Application"), developed and published as a standalone, offline-first mobile utility.
+This privacy policy applies to the Android mobile application **VatCal PH** (the "Application"), developed and published as a standalone, offline-first mobile utility.
 
 ---
 

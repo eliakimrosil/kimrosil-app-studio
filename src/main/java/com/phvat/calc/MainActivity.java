@@ -763,7 +763,7 @@ public class MainActivity extends Activity {
             sb.append("Net Due/Received: ").append(tvNetAfterWhtVal.getText()).append("\n");
         }
         sb.append("───────────────────────────────\n");
-        sb.append("BIR Standard 12% VAT · RA 9994 Senior/PWD");
+        sb.append("Standard 12% VAT · RA 9994 Senior/PWD");
 
         ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         if (cm != null) {
