@@ -47,8 +47,6 @@ public class MainActivity extends Activity {
     private TextView tvPesoSymbol;
     private EditText etAmount;
 
-    // Preset chips
-    private Button chip100, chip500, chip1000, chip5000, chip10000;
 
     // ─── Mode Card ────────────────────────────────────────────────────────────
     private LinearLayout cardMode;
@@ -171,11 +169,6 @@ public class MainActivity extends Activity {
         tvPesoSymbol = findViewById(R.id.tv_peso_symbol);
         etAmount     = findViewById(R.id.et_amount);
 
-        chip100   = findViewById(R.id.chip_100);
-        chip500   = findViewById(R.id.chip_500);
-        chip1000  = findViewById(R.id.chip_1000);
-        chip5000  = findViewById(R.id.chip_5000);
-        chip10000 = findViewById(R.id.chip_10000);
 
         cardMode    = findViewById(R.id.card_mode);
         tvModeLabel = findViewById(R.id.tv_mode_label);
@@ -274,12 +267,6 @@ public class MainActivity extends Activity {
         chipWht5.setOnClickListener(v -> { whtRate = 0.05; refreshWhtRateChips(); calculate(); haptic(20); });
         chipWhtNone.setOnClickListener(v -> { whtRate = 0.0; refreshWhtRateChips(); calculate(); haptic(20); });
 
-        // Preset amount chips
-        setupPreset(chip100,   100);
-        setupPreset(chip500,   500);
-        setupPreset(chip1000,  1000);
-        setupPreset(chip5000,  5000);
-        setupPreset(chip10000, 10000);
 
         btnClear.setOnClickListener(v -> {
             etAmount.setText("");
@@ -295,16 +282,6 @@ public class MainActivity extends Activity {
         });
     }
 
-    private void setupPreset(Button btn, final double addValue) {
-        if (btn == null) return;
-        btn.setOnClickListener(v -> {
-            haptic(20);
-            double current = parseInput();
-            double next = current + addValue;
-            etAmount.setText(plainFmt.format(next));
-            etAmount.setSelection(etAmount.getText().length());
-        });
-    }
 
     // ─── Theme ────────────────────────────────────────────────────────────────
     private int dpToPx(int dp) {
@@ -372,12 +349,8 @@ public class MainActivity extends Activity {
         etAmount.setTextColor(textHigh);
         etAmount.setHintTextColor(textMuted);
 
-        // Preset + theme chips
-        Button[] uiChips = {chip100, chip500, chip1000, chip5000, chip10000, btnTheme};
-        for (Button chip : uiChips) {
-            applyChipBg(chip, isDark ? 0xFF222634 : 0xFFF3F4F6, strokeColor);
-            if (chip != btnTheme) chip.setTextColor(textMid);
-        }
+        // Theme button chip style
+        applyChipBg(btnTheme, isDark ? 0xFF222634 : 0xFFF3F4F6, strokeColor);
 
         // VAT rate chips
         refreshVatRateChips();

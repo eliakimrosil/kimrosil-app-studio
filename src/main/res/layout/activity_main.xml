@@ -119,68 +119,7 @@
                         android:singleLine="true" />
                 </LinearLayout>
 
-                <!-- Quick Presets -->
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:scrollbars="none">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/chip_100"
-                            android:layout_width="wrap_content"
-                            android:layout_height="34dp"
-                            android:text="+₱100"
-                            android:textColor="@color/text_mid"
-                            android:background="@drawable/chip_btn"
-                            android:textSize="12sp"
-                            android:layout_marginEnd="6dp" />
-
-                        <Button
-                            android:id="@+id/chip_500"
-                            android:layout_width="wrap_content"
-                            android:layout_height="34dp"
-                            android:text="+₱500"
-                            android:textColor="@color/text_mid"
-                            android:background="@drawable/chip_btn"
-                            android:textSize="12sp"
-                            android:layout_marginEnd="6dp" />
-
-                        <Button
-                            android:id="@+id/chip_1000"
-                            android:layout_width="wrap_content"
-                            android:layout_height="34dp"
-                            android:text="+₱1K"
-                            android:textColor="@color/text_mid"
-                            android:background="@drawable/chip_btn"
-                            android:textSize="12sp"
-                            android:layout_marginEnd="6dp" />
-
-                        <Button
-                            android:id="@+id/chip_5000"
-                            android:layout_width="wrap_content"
-                            android:layout_height="34dp"
-                            android:text="+₱5K"
-                            android:textColor="@color/text_mid"
-                            android:background="@drawable/chip_btn"
-                            android:textSize="12sp"
-                            android:layout_marginEnd="6dp" />
-
-                        <Button
-                            android:id="@+id/chip_10000"
-                            android:layout_width="wrap_content"
-                            android:layout_height="34dp"
-                            android:text="+₱10K"
-                            android:textColor="@color/text_mid"
-                            android:background="@drawable/chip_btn"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </HorizontalScrollView>
             </LinearLayout>
 
             <!-- ── Mode & VAT Rate Card ── -->
