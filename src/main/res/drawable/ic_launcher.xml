@@ -17,22 +17,22 @@
     <!-- Calculator Chamber -->
     <path
         android:fillColor="#065F46"
-        android:pathData="M32,22h44a6,6 0 0 1 6,6v54a6,6 0 0 1 -6,6h-44a6,6 0 0 1 -6,-6v-54a6,6 0 0 1 6,-6z" />
+        android:pathData="M38.2,32.5h31.7a4.3,4.3 0 0 1 4.3,4.3v38.9a4.3,4.3 0 0 1 -4.3,4.3h-31.7a4.3,4.3 0 0 1 -4.3,-4.3v-38.9a4.3,4.3 0 0 1 4.3,-4.3z" />
     <!-- Digital Display Screen -->
     <path
         android:fillColor="#022C22"
         android:strokeColor="#34D399"
         android:strokeWidth="1.5"
-        android:pathData="M38,28h32a2,2 0 0 1 2,2v12a2,2 0 0 1 -2,2h-32a2,2 0 0 1 -2,-2v-12a2,2 0 0 1 2,-2z" />
+        android:pathData="M42.5,36.8h23.0a1.4,1.4 0 0 1 1.4,1.4v8.6a1.4,1.4 0 0 1 -1.4,1.4h-23.0a1.4,1.4 0 0 1 -1.4,-1.4v-8.6a1.4,1.4 0 0 1 1.4,-1.4z" />
     <!-- Keypad Grid Buttons -->
     <path
         android:fillColor="#34D399"
-        android:pathData="M38,50h8v8h-8z M50,50h8v8h-8z M62,50h8v8h-8z M38,62h8v8h-8z M50,62h8v8h-8z M62,62h8v8h-8z M38,74h20v6h-20z M62,74h8v6h-8z" />
+        android:pathData="M42.5,52.6h5.8v5.8h-5.8z M51.1,52.6h5.8v5.8h-5.8z M59.8,52.6h5.8v5.8h-5.8z M42.5,61.3h5.8v5.8h-5.8z M51.1,61.3h5.8v5.8h-5.8z M59.8,61.3h5.8v5.8h-5.8z M42.5,69.9h14.4v4.3h-14.4z M59.8,69.9h5.8v4.3h-5.8z" />
     <!-- Philippine Peso Accent Ribbon / Seal -->
     <path
         android:fillColor="#FBBF24"
-        android:pathData="M66,20a7,7 0 1 1 0,14a7,7 0 1 1 0,-14" />
+        android:pathData="M62.6,31.0a5.0,5.0 0 1 1 0,10.0a5.0,5.0 0 1 1 0,-10.0" />
     <path
         android:fillColor="#78350F"
-        android:pathData="M64,24h4v1.5h-4z M64,27h4v1.5h-4z M64,24v6h1.5v-2.5h2.5a2,2 0 0 0 0,-3.5h-4z" />
+        android:pathData="M61.2,33.9h2.9v1.1h-2.9z M61.2,36.1h2.9v1.1h-2.9z M61.2,33.9v4.3h1.1v-1.8h1.8a1.4,1.4 0 0 0 0,-2.5h-2.9z" />
 </vector>
