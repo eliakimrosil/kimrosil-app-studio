@@ -1,0 +1,1 @@
+Initial release of PebbleDrift v1.0.0. Features fluid water ripple physics, stone cairn balancing, sand raking canvas, and procedural ambient soundscapes.

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/m3_surface"
+    android:fitsSystemWindows="true">
+
+    <!-- Top Navigation & Controls Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/m3_surface_container"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAppTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PebbleDrift"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_primary" />
+
+                <TextView
+                    android:id="@+id/tvAppSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ambient Zen Water &amp; Stone Oasis"
+                    android:textSize="11sp"
+                    android:textColor="@color/m3_on_surface_variant" />
+            </LinearLayout>
+
+            <!-- Quick Action Icon Buttons -->
+            <Button
+                android:id="@+id/btnSoundToggle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:text="🔔"
+                android:textSize="16sp"
+                android:textColor="@color/m3_on_surface"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Toggle Tibetan singing bowl chime sounds" />
+
+            <Button
+                android:id="@+id/btnRainToggle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:text="🌧️"
+                android:textSize="16sp"
+                android:textColor="@color/m3_on_surface"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Toggle ambient rain acoustic soundscapes" />
+
+            <Button
+                android:id="@+id/btnBreatheToggle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:text="🫁"
+                android:textSize="16sp"
+                android:textColor="@color/m3_on_surface"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Toggle mindful breathing cadence pacer" />
+
+            <Button
+                android:id="@+id/btnThemeToggle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:text="🌓"
+                android:textSize="16sp"
+                android:textColor="@color/m3_on_surface"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Switch between dark and light themes" />
+
+            <Button
+                android:id="@+id/btnStats"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:text="📊"
+                android:textSize="16sp"
+                android:textColor="@color/m3_on_surface"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="View sanctuary mindfulness ledger" />
+        </LinearLayout>
+
+        <!-- Mode Switcher Pill Chips -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginTop="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/chipRipple"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:text="🌊 Ripple Oasis"
+                    android:textSize="12sp"
+                    android:textColor="@color/m3_on_primary"
+                    android:background="@drawable/chip_active"
+                    android:contentDescription="Select Ripple Oasis ambient water pond mode"
+                    android:paddingHorizontal="14dp"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/chipStone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:text="🪨 Stone Stack"
+                    android:textSize="12sp"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:background="@drawable/chip_inactive"
+                    android:contentDescription="Select Stone Stack balancing garden mode"
+                    android:paddingHorizontal="14dp"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/chipSand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:text="🏜️ Sand Garden"
+                    android:textSize="12sp"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:background="@drawable/chip_inactive"
+                    android:contentDescription="Select Sand Garden meditative raking mode"
+                    android:paddingHorizontal="14dp" />
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <!-- Zen Floating Aphorism Banner -->
+    <LinearLayout
+        android:id="@+id/llQuoteBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="8dp"
+        android:background="@color/m3_surface_container_high">
+
+        <TextView
+            android:id="@+id/tvQuoteBanner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="“Leave the water still, and it will become clear on its own.”"
+            android:textSize="12sp"
+            android:fontFamily="serif"
+            android:textStyle="italic"
+            android:textColor="@color/m3_on_surface"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <!-- Interactive Hardware-Accelerated 60FPS Zen Canvas -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.kimrosil.pebbledrift.PebbleZenCanvasView
+            android:id="@+id/zenCanvasView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- Floating Quick Action Buttons on Canvas -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="16dp">
+
+            <Button
+                android:id="@+id/btnCleanSweep"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:text="✨ Clean Sweep"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:background="@drawable/btn_m3_tonal"
+                android:contentDescription="Clear and sweep the zen garden canvas"
+                android:paddingHorizontal="16dp"
+                android:layout_marginEnd="10dp" />
+
+            <Button
+                android:id="@+id/btnDropPebble"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:text="💧 Drop Pebble"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_primary"
+                android:background="@drawable/btn_m3_primary"
+                android:contentDescription="Drop pebble onto water canvas to generate relaxing ripples"
+                android:paddingHorizontal="16dp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- Commercial Monetization Container -->
+    <LinearLayout
+        android:id="@+id/llAdContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/m3_surface_container"
+        android:padding="6dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvAdNotice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🌿 PebbleDrift Zen Pro • 100% Offline Sanctuary • apps.kimrosil.com"
+            android:textSize="11sp"
+            android:textColor="@color/m3_primary" />
+    </LinearLayout>
+
+</LinearLayout>

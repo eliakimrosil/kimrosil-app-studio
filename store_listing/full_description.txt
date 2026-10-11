@@ -1,0 +1,8 @@
+PebbleDrift is a peaceful ambient garden experience designed to help you unwind and practice daily mindfulness. Escape digital noise through tactile physics, fluid water simulations, and soothing audio. Key Features: - Interactive Water Ripples: Touch to create gentle fluid waves across dynamic lily ponds and drifting sakura petals. - Cairn Stone Stacking: Balance smooth river pebbles using authentic, low-gravity physical interactions. - Sand Garden Raking: Draw smooth patterns in Japanese raked sand with intuitive touch gestures and clear sweeps. - Procedural Ambient Audio: Unwind with calming harmonic chords and subtle acoustic water textures that adapt to your touch. - Distraction-Free Design: Completely free of countdown timers, intrusive pop-ups, and aggressive progression bars. - Offline Capable: Enjoy full access to ambient interactions anywhere without requiring an active internet connection. Whether taking a short five-minute work break or winding down before sleep, PebbleDrift provides an authentic sanctuary for quiet reflection and stress relief.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
