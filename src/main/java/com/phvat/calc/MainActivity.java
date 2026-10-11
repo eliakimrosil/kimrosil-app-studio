@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
@@ -453,6 +454,9 @@ public class MainActivity extends Activity {
         tvFormulaNote.setTextColor(textMuted);
 
         // Numpad Keys Styling
+        int rippleColor = isDark ? 0x2EFFFFFF : 0x22000000;
+        ColorStateList rippleCsl = ColorStateList.valueOf(rippleColor);
+
         Button[] digitKeys = {
             btnKey0, btnKey1, btnKey2, btnKey3, btnKey4,
             btnKey5, btnKey6, btnKey7, btnKey8, btnKey9,
@@ -464,7 +468,7 @@ public class MainActivity extends Activity {
             d.setColor(bgInner);
             d.setStroke(dpToPx(1), strokeColor);
             d.setCornerRadius(dpToPx(12));
-            key.setBackground(d);
+            key.setBackground(new RippleDrawable(rippleCsl, d, null));
             key.setTextColor(textHigh);
         }
 
@@ -474,7 +478,7 @@ public class MainActivity extends Activity {
             d.setColor(bgCard);
             d.setStroke(dpToPx(1), strokeColor);
             d.setCornerRadius(dpToPx(12));
-            btnKeyPlus.setBackground(d);
+            btnKeyPlus.setBackground(new RippleDrawable(rippleCsl, d, null));
             btnKeyPlus.setTextColor(accentEmerald);
         }
         if (btnKeyMinus != null) {
@@ -482,7 +486,7 @@ public class MainActivity extends Activity {
             d.setColor(bgCard);
             d.setStroke(dpToPx(1), strokeColor);
             d.setCornerRadius(dpToPx(12));
-            btnKeyMinus.setBackground(d);
+            btnKeyMinus.setBackground(new RippleDrawable(rippleCsl, d, null));
             btnKeyMinus.setTextColor(accentEmerald);
         }
         if (btnKeyDel != null) {
@@ -490,7 +494,7 @@ public class MainActivity extends Activity {
             d.setColor(bgCard);
             d.setStroke(dpToPx(1), strokeColor);
             d.setCornerRadius(dpToPx(12));
-            btnKeyDel.setBackground(d);
+            btnKeyDel.setBackground(new RippleDrawable(rippleCsl, d, null));
             btnKeyDel.setTextColor(textMid);
         }
         if (btnKeyC != null) {
@@ -498,7 +502,7 @@ public class MainActivity extends Activity {
             d.setColor(bgCard);
             d.setStroke(dpToPx(1), strokeColor);
             d.setCornerRadius(dpToPx(12));
-            btnKeyC.setBackground(d);
+            btnKeyC.setBackground(new RippleDrawable(rippleCsl, d, null));
             btnKeyC.setTextColor(isDark ? 0xFFF87171 : 0xFFDC2626);
         }
 
@@ -507,7 +511,8 @@ public class MainActivity extends Activity {
         copyDraw.setColor(isDark ? 0xFF064E3B : 0xFFD1FAE5);
         copyDraw.setStroke(dpToPx(1), isDark ? accentEmerald : 0xFF059669);
         copyDraw.setCornerRadius(dpToPx(14));
-        btnCopy.setBackground(copyDraw);
+        int copyRippleColor = isDark ? 0x3310B981 : 0x33059669;
+        btnCopy.setBackground(new RippleDrawable(ColorStateList.valueOf(copyRippleColor), copyDraw, null));
         btnCopy.setTextColor(isDark ? 0xFFFFFFFF : 0xFF064E3B);
     }
 
