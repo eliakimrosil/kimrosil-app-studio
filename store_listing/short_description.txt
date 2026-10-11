@@ -1,0 +1,1 @@
+Offline carpentry calculator for hinge mortises, door shims, and trim angles.

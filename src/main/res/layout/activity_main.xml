@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/m3_surface"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- TopBar Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CamberShim"
+                android:textColor="@color/blueprint_cyan"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnUnitToggle"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:contentDescription="Toggle measurement units between millimeters and inches"
+                android:text="Unit: mm" />
+
+            <Button
+                android:id="@+id/btnThemeToggle"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="Toggle application visual theme mode"
+                android:text="Auto" />
+        </LinearLayout>
+
+        <!-- Blueprint Hero Elevation Canvas -->
+        <com.kimrosil.cambershim.DoorElevationCanvas
+            android:id="@+id/canvasDoorElevation"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginTop="14dp"
+            android:background="@color/m3_surface_container" />
+
+        <!-- Control Deck: Inputs & Measurements -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@color/m3_surface_container"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DOOR DIAGNOSTIC INPUTS"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etDoorHeight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:contentDescription="Door height in millimeters or inches"
+                    android:hint="Height (mm)"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/m3_on_surface"
+                    android:textColorHint="@color/m3_on_surface_variant" />
+
+                <EditText
+                    android:id="@+id/etDoorWidth"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:contentDescription="Door width in millimeters or inches"
+                    android:hint="Width (mm)"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/m3_on_surface"
+                    android:textColorHint="@color/m3_on_surface_variant" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etHingeSpread"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:contentDescription="Hinge spread distance between top and bottom hinges"
+                    android:hint="Hinge Spread (mm)"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/m3_on_surface"
+                    android:textColorHint="@color/m3_on_surface_variant" />
+
+                <EditText
+                    android:id="@+id/etLatchSag"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:contentDescription="Measured latch margin sag deflection"
+                    android:hint="Latch Sag (mm)"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/m3_on_surface"
+                    android:textColorHint="@color/m3_on_surface_variant" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnPresetStandard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:minHeight="48dp"
+                    android:contentDescription="Apply 36 by 80 inch standard entry door dimensions"
+                    android:text="36x80 Entry Preset" />
+
+                <Button
+                    android:id="@+id/btnCalculate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:contentDescription="Compute top hinge shim thickness and bottom leaf gain"
+                    android:backgroundTint="@color/m3_primary"
+                    android:text="Compute Shim"
+                    android:textColor="@color/m3_on_primary" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Empty State Guidance Prompt -->
+        <LinearLayout
+            android:id="@+id/llEmptyState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@color/m3_surface_container"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Measure top latch rub to generate shim angle."
+                android:textColor="@color/blueprint_cyan"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Enter door dimensions &amp; sag margin to calculate exact hinge shim bevels."
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Result Deck -->
+        <LinearLayout
+            android:id="@+id/llResultDeck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@color/m3_surface_container"
+            android:orientation="vertical"
+            android:padding="14dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvStatusBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:accessibilityLiveRegion="polite"
+                android:text="Status: CLEARANCE"
+                android:textColor="@color/gauge_clearance_emerald"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvResultTopShim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:accessibilityLiveRegion="polite"
+                android:text="+1.20 mm (Top Hinge Rear)"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvResultMortiseGain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:accessibilityLiveRegion="polite"
+                android:text="-0.60 mm (Bottom Leaf Relieve)"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/etProjectName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:minHeight="48dp"
+                android:contentDescription="Door or room project name for ledger persistence"
+                android:hint="Project Name (e.g. Master Bedroom)"
+                android:textColor="@color/m3_on_surface"
+                android:textColorHint="@color/m3_on_surface_variant" />
+
+            <Button
+                android:id="@+id/btnSaveProject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:minHeight="48dp"
+                android:contentDescription="Save door cut spec to projects"
+                android:text="Save Door Cut Spec to Projects" />
+        </LinearLayout>
+
+        <!-- Saved Projects Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="SAVED DOOR PROJECTS"
+            android:textColor="@color/m3_on_surface_variant"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/llProjectsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:orientation="vertical" />
+
+        <!-- Ad Container / Pro Wedge Anchor -->
+        <LinearLayout
+            android:id="@+id/llAdContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@color/m3_surface_container"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/tvAdNotice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CamberShim Carpenter Pro • Tap to Unlock PDF Schedules &amp; Hinge Presets"
+                android:textColor="@color/blueprint_cyan"
+                android:textSize="12sp"
+                android:textStyle="italic" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

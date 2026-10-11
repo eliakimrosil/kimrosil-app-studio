@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/m3_surface"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Toolbar Back -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnBackToolbar"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="← Back" />
+
+            <TextView
+                android:id="@+id/tvDetailTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:text="Door Cut Spec"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvDetailSpecs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@color/m3_surface_container"
+            android:padding="12dp"
+            android:textColor="@color/blueprint_cyan"
+            android:textSize="13sp" />
+
+        <!-- Shim Thickness & Stock Selection Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@color/m3_surface_container"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MATERIAL STOCK CALIBRATION"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvDetailShimThickness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Required Shim: +1.20 mm"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/rgMaterialPresets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp">
+
+                <RadioButton
+                    android:id="@+id/rbCardstock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Heavy Cardstock (~0.45 mm / 0.018 in)"
+                    android:textColor="@color/m3_on_surface" />
+
+                <RadioButton
+                    android:id="@+id/rbBrass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Brass Shim Stock (~0.50 mm / 0.020 in)"
+                    android:textColor="@color/m3_on_surface" />
+
+                <RadioButton
+                    android:id="@+id/rbVeneer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hardwood Veneer (~0.80 mm / 0.031 in)"
+                    android:textColor="@color/m3_on_surface" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tvMaterialGuide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@color/m3_surface"
+                android:padding="12dp"
+                android:textColor="@color/gauge_clearance_emerald"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnExportCutSheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/m3_primary"
+            android:text="Export / Share Cut Sheet"
+            android:textColor="@color/m3_on_primary" />
+
+        <Button
+            android:id="@+id/btnDeleteProject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Delete This Project" />
+
+    </LinearLayout>
+</ScrollView>

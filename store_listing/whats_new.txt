@@ -1,0 +1,6 @@
+CamberShim v1.1.0 update:
+• Added Quick Settings Tile for 1-tap instant door shim calculations
+• Full TalkBack accessibility with explicit content descriptions and live calculation announcements
+• Tactile haptic feedback on calculation and adjustments
+• Defensive input validation and improved high-contrast jobsite visual clarity
+• Multi-door cut sheet ledger and material stock calibration
