@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Telemetry Deck Semantics (Poolside Industrial High-Contrast) -->
+    <color name="m3_primary">#00BCD4</color>
+    <color name="m3_on_primary">#002025</color>
+    <color name="m3_primary_container">#004E59</color>
+    <color name="m3_on_primary_container">#82F3FF</color>
+    
+    <color name="m3_surface">#0F1517</color>
+    <color name="m3_surface_container">#1A2226</color>
+    <color name="m3_surface_container_high">#243036</color>
+    <color name="m3_on_surface">#E0EAEF</color>
+    <color name="m3_on_surface_variant">#9EAEB5</color>
+    <color name="m3_outline">#3C4B52</color>
+
+    <!-- Stage Accents -->
+    <color name="color_amber_pulse">#FFB300</color>
+    <color name="color_cyan_glow">#00E5FF</color>
+    <color name="color_recharge_green">#00E676</color>
+    <color name="color_danger_red">#FF5252</color>
+</resources>

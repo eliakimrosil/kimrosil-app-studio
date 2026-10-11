@@ -1,0 +1,6 @@
+Initial release of SkimSkim: Pool Backwash Aide (v1.0.0).
+- Multi-stage cycle timer for backwash, rinse, and filter operations.
+- Accurate diatomaceous earth recharge dosage calculator.
+- Water-lock touch rejection mode with physical key stage advance.
+- Quick Settings tile support for instant pad-side access.
+- Fully offline architecture with zero required accounts.

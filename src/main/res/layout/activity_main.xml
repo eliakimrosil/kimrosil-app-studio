@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/m3_surface">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- TopBar: Telemetry Title & Quick Overrides -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingBottom="12dp">
+
+                <TextView
+                    android:id="@+id/tvAppTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="SkimSkim"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_primary"
+                    android:contentDescription="SkimSkim Pool Backwash Application Header" />
+
+                <Button
+                    android:id="@+id/btnThemeToggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="Auto Theme"
+                    android:textSize="12sp"
+                    android:contentDescription="Toggle app visual theme between auto light and dark" />
+
+                <Button
+                    android:id="@+id/btnSoundToggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="6dp"
+                    android:text="Audio: ON"
+                    android:textSize="12sp"
+                    android:contentDescription="Toggle audible countdown audio beeps" />
+
+                <Button
+                    android:id="@+id/btnWaterLockToggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="6dp"
+                    android:text="Water Lock"
+                    android:textSize="12sp"
+                    android:contentDescription="Activate wet hands water droplet lock mode" />
+
+                <Button
+                    android:id="@+id/btnHistory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="6dp"
+                    android:text="Logs"
+                    android:textSize="12sp"
+                    android:contentDescription="Inspect backwash history and pressure timeline" />
+            </LinearLayout>
+
+            <!-- HeroCard: Jumbo Stage & Timer Sweeper -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/m3_surface_container"
+                android:padding="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvStageBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="STAGE: READY / IDLE"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@color/m3_on_surface"
+                    android:padding="8dp"
+                    android:contentDescription="Current filter backwash stage telemetry status" />
+
+                <TextView
+                    android:id="@+id/tvTimerCountdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="02:00"
+                    android:textSize="78sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_cyan_glow"
+                    android:paddingTop="8dp"
+                    android:contentDescription="Live remaining seconds countdown display" />
+
+                <ProgressBar
+                    android:id="@+id/progressStageGauge"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp"
+                    android:layout_marginTop="8dp"
+                    android:max="100"
+                    android:progress="0"
+                    android:contentDescription="Linear stage elapsed time gauge" />
+
+                <TextView
+                    android:id="@+id/tvStageSubtext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Set multiport valve to BACKWASH, roll out discharge hose."
+                    android:textSize="14sp"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:gravity="center"
+                    android:paddingTop="10dp" />
+            </LinearLayout>
+
+            <!-- ControlDeck: Moisture-Friendly Jumbo Controls -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp">
+
+                <Button
+                    android:id="@+id/btnPlayPause"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:text="START BACKWASH"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_primary"
+                    android:backgroundTint="@color/m3_primary"
+                    android:contentDescription="Master primary button to start pause or resume valve cycle" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
+
+                    <Button
+                        android:id="@+id/btnAdd30s"
+                        android:layout_width="0dp"
+                        android:layout_height="56dp"
+                        android:layout_weight="1"
+                        android:text="+30 SEC"
+                        android:textSize="16sp"
+                        android:contentDescription="Add thirty seconds to active countdown timer" />
+
+                    <Button
+                        android:id="@+id/btnSkipStage"
+                        android:layout_width="0dp"
+                        android:layout_height="56dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="SKIP STAGE"
+                        android:textSize="16sp"
+                        android:contentDescription="Skip active step and transition to next cycle stage" />
+
+                    <Button
+                        android:id="@+id/btnResetCycle"
+                        android:layout_width="0dp"
+                        android:layout_height="56dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="RESET"
+                        android:textSize="16sp"
+                        android:contentDescription="Abort and reset current valve timer cycle" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- DE Powder Dosage Calculator Deck -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/m3_surface_container"
+                android:padding="16dp"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DE MEDIA DOSAGE CALCULATOR"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_primary" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Grid Area (sq ft):"
+                        android:textColor="@color/m3_on_surface" />
+
+                    <EditText
+                        android:id="@+id/etFilterArea"
+                        android:layout_width="90dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:inputType="numberDecimal"
+                        android:text="48.0"
+                        android:textColor="@color/m3_on_surface"
+                        android:gravity="center"
+                        android:contentDescription="Filter surface area in square feet" />
+
+                    <Button
+                        android:id="@+id/btnSightGlassCheck"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="Sight-Glass Check"
+                        android:textSize="12sp"
+                        android:contentDescription="Check sight glass clarity guide" />
+                </LinearLayout>
+
+                <SeekBar
+                    android:id="@+id/seekFilterArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:contentDescription="Adjust filter area from 10 to 150 square feet" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
+
+                    <Button
+                        android:id="@+id/btnModeFull"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="Full Recharge (100%)"
+                        android:textSize="12sp"
+                        android:contentDescription="Full grid recharge 100 percent dosing mode" />
+
+                    <Button
+                        android:id="@+id/btnModeBump"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="Bump/Partial (80%)"
+                        android:textSize="12sp"
+                        android:contentDescription="Bump or partial backwash 80 percent dosing mode" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvDeDosageLbs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.8 LBS"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_recharge_green"
+                    android:layout_gravity="center"
+                    android:paddingTop="8dp"
+                    android:contentDescription="Calculated Diatomaceous Earth weight required" />
+
+                <TextView
+                    android:id="@+id/tvDeDosageScoops"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.8 Scoops / Cans (1-lb standard)"
+                    android:textSize="14sp"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:layout_gravity="center"
+                    android:contentDescription="Diatomaceous Earth dosage converted to 1 lb standard scoops" />
+            </LinearLayout>
+
+            <!-- Result State Card: Pressure Recording -->
+            <LinearLayout
+                android:id="@+id/llResultCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/m3_surface_container_high"
+                android:padding="16dp"
+                android:layout_marginTop="16dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FILTER RECHARGE &amp; PSI BASELINE"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_primary" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pre-Wash PSI (Dirty):"
+                            android:textColor="@color/m3_on_surface" />
+
+                        <EditText
+                            android:id="@+id/etDirtyPsi"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:inputType="numberDecimal"
+                            android:text="25.0"
+                            android:textColor="@color/m3_on_surface"
+                            android:contentDescription="Dirty pressure reading in PSI before backwash" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="New Clean PSI:"
+                            android:textColor="@color/m3_on_surface" />
+
+                        <EditText
+                            android:id="@+id/etCleanPsi"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:inputType="numberDecimal"
+                            android:text="15.0"
+                            android:textColor="@color/m3_on_surface"
+                            android:contentDescription="Clean baseline pressure in PSI after recharge" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnSaveLog"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="12dp"
+                    android:text="SAVE CYCLE TO DATABASE"
+                    android:contentDescription="Persist current backwash cycle metrics to local sqlite database" />
+            </LinearLayout>
+
+            <!-- Empty State Card -->
+            <LinearLayout
+                android:id="@+id/llEmptyState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/m3_surface_container"
+                android:padding="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ready for Poolside Filter Maintenance"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_surface" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No recent backwash runs. Tap Quick Start Preset (120s Backwash / 30s Rinse) to clean your pool filter grids."
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:gravity="center"
+                    android:padding="8dp" />
+
+                <Button
+                    android:id="@+id/btnQuickStartPreset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="Quick Start Standard Preset"
+                    android:contentDescription="Launch standard 120s backwash and 30s rinse timer preset" />
+            </LinearLayout>
+
+            <!-- Bottom Ad Notice & Upgrade Hook -->
+            <LinearLayout
+                android:id="@+id/llAdContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/tvAdNotice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SkimSkim 100% Offline Core • Upgrade to Pool Tech Pro ($3.99 Lifetime)"
+                    android:textSize="12sp"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:contentDescription="Commercial upgrade notice linking to KimRosil App Studio" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Full-Screen Water Lock / Touch Rejection Overlay -->
+    <LinearLayout
+        android:id="@+id/llWaterLockOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E6000000"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WATER LOCK ACTIVE"
+            android:textColor="@color/color_amber_pulse"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Droplet Rejection Shield Enabled.\nUse Hardware Volume Keys to adjust (+30s / -15s)."
+            android:textColor="@color/m3_on_surface"
+            android:gravity="center"
+            android:paddingTop="12dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvLockTimerDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="02:00"
+            android:textSize="80sp"
+            android:textStyle="bold"
+            android:textColor="@color/color_cyan_glow"
+            android:padding="16dp" />
+
+        <Button
+            android:id="@+id/btnUnlockWater"
+            android:layout_width="260dp"
+            android:layout_height="72dp"
+            android:text="HOLD TO UNLOCK"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_primary"
+            android:backgroundTint="@color/color_danger_red"
+            android:contentDescription="Hold or press button to dismiss water lock shield" />
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,219 @@
+plugins {
+    id 'base'
+}
+
+ext {
+    sdkDir = file("${System.getProperty('user.home')}/.android-sdk/platforms/android-33")
+    androidJar = file("${sdkDir}/android.jar")
+    debugKeystore = file("${System.getProperty('user.home')}/.android/debug.keystore")
+    releaseKeystore = file("${System.getProperty('user.home')}/.android/kimrosil_release.keystore")
+    buildDir = file("build")
+    genDir = file("${buildDir}/gen")
+    intermediatesDir = file("${buildDir}/intermediates")
+    classesDir = file("${intermediatesDir}/classes")
+    outputsDir = file("${buildDir}/outputs")
+    targetSerial = System.getenv('ANDROID_SERIAL') ?: '127.0.0.1:5555'
+}
+
+task compileResources(type: Exec) {
+    description = 'Compiles Android resources using AAPT2'
+    group = 'build'
+
+    doFirst {
+        genDir.mkdirs()
+        intermediatesDir.mkdirs()
+        outputsDir.mkdirs()
+    }
+
+    commandLine 'bash', '-c', """
+        aapt2 compile --dir src/main/res -o ${intermediatesDir}/compiled_res.zip && \\
+        aapt2 link --manifest src/main/AndroidManifest.xml -I ${androidJar} \\
+            ${intermediatesDir}/compiled_res.zip -o ${intermediatesDir}/resources.apk \\
+            --java ${genDir}
+    """
+}
+
+task compileJava(type: Exec) {
+    description = 'Compiles Java source code against android.jar'
+    group = 'build'
+    dependsOn compileResources
+
+    doFirst {
+        classesDir.mkdirs()
+    }
+
+    commandLine 'bash', '-c', """
+        javac --release 8 -cp ${androidJar} -d ${classesDir} \$(find src/main/java ${genDir} -name "*.java")
+    """
+}
+
+task dex(type: Exec) {
+    description = 'Converts compiled bytecode into DEX format using D8'
+    group = 'build'
+    dependsOn compileJava
+
+    commandLine 'bash', '-c', """
+        d8 --lib ${androidJar} --output ${intermediatesDir}/ \$(find ${classesDir} -name "*.class")
+    """
+}
+
+task packageApk(type: Exec) {
+    description = 'Packages DEX and resources into an unaligned APK'
+    group = 'build'
+    dependsOn dex
+
+    commandLine 'python3', '-c', """
+import shutil, zipfile, os
+shutil.copyfile("${intermediatesDir}/resources.apk", "${intermediatesDir}/unaligned.apk")
+with zipfile.ZipFile("${intermediatesDir}/unaligned.apk", "a") as z:
+    z.write("${intermediatesDir}/classes.dex", "classes.dex")
+"""
+}
+
+task signApk(type: Exec) {
+    description = 'Signs the APK using apksigner with debug keystore'
+    group = 'build'
+    dependsOn packageApk
+
+    commandLine 'bash', '-c', """
+        apksigner sign --ks ${debugKeystore} --ks-pass pass:android \\
+            --ks-key-alias androiddebugkey --key-pass pass:android \\
+            --out ${outputsDir}/${rootProject.name}-debug.apk ${intermediatesDir}/unaligned.apk
+    """
+}
+
+task assembleDebug {
+    description = 'Builds and packages the debug APK'
+    group = 'build'
+    dependsOn signApk
+
+    doLast {
+        println ">>> Build Successful! APK generated at: ${outputsDir}/${rootProject.name}-debug.apk"
+    }
+}
+
+task signReleaseApk(type: Exec) {
+    description = 'Signs the APK using apksigner with production release keystore'
+    group = 'build'
+    dependsOn packageApk
+
+    commandLine 'bash', '-c', """
+        apksigner sign --ks ${releaseKeystore} --ks-pass pass:kimrosil2026 \\
+            --ks-key-alias kimrosil --key-pass pass:kimrosil2026 \\
+            --out ${outputsDir}/${rootProject.name}-release.apk ${intermediatesDir}/unaligned.apk
+    """
+}
+
+task assembleRelease {
+    description = 'Builds and packages the signed release APK'
+    group = 'build'
+    dependsOn signReleaseApk
+
+    doLast {
+        println ">>> Release Build Successful! APK generated at: ${outputsDir}/${rootProject.name}-release.apk"
+    }
+}
+
+task compileProtoResources(type: Exec) {
+    description = 'Compiles Android resources in Protocol Buffer format for AAB bundle'
+    group = 'build'
+    dependsOn dex
+
+    commandLine 'bash', '-c', """
+        aapt2 link --manifest src/main/AndroidManifest.xml -I ${androidJar} \\
+            --proto-format -o ${intermediatesDir}/proto_base.apk \\
+            ${intermediatesDir}/compiled_res.zip --auto-add-overlay
+    """
+}
+
+task packageBundle(type: Exec) {
+    description = 'Packages module into Android App Bundle (.aab) using bundletool'
+    group = 'build'
+    dependsOn compileProtoResources
+
+    commandLine 'python3', '-c', """
+import zipfile, subprocess, os
+proto_apk = "${intermediatesDir}/proto_base.apk"
+base_zip = "${intermediatesDir}/base.zip"
+classes_dex = "${intermediatesDir}/classes.dex"
+out_aab = "${outputsDir}/${rootProject.name}-unsigned.aab"
+
+with zipfile.ZipFile(proto_apk, 'r') as zin, zipfile.ZipFile(base_zip, 'w') as zout:
+    for item in zin.infolist():
+        data = zin.read(item.filename)
+        if item.filename == "AndroidManifest.xml":
+            zout.writestr("manifest/AndroidManifest.xml", data)
+        else:
+            zout.writestr(item.filename, data)
+    if os.path.exists(classes_dex):
+        with open(classes_dex, 'rb') as f:
+            zout.writestr("dex/classes.dex", f.read())
+
+subprocess.run([
+    "bundletool", "build-bundle",
+    f"--modules={base_zip}",
+    f"--output={out_aab}",
+    "--overwrite"
+], check=True)
+"""
+}
+
+task signBundle(type: Exec) {
+    description = 'Signs the Android App Bundle using jarsigner with release keystore'
+    group = 'build'
+    dependsOn packageBundle
+
+    commandLine 'bash', '-c', """
+        cp ${outputsDir}/${rootProject.name}-unsigned.aab ${outputsDir}/${rootProject.name}-release.aab && \\
+        jarsigner -keystore ${releaseKeystore} \\
+            -storepass "kimrosil2026" -keypass "kimrosil2026" \\
+            ${outputsDir}/${rootProject.name}-release.aab kimrosil && \\
+        bundletool validate --bundle=${outputsDir}/${rootProject.name}-release.aab
+    """
+}
+
+task bundleRelease {
+    description = 'Builds and signs the production Android App Bundle (.aab) for Google Play'
+    group = 'build'
+    dependsOn signBundle
+
+    doLast {
+        println ">>> Production Bundle Ready! Signed AAB generated at: ${outputsDir}/${rootProject.name}-release.aab"
+    }
+}
+
+task buildAll {
+    description = 'Builds all variants: Debug APK, Release APK, and Signed Google Play AAB Bundle'
+    group = 'build'
+    dependsOn assembleDebug, assembleRelease, bundleRelease
+
+    doLast {
+        println "=========================================================="
+        println ">>> KimRosil App Studio Build Complete!"
+        println " • Debug APK:   ${outputsDir}/${rootProject.name}-debug.apk"
+        println " • Release APK: ${outputsDir}/${rootProject.name}-release.apk"
+        println " • Play AAB:    ${outputsDir}/${rootProject.name}-release.aab"
+        println "=========================================================="
+    }
+}
+
+task installDebug(type: Exec) {
+    description = 'Installs the debug APK onto the connected Android device'
+    group = 'install'
+    dependsOn assembleDebug
+
+    commandLine 'bash', '-c', """
+        adb -s ${targetSerial} install -r -g ${outputsDir}/${rootProject.name}-debug.apk
+    """
+}
+
+task launchApp(type: Exec) {
+    description = 'Launches the main activity on the device'
+    group = 'install'
+    dependsOn installDebug
+
+    commandLine 'bash', '-c', """
+        PKG=\$(sed -n 's/.*package="\\([^"]*\\)".*/\\1/p' src/main/AndroidManifest.xml | head -n1)
+        adb -s ${targetSerial} shell am start -n "\${PKG}/.MainActivity"
+    """
+}
