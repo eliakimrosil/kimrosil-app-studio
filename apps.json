@@ -484,12 +484,12 @@
     "tagline": "Offline wood grain reading helper and tearout calculator with quick visual tilt checks for workshop benches.",
     "status": "BUILT",
     "branch": "app/grain-run",
-    "tag": "v1.0.0-grain-run",
-    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-grain-run/grain-run.apk",
+    "tag": "v1.2.0-grain-run",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.0-grain-run/grain-run.apk",
     "landing_page": "https://apps.kimrosil.com/grain-run/",
     "privacy_policy": "https://apps.kimrosil.com/grain-run/privacy.html",
     "icon": "assets/icons/grain-run.svg",
-    "updated_at": "2026-10-11T04:27:09.005108+00:00"
+    "updated_at": "2026-10-11T12:04:23.418787+00:00"
   },
   {
     "slug": "muck-cure",
