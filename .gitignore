@@ -11,3 +11,4 @@ local.properties
 __pycache__/
 *.pyc
 bin/
+icon_512.png
