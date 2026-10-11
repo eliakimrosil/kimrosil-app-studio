@@ -560,5 +560,19 @@
     "privacy_policy": "https://apps.kimrosil.com/weld-cool/privacy.html",
     "icon": "assets/icons/weld-cool.svg",
     "updated_at": "2026-10-11T04:27:09.005108+00:00"
+  },
+  {
+    "slug": "turf-notch",
+    "title": "TurfNotch Spreader Settings",
+    "category": "UTILITIES",
+    "tagline": "Bespoke offline Android utility",
+    "status": "BUILT",
+    "branch": "app/turf-notch",
+    "tag": "v1.1.0-turf-notch",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-turf-notch/turf-notch.apk",
+    "landing_page": "https://apps.kimrosil.com/turf-notch/",
+    "privacy_policy": "https://apps.kimrosil.com/turf-notch/privacy.html",
+    "icon": "assets/icons/turf-notch.svg",
+    "updated_at": "2026-10-11T11:48:34.755637+00:00"
   }
 ]
