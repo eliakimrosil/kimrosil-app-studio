@@ -3,600 +3,788 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:background="@color/bg_main"
-    android:padding="14dp">
+    android:padding="12dp">
 
-    <!-- Header -->
+    <!-- ── Left Pane: Input + Numpad ── -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingBottom="8dp">
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginEnd="8dp">
 
+        <!-- Input Box -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:id="@+id/card_amount"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="8dp"
+            android:layout_marginBottom="6dp">
+
+            <LinearLayout
+                android:id="@+id/ll_input_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/edittext_bg"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp">
+
+                <TextView
+                    android:id="@+id/tv_peso_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="₱"
+                    android:textColor="@color/accent_emerald"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_amount"
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="0.00"
+                    android:textColorHint="@color/text_muted"
+                    android:textColor="@color/text_high"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:inputType="text"
+                    android:digits="0123456789.+-*/ "
+                    android:paddingStart="6dp"
+                    android:paddingEnd="6dp"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_amount_label"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- In-App Numpad Grid -->
+        <LinearLayout
+            android:id="@+id/layout_numpad"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_app_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="PhVat"
-                android:textColor="@color/accent_emerald"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:letterSpacing="0.02" />
+            <!-- Row 1: 7, 8, 9, ⌫ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp">
 
-            <TextView
-                android:id="@+id/tv_app_subtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/vat_title"
-                android:textColor="@color/text_mid"
-                android:textSize="11sp" />
+                <Button
+                    android:id="@+id/btn_key_7"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="7"
+                    android:textColor="@color/text_high"
+                    android:background="@drawable/key_numpad"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_key_8"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="8"
+                    android:textColor="@color/text_high"
+                    android:background="@drawable/key_numpad"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_key_9"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="9"
+                    android:textColor="@color/text_high"
+                    android:background="@drawable/key_numpad"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_key_del"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="⌫"
+                    android:textColor="@color/text_mid"
+                    android:background="@drawable/key_numpad_op"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <!-- Row 2: 4, 5, 6, + -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp">
+
+                <Button
+                    android:id="@+id/btn_key_4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="4"
+                    android:textColor="@color/text_high"
+                    android:background="@drawable/key_numpad"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_key_5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="5"
+                    android:textColor="@color/text_high"
+                    android:background="@drawable/key_numpad"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_key_6"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="6"
+                    android:textColor="@color/text_high"
+                    android:background="@drawable/key_numpad"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_key_plus"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="+"
+                    android:textColor="@color/accent_emerald"
+                    android:background="@drawable/key_numpad_op"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Row 3: 1, 2, 3, − -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp">
+
+                <Button
+                    android:id="@+id/btn_key_1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="1"
+                    android:textColor="@color/text_high"
+                    android:background="@drawable/key_numpad"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_key_2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="2"
+                    android:textColor="@color/text_high"
+                    android:background="@drawable/key_numpad"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_key_3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="3"
+                    android:textColor="@color/text_high"
+                    android:background="@drawable/key_numpad"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_key_minus"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="−"
+                    android:textColor="@color/accent_emerald"
+                    android:background="@drawable/key_numpad_op"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Row 4: C, 0, 00, . -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_key_c"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="C"
+                    android:textColor="@color/m3_error"
+                    android:background="@drawable/key_numpad_op"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_key_0"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textColor="@color/text_high"
+                    android:background="@drawable/key_numpad"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_key_00"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="00"
+                    android:textColor="@color/text_high"
+                    android:background="@drawable/key_numpad"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_key_dot"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="."
+                    android:textColor="@color/text_high"
+                    android:background="@drawable/key_numpad"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_toggle_history"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:text="⏱ History"
-            android:textColor="@color/text_mid"
-            android:background="@drawable/chip_btn"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:textSize="11sp"
-            android:layout_marginEnd="6dp" />
-
-        <Button
-            android:id="@+id/btn_theme"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:text="☀ Light"
-            android:textColor="@color/accent_emerald"
-            android:background="@drawable/chip_btn"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:textSize="11sp"
-            android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- Dual Pane Split -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+    <!-- ── Right Pane: Ledger & Controls ── -->
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:layout_marginStart="8dp"
+        android:scrollbars="none">
 
-        <!-- Left Pane: Input & Adjustments -->
-        <ScrollView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginEnd="8dp"
-            android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <!-- Header -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingBottom="6dp">
 
-                <!-- Hero Input Card -->
                 <LinearLayout
-                    android:id="@+id/card_amount"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/card_background"
-                    android:padding="12dp"
-                    android:layout_marginBottom="8dp">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tv_app_title"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:paddingBottom="4dp">
+                        android:text="PhVat"
+                        android:textColor="@color/accent_emerald"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/tv_amount_label"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/enter_amount"
-                            android:textColor="@color/text_mid"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Supports (+ − × ÷)"
-                            android:textColor="@color/text_muted"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_input_box"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tv_app_subtitle"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:background="@drawable/edittext_bg"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp">
-
-                        <TextView
-                            android:id="@+id/tv_peso_symbol"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="₱"
-                            android:textColor="@color/accent_emerald"
-                            android:textSize="22sp"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/et_amount"
-                            android:layout_width="0dp"
-                            android:layout_height="44dp"
-                            android:layout_weight="1"
-                            android:background="@null"
-                            android:hint="0.00"
-                            android:textColorHint="@color/text_muted"
-                            android:textColor="@color/text_high"
-                            android:textSize="22sp"
-                            android:textStyle="bold"
-                            android:inputType="text"
-                            android:digits="0123456789.+-*/ "
-                            android:paddingStart="8dp"
-                            android:paddingEnd="8dp"
-                            android:singleLine="true" />
-                    </LinearLayout>
-
-                    <RadioGroup
-                        android:id="@+id/rg_vat_mode"
-                        android:layout_width="match_parent"
-                        android:layout_height="36dp"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="8dp">
-
-                        <RadioButton
-                            android:id="@+id/rb_inclusive"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:checked="true"
-                            android:text="@string/inclusive_label"
-                            android:textColor="@color/text_high"
-                            android:textSize="12sp"
-                            android:gravity="center_vertical" />
-
-                        <RadioButton
-                            android:id="@+id/rb_exclusive"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="@string/exclusive_label"
-                            android:textColor="@color/text_high"
-                            android:textSize="12sp"
-                            android:gravity="center_vertical" />
-                    </RadioGroup>
+                        android:text="@string/vat_title"
+                        android:textColor="@color/text_mid"
+                        android:textSize="10sp" />
                 </LinearLayout>
 
-                <!-- Adjustments Card -->
+                <Button
+                    android:id="@+id/btn_toggle_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="⏱ History"
+                    android:textColor="@color/text_mid"
+                    android:background="@drawable/chip_btn"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textSize="10sp"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="☀ Light"
+                    android:textColor="@color/accent_emerald"
+                    android:background="@drawable/chip_btn"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Mode & Adjustments -->
+            <LinearLayout
+                android:id="@+id/card_mode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_background"
+                android:padding="8dp"
+                android:layout_marginBottom="6dp">
+
+                <RadioGroup
+                    android:id="@+id/rg_vat_mode"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_inclusive"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="@string/inclusive_label"
+                        android:textColor="@color/text_high"
+                        android:textSize="11sp" />
+
+                    <RadioButton
+                        android:id="@+id/rb_exclusive"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="@string/exclusive_label"
+                        android:textColor="@color/text_high"
+                        android:textSize="11sp" />
+                </RadioGroup>
+
                 <LinearLayout
-                    android:id="@+id/card_mode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/card_background"
-                    android:padding="12dp"
-                    android:layout_marginBottom="8dp">
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="4dp">
 
                     <Switch
                         android:id="@+id/sw_senior_pwd"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/senior_pwd_label"
+                        android:layout_weight="1"
+                        android:text="Senior 20%"
                         android:textColor="@color/text_high"
-                        android:textSize="12sp" />
+                        android:textSize="11sp" />
 
                     <LinearLayout
                         android:id="@+id/ll_vat_rate_row"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginTop="6dp">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="VAT Rate:"
-                            android:textColor="@color/text_mid"
-                            android:textSize="12sp" />
+                        android:orientation="horizontal">
 
                         <Button
                             android:id="@+id/chip_vat_12"
                             android:layout_width="wrap_content"
-                            android:layout_height="28dp"
+                            android:layout_height="26dp"
                             android:text="12% Std"
                             android:background="@drawable/chip_btn"
-                            android:textSize="10sp"
-                            android:paddingStart="8dp"
-                            android:paddingEnd="8dp"
-                            android:layout_marginEnd="4dp" />
+                            android:textSize="9sp"
+                            android:paddingStart="6dp"
+                            android:paddingEnd="6dp"
+                            android:layout_marginEnd="3dp" />
 
                         <Button
                             android:id="@+id/chip_vat_0"
                             android:layout_width="wrap_content"
-                            android:layout_height="28dp"
+                            android:layout_height="26dp"
                             android:text="0% Exempt"
                             android:background="@drawable/chip_btn"
-                            android:textSize="10sp"
-                            android:paddingStart="8dp"
-                            android:paddingEnd="8dp" />
+                            android:textSize="9sp"
+                            android:paddingStart="6dp"
+                            android:paddingEnd="6dp" />
                     </LinearLayout>
+                </LinearLayout>
 
-                    <View
-                        android:id="@+id/divider_mode"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/stroke_card"
-                        android:layout_marginTop="6dp"
-                        android:layout_marginBottom="6dp" />
+                <View
+                    android:id="@+id/divider_mode"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/stroke_card"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
                     <Switch
                         android:id="@+id/sw_wht"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/wht_label"
+                        android:layout_weight="1"
+                        android:text="EWT"
                         android:textColor="@color/text_high"
-                        android:textSize="12sp" />
+                        android:textSize="11sp" />
 
                     <LinearLayout
                         android:id="@+id/ll_wht_rate_row"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginTop="6dp"
                         android:visibility="gone">
 
                         <Button
                             android:id="@+id/chip_wht_none"
-                            android:layout_width="0dp"
-                            android:layout_height="28dp"
-                            android:layout_weight="1"
-                            android:text="None"
+                            android:layout_width="28dp"
+                            android:layout_height="26dp"
+                            android:text="0"
                             android:background="@drawable/chip_btn"
-                            android:textSize="10sp"
-                            android:layout_marginEnd="3dp" />
+                            android:textSize="9sp"
+                            android:layout_marginEnd="2dp" />
 
                         <Button
                             android:id="@+id/chip_wht_1"
-                            android:layout_width="0dp"
-                            android:layout_height="28dp"
-                            android:layout_weight="1"
+                            android:layout_width="32dp"
+                            android:layout_height="26dp"
                             android:text="1%"
                             android:background="@drawable/chip_btn"
-                            android:textSize="10sp"
-                            android:layout_marginEnd="3dp" />
+                            android:textSize="9sp"
+                            android:layout_marginEnd="2dp" />
 
                         <Button
                             android:id="@+id/chip_wht_2"
-                            android:layout_width="0dp"
-                            android:layout_height="28dp"
-                            android:layout_weight="1"
+                            android:layout_width="32dp"
+                            android:layout_height="26dp"
                             android:text="2%"
                             android:background="@drawable/chip_btn"
-                            android:textSize="10sp"
-                            android:layout_marginEnd="3dp" />
+                            android:textSize="9sp"
+                            android:layout_marginEnd="2dp" />
 
                         <Button
                             android:id="@+id/chip_wht_5"
-                            android:layout_width="0dp"
-                            android:layout_height="28dp"
-                            android:layout_weight="1"
+                            android:layout_width="32dp"
+                            android:layout_height="26dp"
                             android:text="5%"
                             android:background="@drawable/chip_btn"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-
-                    <!-- Hidden legacy stubs -->
-                    <LinearLayout
-                        android:id="@+id/card_wht"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:visibility="gone">
-                        <TextView android:id="@+id/tv_wht_label" android:layout_width="0dp" android:layout_height="0dp" />
-                        <View android:id="@+id/divider_wht" android:layout_width="0dp" android:layout_height="0dp" />
+                            android:textSize="9sp" />
                     </LinearLayout>
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/btn_clear"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/clear"
-                    android:textColor="@color/text_mid"
-                    android:background="@drawable/btn_action"
-                    android:textSize="12sp" />
+                <!-- Hidden stubs -->
+                <TextView android:id="@+id/tv_mode_label" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone" />
+                <LinearLayout android:id="@+id/card_wht" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone">
+                    <TextView android:id="@+id/tv_wht_label" android:layout_width="0dp" android:layout_height="0dp" />
+                    <View android:id="@+id/divider_wht" android:layout_width="0dp" android:layout_height="0dp" />
+                </LinearLayout>
             </LinearLayout>
-        </ScrollView>
 
-        <!-- Right Pane: Ledger & History -->
-        <ScrollView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:scrollbars="none">
-
+            <!-- Ledger Breakdown -->
             <LinearLayout
+                android:id="@+id/card_breakdown"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@drawable/card_background"
+                android:padding="10dp"
+                android:layout_marginBottom="6dp">
 
-                <!-- Ledger Card -->
+                <TextView
+                    android:id="@+id/tv_breakdown_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="INVOICE LEDGER"
+                    android:textColor="@color/text_muted"
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.05"
+                    android:paddingBottom="4dp" />
+
                 <LinearLayout
-                    android:id="@+id/card_breakdown"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/card_background"
-                    android:padding="12dp"
-                    android:layout_marginBottom="8dp">
+                    android:orientation="horizontal"
+                    android:paddingBottom="4dp">
 
                     <TextView
-                        android:id="@+id/tv_breakdown_label"
+                        android:id="@+id/tv_vatable_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/vatable_sales"
+                        android:textColor="@color/text_mid"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tv_vatable_val"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="INVOICE LEDGER"
-                        android:textColor="@color/text_muted"
-                        android:textSize="11sp"
-                        android:textStyle="bold"
-                        android:letterSpacing="0.05"
-                        android:paddingBottom="8dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="6dp">
-
-                        <TextView
-                            android:id="@+id/tv_vatable_label"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/vatable_sales"
-                            android:textColor="@color/text_mid"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/tv_vatable_val"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="₱0.00"
-                            android:textColor="@color/text_high"
-                            android:textSize="13sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="6dp">
-
-                        <TextView
-                            android:id="@+id/tv_vat_label"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/vat_amount"
-                            android:textColor="@color/text_mid"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/tv_vat_val"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="₱0.00"
-                            android:textColor="@color/accent_cyan"
-                            android:textSize="13sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_discount_row"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
-                        android:paddingBottom="6dp">
-
-                        <TextView
-                            android:id="@+id/tv_discount_label"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/discount_amount"
-                            android:textColor="@color/accent_gold"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/tv_discount_val"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="-₱0.00"
-                            android:textColor="@color/accent_gold"
-                            android:textSize="13sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_wht_result_row"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
-                        android:paddingBottom="6dp">
-
-                        <TextView
-                            android:id="@+id/tv_wht_amount_label"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Less: EWT"
-                            android:textColor="@color/accent_orange"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/tv_wht_amount_val"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="-₱0.00"
-                            android:textColor="@color/accent_orange"
-                            android:textSize="13sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <View
-                        android:id="@+id/divider_breakdown"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/stroke_card"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginBottom="8dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:paddingBottom="4dp">
-
-                        <TextView
-                            android:id="@+id/tv_total_label"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/total_amount"
-                            android:textColor="@color/text_high"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv_total_val"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="₱0.00"
-                            android:textColor="@color/accent_emerald"
-                            android:textSize="22sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_net_after_wht_row"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
-                        android:paddingTop="2dp">
-
-                        <TextView
-                            android:id="@+id/tv_net_after_wht_label"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Net Due / Receivable"
-                            android:textColor="@color/text_mid"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/tv_net_after_wht_val"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="₱0.00"
-                            android:textColor="@color/accent_emerald"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/tv_formula_note"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="Formula: Net = Amount ÷ 1.12 | VAT = Net × 12%"
-                        android:textColor="@color/text_muted"
-                        android:textSize="10sp" />
+                        android:text="₱0.00"
+                        android:textColor="@color/text_high"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
-                <!-- History Card -->
                 <LinearLayout
-                    android:id="@+id/card_history"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@drawable/card_background"
-                    android:padding="12dp"
-                    android:layout_marginBottom="8dp"
-                    android:visibility="gone">
+                    android:orientation="horizontal"
+                    android:paddingBottom="4dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tv_vat_label"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:paddingBottom="6dp">
+                        android:layout_weight="1"
+                        android:text="@string/vat_amount"
+                        android:textColor="@color/text_mid"
+                        android:textSize="11sp" />
 
-                        <TextView
-                            android:id="@+id/tv_history_label"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/history_label"
-                            android:textColor="@color/text_mid"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
-
-                        <Button
-                            android:id="@+id/btn_clear_history"
-                            android:layout_width="wrap_content"
-                            android:layout_height="24dp"
-                            android:text="Clear"
-                            android:background="@drawable/chip_btn"
-                            android:textSize="10sp"
-                            android:paddingStart="8dp"
-                            android:paddingEnd="8dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_history_list"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tv_vat_val"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical" />
+                        android:text="₱0.00"
+                        android:textColor="@color/accent_cyan"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/btn_copy"
+                <LinearLayout
+                    android:id="@+id/ll_discount_row"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="@string/copy"
-                    android:textColor="@color/accent_emerald"
-                    android:background="@drawable/btn_action"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </ScrollView>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:paddingBottom="4dp">
 
-    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_discount_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/discount_amount"
+                        android:textColor="@color/accent_gold"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tv_discount_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-₱0.00"
+                        android:textColor="@color/accent_gold"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_wht_result_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:paddingBottom="4dp">
+
+                    <TextView
+                        android:id="@+id/tv_wht_amount_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Less: EWT"
+                        android:textColor="@color/accent_orange"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tv_wht_amount_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-₱0.00"
+                        android:textColor="@color/accent_orange"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider_breakdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/stroke_card"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="4dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv_total_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/total_amount"
+                        android:textColor="@color/text_high"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_total_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₱0.00"
+                        android:textColor="@color/accent_emerald"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_net_after_wht_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:paddingTop="2dp">
+
+                    <TextView
+                        android:id="@+id/tv_net_after_wht_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Net Due"
+                        android:textColor="@color/text_mid"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tv_net_after_wht_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₱0.00"
+                        android:textColor="@color/accent_emerald"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_formula_note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Net = Amount ÷ 1.12 | VAT = Net × 12%"
+                    android:textColor="@color/text_muted"
+                    android:textSize="9sp" />
+            </LinearLayout>
+
+            <!-- History Card -->
+            <LinearLayout
+                android:id="@+id/card_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_background"
+                android:padding="8dp"
+                android:layout_marginBottom="6dp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="4dp">
+
+                    <TextView
+                        android:id="@+id/tv_history_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/history_label"
+                        android:textColor="@color/text_mid"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btn_clear_history"
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:text="Clear"
+                        android:background="@drawable/chip_btn"
+                        android:textSize="9sp"
+                        android:paddingStart="6dp"
+                        android:paddingEnd="6dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_history_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- Bottom Actions -->
+            <Button
+                android:id="@+id/btn_clear"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_copy"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="@string/copy"
+                android:textColor="@color/accent_emerald"
+                android:background="@drawable/btn_action"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

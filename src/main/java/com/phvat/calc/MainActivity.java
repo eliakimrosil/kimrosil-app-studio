@@ -17,7 +17,6 @@ import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -62,7 +61,7 @@ public class MainActivity extends Activity {
     private LinearLayout llWhtRateRow;
     private Button chipWhtNone, chipWht1, chipWht2, chipWht5;
 
-    // Legacy stubs (safe fallback if referenced)
+    // Legacy stubs (safe fallback)
     private LinearLayout cardWht;
     private TextView tvWhtLabel;
     private View dividerWht;
@@ -87,6 +86,13 @@ public class MainActivity extends Activity {
     private TextView tvHistoryLabel;
     private LinearLayout llHistoryList;
     private Button btnClearHistory;
+
+    // ─── In-App Numpad Keys ───────────────────────────────────────────────────
+    private LinearLayout layoutNumpad;
+    private Button btnKey0, btnKey1, btnKey2, btnKey3, btnKey4;
+    private Button btnKey5, btnKey6, btnKey7, btnKey8, btnKey9;
+    private Button btnKey00, btnKeyDot, btnKeyPlus, btnKeyMinus;
+    private Button btnKeyDel, btnKeyC;
 
     // ─── Bottom Actions ───────────────────────────────────────────────────────
     private Button btnClear, btnCopy;
@@ -174,6 +180,11 @@ public class MainActivity extends Activity {
         rbInclusive       = findViewById(R.id.rb_inclusive);
         rbExclusive       = findViewById(R.id.rb_exclusive);
 
+        // Prevent Android system keyboard from popping up over the ledger
+        if (etAmount != null) {
+            etAmount.setShowSoftInputOnFocus(false);
+        }
+
         cardMode          = findViewById(R.id.card_mode);
         tvModeLabel       = findViewById(R.id.tv_mode_label);
         swSeniorPwd       = findViewById(R.id.sw_senior_pwd);
@@ -217,6 +228,25 @@ public class MainActivity extends Activity {
         tvHistoryLabel    = findViewById(R.id.tv_history_label);
         llHistoryList     = findViewById(R.id.ll_history_list);
         btnClearHistory   = findViewById(R.id.btn_clear_history);
+
+        // Numpad Keys
+        layoutNumpad      = findViewById(R.id.layout_numpad);
+        btnKey0           = findViewById(R.id.btn_key_0);
+        btnKey1           = findViewById(R.id.btn_key_1);
+        btnKey2           = findViewById(R.id.btn_key_2);
+        btnKey3           = findViewById(R.id.btn_key_3);
+        btnKey4           = findViewById(R.id.btn_key_4);
+        btnKey5           = findViewById(R.id.btn_key_5);
+        btnKey6           = findViewById(R.id.btn_key_6);
+        btnKey7           = findViewById(R.id.btn_key_7);
+        btnKey8           = findViewById(R.id.btn_key_8);
+        btnKey9           = findViewById(R.id.btn_key_9);
+        btnKey00          = findViewById(R.id.btn_key_00);
+        btnKeyDot         = findViewById(R.id.btn_key_dot);
+        btnKeyPlus        = findViewById(R.id.btn_key_plus);
+        btnKeyMinus       = findViewById(R.id.btn_key_minus);
+        btnKeyDel         = findViewById(R.id.btn_key_del);
+        btnKeyC           = findViewById(R.id.btn_key_c);
 
         btnClear          = findViewById(R.id.btn_clear);
         btnCopy           = findViewById(R.id.btn_copy);
@@ -281,10 +311,37 @@ public class MainActivity extends Activity {
         chipWht2.setOnClickListener(v ->    { whtRate = 0.02; refreshWhtRateChips(); calculate(); haptic(20); });
         chipWht5.setOnClickListener(v ->    { whtRate = 0.05; refreshWhtRateChips(); calculate(); haptic(20); });
 
-        btnClear.setOnClickListener(v -> {
-            etAmount.setText("");
-            calculate();
-        });
+        // Numpad key handlers
+        setupNumpadKey(btnKey0, "0");
+        setupNumpadKey(btnKey1, "1");
+        setupNumpadKey(btnKey2, "2");
+        setupNumpadKey(btnKey3, "3");
+        setupNumpadKey(btnKey4, "4");
+        setupNumpadKey(btnKey5, "5");
+        setupNumpadKey(btnKey6, "6");
+        setupNumpadKey(btnKey7, "7");
+        setupNumpadKey(btnKey8, "8");
+        setupNumpadKey(btnKey9, "9");
+        setupNumpadKey(btnKey00, "00");
+        setupNumpadKey(btnKeyDot, ".");
+        setupNumpadKey(btnKeyPlus, "+");
+        setupNumpadKey(btnKeyMinus, "-");
+
+        if (btnKeyDel != null) {
+            btnKeyDel.setOnClickListener(v -> deleteCharacter());
+            btnKeyDel.setOnLongClickListener(v -> {
+                clearInput();
+                return true;
+            });
+        }
+
+        if (btnKeyC != null) {
+            btnKeyC.setOnClickListener(v -> clearInput());
+        }
+
+        if (btnClear != null) {
+            btnClear.setOnClickListener(v -> clearInput());
+        }
 
         btnCopy.setOnClickListener(v -> copySummary());
 
@@ -293,6 +350,46 @@ public class MainActivity extends Activity {
             refreshHistoryCard();
             haptic(30);
         });
+    }
+
+    private void setupNumpadKey(Button btn, final String text) {
+        if (btn == null) return;
+        btn.setOnClickListener(v -> insertText(text));
+    }
+
+    private void insertText(String str) {
+        haptic(15);
+        if (etAmount == null) return;
+        int start = Math.max(etAmount.getSelectionStart(), 0);
+        int end = Math.max(etAmount.getSelectionEnd(), 0);
+        Editable editable = etAmount.getText();
+        if (editable == null) {
+            etAmount.setText(str);
+            etAmount.setSelection(str.length());
+            return;
+        }
+        editable.replace(Math.min(start, end), Math.max(start, end), str);
+    }
+
+    private void deleteCharacter() {
+        haptic(15);
+        if (etAmount == null) return;
+        Editable editable = etAmount.getText();
+        if (editable == null || editable.length() == 0) return;
+        int start = etAmount.getSelectionStart();
+        int end = etAmount.getSelectionEnd();
+        if (start != end) {
+            editable.delete(Math.min(start, end), Math.max(start, end));
+        } else if (start > 0) {
+            editable.delete(start - 1, start);
+        }
+    }
+
+    private void clearInput() {
+        haptic(25);
+        if (etAmount != null) {
+            etAmount.setText("");
+        }
     }
 
     // ─── Theme ────────────────────────────────────────────────────────────────
@@ -361,7 +458,6 @@ public class MainActivity extends Activity {
         inputDraw.setCornerRadius(dpToPx(12));
         llInputBox.setBackground(inputDraw);
 
-        tvAmountLabel.setTextColor(textMid);
         tvPesoSymbol.setTextColor(accentEmerald);
         etAmount.setTextColor(textHigh);
         etAmount.setHintTextColor(textMuted);
@@ -371,7 +467,7 @@ public class MainActivity extends Activity {
         rbExclusive.setTextColor(textHigh);
 
         // Adjustments Card
-        tvModeLabel.setTextColor(textMuted);
+        if (tvModeLabel != null) tvModeLabel.setTextColor(textMuted);
         swSeniorPwd.setTextColor(textHigh);
         dividerMode.setBackgroundColor(strokeColor);
         swWht.setTextColor(textHigh);
@@ -406,14 +502,57 @@ public class MainActivity extends Activity {
         applyChipBg(btnClearHistory, isDark ? 0xFF182235 : 0xFFF1F5F9, strokeColor);
         btnClearHistory.setTextColor(textMuted);
 
-        // Bottom Actions
-        GradientDrawable clearDraw = new GradientDrawable();
-        clearDraw.setColor(isDark ? 0xFF111827 : 0xFFF1F5F9);
-        clearDraw.setStroke(dpToPx(1), strokeColor);
-        clearDraw.setCornerRadius(dpToPx(14));
-        btnClear.setBackground(clearDraw);
-        btnClear.setTextColor(textMid);
+        // Numpad Keys Styling
+        Button[] digitKeys = {
+            btnKey0, btnKey1, btnKey2, btnKey3, btnKey4,
+            btnKey5, btnKey6, btnKey7, btnKey8, btnKey9,
+            btnKey00, btnKeyDot
+        };
+        for (Button key : digitKeys) {
+            if (key == null) continue;
+            GradientDrawable d = new GradientDrawable();
+            d.setColor(bgInner);
+            d.setStroke(dpToPx(1), strokeColor);
+            d.setCornerRadius(dpToPx(12));
+            key.setBackground(d);
+            key.setTextColor(textHigh);
+        }
 
+        // Operator Keys
+        if (btnKeyPlus != null) {
+            GradientDrawable d = new GradientDrawable();
+            d.setColor(bgCard);
+            d.setStroke(dpToPx(1), strokeColor);
+            d.setCornerRadius(dpToPx(12));
+            btnKeyPlus.setBackground(d);
+            btnKeyPlus.setTextColor(accentEmerald);
+        }
+        if (btnKeyMinus != null) {
+            GradientDrawable d = new GradientDrawable();
+            d.setColor(bgCard);
+            d.setStroke(dpToPx(1), strokeColor);
+            d.setCornerRadius(dpToPx(12));
+            btnKeyMinus.setBackground(d);
+            btnKeyMinus.setTextColor(accentEmerald);
+        }
+        if (btnKeyDel != null) {
+            GradientDrawable d = new GradientDrawable();
+            d.setColor(bgCard);
+            d.setStroke(dpToPx(1), strokeColor);
+            d.setCornerRadius(dpToPx(12));
+            btnKeyDel.setBackground(d);
+            btnKeyDel.setTextColor(textMid);
+        }
+        if (btnKeyC != null) {
+            GradientDrawable d = new GradientDrawable();
+            d.setColor(bgCard);
+            d.setStroke(dpToPx(1), strokeColor);
+            d.setCornerRadius(dpToPx(12));
+            btnKeyC.setBackground(d);
+            btnKeyC.setTextColor(isDark ? 0xFFF87171 : 0xFFDC2626);
+        }
+
+        // Bottom Copy Button
         GradientDrawable copyDraw = new GradientDrawable();
         copyDraw.setColor(isDark ? 0xFF064E3B : 0xFFD1FAE5);
         copyDraw.setStroke(dpToPx(1), isDark ? accentEmerald : 0xFF059669);
@@ -501,6 +640,7 @@ public class MainActivity extends Activity {
 
     // ─── Calculation ──────────────────────────────────────────────────────────
     private double parseInput() {
+        if (etAmount == null) return 0.0;
         String str = etAmount.getText().toString().trim();
         if (str.isEmpty()) return 0.0;
         try {
@@ -822,7 +962,7 @@ public class MainActivity extends Activity {
                 copySummary(); return true;
             }
             if (kc == KeyEvent.KEYCODE_ESCAPE) {
-                etAmount.setText(""); calculate(); return true;
+                clearInput(); return true;
             }
             if (event.isAltPressed()) {
                 if (kc == KeyEvent.KEYCODE_T) { btnTheme.performClick(); return true; }
