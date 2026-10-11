@@ -1,0 +1,1 @@
+Calculate 12% VAT, net sales, and withholding tax for Philippine invoices.

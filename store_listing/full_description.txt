@@ -1,0 +1,11 @@
+PH VAT Calculator is an offline business utility designed for Filipino freelancers, small business owners, accountants, and retail merchants. Quickly compute value-added tax, net amounts, and withholding deductions according to standard Philippine tax formats. Whether preparing sales receipts, auditing supplier billing, or verifying official invoices, this tool eliminates manual calculation errors with instant breakdown summaries. Key Features: • VAT Inclusive and Exclusive Computation: Enter gross or net sales to instantly calculate 12% VAT and net amounts. • Withholding Tax Calculations: Apply standard creditable withholding tax rates (such as 1%, 2%, or 5%) to invoice values seamlessly. • Clear Invoice Item Breakdown: View itemized totals showing gross price, net sales, VAT portion, and deductible taxes. • Offline-First Functionality: Perform every calculation without an active internet connection, ensuring reliable operation anywhere. • Privacy and Security: Operates locally on your device with no required account registration, background analytics, or third-party trackers. • Copy and Share Results: Export calculated breakdowns directly into messaging apps, email, or accounting spreadsheets. Designed for everyday commercial and bookkeeping tasks in the Philippines, PH VAT Calculator simplifies financial reporting and tax verification with a clean, efficient interface.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+
+Government Disclaimer: This application is an independent calculation reference tool designed for personal and business accounting estimations. It is not affiliated with, authorized by, or endorsed by the Bureau of Internal Revenue (BIR) or any government department or tax authority.

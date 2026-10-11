@@ -52,7 +52,7 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- Dual Pane Split Content -->
+    <!-- Dual Pane Split -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -60,7 +60,7 @@
         android:orientation="horizontal"
         android:baselineAligned="false">
 
-        <!-- Left Pane: Inputs & Modes -->
+        <!-- Left Pane -->
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -118,7 +118,7 @@
                             android:layout_height="56dp"
                             android:layout_weight="1"
                             android:background="@null"
-                            android:hint="0.00"
+                            android:hint="0.00 or 1200+850"
                             android:textColorHint="@color/text_muted"
                             android:textColor="@color/text_high"
                             android:textSize="26sp"
@@ -129,7 +129,6 @@
                             android:singleLine="true" />
                     </LinearLayout>
 
-                    <!-- Quick Presets -->
                     <HorizontalScrollView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -193,7 +192,7 @@
                     </HorizontalScrollView>
                 </LinearLayout>
 
-                <!-- Mode & Option Card -->
+                <!-- Mode & VAT Rate Card -->
                 <LinearLayout
                     android:id="@+id/card_mode"
                     android:layout_width="match_parent"
@@ -239,6 +238,45 @@
                             android:textSize="14sp" />
                     </RadioGroup>
 
+                    <!-- VAT Rate Chips -->
+                    <LinearLayout
+                        android:id="@+id/ll_vat_rate_row"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="VAT Rate:"
+                            android:textColor="@color/text_mid"
+                            android:textSize="13sp"
+                            android:gravity="center_vertical" />
+
+                        <Button
+                            android:id="@+id/chip_vat_12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="34dp"
+                            android:text="12% Standard"
+                            android:background="@drawable/chip_btn"
+                            android:textSize="12sp"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:layout_marginEnd="6dp" />
+
+                        <Button
+                            android:id="@+id/chip_vat_0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="34dp"
+                            android:text="0% Exempt"
+                            android:background="@drawable/chip_btn"
+                            android:textSize="12sp"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp" />
+                    </LinearLayout>
+
                     <View
                         android:id="@+id/divider_mode"
                         android:layout_width="match_parent"
@@ -256,7 +294,150 @@
                         android:textSize="14sp" />
                 </LinearLayout>
 
-                <!-- Action Button Clear -->
+                <!-- Withholding Tax Card -->
+                <LinearLayout
+                    android:id="@+id/card_wht"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_background"
+                    android:padding="20dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:id="@+id/tv_wht_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Withholding Tax (EWT)"
+                        android:textColor="@color/accent_cyan"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:paddingBottom="10dp" />
+
+                    <Switch
+                        android:id="@+id/sw_wht"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/wht_label"
+                        android:textColor="@color/text_high"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:id="@+id/divider_wht"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/stroke_card"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="12dp"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_wht_rate_row"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <Button
+                            android:id="@+id/chip_wht_none"
+                            android:layout_width="0dp"
+                            android:layout_height="34dp"
+                            android:layout_weight="1"
+                            android:text="None"
+                            android:background="@drawable/chip_btn"
+                            android:textSize="12sp"
+                            android:layout_marginEnd="5dp" />
+
+                        <Button
+                            android:id="@+id/chip_wht_1"
+                            android:layout_width="0dp"
+                            android:layout_height="34dp"
+                            android:layout_weight="1"
+                            android:text="1%"
+                            android:background="@drawable/chip_btn"
+                            android:textSize="12sp"
+                            android:layout_marginEnd="5dp" />
+
+                        <Button
+                            android:id="@+id/chip_wht_2"
+                            android:layout_width="0dp"
+                            android:layout_height="34dp"
+                            android:layout_weight="1"
+                            android:text="2%"
+                            android:background="@drawable/chip_btn"
+                            android:textSize="12sp"
+                            android:layout_marginEnd="5dp" />
+
+                        <Button
+                            android:id="@+id/chip_wht_5"
+                            android:layout_width="0dp"
+                            android:layout_height="34dp"
+                            android:layout_weight="1"
+                            android:text="5%"
+                            android:background="@drawable/chip_btn"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_wht_result_row"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="12dp"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingBottom="6dp">
+
+                            <TextView
+                                android:id="@+id/tv_wht_amount_label"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="WHT Amount"
+                                android:textColor="@color/text_mid"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/tv_wht_amount_val"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-₱0.00"
+                                android:textColor="@color/accent_cyan"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_net_after_wht_label"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Net After WHT"
+                                android:textColor="@color/text_mid"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/tv_net_after_wht_val"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="₱0.00"
+                                android:textColor="@color/accent_emerald"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Clear button -->
                 <Button
                     android:id="@+id/btn_clear"
                     android:layout_width="match_parent"
@@ -265,11 +446,10 @@
                     android:textColor="@color/text_mid"
                     android:background="@drawable/btn_action"
                     android:textSize="14sp" />
-
             </LinearLayout>
         </ScrollView>
 
-        <!-- Right Pane: Result Breakdown & Copy -->
+        <!-- Right Pane: Breakdown + History + Copy -->
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -282,7 +462,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- Result Card -->
+                <!-- Breakdown Card -->
                 <LinearLayout
                     android:id="@+id/card_breakdown"
                     android:layout_width="match_parent"
@@ -302,7 +482,6 @@
                         android:textStyle="bold"
                         android:paddingBottom="12dp" />
 
-                    <!-- Total Amount -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -326,7 +505,7 @@
                             android:layout_height="wrap_content"
                             android:text="₱0.00"
                             android:textColor="@color/accent_emerald"
-                            android:textSize="26sp"
+                            android:textSize="28sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -337,7 +516,6 @@
                         android:background="@color/stroke_card"
                         android:layout_marginBottom="14dp" />
 
-                    <!-- Vatable Sales -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -363,7 +541,6 @@
                             android:textStyle="bold" />
                     </LinearLayout>
 
-                    <!-- VAT Amount -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -389,7 +566,6 @@
                             android:textStyle="bold" />
                     </LinearLayout>
 
-                    <!-- Senior / PWD Discount (Hidden by default) -->
                     <LinearLayout
                         android:id="@+id/ll_discount_row"
                         android:layout_width="match_parent"
@@ -417,18 +593,63 @@
                             android:textStyle="bold" />
                     </LinearLayout>
 
-                    <!-- Formula / Explanatory Note -->
                     <TextView
                         android:id="@+id/tv_formula_note"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Formula: Vatable Sales = Amount ÷ 1.12 | VAT = Vatable Sales × 12%"
+                        android:text="Formula: Vatable Sales = Amount ÷ 1.12 | VAT = Vatable × 12%"
                         android:textColor="@color/text_muted"
                         android:textSize="12sp" />
                 </LinearLayout>
 
-                <!-- Copy Summary Button -->
+                <!-- History Card -->
+                <LinearLayout
+                    android:id="@+id/card_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_background"
+                    android:padding="20dp"
+                    android:layout_marginBottom="16dp"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingBottom="12dp">
+
+                        <TextView
+                            android:id="@+id/tv_history_label"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/history_label"
+                            android:textColor="@color/text_mid"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/btn_clear_history"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="Clear"
+                            android:background="@drawable/chip_btn"
+                            android:textSize="12sp"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_history_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+                </LinearLayout>
+
+                <!-- Copy button -->
                 <Button
                     android:id="@+id/btn_copy"
                     android:layout_width="match_parent"
@@ -437,7 +658,6 @@
                     android:textColor="@color/accent_gold"
                     android:background="@drawable/btn_action"
                     android:textSize="14sp" />
-
             </LinearLayout>
         </ScrollView>
 

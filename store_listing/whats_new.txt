@@ -1,0 +1,1 @@
+Initial release of PH VAT Calculator. Calculate 12% VAT inclusive and exclusive amounts, compute standard withholding tax deductions, and export invoice breakdowns completely offline.
