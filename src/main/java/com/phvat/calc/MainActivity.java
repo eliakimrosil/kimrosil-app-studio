@@ -5,6 +5,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
@@ -421,8 +422,10 @@ public class MainActivity extends Activity {
         // Adjustments Card
         if (tvModeLabel != null) tvModeLabel.setTextColor(textMuted);
         swSeniorPwd.setTextColor(textHigh);
+        styleSwitch(swSeniorPwd, isDark);
         dividerMode.setBackgroundColor(strokeColor);
         swWht.setTextColor(textHigh);
+        styleSwitch(swWht, isDark);
 
         // VAT rate chips
         refreshVatRateChips();
@@ -559,6 +562,24 @@ public class MainActivity extends Activity {
             chips[i].setBackground(d);
             chips[i].setTextColor(active ? 0xFF000000 : (isDark ? 0xFF94A3B8 : 0xFF475569));
         }
+    }
+
+    private void styleSwitch(Switch sw, boolean isDark) {
+        if (sw == null) return;
+        int[][] states = new int[][] {
+            new int[] { android.R.attr.state_checked },
+            new int[] { -android.R.attr.state_checked }
+        };
+        int[] thumbColors = new int[] {
+            0xFFFFFFFF,
+            isDark ? 0xFFCBD5E1 : 0xFF64748B
+        };
+        int[] trackColors = new int[] {
+            isDark ? 0xFF10B981 : 0xFF059669,
+            isDark ? 0xFF3E4F66 : 0xFFCBD5E1
+        };
+        sw.setThumbTintList(new ColorStateList(states, thumbColors));
+        sw.setTrackTintList(new ColorStateList(states, trackColors));
     }
 
     private void refreshVatRateChips() {

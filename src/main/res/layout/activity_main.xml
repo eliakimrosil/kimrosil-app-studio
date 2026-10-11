@@ -171,9 +171,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Senior/PWD 20%"
+                        android:text="Senior / PWD 20%"
                         android:textColor="@color/text_high"
-                        android:textSize="12sp" />
+                        android:textSize="11sp" />
 
                     <LinearLayout
                         android:id="@+id/ll_vat_rate_row"
