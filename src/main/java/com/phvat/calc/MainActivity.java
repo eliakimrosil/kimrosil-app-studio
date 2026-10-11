@@ -38,53 +38,51 @@ public class MainActivity extends Activity {
     private LinearLayout rootLayout;
     private TextView tvAppTitle;
     private TextView tvAppSubtitle;
+    private Button btnToggleHistory;
     private Button btnTheme;
 
-    // ─── Amount Card ──────────────────────────────────────────────────────────
+    // ─── Hero Input ───────────────────────────────────────────────────────────
     private LinearLayout cardAmount;
     private TextView tvAmountLabel;
     private LinearLayout llInputBox;
     private TextView tvPesoSymbol;
     private EditText etAmount;
-
-
-    // ─── Mode Card ────────────────────────────────────────────────────────────
-    private LinearLayout cardMode;
-    private TextView tvModeLabel;
     private RadioGroup rgVatMode;
     private RadioButton rbInclusive, rbExclusive;
-    private View dividerMode;
+
+    // ─── Adjustments & Tax Rates ──────────────────────────────────────────────
+    private LinearLayout cardMode;
+    private TextView tvModeLabel;
     private Switch swSeniorPwd;
-
-    // VAT rate chips
-    private Button chipVat12, chipVat0;
+    private View dividerMode;
     private LinearLayout llVatRateRow;
+    private Button chipVat12, chipVat0;
 
-    // ─── WHT Card ─────────────────────────────────────────────────────────────
+    private Switch swWht;
+    private LinearLayout llWhtRateRow;
+    private Button chipWhtNone, chipWht1, chipWht2, chipWht5;
+
+    // Legacy stubs (safe fallback if referenced)
     private LinearLayout cardWht;
     private TextView tvWhtLabel;
-    private Switch swWht;
     private View dividerWht;
-    private LinearLayout llWhtRateRow;
-    private Button chipWht1, chipWht2, chipWht5, chipWhtNone;
-    private LinearLayout llWhtResultRow;
-    private TextView tvWhtAmountLabel;
-    private TextView tvWhtAmountVal;
-    private TextView tvNetAfterWhtLabel;
-    private TextView tvNetAfterWhtVal;
 
-    // ─── Breakdown Card ───────────────────────────────────────────────────────
+    // ─── Invoice Ledger Breakdown ─────────────────────────────────────────────
     private LinearLayout cardBreakdown;
     private TextView tvBreakdownLabel;
-    private TextView tvTotalLabel, tvTotalVal;
-    private View dividerBreakdown;
     private TextView tvVatableLabel, tvVatableVal;
     private TextView tvVatLabel, tvVatVal;
     private LinearLayout llDiscountRow;
     private TextView tvDiscountLabel, tvDiscountVal;
+    private LinearLayout llWhtResultRow;
+    private TextView tvWhtAmountLabel, tvWhtAmountVal;
+    private View dividerBreakdown;
+    private TextView tvTotalLabel, tvTotalVal;
+    private LinearLayout llNetAfterWhtRow;
+    private TextView tvNetAfterWhtLabel, tvNetAfterWhtVal;
     private TextView tvFormulaNote;
 
-    // ─── History Card ─────────────────────────────────────────────────────────
+    // ─── Collapsible History ──────────────────────────────────────────────────
     private LinearLayout cardHistory;
     private TextView tvHistoryLabel;
     private LinearLayout llHistoryList;
@@ -97,6 +95,7 @@ public class MainActivity extends Activity {
     private boolean isDarkTheme = true;
     private double customVatRate = 0.12;   // 12% standard
     private double whtRate = 0.0;          // 0 = no WHT selected
+    private boolean isHistoryVisible = false;
     private SharedPreferences prefs;
     private Vibrator vibrator;
 
@@ -114,9 +113,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        prefs    = getSharedPreferences("ph_vat_prefs", MODE_PRIVATE);
+        prefs       = getSharedPreferences("ph_vat_prefs", MODE_PRIVATE);
         isDarkTheme = prefs.getBoolean("dark_theme", true);
-        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator    = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         initViews();
         setupListeners();
@@ -129,25 +128,27 @@ public class MainActivity extends Activity {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         String savedAmount = etAmount != null ? etAmount.getText().toString() : "";
-        boolean isInc  = rbInclusive == null || rbInclusive.isChecked();
-        boolean isPwd  = swSeniorPwd != null && swSeniorPwd.isChecked();
-        boolean isWht  = swWht       != null && swWht.isChecked();
-        double  vatR   = customVatRate;
-        double  whtR   = whtRate;
+        boolean isInc      = rbInclusive == null || rbInclusive.isChecked();
+        boolean isPwd      = swSeniorPwd != null && swSeniorPwd.isChecked();
+        boolean isWht      = swWht       != null && swWht.isChecked();
+        double  vatR       = customVatRate;
+        double  whtR       = whtRate;
+        boolean histVis    = isHistoryVisible;
 
         setContentView(R.layout.activity_main);
         initViews();
         setupListeners();
         applyTheme(isDarkTheme);
 
-        customVatRate = vatR;
-        whtRate       = whtR;
+        customVatRate    = vatR;
+        whtRate          = whtR;
+        isHistoryVisible = histVis;
 
-        if (etAmount   != null) etAmount.setText(savedAmount);
+        if (etAmount != null) etAmount.setText(savedAmount);
         if (rbInclusive != null) rbInclusive.setChecked(isInc);
         if (rbExclusive != null) rbExclusive.setChecked(!isInc);
         if (swSeniorPwd != null) swSeniorPwd.setChecked(isPwd);
-        if (swWht       != null) swWht.setChecked(isWht);
+        if (swWht != null) swWht.setChecked(isWht);
 
         refreshVatRateChips();
         refreshWhtRateChips();
@@ -158,65 +159,67 @@ public class MainActivity extends Activity {
 
     // ─── View Binding ─────────────────────────────────────────────────────────
     private void initViews() {
-        rootLayout   = findViewById(R.id.root_layout);
-        tvAppTitle   = findViewById(R.id.tv_app_title);
-        tvAppSubtitle = findViewById(R.id.tv_app_subtitle);
-        btnTheme     = findViewById(R.id.btn_theme);
+        rootLayout        = findViewById(R.id.root_layout);
+        tvAppTitle        = findViewById(R.id.tv_app_title);
+        tvAppSubtitle     = findViewById(R.id.tv_app_subtitle);
+        btnToggleHistory  = findViewById(R.id.btn_toggle_history);
+        btnTheme          = findViewById(R.id.btn_theme);
 
-        cardAmount   = findViewById(R.id.card_amount);
-        tvAmountLabel = findViewById(R.id.tv_amount_label);
-        llInputBox   = findViewById(R.id.ll_input_box);
-        tvPesoSymbol = findViewById(R.id.tv_peso_symbol);
-        etAmount     = findViewById(R.id.et_amount);
+        cardAmount        = findViewById(R.id.card_amount);
+        tvAmountLabel     = findViewById(R.id.tv_amount_label);
+        llInputBox        = findViewById(R.id.ll_input_box);
+        tvPesoSymbol      = findViewById(R.id.tv_peso_symbol);
+        etAmount          = findViewById(R.id.et_amount);
+        rgVatMode         = findViewById(R.id.rg_vat_mode);
+        rbInclusive       = findViewById(R.id.rb_inclusive);
+        rbExclusive       = findViewById(R.id.rb_exclusive);
 
+        cardMode          = findViewById(R.id.card_mode);
+        tvModeLabel       = findViewById(R.id.tv_mode_label);
+        swSeniorPwd       = findViewById(R.id.sw_senior_pwd);
+        dividerMode       = findViewById(R.id.divider_mode);
+        llVatRateRow      = findViewById(R.id.ll_vat_rate_row);
+        chipVat12         = findViewById(R.id.chip_vat_12);
+        chipVat0          = findViewById(R.id.chip_vat_0);
 
-        cardMode    = findViewById(R.id.card_mode);
-        tvModeLabel = findViewById(R.id.tv_mode_label);
-        rgVatMode   = findViewById(R.id.rg_vat_mode);
-        rbInclusive = findViewById(R.id.rb_inclusive);
-        rbExclusive = findViewById(R.id.rb_exclusive);
-        dividerMode = findViewById(R.id.divider_mode);
-        swSeniorPwd = findViewById(R.id.sw_senior_pwd);
-        llVatRateRow = findViewById(R.id.ll_vat_rate_row);
-        chipVat12   = findViewById(R.id.chip_vat_12);
-        chipVat0    = findViewById(R.id.chip_vat_0);
+        swWht             = findViewById(R.id.sw_wht);
+        llWhtRateRow      = findViewById(R.id.ll_wht_rate_row);
+        chipWhtNone       = findViewById(R.id.chip_wht_none);
+        chipWht1          = findViewById(R.id.chip_wht_1);
+        chipWht2          = findViewById(R.id.chip_wht_2);
+        chipWht5          = findViewById(R.id.chip_wht_5);
 
-        cardWht         = findViewById(R.id.card_wht);
-        tvWhtLabel      = findViewById(R.id.tv_wht_label);
-        swWht           = findViewById(R.id.sw_wht);
-        dividerWht      = findViewById(R.id.divider_wht);
-        llWhtRateRow    = findViewById(R.id.ll_wht_rate_row);
-        chipWht1        = findViewById(R.id.chip_wht_1);
-        chipWht2        = findViewById(R.id.chip_wht_2);
-        chipWht5        = findViewById(R.id.chip_wht_5);
-        chipWhtNone     = findViewById(R.id.chip_wht_none);
-        llWhtResultRow  = findViewById(R.id.ll_wht_result_row);
-        tvWhtAmountLabel = findViewById(R.id.tv_wht_amount_label);
-        tvWhtAmountVal  = findViewById(R.id.tv_wht_amount_val);
+        cardWht           = findViewById(R.id.card_wht);
+        tvWhtLabel        = findViewById(R.id.tv_wht_label);
+        dividerWht        = findViewById(R.id.divider_wht);
+
+        cardBreakdown     = findViewById(R.id.card_breakdown);
+        tvBreakdownLabel  = findViewById(R.id.tv_breakdown_label);
+        tvVatableLabel    = findViewById(R.id.tv_vatable_label);
+        tvVatableVal      = findViewById(R.id.tv_vatable_val);
+        tvVatLabel        = findViewById(R.id.tv_vat_label);
+        tvVatVal          = findViewById(R.id.tv_vat_val);
+        llDiscountRow     = findViewById(R.id.ll_discount_row);
+        tvDiscountLabel   = findViewById(R.id.tv_discount_label);
+        tvDiscountVal     = findViewById(R.id.tv_discount_val);
+        llWhtResultRow    = findViewById(R.id.ll_wht_result_row);
+        tvWhtAmountLabel  = findViewById(R.id.tv_wht_amount_label);
+        tvWhtAmountVal    = findViewById(R.id.tv_wht_amount_val);
+        dividerBreakdown  = findViewById(R.id.divider_breakdown);
+        tvTotalLabel      = findViewById(R.id.tv_total_label);
+        tvTotalVal        = findViewById(R.id.tv_total_val);
+        llNetAfterWhtRow  = findViewById(R.id.ll_net_after_wht_row);
         tvNetAfterWhtLabel = findViewById(R.id.tv_net_after_wht_label);
-        tvNetAfterWhtVal   = findViewById(R.id.tv_net_after_wht_val);
+        tvNetAfterWhtVal  = findViewById(R.id.tv_net_after_wht_val);
+        tvFormulaNote     = findViewById(R.id.tv_formula_note);
 
-        cardBreakdown   = findViewById(R.id.card_breakdown);
-        tvBreakdownLabel = findViewById(R.id.tv_breakdown_label);
-        tvTotalLabel    = findViewById(R.id.tv_total_label);
-        tvTotalVal      = findViewById(R.id.tv_total_val);
-        dividerBreakdown = findViewById(R.id.divider_breakdown);
-        tvVatableLabel  = findViewById(R.id.tv_vatable_label);
-        tvVatableVal    = findViewById(R.id.tv_vatable_val);
-        tvVatLabel      = findViewById(R.id.tv_vat_label);
-        tvVatVal        = findViewById(R.id.tv_vat_val);
-        llDiscountRow   = findViewById(R.id.ll_discount_row);
-        tvDiscountLabel = findViewById(R.id.tv_discount_label);
-        tvDiscountVal   = findViewById(R.id.tv_discount_val);
-        tvFormulaNote   = findViewById(R.id.tv_formula_note);
+        cardHistory       = findViewById(R.id.card_history);
+        tvHistoryLabel    = findViewById(R.id.tv_history_label);
+        llHistoryList     = findViewById(R.id.ll_history_list);
+        btnClearHistory   = findViewById(R.id.btn_clear_history);
 
-        cardHistory     = findViewById(R.id.card_history);
-        tvHistoryLabel  = findViewById(R.id.tv_history_label);
-        llHistoryList   = findViewById(R.id.ll_history_list);
-        btnClearHistory = findViewById(R.id.btn_clear_history);
-
-        btnClear = findViewById(R.id.btn_clear);
-        btnCopy  = findViewById(R.id.btn_copy);
+        btnClear          = findViewById(R.id.btn_clear);
+        btnCopy           = findViewById(R.id.btn_copy);
     }
 
     // ─── Listeners ────────────────────────────────────────────────────────────
@@ -228,6 +231,16 @@ public class MainActivity extends Activity {
             calculate();
         });
 
+        if (btnToggleHistory != null) {
+            btnToggleHistory.setOnClickListener(v -> {
+                isHistoryVisible = !isHistoryVisible;
+                if (cardHistory != null) {
+                    cardHistory.setVisibility(isHistoryVisible ? View.VISIBLE : View.GONE);
+                }
+                haptic(20);
+            });
+        }
+
         etAmount.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int st, int c, int a) {}
             @Override public void onTextChanged(CharSequence s, int st, int b, int c) { calculate(); }
@@ -236,10 +249,7 @@ public class MainActivity extends Activity {
 
         rgVatMode.setOnCheckedChangeListener((g, id) -> calculate());
 
-        swSeniorPwd.setOnCheckedChangeListener((btn, checked) -> {
-            // Senior/PWD implicitly exempts VAT — show it but keep user's selected rate visible
-            calculate();
-        });
+        swSeniorPwd.setOnCheckedChangeListener((btn, checked) -> calculate());
 
         // VAT Rate chips
         chipVat12.setOnClickListener(v -> {
@@ -258,15 +268,18 @@ public class MainActivity extends Activity {
         // WHT toggle
         swWht.setOnCheckedChangeListener((btn, checked) -> {
             updateWhtVisibility();
+            if (checked && whtRate == 0.0) {
+                whtRate = 0.02; // Default to standard 2% when toggled on
+                refreshWhtRateChips();
+            }
             calculate();
         });
 
         // WHT rate chips
-        chipWht1.setOnClickListener(v -> { whtRate = 0.01; refreshWhtRateChips(); calculate(); haptic(20); });
-        chipWht2.setOnClickListener(v -> { whtRate = 0.02; refreshWhtRateChips(); calculate(); haptic(20); });
-        chipWht5.setOnClickListener(v -> { whtRate = 0.05; refreshWhtRateChips(); calculate(); haptic(20); });
-        chipWhtNone.setOnClickListener(v -> { whtRate = 0.0; refreshWhtRateChips(); calculate(); haptic(20); });
-
+        chipWhtNone.setOnClickListener(v -> { whtRate = 0.0;  refreshWhtRateChips(); calculate(); haptic(20); });
+        chipWht1.setOnClickListener(v ->    { whtRate = 0.01; refreshWhtRateChips(); calculate(); haptic(20); });
+        chipWht2.setOnClickListener(v ->    { whtRate = 0.02; refreshWhtRateChips(); calculate(); haptic(20); });
+        chipWht5.setOnClickListener(v ->    { whtRate = 0.05; refreshWhtRateChips(); calculate(); haptic(20); });
 
         btnClear.setOnClickListener(v -> {
             etAmount.setText("");
@@ -282,7 +295,6 @@ public class MainActivity extends Activity {
         });
     }
 
-
     // ─── Theme ────────────────────────────────────────────────────────────────
     private int dpToPx(int dp) {
         return (int) TypedValue.applyDimension(
@@ -290,21 +302,21 @@ public class MainActivity extends Activity {
     }
 
     private void applyTheme(boolean isDark) {
-        int bgMain     = isDark ? 0xFF0F1117 : 0xFFF8F9FA;
-        int bgCard     = isDark ? 0xFF1A1D27 : 0xFFFFFFFF;
-        int bgInner    = isDark ? 0xFF222634 : 0xFFF3F4F6;
-        int strokeColor = isDark ? 0xFF2E3446 : 0xFFE5E7EB;
+        // Slate & Emerald Palette
+        int bgMain      = isDark ? 0xFF090D16 : 0xFFF8FAFC;
+        int bgCard      = isDark ? 0xFF111827 : 0xFFFFFFFF;
+        int bgInner     = isDark ? 0xFF182235 : 0xFFF1F5F9;
+        int strokeColor = isDark ? 0xFF1F2E45 : 0xFFE2E8F0;
 
-        int textHigh   = isDark ? 0xFFF0F3F8 : 0xFF111827;
-        int textMid    = isDark ? 0xFF9CA3AF : 0xFF4B5563;
-        int textMuted  = isDark ? 0xFF6B7280 : 0xFF9CA3AF;
+        int textHigh    = isDark ? 0xFFF1F5F9 : 0xFF0F172A;
+        int textMid     = isDark ? 0xFF94A3B8 : 0xFF475569;
+        int textMuted   = isDark ? 0xFF64748B : 0xFF94A3B8;
 
-        int accentGold    = isDark ? 0xFFFFD54F : 0xFFB45309;
-        int accentCyan    = isDark ? 0xFF00E5FF : 0xFF0284C7;
-        int accentEmerald = isDark ? 0xFF00E676 : 0xFF15803D;
-        int accentOrange  = isDark ? 0xFFFF9800 : 0xFFD97706;
+        int accentEmerald = isDark ? 0xFF10B981 : 0xFF059669;
+        int accentCyan    = isDark ? 0xFF38BDF8 : 0xFF0284C7;
+        int accentAmber   = isDark ? 0xFFF59E0B : 0xFFD97706;
 
-        // Status / nav bars
+        // Status & Navigation Bars
         getWindow().setStatusBarColor(bgMain);
         getWindow().setNavigationBarColor(bgMain);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -325,89 +337,90 @@ public class MainActivity extends Activity {
         rootLayout.setBackgroundColor(bgMain);
 
         // Header
-        tvAppTitle.setTextColor(accentGold);
+        tvAppTitle.setTextColor(accentEmerald);
         tvAppSubtitle.setTextColor(textMid);
         btnTheme.setText(isDark ? "☀ Light" : "🌙 Dark");
-        btnTheme.setTextColor(isDark ? 0xFFFFD54F : 0xFF111827);
+        btnTheme.setTextColor(accentEmerald);
+        applyChipBg(btnTheme, isDark ? 0xFF182235 : 0xFFF1F5F9, strokeColor);
 
-        // Cards helper
+        if (btnToggleHistory != null) {
+            applyChipBg(btnToggleHistory, isDark ? 0xFF182235 : 0xFFF1F5F9, strokeColor);
+            btnToggleHistory.setTextColor(textMid);
+        }
+
+        // Cards
         applyCardBg(cardAmount,    bgCard, strokeColor);
         applyCardBg(cardMode,      bgCard, strokeColor);
-        applyCardBg(cardWht,       bgCard, strokeColor);
         applyCardBg(cardBreakdown, bgCard, strokeColor);
         applyCardBg(cardHistory,   bgCard, strokeColor);
 
-        // Input box
+        // Input Box
         GradientDrawable inputDraw = new GradientDrawable();
         inputDraw.setColor(bgInner);
         inputDraw.setStroke(dpToPx(1), isDark ? strokeColor : 0xFFCBD5E1);
-        inputDraw.setCornerRadius(dpToPx(14));
+        inputDraw.setCornerRadius(dpToPx(12));
         llInputBox.setBackground(inputDraw);
 
         tvAmountLabel.setTextColor(textMid);
-        tvPesoSymbol.setTextColor(accentGold);
+        tvPesoSymbol.setTextColor(accentEmerald);
         etAmount.setTextColor(textHigh);
         etAmount.setHintTextColor(textMuted);
 
-        // Theme button chip style
-        applyChipBg(btnTheme, isDark ? 0xFF222634 : 0xFFF3F4F6, strokeColor);
+        // Segmented VAT Mode
+        rbInclusive.setTextColor(textHigh);
+        rbExclusive.setTextColor(textHigh);
+
+        // Adjustments Card
+        tvModeLabel.setTextColor(textMuted);
+        swSeniorPwd.setTextColor(textHigh);
+        dividerMode.setBackgroundColor(strokeColor);
+        swWht.setTextColor(textHigh);
 
         // VAT rate chips
         refreshVatRateChips();
-        styleVatRateChips(isDark, accentCyan, strokeColor);
+        styleVatRateChips(isDark, accentEmerald, strokeColor);
 
-        // Mode card
-        tvModeLabel.setTextColor(accentCyan);
-        rbInclusive.setTextColor(textHigh);
-        rbExclusive.setTextColor(textHigh);
-        swSeniorPwd.setTextColor(textHigh);
-        dividerMode.setBackgroundColor(strokeColor);
-
-        // WHT card
-        tvWhtLabel.setTextColor(accentOrange);
-        swWht.setTextColor(textHigh);
-        dividerWht.setBackgroundColor(strokeColor);
+        // WHT rate chips
         refreshWhtRateChips();
-        styleWhtRateChips(isDark, accentOrange, strokeColor);
-        tvWhtAmountLabel.setTextColor(textMid);
-        tvWhtAmountVal.setTextColor(accentOrange);
-        tvNetAfterWhtLabel.setTextColor(textMid);
-        tvNetAfterWhtVal.setTextColor(accentEmerald);
+        styleWhtRateChips(isDark, accentAmber, strokeColor);
 
-        // Breakdown card
-        tvBreakdownLabel.setTextColor(accentGold);
-        tvTotalLabel.setTextColor(textHigh);
-        tvTotalVal.setTextColor(accentEmerald);
-        dividerBreakdown.setBackgroundColor(strokeColor);
+        // Invoice Ledger Breakdown Card
+        tvBreakdownLabel.setTextColor(textMuted);
         tvVatableLabel.setTextColor(textMid);
         tvVatableVal.setTextColor(textHigh);
         tvVatLabel.setTextColor(textMid);
         tvVatVal.setTextColor(accentCyan);
-        tvDiscountLabel.setTextColor(accentGold);
-        tvDiscountVal.setTextColor(accentGold);
+        tvDiscountLabel.setTextColor(accentAmber);
+        tvDiscountVal.setTextColor(accentAmber);
+        tvWhtAmountLabel.setTextColor(accentAmber);
+        tvWhtAmountVal.setTextColor(accentAmber);
+        dividerBreakdown.setBackgroundColor(strokeColor);
+        tvTotalLabel.setTextColor(textHigh);
+        tvTotalVal.setTextColor(accentEmerald);
+        tvNetAfterWhtLabel.setTextColor(textMid);
+        tvNetAfterWhtVal.setTextColor(accentEmerald);
         tvFormulaNote.setTextColor(textMuted);
 
-        // History card
+        // History Card
         tvHistoryLabel.setTextColor(textMid);
-        applyChipBg(btnClearHistory, isDark ? 0xFF1A2736 : 0xFFF3F4F6, strokeColor);
+        applyChipBg(btnClearHistory, isDark ? 0xFF182235 : 0xFFF1F5F9, strokeColor);
         btnClearHistory.setTextColor(textMuted);
 
-        // Bottom buttons
+        // Bottom Actions
         GradientDrawable clearDraw = new GradientDrawable();
-        clearDraw.setColor(isDark ? 0xFF1A2736 : 0xFFF3F4F6);
+        clearDraw.setColor(isDark ? 0xFF111827 : 0xFFF1F5F9);
         clearDraw.setStroke(dpToPx(1), strokeColor);
-        clearDraw.setCornerRadius(dpToPx(16));
+        clearDraw.setCornerRadius(dpToPx(14));
         btnClear.setBackground(clearDraw);
         btnClear.setTextColor(textMid);
 
         GradientDrawable copyDraw = new GradientDrawable();
-        copyDraw.setColor(isDark ? 0xFF1A2736 : 0xFFEFF6FF);
-        copyDraw.setStroke(dpToPx(1), isDark ? accentCyan : 0xFF0284C7);
-        copyDraw.setCornerRadius(dpToPx(16));
+        copyDraw.setColor(isDark ? 0xFF064E3B : 0xFFD1FAE5);
+        copyDraw.setStroke(dpToPx(1), isDark ? accentEmerald : 0xFF059669);
+        copyDraw.setCornerRadius(dpToPx(14));
         btnCopy.setBackground(copyDraw);
-        btnCopy.setTextColor(isDark ? accentGold : 0xFF0284C7);
+        btnCopy.setTextColor(isDark ? 0xFFFFFFFF : 0xFF064E3B);
 
-        // Re-style history rows
         refreshHistoryCard();
     }
 
@@ -416,7 +429,7 @@ public class MainActivity extends Activity {
         GradientDrawable d = new GradientDrawable();
         d.setColor(bg);
         d.setStroke(dpToPx(1), stroke);
-        d.setCornerRadius(dpToPx(20));
+        d.setCornerRadius(dpToPx(16));
         card.setBackground(d);
     }
 
@@ -425,73 +438,71 @@ public class MainActivity extends Activity {
         GradientDrawable d = new GradientDrawable();
         d.setColor(bg);
         d.setStroke(dpToPx(1), stroke);
-        d.setCornerRadius(dpToPx(20));
+        d.setCornerRadius(dpToPx(16));
         btn.setBackground(d);
     }
 
-    private void styleVatRateChips(boolean isDark, int accentCyan, int stroke) {
+    private void styleVatRateChips(boolean isDark, int accentEmerald, int stroke) {
         if (chipVat12 == null || chipVat0 == null) return;
         boolean is12 = (customVatRate == 0.12);
 
         GradientDrawable d12 = new GradientDrawable();
-        d12.setColor(is12 ? accentCyan : (isDark ? 0xFF222634 : 0xFFF3F4F6));
-        d12.setStroke(dpToPx(1), is12 ? accentCyan : stroke);
-        d12.setCornerRadius(dpToPx(20));
+        d12.setColor(is12 ? accentEmerald : (isDark ? 0xFF182235 : 0xFFF1F5F9));
+        d12.setStroke(dpToPx(1), is12 ? accentEmerald : stroke);
+        d12.setCornerRadius(dpToPx(16));
         chipVat12.setBackground(d12);
-        chipVat12.setTextColor(is12 ? 0xFF000000 : (isDark ? 0xFF9CA3AF : 0xFF4B5563));
+        chipVat12.setTextColor(is12 ? 0xFFFFFFFF : (isDark ? 0xFF94A3B8 : 0xFF475569));
 
         GradientDrawable d0 = new GradientDrawable();
-        d0.setColor(!is12 ? accentCyan : (isDark ? 0xFF222634 : 0xFFF3F4F6));
-        d0.setStroke(dpToPx(1), !is12 ? accentCyan : stroke);
-        d0.setCornerRadius(dpToPx(20));
+        d0.setColor(!is12 ? accentEmerald : (isDark ? 0xFF182235 : 0xFFF1F5F9));
+        d0.setStroke(dpToPx(1), !is12 ? accentEmerald : stroke);
+        d0.setCornerRadius(dpToPx(16));
         chipVat0.setBackground(d0);
-        chipVat0.setTextColor(!is12 ? 0xFF000000 : (isDark ? 0xFF9CA3AF : 0xFF4B5563));
+        chipVat0.setTextColor(!is12 ? 0xFFFFFFFF : (isDark ? 0xFF94A3B8 : 0xFF475569));
     }
 
-    private void styleWhtRateChips(boolean isDark, int accentOrange, int stroke) {
+    private void styleWhtRateChips(boolean isDark, int accentAmber, int stroke) {
         Button[] chips = {chipWhtNone, chipWht1, chipWht2, chipWht5};
-        double[] rates  = {0.0, 0.01, 0.02, 0.05};
+        double[] rates = {0.0, 0.01, 0.02, 0.05};
 
         for (int i = 0; i < chips.length; i++) {
             if (chips[i] == null) continue;
             boolean active = (Math.abs(whtRate - rates[i]) < 0.0001);
             GradientDrawable d = new GradientDrawable();
-            d.setColor(active ? accentOrange : (isDark ? 0xFF222634 : 0xFFF3F4F6));
-            d.setStroke(dpToPx(1), active ? accentOrange : stroke);
-            d.setCornerRadius(dpToPx(20));
+            d.setColor(active ? accentAmber : (isDark ? 0xFF182235 : 0xFFF1F5F9));
+            d.setStroke(dpToPx(1), active ? accentAmber : stroke);
+            d.setCornerRadius(dpToPx(16));
             chips[i].setBackground(d);
-            chips[i].setTextColor(active ? 0xFF000000 : (isDark ? 0xFF9CA3AF : 0xFF4B5563));
+            chips[i].setTextColor(active ? 0xFF000000 : (isDark ? 0xFF94A3B8 : 0xFF475569));
         }
     }
 
     private void refreshVatRateChips() {
-        // re-style using current theme colors
-        boolean isDark = isDarkTheme;
-        int accentCyan = isDark ? 0xFF00E5FF : 0xFF0284C7;
-        int stroke     = isDark ? 0xFF2E3446 : 0xFFE5E7EB;
-        styleVatRateChips(isDark, accentCyan, stroke);
+        boolean isDark        = isDarkTheme;
+        int accentEmerald     = isDark ? 0xFF10B981 : 0xFF059669;
+        int stroke            = isDark ? 0xFF1F2E45 : 0xFFE2E8F0;
+        styleVatRateChips(isDark, accentEmerald, stroke);
     }
 
     private void refreshWhtRateChips() {
-        boolean isDark    = isDarkTheme;
-        int accentOrange  = isDark ? 0xFFFF9800 : 0xFFD97706;
-        int stroke        = isDark ? 0xFF2E3446 : 0xFFE5E7EB;
-        styleWhtRateChips(isDark, accentOrange, stroke);
+        boolean isDark      = isDarkTheme;
+        int accentAmber     = isDark ? 0xFFF59E0B : 0xFFD97706;
+        int stroke          = isDark ? 0xFF1F2E45 : 0xFFE2E8F0;
+        styleWhtRateChips(isDark, accentAmber, stroke);
     }
 
     private void updateWhtVisibility() {
         if (swWht == null) return;
         boolean on = swWht.isChecked();
-        if (dividerWht    != null) dividerWht.setVisibility(on ? View.VISIBLE : View.GONE);
-        if (llWhtRateRow  != null) llWhtRateRow.setVisibility(on ? View.VISIBLE : View.GONE);
+        if (llWhtRateRow != null) llWhtRateRow.setVisibility(on ? View.VISIBLE : View.GONE);
         if (llWhtResultRow != null) llWhtResultRow.setVisibility(on ? View.VISIBLE : View.GONE);
+        if (llNetAfterWhtRow != null) llNetAfterWhtRow.setVisibility(on ? View.VISIBLE : View.GONE);
     }
 
     // ─── Calculation ──────────────────────────────────────────────────────────
     private double parseInput() {
         String str = etAmount.getText().toString().trim();
         if (str.isEmpty()) return 0.0;
-        // Simple expression evaluator: supports +, -, *, / between numbers
         try {
             return evalExpression(str);
         } catch (Exception e) {
@@ -499,23 +510,11 @@ public class MainActivity extends Activity {
         }
     }
 
-    /**
-     * Tiny left-to-right expression evaluator supporting +, -, *, / and parentheses-free
-     * sequences. Handles "1200+850", "5000-120", etc.
-     */
-    private double evalExpression(String expr) {
-        expr = expr.trim();
-        // Split on + and - (respecting leading minus for negative numbers)
-        // We use a recursive descent approach: additive level only (*, / not in phone numpad)
-        // Actually support all four ops via simple tokeniser
-        return parseAddSub(expr);
-    }
-
     private int pos;
     private String curExpr;
 
-    private double parseAddSub(String expr) {
-        curExpr = expr;
+    private double evalExpression(String expr) {
+        curExpr = expr.trim();
         pos = 0;
         return parseAS();
     }
@@ -567,9 +566,8 @@ public class MainActivity extends Activity {
         double vatableSales, vatAmount, discount = 0.0, total;
 
         if (isSeniorPwd) {
-            // Senior/PWD: strip VAT from inclusive, then 20% off vatable
             if (isInclusive) {
-                vatableSales = input / 1.12;   // always strip at 12% for PH legal basis
+                vatableSales = input / 1.12;   // PH legal basis under RA 9994
             } else {
                 vatableSales = input;
             }
@@ -581,54 +579,58 @@ public class MainActivity extends Activity {
             tvDiscountVal.setText("-" + currencyFmt.format(discount));
             tvVatVal.setText("₱0.00 (Exempt)");
             String vatRateNote = customVatRate == 0.0 ? "VAT-Exempt" : "12% VAT Exempt";
-            tvFormulaNote.setText("RA 9994 / 10754: Net = Amount ÷ 1.12 | " + vatRateNote + " | 20% Discount");
+            tvFormulaNote.setText("RA 9994 / 10754: Net = Amount ÷ 1.12 | " + vatRateNote + " | 20% Off");
         } else {
             llDiscountRow.setVisibility(View.GONE);
 
             if (vatRate == 0.0) {
-                // VAT-Exempt
                 vatableSales = input;
                 vatAmount    = 0.0;
                 total        = input;
                 tvVatVal.setText("₱0.00 (VAT-Exempt)");
-                tvFormulaNote.setText("VAT-Exempt: No 12% VAT applied to this transaction.");
+                tvFormulaNote.setText("VAT-Exempt: Zero-rated transaction.");
             } else if (isInclusive) {
                 vatableSales = input / vatDivisor;
                 vatAmount    = input - vatableSales;
                 total        = input;
                 tvVatVal.setText(currencyFmt.format(vatAmount));
                 tvFormulaNote.setText(
-                    "Vatable Sales = Amount ÷ " + vatDivisor + " | "
-                    + pctFmt.format(vatRate * 100) + " VAT = Total − Vatable");
+                    "Formula: Net = Amount ÷ " + plainFmt.format(vatDivisor) + " | "
+                    + pctFmt.format(vatRate * 100) + " Output VAT = Gross − Net");
             } else {
                 vatableSales = input;
                 vatAmount    = input * vatRate;
                 total        = input + vatAmount;
                 tvVatVal.setText(currencyFmt.format(vatAmount));
                 tvFormulaNote.setText(
-                    pctFmt.format(vatRate * 100) + " VAT = Amount × " + vatRate
-                    + " | Total = Amount + VAT");
+                    "Formula: Output VAT = Net × " + plainFmt.format(vatRate)
+                    + " | Total = Net + VAT");
             }
         }
 
         tvVatableVal.setText(currencyFmt.format(vatableSales));
         tvTotalVal.setText(currencyFmt.format(total));
 
-        // WHT calculation
+        // Withholding Tax
         if (useWht) {
-            double whtBase   = vatableSales;  // WHT applies on vatable amount
-            double whtAmount = whtBase * whtRate;
+            double whtBase     = vatableSales;
+            double whtAmount   = whtBase * whtRate;
             double netAfterWht = total - whtAmount;
+
+            llWhtResultRow.setVisibility(View.VISIBLE);
+            llNetAfterWhtRow.setVisibility(View.VISIBLE);
+
             tvWhtAmountVal.setText("-" + currencyFmt.format(whtAmount));
             tvNetAfterWhtVal.setText(currencyFmt.format(netAfterWht));
 
-            // Update WHT label to reflect rate
             if (tvWhtAmountLabel != null) {
-                tvWhtAmountLabel.setText("WHT (" + pctFmt.format(whtRate * 100) + ")");
+                tvWhtAmountLabel.setText("Less: EWT (" + pctFmt.format(whtRate * 100) + ")");
             }
+        } else {
+            llWhtResultRow.setVisibility(View.GONE);
+            llNetAfterWhtRow.setVisibility(View.GONE);
         }
 
-        // Save to history when input > 0
         if (input > 0) {
             saveToHistory(input, isInclusive, isSeniorPwd, vatRate, vatableSales, vatAmount,
                           discount, total, useWht, whtRate);
@@ -640,7 +642,6 @@ public class MainActivity extends Activity {
                                 double vatRate, double vatable, double vat,
                                 double discount, double total,
                                 boolean hasWht, double whtRate) {
-        // Encode as compact string:  time|input|mode|senior|vatRate|vatable|vat|discount|total|whtRate
         String mode   = inclusive ? "INC" : "EXC";
         String entry  = timeFmt.format(new Date()) + "|"
                       + plainFmt.format(input)     + "|"
@@ -656,7 +657,6 @@ public class MainActivity extends Activity {
         String raw = prefs.getString(PREF_HISTORY, "");
         String[] parts = raw.isEmpty() ? new String[0] : raw.split("\n");
 
-        // De-duplicate: skip if same as last entry
         if (parts.length > 0 && parts[parts.length - 1].equals(entry)) return;
 
         ArrayList<String> list = new ArrayList<>();
@@ -675,21 +675,26 @@ public class MainActivity extends Activity {
         llHistoryList.removeAllViews();
 
         String raw = prefs.getString(PREF_HISTORY, "");
-        if (raw.isEmpty()) {
+        String[] parts = raw.isEmpty() ? new String[0] : raw.split("\n");
+        int count = parts.length;
+
+        if (btnToggleHistory != null) {
+            btnToggleHistory.setText("⏱ History" + (count > 0 ? " (" + count + ")" : ""));
+        }
+
+        if (count == 0) {
             cardHistory.setVisibility(View.GONE);
+            isHistoryVisible = false;
             return;
         }
 
-        String[] parts = raw.split("\n");
-        cardHistory.setVisibility(parts.length > 0 ? View.VISIBLE : View.GONE);
+        cardHistory.setVisibility(isHistoryVisible ? View.VISIBLE : View.GONE);
 
-        int textHigh  = isDarkTheme ? 0xFFF0F3F8 : 0xFF111827;
-        int textMid   = isDarkTheme ? 0xFF9CA3AF : 0xFF4B5563;
-        int textMuted = isDarkTheme ? 0xFF6B7280 : 0xFF9CA3AF;
-        int accentGold = isDarkTheme ? 0xFFFFD54F : 0xFFB45309;
-        int strokeColor = isDarkTheme ? 0xFF2E3446 : 0xFFE5E7EB;
+        int textMid     = isDarkTheme ? 0xFF94A3B8 : 0xFF475569;
+        int textMuted   = isDarkTheme ? 0xFF64748B : 0xFF94A3B8;
+        int accentEmerald = isDarkTheme ? 0xFF10B981 : 0xFF059669;
+        int strokeColor = isDarkTheme ? 0xFF1F2E45 : 0xFFE2E8F0;
 
-        // Show newest first
         for (int i = parts.length - 1; i >= 0; i--) {
             String entry = parts[i].trim();
             if (entry.isEmpty()) continue;
@@ -703,25 +708,21 @@ public class MainActivity extends Activity {
                 boolean senior = f[3].equals("1");
                 double vatRate = Double.parseDouble(f[4]);
                 double total   = Long.parseLong(f[8]) / 100.0;
-                double vat     = Long.parseLong(f[6]) / 100.0;
 
-                // Row container
                 LinearLayout row = new LinearLayout(this);
                 row.setOrientation(LinearLayout.VERTICAL);
-                row.setPadding(0, dpToPx(8), 0, dpToPx(8));
+                row.setPadding(0, dpToPx(6), 0, dpToPx(6));
 
-                // Divider (except first)
                 if (i < parts.length - 1) {
                     View div = new View(this);
                     LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(1));
-                    lp.setMargins(0, 0, 0, dpToPx(8));
+                    lp.setMargins(0, 0, 0, dpToPx(6));
                     div.setLayoutParams(lp);
                     div.setBackgroundColor(strokeColor);
                     llHistoryList.addView(div);
                 }
 
-                // Top line: time + mode badge + total
                 LinearLayout topLine = new LinearLayout(this);
                 topLine.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -743,7 +744,6 @@ public class MainActivity extends Activity {
                 topLine.addView(tvBadge);
                 row.addView(topLine);
 
-                // Bottom line: entered amount → total
                 LinearLayout botLine = new LinearLayout(this);
                 botLine.setOrientation(LinearLayout.HORIZONTAL);
                 botLine.setPadding(0, dpToPx(2), 0, 0);
@@ -759,7 +759,7 @@ public class MainActivity extends Activity {
 
                 TextView tvTot = new TextView(this);
                 tvTot.setText("= " + currencyFmt.format(total));
-                tvTot.setTextColor(accentGold);
+                tvTot.setTextColor(accentEmerald);
                 tvTot.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
                 tvTot.setTypeface(null, android.graphics.Typeface.BOLD);
                 botLine.addView(tvTot);
@@ -777,30 +777,30 @@ public class MainActivity extends Activity {
         if (inputStr.isEmpty()) inputStr = "0.00";
 
         StringBuilder sb = new StringBuilder();
-        sb.append("─── PH VAT Calculation Summary ───\n");
-        sb.append("Mode:          ").append(rbInclusive.isChecked() ? "VAT Inclusive" : "VAT Exclusive").append("\n");
-        sb.append("VAT Rate:      ").append(swSeniorPwd.isChecked() ? "Exempt (Senior/PWD)" : pctFmt.format(customVatRate * 100)).append("\n");
-        sb.append("Entered:       ₱").append(inputStr).append("\n");
-        sb.append("Vatable Sales: ").append(tvVatableVal.getText()).append("\n");
-        sb.append("VAT Amount:    ").append(tvVatVal.getText()).append("\n");
+        sb.append("─── PhVat Invoice Breakdown ───\n");
+        sb.append("Calculation Mode: ").append(rbInclusive.isChecked() ? "VAT Inclusive" : "VAT Exclusive").append("\n");
+        sb.append("VAT Rate:         ").append(swSeniorPwd.isChecked() ? "Exempt (Senior/PWD)" : pctFmt.format(customVatRate * 100)).append("\n");
+        sb.append("Entered Amount:   ₱").append(inputStr).append("\n");
+        sb.append("Vatable Sales:    ").append(tvVatableVal.getText()).append("\n");
+        sb.append("12% Output VAT:   ").append(tvVatVal.getText()).append("\n");
         if (swSeniorPwd.isChecked()) {
-            sb.append("20% Discount:  ").append(tvDiscountVal.getText()).append("\n");
+            sb.append("Senior/PWD 20%:   ").append(tvDiscountVal.getText()).append("\n");
         }
-        sb.append("Total Payable: ").append(tvTotalVal.getText()).append("\n");
+        sb.append("Total Payable:    ").append(tvTotalVal.getText()).append("\n");
         if (swWht != null && swWht.isChecked()) {
-            sb.append("WHT (").append(pctFmt.format(whtRate * 100)).append("): ").append(tvWhtAmountVal.getText()).append("\n");
-            sb.append("Net (after WHT): ").append(tvNetAfterWhtVal.getText()).append("\n");
+            sb.append("Creditable EWT:   ").append(tvWhtAmountVal.getText()).append("\n");
+            sb.append("Net Due/Received: ").append(tvNetAfterWhtVal.getText()).append("\n");
         }
-        sb.append("───────────────────────────────────\n");
-        sb.append("BIR 12% VAT · RA 9994 Senior/PWD Discount");
+        sb.append("───────────────────────────────\n");
+        sb.append("BIR Standard 12% VAT · RA 9994 Senior/PWD");
 
         ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         if (cm != null) {
             ClipData clip = ClipData.newPlainText("VAT Calculation", sb.toString());
             cm.setPrimaryClip(clip);
-            Toast.makeText(this, "Calculation copied!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Invoice breakdown copied!", Toast.LENGTH_SHORT).show();
         }
-        haptic(40);
+        haptic(35);
     }
 
     // ─── Haptics ──────────────────────────────────────────────────────────────
@@ -825,11 +825,12 @@ public class MainActivity extends Activity {
                 etAmount.setText(""); calculate(); return true;
             }
             if (event.isAltPressed()) {
-                if (kc == KeyEvent.KEYCODE_T)      { btnTheme.performClick();             return true; }
-                if (kc == KeyEvent.KEYCODE_I)      { rbInclusive.setChecked(true);        return true; }
-                if (kc == KeyEvent.KEYCODE_E)      { rbExclusive.setChecked(true);        return true; }
-                if (kc == KeyEvent.KEYCODE_S)      { swSeniorPwd.setChecked(!swSeniorPwd.isChecked()); return true; }
-                if (kc == KeyEvent.KEYCODE_W)      { swWht.setChecked(!swWht.isChecked()); return true; }
+                if (kc == KeyEvent.KEYCODE_T) { btnTheme.performClick(); return true; }
+                if (kc == KeyEvent.KEYCODE_H && btnToggleHistory != null) { btnToggleHistory.performClick(); return true; }
+                if (kc == KeyEvent.KEYCODE_I) { rbInclusive.setChecked(true); return true; }
+                if (kc == KeyEvent.KEYCODE_E) { rbExclusive.setChecked(true); return true; }
+                if (kc == KeyEvent.KEYCODE_S) { swSeniorPwd.setChecked(!swSeniorPwd.isChecked()); return true; }
+                if (kc == KeyEvent.KEYCODE_W) { swWht.setChecked(!swWht.isChecked()); return true; }
             }
         }
         return super.dispatchKeyEvent(event);

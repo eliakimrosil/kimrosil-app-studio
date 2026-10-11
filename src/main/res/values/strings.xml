@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PH VAT Calculator</string>
-    <string name="vat_title">BIR 12% Value-Added Tax</string>
-    <string name="enter_amount">Enter Amount (₱)</string>
+    <string name="app_name">PhVat: BIR Tax &amp; EWT Ledger</string>
+    <string name="vat_title" formatted="false">12% VAT · Senior 20% · EWT</string>
+    <string name="enter_amount">Amount (₱)</string>
     <string name="inclusive_label">VAT Inclusive</string>
     <string name="exclusive_label">VAT Exclusive</string>
-    <string name="senior_pwd_label">Senior Citizen / PWD (20% Off + VAT Exempt)</string>
-    <string name="wht_label">Apply Creditable Withholding Tax (EWT)</string>
+    <string name="senior_pwd_label" formatted="false">Senior / PWD (20% Off + VAT Exempt)</string>
+    <string name="wht_label">Creditable Withholding (EWT)</string>
     <string name="vatable_sales">Vatable Sales (Net)</string>
-    <string name="vat_amount">12% VAT Amount</string>
-    <string name="discount_amount">Senior / PWD 20% Discount</string>
+    <string name="vat_amount">12% Output VAT</string>
+    <string name="discount_amount" formatted="false">Less: Senior/PWD 20%</string>
     <string name="total_amount">Total Amount Payable</string>
     <string name="clear">⌫ Clear</string>
-    <string name="copy">⎘ Copy Summary</string>
+    <string name="copy">⎘ Copy Invoice</string>
     <string name="history_label">Recent Calculations</string>
 </resources>

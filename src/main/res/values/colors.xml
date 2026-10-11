@@ -1,63 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Material 3 Light Theme Color Tokens -->
-    <color name="colorPrimary">#0B6B3A</color>
-    <color name="colorPrimaryDark">#F5FBF5</color>
-    <color name="colorAccent">#0B6B3A</color>
-    <color name="windowBackground">#F8F9FA</color>
+    <!-- Slate & Emerald Editorial Palette (Light Mode) -->
+    <color name="colorPrimary">#059669</color>
+    <color name="colorPrimaryDark">#F8FAFC</color>
+    <color name="colorAccent">#059669</color>
+    <color name="windowBackground">#F8FAFC</color>
 
-    <color name="m3_primary">#0B6B3A</color>
+    <color name="m3_primary">#059669</color>
     <color name="m3_on_primary">#FFFFFF</color>
-    <color name="m3_primary_container">#A0F5B4</color>
-    <color name="m3_on_primary_container">#00210C</color>
+    <color name="m3_primary_container">#D1FAE5</color>
+    <color name="m3_on_primary_container">#064E3B</color>
 
-    <color name="m3_secondary">#516353</color>
+    <color name="m3_secondary">#475569</color>
     <color name="m3_on_secondary">#FFFFFF</color>
-    <color name="m3_secondary_container">#D4E8D4</color>
-    <color name="m3_on_secondary_container">#0F1F13</color>
+    <color name="m3_secondary_container">#E2E8F0</color>
+    <color name="m3_on_secondary_container">#0F172A</color>
 
-    <color name="m3_tertiary">#39656B</color>
+    <color name="m3_tertiary">#0284C7</color>
     <color name="m3_on_tertiary">#FFFFFF</color>
-    <color name="m3_tertiary_container">#BCEBF2</color>
-    <color name="m3_on_tertiary_container">#001F23</color>
+    <color name="m3_tertiary_container">#E0F2FE</color>
+    <color name="m3_on_tertiary_container">#0C4A6E</color>
 
-    <color name="m3_surface">#F8F9FA</color>
-    <color name="m3_surface_container">#E9F1EA</color>
-    <color name="m3_surface_container_high">#E2EBE3</color>
-    <color name="m3_surface_container_highest">#DCE5DD</color>
+    <color name="m3_surface">#F8FAFC</color>
+    <color name="m3_surface_container">#FFFFFF</color>
+    <color name="m3_surface_container_high">#F1F5F9</color>
+    <color name="m3_surface_container_highest">#E2E8F0</color>
 
-    <color name="m3_on_surface">#171D18</color>
-    <color name="m3_on_surface_variant">#424941</color>
-    <color name="m3_outline">#727971</color>
-    <color name="m3_outline_variant">#C2C9C0</color>
+    <color name="m3_on_surface">#0F172A</color>
+    <color name="m3_on_surface_variant">#475569</color>
+    <color name="m3_outline">#CBD5E1</color>
+    <color name="m3_outline_variant">#E2E8F0</color>
 
-    <color name="m3_success">#0B6B3A</color>
+    <color name="m3_success">#059669</color>
     <color name="m3_on_success">#FFFFFF</color>
-    <color name="m3_error">#BA1A1A</color>
+    <color name="m3_error">#DC2626</color>
     <color name="m3_on_error">#FFFFFF</color>
 
-    <!-- Runtime theme tokens (light defaults; overridden programmatically) -->
-    <color name="bg_main">#F8F9FA</color>
+    <!-- Runtime theme tokens (light defaults) -->
+    <color name="bg_main">#F8FAFC</color>
     <color name="bg_card">#FFFFFF</color>
-    <color name="stroke_card">#E5E7EB</color>
+    <color name="bg_card_inner">#F1F5F9</color>
+    <color name="stroke_card">#E2E8F0</color>
 
-    <color name="text_high">#111827</color>
-    <color name="text_mid">#4B5563</color>
-    <color name="text_muted">#9CA3AF</color>
+    <color name="text_high">#0F172A</color>
+    <color name="text_mid">#475569</color>
+    <color name="text_muted">#94A3B8</color>
 
-    <color name="accent_gold">#B45309</color>
+    <color name="accent_gold">#D97706</color>
     <color name="accent_cyan">#0284C7</color>
-    <color name="accent_emerald">#15803D</color>
+    <color name="accent_emerald">#059669</color>
     <color name="accent_orange">#D97706</color>
 
-    <!-- bg_card_inner: used by drawables (chip_btn, edittext_bg, btn_action) -->
-    <color name="bg_card_inner">#F3F4F6</color>
-
     <!-- Legacy compatibility aliases -->
-    <color name="cardBackground">#E9F1EA</color>
-    <color name="cardStroke">#C2C9C0</color>
-    <color name="textPrimary">#171D18</color>
-    <color name="textSecondary">#424941</color>
-    <color name="btnColor">#0B6B3A</color>
+    <color name="cardBackground">#FFFFFF</color>
+    <color name="cardStroke">#E2E8F0</color>
+    <color name="textPrimary">#0F172A</color>
+    <color name="textSecondary">#475569</color>
+    <color name="btnColor">#059669</color>
     <color name="btnTextColor">#FFFFFF</color>
 </resources>
