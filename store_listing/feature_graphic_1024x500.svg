@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 500" width="1024" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F2E1E" />
+      <stop offset="60%" stop-color="#080D14" />
+      <stop offset="100%" stop-color="#020408" />
+    </linearGradient>
+    <radialGradient id="glowGrad" cx="25%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FFFFFF" stroke-width="0.5" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+
+  <rect width="1024" height="500" fill="url(#bgGrad)" />
+  <rect width="1024" height="500" fill="url(#glowGrad)" />
+  <rect width="1024" height="500" fill="url(#grid)" />
+
+  <g transform="translate(80, 130)">
+    <rect x="-10" y="-10" width="260" height="260" rx="54" fill="#10B981" fill-opacity="0.12" />
+    <rect x="0" y="0" width="240" height="240" rx="48" fill="#0F2E1E" stroke="#10B981" stroke-width="2" stroke-opacity="0.4" />
+    <g transform="translate(20, 20) scale(1.85185)">
+      <path fill="#1B4D33" d="M54,4 C81.61,4 104,26.39 104,54 C104,81.61 81.61,104 54,104 C26.39,104 4,81.61 4,54 C4,26.39 26.39,4 54,4 Z" android:fillAlpha="0.5"/><path fill="#2A6946" d="M18,90 L90,18 L90,90 Z" android:fillAlpha="0.15"/><circle android:cx="54" android:cy="54" android:r="42" stroke="#38E54D" stroke-width="1" android:strokeAlpha="0.2"/>
+      <path fill="#000000" android:fillAlpha="0.25" d="M32,60 C32,46.7 41.8,36 54,36 C66.2,36 76,46.7 76,60 C76,73.3 66.2,84 54,84 C41.8,84 32,73.3 32,60 Z"/><path fill="#153E28" stroke="#4EBA6F" stroke-width="2" d="M30,56 C30,42.75 40.75,32 54,32 C67.25,32 78,42.75 78,56 C78,69.25 67.25,80 54,80 C40.75,80 30,69.25 30,56 Z"/><path stroke="#78D696" stroke-width="2.5" stroke-linecap="round" d="M37,42 C41.5,37 47.5,34 54,34 C60.5,34 66.5,37 71,42"/><path stroke="#A7F3D0" stroke-width="2" stroke-linecap="round" d="M41,39 L43,43"/><path stroke="#A7F3D0" stroke-width="2" stroke-linecap="round" d="M49,36 L50,41"/><path stroke="#34D399" stroke-width="3" stroke-linecap="round" d="M54,34 L54,41"/><path stroke="#A7F3D0" stroke-width="2" stroke-linecap="round" d="M59,36 L58,41"/><path stroke="#A7F3D0" stroke-width="2" stroke-linecap="round" d="M67,39 L65,43"/><path fill="#10B981" d="M54,44 L57,60 L51,60 Z"/><circle android:cx="54" android:cy="60" android:r="4" fill="#FFFFFF"/><path fill="#34D399" d="M54,47 C54,47 47,53 47,60 C47,64.4 50.1,68 54,68 C57.9,68 61,64.4 61,60 C61,53 54,47 54,47 Z" android:fillAlpha="0.9"/><path stroke="#059669" stroke-width="1.5" stroke-linecap="round" d="M54,54 L54,65"/><path stroke="#6EE7B7" stroke-width="2" stroke-linecap="round" d="M24,76 L26,71"/><path stroke="#6EE7B7" stroke-width="2" stroke-linecap="round" d="M27,78 L31,73"/><path stroke="#6EE7B7" stroke-width="2" stroke-linecap="round" d="M84,76 L82,71"/><path stroke="#6EE7B7" stroke-width="2" stroke-linecap="round" d="M81,78 L77,73"/><circle android:cx="72" android:cy="28" android:r="2" fill="#A7F3D0"/><circle android:cx="36" android:cy="26" android:r="1.5" fill="#6EE7B7"/>
+    </g>
+  </g>
+
+  <g transform="translate(390, 150)">
+    <rect x="0" y="0" width="210" height="28" rx="6" fill="#10B981" fill-opacity="0.15" />
+    <text x="12" y="19" font-family="sans-serif" font-size="12" font-weight="bold" fill="#10B981" letter-spacing="2">KIMROSIL APP STUDIO</text>
+    <text x="0" y="85" font-family="sans-serif" font-size="44" font-weight="900" fill="#FFFFFF" letter-spacing="-0.5">TurfNotch</text>
+    <text x="0" y="125" font-family="sans-serif" font-size="19" fill="#94A3B8">Offline lawn seed and spreader gate notch calibrator</text>
+
+    <g transform="translate(0, 165)">
+      <rect x="0" y="0" width="135" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="16" y="22" font-family="sans-serif" font-size="12" font-weight="bold" fill="#38BDF8">⚡ 100% OFFLINE</text>
+      <rect x="145" y="0" width="160" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="160" y="22" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34D399">🛡️ NO SUBSCRIPTION</text>
+      <rect x="315" y="0" width="165" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="330" y="22" font-family="sans-serif" font-size="12" font-weight="bold" fill="#F472B6">🔒 PRIVATE &amp; LOCAL</text>
+    </g>
+  </g>
+</svg>

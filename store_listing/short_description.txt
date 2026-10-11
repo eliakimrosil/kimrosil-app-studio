@@ -1,0 +1,1 @@
+Convert seed and fertilizer application rates to accurate spreader gate notches.

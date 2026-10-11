@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header / Up-Navigation Toolbar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp">
+
+            <Button
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="← Back"
+                android:contentDescription="Return to main calibration deck" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hopper Deck &amp; Math"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="?android:attr/textColorPrimary"
+                android:layout_marginStart="12dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvSpreaderContext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Configured Rate: 3.5 lbs/1,000 sq ft"
+            android:textSize="13sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Card: Split-Bag Hopper Distribution -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="?android:attr/colorBackgroundFloating"
+            android:elevation="2dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bag Weight &amp; Hopper Balance"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter bag weight to determine total bags and balance hopper load across passes:"
+                android:textSize="12sp"
+                android:textColor="?android:attr/textColorSecondary"
+                android:layout_marginTop="2dp" />
+
+            <EditText
+                android:id="@+id/etBagWeight"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:inputType="numberDecimal"
+                android:hint="32.0 (lbs per bag)"
+                android:textColor="?android:attr/textColorPrimary"
+                android:layout_marginTop="8dp"
+                android:contentDescription="Weight of single purchased material bag in pounds" />
+
+            <TextView
+                android:id="@+id/tvTotalBagsNeeded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Required: --"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="?android:attr/textColorPrimary"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <!-- Card: 100 sq ft Test Catch Verification -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="?android:attr/colorBackgroundFloating"
+            android:elevation="2dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100 sq ft Tray Catch Calibration"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="For master accuracy, lay a collection tarp over a 20ft x 5ft strip. Enter caught weight below:"
+                android:textSize="12sp"
+                android:textColor="?android:attr/textColorSecondary"
+                android:layout_marginTop="2dp" />
+
+            <EditText
+                android:id="@+id/etTestTrayCatch"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:inputType="numberDecimal"
+                android:hint="0.35 (lbs caught in tray)"
+                android:textColor="?android:attr/textColorPrimary"
+                android:layout_marginTop="8dp"
+                android:contentDescription="Material weight caught in 100 square foot test tarp in pounds" />
+
+            <TextView
+                android:id="@+id/tvCatchCalibrationResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100 sq ft Test Catch Target: 0.35 lbs"
+                android:textSize="13sp"
+                android:textColor="?android:attr/textColorPrimary"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <!-- Actions -->
+        <Button
+            android:id="@+id/btnCalculateHopper"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Recalculate Hopper &amp; Catch"
+            android:contentDescription="Recalculate bag quantities and test catch variance"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btnSharePlan"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Export &amp; Share Calibration Plan"
+            android:contentDescription="Export yard calibration calculations via Android system share chooser"
+            android:layout_marginBottom="16dp" />
+
+    </LinearLayout>
+</ScrollView>

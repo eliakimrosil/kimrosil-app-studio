@@ -1,0 +1,2 @@
+Release v1.1.0 - TurfNotch Spreader Settings
+Initial v1.0.0 release of TurfNotch - Offline lawn spreader rate and dial notch calibrator

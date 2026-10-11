@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- TopBar Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAppTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TurfNotch"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="?android:attr/textColorPrimary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Offline Spreader Calibration &amp; Pacing HUD"
+                    android:textSize="12sp"
+                    android:textColor="?android:attr/textColorSecondary" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnThemeToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="Theme: Auto"
+                android:textSize="12sp"
+                android:contentDescription="Cycle between Auto, Light, and Dark visual themes" />
+        </LinearLayout>
+
+        <!-- HeroCard: Tactile Notch Dial Output -->
+        <LinearLayout
+            android:id="@+id/cardHeroDial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:background="?android:attr/colorBackgroundFloating"
+            android:elevation="4dp"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RECOMMENDED GATE NOTCH"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.08"
+                android:textColor="?android:attr/textColorSecondary" />
+
+            <TextView
+                android:id="@+id/tvNotchResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--"
+                android:textSize="64sp"
+                android:textStyle="bold"
+                android:textColor="?android:attr/textColorPrimary"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvDialDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select spreader and target label rate below"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorPrimary" />
+        </LinearLayout>
+
+        <!-- Empty State Guidance Container -->
+        <LinearLayout
+            android:id="@+id/llEmptyState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ready for Calibration"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter bag label recommendation (lbs/1,000 sq ft) and your estimated yard size to calculate gate notch and swath passes."
+                android:textSize="13sp"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorSecondary"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- ControlDeck: Spreader & Rate Input Fields -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="?android:attr/colorBackgroundFloating"
+            android:elevation="2dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Spreader Brand &amp; Mechanism"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="?android:attr/textColorPrimary"
+                android:layout_marginBottom="4dp" />
+
+            <Spinner
+                android:id="@+id/spSpreaderModel"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:contentDescription="Select spreader brand model family"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Target Rate (lbs/1k sq ft)"
+                        android:textSize="12sp"
+                        android:textColor="?android:attr/textColorSecondary" />
+
+                    <EditText
+                        android:id="@+id/etTargetRate"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:inputType="numberDecimal"
+                        android:hint="3.5"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:contentDescription="Target application rate in pounds per one thousand square feet" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lawn Area (sq ft)"
+                        android:textSize="12sp"
+                        android:textColor="?android:attr/textColorSecondary" />
+
+                    <EditText
+                        android:id="@+id/etLawnArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:inputType="number"
+                        android:hint="5000"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:contentDescription="Estimated total lawn surface area in square feet" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ActiveDeck: Outdoor Walking Pace & Pass Telemetry -->
+        <LinearLayout
+            android:id="@+id/llActiveDeck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="?android:attr/colorBackgroundFloating"
+            android:elevation="2dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Walking Pace Metronome (Tactile Rhythm)"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:id="@+id/tvSpeedLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Target Walking Pace: 3.0 mph (88 steps/min)"
+                android:textSize="13sp"
+                android:textColor="?android:attr/textColorSecondary"
+                android:layout_marginTop="2dp" />
+
+            <SeekBar
+                android:id="@+id/sbTargetSpeed"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="Adjust target walking speed between two and four miles per hour" />
+
+            <Button
+                android:id="@+id/btnTogglePacer"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:text="Start Cadence Metronome"
+                android:layout_marginTop="4dp"
+                android:contentDescription="Toggle tactile walking cadence metronome vibration" />
+
+            <TextView
+                android:id="@+id/tvPaceStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Metronome Paused"
+                android:textSize="12sp"
+                android:textColor="?android:attr/textColorSecondary"
+                android:layout_marginTop="4dp"
+                android:layout_gravity="center_horizontal" />
+
+            <!-- Large Glove-Friendly Pass Counter -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/textColorSecondary"
+                android:alpha="0.2"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pass Counter (Lock-Screen &amp; Glove Ready)"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:id="@+id/tvPassCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 / ~10 Passes"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="?android:attr/textColorPrimary"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnMinusPass"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:text="- 1 Pass"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="6dp"
+                    android:contentDescription="Decrement completed pass count by one" />
+
+                <Button
+                    android:id="@+id/btnPlusPass"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:text="+ 1 Pass"
+                    android:textSize="16sp"
+                    android:layout_marginStart="6dp"
+                    android:contentDescription="Increment completed pass count by one" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnResetPasses"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Reset Passes"
+                android:layout_marginTop="8dp"
+                android:contentDescription="Reset pass counter back to zero" />
+        </LinearLayout>
+
+        <!-- Auxiliary Action Deck -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnOpenDetail"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_weight="1"
+                android:text="Hopper Deck &amp; Math"
+                android:layout_marginEnd="6dp"
+                android:contentDescription="Open hopper bag balance and tray test math inspector" />
+
+            <Button
+                android:id="@+id/btnSaveSession"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_weight="1"
+                android:text="Save Logbook"
+                android:layout_marginStart="6dp"
+                android:contentDescription="Save current calibration session to offline SQLite database" />
+        </LinearLayout>
+
+        <!-- Bottom Monetization Banner -->
+        <LinearLayout
+            android:id="@+id/llAdContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="12dp"
+            android:background="?android:attr/colorBackgroundFloating">
+
+            <TextView
+                android:id="@+id/tvAdNotice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TurfNotch Pro — Offline Grass Matrix &amp; KimRosil Studio Apps"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                android:textColor="?android:attr/textColorSecondary"
+                android:contentDescription="Learn more about KimRosil Studio freeware catalog" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
