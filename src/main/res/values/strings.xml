@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PhVat: BIR Tax &amp; EWT Ledger</string>
+    <string name="app_name">VatCal PH: BIR Tax &amp; EWT Ledger</string>
     <string name="vat_title" formatted="false">12% VAT · Senior 20% · EWT</string>
     <string name="enter_amount">Amount (₱)</string>
     <string name="inclusive_label">VAT Inclusive</string>

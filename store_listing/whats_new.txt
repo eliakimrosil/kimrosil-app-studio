@@ -1,2 +1,2 @@
-Release v1.2.0 - PH VAT Calculator & Tax Tool
-v1.2.0: Cashier numpad terminal with zero-scroll ledger, withholding tax, and minimal slate & emerald layout
+Release v1.2.1 - VatCal PH: BIR Tax & EWT Ledger
+v1.2.1: Rebranded to VatCal PH; flat zero-shadow cashier numpad styling, refined high-contrast theme toggles, and streamlined Philippine BIR invoice computation

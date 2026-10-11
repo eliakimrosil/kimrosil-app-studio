@@ -332,7 +332,7 @@
                         android:id="@+id/tv_app_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PhVat"
+                        android:text="VatCal PH"
                         android:textColor="@color/accent_emerald"
                         android:textSize="18sp"
                         android:textStyle="bold" />

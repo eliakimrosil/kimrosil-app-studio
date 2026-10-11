@@ -1,8 +1,8 @@
-# Privacy Policy for PH VAT Calculator & Tax Tool
+# Privacy Policy for VatCal PH: BIR Tax & EWT Ledger
 
 *Last Updated: October 2026*
 
-This privacy policy applies to the Android mobile application **PH VAT Calculator & Tax Tool** (the "Application"), developed and published as a standalone, offline-first mobile utility.
+This privacy policy applies to the Android mobile application **VatCal PH: BIR Tax & EWT Ledger** (the "Application"), developed and published as a standalone, offline-first mobile utility.
 
 ---
 

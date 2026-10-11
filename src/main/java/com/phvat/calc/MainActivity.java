@@ -748,7 +748,7 @@ public class MainActivity extends Activity {
         if (inputStr.isEmpty()) inputStr = "0.00";
 
         StringBuilder sb = new StringBuilder();
-        sb.append("─── PhVat Invoice Breakdown ───\n");
+        sb.append("─── VatCal PH Invoice Breakdown ───\n");
         sb.append("Calculation Mode: ").append(rbInclusive.isChecked() ? "VAT Inclusive" : "VAT Exclusive").append("\n");
         sb.append("VAT Rate:         ").append(swSeniorPwd.isChecked() ? "Exempt (Senior/PWD)" : pctFmt.format(customVatRate * 100)).append("\n");
         sb.append("Entered Amount:   ₱").append(inputStr).append("\n");
@@ -767,7 +767,7 @@ public class MainActivity extends Activity {
 
         ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         if (cm != null) {
-            ClipData clip = ClipData.newPlainText("VAT Calculation", sb.toString());
+            ClipData clip = ClipData.newPlainText("VatCal PH Calculation", sb.toString());
             cm.setPrimaryClip(clip);
             Toast.makeText(this, "Invoice breakdown copied!", Toast.LENGTH_SHORT).show();
         }
