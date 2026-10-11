@@ -1,2 +1,2 @@
-Release v1.2.2 - VatCal PH: BIR Tax & EWT Ledger
-Adopt official storefront emerald & gold adaptive icon
+Release v1.2.3 - VatCal PH: BIR Tax & EWT Ledger
+Refined adaptive icon scaling to fit all device icon masks
