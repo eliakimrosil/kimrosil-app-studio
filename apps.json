@@ -71,12 +71,12 @@
     "tagline": "Fast offline 12% VAT (inclusive/exclusive), Expanded Withholding Tax (EWT), and invoice net/gross calculation tool.",
     "status": "BUILT",
     "branch": "app/ph-vat-calculator",
-    "tag": "v1.2.2-ph-vat-calculator",
-    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.2-ph-vat-calculator/ph-vat-calculator.apk",
+    "tag": "v1.2.3-ph-vat-calculator",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.3-ph-vat-calculator/ph-vat-calculator.apk",
     "landing_page": "https://apps.kimrosil.com/ph-vat-calculator/",
     "privacy_policy": "https://apps.kimrosil.com/ph-vat-calculator/privacy.html",
     "icon": "assets/icons/ph-vat-calculator.svg",
-    "updated_at": "2026-10-11T10:09:44.588628+00:00"
+    "updated_at": "2026-10-11T10:18:55.177751+00:00"
   },
   {
     "slug": "screenstream-rtsp",
