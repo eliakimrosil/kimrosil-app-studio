@@ -11,7 +11,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- TopBar Header -->
+        <!-- TopBar Header with High-Contrast Glove-Friendly Controls -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,12 +46,14 @@
                 android:id="@+id/btnThemeToggle"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
                 android:text="Theme: Auto"
                 android:textSize="12sp"
-                android:contentDescription="Cycle between Auto, Light, and Dark visual themes" />
+                android:contentDescription="Cycle between Auto, Light, Dark, and Sunlight Yellow Obsidian themes" />
         </LinearLayout>
 
-        <!-- HeroCard: Tactile Notch Dial Output -->
+        <!-- HeroCard: Tactile Circular Notch Dial Output -->
         <LinearLayout
             android:id="@+id/cardHeroDial"
             android:layout_width="match_parent"
@@ -70,18 +72,62 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:letterSpacing="0.08"
-                android:textColor="?android:attr/textColorSecondary" />
+                android:textColor="?android:attr/textColorSecondary"
+                android:contentDescription="Recommended gate notch setting header" />
+
+            <view
+                class="com.kimrosil.turfnotch.MainActivity$DialView"
+                android:id="@+id/dialViewControl"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="Tactile circular gate notch selector dial. Rotate or tap step buttons to calibrate." />
 
             <TextView
                 android:id="@+id/tvNotchResult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="--"
-                android:textSize="64sp"
+                android:textSize="56sp"
                 android:textStyle="bold"
                 android:textColor="?android:attr/textColorPrimary"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp" />
+                android:accessibilityLiveRegion="assertive"
+                android:contentDescription="Recommended gate notch is currently empty"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp" />
+
+            <!-- Tactile Dial Micro-adjustment Steppers -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btnDialMinus"
+                    android:layout_width="64dp"
+                    android:layout_height="48dp"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:text="- 0.5"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Decrease gate notch setting by point five" />
+
+                <Button
+                    android:id="@+id/btnDialPlus"
+                    android:layout_width="64dp"
+                    android:layout_height="48dp"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:text="+ 0.5"
+                    android:textSize="14sp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="Increase gate notch setting by point five" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvDialDescription"
@@ -90,6 +136,8 @@
                 android:text="Select spreader and target label rate below"
                 android:textSize="14sp"
                 android:gravity="center"
+                android:accessibilityLiveRegion="assertive"
+                android:contentDescription="Select spreader and target label rate below"
                 android:textColor="?android:attr/textColorPrimary" />
         </LinearLayout>
 
@@ -115,14 +163,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Enter bag label recommendation (lbs/1,000 sq ft) and your estimated yard size to calculate gate notch and swath passes."
+                android:text="Enter bag label recommendation and your estimated yard size to calculate gate notch and swath passes."
                 android:textSize="13sp"
                 android:gravity="center"
                 android:textColor="?android:attr/textColorSecondary"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 
-        <!-- ControlDeck: Spreader & Rate Input Fields -->
+        <!-- ControlDeck: Spreader & Dual Unit Rate Input Fields -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,19 +180,38 @@
             android:elevation="2dp"
             android:layout_marginBottom="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Spreader Brand &amp; Mechanism"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:textColor="?android:attr/textColorPrimary"
-                android:layout_marginBottom="4dp" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Spreader Brand &amp; Mechanism"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="?android:attr/textColorPrimary" />
+
+                <Button
+                    android:id="@+id/btnUnitToggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:text="Imperial (lbs/1k sq ft)"
+                    android:textSize="11sp"
+                    android:contentDescription="Toggle measurement units between Imperial lbs per thousand square feet and Metric grams per square meter" />
+            </LinearLayout>
 
             <Spinner
                 android:id="@+id/spSpreaderModel"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:minHeight="48dp"
                 android:contentDescription="Select spreader brand model family"
                 android:layout_marginBottom="12dp" />
 
@@ -163,7 +230,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Target Rate (lbs/1k sq ft)"
+                        android:text="Target Rate"
                         android:textSize="12sp"
                         android:textColor="?android:attr/textColorSecondary" />
 
@@ -171,10 +238,11 @@
                         android:id="@+id/etTargetRate"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
+                        android:minHeight="48dp"
                         android:inputType="numberDecimal"
                         android:hint="3.5"
                         android:textColor="?android:attr/textColorPrimary"
-                        android:contentDescription="Target application rate in pounds per one thousand square feet" />
+                        android:contentDescription="Target application rate input field" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -187,7 +255,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lawn Area (sq ft)"
+                        android:text="Lawn Area"
                         android:textSize="12sp"
                         android:textColor="?android:attr/textColorSecondary" />
 
@@ -195,10 +263,11 @@
                         android:id="@+id/etLawnArea"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
+                        android:minHeight="48dp"
                         android:inputType="number"
                         android:hint="5000"
                         android:textColor="?android:attr/textColorPrimary"
-                        android:contentDescription="Estimated total lawn surface area in square feet" />
+                        android:contentDescription="Estimated total lawn surface area input field" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -235,6 +304,7 @@
                 android:id="@+id/sbTargetSpeed"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:minHeight="48dp"
                 android:layout_marginTop="8dp"
                 android:contentDescription="Adjust target walking speed between two and four miles per hour" />
 
@@ -242,6 +312,7 @@
                 android:id="@+id/btnTogglePacer"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
+                android:minHeight="48dp"
                 android:text="Start Cadence Metronome"
                 android:layout_marginTop="4dp"
                 android:contentDescription="Toggle tactile walking cadence metronome vibration" />
@@ -283,7 +354,8 @@
                 android:textColor="?android:attr/textColorPrimary"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="4dp"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="8dp"
+                android:contentDescription="Pass counter readout" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -294,6 +366,8 @@
                     android:id="@+id/btnMinusPass"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
                     android:layout_weight="1"
                     android:text="- 1 Pass"
                     android:textSize="16sp"
@@ -304,6 +378,8 @@
                     android:id="@+id/btnPlusPass"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
                     android:layout_weight="1"
                     android:text="+ 1 Pass"
                     android:textSize="16sp"
@@ -315,6 +391,7 @@
                 android:id="@+id/btnResetPasses"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:minHeight="48dp"
                 android:text="Reset Passes"
                 android:layout_marginTop="8dp"
                 android:contentDescription="Reset pass counter back to zero" />
@@ -331,6 +408,7 @@
                 android:id="@+id/btnOpenDetail"
                 android:layout_width="0dp"
                 android:layout_height="52dp"
+                android:minHeight="48dp"
                 android:layout_weight="1"
                 android:text="Hopper Deck &amp; Math"
                 android:layout_marginEnd="6dp"
@@ -340,6 +418,7 @@
                 android:id="@+id/btnSaveSession"
                 android:layout_width="0dp"
                 android:layout_height="52dp"
+                android:minHeight="48dp"
                 android:layout_weight="1"
                 android:text="Save Logbook"
                 android:layout_marginStart="6dp"
