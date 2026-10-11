@@ -26,7 +26,9 @@ import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.display.DisplayManager;
 import android.hardware.display.VirtualDisplay;
+import android.media.AudioAttributes;
 import android.media.AudioFormat;
+import android.media.AudioPlaybackCaptureConfiguration;
 import android.media.AudioRecord;
 import android.media.MediaCodec;
 import android.media.MediaCodecInfo;
@@ -40,6 +42,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.os.PowerManager;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
@@ -83,6 +86,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.net.ssl.SSLSocket;
@@ -149,12 +153,20 @@ public class MainActivity extends Activity {
     // Audio & Facecam Controls
     private Switch switchMicAudio;
     private TextView tvMicStatusHint;
+    private Button btnAudioMic;
+    private Button btnAudioInternal;
+    private Button btnAudioDual;
+    public static final int AUDIO_MODE_MIC = 0;
+    public static final int AUDIO_MODE_INTERNAL = 1;
+    public static final int AUDIO_MODE_DUAL = 2;
+    private int selectedAudioMode = AUDIO_MODE_MIC;
+
     private Switch switchFacecam;
     private Button btnFlipCamera;
     private Button btnRotateCamera;
     private TextView tvOverlayStatus;
 
-    // Telemetry Display & VU Meter
+    // Telemetry Display, Hardware Health & VU Meter
     private ImageView ivLiveBeacon;
     private TextView tvLiveStatus;
     private TextView tvUptime;
@@ -163,11 +175,15 @@ public class MainActivity extends Activity {
     private TextView tvDroppedFrames;
     private View[] vuSegments;
     private TextView tvVuLevel;
+    private TextView tvStreamHealth;
+    private TextView tvThermalStatus;
+    private Button btnPrivacyShield;
 
     // Action Controls
     private Button btnStartStopStream;
 
     // Internal State
+    private static final String PREF_STREAM_KEY_PREFIX = "pref_stream_key_platform_";
     private boolean isKeyVisible = false;
     private SharedPreferences prefs;
     private int selectedWidth = 1280;
@@ -371,6 +387,13 @@ public class MainActivity extends Activity {
                 findViewById(R.id.vuSeg10)
         };
         tvVuLevel = findViewById(R.id.tvVuLevel);
+        tvStreamHealth = findViewById(R.id.tvStreamHealth);
+        tvThermalStatus = findViewById(R.id.tvThermalStatus);
+        btnPrivacyShield = findViewById(R.id.btnPrivacyShield);
+
+        btnAudioMic = findViewById(R.id.btnAudioMic);
+        btnAudioInternal = findViewById(R.id.btnAudioInternal);
+        btnAudioDual = findViewById(R.id.btnAudioDual);
 
         btnStartStopStream = findViewById(R.id.btnStartStopStream);
     }
@@ -408,7 +431,6 @@ public class MainActivity extends Activity {
 
     private void loadSavedPreferences() {
         selectedPlatformIndex = prefs.getInt("pref_platform_index", 0);
-        String savedKey = prefs.getString("pref_stream_key", "");
         String customUrl = prefs.getString("pref_custom_url", "");
         selectedOrientation = prefs.getInt("pref_orientation", ORIENT_LANDSCAPE);
         selectedResPreset = prefs.getInt("pref_res_preset", 1080);
@@ -421,6 +443,7 @@ public class MainActivity extends Activity {
         computeResolutionDimensions();
         selectedFps = prefs.getInt("pref_fps", 30);
         targetBitrateKbps = prefs.getInt("pref_bitrate_kbps", 2500);
+        selectedAudioMode = prefs.getInt("pref_audio_mode", AUDIO_MODE_MIC);
         boolean micEnabled = prefs.getBoolean("pref_mic_enabled", true);
         boolean facecamEnabled = prefs.getBoolean("pref_facecam_enabled", false);
 
@@ -428,7 +451,6 @@ public class MainActivity extends Activity {
         if (selectedPlatformIndex == 5 && !customUrl.isEmpty()) {
             etServerUrl.setText(customUrl);
         }
-        etStreamKey.setText(savedKey);
 
         seekBitrate.setProgress(targetBitrateKbps);
         tvBitrateValue.setText(String.format(Locale.US, "%,d kbps", targetBitrateKbps));
@@ -437,6 +459,7 @@ public class MainActivity extends Activity {
         updateFpsButtons();
         updateOrientationButtons();
         updateBitrateHint();
+        updateAudioModeButtons();
         switchMicAudio.setChecked(micEnabled);
         switchFacecam.setChecked(facecamEnabled);
         if (facecamEnabled && checkOverlayPermission()) {
@@ -450,7 +473,9 @@ public class MainActivity extends Activity {
     private void saveCurrentPreferences() {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("pref_platform_index", selectedPlatformIndex);
-        editor.putString("pref_stream_key", etStreamKey.getText().toString().trim());
+        String currentKey = etStreamKey.getText().toString().trim();
+        editor.putString("pref_stream_key", currentKey);
+        editor.putString(PREF_STREAM_KEY_PREFIX + selectedPlatformIndex, currentKey);
         if (selectedPlatformIndex == 5) {
             editor.putString("pref_custom_url", etServerUrl.getText().toString().trim());
         }
@@ -460,6 +485,7 @@ public class MainActivity extends Activity {
         editor.putInt("pref_height", selectedHeight);
         editor.putInt("pref_fps", selectedFps);
         editor.putInt("pref_bitrate_kbps", targetBitrateKbps);
+        editor.putInt("pref_audio_mode", selectedAudioMode);
         editor.putBoolean("pref_mic_enabled", switchMicAudio.isChecked());
         editor.putBoolean("pref_facecam_enabled", switchFacecam.isChecked());
         editor.apply();
@@ -635,6 +661,48 @@ public class MainActivity extends Activity {
             });
         }
 
+        if (btnPrivacyShield != null) {
+            btnPrivacyShield.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                togglePrivacyShield();
+            });
+        }
+
+        if (btnAudioMic != null) {
+            btnAudioMic.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                selectedAudioMode = AUDIO_MODE_MIC;
+                updateAudioModeButtons();
+                saveCurrentPreferences();
+            });
+        }
+
+        if (btnAudioInternal != null) {
+            btnAudioInternal.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    selectedAudioMode = AUDIO_MODE_INTERNAL;
+                    updateAudioModeButtons();
+                    saveCurrentPreferences();
+                } else {
+                    Toast.makeText(this, "Internal audio capture requires Android 10+", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        if (btnAudioDual != null) {
+            btnAudioDual.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    selectedAudioMode = AUDIO_MODE_DUAL;
+                    updateAudioModeButtons();
+                    saveCurrentPreferences();
+                } else {
+                    Toast.makeText(this, "Dual Mix audio capture requires Android 10+", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
         btnStartStopStream.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             toggleStreaming();
@@ -650,15 +718,56 @@ public class MainActivity extends Activity {
         saveCurrentPreferences();
     }
 
+    private void updateAudioModeButtons() {
+        if (btnAudioMic == null || btnAudioInternal == null || btnAudioDual == null) return;
+        boolean isMic = (selectedAudioMode == AUDIO_MODE_MIC);
+        boolean isInt = (selectedAudioMode == AUDIO_MODE_INTERNAL);
+        boolean isDual = (selectedAudioMode == AUDIO_MODE_DUAL);
+
+        btnAudioMic.setBackgroundResource(isMic ? R.drawable.chip_active : R.drawable.chip_inactive);
+        btnAudioMic.setTextColor(getColor(isMic ? R.color.studio_chip_active_text : R.color.studio_chip_text));
+
+        btnAudioInternal.setBackgroundResource(isInt ? R.drawable.chip_active : R.drawable.chip_inactive);
+        btnAudioInternal.setTextColor(getColor(isInt ? R.color.studio_chip_active_text : R.color.studio_chip_text));
+
+        btnAudioDual.setBackgroundResource(isDual ? R.drawable.chip_active : R.drawable.chip_inactive);
+        btnAudioDual.setTextColor(getColor(isDual ? R.color.studio_chip_active_text : R.color.studio_chip_text));
+
+        updateMicHint(switchMicAudio != null && switchMicAudio.isChecked());
+    }
+
     private void updateMicHint(boolean enabled) {
         if (tvMicStatusHint != null) {
-            if (enabled) {
-                tvMicStatusHint.setText("LIVE: AAC 128 kbps • 44.1 kHz Studio Audio");
-                tvMicStatusHint.setTextColor(getColor(R.color.studio_text_secondary));
-            } else {
-                tvMicStatusHint.setText("MUTED: Commentary track disabled");
+            if (!enabled) {
+                tvMicStatusHint.setText("MUTED: Broadcast audio track silenced");
                 tvMicStatusHint.setTextColor(getColor(R.color.studio_amber));
+            } else {
+                if (selectedAudioMode == AUDIO_MODE_MIC) {
+                    tvMicStatusHint.setText("MIC: AAC 128 kbps • 44.1 kHz Voice Commentary");
+                } else if (selectedAudioMode == AUDIO_MODE_INTERNAL) {
+                    tvMicStatusHint.setText("GAME SOUND: Clean system playback audio");
+                } else {
+                    tvMicStatusHint.setText("DUAL MIX: Live Voice Commentary + Game Audio");
+                }
+                tvMicStatusHint.setTextColor(getColor(R.color.studio_text_secondary));
             }
+        }
+    }
+
+    private void togglePrivacyShield() {
+        boolean nextState = !StreamService.isPrivacyShieldActive();
+        StreamService.setPrivacyShieldActive(nextState);
+        if (btnPrivacyShield != null) {
+            btnPrivacyShield.setText(nextState ? "🛡️ SHIELD: ON" : "🛡️ SHIELD: OFF");
+            btnPrivacyShield.setTextColor(getColor(nextState ? R.color.studio_ruby : R.color.studio_cyan));
+        }
+        if (StreamService.isStreamingActive()) {
+            Intent pIntent = new Intent(this, StreamService.class);
+            pIntent.setAction(StreamService.ACTION_TOGGLE_PRIVACY);
+            startService(pIntent);
+            Toast.makeText(this, nextState ? "Privacy Shield ENABLED (Muted & Paused)" : "Privacy Shield DISABLED (Live broadcast resumed)", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, nextState ? "Privacy Shield armed for broadcast" : "Privacy Shield disarmed", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -761,6 +870,12 @@ public class MainActivity extends Activity {
     }
 
     private void selectPlatform(int index) {
+        if (etStreamKey != null && selectedPlatformIndex >= 0) {
+            String currentKey = etStreamKey.getText().toString().trim();
+            if (!currentKey.isEmpty()) {
+                prefs.edit().putString(PREF_STREAM_KEY_PREFIX + selectedPlatformIndex, currentKey).apply();
+            }
+        }
         selectedPlatformIndex = index;
         Button[] platformButtons = {
                 btnPlatformYoutube, btnPlatformFacebook, btnPlatformTwitch,
@@ -797,6 +912,14 @@ public class MainActivity extends Activity {
                 tvUrlLockBadge.setText("CUSTOM RTMP");
                 tvUrlLockBadge.setTextColor(getColor(R.color.studio_ruby));
             }
+        }
+
+        if (etStreamKey != null) {
+            String key = prefs.getString(PREF_STREAM_KEY_PREFIX + index, "");
+            if (key.isEmpty() && index == 0) {
+                key = prefs.getString("pref_stream_key", "");
+            }
+            etStreamKey.setText(key);
         }
         saveCurrentPreferences();
     }
@@ -925,6 +1048,7 @@ public class MainActivity extends Activity {
                 serviceIntent.putExtra("bitrateKbps", targetBitrateKbps);
                 serviceIntent.putExtra("enableMic", switchMicAudio.isChecked());
                 serviceIntent.putExtra("enableFacecam", switchFacecam.isChecked());
+                serviceIntent.putExtra("audioMode", selectedAudioMode);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     startForegroundService(serviceIntent);
@@ -993,6 +1117,57 @@ public class MainActivity extends Activity {
             tvLiveFps.setText("0.0 fps");
             tvDroppedFrames.setText("0");
             updateVuMeter(0, 0);
+        }
+
+        // Hardware Health, Thermal & Privacy Shield Telemetry
+        if (tvThermalStatus != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+            if (pm != null) {
+                int thermal = pm.getCurrentThermalStatus();
+                if (thermal == PowerManager.THERMAL_STATUS_NONE) {
+                    tvThermalStatus.setText("THERMAL: OPTIMAL");
+                    tvThermalStatus.setTextColor(getColor(R.color.studio_green));
+                } else if (thermal <= PowerManager.THERMAL_STATUS_LIGHT) {
+                    tvThermalStatus.setText("THERMAL: WARM");
+                    tvThermalStatus.setTextColor(getColor(R.color.studio_cyan));
+                } else if (thermal <= PowerManager.THERMAL_STATUS_MODERATE) {
+                    tvThermalStatus.setText("THERMAL: HEATED");
+                    tvThermalStatus.setTextColor(getColor(R.color.studio_amber));
+                } else {
+                    tvThermalStatus.setText("THERMAL: THROTTLING");
+                    tvThermalStatus.setTextColor(getColor(R.color.studio_ruby));
+                }
+            }
+        }
+
+        if (tvStreamHealth != null) {
+            if (active) {
+                boolean shielded = StreamService.isPrivacyShieldActive();
+                String rtmpSt = StreamService.getRtmpStatus();
+                long drops = StreamService.getDroppedFramesCount();
+                if (shielded) {
+                    tvStreamHealth.setText("HEALTH: SHIELDED (BRB)");
+                    tvStreamHealth.setTextColor(getColor(R.color.studio_cyan));
+                } else if (rtmpSt != null && rtmpSt.startsWith("RECONNECTING")) {
+                    tvStreamHealth.setText("HEALTH: " + rtmpSt);
+                    tvStreamHealth.setTextColor(getColor(R.color.studio_ruby));
+                } else if (drops > 50) {
+                    tvStreamHealth.setText("HEALTH: CONGESTED (" + drops + " drops)");
+                    tvStreamHealth.setTextColor(getColor(R.color.studio_amber));
+                } else {
+                    tvStreamHealth.setText("HEALTH: EXCELLENT");
+                    tvStreamHealth.setTextColor(getColor(R.color.studio_green));
+                }
+            } else {
+                tvStreamHealth.setText("HEALTH: READY (STANDBY)");
+                tvStreamHealth.setTextColor(getColor(R.color.studio_text_muted));
+            }
+        }
+
+        if (btnPrivacyShield != null) {
+            boolean isShield = StreamService.isPrivacyShieldActive();
+            btnPrivacyShield.setText(isShield ? "🛡️ SHIELD: ON" : "🛡️ SHIELD: OFF");
+            btnPrivacyShield.setTextColor(getColor(isShield ? R.color.studio_ruby : R.color.studio_cyan));
         }
     }
 
@@ -1083,13 +1258,17 @@ public class MainActivity extends Activity {
         public static final String ACTION_STOP = "com.aistudio.omnistreamlivestudio.STOP";
         public static final String ACTION_START_FACECAM = "com.aistudio.omnistreamlivestudio.START_FACECAM";
         public static final String ACTION_STOP_FACECAM = "com.aistudio.omnistreamlivestudio.STOP_FACECAM";
+        public static final String ACTION_TOGGLE_PRIVACY = "com.aistudio.omnistreamlivestudio.TOGGLE_PRIVACY";
         private static final String CHANNEL_ID = "kim_live_studio_channel_live";
 
         private static volatile boolean isStreaming = false;
+        private static volatile boolean isPrivacyShieldActive = false;
+        private static volatile String rtmpStatus = "STANDBY";
+        public static volatile long masterStreamStartNs = 0;
         private static volatile long streamStartTime = 0;
         private static volatile int currentBitrateKbps = 0;
         static volatile float currentFps = 0.0f;
-        private static volatile long droppedFrames = 0;
+        static volatile long droppedFrames = 0;
         public static volatile int currentAudioPeak = 0;
 
         private MediaProjection mediaProjection;
@@ -1099,6 +1278,22 @@ public class MainActivity extends Activity {
 
         public static boolean isStreamingActive() {
             return isStreaming;
+        }
+
+        public static boolean isPrivacyShieldActive() {
+            return isPrivacyShieldActive;
+        }
+
+        public static void setPrivacyShieldActive(boolean active) {
+            isPrivacyShieldActive = active;
+        }
+
+        public static String getRtmpStatus() {
+            return rtmpStatus;
+        }
+
+        public static void setRtmpStatus(String status) {
+            rtmpStatus = status;
         }
 
         public static long getStreamUptimeMs() {
@@ -1174,6 +1369,19 @@ public class MainActivity extends Activity {
                     stopForeground(true);
                     stopSelf();
                 }
+            } else if (ACTION_TOGGLE_PRIVACY.equals(action)) {
+                if (intent.hasExtra("privacyActive")) {
+                    isPrivacyShieldActive = intent.getBooleanExtra("privacyActive", false);
+                } else {
+                    isPrivacyShieldActive = !isPrivacyShieldActive;
+                }
+                if (videoEncoder != null) {
+                    videoEncoder.onPrivacyShieldToggled(isPrivacyShieldActive);
+                }
+                NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                if (nm != null) {
+                    nm.notify(101, buildNotification(isPrivacyShieldActive ? "KR Live Studio: PRIVACY SHIELD ACTIVE (Muted & Paused)" : "KR Live Studio is ON AIR..."));
+                }
             }
             return START_NOT_STICKY;
         }
@@ -1205,6 +1413,12 @@ public class MainActivity extends Activity {
                     this, 1, stopIntent, PendingIntent.FLAG_IMMUTABLE
             );
 
+            Intent privIntent = new Intent(this, StreamService.class);
+            privIntent.setAction(ACTION_TOGGLE_PRIVACY);
+            PendingIntent privPendingIntent = PendingIntent.getService(
+                    this, 2, privIntent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+            );
+
             Notification.Builder builder;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 builder = new Notification.Builder(this, CHANNEL_ID);
@@ -1216,6 +1430,7 @@ public class MainActivity extends Activity {
                     .setContentText(contentText)
                     .setSmallIcon(android.R.drawable.presence_video_online)
                     .setContentIntent(pendingIntent)
+                    .addAction(android.R.drawable.ic_lock_lock, isPrivacyShieldActive ? "Resume" : "Shield", privPendingIntent)
                     .addAction(android.R.drawable.ic_media_pause, "Stop", stopPendingIntent)
                     .setOngoing(true)
                     .build();
@@ -1234,6 +1449,7 @@ public class MainActivity extends Activity {
             int bitrate = intent.getIntExtra("bitrateKbps", 2500);
             boolean enableMic = intent.getBooleanExtra("enableMic", true);
             boolean enableFacecam = intent.getBooleanExtra("enableFacecam", false);
+            int audioMode = intent.getIntExtra("audioMode", AUDIO_MODE_MIC);
 
             MediaProjectionManager mpm = (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
             if (mpm == null || resultData == null) return;
@@ -1249,10 +1465,13 @@ public class MainActivity extends Activity {
             }, new Handler(Looper.getMainLooper()));
 
             isStreaming = true;
+            isPrivacyShieldActive = false;
+            masterStreamStartNs = SystemClock.elapsedRealtimeNanos();
             streamStartTime = SystemClock.elapsedRealtime();
             droppedFrames = 0;
             currentBitrateKbps = bitrate;
             currentFps = (float) fps;
+            rtmpStatus = "CONNECTING...";
 
             FloatingCamManager.getInstance(this).setLiveState(true);
             if (enableFacecam && Settings.canDrawOverlays(this)) {
@@ -1260,20 +1479,29 @@ public class MainActivity extends Activity {
             }
 
             rtmpClient = new RtmpMuxerClient(serverUrl, streamKey, width, height, fps, bitrate);
-            rtmpClient.start();
 
             DisplayMetrics metrics = getResources().getDisplayMetrics();
             videoEncoder = new VideoEncoder(mediaProjection, width, height, fps, bitrate, metrics.densityDpi, rtmpClient);
+            rtmpClient.setSyncFrameListener(() -> {
+                if (videoEncoder != null) {
+                    videoEncoder.requestKeyframe();
+                }
+            });
+
+            rtmpClient.start();
             videoEncoder.start();
 
             if (enableMic) {
-                audioEncoder = new AudioEncoder(rtmpClient);
+                audioEncoder = new AudioEncoder(rtmpClient, mediaProjection, audioMode);
                 audioEncoder.start();
             }
         }
 
         private void stopStreamingPipeline() {
             isStreaming = false;
+            isPrivacyShieldActive = false;
+            rtmpStatus = "STANDBY";
+            masterStreamStartNs = 0;
             currentAudioPeak = 0;
             FloatingCamManager.getInstance(this).setLiveState(false);
 
@@ -1480,6 +1708,29 @@ public class MainActivity extends Activity {
             }
         }
 
+        public void requestKeyframe() {
+            if (mediaCodec != null) {
+                try {
+                    Bundle syncBundle = new Bundle();
+                    syncBundle.putInt(MediaCodec.PARAMETER_KEY_REQUEST_SYNC_FRAME, 0);
+                    mediaCodec.setParameters(syncBundle);
+                } catch (Exception ignored) {}
+            }
+        }
+
+        public void onPrivacyShieldToggled(boolean isShield) {
+            if (virtualDisplay != null && inputSurface != null) {
+                try {
+                    if (isShield) {
+                        virtualDisplay.setSurface(null);
+                    } else {
+                        virtualDisplay.setSurface(inputSurface);
+                        requestKeyframe();
+                    }
+                } catch (Exception ignored) {}
+            }
+        }
+
         public void stop() {
             isRunning.set(false);
             if (thread != null) {
@@ -1507,24 +1758,29 @@ public class MainActivity extends Activity {
     }
 
     // =========================================================================
-    // Audio Encoder (AudioRecord + MediaCodec AAC-LC)
+    // Audio Encoder (AudioRecord + MediaCodec AAC-LC + Internal Game Dual Mixer)
     // =========================================================================
     public static class AudioEncoder implements Runnable {
         private static final int SAMPLE_RATE = 44100;
         private static final int AUDIO_FORMAT = AudioFormat.ENCODING_PCM_16BIT;
-        private static final int BITRATE = 96000;
+        private static final int BITRATE = 128000;
 
         private final RtmpMuxerClient rtmp;
+        private final MediaProjection projection;
+        private final int audioMode;
         private final AtomicBoolean isRunning = new AtomicBoolean(false);
         private Thread thread;
-        private AudioRecord audioRecord;
+        private AudioRecord micRecord;
+        private AudioRecord internalRecord;
         private MediaCodec mediaCodec;
         private int channelCount = 2;
         private int channelConfig = AudioFormat.CHANNEL_IN_STEREO;
         private long lastAudioPtsMs = 0;
 
-        public AudioEncoder(RtmpMuxerClient rtmp) {
+        public AudioEncoder(RtmpMuxerClient rtmp, MediaProjection projection, int audioMode) {
             this.rtmp = rtmp;
+            this.projection = projection;
+            this.audioMode = audioMode;
         }
 
         public void start() {
@@ -1536,34 +1792,61 @@ public class MainActivity extends Activity {
         @Override
         public void run() {
             int minBufSize = AudioRecord.getMinBufferSize(SAMPLE_RATE, AudioFormat.CHANNEL_IN_STEREO, AUDIO_FORMAT);
-            if (minBufSize <= 0) {
-                channelConfig = AudioFormat.CHANNEL_IN_MONO;
-                channelCount = 1;
-                minBufSize = AudioRecord.getMinBufferSize(SAMPLE_RATE, AudioFormat.CHANNEL_IN_MONO, AUDIO_FORMAT);
-            } else {
-                channelConfig = AudioFormat.CHANNEL_IN_STEREO;
-                channelCount = 2;
-            }
+            channelConfig = AudioFormat.CHANNEL_IN_STEREO;
+            channelCount = 2;
 
             try {
-                audioRecord = new AudioRecord(
-                        MediaRecorder.AudioSource.MIC,
-                        SAMPLE_RATE,
-                        channelConfig,
-                        AUDIO_FORMAT,
-                        Math.max(minBufSize * 2, 4096)
-                );
-
-                if (audioRecord.getState() != AudioRecord.STATE_INITIALIZED) {
-                    channelConfig = AudioFormat.CHANNEL_IN_MONO;
-                    channelCount = 1;
-                    minBufSize = AudioRecord.getMinBufferSize(SAMPLE_RATE, AudioFormat.CHANNEL_IN_MONO, AUDIO_FORMAT);
-                    audioRecord = new AudioRecord(
+                if (audioMode == AUDIO_MODE_MIC || audioMode == AUDIO_MODE_DUAL) {
+                    micRecord = new AudioRecord(
                             MediaRecorder.AudioSource.MIC,
                             SAMPLE_RATE,
                             channelConfig,
                             AUDIO_FORMAT,
-                            Math.max(minBufSize * 2, 4096)
+                            Math.max(minBufSize * 2, 8192)
+                    );
+                    if (micRecord.getState() != AudioRecord.STATE_INITIALIZED) {
+                        channelConfig = AudioFormat.CHANNEL_IN_MONO;
+                        channelCount = 1;
+                        micRecord = new AudioRecord(
+                                MediaRecorder.AudioSource.MIC,
+                                SAMPLE_RATE,
+                                channelConfig,
+                                AUDIO_FORMAT,
+                                Math.max(minBufSize * 2, 8192)
+                        );
+                    }
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && projection != null &&
+                        (audioMode == AUDIO_MODE_INTERNAL || audioMode == AUDIO_MODE_DUAL)) {
+                    try {
+                        AudioPlaybackCaptureConfiguration config = new AudioPlaybackCaptureConfiguration.Builder(projection)
+                                .addMatchingUsage(AudioAttributes.USAGE_MEDIA)
+                                .addMatchingUsage(AudioAttributes.USAGE_GAME)
+                                .addMatchingUsage(AudioAttributes.USAGE_UNKNOWN)
+                                .build();
+
+                        internalRecord = new AudioRecord.Builder()
+                                .setAudioPlaybackCaptureConfig(config)
+                                .setAudioFormat(new AudioFormat.Builder()
+                                        .setEncoding(AUDIO_FORMAT)
+                                        .setSampleRate(SAMPLE_RATE)
+                                        .setChannelMask(AudioFormat.CHANNEL_IN_STEREO)
+                                        .build())
+                                .setBufferSizeInBytes(Math.max(minBufSize * 2, 8192))
+                                .build();
+                    } catch (Exception e) {
+                        Log.w("KimLive-AudioEncoder", "Internal audio capture init failed: " + e.getMessage());
+                    }
+                }
+
+                if (micRecord == null && internalRecord == null) {
+                    micRecord = new AudioRecord(
+                            MediaRecorder.AudioSource.MIC,
+                            SAMPLE_RATE,
+                            channelConfig,
+                            AUDIO_FORMAT,
+                            Math.max(minBufSize * 2, 8192)
                     );
                 }
 
@@ -1576,19 +1859,55 @@ public class MainActivity extends Activity {
                 mediaCodec = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_AUDIO_AAC);
                 mediaCodec.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);
                 mediaCodec.start();
-                audioRecord.startRecording();
 
-                // Proactive sequence header for AAC-LC 44.1kHz (Stereo: 0x12, 0x10; Mono: 0x12, 0x08)
+                if (micRecord != null && micRecord.getState() == AudioRecord.STATE_INITIALIZED) {
+                    micRecord.startRecording();
+                }
+                if (internalRecord != null && internalRecord.getState() == AudioRecord.STATE_INITIALIZED) {
+                    internalRecord.startRecording();
+                }
+
                 byte[] defaultHeader = (channelCount == 2) ? new byte[]{0x12, 0x10} : new byte[]{0x12, 0x08};
                 rtmp.sendAacSequenceHeader(defaultHeader, channelCount == 2);
 
                 byte[] pcmBuffer = new byte[2048];
+                byte[] micPcm = new byte[2048];
+                byte[] intPcm = new byte[2048];
                 MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
                 long pts = 0;
                 int bytesPerFrame = channelCount * 2;
 
                 while (isRunning.get()) {
-                    int readBytes = audioRecord.read(pcmBuffer, 0, pcmBuffer.length);
+                    int readBytes = 0;
+                    boolean isPrivacyMuted = StreamService.isPrivacyShieldActive();
+
+                    if (micRecord != null && internalRecord != null) {
+                        int mRead = micRecord.read(micPcm, 0, micPcm.length);
+                        int iRead = internalRecord.read(intPcm, 0, intPcm.length);
+                        readBytes = Math.max(mRead, iRead);
+                        if (readBytes > 0) {
+                            for (int i = 0; i < readBytes - 1; i += 2) {
+                                short sM = (i < mRead - 1) ? (short) ((micPcm[i] & 0xFF) | (micPcm[i + 1] << 8)) : 0;
+                                short sI = (i < iRead - 1) ? (short) ((intPcm[i] & 0xFF) | (intPcm[i + 1] << 8)) : 0;
+                                int sum = sM + sI;
+                                if (sum > 32767) sum = 32767;
+                                else if (sum < -32768) sum = -32768;
+                                pcmBuffer[i] = (byte) (sum & 0xFF);
+                                pcmBuffer[i + 1] = (byte) ((sum >> 8) & 0xFF);
+                            }
+                        }
+                    } else if (internalRecord != null) {
+                        readBytes = internalRecord.read(pcmBuffer, 0, pcmBuffer.length);
+                    } else if (micRecord != null) {
+                        readBytes = micRecord.read(pcmBuffer, 0, pcmBuffer.length);
+                    }
+
+                    if (isPrivacyMuted && readBytes > 0) {
+                        for (int i = 0; i < readBytes; i++) {
+                            pcmBuffer[i] = 0;
+                        }
+                    }
+
                     if (readBytes > 0) {
                         int maxAmp = 0;
                         for (int i = 0; i < readBytes - 1; i += 2) {
@@ -1661,10 +1980,15 @@ public class MainActivity extends Activity {
         private void release() {
             StreamService.currentAudioPeak = 0;
             try {
-                if (audioRecord != null) {
-                    audioRecord.stop();
-                    audioRecord.release();
-                    audioRecord = null;
+                if (micRecord != null) {
+                    micRecord.stop();
+                    micRecord.release();
+                    micRecord = null;
+                }
+                if (internalRecord != null) {
+                    internalRecord.stop();
+                    internalRecord.release();
+                    internalRecord = null;
                 }
                 if (mediaCodec != null) {
                     mediaCodec.stop();
@@ -1725,6 +2049,16 @@ public class MainActivity extends Activity {
             this.videoHeight = videoHeight;
             this.videoFps = videoFps;
             this.videoBitrateKbps = videoBitrateKbps;
+        }
+
+        public interface SyncFrameListener {
+            void requestSyncFrame();
+        }
+
+        private SyncFrameListener syncFrameListener;
+
+        public void setSyncFrameListener(SyncFrameListener listener) {
+            this.syncFrameListener = listener;
         }
 
         public void start() {
@@ -1811,6 +2145,9 @@ public class MainActivity extends Activity {
 
             if (!packetQueue.offer(new RtmpPacket(0x06, 0x09, 1, timestamp, baos.toByteArray()))) {
                 StreamService.droppedFrames++;
+                if (syncFrameListener != null && (StreamService.droppedFrames % 15 == 1)) {
+                    syncFrameListener.requestSyncFrame();
+                }
             }
         }
 
@@ -1891,79 +2228,116 @@ public class MainActivity extends Activity {
 
         @Override
         public void run() {
-            try {
-                boolean isSsl = ingestUrl.startsWith("rtmps://");
-                String urlWithoutScheme = ingestUrl.replace("rtmps://", "").replace("rtmp://", "");
-                String host = urlWithoutScheme;
-                int port = isSsl ? 443 : 1935;
+            int retryCount = 0;
+            final int maxRetries = 5;
 
-                int colonIdx = host.indexOf(':');
-                int slashIdx = host.indexOf('/');
-                String app = "live";
+            while (isRunning.get()) {
+                try {
+                    StreamService.setRtmpStatus(retryCount == 0 ? "CONNECTING..." : "RECONNECTING (" + retryCount + "/" + maxRetries + ")...");
+                    connectAndPublish();
+                    retryCount = 0;
+                    StreamService.setRtmpStatus("ONLINE (LIVE)");
+                    if (syncFrameListener != null) {
+                        syncFrameListener.requestSyncFrame();
+                    }
 
-                if (slashIdx != -1) {
-                    app = host.substring(slashIdx + 1);
-                    host = host.substring(0, slashIdx);
+                    while (isRunning.get()) {
+                        RtmpPacket packet = packetQueue.poll(200, TimeUnit.MILLISECONDS);
+                        if (packet != null) {
+                            writeChunk(packet.csid, packet.type, packet.streamId, packet.timestamp, packet.data);
+                        }
+                    }
+                } catch (Exception e) {
+                    Log.e("KimLive-RTMP", "RTMP Streaming Exception: " + e.getMessage(), e);
+                    closeSockets();
+
+                    if (!isRunning.get()) {
+                        break;
+                    }
+
+                    retryCount++;
+                    if (retryCount > maxRetries) {
+                        Log.e("KimLive-RTMP", "Max RTMP reconnect attempts (" + maxRetries + ") reached. Stopping.");
+                        StreamService.setRtmpStatus("CONNECTION FAILED");
+                        break;
+                    }
+
+                    long backoffMs = Math.min(10000, 1500L * retryCount);
+                    StreamService.setRtmpStatus("RETRYING IN " + (backoffMs / 1000) + "s...");
+                    try {
+                        Thread.sleep(backoffMs);
+                    } catch (InterruptedException ie) {
+                        break;
+                    }
                 }
-
-                if (colonIdx != -1) {
-                    port = Integer.parseInt(host.substring(colonIdx + 1));
-                    host = host.substring(0, colonIdx);
-                }
-
-                app = app.replaceAll("/+$", "");
-
-                Log.i("KimLive-RTMP", "Connecting to " + host + ":" + port + " app=" + app + " (ssl=" + isSsl + ")...");
-                if (isSsl) {
-                    SSLSocketFactory factory = (SSLSocketFactory) SSLSocketFactory.getDefault();
-                    SSLSocket sslSocket = (SSLSocket) factory.createSocket();
-                    sslSocket.connect(new InetSocketAddress(host, port), 10000);
-                    sslSocket.setTcpNoDelay(true);
-                    sslSocket.setSendBufferSize(128 * 1024);
-                    sslSocket.startHandshake();
-                    socket = sslSocket;
-                } else {
-                    socket = new Socket();
-                    socket.connect(new InetSocketAddress(host, port), 10000);
-                    socket.setTcpNoDelay(true);
-                    socket.setSendBufferSize(128 * 1024);
-                }
-                Log.i("KimLive-RTMP", "Connected! Performing RTMP handshake...");
-
-                out = new BufferedOutputStream(socket.getOutputStream(), 64 * 1024);
-                in = new BufferedInputStream(socket.getInputStream(), 64 * 1024);
-
-                performRtmpHandshake();
-                Log.i("KimLive-RTMP", "RTMP Handshake successful! Sending commands...");
-                sendSetChunkSize(4096);
-                sendConnectCommand(app);
-                sendReleaseStream(streamKey);
-                sendFCPublish(streamKey);
-                sendCreateStream();
-                sendPublish(streamKey, app);
-                sendMetaData(videoWidth, videoHeight, videoFps, videoBitrateKbps);
-
-                // Write sequence headers proactively if available
-                if (avcHeader != null) {
-                    writeChunk(0x06, 0x09, 1, 0, avcHeader);
-                }
-                if (aacHeader != null) {
-                    writeChunk(0x04, 0x08, 1, 0, aacHeader);
-                }
-
-                Log.i("KimLive-RTMP", "Broadcast published! Streaming video & audio chunks...");
-
-                startReaderThread();
-
-                while (isRunning.get()) {
-                    RtmpPacket packet = packetQueue.take();
-                    writeChunk(packet.csid, packet.type, packet.streamId, packet.timestamp, packet.data);
-                }
-            } catch (Exception e) {
-                Log.e("KimLive-RTMP", "RTMP Streaming Exception: " + e.getMessage(), e);
-            } finally {
-                stop();
             }
+            closeSockets();
+            isRunning.set(false);
+        }
+
+        private void connectAndPublish() throws Exception {
+            boolean isSsl = ingestUrl.startsWith("rtmps://");
+            String urlWithoutScheme = ingestUrl.replace("rtmps://", "").replace("rtmp://", "");
+            String host = urlWithoutScheme;
+            int port = isSsl ? 443 : 1935;
+
+            int colonIdx = host.indexOf(':');
+            int slashIdx = host.indexOf('/');
+            String app = "live";
+
+            if (slashIdx != -1) {
+                app = host.substring(slashIdx + 1);
+                host = host.substring(0, slashIdx);
+            }
+
+            if (colonIdx != -1) {
+                port = Integer.parseInt(host.substring(colonIdx + 1));
+                host = host.substring(0, colonIdx);
+            }
+
+            app = app.replaceAll("/+$", "");
+
+            Log.i("KimLive-RTMP", "Connecting to " + host + ":" + port + " app=" + app + " (ssl=" + isSsl + ")...");
+            if (isSsl) {
+                SSLSocketFactory factory = (SSLSocketFactory) SSLSocketFactory.getDefault();
+                SSLSocket sslSocket = (SSLSocket) factory.createSocket();
+                sslSocket.connect(new InetSocketAddress(host, port), 10000);
+                sslSocket.setTcpNoDelay(true);
+                sslSocket.setSendBufferSize(128 * 1024);
+                sslSocket.startHandshake();
+                socket = sslSocket;
+            } else {
+                socket = new Socket();
+                socket.connect(new InetSocketAddress(host, port), 10000);
+                socket.setTcpNoDelay(true);
+                socket.setSendBufferSize(128 * 1024);
+            }
+            Log.i("KimLive-RTMP", "Connected! Performing RTMP handshake...");
+
+            out = new BufferedOutputStream(socket.getOutputStream(), 64 * 1024);
+            in = new BufferedInputStream(socket.getInputStream(), 64 * 1024);
+
+            performRtmpHandshake();
+            Log.i("KimLive-RTMP", "RTMP Handshake successful! Sending commands...");
+            sendSetChunkSize(4096);
+            sendConnectCommand(app);
+            sendReleaseStream(streamKey);
+            sendFCPublish(streamKey);
+            sendCreateStream();
+            sendPublish(streamKey, app);
+            sendMetaData(videoWidth, videoHeight, videoFps, videoBitrateKbps);
+
+            // Write sequence headers proactively if available
+            if (avcHeader != null) {
+                writeChunk(0x06, 0x09, 1, 0, avcHeader);
+            }
+            if (aacHeader != null) {
+                writeChunk(0x04, 0x08, 1, 0, aacHeader);
+            }
+
+            Log.i("KimLive-RTMP", "Broadcast published! Streaming video & audio chunks...");
+
+            startReaderThread();
         }
 
         private void startReaderThread() {
@@ -2186,19 +2560,32 @@ public class MainActivity extends Activity {
             }
         }
 
-        public void stop() {
-            isRunning.set(false);
-            if (thread != null) {
-                thread.interrupt();
-            }
+        private void closeSockets() {
             if (readerThread != null) {
                 readerThread.interrupt();
+                readerThread = null;
             }
             try {
                 if (out != null) out.close();
+            } catch (Exception ignored) {}
+            out = null;
+            try {
                 if (in != null) in.close();
+            } catch (Exception ignored) {}
+            in = null;
+            try {
                 if (socket != null) socket.close();
             } catch (Exception ignored) {}
+            socket = null;
+        }
+
+        public void stop() {
+            if (!isRunning.getAndSet(false)) return;
+            if (thread != null) {
+                thread.interrupt();
+            }
+            closeSockets();
+            packetQueue.clear();
         }
     }
 }

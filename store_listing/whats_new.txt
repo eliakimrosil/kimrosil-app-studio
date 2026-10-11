@@ -1,5 +1,2 @@
-Initial release of KR Live Studio (v1.0.0).
-- Direct RTMP and RTMPS hardware-accelerated H.264 mobile broadcasting.
-- Configurable floating camera overlay with front/rear camera switching.
-- High-fidelity microphone capture with real-time VU telemetry.
-- On-screen studio dashboard displaying live uptime, bitrate, and frame rate metrics.
+Release v1.3.0 - KR Live Studio
+v1.3.0: Dual audio mixer, Privacy Shield, thermal HUD, RTMP auto-reconnect

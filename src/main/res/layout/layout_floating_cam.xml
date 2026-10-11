@@ -69,6 +69,22 @@
             android:textSize="13sp"
             android:textStyle="bold" />
 
+        <!-- Cycle Facecam Mask (Card ↔ Circle) -->
+        <TextView
+            android:id="@+id/pipBtnShape"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/btn_pip_action"
+            android:clickable="true"
+            android:contentDescription="Cycle Facecam Shape"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="◯"
+            android:textColor="#00E5FF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
         <!-- Cycle Window Size (Compact / Studio / Large) -->
         <TextView
             android:id="@+id/pipBtnSize"

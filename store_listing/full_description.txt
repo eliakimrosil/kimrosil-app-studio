@@ -5,11 +5,13 @@ KR Live Studio connects straight to your specified streaming endpoint using hard
 
 Core Features:
 • Hardware Video Encoding: MediaCodec H.264/AVC processing engineered for efficient real-time compression and battery balance.
-• Direct RTMP & RTMPS Protocol: Native streaming engine supporting standard port 1935 and TLS-encrypted port 443 endpoints.
-• Dual Video Presentation: Broadcast full-screen gameplay or mobile apps with an optional draggable camera overlay.
-• Flexible Audio Capture: Clean microphone commentary recording with configurable audio parameters.
-• Quick Preset Switching: Fast configuration profiles for major live platforms and custom RTMP endpoints.
-• Real-Time Telemetry: On-screen monitoring of live uptime, current bitrate output, FPS, and dropped frames.
+• Direct RTMP & RTMPS Protocol: Native streaming engine supporting standard port 1935 and TLS-encrypted port 443 endpoints with auto-reconnection and exponential backoff.
+• Internal Game Audio & Dual-Mixer: Android 10+ AudioPlaybackCapture for pristine game sound, mixed in real-time with linear PCM mic commentary.
+• One-Tap Privacy Shield: Instantly detach screen projection and mute audio without severing the RTMP socket or resetting stream uptime.
+• Dynamic Keyframe Recovery: Automatically requests IDR sync frames from MediaCodec upon congestion packet drops to eliminate visual artifacting.
+• Multi-Platform Stream Key Vault: Save and recall distinct stream keys for YouTube, Twitch, TikTok, Kick, Facebook, and Custom servers.
+• Clean Floating Facecam: Draggable PiP camera overlay with Squircle/Circle shape masking and auto-hiding controls.
+• Hardware Telemetry HUD: Real-time SoC thermal state monitoring, network health gauge, live bitrate, FPS, and dropped frame telemetry.
 • Tactile Controls: Clear bitrate adjustments, resolution selection (1080p, 720p, 480p), and visual audio VU indicators.
 
 Permissions & Usage:

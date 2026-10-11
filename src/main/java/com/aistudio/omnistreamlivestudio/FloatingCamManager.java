@@ -4,10 +4,13 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Outline;
 import android.graphics.PixelFormat;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
+import android.view.ViewOutlineProvider;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
@@ -53,12 +56,22 @@ public class FloatingCamManager {
     private View overlayView;
     private WindowManager.LayoutParams windowParams;
 
+    private View pipHeader;
     private TextView tvPipBadge;
     private TextView btnPipRotate;
     private TextView btnPipFlip;
+    private TextView btnPipShape;
     private TextView btnPipSize;
     private TextView btnPipClose;
     private TextureView tvPipCamera;
+
+    // Auto-Hiding Controls
+    private static final long AUTO_HIDE_DELAY_MS = 3500;
+    private final Runnable hideControlsRunnable = this::hideControls;
+    private boolean areControlsVisible = true;
+
+    // Facecam Shape Mask (false: Studio Card, true: Circle)
+    private boolean isCircleShape = false;
 
     // Camera2 State
     private HandlerThread cameraThread;
@@ -145,6 +158,7 @@ public class FloatingCamManager {
                 windowManager.addView(overlayView, windowParams);
                 isOverlayShowing = true;
                 setLiveState(isLiveBroadcasting);
+                showControls();
 
                 startCameraThread();
                 if (tvPipCamera.isAvailable()) {
@@ -164,6 +178,7 @@ public class FloatingCamManager {
         if (!isOverlayShowing) return;
 
         mainHandler.post(() -> {
+            mainHandler.removeCallbacks(hideControlsRunnable);
             closeCamera();
             stopCameraThread();
 
@@ -174,6 +189,7 @@ public class FloatingCamManager {
                 overlayView = null;
             }
             isOverlayShowing = false;
+            areControlsVisible = true;
 
             if (stateListener != null) {
                 stateListener.onFacecamToggled(false);
@@ -219,6 +235,74 @@ public class FloatingCamManager {
         return currentRotationDegrees;
     }
 
+    public void toggleShape() {
+        isCircleShape = !isCircleShape;
+        if (btnPipShape != null) {
+            btnPipShape.setText(isCircleShape ? "▢" : "◯");
+        }
+        applyShapeOutline();
+        Toast.makeText(appContext, isCircleShape ? "Facecam: Circular Mask" : "Facecam: Studio Card", Toast.LENGTH_SHORT).show();
+    }
+
+    private void applyShapeOutline() {
+        if (overlayView == null) return;
+        overlayView.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                int w = view.getWidth();
+                int h = view.getHeight();
+                if (w <= 0 || h <= 0) return;
+                if (isCircleShape) {
+                    int minDim = Math.min(w, h);
+                    int left = (w - minDim) / 2;
+                    int top = (h - minDim) / 2;
+                    outline.setOval(left, top, left + minDim, top + minDim);
+                } else {
+                    float density = appContext.getResources().getDisplayMetrics().density;
+                    outline.setRoundRect(0, 0, w, h, 14 * density);
+                }
+            }
+        });
+        overlayView.setClipToOutline(true);
+    }
+
+    public void hideControls() {
+        if (!isOverlayShowing || overlayView == null) return;
+        areControlsVisible = false;
+        mainHandler.post(() -> {
+            if (btnPipRotate != null) btnPipRotate.setVisibility(View.GONE);
+            if (btnPipFlip != null) btnPipFlip.setVisibility(View.GONE);
+            if (btnPipShape != null) btnPipShape.setVisibility(View.GONE);
+            if (btnPipSize != null) btnPipSize.setVisibility(View.GONE);
+            if (btnPipClose != null) btnPipClose.setVisibility(View.GONE);
+            if (pipHeader != null) {
+                pipHeader.setBackgroundColor(Color.TRANSPARENT);
+            }
+        });
+    }
+
+    public void showControls() {
+        if (!isOverlayShowing || overlayView == null) return;
+        areControlsVisible = true;
+        mainHandler.removeCallbacks(hideControlsRunnable);
+        mainHandler.post(() -> {
+            if (btnPipRotate != null) btnPipRotate.setVisibility(View.VISIBLE);
+            if (btnPipFlip != null) btnPipFlip.setVisibility(View.VISIBLE);
+            if (btnPipShape != null) btnPipShape.setVisibility(View.VISIBLE);
+            if (btnPipSize != null) btnPipSize.setVisibility(View.VISIBLE);
+            if (btnPipClose != null) btnPipClose.setVisibility(View.VISIBLE);
+            if (pipHeader != null) {
+                pipHeader.setBackgroundResource(R.drawable.bg_floating_cam_header);
+            }
+        });
+        mainHandler.postDelayed(hideControlsRunnable, AUTO_HIDE_DELAY_MS);
+    }
+
+    private void resetControlsTimer() {
+        mainHandler.removeCallbacks(hideControlsRunnable);
+        mainHandler.postDelayed(hideControlsRunnable, AUTO_HIDE_DELAY_MS);
+    }
+
     public void cycleSize() {
         currentSizeIndex = (currentSizeIndex + 1) % SIZES_DP.length;
         if (isOverlayShowing && overlayView != null && windowParams != null && windowManager != null) {
@@ -231,10 +315,12 @@ public class FloatingCamManager {
             } catch (Exception ignored) {}
 
             overlayView.post(() -> {
+                applyShapeOutline();
                 if (tvPipCamera != null && tvPipCamera.getWidth() > 0 && tvPipCamera.getHeight() > 0) {
                     configureTransform(tvPipCamera.getWidth(), tvPipCamera.getHeight());
                 }
             });
+            resetControlsTimer();
         }
     }
 
@@ -242,9 +328,11 @@ public class FloatingCamManager {
         LayoutInflater inflater = LayoutInflater.from(appContext);
         overlayView = inflater.inflate(R.layout.layout_floating_cam, null);
 
+        pipHeader = overlayView.findViewById(R.id.pipHeader);
         tvPipBadge = overlayView.findViewById(R.id.pipBadge);
         btnPipRotate = overlayView.findViewById(R.id.pipBtnRotate);
         btnPipFlip = overlayView.findViewById(R.id.pipBtnFlip);
+        btnPipShape = overlayView.findViewById(R.id.pipBtnShape);
         btnPipSize = overlayView.findViewById(R.id.pipBtnSize);
         btnPipClose = overlayView.findViewById(R.id.pipBtnClose);
         tvPipCamera = overlayView.findViewById(R.id.pipCameraView);
@@ -268,6 +356,7 @@ public class FloatingCamManager {
         windowParams.y = (int) (80 * density);
 
         setupOverlayListeners();
+        applyShapeOutline();
     }
 
     private void setupOverlayListeners() {
@@ -275,17 +364,28 @@ public class FloatingCamManager {
             btnPipRotate.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 rotateCamera();
+                resetControlsTimer();
             });
         }
 
         btnPipFlip.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             flipCamera();
+            resetControlsTimer();
         });
+
+        if (btnPipShape != null) {
+            btnPipShape.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                toggleShape();
+                resetControlsTimer();
+            });
+        }
 
         btnPipSize.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             cycleSize();
+            resetControlsTimer();
         });
 
         btnPipClose.setOnClickListener(v -> {
@@ -307,6 +407,7 @@ public class FloatingCamManager {
                         initialTouchX = event.getRawX();
                         initialTouchY = event.getRawY();
                         isMoving = false;
+                        showControls();
                         return true;
 
                     case MotionEvent.ACTION_MOVE:
@@ -321,9 +422,19 @@ public class FloatingCamManager {
                                 windowManager.updateViewLayout(overlayView, windowParams);
                             } catch (Exception ignored) {}
                         }
+                        mainHandler.removeCallbacks(hideControlsRunnable);
                         return true;
 
                     case MotionEvent.ACTION_UP:
+                        if (!isMoving) {
+                            if (!areControlsVisible) {
+                                showControls();
+                            } else {
+                                resetControlsTimer();
+                            }
+                        } else {
+                            resetControlsTimer();
+                        }
                         return true;
                 }
                 return false;
