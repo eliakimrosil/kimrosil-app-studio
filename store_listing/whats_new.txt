@@ -1,0 +1,1 @@
+Initial release of GrainLine v1.0.0. Core features include offline yardage conversion, quilt cut planning, bolt remainder tracking, and counter-friendly measurement tools.

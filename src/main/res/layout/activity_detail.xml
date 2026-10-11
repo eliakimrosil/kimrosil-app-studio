@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/m3_surface"
+    android:orientation="vertical">
+
+    <!-- Detail Header Toolbar -->
+    <LinearLayout
+        android:id="@+id/llDetailTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/m3_surface"
+        android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="12dp">
+
+        <Button
+            android:id="@+id/btnDetailBack"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:background="@drawable/chip_inactive"
+            android:minHeight="48dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="← Back"
+            android:textAllCaps="false"
+            android:textColor="@color/m3_on_surface"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvDetailTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Project Detail"
+            android:textColor="@color/m3_on_surface"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnDetailExport"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:background="@drawable/btn_m3_outlined"
+            android:minHeight="48dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="CSV"
+            android:textAllCaps="false"
+            android:textColor="@color/m3_primary"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Result Metrics Summary Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_m3_high"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RECORDED YARDAGE SPECIFICATION"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvDetailYards"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.00 yds"
+                        android:textColor="@color/m3_primary"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvDetailMeters"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginBottom="3dp"
+                        android:text="0.00 m"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tvDetailWaste"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="0% waste"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvDetailTimestamp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Created: Oct 10, 2026"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- Parameter Fine-Tuning Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/card_m3"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PARAMETER TUNING &amp; NOTES"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <!-- Project Name -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Project Title"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/etDetailName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/edittext_m3"
+                    android:inputType="textCapWords"
+                    android:minHeight="48dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="14sp" />
+
+                <!-- Fabric Classification -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Fabric Type / Blend"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/etDetailFabricType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/edittext_m3"
+                    android:inputType="textCapWords"
+                    android:minHeight="48dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="14sp" />
+
+                <!-- Bolt Width -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Bolt Width (Inches)"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/etDetailFabricWidth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/edittext_m3"
+                    android:inputType="numberDecimal"
+                    android:minHeight="48dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="14sp" />
+
+                <!-- Cut Dimensions -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cut Width (in)"
+                            android:textColor="@color/m3_on_surface"
+                            android:textSize="13sp" />
+
+                        <EditText
+                            android:id="@+id/etDetailPieceWidth"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/edittext_m3"
+                            android:inputType="numberDecimal"
+                            android:minHeight="48dp"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:textColor="@color/m3_on_surface"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cut Length (in)"
+                            android:textColor="@color/m3_on_surface"
+                            android:textSize="13sp" />
+
+                        <EditText
+                            android:id="@+id/etDetailPieceLength"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/edittext_m3"
+                            android:inputType="numberDecimal"
+                            android:minHeight="48dp"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:textColor="@color/m3_on_surface"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Count, Seam & Shrinkage -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Count"
+                            android:textColor="@color/m3_on_surface"
+                            android:textSize="13sp" />
+
+                        <EditText
+                            android:id="@+id/etDetailPieceCount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/edittext_m3"
+                            android:inputType="number"
+                            android:minHeight="48dp"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:textColor="@color/m3_on_surface"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Seam (in)"
+                            android:textColor="@color/m3_on_surface"
+                            android:textSize="13sp" />
+
+                        <EditText
+                            android:id="@+id/etDetailSeam"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/edittext_m3"
+                            android:inputType="numberDecimal"
+                            android:minHeight="48dp"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:textColor="@color/m3_on_surface"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Shrink (%)"
+                            android:textColor="@color/m3_on_surface"
+                            android:textSize="13sp" />
+
+                        <EditText
+                            android:id="@+id/etDetailShrinkage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/edittext_m3"
+                            android:inputType="numberDecimal"
+                            android:minHeight="48dp"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:textColor="@color/m3_on_surface"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Rotation Switch -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Allow Rotation (90° Cut)"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="13sp" />
+
+                    <Switch
+                        android:id="@+id/swDetailRotation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp" />
+                </LinearLayout>
+
+                <!-- Project Notes -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Notes &amp; Sewing Directions"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/etDetailNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/edittext_m3"
+                    android:gravity="top|start"
+                    android:hint="e.g. Cut crosswise grain for binding"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:minHeight="72dp"
+                    android:padding="12dp"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="13sp" />
+
+                <!-- Action Buttons: Recalculate, Save & Delete -->
+                <Button
+                    android:id="@+id/btnDetailRecalculate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/btn_m3_outlined"
+                    android:minHeight="48dp"
+                    android:text="Recalculate Metrics"
+                    android:textAllCaps="false"
+                    android:textColor="@color/m3_primary"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnDetailSave"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_m3_primary"
+                        android:minHeight="48dp"
+                        android:text="Save Changes"
+                        android:textAllCaps="false"
+                        android:textColor="@color/m3_on_primary"
+                        android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/btnDetailDelete"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/chip_inactive"
+                        android:minHeight="48dp"
+                        android:text="Delete"
+                        android:textAllCaps="false"
+                        android:textColor="@color/m3_error"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
