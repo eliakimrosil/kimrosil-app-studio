@@ -453,9 +453,8 @@ public class MainActivity extends Activity {
         tvNetAfterWhtVal.setTextColor(accentEmerald);
         tvFormulaNote.setTextColor(textMuted);
 
-        // Numpad Keys Styling
-        int rippleColor = isDark ? 0x2EFFFFFF : 0x22000000;
-        ColorStateList rippleCsl = ColorStateList.valueOf(rippleColor);
+        // Numpad Keys Styling — Strictly Flat with Zero Shadow & Bounded Ripple
+        int rippleColor = isDark ? 0x2EFFFFFF : 0x14000000;
 
         Button[] digitKeys = {
             btnKey0, btnKey1, btnKey2, btnKey3, btnKey4,
@@ -463,61 +462,46 @@ public class MainActivity extends Activity {
             btnKey00, btnKeyDot
         };
         for (Button key : digitKeys) {
-            if (key == null) continue;
-            GradientDrawable d = new GradientDrawable();
-            d.setColor(bgInner);
-            d.setStroke(dpToPx(1), strokeColor);
-            d.setCornerRadius(dpToPx(12));
-            key.setBackground(new RippleDrawable(rippleCsl, d, null));
-            key.setTextColor(textHigh);
+            styleFlatKey(key, bgInner, strokeColor, textHigh, rippleColor, 12);
         }
 
         // Operator Keys
-        if (btnKeyPlus != null) {
-            GradientDrawable d = new GradientDrawable();
-            d.setColor(bgCard);
-            d.setStroke(dpToPx(1), strokeColor);
-            d.setCornerRadius(dpToPx(12));
-            btnKeyPlus.setBackground(new RippleDrawable(rippleCsl, d, null));
-            btnKeyPlus.setTextColor(accentEmerald);
-        }
-        if (btnKeyMinus != null) {
-            GradientDrawable d = new GradientDrawable();
-            d.setColor(bgCard);
-            d.setStroke(dpToPx(1), strokeColor);
-            d.setCornerRadius(dpToPx(12));
-            btnKeyMinus.setBackground(new RippleDrawable(rippleCsl, d, null));
-            btnKeyMinus.setTextColor(accentEmerald);
-        }
-        if (btnKeyDel != null) {
-            GradientDrawable d = new GradientDrawable();
-            d.setColor(bgCard);
-            d.setStroke(dpToPx(1), strokeColor);
-            d.setCornerRadius(dpToPx(12));
-            btnKeyDel.setBackground(new RippleDrawable(rippleCsl, d, null));
-            btnKeyDel.setTextColor(textMid);
-        }
-        if (btnKeyC != null) {
-            GradientDrawable d = new GradientDrawable();
-            d.setColor(bgCard);
-            d.setStroke(dpToPx(1), strokeColor);
-            d.setCornerRadius(dpToPx(12));
-            btnKeyC.setBackground(new RippleDrawable(rippleCsl, d, null));
-            btnKeyC.setTextColor(isDark ? 0xFFF87171 : 0xFFDC2626);
-        }
+        styleFlatKey(btnKeyPlus,  bgCard, strokeColor, accentEmerald, rippleColor, 12);
+        styleFlatKey(btnKeyMinus, bgCard, strokeColor, accentEmerald, rippleColor, 12);
+        styleFlatKey(btnKeyDel,   bgCard, strokeColor, textMid,       rippleColor, 12);
+        styleFlatKey(btnKeyC,     bgCard, strokeColor, isDark ? 0xFFF87171 : 0xFFDC2626, rippleColor, 12);
 
         // Bottom Copy Button
-        GradientDrawable copyDraw = new GradientDrawable();
-        copyDraw.setColor(isDark ? 0xFF064E3B : 0xFFD1FAE5);
-        copyDraw.setStroke(dpToPx(1), isDark ? accentEmerald : 0xFF059669);
-        copyDraw.setCornerRadius(dpToPx(14));
-        int copyRippleColor = isDark ? 0x3310B981 : 0x33059669;
-        btnCopy.setBackground(new RippleDrawable(ColorStateList.valueOf(copyRippleColor), copyDraw, null));
-        btnCopy.setTextColor(isDark ? 0xFFFFFFFF : 0xFF064E3B);
+        int copyBg = isDark ? 0xFF064E3B : 0xFFD1FAE5;
+        int copyStroke = isDark ? accentEmerald : 0xFF059669;
+        int copyText = isDark ? 0xFFFFFFFF : 0xFF064E3B;
+        int copyRipple = isDark ? 0x3310B981 : 0x22059669;
+        styleFlatKey(btnCopy, copyBg, copyStroke, copyText, copyRipple, 14);
+    }
+
+    private void styleFlatKey(Button btn, int bg, int stroke, int textColor, int rippleColor, int radiusDp) {
+        if (btn == null) return;
+        btn.setElevation(0);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            btn.setStateListAnimator(null);
+        }
+
+        GradientDrawable content = new GradientDrawable();
+        content.setColor(bg);
+        content.setStroke(dpToPx(1), stroke);
+        content.setCornerRadius(dpToPx(radiusDp));
+
+        GradientDrawable mask = new GradientDrawable();
+        mask.setColor(0xFFFFFFFF);
+        mask.setCornerRadius(dpToPx(radiusDp));
+
+        btn.setBackground(new RippleDrawable(ColorStateList.valueOf(rippleColor), content, mask));
+        btn.setTextColor(textColor);
     }
 
     private void applyCardBg(LinearLayout card, int bg, int stroke) {
         if (card == null) return;
+        card.setElevation(0);
         GradientDrawable d = new GradientDrawable();
         d.setColor(bg);
         d.setStroke(dpToPx(1), stroke);
@@ -527,6 +511,10 @@ public class MainActivity extends Activity {
 
     private void applyChipBg(Button btn, int bg, int stroke) {
         if (btn == null) return;
+        btn.setElevation(0);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            btn.setStateListAnimator(null);
+        }
         GradientDrawable d = new GradientDrawable();
         d.setColor(bg);
         d.setStroke(dpToPx(1), stroke);
@@ -537,6 +525,13 @@ public class MainActivity extends Activity {
     private void styleVatRateChips(boolean isDark, int accentEmerald, int stroke) {
         if (chipVat12 == null || chipVat0 == null) return;
         boolean is12 = (customVatRate == 0.12);
+
+        chipVat12.setElevation(0);
+        chipVat0.setElevation(0);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            chipVat12.setStateListAnimator(null);
+            chipVat0.setStateListAnimator(null);
+        }
 
         GradientDrawable d12 = new GradientDrawable();
         d12.setColor(is12 ? accentEmerald : (isDark ? 0xFF182235 : 0xFFF1F5F9));
@@ -559,6 +554,10 @@ public class MainActivity extends Activity {
 
         for (int i = 0; i < chips.length; i++) {
             if (chips[i] == null) continue;
+            chips[i].setElevation(0);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                chips[i].setStateListAnimator(null);
+            }
             boolean active = (Math.abs(whtRate - rates[i]) < 0.0001);
             GradientDrawable d = new GradientDrawable();
             d.setColor(active ? accentAmber : (isDark ? 0xFF182235 : 0xFFF1F5F9));
