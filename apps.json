@@ -1,7 +1,7 @@
 [
   {
     "slug": "return-guard-receipt-countdown",
-    "title": "ReturnGuard: Store Return Deadline & Receipt Viewer",
+    "title": "ReturnGuard",
     "category": "Shopping & Lifestyle",
     "tagline": "Stop losing money on clothes and purchases you meant to return with visual deadline countdowns and cashier-ready receipt displays.",
     "status": "FAILED",
@@ -14,7 +14,7 @@
   },
   {
     "slug": "size-vault-family-clothing",
-    "title": "SizeVault: Family Clothing & Shoe Size Guide",
+    "title": "SizeVault",
     "category": "Lifestyle & Family",
     "tagline": "The instant pocket size guide for parents, spouses, and gift shoppers browsing sales and thrift stores.",
     "status": "FAILED",
@@ -27,7 +27,7 @@
   },
   {
     "slug": "who-has-my-tool-lending",
-    "title": "WhoHasMy: Physical Tool & Gear Lending Tracker",
+    "title": "WhoHasMy",
     "category": "Home & Community",
     "tagline": "Stop losing your tools, camping gear, books, and board games to neighbors and friends with friendly photo records and polite WhatsApp reminders.",
     "status": "FAILED",
@@ -40,7 +40,7 @@
   },
   {
     "slug": "workout-program-tracker",
-    "title": "IronPulse: Offline Workout Program & Gym Tracker",
+    "title": "IronPulse",
     "category": "Health & Fitness",
     "tagline": "Minimalist offline workout program tracker with progressive overload logging and auto rest timer.",
     "status": "BUILT",
@@ -53,7 +53,7 @@
   },
   {
     "slug": "devsys-monitor",
-    "title": "DevSys Monitor: Real-time Android Hardware Monitor",
+    "title": "DevSys Monitor",
     "category": "Developer Tools & System Utilities",
     "tagline": "Lightweight real-time CPU frequencies, RAM utilization, thermal sensors, and system processes monitor.",
     "status": "BUILT",
@@ -80,7 +80,7 @@
   },
   {
     "slug": "screenstream-rtsp",
-    "title": "ScreenStream RTSP: Low-Latency Screen Broadcaster",
+    "title": "ScreenStream RTSP",
     "category": "Multimedia & Networking",
     "tagline": "Low-latency local network RTSP live screen broadcasting server utilizing Android MediaProjection API.",
     "status": "BUILT",
@@ -93,7 +93,7 @@
   },
   {
     "slug": "gemini-power-bridge",
-    "title": "Gemini Power Bridge: Lenovo ZUI Power Key Interceptor",
+    "title": "Gemini Power Bridge",
     "category": "Productivity & Utilities",
     "tagline": "Hardware key interceptor configuring Lenovo ZUI power button long-press to launch Google Gemini directly.",
     "status": "BUILT",
@@ -106,7 +106,7 @@
   },
   {
     "slug": "clip-scrub-sanitize-share",
-    "title": "ClipScrub: Private Share Sanitizer",
+    "title": "ClipScrub",
     "category": "Productivity & Privacy Utilities",
     "tagline": "Instantly strip tracking parameters, UTMs, referral bloat, and metadata from copied links and images before sharing.",
     "status": "BUILT",
@@ -119,7 +119,7 @@
   },
   {
     "slug": "snip-shelf-receipt-ocr",
-    "title": "SnipShelf: Offline Warranty & Manual Vault",
+    "title": "SnipShelf",
     "category": "Productivity & Utilities",
     "tagline": "Instantly stash paper serial numbers, warranty barcodes, and appliance manuals directly from camera or share sheet with on-device text indexing.",
     "status": "FAILED",
@@ -145,7 +145,7 @@
   },
   {
     "slug": "offline-fuel-log-tracker",
-    "title": "TankPulse: Offline Fuel & Mileage Tracker",
+    "title": "TankPulse",
     "category": "Auto & Vehicles / Utilities",
     "tagline": "Instantly record fuel fill-ups and compute real-world mileage and cost-per-mile without accounts, ads, or internet connection.",
     "status": "BUILT",
@@ -158,7 +158,7 @@
   },
   {
     "slug": "offline-prescription-pill-refill-sentinel",
-    "title": "DoseGuard: Offline Med & Refill Sentinel",
+    "title": "DoseGuard",
     "category": "Health & Fitness",
     "tagline": "Frictionless offline medication compliance and zero-panic refill countdowns powered by Quick Settings and Glance widgets.",
     "status": "BUILT",
@@ -171,7 +171,7 @@
   },
   {
     "slug": "tap-meter-parking-sentinel",
-    "title": "MeterPulse - Offline Parking Sentinel",
+    "title": "MeterPulse",
     "category": "Auto & Vehicles / Productivity",
     "tagline": "One-tap Quick Settings parking timer with interactive Glance countdown and GPS breadcrumb, completely offline.",
     "status": "BUILT",
@@ -184,7 +184,7 @@
   },
   {
     "slug": "stealth-drop-secret-pad",
-    "title": "StealthDrop: Offline Ephemeral Scratchpad",
+    "title": "StealthDrop",
     "category": "Productivity & Security",
     "tagline": "Instant zero-trace burner notes and sensitive snippets from your notification shade with auto-purge timers.",
     "status": "BUILT",
@@ -211,7 +211,7 @@
   },
   {
     "slug": "park-pin-offline-spot-finder",
-    "title": "ParkPin: Offline Spot Anchor",
+    "title": "ParkPin",
     "category": "Auto & Vehicles / Travel & Local",
     "tagline": "Instantly record parking spot level, pillar number, and photos with zero network connectivity or latency.",
     "status": "BUILT",
@@ -224,7 +224,7 @@
   },
   {
     "slug": "frost-thaw-prep-timer",
-    "title": "ThawGuard: Offline Food Defrost Sentinel",
+    "title": "ThawGuard",
     "category": "Tools & Food Safety",
     "tagline": "Safe, USDA-calibrated kitchen thaw timer with Quick Settings instant-log and lock screen live countdown.",
     "status": "BUILT",
@@ -237,7 +237,7 @@
   },
   {
     "slug": "steep-brew-tea-timer",
-    "title": "SteepPulse: Offline Multi-Infusion Tea & Coffee Sentinel",
+    "title": "SteepPulse",
     "category": "Food & Drink / Utilities",
     "tagline": "Precision multi-step infusion timing with 1-tap Quick Settings logging, lock screen chronometer, and zero account friction.",
     "status": "BUILT",
@@ -250,7 +250,7 @@
   },
   {
     "slug": "laundry-cycle-sentinel",
-    "title": "CycleGuard: Laundry Sentinel",
+    "title": "CycleGuard",
     "category": "Utilities",
     "tagline": "Zero-friction offline laundry timer with Quick Settings 1-tap start, ongoing lock-screen chronometer, and mold-prevention reminders.",
     "status": "BUILT",
@@ -263,7 +263,7 @@
   },
   {
     "slug": "aurafocus-minimalist-pomodoro-ambient-sound",
-    "title": "AuraFocus - Minimalist Pomodoro & Ambient Sound",
+    "title": "AuraFocus",
     "category": "Productivity",
     "tagline": "Offline distraction-free timer with embedded ambient white noise & AMOLED dark theme.",
     "status": "BUILT",
@@ -276,7 +276,7 @@
   },
   {
     "slug": "steep-chill-ice-bath-timer",
-    "title": "CryoPulse: Cold Plunge Sentinel",
+    "title": "CryoPulse",
     "category": "Health & Fitness / Utilities",
     "tagline": "Frictionless offline cold plunge timer with Quick Settings 1-tap start, ongoing lock screen chronometer, and haptic breath pacing.",
     "status": "BUILT",
@@ -302,7 +302,7 @@
   },
   {
     "slug": "fast-track-intermittent-fasting-sentinel",
-    "title": "FastTrack: Offline Fasting Sentinel",
+    "title": "FastTrack",
     "category": "Health & Fitness",
     "tagline": "Frictionless, offline-first intermittent fasting tracker driven by Quick Settings and persistent Lock Screen chronometer.",
     "status": "BUILT",
@@ -315,7 +315,7 @@
   },
   {
     "slug": "pan-flip-sear-timer",
-    "title": "PanFlip: Kitchen Sear & Flip Sentinel",
+    "title": "PanFlip",
     "category": "Food & Drink / Utilities",
     "tagline": "Offline culinary flip and sear timer with Quick Settings 1-tap activation and hands-free lock-screen pacing for busy home cooks.",
     "status": "BUILT",
@@ -328,7 +328,7 @@
   },
   {
     "slug": "sourdough-rise-ferment-sentinel",
-    "title": "CrumbWatch: Sourdough & Ferment Sentinel",
+    "title": "CrumbWatch",
     "category": "Food & Drink / Utilities",
     "tagline": "Offline sourdough proofing timer, stretch calculator, and fermentation tracker.",
     "status": "BUILT",
@@ -341,7 +341,7 @@
   },
   {
     "slug": "defrost-safe-meat-prep-sentinel",
-    "title": "ChillThaw - Meat Defrost Sentinel",
+    "title": "ChillThaw",
     "category": "Food & Drink / Utilities",
     "tagline": "Safe food-prep countdowns and USDA defrost window alerts right from your Quick Settings and Lock Screen.",
     "status": "BUILT",
@@ -354,7 +354,7 @@
   },
   {
     "slug": "roast-rest-meat-thermo-sentinel",
-    "title": "RoastRest: Carryover Meat Rest Sentinel",
+    "title": "RoastRest",
     "category": "Food & Drink / Utilities",
     "tagline": "Offline culinary carryover calculator and target rest timer with a 1-tap Quick Settings tile and lock-screen chronometer.",
     "status": "BUILT",
@@ -367,7 +367,7 @@
   },
   {
     "slug": "glue-set-clamp-sentinel",
-    "title": "ClampGuard: Offline Woodworking Glue & Epoxy Cure Sentinel",
+    "title": "ClampGuard",
     "category": "Tools & Productivity",
     "tagline": "Track exact clamp-time and full-cure windows for wood glues and epoxies with one-tap Quick Settings, lock-screen chronometers, and ambient cure temperature compensation.",
     "status": "BUILT",
@@ -380,7 +380,7 @@
   },
   {
     "slug": "epoxy-cure-pot-life-sentinel",
-    "title": "PotLife: Epoxy & Resin Sentinel",
+    "title": "PotLife",
     "category": "Tools & Utilities",
     "tagline": "Zero-friction pot life, gel phase, and demold countdowns triggered directly from Quick Settings with sticky resin hands.",
     "version": "v1.0.0",
@@ -412,7 +412,7 @@
   },
   {
     "slug": "sprout-knight-rpg",
-    "title": "SproutKnight: Cozy Forest RPG & Magic Forge",
+    "title": "SproutKnight",
     "category": "Games / RPG / Adventure",
     "tagline": "Embark on a charming 2D action fighting RPG quest\u2014upgrade acorn blades, walnut armor, and dewdrop magic at the cozy forge.",
     "version": "v1.5.0",
@@ -431,7 +431,7 @@
   },
   {
     "slug": "grainline",
-    "title": "GrainLine: Fabric Yardage & Cut Aide",
+    "title": "GrainLine",
     "category": "Tools & Utilities",
     "tagline": "Offline textile yardage calculator and pattern layout optimizer for fabric counters and sewing tables.",
     "version": "v1.0.0",
@@ -448,7 +448,7 @@
   },
   {
     "slug": "volt-drop",
-    "title": "VoltDrop: Wire Gauge & Voltage Aide",
+    "title": "VoltDrop",
     "category": "Tools & Utilities / Electrical",
     "tagline": "Offline wire gauge sizing, continuous ampacity lookup, and voltage loss calculator for solar, RV, marine, and DIY wiring.",
     "version": "v1.0.0",
@@ -465,7 +465,7 @@
   },
   {
     "slug": "cadence-habit-ledger",
-    "title": "Cadence: Offline Habit & Ritual Ledger",
+    "title": "Cadence",
     "category": "Lifestyle & Productivity",
     "tagline": "Minimalist, 100% offline daily ritual ledger with haptic streaks and local SQLite privacy.",
     "status": "BUILT",
@@ -479,7 +479,7 @@
   },
   {
     "slug": "grain-run",
-    "title": "GrainRun: Wood Planing Direction Aide",
+    "title": "GrainRun",
     "category": "Tools & Utilities",
     "tagline": "Offline wood grain reading helper and tearout calculator with quick visual tilt checks for workshop benches.",
     "status": "BUILT",
@@ -493,7 +493,7 @@
   },
   {
     "slug": "muck-cure",
-    "title": "MuckCure: Mortar & Grout Window",
+    "title": "MuckCure",
     "category": "Tools & Productivity",
     "tagline": "Offline Quick Settings tile and lockscreen vibration monitor for masonry mortar pot life, initial set, and strike-off timing.",
     "status": "BUILT",
@@ -507,7 +507,7 @@
   },
   {
     "slug": "pebble-drift",
-    "title": "PebbleDrift: Ambient Zen Water & Stone Garden",
+    "title": "PebbleDrift",
     "category": "Games / Casual / Relaxing",
     "tagline": "Tactile water ripples, floating petals, stone stacking, and harmonic pentatonic chimes in an offline oasis.",
     "status": "BUILT",
@@ -521,7 +521,7 @@
   },
   {
     "slug": "run-sheet-workflow",
-    "title": "RunSheet: Offline Production & Stage Workflow",
+    "title": "RunSheet",
     "category": "Business & Productivity",
     "tagline": "Professional offline stage-gate workflow engine and sequential production runner with local SQLite telemetry.",
     "status": "BUILT",
@@ -535,7 +535,7 @@
   },
   {
     "slug": "skim-skim",
-    "title": "SkimSkim: Pool Backwash & DE Aide",
+    "title": "SkimSkim",
     "category": "Tools & Utilities",
     "tagline": "Offline pool filter cycle countdowns, media doser, and Quick Settings backwash timer designed for wet, chlorine-slick hands.",
     "status": "BUILT",
@@ -549,7 +549,7 @@
   },
   {
     "slug": "weld-cool",
-    "title": "WeldCool: Interpass & Preheat Clock",
+    "title": "WeldCool",
     "category": "Tools & Utilities",
     "tagline": "Single-tap Quick Settings interpass cooling timer and preheat soak calculator for welders wearing heavy gloves.",
     "status": "BUILT",
