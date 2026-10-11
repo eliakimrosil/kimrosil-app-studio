@@ -454,14 +454,16 @@
     "version": "v1.0.0",
     "status": "BUILT",
     "engine": "Kotlin + XML",
-    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-volt-drop/volt-drop.apk",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-volt-drop/volt-drop.apk",
     "icon_path": "assets/icons/volt-drop.svg",
     "web_url": "https://apps.kimrosil.com/volt-drop/",
     "features": [
       "Pure Native Kotlin (Zero Bloat)",
       "NEC Ampacity & Voltage Drop Engine",
       "100% Offline & Instant Telemetry"
-    ]
+    ],
+    "tag": "v1.1.0-volt-drop",
+    "updated_at": "2026-10-11T12:13:00.581482+00:00"
   },
   {
     "slug": "cadence-habit-ledger",
