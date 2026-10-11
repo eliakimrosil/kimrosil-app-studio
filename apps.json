@@ -201,11 +201,12 @@
     "tagline": "Broadcast screen, camera & audio directly to RTMP live platforms",
     "status": "BUILT",
     "branch": "app/kim-live-studio",
-    "tag": "v1.2.0-kim-live-studio",
-    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.0-kim-live-studio/kr-live-studio.apk",
+    "tag": "v1.3.0-kim-live-studio",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.3.0-kim-live-studio/kr-live-studio.apk",
     "landing_page": "https://apps.kimrosil.com/kim-live-studio/",
     "privacy_policy": "https://apps.kimrosil.com/kim-live-studio/privacy.html",
-    "icon": "assets/icons/kr-live-studio.svg"
+    "icon": "assets/icons/kr-live-studio.svg",
+    "updated_at": "2026-10-11T04:08:24.365371+00:00"
   },
   {
     "slug": "park-pin-offline-spot-finder",
