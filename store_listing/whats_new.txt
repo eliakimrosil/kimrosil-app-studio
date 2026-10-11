@@ -1,2 +1,2 @@
-Release v1.2.1 - VatCal PH: BIR Tax & EWT Ledger
-Full rename to VatCal PH; flat zero-shadow cashier numpad styling, refined high-contrast theme toggles, and streamlined Philippine BIR invoice computation
+Release v1.2.2 - VatCal PH: BIR Tax & EWT Ledger
+Adopt official storefront emerald & gold adaptive icon
