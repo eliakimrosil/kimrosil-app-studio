@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- VoltDrop Dark Theme (Graphite & Copper HUD) -->
+    <color name="colorPrimary">#FF9100</color>
+    <color name="colorPrimaryDark">#121417</color>
+    <color name="colorAccent">#00E5FF</color>
+    <color name="windowBackground">#101216</color>
+
+    <color name="m3_primary">#FF9100</color>
+    <color name="m3_on_primary">#3E1D00</color>
+    <color name="m3_primary_container">#5A2B00</color>
+    <color name="m3_on_primary_container">#FFDBCF</color>
+
+    <color name="m3_secondary">#00E5FF</color>
+    <color name="m3_on_secondary">#00363D</color>
+    <color name="m3_secondary_container">#004E57</color>
+    <color name="m3_on_secondary_container">#B2EBF2</color>
+
+    <color name="m3_surface">#101216</color>
+    <color name="m3_surface_container">#1A1D24</color>
+    <color name="m3_surface_container_high">#242832</color>
+    <color name="m3_surface_container_highest">#2E3440</color>
+
+    <color name="m3_on_surface">#F0F3F8</color>
+    <color name="m3_on_surface_variant">#9CA3AF</color>
+    <color name="m3_outline">#374151</color>
+    <color name="m3_outline_variant">#1F2937</color>
+
+    <color name="m3_success">#10B981</color>
+    <color name="m3_on_success">#022C22</color>
+    <color name="m3_warning">#F59E0B</color>
+    <color name="m3_error">#EF4444</color>
+    <color name="m3_on_error">#450A0A</color>
+
+    <color name="telemetry_accent">#00E5FF</color>
+    <color name="copper_accent">#FF9100</color>
+</resources>

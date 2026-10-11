@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/m3_surface"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Top Header Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VOLTDROP"
+                    android:fontFamily="sans-serif-black"
+                    android:letterSpacing="0.08"
+                    android:textColor="@color/m3_primary"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wire Gauge &amp; Voltage Loss Telemetry"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnThemeToggle"
+                style="@android:style/Widget.DeviceDefault.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:background="@drawable/chip_inactive"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:contentDescription="Switch between dark and light themes"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="Theme"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/btnOpenReference"
+                style="@android:style/Widget.DeviceDefault.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/chip_active"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:contentDescription="Open NEC wire ampacity and reference tables"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="NEC Tables"
+                android:textColor="@color/m3_on_primary"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Hero Telemetry HUD Card -->
+        <LinearLayout
+            android:id="@+id/cardHero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/telemetry_card_bg"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RECOMMENDED CONDUCTOR"
+                        android:letterSpacing="0.05"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvHeroGauge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4 AWG"
+                        android:fontFamily="sans-serif-black"
+                        android:textColor="@color/m3_primary"
+                        android:textSize="36sp" />
+
+                    <TextView
+                        android:id="@+id/tvHeroMm2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="21.2 mm² • Copper Conductor"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvHeroStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/badge_safe"
+                    android:text="COMPLIANT"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/m3_outline" />
+
+            <!-- 4-Quadrant Metric Telemetry Grid -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="VOLTAGE DROP"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvVoltageDrop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.38 V (3.2%)"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/telemetry_accent"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="LOAD TERMINAL"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvLoadVoltage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="11.62 V"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="POWER DISSIPATION"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvPowerLoss"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="38.4 Watts"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CIRCUIT RESISTANCE"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvCircuitResistance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0384 Ω"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvStatusMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/card_m3_high"
+                android:padding="8dp"
+                android:text="4 AWG operates safely within 3.0% NEC critical guideline."
+                android:textColor="@color/m3_on_surface"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Quick Domain Presets Carousel -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="QUICK FIELD PRESETS"
+            android:letterSpacing="0.05"
+            android:textColor="@color/m3_on_surface_variant"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="6dp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:id="@+id/llPresetsContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
+
+        <!-- Parameter Controls Deck -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_m3"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <!-- Source Voltage Selector -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="System Voltage (V)"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnVolt12"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/chip_active"
+                    android:text="12V"
+                    android:textColor="@color/m3_on_primary"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnVolt24"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/chip_inactive"
+                    android:text="24V"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnVolt48"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/chip_inactive"
+                    android:text="48V"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnVolt120"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/chip_inactive"
+                    android:text="120V"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnVolt240"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/chip_inactive"
+                    android:text="240V"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/etCustomVoltage"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edittext_m3"
+                android:hint="Custom Voltage (e.g. 13.8 or 36)"
+                android:inputType="numberDecimal"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textColor="@color/m3_on_surface"
+                android:textColorHint="@color/m3_on_surface_variant"
+                android:textSize="13sp" />
+
+            <!-- Conductor Material & Target Drop % -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Conductor Metal"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnToggleConductor"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/btn_m3_outlined"
+                        android:text="Copper (Cu)"
+                        android:textColor="@color/copper_accent"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Max Drop Target"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnToggleLimit"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/btn_m3_outlined"
+                        android:text="3.0% (Critical)"
+                        android:textColor="@color/telemetry_accent"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- One-Way Distance -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="One-Way Cable Distance"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etDistance"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_m3"
+                    android:hint="Distance"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:text="15.0"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btnToggleDistanceUnit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/btn_m3_tonal"
+                    android:contentDescription="Toggle distance units between feet and meters"
+                    android:text="FEET"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnDistMinus"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/btn_stepper"
+                    android:contentDescription="Decrease distance by 5 units"
+                    android:text="-5"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="11sp" />
+
+                <Button
+                    android:id="@+id/btnDistPlus"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/btn_stepper"
+                    android:contentDescription="Increase distance by 5 units"
+                    android:text="+5"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- Current Load (Amps) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Continuous Current Load (Amps)"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etCurrent"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_m3"
+                    android:hint="Current (A)"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:text="40.0"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btnAmpMinus"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/btn_stepper"
+                    android:contentDescription="Decrease load current by 5 amperes"
+                    android:text="-5"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="11sp" />
+
+                <Button
+                    android:id="@+id/btnAmpPlus"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/btn_stepper"
+                    android:contentDescription="Increase load current by 5 amperes"
+                    android:text="+5"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="11sp" />
+
+                <Button
+                    android:id="@+id/btnAmpPlus10"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/btn_stepper"
+                    android:contentDescription="Increase load current by 10 amperes"
+                    android:text="+10"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- Interactive Gauge Stepper (What-If Tester) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="Evaluate Specific Gauge (What-If Analysis)"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnPrevGauge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:background="@drawable/btn_m3_outlined"
+                    android:text="◄ Thicker"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tvManualGaugeDisplay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Auto (Recommended)"
+                    android:textColor="@color/m3_primary"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnNextGauge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:background="@drawable/btn_m3_outlined"
+                    android:text="Thinner ►"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Primary Action Deck -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnCalculate"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_m3_primary"
+                android:text="CALCULATE"
+                android:textColor="@color/m3_on_primary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnSaveRecord"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/btn_m3_tonal"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
+                android:text="Save"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/btnShare"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/btn_m3_tonal"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
+                android:text="Share"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Commercial / Monetization Deck -->
+        <LinearLayout
+            android:id="@+id/llAdContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_m3_high"
+            android:gravity="center"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tvAdNotice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VoltDrop Artisan Pass • Offline Conduit Fill &amp; PDF Wire Schedules"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="11sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

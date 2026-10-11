@@ -1,0 +1,1 @@
+Calculate electrical voltage drop and select wire gauges offline.

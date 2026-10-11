@@ -1,0 +1,1 @@
+Initial release of VoltDrop v1.0.0. Features offline voltage drop calculations, AWG and metric wire gauge recommendations, copper and aluminum conductor support, and presets for DC and AC systems.

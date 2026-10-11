@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Outer Insulated Jacket Ring (48dp diameter) -->
+    <path
+        android:strokeColor="#374151"
+        android:strokeWidth="3.5"
+        android:pathData="M54,54m-24,0a24,24 0 1,1 48,0a24,24 0 1,1 -48,0" />
+
+    <!-- Copper Conductor Core -->
+    <path
+        android:fillColor="#FF9100"
+        android:pathData="M54,54m-20,0a20,20 0 1,1 40,0a20,20 0 1,1 -40,0" />
+
+    <!-- Inner Core Highlight -->
+    <path
+        android:fillColor="#FFAB40"
+        android:pathData="M54,54m-14,0a14,14 0 1,1 28,0a14,14 0 1,1 -28,0" />
+
+    <!-- Electric Bolt (Voltage Telemetry Symbol) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M55,30 L40,54 L52,54 L49,78 L68,50 L56,50 Z" />
+
+    <!-- High-Tech Cyan Spark Accent -->
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M54,34 L43,52 L51,52 L48,72 L64,48 L55,48 Z" />
+
+    <!-- Terminal Gauge Tick Marks -->
+    <path
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="2"
+        android:pathData="M54,24v4 M54,80v4 M24,54h4 M80,54h4" />
+</vector>

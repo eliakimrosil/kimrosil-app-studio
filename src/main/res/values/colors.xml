@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- VoltDrop Light Theme (Technical Field Instrument) -->
+    <color name="colorPrimary">#D84315</color>
+    <color name="colorPrimaryDark">#BF360C</color>
+    <color name="colorAccent">#00838F</color>
+    <color name="windowBackground">#F4F6F9</color>
+
+    <color name="m3_primary">#D84315</color>
+    <color name="m3_on_primary">#FFFFFF</color>
+    <color name="m3_primary_container">#FFDBCF</color>
+    <color name="m3_on_primary_container">#3B0900</color>
+
+    <color name="m3_secondary">#00838F</color>
+    <color name="m3_on_secondary">#FFFFFF</color>
+    <color name="m3_secondary_container">#B2EBF2</color>
+    <color name="m3_on_secondary_container">#00363A</color>
+
+    <color name="m3_surface">#F4F6F9</color>
+    <color name="m3_surface_container">#FFFFFF</color>
+    <color name="m3_surface_container_high">#EAEFF5</color>
+    <color name="m3_surface_container_highest">#DFE6EE</color>
+
+    <color name="m3_on_surface">#111827</color>
+    <color name="m3_on_surface_variant">#4B5563</color>
+    <color name="m3_outline">#CBD5E1</color>
+    <color name="m3_outline_variant">#E2E8F0</color>
+
+    <color name="m3_success">#059669</color>
+    <color name="m3_on_success">#FFFFFF</color>
+    <color name="m3_warning">#D97706</color>
+    <color name="m3_error">#DC2626</color>
+    <color name="m3_on_error">#FFFFFF</color>
+
+    <color name="telemetry_accent">#00838F</color>
+    <color name="copper_accent">#D84315</color>
+</resources>
