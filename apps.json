@@ -634,5 +634,19 @@
     "privacy_policy": "https://apps.kimrosil.com/camber-shim/privacy.html",
     "icon": "assets/icons/camber-shim.svg",
     "updated_at": "2026-10-12T15:46:57.924173+00:00"
+  },
+  {
+    "slug": "tap-drill",
+    "title": "TapDrill",
+    "category": "UTILITIES",
+    "tagline": "Offline tap drill size charts, thread percentage calculations, and spindle RPM.",
+    "status": "BUILT",
+    "branch": "app/tap-drill",
+    "tag": "v1.1.0-tap-drill",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-tap-drill/tap-drill.apk",
+    "landing_page": "https://apps.kimrosil.com/tap-drill/",
+    "privacy_policy": "https://apps.kimrosil.com/tap-drill/privacy.html",
+    "icon": "assets/icons/tap-drill.svg",
+    "updated_at": "2026-10-12T17:33:27.831143+00:00"
   }
 ]
