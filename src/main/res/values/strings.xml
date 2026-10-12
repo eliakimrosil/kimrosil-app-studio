@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">TapDrill</string>
     <string name="sub_header">Precision Machinist Tap &amp; Drill Reference</string>
+    <string name="hud_badge">OFFLINE SHOP HUD</string>
     <string name="btn_hud">HUD</string>
     <string name="desc_overlay_button">Open floating HUD overlay</string>
     <string name="btn_pin">PIN</string>
@@ -10,26 +11,53 @@
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
     <string name="desc_theme_toggle">Toggle UI theme</string>
+    
+    <!-- Standard Tabs with audit-mandated accessibility descriptions -->
     <string name="std_metric">Metric ISO</string>
+    <string name="desc_std_metric">Select Metric ISO threads</string>
     <string name="std_unc_unf">UNC / UNF</string>
+    <string name="desc_std_unc_unf">Select UNC/UNF threads</string>
     <string name="std_pipe">Pipe NPT</string>
+    <string name="desc_std_pipe">Select Pipe NPT threads</string>
     <string name="std_acme">ACME</string>
-    <string name="hint_search_thread">Search thread...</string>
+    <string name="desc_std_acme">Select ACME threads</string>
+    
+    <!-- Top-Level Domain Mode Tabs -->
+    <string name="tab_tap_drill">Tap &amp; Drill</string>
+    <string name="desc_tab_tap_drill">Open Tap and Drill reference tab</string>
+    <string name="tab_speeds_feeds">Speeds &amp; Feeds</string>
+    <string name="desc_tab_speeds_feeds">Open Speeds and Feeds calculator tab</string>
+
+    <string name="hint_search_thread">Search thread size (e.g. M6, 1/4-20, 1/8 NPT)...</string>
+    <string name="desc_search_field">Filter thread catalog by nominal diameter or pitch</string>
+    <string name="btn_clear_search">Clear search text</string>
+    <string name="label_nominal_thread">SELECT NOMINAL THREAD</string>
     <string name="desc_thread_spinner">Thread nominal size selector</string>
     <string name="empty_state_text">No thread specifications match your search query.</string>
     <string name="desc_thread_canvas">Interactive thread engagement diagram</string>
-    <string name="btn_engage_50">50% Engagement</string>
-    <string name="btn_engage_75">75% Engagement</string>
+    <string name="btn_engage_50">50% Tough Alloy</string>
+    <string name="desc_engage_50">Set 50 percent thread engagement for hard metals</string>
+    <string name="btn_engage_75">75% Standard</string>
+    <string name="desc_engage_75">Set 75 percent thread engagement standard</string>
     <string name="label_tap_drill_spec">RECOMMENDED TAP DRILL SIZE</string>
-    <string name="label_fractional">Fractional</string>
-    <string name="label_wire_letter">Wire / Letter</string>
+    <string name="label_fractional">FRACTIONAL</string>
+    <string name="label_wire_letter">WIRE / LETTER</string>
+    <string name="label_close_fit">Close Fit Clearance</string>
+    <string name="label_free_fit">Free Fit Clearance</string>
     <string name="btn_copy_specs">Copy Thread Specifications</string>
+    <string name="btn_copy_clearance">Copy CNC Clearance Specs</string>
+    
+    <!-- Speeds & Feeds Strings -->
     <string name="title_speeds_feeds">Speeds &amp; Feeds Calculator</string>
-    <string name="label_dia_inch">Dia (in):</string>
-    <string name="switch_118_point">118° Point Allowance</string>
+    <string name="label_workpiece_mat">WORKPIECE ALLOY</string>
+    <string name="label_tool_mat">TOOL MATERIAL</string>
+    <string name="label_dia_inch">TOOL DIA (INCH):</string>
+    <string name="switch_118_point">118° vs 135° Point Chamfer Comp</string>
     <string name="desc_speed_gauge">Spindle speed tachometer gauge</string>
-    <string name="label_spindle_speed">Spindle Speed</string>
-    <string name="label_feed_rate">Feed Rate</string>
+    <string name="label_spindle_speed">SPINDLE SPEED</string>
+    <string name="label_feed_rate">FEED RATE</string>
+    <string name="label_depth_calc">TAP DRILL DEPTH ALLOWANCE CALCULATOR</string>
+    <string name="hint_full_thread_depth">Full Thread Depth (in)</string>
     <string name="btn_copy_gcode">Copy G-Code</string>
     <string name="btn_save_job">Save Job Preset</string>
     <string name="overlay_title">TapDrill Quick HUD</string>

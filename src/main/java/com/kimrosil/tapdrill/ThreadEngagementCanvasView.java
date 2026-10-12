@@ -27,6 +27,8 @@ public class ThreadEngagementCanvasView extends View {
     private Paint mPaintDimensionText;
     private Paint mPaintSliderTrack;
     private Paint mPaintSliderThumb;
+    private Paint mPaintGrid;
+    private Paint mPaintBorder;
 
     private double mMajorDiaInch = 0.250;
     private double mPitchInch = 0.050;
@@ -52,11 +54,20 @@ public class ThreadEngagementCanvasView extends View {
         setClickable(true);
 
         mPaintBlueprintBg = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaintBlueprintBg.setColor(0xFF0F172A); // Dark slate blueprint background
+        mPaintBlueprintBg.setColor(0xFF0A0F1D); // Deep hardened obsidian blueprint background
         mPaintBlueprintBg.setStyle(Paint.Style.FILL);
 
+        mPaintGrid = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaintGrid.setColor(0x1A38BDF8); // Subtle 10% cyan blueprint grid
+        mPaintGrid.setStrokeWidth(dp(0.75f));
+
+        mPaintBorder = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaintBorder.setColor(0xFF2A374A);
+        mPaintBorder.setStyle(Paint.Style.STROKE);
+        mPaintBorder.setStrokeWidth(dp(1.5f));
+
         mPaintThreadFlank = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaintThreadFlank.setColor(0xFF38BDF8); // Cyan flank stroke
+        mPaintThreadFlank.setColor(0xFF38BDF8); // Electric cyan flank stroke
         mPaintThreadFlank.setStyle(Paint.Style.STROKE);
         mPaintThreadFlank.setStrokeWidth(dp(2.5f));
         mPaintThreadFlank.setStrokeCap(Paint.Cap.ROUND);
@@ -118,6 +129,16 @@ public class ThreadEngagementCanvasView extends View {
 
         // Blueprint card background
         canvas.drawRoundRect(0, 0, w, h, dp(12f), dp(12f), mPaintBlueprintBg);
+
+        // Draw precision blueprint coordinate grid
+        float gridStep = dp(16f);
+        for (float x = gridStep; x < w; x += gridStep) {
+            canvas.drawLine(x, 0, x, h, mPaintGrid);
+        }
+        for (float y = gridStep; y < h; y += gridStep) {
+            canvas.drawLine(0, y, w, y, mPaintGrid);
+        }
+        canvas.drawRoundRect(dp(0.75f), dp(0.75f), w - dp(0.75f), h - dp(0.75f), dp(12f), dp(12f), mPaintBorder);
 
         float marginSide = dp(20f);
         float centerY = (h - dp(40f)) / 2f;

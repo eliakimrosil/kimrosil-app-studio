@@ -39,6 +39,11 @@ public class MainActivity extends Activity {
     private static final String PREF_NAME = "tap_drill_prefs";
     private static final String PREF_THEME_MODE = "pref_theme_mode"; // 0=Auto, 1=Light, 2=Dark
     private static final String PREF_ACTIVE_STANDARD = "pref_active_standard";
+    private static final String STATE_STANDARD = "state_standard";
+    private static final String STATE_ENGAGEMENT = "state_engagement";
+    private static final String STATE_SEARCH_QUERY = "state_search_query";
+    private static final String STATE_ACTIVE_TAB = "state_active_tab";
+    private static final String STATE_SELECTED_NOMINAL = "state_selected_nominal";
 
     private SharedPreferences mPrefs;
     private DatabaseHelper mDbHelper;
@@ -48,6 +53,13 @@ public class MainActivity extends Activity {
     private Button mBtnPinGlance;
     private Button mBtnOverlayHUD;
 
+    // UI - Mode Tabs
+    private Button mBtnTabTapDrill;
+    private Button mBtnTabSpeedsFeeds;
+    private LinearLayout mLlTapDrillSection;
+    private LinearLayout mLlSpeedsFeedsSection;
+    private int mCurrentModeTab = 0; // 0=Tap & Drill, 1=Speeds & Feeds
+
     // UI - Standard Tabs
     private Button mBtnStdMetric;
     private Button mBtnStdUncUnf;
@@ -56,6 +68,7 @@ public class MainActivity extends Activity {
 
     // UI - Search & Selector
     private EditText mEtSearchThread;
+    private Button mBtnClearSearch;
     private Spinner mSpnThreadList;
 
     // UI - Engagement Controls & Canvas
@@ -75,6 +88,7 @@ public class MainActivity extends Activity {
     private TextView mTvClearanceClose;
     private TextView mTvClearanceFree;
     private Button mBtnCopyThreadData;
+    private Button mBtnCopyClearanceSpecs;
 
     // UI - Speeds & Feeds
     private Spinner mSpnWorkpieceMat;
@@ -85,6 +99,9 @@ public class MainActivity extends Activity {
     private TextView mTvCalculatedRpm;
     private TextView mTvCalculatedIpm;
     private TextView mTvSfmMetricVal;
+    private EditText mEtTargetThreadDepth;
+    private TextView mTvDepthBreakdown118;
+    private TextView mTvDepthBreakdown135;
     private Button mBtnCopyGcode;
     private Button mBtnSavePreset;
 
@@ -95,6 +112,7 @@ public class MainActivity extends Activity {
     private int mCurrentEngagement = 75; // 50% or 75%
     private SpeedsFeedsEngine.WorkpieceMaterial mSelectedWorkpiece = SpeedsFeedsEngine.WorkpieceMaterial.STEEL_1018;
     private SpeedsFeedsEngine.ToolMaterial mSelectedToolMat = SpeedsFeedsEngine.ToolMaterial.HSS;
+    private String mSavedNominal = null;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -126,8 +144,18 @@ public class MainActivity extends Activity {
         mDbHelper = new DatabaseHelper(this);
         mCurrentStandard = mPrefs.getString(PREF_ACTIVE_STANDARD, "METRIC");
 
+        String restoredSearch = null;
+        if (savedInstanceState != null) {
+            mCurrentStandard = savedInstanceState.getString(STATE_STANDARD, mCurrentStandard);
+            mCurrentEngagement = savedInstanceState.getInt(STATE_ENGAGEMENT, 75);
+            restoredSearch = savedInstanceState.getString(STATE_SEARCH_QUERY, null);
+            mCurrentModeTab = savedInstanceState.getInt(STATE_ACTIVE_TAB, 0);
+            mSavedNominal = savedInstanceState.getString(STATE_SELECTED_NOMINAL, null);
+        }
+
         setupWindowAppearance();
         initViews();
+        setupNavigationTabs();
         setupStandardTabs();
         setupThreadSelector();
         setupEngagementControls();
@@ -135,6 +163,28 @@ public class MainActivity extends Activity {
         setupActionButtons();
 
         selectStandard(mCurrentStandard);
+
+        if (restoredSearch != null && !restoredSearch.isEmpty()) {
+            mEtSearchThread.setText(restoredSearch);
+            mEtSearchThread.setSelection(restoredSearch.length());
+        }
+
+        setEngagement(mCurrentEngagement);
+        switchModeTab(mCurrentModeTab);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(STATE_STANDARD, mCurrentStandard);
+        outState.putInt(STATE_ENGAGEMENT, mCurrentEngagement);
+        outState.putInt(STATE_ACTIVE_TAB, mCurrentModeTab);
+        if (mEtSearchThread != null) {
+            outState.putString(STATE_SEARCH_QUERY, mEtSearchThread.getText().toString());
+        }
+        if (mSelectedSpec != null) {
+            outState.putString(STATE_SELECTED_NOMINAL, mSelectedSpec.nominalDisplay);
+        }
     }
 
     private void setupWindowAppearance() {
@@ -161,12 +211,18 @@ public class MainActivity extends Activity {
         mBtnPinGlance = findViewById(R.id.btnPinGlance);
         mBtnOverlayHUD = findViewById(R.id.btnOverlayHUD);
 
+        mBtnTabTapDrill = findViewById(R.id.btnTabTapDrill);
+        mBtnTabSpeedsFeeds = findViewById(R.id.btnTabSpeedsFeeds);
+        mLlTapDrillSection = findViewById(R.id.llTapDrillSection);
+        mLlSpeedsFeedsSection = findViewById(R.id.llSpeedsFeedsSection);
+
         mBtnStdMetric = findViewById(R.id.btnStdMetric);
         mBtnStdUncUnf = findViewById(R.id.btnStdUncUnf);
         mBtnStdPipe = findViewById(R.id.btnStdPipe);
         mBtnStdAcme = findViewById(R.id.btnStdAcme);
 
         mEtSearchThread = findViewById(R.id.etSearchThread);
+        mBtnClearSearch = findViewById(R.id.btnClearSearch);
         mSpnThreadList = findViewById(R.id.spnThreadList);
 
         mCvThreadCanvas = findViewById(R.id.cvThreadCanvas);
@@ -184,6 +240,7 @@ public class MainActivity extends Activity {
         mTvClearanceClose = findViewById(R.id.tvClearanceClose);
         mTvClearanceFree = findViewById(R.id.tvClearanceFree);
         mBtnCopyThreadData = findViewById(R.id.btnCopyThreadData);
+        mBtnCopyClearanceSpecs = findViewById(R.id.btnCopyClearanceSpecs);
 
         mSpnWorkpieceMat = findViewById(R.id.spnWorkpieceMat);
         mSpnToolMat = findViewById(R.id.spnToolMat);
@@ -193,6 +250,9 @@ public class MainActivity extends Activity {
         mTvCalculatedRpm = findViewById(R.id.tvCalculatedRpm);
         mTvCalculatedIpm = findViewById(R.id.tvCalculatedIpm);
         mTvSfmMetricVal = findViewById(R.id.tvSfmMetricVal);
+        mEtTargetThreadDepth = findViewById(R.id.etTargetThreadDepth);
+        mTvDepthBreakdown118 = findViewById(R.id.tvDepthBreakdown118);
+        mTvDepthBreakdown135 = findViewById(R.id.tvDepthBreakdown135);
         mBtnCopyGcode = findViewById(R.id.btnCopyGcode);
         mBtnSavePreset = findViewById(R.id.btnSavePreset);
 
@@ -207,9 +267,43 @@ public class MainActivity extends Activity {
         }
     }
 
+    private void setupNavigationTabs() {
+        mBtnTabTapDrill.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+            switchModeTab(0);
+        });
+
+        mBtnTabSpeedsFeeds.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+            switchModeTab(1);
+        });
+    }
+
+    private void switchModeTab(int tabIndex) {
+        mCurrentModeTab = tabIndex;
+        if (tabIndex == 0) {
+            mBtnTabTapDrill.setBackgroundResource(R.drawable.bg_pill_selected);
+            mBtnTabTapDrill.setTextColor(getColor(R.color.m3_on_primary));
+            mBtnTabSpeedsFeeds.setBackgroundResource(R.drawable.bg_pill_unselected);
+            mBtnTabSpeedsFeeds.setTextColor(getColor(R.color.m3_on_surface));
+
+            mLlTapDrillSection.setVisibility(View.VISIBLE);
+            mLlSpeedsFeedsSection.setVisibility(View.GONE);
+        } else {
+            mBtnTabSpeedsFeeds.setBackgroundResource(R.drawable.bg_pill_selected);
+            mBtnTabSpeedsFeeds.setTextColor(getColor(R.color.m3_on_primary));
+            mBtnTabTapDrill.setBackgroundResource(R.drawable.bg_pill_unselected);
+            mBtnTabTapDrill.setTextColor(getColor(R.color.m3_on_surface));
+
+            mLlTapDrillSection.setVisibility(View.GONE);
+            mLlSpeedsFeedsSection.setVisibility(View.VISIBLE);
+            calculateSpeedsAndFeeds();
+        }
+    }
+
     private void setupStandardTabs() {
         View.OnClickListener listener = v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             int id = v.getId();
             if (id == R.id.btnStdMetric) {
                 selectStandard("METRIC");
@@ -238,7 +332,7 @@ public class MainActivity extends Activity {
         updateTabButtonHighlight(mBtnStdPipe, "PIPE".equals(standard));
         updateTabButtonHighlight(mBtnStdAcme, "ACME".equals(standard));
 
-        loadThreadListForCurrentStandard("");
+        loadThreadListForCurrentStandard(mEtSearchThread != null ? mEtSearchThread.getText().toString().trim() : "");
     }
 
     private void updateTabButtonHighlight(Button btn, boolean selected) {
@@ -254,16 +348,21 @@ public class MainActivity extends Activity {
     private void loadThreadListForCurrentStandard(String filter) {
         mCurrentThreadList = MachiningStandardsRepository.getThreads(mCurrentStandard, filter);
         List<String> labels = new ArrayList<>();
-        for (MachiningStandardsRepository.ThreadSpec spec : mCurrentThreadList) {
+        int selectedIndex = 0;
+        for (int i = 0; i < mCurrentThreadList.size(); i++) {
+            MachiningStandardsRepository.ThreadSpec spec = mCurrentThreadList.get(i);
             labels.add(spec.nominalDisplay);
+            if (mSavedNominal != null && spec.nominalDisplay.equalsIgnoreCase(mSavedNominal)) {
+                selectedIndex = i;
+            }
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, labels);
         mSpnThreadList.setAdapter(adapter);
 
         if (!mCurrentThreadList.isEmpty()) {
-            mSpnThreadList.setSelection(0);
-            onThreadSelected(mCurrentThreadList.get(0));
+            mSpnThreadList.setSelection(selectedIndex);
+            onThreadSelected(mCurrentThreadList.get(selectedIndex));
             mLlEmptyState.setVisibility(View.GONE);
             mLlResultDeck.setVisibility(View.VISIBLE);
         } else {
@@ -293,6 +392,12 @@ public class MainActivity extends Activity {
             return false;
         });
 
+        mBtnClearSearch.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+            mEtSearchThread.setText("");
+            hideSoftKeyboard(mEtSearchThread);
+        });
+
         mSpnThreadList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -307,6 +412,7 @@ public class MainActivity extends Activity {
 
     private void onThreadSelected(MachiningStandardsRepository.ThreadSpec spec) {
         mSelectedSpec = spec;
+        mSavedNominal = spec.nominalDisplay;
         mTvSelectedThreadTitle.setText(spec.nominalDisplay);
         mTvPitchSpec.setText(String.format(Locale.US, "Pitch: %s", spec.pitchDisplay));
 
@@ -329,12 +435,12 @@ public class MainActivity extends Activity {
         });
 
         mBtnEngage50.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             setEngagement(50);
         });
 
         mBtnEngage75.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             setEngagement(75);
         });
 
@@ -367,16 +473,22 @@ public class MainActivity extends Activity {
 
         double drillDiaMm = drillDia * 25.4;
 
+        // Calculate delta readout compared to nominal 75%
+        double deltaMm = Math.abs((drillDia - mSelectedSpec.tapDrill75Inch) * 25.4);
+        String deltaTag = (mCurrentEngagement <= 62)
+                ? String.format(Locale.US, " [Δ +%.3f mm]", deltaMm)
+                : "";
+
         if (mSelectedSpec.isMetric) {
-            mTvDecimalDrillSize.setText(String.format(Locale.US, "Ø %.2f mm / .%04d\"", drillDiaMm, (int) Math.round(drillDia * 10000)));
+            mTvDecimalDrillSize.setText(String.format(Locale.US, "Ø %.2f mm / .%04d\"%s", drillDiaMm, (int) Math.round(drillDia * 10000), deltaTag));
         } else {
-            mTvDecimalDrillSize.setText(String.format(Locale.US, ".%04d\" / %.2f mm", (int) Math.round(drillDia * 10000), drillDiaMm));
+            mTvDecimalDrillSize.setText(String.format(Locale.US, ".%04d\" / %.2f mm%s", (int) Math.round(drillDia * 10000), drillDiaMm, deltaTag));
         }
 
         mTvFractionalDrill.setText(mSelectedSpec.nearestFractional);
         mTvWireLetterDrill.setText(mSelectedSpec.wireLetterGauge);
-        mTvClearanceClose.setText(String.format(Locale.US, "Close: %s", mSelectedSpec.clearanceClose));
-        mTvClearanceFree.setText(String.format(Locale.US, "Free: %s", mSelectedSpec.clearanceFree));
+        mTvClearanceClose.setText(String.format(Locale.US, "Close Fit: %s", mSelectedSpec.clearanceClose));
+        mTvClearanceFree.setText(String.format(Locale.US, "Free Fit: %s", mSelectedSpec.clearanceFree));
 
         mCvThreadCanvas.setThreadParameters(
                 mSelectedSpec.majorDiameterInch,
@@ -421,7 +533,7 @@ public class MainActivity extends Activity {
         mSpnWorkpieceMat.setOnItemSelectedListener(spinListener);
         mSpnToolMat.setOnItemSelectedListener(spinListener);
 
-        mEtCutterDiameter.addTextChangedListener(new TextWatcher() {
+        TextWatcher watcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
@@ -430,9 +542,21 @@ public class MainActivity extends Activity {
             }
             @Override
             public void afterTextChanged(Editable s) {}
-        });
+        };
+
+        mEtCutterDiameter.addTextChangedListener(watcher);
+        mEtTargetThreadDepth.addTextChangedListener(watcher);
 
         mEtCutterDiameter.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                hideSoftKeyboard(v);
+                calculateSpeedsAndFeeds();
+                return true;
+            }
+            return false;
+        });
+
+        mEtTargetThreadDepth.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 hideSoftKeyboard(v);
                 calculateSpeedsAndFeeds();
@@ -454,6 +578,8 @@ public class MainActivity extends Activity {
             mTvCalculatedRpm.setText("0 RPM");
             mTvCalculatedIpm.setText("0.0 IPM");
             mTvSfmMetricVal.setText("SFM: 0");
+            mTvDepthBreakdown118.setText("118° Tip Chamfer: +0.000\" | Blind Bore: 0.000\"");
+            mTvDepthBreakdown135.setText("135° Tip Chamfer: +0.000\" | Blind Bore: 0.000\"");
             return;
         }
 
@@ -468,28 +594,48 @@ public class MainActivity extends Activity {
         if (diameter < 0.010) diameter = 0.010;
         if (diameter > 12.000) diameter = 12.000;
 
+        double targetDepth = 0.500;
+        try {
+            String depthStr = mEtTargetThreadDepth.getText().toString().trim();
+            if (!TextUtils.isEmpty(depthStr)) {
+                targetDepth = Double.parseDouble(depthStr);
+            }
+        } catch (NumberFormatException ignored) {}
+
+        double pitch = (mSelectedSpec != null && mSelectedSpec.pitchInch > 0) ? mSelectedSpec.pitchInch : 0.050;
+
         SpeedsFeedsEngine.CalculationResult result = SpeedsFeedsEngine.compute(
                 mSelectedWorkpiece,
                 mSelectedToolMat,
                 diameter,
-                mSwDepthAllowance.isChecked()
+                mSwDepthAllowance.isChecked(),
+                targetDepth,
+                pitch
         );
 
         mTvCalculatedRpm.setText(String.format(Locale.US, "%d RPM", result.spindleRpm));
         mTvCalculatedIpm.setText(String.format(Locale.US, "%.1f IPM (%.0f mm/min)", result.feedIpm, result.feedMmpm));
-        mTvSfmMetricVal.setText(String.format(Locale.US, "Base SFM: %.0f | Point Comp: +%.3f\"", result.sfm, result.depthCompInch));
+        mTvSfmMetricVal.setText(String.format(Locale.US, "Base SFM: %.0f | Active Point Comp: +%.3f\"", result.sfm, result.depthCompInch));
+
+        mTvDepthBreakdown118.setText(String.format(Locale.US,
+                "118° Standard Tip Comp: +%.3f\" (%.2f mm) | Total Blind Bore: %.3f\"",
+                result.tip118CompInch, result.tip118CompInch * 25.4, targetDepth + (3.5 * pitch) + result.tip118CompInch + 0.040));
+
+        mTvDepthBreakdown135.setText(String.format(Locale.US,
+                "135° Split Point Tip Comp: +%.3f\" (%.2f mm) | Total Blind Bore: %.3f\"",
+                result.tip135CompInch, result.tip135CompInch * 25.4, targetDepth + (3.5 * pitch) + result.tip135CompInch + 0.040));
 
         mCvSpeedFeedGauge.setRpm(result.spindleRpm, result.maxSafeRpm);
     }
 
     private void setupActionButtons() {
         mBtnThemeToggle.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             cycleThemeMode();
         });
 
         mBtnOverlayHUD.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             Intent intent = new Intent(MainActivity.this, OverlayActivity.class);
             if (mSelectedSpec != null) {
                 intent.putExtra("EXTRA_NOMINAL", mSelectedSpec.nominalDisplay);
@@ -499,7 +645,7 @@ public class MainActivity extends Activity {
         });
 
         mBtnPinGlance.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             if (mSelectedSpec != null) {
                 pinToWidget(mSelectedSpec);
                 Toast.makeText(this, "Pinned " + mSelectedSpec.nominalDisplay + " to Glance Widget", Toast.LENGTH_SHORT).show();
@@ -517,6 +663,16 @@ public class MainActivity extends Activity {
             copyToClipboard("TapDrill Specification", text);
         });
 
+        mBtnCopyClearanceSpecs.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+            if (mSelectedSpec == null) return;
+            String comment = String.format(Locale.US,
+                    "( CNC HOLE SPEC: %s | TAP DRILL %d%%: %s | CLOSE FIT: %s | FREE FIT: %s )",
+                    mSelectedSpec.nominalDisplay, mCurrentEngagement, mTvDecimalDrillSize.getText(),
+                    mSelectedSpec.clearanceClose, mSelectedSpec.clearanceFree);
+            copyToClipboard("CNC Clearance Comments", comment);
+        });
+
         mBtnCopyGcode.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
             if (mSelectedSpec == null) return;
@@ -530,7 +686,7 @@ public class MainActivity extends Activity {
         });
 
         mBtnSavePreset.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             if (mSelectedSpec == null) return;
             double sfm = SpeedsFeedsEngine.getSfm(mSelectedWorkpiece, mSelectedToolMat);
             int rpm = 0;
@@ -598,11 +754,14 @@ public class MainActivity extends Activity {
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
-            if (event.getKeyCode() == KeyEvent.KEYCODE_SPACE && !mEtSearchThread.hasFocus() && !mEtCutterDiameter.hasFocus()) {
+            if (event.getKeyCode() == KeyEvent.KEYCODE_SPACE && !mEtSearchThread.hasFocus() && !mEtCutterDiameter.hasFocus() && !mEtTargetThreadDepth.hasFocus()) {
                 setEngagement(mCurrentEngagement == 75 ? 50 : 75);
                 return true;
             } else if (event.getKeyCode() == KeyEvent.KEYCODE_ESCAPE) {
                 mEtSearchThread.setText("");
+                return true;
+            } else if (event.getKeyCode() == KeyEvent.KEYCODE_TAB && (event.isCtrlPressed() || event.isAltPressed())) {
+                switchModeTab(mCurrentModeTab == 0 ? 1 : 0);
                 return true;
             }
         }

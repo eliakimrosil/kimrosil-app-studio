@@ -21,6 +21,7 @@ public class SpeedFeedCanvasGauge extends View {
     private Paint mPaintHub;
     private Paint mPaintHubRim;
     private Paint mPaintText;
+    private Paint mPaintBorder;
 
     private int mCurrentRpm = 1528;
     private int mMaxRpm = 6000;
@@ -38,11 +39,16 @@ public class SpeedFeedCanvasGauge extends View {
 
     private void init() {
         mPaintDialBg = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaintDialBg.setColor(0xFF0F172A);
+        mPaintDialBg.setColor(0xFF0A0F1D); // Deep hardened obsidian dial background
         mPaintDialBg.setStyle(Paint.Style.FILL);
 
+        mPaintBorder = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaintBorder.setColor(0xFF2A374A);
+        mPaintBorder.setStyle(Paint.Style.STROKE);
+        mPaintBorder.setStrokeWidth(dp(1.5f));
+
         mPaintSafeArc = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaintSafeArc.setColor(0xFF00E5FF); // Cyan
+        mPaintSafeArc.setColor(0xFF00E5FF); // Electric cyan safe operating zone
         mPaintSafeArc.setStyle(Paint.Style.STROKE);
         mPaintSafeArc.setStrokeWidth(dp(10f));
         mPaintSafeArc.setStrokeCap(Paint.Cap.ROUND);
@@ -94,6 +100,7 @@ public class SpeedFeedCanvasGauge extends View {
         if (w <= 0 || h <= 0) return;
 
         canvas.drawRoundRect(0, 0, w, h, dp(12f), dp(12f), mPaintDialBg);
+        canvas.drawRoundRect(dp(0.75f), dp(0.75f), w - dp(0.75f), h - dp(0.75f), dp(12f), dp(12f), mPaintBorder);
 
         float cx = w / 2f;
         float cy = h / 2f + dp(10f);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Bespoke Domain Dark Theme Color Tokens -->
+    <!-- Machinist Slate Dark Theme Color Tokens -->
     <color name="colorPrimary">#90CDFF</color>
     <color name="colorPrimaryDark">#101418</color>
     <color name="colorAccent">#90CDFF</color>
