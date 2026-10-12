@@ -1,4 +1,4 @@
-# Google AdMob Authorized Digital Sellers (app-ads.txt)
+# KimRosil App Studio - Offline Freeware Ecosystem (app-ads.txt)
 # Developer Portal: https://apps.kimrosil.com
-# Google Mobile Ads Publisher ID:
-google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+# All applications in this portfolio are 100% offline-first freeware.
+# Zero third-party ad networks or authorized digital sellers are utilized.

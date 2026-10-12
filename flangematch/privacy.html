@@ -84,9 +84,9 @@
 <h3>1. 100% Offline-First Architecture & Sandboxed Local Storage</h3>
 <p>The Application is engineered strictly as an offline-first mobile utility.</p>
 <ul>
-<li><strong>Zero Personal Information:</strong> We do NOT collect, harvest, store, or transmit personal identity details (such as names, email addresses, phone numbers, contacts, device identifiers, or location data).</li>
-<li><strong>Sandboxed Local Storage:</strong> Any user preferences, search parameters, or custom inputs are stored strictly on your local device within Android's sandboxed storage. Your application data never leaves your physical device.</li>
-<li><strong>Zero Internet Requirement:</strong> The Application requires zero network connectivity and makes zero outbound network requests.</li>
+<li><strong>Zero Personal Information:</strong> We do NOT collect, harvest, store, or transmit personal identity details (such as names, email addresses, phone numbers, contacts, device identifiers, or location data) to any proprietary developer servers or external third parties.</li>
+<li><strong>Sandboxed Local Storage:</strong> Any user preferences, search parameters, or custom inputs are stored strictly on your local device within Android's sandboxed storage (`SharedPreferences`, Room, or local SQLite database). Your personal application records never leave your physical device.</li>
+<li><strong>Zero Internet Requirement:</strong> The Application operates entirely on-device and makes zero outbound network requests.</li>
 <li><strong>Data Deletion:</strong> Uninstalling the Application or clearing its storage via Android Settings (`Settings > Apps > FlangeMatch > Storage > Clear Data`) permanently and irreversibly deletes all locally saved records.</li>
 </ul>
 <h3>2. Zero Advertising & Zero Third-Party SDKs</h3>
@@ -97,14 +97,14 @@
 <li><strong>Zero Monetization Tracking:</strong> Complete functionality is available immediately without accounts, subscriptions, paywalls, or logins.</li>
 </ul>
 <h3>3. Permissions & Device Access</h3>
-<p>The Application requests only minimal, non-sensitive Android platform permissions strictly required for offline utility features:</p>
+<p>The Application requests only minimal, standard Android platform permissions strictly required to perform local utility operations:</p>
 <ul>
-<li><strong>Haptic Vibration (`VIBRATE`):</strong> Used strictly to provide tactile haptic confirmation when stepping through bolt torque sequences.</li>
-<li><strong>Notifications (`POST_NOTIFICATIONS`):</strong> Used strictly for on-device status alerts if requested.</li>
-<li>Zero network permissions are required or requested.</li>
+<li><strong>Haptic Vibration (`VIBRATE`):</strong> Used strictly to provide tactile haptic confirmation when interacting with controls or stepping through sequences.</li>
+<li><strong>Notifications (`POST_NOTIFICATIONS`):</strong> Used solely to alert you when on-device timers or background monitors finish. Notification content is never transmitted across any network.</li>
+<li>Any requested permissions are executed strictly on-device to power the requested utility features. The Application never sells, brokers, or exfiltrates permission-derived data.</li>
 </ul>
 <h3>4. Children's Privacy (COPPA & Families Compliance)</h3>
-<p>The Application is designed as a general-audience industrial utility and is not directed at children under the age of 13. We do not collect or process personal data from any user, including children.</p>
+<p>The Application is designed as a general-audience utility and is not directed at children under the age of 13. We do not collect or process personal data from any user, including children.</p>
 <h3>5. Master Privacy Policy & Developer Profile</h3>
 <p>This privacy policy is part of the unified KimRosil App Studio developer portfolio. For our developer-wide data safety commitments, please visit:</p>
 <ul>
