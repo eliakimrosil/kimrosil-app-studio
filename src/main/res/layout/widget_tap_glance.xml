@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llWidgetRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@drawable/bg_card_container">
+
+    <TextView
+        android:id="@+id/tvWidgetNominal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1/4-20 UNC"
+        android:textColor="@color/m3_primary"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvWidgetPitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20 TPI"
+        android:textColor="@color/m3_on_surface_muted"
+        android:textSize="12sp"
+        android:layout_marginTop="2dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/tvWidgetDrill"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text=".2010&quot;"
+            android:textColor="@color/m3_on_surface"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvWidgetWire"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="#7"
+            android:textColor="@color/m3_accent"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

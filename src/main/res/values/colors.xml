@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Day/Night Workshop Semantic Palette -->
+    <!-- Light Mode defaults -->
+    <color name="m3_surface">#F1F5F9</color>
+    <color name="m3_surface_container">#FFFFFF</color>
+    <color name="m3_primary">#0369A1</color>
+    <color name="m3_on_primary">#FFFFFF</color>
+    <color name="m3_on_surface">#0F172A</color>
+    <color name="m3_on_surface_variant">#475569</color>
+    <color name="m3_on_surface_muted">#475569</color>
+    <color name="m3_outline">#CBD5E1</color>
+    <color name="m3_accent">#0284C7</color>
+</resources>

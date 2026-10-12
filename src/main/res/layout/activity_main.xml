@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/svMainContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/m3_surface"
+    android:clipToPadding="false"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- TopBar Header -->
+        <LinearLayout
+            android:id="@+id/llTopBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAppTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_surface"
+                    android:fontFamily="sans-serif-black" />
+
+                <TextView
+                    android:id="@+id/tvSubHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sub_header"
+                    android:textSize="12sp"
+                    android:textColor="@color/m3_on_surface_variant" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnOverlayHUD"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minWidth="48dp"
+                android:background="@drawable/bg_hud_button"
+                android:text="@string/btn_hud"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_primary"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:layout_marginEnd="6dp"
+                android:contentDescription="@string/desc_overlay_button" />
+
+            <Button
+                android:id="@+id/btnPinGlance"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minWidth="48dp"
+                android:background="@drawable/bg_hud_button"
+                android:text="@string/btn_pin"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_primary"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:layout_marginEnd="6dp"
+                android:contentDescription="@string/desc_pin_button" />
+
+            <Button
+                android:id="@+id/btnThemeToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minWidth="48dp"
+                android:background="@drawable/bg_pill_unselected"
+                android:text="@string/theme_auto"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:contentDescription="@string/desc_theme_toggle" />
+        </LinearLayout>
+
+        <!-- Standard Selector Pill Row -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:paddingBottom="12dp">
+
+            <LinearLayout
+                android:id="@+id/llStandardSelectorRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnStdMetric"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minWidth="88dp"
+                    android:text="@string/std_metric"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_pill_selected"
+                    android:textColor="@color/m3_on_primary"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/btnStdUncUnf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minWidth="88dp"
+                    android:text="@string/std_unc_unf"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_pill_unselected"
+                    android:textColor="@color/m3_on_surface"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/btnStdPipe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minWidth="88dp"
+                    android:text="@string/std_pipe"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_pill_unselected"
+                    android:textColor="@color/m3_on_surface"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/btnStdAcme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minWidth="88dp"
+                    android:text="@string/std_acme"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_pill_unselected"
+                    android:textColor="@color/m3_on_surface" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Fast Filter & Nominal Spinner Deck -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_card_container"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="14dp">
+
+            <EditText
+                android:id="@+id/etSearchThread"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_input_field"
+                android:hint="@string/hint_search_thread"
+                android:textColor="@color/m3_on_surface"
+                android:textColorHint="@color/m3_on_surface_variant"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textSize="14sp"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
+                android:inputType="text" />
+
+            <Spinner
+                android:id="@+id/spnThreadList"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_input_field"
+                android:contentDescription="@string/desc_thread_spinner" />
+        </LinearLayout>
+
+        <!-- Zero-Data Empty State -->
+        <LinearLayout
+            android:id="@+id/llEmptyState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_container"
+            android:padding="24dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginBottom="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[ + ]"
+                android:textSize="32sp"
+                android:textColor="@color/m3_primary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/empty_state_text"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:paddingTop="8dp" />
+        </LinearLayout>
+
+        <!-- Result Deck & Blueprint Canvas Hero Card -->
+        <LinearLayout
+            android:id="@+id/llResultDeck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Hero Blueprint Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_container"
+                android:padding="14dp"
+                android:layout_marginBottom="14dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvSelectedThreadTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="M6 x 1.0"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface" />
+
+                    <TextView
+                        android:id="@+id/tvPitchSpec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pitch: 1.00 mm"
+                        android:textSize="13sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+                </LinearLayout>
+
+                <!-- Interactive Blueprint Canvas -->
+                <com.kimrosil.tapdrill.ThreadEngagementCanvasView
+                    android:id="@+id/cvThreadCanvas"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:contentDescription="@string/desc_thread_canvas" />
+
+                <!-- Engagement Switcher Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <Button
+                        android:id="@+id/btnEngage50"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:text="@string/btn_engage_50"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:textColor="@color/m3_on_surface"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <Button
+                        android:id="@+id/btnEngage75"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:text="@string/btn_engage_75"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_pill_selected"
+                        android:textColor="@color/m3_on_primary"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:id="@+id/tvEngagementPercentBadge"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="75% THREAD"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Machinist Telemetry Deck -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_container"
+                android:padding="14dp"
+                android:layout_marginBottom="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_tap_drill_spec"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_surface_variant" />
+
+                <TextView
+                    android:id="@+id/tvDecimalDrillSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ø 5.00 mm / .1969&quot;"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace"
+                    android:textColor="@color/m3_primary"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="6dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/m3_outline"
+                    android:layout_marginBottom="10dp" />
+
+                <!-- Grid Data -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_fractional"
+                            android:textSize="11sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvFractionalDrill"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="13/64&quot;"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_wire_letter"
+                            android:textSize="11sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvWireLetterDrill"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="#8"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/tvClearanceClose"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Close: 6.10 mm"
+                        android:textSize="13sp"
+                        android:textColor="@color/m3_on_surface" />
+
+                    <TextView
+                        android:id="@+id/tvClearanceFree"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Free: 6.60 mm"
+                        android:textSize="13sp"
+                        android:textColor="@color/m3_on_surface" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnCopyThreadData"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="@string/btn_copy_specs"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_hud_button"
+                    android:textColor="@color/m3_on_primary"
+                    android:layout_marginTop="12dp" />
+            </LinearLayout>
+
+            <!-- Speeds & Feeds Utility Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_container"
+                android:padding="14dp"
+                android:layout_marginBottom="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_speeds_feeds"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_surface"
+                    android:layout_marginBottom="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <Spinner
+                        android:id="@+id/spnWorkpieceMat"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_input_field"
+                        android:layout_marginEnd="6dp" />
+
+                    <Spinner
+                        android:id="@+id/spnToolMat"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_input_field"
+                        android:layout_marginStart="6dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_dia_inch"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="13sp"
+                        android:layout_marginEnd="8dp" />
+
+                    <EditText
+                        android:id="@+id/etCutterDiameter"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_input_field"
+                        android:text="0.2500"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="14sp"
+                        android:fontFamily="monospace"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:inputType="numberDecimal"
+                        android:imeOptions="actionDone" />
+
+                    <Switch
+                        android:id="@+id/swDepthAllowance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:text="@string/switch_118_point"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="12sp"
+                        android:layout_marginStart="10dp" />
+                </LinearLayout>
+
+                <!-- Tachometer Needle Gauge -->
+                <com.kimrosil.tapdrill.SpeedFeedCanvasGauge
+                    android:id="@+id/cvSpeedFeedGauge"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:layout_marginBottom="10dp"
+                    android:contentDescription="@string/desc_speed_gauge" />
+
+                <!-- Telemetry Readouts -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_spindle_speed"
+                            android:textSize="11sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvCalculatedRpm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1528 RPM"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"
+                            android:textColor="@color/m3_primary" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_feed_rate"
+                            android:textSize="11sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvCalculatedIpm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="60.2 IPM"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"
+                            android:textColor="@color/m3_on_surface" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvSfmMetricVal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Base SFM: 100 | Point Comp: +0.075&quot;"
+                    android:textSize="12sp"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnCopyGcode"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="@string/btn_copy_gcode"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginEnd="6dp" />
+
+                    <Button
+                        android:id="@+id/btnSavePreset"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="@string/btn_save_job"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_hud_button"
+                        android:textColor="@color/m3_on_primary"
+                        android:layout_marginStart="6dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

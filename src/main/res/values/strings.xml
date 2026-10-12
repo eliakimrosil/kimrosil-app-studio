@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TapDrill</string>
+    <string name="sub_header">Precision Machinist Tap &amp; Drill Reference</string>
+    <string name="btn_hud">HUD</string>
+    <string name="desc_overlay_button">Open floating HUD overlay</string>
+    <string name="btn_pin">PIN</string>
+    <string name="desc_pin_button">Pin thread specification to widget</string>
+    <string name="theme_auto">Auto</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="desc_theme_toggle">Toggle UI theme</string>
+    <string name="std_metric">Metric ISO</string>
+    <string name="std_unc_unf">UNC / UNF</string>
+    <string name="std_pipe">Pipe NPT</string>
+    <string name="std_acme">ACME</string>
+    <string name="hint_search_thread">Search thread...</string>
+    <string name="desc_thread_spinner">Thread nominal size selector</string>
+    <string name="empty_state_text">No thread specifications match your search query.</string>
+    <string name="desc_thread_canvas">Interactive thread engagement diagram</string>
+    <string name="btn_engage_50">50% Engagement</string>
+    <string name="btn_engage_75">75% Engagement</string>
+    <string name="label_tap_drill_spec">RECOMMENDED TAP DRILL SIZE</string>
+    <string name="label_fractional">Fractional</string>
+    <string name="label_wire_letter">Wire / Letter</string>
+    <string name="btn_copy_specs">Copy Thread Specifications</string>
+    <string name="title_speeds_feeds">Speeds &amp; Feeds Calculator</string>
+    <string name="label_dia_inch">Dia (in):</string>
+    <string name="switch_118_point">118° Point Allowance</string>
+    <string name="desc_speed_gauge">Spindle speed tachometer gauge</string>
+    <string name="label_spindle_speed">Spindle Speed</string>
+    <string name="label_feed_rate">Feed Rate</string>
+    <string name="btn_copy_gcode">Copy G-Code</string>
+    <string name="btn_save_job">Save Job Preset</string>
+    <string name="overlay_title">TapDrill Quick HUD</string>
+</resources>

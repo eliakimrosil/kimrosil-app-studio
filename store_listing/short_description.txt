@@ -1,0 +1,1 @@
+Offline tap drill size charts, thread percentage calculations, and spindle RPM.

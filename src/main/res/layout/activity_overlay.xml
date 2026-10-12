@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_card_container"
+    android:padding="16dp">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/overlay_title"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/m3_primary" />
+
+        <Button
+            android:id="@+id/btnOverClose"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_pill_unselected"
+            android:text="✕"
+            android:textSize="14sp"
+            android:textColor="@color/m3_on_surface" />
+    </LinearLayout>
+
+    <!-- Standard switcher -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
+        <Button
+            android:id="@+id/btnOverStdMetric"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="@string/std_metric"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:background="@drawable/bg_pill_selected"
+            android:textColor="@color/m3_on_primary"
+            android:layout_marginEnd="4dp" />
+
+        <Button
+            android:id="@+id/btnOverStdUnc"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="@string/std_unc_unf"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:background="@drawable/bg_pill_unselected"
+            android:textColor="@color/m3_on_surface"
+            android:layout_marginStart="4dp" />
+    </LinearLayout>
+
+    <!-- Stepper Selector -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_input_field"
+        android:padding="8dp"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:id="@+id/btnOverPrev"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_hud_button"
+            android:text="◀"
+            android:textColor="@color/m3_on_primary" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvOverNominal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1/4-20 UNC"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface" />
+
+            <TextView
+                android:id="@+id/tvOverPitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20 TPI"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnOverNext"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_hud_button"
+            android:text="▶"
+            android:textColor="@color/m3_on_primary" />
+    </LinearLayout>
+
+    <!-- 2x2 Telemetry Grid -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="6dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="75% Drill (Std)"
+                android:textSize="11sp"
+                android:textColor="@color/m3_on_surface_variant" />
+
+            <TextView
+                android:id="@+id/tvOverDrill75"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=".2010&quot;"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_primary" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50% Drill (Alloy)"
+                android:textSize="11sp"
+                android:textColor="@color/m3_on_surface_variant" />
+
+            <TextView
+                android:id="@+id/tvOverDrill50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=".2180&quot;"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Frac / Gauge"
+                android:textSize="11sp"
+                android:textColor="@color/m3_on_surface_variant" />
+
+            <TextView
+                android:id="@+id/tvOverFractional"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7/32&quot; / #7"
+                android:textSize="14sp"
+                android:textColor="@color/m3_on_surface" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clearance"
+                android:textSize="11sp"
+                android:textColor="@color/m3_on_surface_variant" />
+
+            <TextView
+                android:id="@+id/tvOverClearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Close: .2570&quot;"
+                android:textSize="14sp"
+                android:textColor="@color/m3_on_surface" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnOverCopy"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_hud_button"
+        android:text="@string/btn_copy_specs"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:textColor="@color/m3_on_primary" />
+</LinearLayout>
