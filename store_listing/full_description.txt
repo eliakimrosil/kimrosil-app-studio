@@ -1,32 +1,11 @@
-Tired of sitting through long, rambling WhatsApp or Telegram audio notes in noisy rooms, meetings, or quiet libraries? Frustrated by transcribers that demand $9.99/week subscriptions, spam full-screen video ads, or upload your private conversations to unknown cloud servers?
+DropScribe delivers fast, accurate, and completely private speech-to-text transcription directly on your Android device. Designed for seamless productivity, DropScribe allows you to convert voice messages and audio recordings into clear text without routing your private data through remote servers. Key Capabilities • Instant Share Sheet Integration: Transcribe voice notes directly from any messaging app. Tap share on any audio clip, select DropScribe, and view the transcription instantly in an overlay window without switching apps. • 100% On-Device Processing: Your audio never leaves your phone. All speech recognition models execute locally on your device hardware, safeguarding sensitive business discussions, medical records, and legal conversations. • Zero Account Requirement: Start transcribing immediately upon installation. No email registrations, no profile setup, and no mandatory cloud sign-ins. • Flexible Audio File Support: Transcribe standard audio formats including voice notes, lectures, meetings, and voice memos seamlessly. • Clean Export & Copy: Easily copy formatted text to your clipboard or export transcripts to notes and document editors with a single tap. • Privacy by Design: Built with zero background data collection and strict respect for device permissions. No audio files are ever uploaded, retained, or shared. Experience private, dependable transcription built specifically for Android power users who value security and speed.
 
-Meet DropScribe — the fast, 100% offline private voice note transcriber designed specifically for Android.
 
-Convert voice messages to clean, readable text instantly without switching apps or compromising confidential data.
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
 
-⚡ INSTANT DIRECT SHARE WORKFLOW
-Transcribe in under 2 seconds right from your messaging app:
-1. Long-press any voice message in WhatsApp, Telegram, or Signal.
-2. Tap "Share" and pick DropScribe.
-3. Read the transcription in a floating overlay without leaving your chat!
 
-✓ 100% OFFLINE & PRIVATE
-Powered by on-device Whisper AI models. Your audio files and transcripts never touch an external server or leave your phone. Ideal for medical professionals, legal teams, executive briefings, and personal privacy.
-
-✓ ZERO ADS & NO SUBSCRIPTIONS
-No predatory recurring weekly fees. No 30-second unskippable video ads blocking your workflow. Enjoy unlimited free core offline transcription forever.
-
-✓ NO ACCOUNTS OR SIGN-UPS
-No phone numbers, no emails, no passwords. Open the app or share an audio clip, and it just works.
-
-✓ BUILT FOR MODERN ANDROID
-Engineered with clean Material You (Material 3) adaptive theming, dynamic colors, low battery consumption, and lightweight quantized neural speech engines.
-
-✓ POWERFUL PRO UPGRADES (ONE-TIME PURCHASE)
-Need studio-grade precision? Unlock Lifetime Pro for a single small payment:
-• Higher accuracy with quantized Whisper Small models
-• Speaker diarization & timeline markers
-• Batch export to Markdown, PDF, and SRT subtitle files
-• True AMOLED Black stealth mode
-
-Stop listening in silence. Start reading instantly with DropScribe.
+Notice of Non-Affiliation: All product and company names, logos, and brands mentioned are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
