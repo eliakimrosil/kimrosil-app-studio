@@ -648,5 +648,19 @@
     "privacy_policy": "https://apps.kimrosil.com/tap-drill/privacy.html",
     "icon": "assets/icons/tap-drill.svg",
     "updated_at": "2026-10-12T18:05:21.469081+00:00"
+  },
+  {
+    "slug": "solder-wick",
+    "title": "SolderWick Electronics Tools",
+    "category": "UTILITIES",
+    "tagline": "Offline electronics reference, SMD marking lookup, and workbench calculators.",
+    "status": "BUILT",
+    "branch": "app/solder-wick",
+    "tag": "v1.1.0-solder-wick",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-solder-wick/solder-wick.apk",
+    "landing_page": "https://apps.kimrosil.com/solder-wick/",
+    "privacy_policy": "https://apps.kimrosil.com/solder-wick/privacy.html",
+    "icon": "assets/icons/solder-wick.svg",
+    "updated_at": "2026-10-12T19:29:26.590184+00:00"
   }
 ]
