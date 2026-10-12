@@ -1,4 +1,4 @@
-PitchGrid is a bespoke studio-grade audio frequency generator and musical microtonal workbench crafted for sound designers, acoustic engineers, synth enthusiasts, and musicians.
+PitchGrid is a studio-grade audio frequency generator and musical microtonal workbench crafted for sound designers, acoustic engineers, synth enthusiasts, and musicians.
 
 Engineered with a pure native Android 44.1 kHz PCM audio synthesis engine, PitchGrid produces mathematically pure waveforms in real time with zero latency, zero audible popping, and zero cloud dependencies.
 
@@ -36,4 +36,4 @@ KEY STUDIO FEATURES:
 • 100% offline-first. Zero internet permissions required.
 • Zero telemetry, zero analytics, zero ads.
 • Quick Settings Tile for instant 1-tap playback from your notification shade.
-• Bespoke synthesizer rack aesthetic with Day, Night, and System Auto theme switching.
+• Tactile synthesizer rack aesthetic with Day, Night, and System Auto theme switching.
