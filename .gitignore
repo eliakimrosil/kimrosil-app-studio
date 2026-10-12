@@ -1,14 +1,12 @@
-# Gradle & build caches
-.gradle/
+# Built binaries & intermediate artifacts
 build/
+.gradle/
+local.properties
 *.apk
-*.ap_
 *.aab
+*.idsig
+*.dex
+*.class
 .idea/
 *.iml
-local.properties
 .DS_Store
-__pycache__/
-*.pyc
-bin/
-icon_512.png
