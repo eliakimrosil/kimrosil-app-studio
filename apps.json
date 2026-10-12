@@ -578,5 +578,19 @@
     "privacy_policy": "https://apps.kimrosil.com/turf-notch/privacy.html",
     "icon": "assets/icons/turf-notch.svg",
     "updated_at": "2026-10-11T17:45:05.566439+00:00"
+  },
+  {
+    "slug": "pitch-grid",
+    "title": "PitchGrid",
+    "category": "UTILITIES",
+    "tagline": "Bespoke offline Android utility",
+    "status": "BUILT",
+    "branch": "app/pitch-grid",
+    "tag": "v1.0.0-pitch-grid",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-pitch-grid/pitch-grid.apk",
+    "landing_page": "https://apps.kimrosil.com/pitch-grid/",
+    "privacy_policy": "https://apps.kimrosil.com/pitch-grid/privacy.html",
+    "icon": "assets/icons/pitch-grid.svg",
+    "updated_at": "2026-10-12T01:34:21.974290+00:00"
   }
 ]
