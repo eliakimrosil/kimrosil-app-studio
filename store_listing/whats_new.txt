@@ -1,0 +1,5 @@
+Initial release (v1.0.0):
+- Hardware power key event interception and routing.
+- Configurable target app and digital assistant selector.
+- Battery-optimized accessibility service implementation.
+- Complete offline functionality with zero background telemetry.
