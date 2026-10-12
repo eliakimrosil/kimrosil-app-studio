@@ -1,0 +1,7 @@
+.gradle/
+build/
+bin/
+obj/
+*.apk
+*.aab
+*.idsig
