@@ -82,10 +82,10 @@
 <p>The Application is distributed via the Google Play Store, official APK releases, and https://apps.kimrosil.com/belt-deflect/.</p>
 <hr>
 <h3>1. 100% Offline-First Architecture & Sandboxed Local Storage</h3>
-<p>The Application is engineered strictly as an offline-first mechanical engineering utility.</p>
+<p>The Application is engineered strictly as an offline-first mobile utility.</p>
 <ul>
 <li><strong>Zero Personal Information:</strong> We do NOT collect, harvest, store, or transmit personal identity details (such as names, email addresses, phone numbers, contacts, device identifiers, or location data) to any proprietary developer servers or external third parties.</li>
-<li><strong>Sandboxed Local Storage:</strong> Any belt specifications, user presets, or calculated records are stored strictly on your local device within Android's sandboxed storage (`SharedPreferences` and local SQLite database). Your personal records never leave your physical device.</li>
+<li><strong>Sandboxed Local Storage:</strong> Any user preferences, search parameters, or custom inputs are stored strictly on your local device within Android's sandboxed storage (`SharedPreferences`, Room, or local SQLite database). Your personal application records never leave your physical device.</li>
 <li><strong>Zero Internet Requirement:</strong> The Application operates entirely on-device and makes zero outbound network requests.</li>
 <li><strong>Data Deletion:</strong> Uninstalling the Application or clearing its storage via Android Settings (`Settings > Apps > BeltDeflect > Storage > Clear Data`) permanently and irreversibly deletes all locally saved records.</li>
 </ul>
@@ -99,12 +99,12 @@
 <h3>3. Permissions & Device Access</h3>
 <p>The Application requests only minimal, standard Android platform permissions strictly required to perform local utility operations:</p>
 <ul>
-<li><strong>Microphone (`RECORD_AUDIO`):</strong> Used solely on-device for live Fast Fourier Transform (FFT) analysis to measure the transverse acoustic vibration frequency of a plucked belt. Audio data is processed in volatile memory and immediately discarded. Audio is never recorded to disk, encoded, saved, or transmitted over any network.</li>
-<li><strong>Haptic Vibration (`VIBRATE`):</strong> Used strictly to provide tactile haptic confirmation when interacting with controls or when the acoustic frequency matches target tolerance.</li>
-<li><strong>Notifications (`POST_NOTIFICATIONS`):</strong> Used solely to support Android Quick Settings tile service telemetry.</li>
+<li><strong>Haptic Vibration (`VIBRATE`):</strong> Used strictly to provide tactile haptic confirmation when interacting with controls or stepping through sequences.</li>
+<li><strong>Notifications (`POST_NOTIFICATIONS`):</strong> Used solely to alert you when on-device timers or background monitors finish. Notification content is never transmitted across any network.</li>
+<li>Any requested permissions are executed strictly on-device to power the requested utility features. The Application never sells, brokers, or exfiltrates permission-derived data.</li>
 </ul>
 <h3>4. Children's Privacy (COPPA & Families Compliance)</h3>
-<p>The Application is designed as a general-audience industrial utility and is not directed at children under the age of 13. We do not collect or process personal data from any user, including children.</p>
+<p>The Application is designed as a general-audience utility and is not directed at children under the age of 13. We do not collect or process personal data from any user, including children.</p>
 <h3>5. Master Privacy Policy & Developer Profile</h3>
 <p>This privacy policy is part of the unified KimRosil App Studio developer portfolio. For our developer-wide data safety commitments, please visit:</p>
 <ul>
@@ -115,8 +115,9 @@
 <p>If you have any questions, inquiries, or support requests regarding this Privacy Policy, please contact:</p>
 <ul>
 <li><strong>Developer:</strong> Eliakim Rosil</li>
-<li><strong>Email:</strong> eliakim@kimrosil.com</li>
-<li><strong>Website:</strong> https://apps.kimrosil.com/belt-deflect/</li>
+<li><strong>Email:</strong> eliakimrosil@gmail.com</li>
+<li><strong>Website:</strong> https://apps.kimrosil.com</li>
+<li><strong>Project Repository:</strong> https://github.com/eliakimrosil/kimrosil-app-studio</li>
 </ul>
         <div class="nav-back">
             <a href="index.html">← Back to App Overview</a>
