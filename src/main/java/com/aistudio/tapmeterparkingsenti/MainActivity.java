@@ -117,6 +117,32 @@ public class MainActivity extends Activity {
     };
 
     @Override
+    protected void attachBaseContext(Context newBase) {
+        SharedPreferences prefs = newBase.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        int mode = prefs.getInt(KEY_THEME_MODE, 0); // 0=Auto, 1=Light, 2=Dark
+        
+        boolean isDark;
+        if (mode == 1) {
+            isDark = false;
+        } else if (mode == 2) {
+            isDark = true;
+        } else {
+            int sysSetting = android.provider.Settings.Secure.getInt(newBase.getContentResolver(), "ui_night_mode", 0);
+            if (sysSetting == 2) {
+                isDark = true;
+            } else if (sysSetting == 1) {
+                isDark = false;
+            } else {
+                isDark = (newBase.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+            }
+        }
+
+        Configuration config = new Configuration(newBase.getResources().getConfiguration());
+        config.uiMode = (config.uiMode & ~Configuration.UI_MODE_NIGHT_MASK) | (isDark ? Configuration.UI_MODE_NIGHT_YES : Configuration.UI_MODE_NIGHT_NO);
+        super.attachBaseContext(newBase.createConfigurationContext(config));
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -130,6 +156,15 @@ public class MainActivity extends Activity {
         }
 
         setContentView(R.layout.activity_main);
+
+        boolean isNight = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            android.view.WindowInsetsController controller = getWindow().getInsetsController();
+            if (controller != null) {
+                int appearance = isNight ? 0 : (android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS | android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS);
+                controller.setSystemBarsAppearance(appearance, android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS | android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS);
+            }
+        }
 
         initViews();
         loadPreferences();
@@ -347,14 +382,14 @@ public class MainActivity extends Activity {
             long alertThresholdMs = alertBufferMinutes * 60L * 1000L;
             if (diff <= alertThresholdMs) {
                 tvStatusHeader.setText(R.string.status_expiring_soon);
-                tvCountdownTimer.setTextColor(getColor(android.R.color.holo_red_light));
+                tvCountdownTimer.setTextColor(getColor(R.color.m3_error));
                 if (!alertTriggered) {
                     alertTriggered = true;
                     triggerAlertFeedback();
                 }
             } else {
                 tvStatusHeader.setText(R.string.status_parked_active);
-                tvCountdownTimer.setTextColor(getColor(android.R.color.white));
+                tvCountdownTimer.setTextColor(getColor(R.color.m3_on_surface));
             }
         } else {
             // Expired
@@ -364,7 +399,7 @@ public class MainActivity extends Activity {
             long seconds = (over / 1000) % 60;
 
             tvStatusHeader.setText(R.string.status_meter_expired);
-            tvCountdownTimer.setTextColor(getColor(android.R.color.holo_red_dark));
+            tvCountdownTimer.setTextColor(getColor(R.color.m3_error));
             tvCountdownTimer.setText(String.format(Locale.getDefault(), "+%02d:%02d:%02d", hours, minutes, seconds));
 
             if (!alertTriggered) {
@@ -382,7 +417,7 @@ public class MainActivity extends Activity {
 
     private void updateIdleDisplay() {
         tvStatusHeader.setText(R.string.status_meter_standby);
-        tvCountdownTimer.setTextColor(getColor(android.R.color.white));
+        tvCountdownTimer.setTextColor(getColor(R.color.m3_on_surface));
         tvCountdownTimer.setText(String.format(Locale.getDefault(), "%02d:00:00", selectedDurationMinutes / 60));
         tvTimeTarget.setText(R.string.no_active_session);
         pbParkingProgress.setProgress(0);
@@ -508,7 +543,7 @@ public class MainActivity extends Activity {
             if (arr.length() == 0) {
                 TextView empty = new TextView(this);
                 empty.setText(R.string.no_parking_history);
-                empty.setTextColor(getColor(android.R.color.darker_gray));
+                empty.setTextColor(getColor(R.color.m3_outline));
                 empty.setPadding(12, 16, 12, 16);
                 llHistoryContainer.addView(empty);
                 return;
@@ -539,20 +574,20 @@ public class MainActivity extends Activity {
                 TextView tvHeader = new TextView(this);
                 tvHeader.setText(String.format(Locale.getDefault(), "📍 %s (%d mins)", spot, mins));
                 tvHeader.setTextSize(15f);
-                tvHeader.setTextColor(getColor(android.R.color.white));
+                tvHeader.setTextColor(getColor(R.color.m3_on_surface));
                 card.addView(tvHeader);
 
                 TextView tvSub = new TextView(this);
                 tvSub.setText(String.format(Locale.getDefault(), "Parked: %s", sdf.format(new Date(start))));
                 tvSub.setTextSize(12f);
-                tvSub.setTextColor(getColor(android.R.color.darker_gray));
+                tvSub.setTextColor(getColor(R.color.m3_on_surface_variant));
                 card.addView(tvSub);
 
                 if (!notes.isEmpty()) {
                     TextView tvNote = new TextView(this);
                     tvNote.setText(notes);
                     tvNote.setTextSize(12f);
-                    tvNote.setTextColor(getColor(android.R.color.white));
+                    tvNote.setTextColor(getColor(R.color.m3_on_surface_variant));
                     tvNote.setPadding(0, 8, 0, 0);
                     card.addView(tvNote);
                 }
@@ -571,30 +606,25 @@ public class MainActivity extends Activity {
 
     private void cycleThemeMode() {
         currentThemeMode = (currentThemeMode + 1) % 3;
-        applyThemeMode(currentThemeMode);
-        savePreferences();
+        SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
+        editor.putInt(KEY_THEME_MODE, currentThemeMode);
+        editor.commit();
+
+        recreate();
     }
 
-    private void applyThemeMode(int mode) {
-        UiModeManager uiModeManager = (UiModeManager) getSystemService(Context.UI_MODE_SERVICE);
-        if (uiModeManager != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                switch (mode) {
-                    case 1:
-                        uiModeManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_NO);
-                        btnThemeToggle.setText(R.string.theme_light);
-                        break;
-                    case 2:
-                        uiModeManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_YES);
-                        btnThemeToggle.setText(R.string.theme_dark);
-                        break;
-                    default:
-                        uiModeManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_AUTO);
-                        btnThemeToggle.setText(R.string.theme_auto);
-                        break;
-                }
-            } else {
-                btnThemeToggle.setText(mode == 1 ? R.string.theme_light : (mode == 2 ? R.string.theme_dark : R.string.theme_auto));
+    private void updateThemeButtonLabel() {
+        if (btnThemeToggle != null) {
+            switch (currentThemeMode) {
+                case 1:
+                    btnThemeToggle.setText(R.string.theme_light);
+                    break;
+                case 2:
+                    btnThemeToggle.setText(R.string.theme_dark);
+                    break;
+                default:
+                    btnThemeToggle.setText(R.string.theme_auto);
+                    break;
             }
         }
     }
@@ -637,7 +667,7 @@ public class MainActivity extends Activity {
         swSound.setChecked(soundAlertEnabled);
         swVibrate.setChecked(vibrateAlertEnabled);
 
-        applyThemeMode(currentThemeMode);
+        updateThemeButtonLabel();
     }
 
     @Override
@@ -675,7 +705,9 @@ public class MainActivity extends Activity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        // Preserves memory states without recreation in Desktop/Freeform mode
+        if (currentThemeMode == 0) {
+            recreate();
+        }
     }
 
     @Override
