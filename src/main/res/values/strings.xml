@@ -28,7 +28,7 @@
     <string name="tab_speeds_feeds">Speeds &amp; Feeds</string>
     <string name="desc_tab_speeds_feeds">Open Speeds and Feeds calculator tab</string>
 
-    <string name="hint_search_thread">Search thread size (e.g. M6, 1/4-20, 1/8 NPT)...</string>
+    <string name="hint_search_thread">Search thread (e.g. M6, 1/4-20)...</string>
     <string name="desc_search_field">Filter thread catalog by nominal diameter or pitch</string>
     <string name="btn_clear_search">Clear search text</string>
     <string name="label_nominal_thread">SELECT NOMINAL THREAD</string>

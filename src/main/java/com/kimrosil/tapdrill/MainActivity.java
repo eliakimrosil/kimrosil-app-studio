@@ -98,6 +98,7 @@ public class MainActivity extends Activity {
     private SpeedFeedCanvasGauge mCvSpeedFeedGauge;
     private TextView mTvCalculatedRpm;
     private TextView mTvCalculatedIpm;
+    private TextView mTvCalculatedMetricFeed;
     private TextView mTvSfmMetricVal;
     private EditText mEtTargetThreadDepth;
     private TextView mTvDepthBreakdown118;
@@ -249,6 +250,7 @@ public class MainActivity extends Activity {
         mCvSpeedFeedGauge = findViewById(R.id.cvSpeedFeedGauge);
         mTvCalculatedRpm = findViewById(R.id.tvCalculatedRpm);
         mTvCalculatedIpm = findViewById(R.id.tvCalculatedIpm);
+        mTvCalculatedMetricFeed = findViewById(R.id.tvCalculatedMetricFeed);
         mTvSfmMetricVal = findViewById(R.id.tvSfmMetricVal);
         mEtTargetThreadDepth = findViewById(R.id.etTargetThreadDepth);
         mTvDepthBreakdown118 = findViewById(R.id.tvDepthBreakdown118);
@@ -280,6 +282,7 @@ public class MainActivity extends Activity {
     }
 
     private void switchModeTab(int tabIndex) {
+        android.util.Log.d("TapDrill", "switchModeTab called with index: " + tabIndex);
         mCurrentModeTab = tabIndex;
         if (tabIndex == 0) {
             mBtnTabTapDrill.setBackgroundResource(R.drawable.bg_pill_selected);
@@ -487,8 +490,8 @@ public class MainActivity extends Activity {
 
         mTvFractionalDrill.setText(mSelectedSpec.nearestFractional);
         mTvWireLetterDrill.setText(mSelectedSpec.wireLetterGauge);
-        mTvClearanceClose.setText(String.format(Locale.US, "Close Fit: %s", mSelectedSpec.clearanceClose));
-        mTvClearanceFree.setText(String.format(Locale.US, "Free Fit: %s", mSelectedSpec.clearanceFree));
+        mTvClearanceClose.setText(mSelectedSpec.clearanceClose);
+        mTvClearanceFree.setText(mSelectedSpec.clearanceFree);
 
         mCvThreadCanvas.setThreadParameters(
                 mSelectedSpec.majorDiameterInch,
@@ -577,9 +580,12 @@ public class MainActivity extends Activity {
             mCvSpeedFeedGauge.setRpm(0, 0);
             mTvCalculatedRpm.setText("0 RPM");
             mTvCalculatedIpm.setText("0.0 IPM");
+            if (mTvCalculatedMetricFeed != null) {
+                mTvCalculatedMetricFeed.setText("Metric: 0 mm/min");
+            }
             mTvSfmMetricVal.setText("SFM: 0");
-            mTvDepthBreakdown118.setText("118° Tip Chamfer: +0.000\" | Blind Bore: 0.000\"");
-            mTvDepthBreakdown135.setText("135° Tip Chamfer: +0.000\" | Blind Bore: 0.000\"");
+            mTvDepthBreakdown118.setText("Tip: +0.000\"\nBore: 0.000\"");
+            mTvDepthBreakdown135.setText("Tip: +0.000\"\nBore: 0.000\"");
             return;
         }
 
@@ -614,16 +620,22 @@ public class MainActivity extends Activity {
         );
 
         mTvCalculatedRpm.setText(String.format(Locale.US, "%d RPM", result.spindleRpm));
-        mTvCalculatedIpm.setText(String.format(Locale.US, "%.1f IPM (%.0f mm/min)", result.feedIpm, result.feedMmpm));
+        mTvCalculatedIpm.setText(String.format(Locale.US, "%.1f IPM", result.feedIpm));
+        if (mTvCalculatedMetricFeed != null) {
+            mTvCalculatedMetricFeed.setText(String.format(Locale.US, "Metric: %.0f mm/min", result.feedMmpm));
+        }
         mTvSfmMetricVal.setText(String.format(Locale.US, "Base SFM: %.0f | Active Point Comp: +%.3f\"", result.sfm, result.depthCompInch));
 
+        double bore118 = targetDepth + (3.5 * pitch) + result.tip118CompInch + 0.040;
+        double bore135 = targetDepth + (3.5 * pitch) + result.tip135CompInch + 0.040;
+
         mTvDepthBreakdown118.setText(String.format(Locale.US,
-                "118° Standard Tip Comp: +%.3f\" (%.2f mm) | Total Blind Bore: %.3f\"",
-                result.tip118CompInch, result.tip118CompInch * 25.4, targetDepth + (3.5 * pitch) + result.tip118CompInch + 0.040));
+                "Tip: +%.3f\" (%.2f mm)\nBore: %.3f\" (%.1f mm)",
+                result.tip118CompInch, result.tip118CompInch * 25.4, bore118, bore118 * 25.4));
 
         mTvDepthBreakdown135.setText(String.format(Locale.US,
-                "135° Split Point Tip Comp: +%.3f\" (%.2f mm) | Total Blind Bore: %.3f\"",
-                result.tip135CompInch, result.tip135CompInch * 25.4, targetDepth + (3.5 * pitch) + result.tip135CompInch + 0.040));
+                "Tip: +%.3f\" (%.2f mm)\nBore: %.3f\" (%.1f mm)",
+                result.tip135CompInch, result.tip135CompInch * 25.4, bore135, bore135 * 25.4));
 
         mCvSpeedFeedGauge.setRpm(result.spindleRpm, result.maxSafeRpm);
     }

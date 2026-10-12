@@ -1,21 +1,21 @@
 # 🔍 Product Quality & UX Audit Report: TapDrill
-*Generated on 2026-10-13 01:47:48 by Autonomous ADB Auditor Agent*
+*Generated on 2026-10-13 02:04:14 by Autonomous ADB Auditor Agent*
 
 ---
 
 ## 📊 Executive Summary & Scores
-- **UX & Usability Score**: **8.7 / 10.0**
+- **UX & Usability Score**: **7.8 / 10.0**
 - **Performance & Latency Score**: **9.8 / 10.0**
-- **Assessment**: TapDrill achieves exceptional runtime performance and minimal memory footprint suitable for zero-connectivity machine shops, but exhibits tactile friction in standard selector truncation and missing high-contrast tactile feedback.
+- **Assessment**: TapDrill achieves stellar cold-start latency (156 ms) and an exceptionally lean 3.7 MB PSS footprint, but usability suffers from cramped touch targets and truncated controls in the thread standard selection bar.
 
 ---
 
 ## ⚡ Empirical Hardware & ADB Metrics (Lenovo Legion Y70)
 | Metric | Value | Benchmark / Health |
 | :--- | :--- | :--- |
-| **Cold-Start Median Latency** | `152 ms` (Min: `146 ms`, Max: `153 ms`) | 🟢 Excellent (< 250 ms) |
-| **Total Memory PSS** | `3 MB` (`4045 KB`) | 🟢 Ultra-lightweight (< 50 MB) |
-| **Dalvik Heap / Native** | `1605 KB` / `9262 KB` | 🟢 Zero memory leak risk |
+| **Cold-Start Median Latency** | `156 ms` (Min: `143 ms`, Max: `159 ms`) | 🟢 Excellent (< 250 ms) |
+| **Total Memory PSS** | `3 MB` (`3688 KB`) | 🟢 Ultra-lightweight (< 50 MB) |
+| **Dalvik Heap / Native** | `1661 KB` / `9383 KB` | 🟢 Zero memory leak risk |
 | **Interactive UI Nodes** | `22 elements detected` | 🟢 Rich, responsive view tree |
 | **Input Fuzzing** | `PASSED` (`1 fields tested`) | 🟢 Defensive boundary handling |
 | **Theme Toggle Verification** | `PASSED` | 🟢 Dark/Light theme toggle verified |
@@ -27,30 +27,31 @@
 ---
 
 ## ⚠️ Identified Defects & Friction Points
-- ❌ Horizontal truncation on standard selector button 'ACME' (bounds [984,600][1032,756] yield only 48px width), creating an uncomfortably narrow tap target under shop-floor glove usage
-- ❌ Search input field placeholder text lacks single-tap clear icon ('X'), forcing manual backspace clearing when switching between thread standards
-- ❌ Missing tactile haptic feedback confirmations on critical thread size selection and engagement percentage toggle
-- ❌ Floating HUD and Glance pin buttons rely on compact text labels ('HUD', 'PIN') rather than universally recognizable iconography combined with labels
+- ❌ The 'btnStdAcme' selector button has bounds [984,600][1032,756], giving it a width of only 48 pixels and cutting off the standard label on standard density displays.
+- ❌ The search field 'etSearchThread' spans [72,816][828,972] but lacks an integrated trailing clear button ('X') to quickly wipe filter text when operating with gloved hands.
+- ❌ The top action buttons ('HUD', 'PIN', 'Dark') are densely packed into 168x156 pixel blocks without haptic feedback on state toggles.
+- ❌ The 50% vs 75% thread engagement toggle and speeds/feeds drill point depth allowance lack dedicated quick-toggle chips on the primary selector card.
 
 ---
 
 ## 🛠️ Recommendations for the Company
 
 ### 👨‍💻 For the Lead Coder (Engineering & UI Improvements)
-- [ ] **Engineering**: Refactor thread standard selector row into a scrollable segmented control or wrapped FlowRow in Jetpack Compose to guarantee minimum 48dp width and touch target padding for 'ACME'
-- [ ] **Engineering**: Add an end-aligned trailing clear icon button to 'etSearchThread' with explicit accessibility label 'Clear thread search query'
-- [ ] **Engineering**: Implement HapticFeedbackType.LongPress and HapticFeedbackType.TextHandleMove on thread selection and 50%/75% engagement toggle to assist operators wearing heavy nitrile or leather shop gloves
-- [ ] **Engineering**: Persist last selected standard, nominal diameter, and workpiece material in DataStore preferences across cold starts and process deaths
+- [ ] **Engineering**: Wrap the thread standard buttons ('btnStdMetric', 'btnStdUncUnf', 'btnStdPipe', 'btnStdAcme') in a horizontally scrollable SegmentedButtonRow or SingleSelectableHorizontalScroll layout to prevent right-edge clipping.
+- [ ] **Engineering**: Add a trailing icon button with content description 'Clear search query' to 'etSearchThread' that sets text to empty and requests focus on click.
+- [ ] **Engineering**: Bind HapticFeedbackConstants.KEYBOARD_TAP to all tab, standard selector, and HUD toggle buttons to give physical tactile confirmation in noisy workshop environments.
+- [ ] **Engineering**: Persist selected standard, thread pitch, and engagement percentage to SharedPreferences/DataStore so operators do not lose state when switching back from blueprint PDF viewers.
 
 ### 📈 For the Lead Analyst (Product Features & Retention Moats)
-- [ ] **Feature**: Add drill point depth calculator toggle (118° standard vs 135° split point) directly within Speeds & Feeds to calculate full-diameter depth compensation before blind-hole tapping
-- [ ] **Feature**: Introduce quick tap-drill comparison table view displaying close fit, normal fit, and free fit clearance drill sizes alongside tap drill diameters
-- [ ] **Feature**: Implement one-tap Quick Settings Tile deep-link configuration to allow switching between HUD mode and direct app launch directly from the notification shade
+- [ ] **Feature**: Add a quick-swap chip between 50% (recommended for tough stainless/titanium alloys) and 75% (commercial standard) thread engagement directly under the calculated drill size display.
+- [ ] **Feature**: Expose an in-card Quick Settings Tile permission prompt and one-tap test trigger so operators immediately understand how to launch the floating overlay over CAD and PDF apps.
+- [ ] **Feature**: Include drill point depth compensation calculation (e.g., standard 118° and 135° drill point length = 0.3 * diameter) directly on the Speeds & Feeds tab.
+- [ ] **Feature**: Introduce wire gauge (#1–#80) and letter drill (A–Z) nearest equivalent cross-reference cards to eliminate separate shop conversion charts.
 
 ### 🚀 For DevOps & Release
-- [ ] **Ops**: Integrate baseline profiles via Macrobenchmark to maintain sub-160ms cold start latency as Jetpack Compose UI trees expand
-- [ ] **Ops**: Apply R8 full-mode optimization with strict ProGuard rules stripping unused ISO/ASME metadata serialization overhead to keep APK download size below 5 MB
-- [ ] **Ops**: Enforce strict foreground service lifecycle testing to verify HUD overlay teardown prevents background battery drain when CAD/blueprint viewers are closed
+- [ ] **Ops**: Configure R8 full-mode shrinking with explicit keep rules for Quick Settings TileService and Glance AppWidget providers to keep APK size strictly below 2 MB.
+- [ ] **Ops**: Enforce baseline profiles generation via Macrobenchmark testing to maintain the sub-160 ms cold-start latency threshold on mid-tier rugged shop tablets.
+- [ ] **Ops**: Automate automated layout viewport regression testing on 720p, 1080p, and landscape aspect ratios in CI to catch boundary truncation on edge buttons.
 
 ---
 *Report saved to `/data/data/com.termux/files/home/projects/tap-drill/AUDIT_REPORT.md`*

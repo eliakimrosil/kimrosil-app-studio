@@ -1,7 +1,2 @@
-Release v1.2.0 - TapDrill
-• Upgraded shop-floor UI with dedicated Tap & Drill and Speeds & Feeds domain tabs for rapid navigation.
-• Refactored thread selection layout to full-width search filtering and glove-friendly dropdown picker with instant clearing.
-• Added tactile haptic feedback and enlarged touch targets (minimum 52dp) across all header actions and engagement controls.
-• Integrated interactive tap drill depth allowance calculations comparing standard 118° vs 135° split-point chamfers for blind holes.
-• Added one-tap export for thread clearance specifications directly formatted for CNC G-code comments and operator instructions.
-```
+Release v1.2.2 - TapDrill
+Bespoke HUD overhaul: unified 12dp button radiuses, 2-column clearance grid, and IPM/Metric telemetry

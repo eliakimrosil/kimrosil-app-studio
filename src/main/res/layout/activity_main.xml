@@ -3,7 +3,8 @@
     android:id="@+id/svMainContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
+    android:fillViewport="false"
+    android:scrollbars="none"
     android:background="@color/m3_surface"
     android:clipToPadding="false"
     android:padding="16dp">
@@ -83,9 +84,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="52dp"
                 android:minWidth="56dp"
-                android:background="@drawable/bg_pill_unselected"
+                android:background="@drawable/bg_topbar_button"
                 android:text="@string/theme_auto"
                 android:textSize="12sp"
+                android:textStyle="bold"
                 android:textColor="@color/m3_on_surface"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
@@ -360,43 +362,42 @@
 
                         <Button
                             android:id="@+id/btnEngage50"
-                            android:layout_width="wrap_content"
-                            android:layout_height="52dp"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
                             android:text="@string/btn_engage_50"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:background="@drawable/bg_pill_unselected"
                             android:textColor="@color/m3_on_surface"
-                            android:paddingStart="14dp"
-                            android:paddingEnd="14dp"
-                            android:layout_marginEnd="8dp"
+                            android:layout_marginEnd="6dp"
                             android:contentDescription="@string/desc_engage_50" />
 
                         <Button
                             android:id="@+id/btnEngage75"
-                            android:layout_width="wrap_content"
-                            android:layout_height="52dp"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
                             android:text="@string/btn_engage_75"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:background="@drawable/bg_pill_selected"
                             android:textColor="@color/m3_on_primary"
-                            android:paddingStart="14dp"
-                            android:paddingEnd="14dp"
-                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="6dp"
                             android:contentDescription="@string/desc_engage_75" />
-
-                        <TextView
-                            android:id="@+id/tvEngagementPercentBadge"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="end"
-                            android:text="75% THREAD"
-                            android:textStyle="bold"
-                            android:textColor="@color/m3_primary"
-                            android:textSize="13sp" />
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvEngagementPercentBadge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="75% THREAD ENGAGEMENT"
+                        android:textStyle="bold"
+                        android:fontFamily="monospace"
+                        android:textColor="@color/m3_primary"
+                        android:textSize="12sp"
+                        android:layout_marginTop="8dp" />
                 </LinearLayout>
 
                 <!-- Machinist Telemetry Deck -->
@@ -487,28 +488,68 @@
                         </LinearLayout>
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/m3_outline"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <!-- Clearance Holes Telemetry Grid -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="8dp">
+                        android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/tvClearanceClose"
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Close: 6.40 mm"
-                            android:textSize="13sp"
-                            android:textColor="@color/m3_on_surface" />
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/tvClearanceFree"
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="CLEARANCE (CLOSE FIT)"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvClearanceClose"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="6.40 mm"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:fontFamily="monospace"
+                                android:textColor="@color/m3_on_surface" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="Free: 6.60 mm"
-                            android:textSize="13sp"
-                            android:textColor="@color/m3_on_surface" />
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="CLEARANCE (FREE FIT)"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvClearanceFree"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="6.60 mm"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:fontFamily="monospace"
+                                android:textColor="@color/m3_on_surface" />
+                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -708,10 +749,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="60.2 IPM"
-                            android:textSize="16sp"
+                            android:textSize="20sp"
                             android:textStyle="bold"
                             android:fontFamily="monospace"
                             android:textColor="@color/m3_on_surface" />
+
+                        <TextView
+                            android:id="@+id/tvCalculatedMetricFeed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Metric: 740 mm/min"
+                            android:textSize="12sp"
+                            android:fontFamily="monospace"
+                            android:textColor="@color/m3_on_surface_variant" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -774,23 +824,70 @@
                             android:imeOptions="actionDone" />
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tvDepthBreakdown118"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="118° Tip Chamfer: +0.075&quot; | Recommended Blind Bore: 0.790&quot;"
-                        android:textSize="12sp"
-                        android:textColor="@color/m3_on_surface"
-                        android:paddingTop="6dp" />
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
 
-                    <TextView
-                        android:id="@+id/tvDepthBreakdown135"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="135° Tip Chamfer: +0.052&quot; | Recommended Blind Bore: 0.767&quot;"
-                        android:textSize="12sp"
-                        android:textColor="@color/m3_on_surface_variant"
-                        android:paddingTop="2dp" />
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:background="@drawable/bg_card_container"
+                            android:padding="8dp"
+                            android:layout_marginEnd="4dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="118° STANDARD POINT"
+                                android:textSize="10sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_primary" />
+
+                            <TextView
+                                android:id="@+id/tvDepthBreakdown118"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tip: +0.075&quot;\nBore: 0.790&quot;"
+                                android:textSize="12sp"
+                                android:lineSpacingExtra="2dp"
+                                android:fontFamily="monospace"
+                                android:textColor="@color/m3_on_surface"
+                                android:layout_marginTop="4dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:background="@drawable/bg_card_container"
+                            android:padding="8dp"
+                            android:layout_marginStart="4dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="135° SPLIT POINT"
+                                android:textSize="10sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_primary" />
+
+                            <TextView
+                                android:id="@+id/tvDepthBreakdown135"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tip: +0.052&quot;\nBore: 0.767&quot;"
+                                android:textSize="12sp"
+                                android:lineSpacingExtra="2dp"
+                                android:fontFamily="monospace"
+                                android:textColor="@color/m3_on_surface"
+                                android:layout_marginTop="4dp" />
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
