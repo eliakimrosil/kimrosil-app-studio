@@ -1,9 +1,2 @@
-• Initial release of PitchGrid studio frequency workbench
-• Real-time 44.1 kHz PCM audio synthesis (Sine, Triangle, Sawtooth, Square, Pink Noise)
-• Live phosphor CRT oscilloscope waveform visualizer
-• Microtonal cents fine-tuning and A4 concert pitch reference switcher (440 Hz, 432 Hz, 444 Hz)
-• Musical interval transposition (Major 3rd, Perfect 4th, Perfect 5th, Octave)
-• Automated 20 Hz - 20 kHz logarithmic acoustic sweep test
-• Factory calibration library and custom preset manager
-• Quick Settings Tile for instant reference tone playback
-• Dark, Light, and System Auto bespoke synthesizer rack theming
+Release v1.0.0 - PitchGrid
+Initial release of PitchGrid studio frequency workbench in Kotlin
