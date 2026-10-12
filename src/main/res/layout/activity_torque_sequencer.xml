@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
+    android:scrollbars="none"
     android:background="@color/m3_surface">
 
     <LinearLayout
@@ -22,11 +22,13 @@
             <Button
                 android:id="@+id/btnToolbarBack"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:text="&lt; Back"
+                android:textSize="12sp"
                 android:background="@drawable/bg_technical_button"
                 android:textColor="@color/m3_on_surface"
-                android:layout_marginEnd="12dp" />
+                android:layout_marginEnd="12dp"
+                android:contentDescription="Return to flange specification selector" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -39,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ASME B16.5 4&quot; (150#)"
-                    android:textSize="18sp"
+                    android:textSize="17sp"
                     android:textStyle="bold"
                     android:textColor="@color/m3_on_surface" />
 
@@ -48,9 +50,69 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Socket: 1-1/16&quot; | Stud: 5/8&quot;"
-                    android:textSize="12sp"
+                    android:textSize="11sp"
                     android:textColor="@color/m3_on_surface_variant" />
             </LinearLayout>
+        </LinearLayout>
+
+        <!-- Stage Stepper Jump Bar -->
+        <LinearLayout
+            android:id="@+id/llPassJumpBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <Button
+                android:id="@+id/btnJumpPass1"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:text="P1 (30%)"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_chip_selected"
+                android:textColor="@color/m3_on_primary"
+                android:layout_marginEnd="3dp"
+                android:contentDescription="Jump to Pass 1: 30 percent target torque" />
+
+            <Button
+                android:id="@+id/btnJumpPass2"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:text="P2 (60%)"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_chip_unselected"
+                android:textColor="@color/m3_on_surface"
+                android:layout_marginEnd="3dp"
+                android:contentDescription="Jump to Pass 2: 60 percent target torque" />
+
+            <Button
+                android:id="@+id/btnJumpPass3"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:text="P3 (100%)"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_chip_unselected"
+                android:textColor="@color/m3_on_surface"
+                android:layout_marginEnd="3dp"
+                android:contentDescription="Jump to Pass 3: 100 percent target torque" />
+
+            <Button
+                android:id="@+id/btnJumpPass4"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:text="P4 (Check)"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_chip_unselected"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Jump to Pass 4: 100 percent final rotational check" />
         </LinearLayout>
 
         <!-- Current Pass Indicator Badge -->
@@ -59,13 +121,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pass 1: 30% Target (Star Sequence)"
-            android:textSize="13sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:textColor="@color/m3_on_primary"
             android:background="@drawable/bg_badge_primary"
             android:padding="8dp"
             android:gravity="center"
-            android:layout_marginBottom="12dp" />
+            android:layout_marginBottom="12dp"
+            android:contentDescription="Current tightening pass description badge" />
 
         <!-- Radial Flange Canvas Gauge -->
         <LinearLayout
@@ -80,7 +143,8 @@
                 android:id="@+id/flangeHUD"
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:contentDescription="Interactive circular bolt sequence HUD" />
         </LinearLayout>
 
         <!-- Active Bolt HUD Readout -->
@@ -114,7 +178,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Stage Torque Setting:"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
                     android:textColor="@color/m3_on_surface_variant" />
 
                 <TextView
@@ -132,7 +196,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bolt 1 of 8 (Completed: 0/8)"
-                android:textSize="13sp"
+                android:textSize="12sp"
                 android:textColor="@color/m3_on_surface_variant" />
         </LinearLayout>
 
@@ -141,7 +205,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="12dp">
+            android:layout_marginBottom="10dp">
 
             <Button
                 android:id="@+id/btnPrevBolt"
@@ -152,7 +216,8 @@
                 android:text="&lt; PREV BOLT"
                 android:background="@drawable/bg_technical_button"
                 android:textColor="@color/m3_on_surface"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:contentDescription="Go to previous bolt in current sequence" />
 
             <Button
                 android:id="@+id/btnNextBolt"
@@ -163,20 +228,41 @@
                 android:text="NEXT BOLT &gt;"
                 android:background="@drawable/bg_primary_tactile_button"
                 android:textColor="@color/m3_on_primary"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:contentDescription="Mark current bolt complete and advance to next bolt" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnConfirmPass"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:text="CONFIRM PASS &amp; ADVANCE STAGE"
-            android:background="@drawable/bg_technical_button"
-            android:textColor="@color/m3_on_surface"
-            android:textStyle="bold"
-            android:layout_marginBottom="14dp" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="14dp">
 
-        <!-- Completion Modal/Banner -->
+            <Button
+                android:id="@+id/btnResetPass"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minWidth="90dp"
+                android:text="Reset Stage"
+                android:textSize="11sp"
+                android:background="@drawable/bg_technical_button"
+                android:textColor="@color/m3_on_surface_variant"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="Reset progress for current pass" />
+
+            <Button
+                android:id="@+id/btnConfirmPass"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="CONFIRM STAGE &gt;"
+                android:background="@drawable/bg_technical_button"
+                android:textColor="@color/m3_on_surface"
+                android:textStyle="bold"
+                android:contentDescription="Confirm current pass tightening and advance stage" />
+        </LinearLayout>
+
+        <!-- Completion Banner -->
         <LinearLayout
             android:id="@+id/cardCompletionBanner"
             android:layout_width="match_parent"
@@ -199,10 +285,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="All 4 tightening passes (30%, 60%, 100%, and final 100% rotational check) executed cleanly according to ASME PCC-1 guidelines. Session saved in offline database."
+                android:text="All 4 tightening stages (30%, 60%, 100%, and 100% rotational check) executed cleanly according to ASME PCC-1 guidelines. Session saved in offline database."
                 android:textSize="12sp"
                 android:textColor="@color/m3_on_surface"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginBottom="14dp" />
 
             <Button
                 android:id="@+id/btnShareLog"
@@ -211,7 +297,18 @@
                 android:text="EXPORT INSPECTION CERTIFICATE"
                 android:background="@drawable/bg_primary_tactile_button"
                 android:textColor="@color/m3_on_primary"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="Share inspection verification certificate text" />
+
+            <Button
+                android:id="@+id/btnExportCsv"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:text="EXPORT INSPECTION CSV"
+                android:background="@drawable/bg_technical_button"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Export inspection log as CSV formatted data" />
         </LinearLayout>
 
     </LinearLayout>

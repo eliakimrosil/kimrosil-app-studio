@@ -1,10 +1,10 @@
 # 🧪 Functional Logic & Verification Report: flangematch
-*Executed on 2026-10-13 01:00:33 on Device: 127.0.0.1:5555*
+*Executed on 2026-10-13 02:46:05 on Device: 127.0.0.1:5555*
 
 ## 📊 Logic Stability Verdict: **PASSED** (10.0/10.0)
-- **Target Package**: `com.kimrosil.flangematch` (PID: `31671`)
+- **Target Package**: `com.kimrosil.flangematch` (PID: `17107`)
 - **Cold-Start Launch Latency**: `0 ms`
-- **Total Interactive Viewport Nodes**: `45`
+- **Total Interactive Viewport Nodes**: `44`
 
 ## 🛡️ Test Suite Results
 | Test Category | Verdict | Description |
@@ -12,7 +12,7 @@
 | **Input Fuzzing & Boundary Matrix** | `PASSED` | 24 edge-case strings, SQL/FTS operators & unicode injected |
 | **Theme Switcher Dynamic Recreate** | `PASSED` | Cycled cleanly |
 | **Hardware Keyboard Shortcuts** | `PASSED` | All 7 hardware key shortcuts handled safely |
-| **Orientation & Configuration** | `PASSED` | Landscape (29 nodes) and portrait preserved |
+| **Orientation & Configuration** | `PASSED` | Landscape (34 nodes) and portrait preserved |
 | **Logcat Exception Stream** | `CLEAN` | 0 unhandled exceptions detected |
 
 ## ⚠️ Recorded Errors & Friction Points

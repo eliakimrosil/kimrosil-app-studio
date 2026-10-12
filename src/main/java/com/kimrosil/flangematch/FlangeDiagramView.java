@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -29,9 +30,11 @@ public class FlangeDiagramView extends View {
     private Paint boltPaint;
     private Paint boltCompletedPaint;
     private Paint boltActivePaint;
+    private Paint boltActiveGlowPaint;
     private Paint boltStrokePaint;
     private Paint textPaint;
     private Paint sequenceLinePaint;
+    private Paint activePathPaint;
     private Paint crosshairPaint;
 
     private final RectF bounds = new RectF();
@@ -63,6 +66,9 @@ public class FlangeDiagramView extends View {
     }
 
     private void init() {
+        setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_YES);
+        setContentDescription("Interactive circular flange diagram displaying bolt tightening star pattern");
+
         flangeBodyPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         flangeBodyPaint.setStyle(Paint.Style.FILL);
         flangeBodyPaint.setColor(0xFF1E2836); // Steel Slate dark
@@ -70,21 +76,21 @@ public class FlangeDiagramView extends View {
         flangeRimPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         flangeRimPaint.setStyle(Paint.Style.STROKE);
         flangeRimPaint.setColor(0xFF4A6572);
-        flangeRimPaint.setStrokeWidth(6f);
+        flangeRimPaint.setStrokeWidth(5f);
 
         pipeBorePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         pipeBorePaint.setStyle(Paint.Style.FILL);
-        pipeBorePaint.setColor(0xFF0F141C); // Deep bore interior
+        pipeBorePaint.setColor(0xFF0A0E14); // Deep bore interior
 
         bcdGuidePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         bcdGuidePaint.setStyle(Paint.Style.STROKE);
         bcdGuidePaint.setColor(0xFF00ADB5); // Cyan technical datum
         bcdGuidePaint.setStrokeWidth(2.5f);
-        bcdGuidePaint.setPathEffect(new DashPathEffect(new float[]{12f, 8f}, 0));
+        bcdGuidePaint.setPathEffect(new DashPathEffect(new float[]{10f, 6f}, 0));
 
         crosshairPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         crosshairPaint.setStyle(Paint.Style.STROKE);
-        crosshairPaint.setColor(0x4000ADB5);
+        crosshairPaint.setColor(0x3300ADB5);
         crosshairPaint.setStrokeWidth(1.5f);
 
         boltPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -99,10 +105,15 @@ public class FlangeDiagramView extends View {
         boltActivePaint.setStyle(Paint.Style.FILL);
         boltActivePaint.setColor(0xFFFFA500); // High-vis amber warning
 
+        boltActiveGlowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        boltActiveGlowPaint.setStyle(Paint.Style.STROKE);
+        boltActiveGlowPaint.setColor(0x88FFA500);
+        boltActiveGlowPaint.setStrokeWidth(6f);
+
         boltStrokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         boltStrokePaint.setStyle(Paint.Style.STROKE);
         boltStrokePaint.setColor(0xFFFFFFFF);
-        boltStrokePaint.setStrokeWidth(3f);
+        boltStrokePaint.setStrokeWidth(2.5f);
 
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setColor(0xFFFFFFFF);
@@ -111,9 +122,14 @@ public class FlangeDiagramView extends View {
 
         sequenceLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         sequenceLinePaint.setStyle(Paint.Style.STROKE);
-        sequenceLinePaint.setColor(0x88FFA500);
-        sequenceLinePaint.setStrokeWidth(3f);
-        sequenceLinePaint.setPathEffect(new DashPathEffect(new float[]{10f, 6f}, 0));
+        sequenceLinePaint.setColor(0x6600ADB5);
+        sequenceLinePaint.setStrokeWidth(2.5f);
+        sequenceLinePaint.setPathEffect(new DashPathEffect(new float[]{8f, 6f}, 0));
+
+        activePathPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        activePathPaint.setStyle(Paint.Style.STROKE);
+        activePathPaint.setColor(0xFFFFA500);
+        activePathPaint.setStrokeWidth(4f);
     }
 
     public void setFlangeConfig(int boltCount, int[] sequence) {
@@ -121,11 +137,13 @@ public class FlangeDiagramView extends View {
         this.torqueSequence = sequence != null ? sequence : TorquePatternCalculator.getStarSequence(this.boltCount);
         this.completedBoltsInPass.clear();
         this.activeBoltIndex = this.torqueSequence.length > 0 ? this.torqueSequence[0] : 1;
+        updateAccessibilityDescription();
         invalidate();
     }
 
     public void setActiveBolt(int boltNumber) {
         this.activeBoltIndex = boltNumber;
+        updateAccessibilityDescription();
         invalidate();
     }
 
@@ -134,7 +152,13 @@ public class FlangeDiagramView extends View {
         if (completed != null) {
             this.completedBoltsInPass.addAll(completed);
         }
+        updateAccessibilityDescription();
         invalidate();
+    }
+
+    private void updateAccessibilityDescription() {
+        setContentDescription("Flange diagram: " + boltCount + " bolts. Active target is bolt #" + activeBoltIndex
+                + ". " + completedBoltsInPass.size() + " of " + boltCount + " completed.");
     }
 
     public void setOnBoltClickListener(OnBoltClickListener listener) {
@@ -151,8 +175,8 @@ public class FlangeDiagramView extends View {
         outerRadius = size * 0.46f;
         bcdRadius = outerRadius * 0.72f;
         boreRadius = outerRadius * 0.38f;
-        boltRadius = Math.max(14f, (float) (2 * Math.PI * bcdRadius / (boltCount * 4.2)));
-        textPaint.setTextSize(boltRadius * 1.1f);
+        boltRadius = Math.max(16f, (float) (2 * Math.PI * bcdRadius / (boltCount * 4.4)));
+        textPaint.setTextSize(boltRadius * 1.15f);
     }
 
     @Override
@@ -161,40 +185,47 @@ public class FlangeDiagramView extends View {
 
         if (outerRadius <= 0) return;
 
-        // Draw crosshair axes
+        // Draw crosshair datum lines
         canvas.drawLine(center.x - outerRadius - 15, center.y, center.x + outerRadius + 15, center.y, crosshairPaint);
         canvas.drawLine(center.x, center.y - outerRadius - 15, center.x, center.y + outerRadius + 15, crosshairPaint);
 
-        // Draw outer flange steel ring
+        // Draw outer flange steel body
         canvas.drawCircle(center.x, center.y, outerRadius, flangeBodyPaint);
         canvas.drawCircle(center.x, center.y, outerRadius, flangeRimPaint);
 
         // Draw Bolt Circle Diameter guide (BCD)
         canvas.drawCircle(center.x, center.y, bcdRadius, bcdGuidePaint);
 
-        // Draw internal pipe bore (inner fluid path)
+        // Draw internal pipe bore
         canvas.drawCircle(center.x, center.y, boreRadius, pipeBorePaint);
         canvas.drawCircle(center.x, center.y, boreRadius, flangeRimPaint);
 
-        // Draw criss-cross sequencing guide vectors between completed nodes and active node
+        // Draw criss-cross star sequence lines
         if (torqueSequence != null && torqueSequence.length > 1) {
             for (int i = 0; i < torqueSequence.length - 1; i++) {
                 int b1 = torqueSequence[i];
                 int b2 = torqueSequence[i + 1];
                 PointF p1 = getBoltCoordinates(b1);
                 PointF p2 = getBoltCoordinates(b2);
-                canvas.drawLine(p1.x, p1.y, p2.x, p2.y, sequenceLinePaint);
+
+                boolean isActiveSegment = (b1 == activeBoltIndex || b2 == activeBoltIndex);
+                canvas.drawLine(p1.x, p1.y, p2.x, p2.y, isActiveSegment ? activePathPaint : sequenceLinePaint);
             }
         }
 
-        // Draw individual bolt nodes
+        // Draw bolt nodes
         for (int i = 1; i <= boltCount; i++) {
             PointF p = getBoltCoordinates(i);
 
             Paint currentPaint = boltPaint;
-            if (i == activeBoltIndex) {
+            boolean isActive = (i == activeBoltIndex);
+            boolean isCompleted = completedBoltsInPass.contains(i);
+
+            if (isActive) {
                 currentPaint = boltActivePaint;
-            } else if (completedBoltsInPass.contains(i)) {
+                // Outer glowing pulse ring for active bolt
+                canvas.drawCircle(p.x, p.y, boltRadius + 6f, boltActiveGlowPaint);
+            } else if (isCompleted) {
                 currentPaint = boltCompletedPaint;
             }
 
@@ -209,7 +240,7 @@ public class FlangeDiagramView extends View {
     }
 
     private PointF getBoltCoordinates(int boltNumber) {
-        // Bolt 1 starts at top (270 degrees / -PI/2) and goes clockwise
+        // Bolt 1 starts at 12 o'clock (-PI/2) and proceeds clockwise
         double angleStep = 2.0 * Math.PI / boltCount;
         double angle = -Math.PI / 2.0 + (boltNumber - 1) * angleStep;
 
@@ -227,8 +258,9 @@ public class FlangeDiagramView extends View {
             for (int i = 1; i <= boltCount; i++) {
                 PointF p = getBoltCoordinates(i);
                 float distSq = (tx - p.x) * (tx - p.x) + (ty - p.y) * (ty - p.y);
-                float hitRadius = boltRadius * 1.5f;
+                float hitRadius = boltRadius * 1.8f; // Generous glove-friendly hit area
                 if (distSq <= hitRadius * hitRadius) {
+                    performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                     boltClickListener.onBoltClicked(i);
                     return true;
                 }

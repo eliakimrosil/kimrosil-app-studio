@@ -3,13 +3,21 @@
     <!-- Industrial Workshop & Technical Drafting Color Palette -->
     <color name="m3_surface">#0F141C</color>
     <color name="m3_surface_container">#1A222D</color>
+    <color name="m3_surface_container_high">#242F3E</color>
     <color name="m3_primary">#00ADB5</color>
     <color name="m3_on_primary">#002022</color>
+    <color name="m3_primary_container">#00454A</color>
+    <color name="m3_on_primary_container">#B2F5F8</color>
+    <color name="m3_secondary">#7A9EB2</color>
+    <color name="m3_on_secondary">#0D2330</color>
     <color name="m3_on_surface">#EEEEEE</color>
     <color name="m3_on_surface_variant">#8A9BA8</color>
     <color name="m3_outline">#2D3C4D</color>
+    <color name="m3_outline_variant">#1E2A38</color>
 
     <!-- Visual Sequence Indicator States -->
     <color name="color_amber_active">#FFA500</color>
     <color name="color_verified_green">#2ECC71</color>
+    <color name="color_steel_blue">#34495E</color>
+    <color name="color_divider">#1F2B3A</color>
 </resources>

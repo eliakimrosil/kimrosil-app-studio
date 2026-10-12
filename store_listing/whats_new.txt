@@ -1,1 +1,6 @@
-Initial release of FlangeMatch v1.0.0. Features offline ASME/ANSI flange dimensions, stud bolt specifications, wrench sizes, cross-pattern torque sequences, and instant search indexing.
+Release v1.1.0 - FlangeMatch
+• Quick Search Bar & Glove Presets: Instant size lookup and single-tap tactile chips for fast field sizing.
+• Lubricant & Friction Factor Calibration: Calculate target torque for Copper Anti-Seize (k=0.13), Moly (k=0.10), Machine Oil, or Dry studs.
+• Interactive Radial Sequencer HUD: Stage jump bar, stage reset, and visual active bolt pulse rings.
+• Inspection Export: Share detailed verification certificates and CSV inspection records.
+• Genuine high-contrast shape drawables and accessibility tags throughout.

@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
+    android:scrollbars="none"
     android:background="@color/m3_surface">
 
     <LinearLayout
@@ -30,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="FlangeMatch"
-                    android:textSize="24sp"
+                    android:textSize="22sp"
                     android:textStyle="bold"
                     android:textColor="@color/m3_on_surface" />
 
@@ -38,32 +38,59 @@
                     android:id="@+id/tvAppSubtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="100% Offline Torque &amp; Bolt Sequencer"
-                    android:textSize="12sp"
+                    android:text="Offline Torque &amp; Bolt Sequencer"
+                    android:textSize="11sp"
                     android:textColor="@color/m3_on_surface_variant" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnUnitToggle"
+            <!-- Dual Segmented Unit Switcher -->
+            <LinearLayout
+                android:id="@+id/llUnitSegmentContainer"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:text="Unit: ft-lb"
-                android:textSize="12sp"
-                android:background="@drawable/bg_technical_button"
-                android:textColor="@color/m3_on_surface" />
+                android:layout_height="38dp"
+                android:background="@drawable/bg_unit_segment_frame"
+                android:orientation="horizontal"
+                android:padding="2dp"
+                android:layout_marginEnd="8dp">
 
+                <Button
+                    android:id="@+id/btnUnitFtLb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:minWidth="52dp"
+                    android:text="ft-lb"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_unit_segment_active"
+                    android:textColor="@color/m3_on_primary"
+                    android:contentDescription="Switch torque measurement unit to foot pounds" />
+
+                <Button
+                    android:id="@+id/btnUnitNm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:minWidth="52dp"
+                    android:text="N·m"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_unit_segment_inactive"
+                    android:textColor="@color/m3_on_surface"
+                    android:contentDescription="Switch torque measurement unit to Newton meters" />
+            </LinearLayout>
+
+            <!-- Theme Toggle Button -->
             <Button
                 android:id="@+id/btnThemeToggle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Auto Theme"
-                android:textSize="12sp"
+                android:layout_height="38dp"
+                android:text="Auto"
+                android:textSize="11sp"
                 android:background="@drawable/bg_technical_button"
-                android:textColor="@color/m3_on_surface" />
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Toggle app visual theme between Auto, Dark, and Light mode" />
         </LinearLayout>
 
-        <!-- Standard Selection Card -->
+        <!-- Step 1: Flange Specification & Quick Select -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,19 +108,190 @@
                 android:textColor="@color/m3_primary"
                 android:layout_marginBottom="8dp" />
 
+            <!-- Direct Quick Search Bar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_search_input"
+                android:paddingStart="12dp"
+                android:paddingEnd="6dp"
+                android:layout_marginBottom="10dp">
+
+                <EditText
+                    android:id="@+id/etQuickSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="Search e.g. 4 150, 6 300"
+                    android:textSize="13sp"
+                    android:textColor="@color/m3_on_surface"
+                    android:textColorHint="@color/m3_on_surface_variant"
+                    android:singleLine="true"
+                    android:imeOptions="actionSearch"
+                    android:contentDescription="Quick search field for flange size and pressure class" />
+
+                <Button
+                    android:id="@+id/btnClearSearch"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:text="✕"
+                    android:textSize="14sp"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Clear search field text" />
+            </LinearLayout>
+
+            <!-- Glove-Friendly Tactile Quick-Pick Chips -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fast Presets (Single-Tap)"
+                android:textSize="11sp"
+                android:textColor="@color/m3_on_surface_variant"
+                android:layout_marginBottom="6dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="12dp">
+
+                <!-- Row 1: 150# Sizes -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="6dp">
+
+                    <Button
+                        android:id="@+id/chipPreset2_150"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="2&quot; 150#"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginEnd="4dp"
+                        android:contentDescription="Quick select 2 inch 150 pound flange" />
+
+                    <Button
+                        android:id="@+id/chipPreset3_150"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="3&quot; 150#"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginEnd="4dp"
+                        android:contentDescription="Quick select 3 inch 150 pound flange" />
+
+                    <Button
+                        android:id="@+id/chipPreset4_150"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="4&quot; 150#"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_chip_selected"
+                        android:textColor="@color/m3_on_primary"
+                        android:layout_marginEnd="4dp"
+                        android:contentDescription="Quick select 4 inch 150 pound flange" />
+
+                    <Button
+                        android:id="@+id/chipPreset6_150"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="6&quot; 150#"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:textColor="@color/m3_on_surface"
+                        android:contentDescription="Quick select 6 inch 150 pound flange" />
+                </LinearLayout>
+
+                <!-- Row 2: Heavy & Metric Sizes -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/chipPreset8_150"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="8&quot; 150#"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginEnd="4dp"
+                        android:contentDescription="Quick select 8 inch 150 pound flange" />
+
+                    <Button
+                        android:id="@+id/chipPreset4_300"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="4&quot; 300#"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginEnd="4dp"
+                        android:contentDescription="Quick select 4 inch 300 pound flange" />
+
+                    <Button
+                        android:id="@+id/chipPreset6_300"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="6&quot; 300#"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginEnd="4dp"
+                        android:contentDescription="Quick select 6 inch 300 pound flange" />
+
+                    <Button
+                        android:id="@+id/chipPresetDN50"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="DN50"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:textColor="@color/m3_on_surface"
+                        android:contentDescription="Quick select DN50 PN16 European metric flange" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Standard Dropdown -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Standard"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:textColor="@color/m3_on_surface_variant" />
 
             <Spinner
                 android:id="@+id/spStandard"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="50dp"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/bg_spinner_frame" />
+                android:background="@drawable/bg_spinner_frame"
+                android:contentDescription="Flange engineering standard selector" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -111,14 +309,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pressure Class"
-                        android:textSize="12sp"
+                        android:textSize="11sp"
                         android:textColor="@color/m3_on_surface_variant" />
 
                     <Spinner
                         android:id="@+id/spPressureClass"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:background="@drawable/bg_spinner_frame" />
+                        android:layout_height="50dp"
+                        android:background="@drawable/bg_spinner_frame"
+                        android:contentDescription="Pressure class rating selector" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -132,19 +331,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nominal Size (NPS)"
-                        android:textSize="12sp"
+                        android:textSize="11sp"
                         android:textColor="@color/m3_on_surface_variant" />
 
                     <Spinner
                         android:id="@+id/spNominalSize"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:background="@drawable/bg_spinner_frame" />
+                        android:layout_height="50dp"
+                        android:background="@drawable/bg_spinner_frame"
+                        android:contentDescription="Nominal pipe size diameter selector" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Hero Blueprint Gauges Card -->
+        <!-- Hero Blueprint & Telemetry Deck -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -168,30 +368,34 @@
                 android:layout_height="wrap_content"
                 android:text="8 BOLTS — BCD 7.50&quot;"
                 android:textSize="13sp"
+                android:textStyle="bold"
                 android:textColor="@color/m3_primary"
                 android:layout_marginBottom="12dp" />
 
-            <!-- Custom Vector Canvas View -->
+            <!-- Custom Interactive Radial Flange Vector Canvas -->
             <com.kimrosil.flangematch.FlangeDiagramView
                 android:id="@+id/flangePreview"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="14dp" />
+                android:layout_marginBottom="16dp" />
 
-            <!-- Engineering Telemetry Grid -->
+            <!-- 2-Column Tabular Specifications Grid with Divider -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
+                android:baselineAligned="false">
 
+                <!-- Left Column: Bolt Circle & Hole Dia -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
                     android:orientation="vertical">
 
+                    <!-- BCD Stacked Cell -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -200,21 +404,24 @@
                         android:textColor="@color/m3_on_surface_variant" />
 
                     <TextView
-                        android:id="@+id/tvBcdValue"
+                        android:id="@+id/tvBcdValuePrimary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="7.50 in (190.5 mm)"
-                        android:textSize="14sp"
+                        android:text="7.50 in"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="@color/m3_on_surface" />
-                </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tvBcdValueSecondary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="190.5 mm"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="10dp" />
 
+                    <!-- Hole Dia Stacked Cell -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -223,50 +430,64 @@
                         android:textColor="@color/m3_on_surface_variant" />
 
                     <TextView
-                        android:id="@+id/tvHoleDiaValue"
+                        android:id="@+id/tvHoleDiaValuePrimary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0.75 in (19.1 mm)"
-                        android:textSize="14sp"
+                        android:text="0.75 in"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="@color/m3_on_surface" />
+
+                    <TextView
+                        android:id="@+id/tvHoleDiaValueSecondary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="19.1 mm"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface_variant" />
                 </LinearLayout>
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                <!-- Vertical Hairline Divider -->
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_divider" />
 
+                <!-- Right Column: Stud Size & Heavy Hex Socket -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_marginStart="8dp"
                     android:orientation="vertical">
 
+                    <!-- Stud Size Stacked Cell -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Stud Size"
+                        android:text="Stud Bolt Diameter"
                         android:textSize="11sp"
                         android:textColor="@color/m3_on_surface_variant" />
 
                     <TextView
-                        android:id="@+id/tvStudSizeValue"
+                        android:id="@+id/tvStudSizeValuePrimary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="5/8&quot;"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="@color/m3_on_surface" />
-                </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tvStudSizeValueSecondary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Standard UNC Thread"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="10dp" />
 
+                    <!-- Socket Size Stacked Cell -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -275,18 +496,26 @@
                         android:textColor="@color/m3_on_surface_variant" />
 
                     <TextView
-                        android:id="@+id/tvWrenchSizeValue"
+                        android:id="@+id/tvWrenchSizeValuePrimary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1-1/16&quot;"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="@color/m3_on_surface" />
+
+                    <TextView
+                        android:id="@+id/tvWrenchSizeValueSecondary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="27 mm Wrench"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface_variant" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Torque Calibration & Execution Deck -->
+        <!-- Step 2: Lubricant & Torque Calibration Deck -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -298,42 +527,104 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="STEP 2: TARGET TORQUE &amp; CALIBRATION"
+                android:text="STEP 2: LUBRICANT &amp; TARGET TORQUE"
                 android:textSize="11sp"
                 android:textStyle="bold"
                 android:textColor="@color/m3_primary"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="10dp" />
 
+            <!-- Lubricant Preset Selector -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thread Lubricant Friction Factor (k)"
+                android:textSize="11sp"
+                android:textColor="@color/m3_on_surface_variant" />
+
+            <Spinner
+                android:id="@+id/spLubricant"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_spinner_frame"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="Select bolt thread lubricant friction factor" />
+
+            <!-- Gasket Type Selector -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gasket Style"
+                android:textSize="11sp"
+                android:textColor="@color/m3_on_surface_variant" />
+
+            <Spinner
+                android:id="@+id/spGasketType"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_spinner_frame"
+                android:layout_marginBottom="12dp"
+                android:contentDescription="Select flange gasket style" />
+
+            <!-- Dual Torque Readout Display (Baseline vs Calibrated) -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="10dp">
+                android:baselineAligned="false"
+                android:layout_marginBottom="12dp">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Standard ASTM B7 Torque:"
-                    android:textSize="13sp"
-                    android:textColor="@color/m3_on_surface_variant" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvRecommendedTorque"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Baseline B7 Torque:"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <TextView
+                        android:id="@+id/tvBaseTorqueValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="60.0 ft-lb"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="60.0 ft-lb"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/m3_primary" />
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Calibrated Target:"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <TextView
+                        android:id="@+id/tvCalibratedTorqueValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="60.0 ft-lb"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary" />
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Custom Engineering Target Torque"
-                android:textSize="12sp"
+                android:text="Custom Engineering Torque Override"
+                android:textSize="11sp"
                 android:textColor="@color/m3_on_surface_variant"
                 android:layout_marginBottom="4dp" />
 
@@ -342,13 +633,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@drawable/bg_spinner_frame"
+                android:hint="Target torque"
                 android:inputType="numberDecimal"
                 android:imeOptions="actionDone"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:textColor="@color/m3_on_surface"
-                android:textSize="16sp"
-                android:layout_marginBottom="14dp" />
+                android:textColorHint="@color/m3_on_surface_variant"
+                android:textSize="15sp"
+                android:layout_marginBottom="14dp"
+                android:contentDescription="Input custom target torque value override" />
 
             <Button
                 android:id="@+id/btnStartSequencer"
@@ -358,7 +652,8 @@
                 android:text="LAUNCH STAR PATTERN HUD"
                 android:textStyle="bold"
                 android:textSize="15sp"
-                android:textColor="@color/m3_on_primary" />
+                android:textColor="@color/m3_on_primary"
+                android:contentDescription="Launch 4-stage star pattern bolt tightening sequencer HUD" />
         </LinearLayout>
 
         <!-- Offline Session History Deck -->
@@ -370,14 +665,32 @@
             android:padding="16dp"
             android:layout_marginBottom="24dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="RECENT TIGHTENING AUDIT LOGS"
-                android:textSize="11sp"
-                android:textStyle="bold"
-                android:textColor="@color/m3_primary"
-                android:layout_marginBottom="12dp" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="RECENT TIGHTENING AUDIT LOGS"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_primary" />
+
+                <Button
+                    android:id="@+id/btnClearLogs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="Clear All"
+                    android:textSize="11sp"
+                    android:background="@drawable/bg_technical_button"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:contentDescription="Clear all recent torque session logs" />
+            </LinearLayout>
 
             <!-- Empty State -->
             <LinearLayout
@@ -401,7 +714,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Completed 4-pass star sequencings will appear here offline."
-                    android:textSize="12sp"
+                    android:textSize="11sp"
                     android:textColor="@color/m3_on_surface_variant"
                     android:gravity="center" />
             </LinearLayout>

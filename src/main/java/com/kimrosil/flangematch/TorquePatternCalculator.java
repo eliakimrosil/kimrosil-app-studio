@@ -87,6 +87,16 @@ public class TorquePatternCalculator {
         }
     }
 
+    public static int getPassPercentage(int passIndex) {
+        switch (passIndex) {
+            case 0: return 30;
+            case 1: return 60;
+            case 2: return 100;
+            case 3: return 100;
+            default: return 100;
+        }
+    }
+
     public static String getPassDescription(int passIndex) {
         switch (passIndex) {
             case 0:
@@ -100,5 +110,18 @@ public class TorquePatternCalculator {
             default:
                 return "Pass " + (passIndex + 1);
         }
+    }
+
+    public static boolean isRotationalPass(int passIndex) {
+        return passIndex == 3;
+    }
+
+    /**
+     * Calculate adjusted torque based on thread friction coefficient (k-factor).
+     * Industry baseline ASTM torque is based on k = 0.13 (copper anti-seize / standard lubricated).
+     */
+    public static double calculateLubricatedTorque(double baseTorque, double kFactor) {
+        double ratio = kFactor / 0.13;
+        return Math.round(baseTorque * ratio * 10.0) / 10.0;
     }
 }

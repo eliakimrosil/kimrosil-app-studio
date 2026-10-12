@@ -36,12 +36,14 @@ public class TorqueSequencerActivity extends Activity {
     private String unit;
     private String studSize;
     private String wrenchSize;
+    private String lubricant;
+    private String gasket;
 
     // Sequencer Execution State
     private int[] starSequence;
     private int currentPassIndex = 0; // 0 to 3 (Pass 1 to 4)
     private int currentStepInPass = 0; // 0 to boltCount - 1
-    private final List<Integer> completedBoltsInPass = new ArrayList<>();
+    private final ArrayList<Integer> completedBoltsInPass = new ArrayList<>();
 
     // Views
     private TextView tvSequencerTitle;
@@ -51,11 +53,20 @@ public class TorqueSequencerActivity extends Activity {
     private TextView tvActiveBoltTelemetry;
     private TextView tvStageTorqueReadout;
     private TextView tvProgressReadout;
+
+    private Button btnJumpPass1;
+    private Button btnJumpPass2;
+    private Button btnJumpPass3;
+    private Button btnJumpPass4;
+
     private Button btnPrevBolt;
     private Button btnNextBolt;
+    private Button btnResetPass;
     private Button btnConfirmPass;
-    private Button btnShareLog;
+
     private View cardCompletionBanner;
+    private Button btnShareLog;
+    private Button btnExportCsv;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -86,6 +97,17 @@ public class TorqueSequencerActivity extends Activity {
         setupStatusBar();
         setupSequencerLogic();
         setupListeners();
+
+        if (savedInstanceState != null) {
+            currentPassIndex = savedInstanceState.getInt("SAVED_PASS_INDEX", 0);
+            currentStepInPass = savedInstanceState.getInt("SAVED_STEP_IN_PASS", 0);
+            ArrayList<Integer> savedCompleted = savedInstanceState.getIntegerArrayList("SAVED_COMPLETED");
+            if (savedCompleted != null) {
+                completedBoltsInPass.clear();
+                completedBoltsInPass.addAll(savedCompleted);
+            }
+        }
+
         updateHUD();
     }
 
@@ -100,12 +122,20 @@ public class TorqueSequencerActivity extends Activity {
         if (unit == null) unit = "ft-lb";
         studSize = intent.getStringExtra("EXTRA_STUD_SIZE");
         wrenchSize = intent.getStringExtra("EXTRA_WRENCH_SIZE");
+        lubricant = intent.getStringExtra("EXTRA_LUBRICANT");
+        if (lubricant == null) lubricant = "Copper Anti-Seize";
+        gasket = intent.getStringExtra("EXTRA_GASKET");
+        if (gasket == null) gasket = "Spiral Wound";
 
         starSequence = TorquePatternCalculator.getStarSequence(boltCount);
     }
 
     private void initViews() {
-        findViewById(R.id.btnToolbarBack).setOnClickListener(v -> finish());
+        findViewById(R.id.btnToolbarBack).setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+            finish();
+        });
+
         tvSequencerTitle = findViewById(R.id.tvSequencerTitle);
         tvSequencerSubtitle = findViewById(R.id.tvSequencerSubtitle);
         flangeHUD = findViewById(R.id.flangeHUD);
@@ -113,11 +143,20 @@ public class TorqueSequencerActivity extends Activity {
         tvActiveBoltTelemetry = findViewById(R.id.tvActiveBoltTelemetry);
         tvStageTorqueReadout = findViewById(R.id.tvStageTorqueReadout);
         tvProgressReadout = findViewById(R.id.tvProgressReadout);
+
+        btnJumpPass1 = findViewById(R.id.btnJumpPass1);
+        btnJumpPass2 = findViewById(R.id.btnJumpPass2);
+        btnJumpPass3 = findViewById(R.id.btnJumpPass3);
+        btnJumpPass4 = findViewById(R.id.btnJumpPass4);
+
         btnPrevBolt = findViewById(R.id.btnPrevBolt);
         btnNextBolt = findViewById(R.id.btnNextBolt);
+        btnResetPass = findViewById(R.id.btnResetPass);
         btnConfirmPass = findViewById(R.id.btnConfirmPass);
-        btnShareLog = findViewById(R.id.btnShareLog);
+
         cardCompletionBanner = findViewById(R.id.cardCompletionBanner);
+        btnShareLog = findViewById(R.id.btnShareLog);
+        btnExportCsv = findViewById(R.id.btnExportCsv);
 
         tvSequencerTitle.setText(standard + " " + nominalSize + " (" + pressureClass + ")");
         tvSequencerSubtitle.setText("Socket: " + wrenchSize + " | Stud: " + studSize);
@@ -137,7 +176,6 @@ public class TorqueSequencerActivity extends Activity {
     private void setupSequencerLogic() {
         flangeHUD.setFlangeConfig(boltCount, starSequence);
         flangeHUD.setOnBoltClickListener(boltNumber -> {
-            // Find step matching this bolt
             int targetStep = -1;
             int[] currentPassOrder = getCurrentPassOrder();
             for (int i = 0; i < currentPassOrder.length; i++) {
@@ -164,8 +202,14 @@ public class TorqueSequencerActivity extends Activity {
     }
 
     private void setupListeners() {
+        // Direct pass stepper navigation
+        btnJumpPass1.setOnClickListener(v -> jumpToPass(0));
+        btnJumpPass2.setOnClickListener(v -> jumpToPass(1));
+        btnJumpPass3.setOnClickListener(v -> jumpToPass(2));
+        btnJumpPass4.setOnClickListener(v -> jumpToPass(3));
+
         btnPrevBolt.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
             if (currentStepInPass > 0) {
                 currentStepInPass--;
                 updateHUD();
@@ -173,8 +217,16 @@ public class TorqueSequencerActivity extends Activity {
         });
 
         btnNextBolt.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
             advanceBolt();
+        });
+
+        btnResetPass.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+            completedBoltsInPass.clear();
+            currentStepInPass = 0;
+            updateHUD();
+            Toast.makeText(this, "Stage reset", Toast.LENGTH_SHORT).show();
         });
 
         btnConfirmPass.setOnClickListener(v -> {
@@ -186,6 +238,19 @@ public class TorqueSequencerActivity extends Activity {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             shareInspectionReport();
         });
+
+        btnExportCsv.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            shareCsvInspectionLog();
+        });
+    }
+
+    private void jumpToPass(int passIndex) {
+        if (passIndex < 0 || passIndex > 3) return;
+        currentPassIndex = passIndex;
+        currentStepInPass = 0;
+        completedBoltsInPass.clear();
+        updateHUD();
     }
 
     private void advanceBolt() {
@@ -200,9 +265,8 @@ public class TorqueSequencerActivity extends Activity {
             currentStepInPass++;
             updateHUD();
         } else {
-            // Reached last bolt of the pass
             updateHUD();
-            Toast.makeText(this, "All bolts tightened for this pass. Confirm pass to advance.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "All bolts tightened for this stage. Confirm stage to advance.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -223,7 +287,7 @@ public class TorqueSequencerActivity extends Activity {
 
             // Save record to SQLite
             dbHelper.insertTorqueLog(standard, nominalSize, pressureClass, boltCount,
-                    targetTorque, unit, 4, "Complete 4-stage star sequence verified.");
+                    targetTorque, unit, 4, "Complete 4-stage star sequence verified. Lube: " + lubricant);
 
             Toast.makeText(this, "Torque procedure 100% verified and logged locally.", Toast.LENGTH_LONG).show();
         }
@@ -231,8 +295,15 @@ public class TorqueSequencerActivity extends Activity {
 
     private void updateHUD() {
         int[] passOrder = getCurrentPassOrder();
+        if (currentStepInPass >= passOrder.length) {
+            currentStepInPass = passOrder.length - 1;
+        }
+
         int currentBoltNumber = passOrder[currentStepInPass];
         double currentStageTorque = TorquePatternCalculator.getTorqueForPass(currentPassIndex, targetTorque);
+
+        // Update pass jump button highlights
+        updatePassJumpHighlights();
 
         tvPassBadge.setText(TorquePatternCalculator.getPassDescription(currentPassIndex));
         tvActiveBoltTelemetry.setText("TIGHTEN BOLT #" + currentBoltNumber);
@@ -243,6 +314,19 @@ public class TorqueSequencerActivity extends Activity {
 
         flangeHUD.setActiveBolt(currentBoltNumber);
         flangeHUD.setCompletedBolts(completedBoltsInPass);
+    }
+
+    private void updatePassJumpHighlights() {
+        Button[] buttons = new Button[]{btnJumpPass1, btnJumpPass2, btnJumpPass3, btnJumpPass4};
+        for (int i = 0; i < buttons.length; i++) {
+            if (i == currentPassIndex) {
+                buttons[i].setBackgroundResource(R.drawable.bg_chip_selected);
+                buttons[i].setTextColor(getColor(R.color.m3_on_primary));
+            } else {
+                buttons[i].setBackgroundResource(R.drawable.bg_chip_unselected);
+                buttons[i].setTextColor(getColor(R.color.m3_on_surface));
+            }
+        }
     }
 
     private void triggerDualPulseHaptic() {
@@ -265,15 +349,48 @@ public class TorqueSequencerActivity extends Activity {
                 + "Bolt Count: " + boltCount + "\n"
                 + "Target Torque: " + targetTorque + " " + unit + "\n"
                 + "Passes Executed: 4 of 4 (100% Verified)\n"
-                + "Stud Size: " + studSize + " | Socket: " + wrenchSize + "\n"
+                + "Thread Lubricant: " + lubricant + "\n"
+                + "Gasket Style: " + gasket + "\n"
+                + "Stud Bolt Size: " + studSize + "\n"
+                + "Heavy Hex Socket: " + wrenchSize + "\n"
                 + "Verification Date: " + java.text.DateFormat.getDateTimeInstance().format(new java.util.Date()) + "\n"
-                + "Method: ASME PCC-1 Star Sequence (Zero Cloud Telemetry)";
+                + "Standard: ASME PCC-1 Star Sequence (Offline Verified)";
 
         Intent sendIntent = new Intent(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, report);
         sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Flange Torque Inspection Certificate");
         sendIntent.setType("text/plain");
         startActivity(Intent.createChooser(sendIntent, "Share Inspection Certificate"));
+    }
+
+    private void shareCsvInspectionLog() {
+        String csv = "Timestamp,Standard,Size,Class,BoltCount,Torque,Unit,Lubricant,Gasket,StudSize,Socket,Status\n"
+                + "\"" + java.text.DateFormat.getDateTimeInstance().format(new java.util.Date()) + "\","
+                + "\"" + standard + "\","
+                + "\"" + nominalSize + "\","
+                + "\"" + pressureClass + "\","
+                + boltCount + ","
+                + targetTorque + ","
+                + "\"" + unit + "\","
+                + "\"" + lubricant + "\","
+                + "\"" + gasket + "\","
+                + "\"" + studSize + "\","
+                + "\"" + wrenchSize + "\","
+                + "\"VERIFIED_PASS_4_OF_4\"";
+
+        Intent sendIntent = new Intent(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, csv);
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Flange Torque Inspection Log (CSV)");
+        sendIntent.setType("text/plain");
+        startActivity(Intent.createChooser(sendIntent, "Export Inspection CSV"));
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("SAVED_PASS_INDEX", currentPassIndex);
+        outState.putInt("SAVED_STEP_IN_PASS", currentStepInPass);
+        outState.putIntegerArrayList("SAVED_COMPLETED", completedBoltsInPass);
     }
 
     @Override
