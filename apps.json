@@ -620,5 +620,19 @@
     "privacy_policy": "https://apps.kimrosil.com/flangematch/privacy.html",
     "icon": "assets/icons/flangematch.svg",
     "updated_at": "2026-10-12T12:46:10.795633+00:00"
+  },
+  {
+    "slug": "camber-shim",
+    "title": "CamberShim Carpentry Tools",
+    "category": "UTILITIES",
+    "tagline": "Offline carpentry calculator for hinge mortises, door shims, and trim angles.",
+    "status": "BUILT",
+    "branch": "app/camber-shim",
+    "tag": "v1.1.0-camber-shim",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-camber-shim/camber-shim.apk",
+    "landing_page": "https://apps.kimrosil.com/camber-shim/",
+    "privacy_policy": "https://apps.kimrosil.com/camber-shim/privacy.html",
+    "icon": "assets/icons/camber-shim.svg",
+    "updated_at": "2026-10-12T15:46:57.924173+00:00"
   }
 ]
