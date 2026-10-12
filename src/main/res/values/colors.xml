@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Anodized Aluminium Light Studio Theme -->
+    <color name="bg_main">#ECEFF1</color>
+    <color name="surface_panel">#FFFFFF</color>
+    <color name="surface_panel_elevated">#F1F5F9</color>
+    <color name="surface_scope">#0F172A</color>
+    <color name="border_rack">#CBD5E1</color>
+    <color name="border_rack_accent">#94A3B8</color>
+    
+    <color name="text_primary">#0F172A</color>
+    <color name="text_secondary">#475569</color>
+    <color name="text_muted">#64748B</color>
+    
+    <!-- Studio Hardware Accents -->
+    <color name="accent_amber">#D97706</color>
+    <color name="accent_amber_glow">#F59E0B</color>
+    <color name="accent_cyan">#0284C7</color>
+    <color name="accent_cyan_glow">#38BDF8</color>
+    <color name="scope_trace">#00E5FF</color>
+    <color name="scope_grid">#1E293B</color>
+    
+    <color name="tally_active">#DC2626</color>
+    <color name="tally_inactive">#94A3B8</color>
+    
+    <color name="btn_tactile_bg">#F1F5F9</color>
+    <color name="btn_tactile_pressed">#E2E8F0</color>
+    <color name="btn_tactile_active">#0F172A</color>
+    <color name="btn_tactile_active_text">#FFFFFF</color>
+</resources>

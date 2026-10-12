@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_main"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="32dp">
+
+        <!-- Header Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAppTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/accent_amber"
+                    android:letterSpacing="0.08" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tagline"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_secondary"
+                    android:fontFamily="monospace" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnThemeToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:text="@string/theme_auto"
+                android:textSize="11sp"
+                android:textColor="@color/text_primary"
+                android:background="@drawable/btn_stepper"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginEnd="6dp" />
+
+            <Button
+                android:id="@+id/btnOpenPresets"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:text="PRESETS"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="@color/accent_cyan"
+                android:background="@drawable/btn_stepper"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+        </LinearLayout>
+
+        <!-- Oscilloscope & Telemetry Master HUD Panel -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/panel_rack_bg"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp">
+
+            <!-- Oscilloscope Display Bezel -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@drawable/oscilloscope_bezel"
+                android:padding="2dp">
+
+                <com.kimrosil.pitchgrid.WaveformVisualizerView
+                    android:id="@+id/visualizerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <!-- Reticle Corner Screw Embellishments -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|start"
+                    android:layout_margin="6dp"
+                    android:text="SCOPE CH-1"
+                    android:textColor="@color/text_muted"
+                    android:textSize="9sp"
+                    android:fontFamily="monospace" />
+
+                <TextView
+                    android:id="@+id/tvTallyStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="6dp"
+                    android:text="MUTED"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace"
+                    android:background="@drawable/tally_badge_inactive"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="6dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp" />
+            </FrameLayout>
+
+            <!-- Digital Telemetry Readout -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvFrequencyDisplay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="440.00 Hz"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/accent_amber"
+                        android:fontFamily="monospace" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tvNoteDisplay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="A4 (Concert)"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/accent_cyan"
+                            android:layout_marginEnd="10dp" />
+
+                        <TextView
+                            android:id="@+id/tvCentsOffsetDisplay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+0 ct"
+                            android:textSize="13sp"
+                            android:textColor="@color/text_secondary"
+                            android:fontFamily="monospace" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Output Play/Mute Big Tactile Switch -->
+                <Button
+                    android:id="@+id/btnMasterToggle"
+                    android:layout_width="120dp"
+                    android:layout_height="52dp"
+                    android:text="@string/btn_play"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="#0B0C0E"
+                    android:background="@drawable/btn_tactile_selector_active" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Waveform Selector Strip -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/panel_rack_bg"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WAVEFORM GENERATOR"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_muted"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnWaveSine"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="@string/wave_sine"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/btn_tactile_selector_active"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnWaveTriangle"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="@string/wave_triangle"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/btn_tactile_selector_normal"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnWaveSawtooth"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="@string/wave_sawtooth"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/btn_tactile_selector_normal"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnWaveSquare"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="@string/wave_square"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/btn_tactile_selector_normal"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnWaveNoise"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="@string/wave_noise"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/btn_tactile_selector_normal" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Frequency Nudge & Continuous Sweep -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/panel_rack_bg"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="6dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="FREQUENCY SWEEP &amp; NUDGE"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_muted"
+                    android:fontFamily="monospace" />
+
+                <Button
+                    android:id="@+id/btnEnterDirectFreq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="DIRECT INPUT"
+                    android:textSize="10sp"
+                    android:textColor="@color/accent_amber"
+                    android:background="@drawable/btn_stepper"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp" />
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/sbFrequencyLog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="1000"
+                android:progress="452"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="10dp" />
+
+            <!-- Nudge Stepper Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnNudgeMinus100"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:text="-100"
+                    android:textSize="11sp"
+                    android:fontFamily="monospace"
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/btn_stepper"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnNudgeMinus10"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:text="-10"
+                    android:textSize="11sp"
+                    android:fontFamily="monospace"
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/btn_stepper"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnNudgeMinus1"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:text="-1"
+                    android:textSize="11sp"
+                    android:fontFamily="monospace"
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/btn_stepper"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnNudgePlus1"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:text="+1"
+                    android:textSize="11sp"
+                    android:fontFamily="monospace"
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/btn_stepper"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnNudgePlus10"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:text="+10"
+                    android:textSize="11sp"
+                    android:fontFamily="monospace"
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/btn_stepper"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnNudgePlus100"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:text="+100"
+                    android:textSize="11sp"
+                    android:fontFamily="monospace"
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/btn_stepper" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Musical Note & Microtone Workbench -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/panel_rack_bg"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PITCH CALIBRATION &amp; INTERVALS"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_muted"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Note / Octave stepping buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <Button
+                    android:id="@+id/btnOctaveDown"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_weight="1"
+                    android:text="OCT -"
+                    android:textSize="11sp"
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/btn_stepper"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnNoteDown"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_weight="1"
+                    android:text="SEMITONE -"
+                    android:textSize="11sp"
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/btn_stepper"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnNoteUp"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_weight="1"
+                    android:text="SEMITONE +"
+                    android:textSize="11sp"
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/btn_stepper"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnOctaveUp"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_weight="1"
+                    android:text="OCT +"
+                    android:textSize="11sp"
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/btn_stepper" />
+            </LinearLayout>
+
+            <!-- Concert Pitch Selector & Fine Cents -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BASE A4:"
+                    android:textSize="11sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/btnRef440"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="440 Hz"
+                    android:textSize="10sp"
+                    android:textColor="@color/accent_amber"
+                    android:background="@drawable/btn_stepper"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnRef432"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="432 Hz"
+                    android:textSize="10sp"
+                    android:textColor="@color/text_secondary"
+                    android:background="@drawable/btn_stepper"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnRef444"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="444 Hz"
+                    android:textSize="10sp"
+                    android:textColor="@color/text_secondary"
+                    android:background="@drawable/btn_stepper"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnResetCents"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="RESET CENTS"
+                    android:textSize="10sp"
+                    android:textColor="@color/text_muted"
+                    android:background="@drawable/btn_stepper"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp" />
+            </LinearLayout>
+
+            <!-- Cents Slider -->
+            <SeekBar
+                android:id="@+id/sbCents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:progress="50"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Quick Interval Jump Bar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnIntervalMajorThird"
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:text="MAJ 3RD"
+                    android:textSize="10sp"
+                    android:textColor="@color/text_secondary"
+                    android:background="@drawable/btn_stepper"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnIntervalFourth"
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:text="PERF 4TH"
+                    android:textSize="10sp"
+                    android:textColor="@color/text_secondary"
+                    android:background="@drawable/btn_stepper"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnIntervalFifth"
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:text="PERF 5TH"
+                    android:textSize="10sp"
+                    android:textColor="@color/text_secondary"
+                    android:background="@drawable/btn_stepper"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnIntervalOctave"
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:text="OCTAVE"
+                    android:textSize="10sp"
+                    android:textColor="@color/text_secondary"
+                    android:background="@drawable/btn_stepper" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Studio Attenuation & Diagnostics Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/panel_rack_bg"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="6dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="OUTPUT ATTENUATION"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_muted"
+                    android:fontFamily="monospace" />
+
+                <TextView
+                    android:id="@+id/tvVolumeDisplay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-6 dB (50%)"
+                    android:textSize="12sp"
+                    android:textColor="@color/accent_cyan"
+                    android:fontFamily="monospace" />
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/sbVolume"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:progress="50"
+                android:layout_marginBottom="10dp" />
+
+            <!-- Utility Actions: Sweep & Save Preset -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnSweepTest"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="20Hz-20kHz SWEEP"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/accent_cyan"
+                    android:background="@drawable/btn_stepper"
+                    android:layout_marginEnd="6dp" />
+
+                <Button
+                    android:id="@+id/btnSavePreset"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:text="SAVE AS PRESET"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/accent_amber"
+                    android:background="@drawable/btn_stepper" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Studio Branding & Status Footer -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="KimRosil App Studio • Pure 44.1kHz PCM Synthesis • Zero Telemetry"
+            android:textSize="11sp"
+            android:textColor="@color/text_muted"
+            android:gravity="center"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+</ScrollView>

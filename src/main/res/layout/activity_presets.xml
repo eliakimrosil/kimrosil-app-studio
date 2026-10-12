@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_main"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:text="← BACK"
+            android:textSize="11sp"
+            android:textColor="@color/text_primary"
+            android:background="@drawable/btn_stepper"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_marginEnd="12dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="PRESETS &amp; CALIBRATION"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/accent_amber"
+            android:letterSpacing="0.05" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="STUDIO &amp; ACOUSTIC BENCHMARKS"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_muted"
+        android:fontFamily="monospace"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Presets List -->
+    <ListView
+        android:id="@+id/lvPresets"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@color/border_rack"
+        android:dividerHeight="1dp" />
+
+</LinearLayout>

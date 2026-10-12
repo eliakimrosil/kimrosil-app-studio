@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Deep Obsidian Dark Studio Theme -->
+    <color name="bg_main">#0B0C0E</color>
+    <color name="surface_panel">#14171C</color>
+    <color name="surface_panel_elevated">#1C2128</color>
+    <color name="surface_scope">#090A0D</color>
+    <color name="border_rack">#2D333B</color>
+    <color name="border_rack_accent">#444C56</color>
+    
+    <color name="text_primary">#F0F6FC</color>
+    <color name="text_secondary">#ADBAC7</color>
+    <color name="text_muted">#768390</color>
+    
+    <!-- Studio Hardware Accents -->
+    <color name="accent_amber">#FFB300</color>
+    <color name="accent_amber_glow">#FFCA28</color>
+    <color name="accent_cyan">#00E5FF</color>
+    <color name="accent_cyan_glow">#84FFFF</color>
+    <color name="scope_trace">#00E5FF</color>
+    <color name="scope_grid">#161B22</color>
+    
+    <color name="tally_active">#FF3D00</color>
+    <color name="tally_inactive">#546E7A</color>
+    
+    <color name="btn_tactile_bg">#1C2128</color>
+    <color name="btn_tactile_pressed">#2D333B</color>
+    <color name="btn_tactile_active">#FFB300</color>
+    <color name="btn_tactile_active_text">#0B0C0E</color>
+</resources>

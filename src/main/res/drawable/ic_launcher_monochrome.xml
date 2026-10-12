@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Clean Vector Silhouette for Android 13+ Themed Icons -->
+    <path
+        android:pathData="M24,24h60v60h-60z"
+        android:strokeWidth="4"
+        android:strokeColor="#FFFFFF" />
+    <path
+        android:pathData="M24,54 C28,54 32,34 38,34 C44,34 48,74 54,74 C60,74 64,34 70,34 C76,34 80,54 84,54"
+        android:strokeWidth="5"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M78,32m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0" />
+</vector>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@drawable/panel_rack_bg"
+    android:padding="12dp"
+    android:layout_marginBottom="8dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvPresetTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Concert A4"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="2dp">
+
+            <TextView
+                android:id="@+id/tvPresetFreq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="440.00 Hz"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/accent_amber"
+                android:fontFamily="monospace"
+                android:layout_marginEnd="10dp" />
+
+            <TextView
+                android:id="@+id/tvPresetWave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SINE"
+                android:textSize="11sp"
+                android:textColor="@color/accent_cyan"
+                android:fontFamily="monospace" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnAuditionPreset"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:text="LOAD"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:textColor="@color/accent_cyan"
+        android:background="@drawable/btn_stepper"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:layout_marginEnd="6dp" />
+
+    <Button
+        android:id="@+id/btnDeletePreset"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:text="✕"
+        android:textSize="12sp"
+        android:textColor="@color/text_muted"
+        android:background="@drawable/btn_stepper"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp" />
+</LinearLayout>

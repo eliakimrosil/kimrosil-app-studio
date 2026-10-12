@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PitchGrid</string>
+    <string name="tile_name">PitchGrid Tone</string>
+    <string name="tagline">Studio Frequency Workbench</string>
+    <string name="wave_sine">SINE</string>
+    <string name="wave_triangle">TRI</string>
+    <string name="wave_sawtooth">SAW</string>
+    <string name="wave_square">SQR</string>
+    <string name="wave_noise">NOISE</string>
+    <string name="concert_pitch_label">CONCERT PITCH (A4)</string>
+    <string name="octave_label">OCTAVE</string>
+    <string name="note_label">NOTE</string>
+    <string name="frequency_label">FREQUENCY</string>
+    <string name="fine_cents_label">FINE TUNE (CENTS)</string>
+    <string name="output_level_label">OUTPUT LEVEL</string>
+    <string name="btn_play">ENABLE OUTPUT</string>
+    <string name="btn_stop">MUTE OUTPUT</string>
+    <string name="btn_presets">PRESETS &amp; CALIBRATION</string>
+    <string name="btn_sweep">SWEEP TEST</string>
+    <string name="btn_custom_freq">SET FREQ</string>
+    <string name="dialog_enter_freq">Enter Frequency (20 - 20000 Hz)</string>
+    <string name="dialog_save_preset">Save Current Tone Preset</string>
+    <string name="dialog_preset_name">Preset Name</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="load">Audition</string>
+    <string name="theme_auto">Theme: Auto</string>
+    <string name="theme_light">Theme: Light</string>
+    <string name="theme_dark">Theme: Dark</string>
+</resources>
