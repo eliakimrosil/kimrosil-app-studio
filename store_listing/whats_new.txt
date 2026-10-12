@@ -1,0 +1,2 @@
+Release v1.1.0 - SolderWick Electronics Tools
+Direct temperature steppers, 5 solder alloys, SMD package dwell limiters, iron tip geometry compensation, digital chronometer HUD with lockscreen sync, and tabular telemetry.

@@ -1,0 +1,991 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false"
+    android:scrollbars="none"
+    android:background="@color/m3_surface">
+
+    <LinearLayout
+        android:id="@+id/llRootContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- TopBar Header -->
+        <LinearLayout
+            android:id="@+id/llTopBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAppTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SolderWick"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_surface"
+                    android:contentDescription="Application title: SolderWick" />
+
+                <TextView
+                    android:id="@+id/tvOfflineBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="● OFFLINE LAB BENCH HUD"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:textColor="#10B981"
+                    android:contentDescription="Status: Offline Lab Bench HUD Active" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnQuickPreset"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/btn_m3_outlined"
+                android:text="Profile: 63/37"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Select PCB Soldering Preset Profile" />
+
+            <Button
+                android:id="@+id/btnThemeToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:background="@drawable/btn_m3_outlined"
+                android:text="Theme: Auto"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Toggle Light, Dark or Auto Bench HUD Theme" />
+        </LinearLayout>
+
+        <!-- HeroCard: Thermal Gauge, Direct Temperature Steppers & Live Countdown Chronometer -->
+        <LinearLayout
+            android:id="@+id/cardHero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="12dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/card_m3">
+
+            <com.kimrosil.solderwick.ThermalArcGaugeView
+                android:id="@+id/thermalGauge"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:contentDescription="Interactive thermal dwell countdown arc and setpoint gauge" />
+
+            <!-- Direct Temperature Stepper Controls -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="6dp">
+
+                <Button
+                    android:id="@+id/btnTempMinus"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:background="@drawable/btn_stepper"
+                    android:text="-"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_surface"
+                    android:contentDescription="Decrement soldering iron setpoint by 5 degrees Celsius" />
+
+                <TextView
+                    android:id="@+id/tvTipSetpoint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:text="320°C  /  608°F"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#F59E0B"
+                    android:contentDescription="Target tip temperature setpoint indicator" />
+
+                <Button
+                    android:id="@+id/btnTempPlus"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:background="@drawable/btn_stepper"
+                    android:text="+"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_surface"
+                    android:contentDescription="Increment soldering iron setpoint by 5 degrees Celsius" />
+            </LinearLayout>
+
+            <!-- Live Digital Countdown Chronometer -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DWELL CHRONOMETER: "
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_surface_variant" />
+
+                <TextView
+                    android:id="@+id/tvLiveChronometer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2.50s"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_primary"
+                    android:contentDescription="Live digital countdown chronometer display" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvDwellState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="BENCH PROFILE READY"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant"
+                android:contentDescription="Thermal State: Bench Profile Ready" />
+        </LinearLayout>
+
+        <!-- Primary Action Trigger & Reset Buttons -->
+        <LinearLayout
+            android:id="@+id/llTriggerDeck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <Button
+                android:id="@+id/btnDwellTrigger"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="3"
+                android:minHeight="48dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/btn_m3_primary"
+                android:text="START JOINT DWELL"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_primary"
+                android:contentDescription="Start or complete live thermal dwell chronometer" />
+
+            <Button
+                android:id="@+id/btnResetDwell"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:background="@drawable/btn_m3_outlined"
+                android:text="RESET"
+                android:textSize="13sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Reset chronometer dwell countdown" />
+        </LinearLayout>
+
+        <!-- Solder Alloy Composition Deck (5 Distinct Alloys) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SOLDER ALLOY COMPOSITION"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface_variant"
+            android:layout_marginBottom="6dp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/chipAlloy6337"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/chip_active"
+                    android:text="63/37 SnPb (183°C)"
+                    android:textSize="12sp"
+                    android:textColor="@color/m3_on_primary"
+                    android:contentDescription="Select 63/37 leaded eutectic solder alloy" />
+
+                <Button
+                    android:id="@+id/chipAlloy6040"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/chip_inactive"
+                    android:text="60/40 SnPb (190°C)"
+                    android:textSize="12sp"
+                    android:textColor="@color/m3_on_surface"
+                    android:contentDescription="Select 60/40 leaded standard solder alloy" />
+
+                <Button
+                    android:id="@+id/chipAlloySAC305"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/chip_inactive"
+                    android:text="SAC305 Lead-Free (217°C)"
+                    android:textSize="12sp"
+                    android:textColor="@color/m3_on_surface"
+                    android:contentDescription="Select lead-free SAC305 solder alloy" />
+
+                <Button
+                    android:id="@+id/chipAlloySn42Bi58"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/chip_inactive"
+                    android:text="Sn42Bi58 Low-Temp (138°C)"
+                    android:textSize="12sp"
+                    android:textColor="@color/m3_on_surface"
+                    android:contentDescription="Select Sn42Bi58 low melting point bismuth alloy" />
+
+                <Button
+                    android:id="@+id/chipAlloyChipQuik"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:background="@drawable/chip_inactive"
+                    android:text="ChipQuik Removal (58°C)"
+                    android:textSize="12sp"
+                    android:textColor="@color/m3_on_surface"
+                    android:contentDescription="Select ChipQuik low melt desoldering alloy" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- SMD Component Package Quick-Picker Deck -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SMD COMPONENT PACKAGE SENSITIVITY"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface_variant"
+            android:layout_marginBottom="6dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <Button
+                android:id="@+id/chipPkg0402"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/chip_inactive"
+                android:text="0402 (1.5s)"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Select 0402 micro package with 1.5 second dwell limit" />
+
+            <Button
+                android:id="@+id/chipPkg0805"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/chip_active"
+                android:text="0805 (2.5s)"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_primary"
+                android:contentDescription="Select 0603 or 0805 standard SMD package with 2.5 second dwell" />
+
+            <Button
+                android:id="@+id/chipPkgSOIC"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/chip_inactive"
+                android:text="SOIC/QFP"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Select SOIC or QFP multi-pin IC package" />
+
+            <Button
+                android:id="@+id/chipPkgDPAK"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:background="@drawable/chip_inactive"
+                android:text="DPAK/Power"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Select heavy DPAK power component package" />
+        </LinearLayout>
+
+        <!-- Soldering Iron Tip Geometry Deck -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SOLDERING IRON TIP GEOMETRY"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface_variant"
+            android:layout_marginBottom="6dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <Button
+                android:id="@+id/chipTipChisel"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/chip_active"
+                android:text="Chisel (0°)"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_primary"
+                android:contentDescription="Select Chisel standard soldering tip geometry" />
+
+            <Button
+                android:id="@+id/chipTipBevel"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/chip_inactive"
+                android:text="Bevel (+5°)"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Select Bevel high thermal mass tip geometry" />
+
+            <Button
+                android:id="@+id/chipTipConical"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/chip_inactive"
+                android:text="Conical (+15°)"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Select Conical micro point soldering tip geometry" />
+
+            <Button
+                android:id="@+id/chipTipKnife"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:background="@drawable/chip_inactive"
+                android:text="Knife (-5°)"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Select Knife drag solder tip geometry" />
+        </LinearLayout>
+
+        <!-- PCB Substrate Stackup Deck -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PCB COPPER STACKUP &amp; THERMAL LOAD"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface_variant"
+            android:layout_marginBottom="6dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <Button
+                android:id="@+id/chipLayer1"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/chip_inactive"
+                android:text="1-Layer"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Single layer PCB stackup" />
+
+            <Button
+                android:id="@+id/chipLayer2"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/chip_active"
+                android:text="2-Layer"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_primary"
+                android:contentDescription="Two layer standard PCB stackup" />
+
+            <Button
+                android:id="@+id/chipLayer4"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/chip_inactive"
+                android:text="4-Layer"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Four layer multilayer PCB stackup" />
+
+            <Button
+                android:id="@+id/chipLayer8"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:background="@drawable/chip_inactive"
+                android:text="8+ Layer"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="High dissipation 8 layer PCB stackup" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <Button
+                android:id="@+id/chipCopper1oz"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/chip_active"
+                android:text="1.0 oz Cu"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_primary"
+                android:contentDescription="Standard 1 ounce copper plane weight" />
+
+            <Button
+                android:id="@+id/chipCopper2oz"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/chip_inactive"
+                android:text="2.0 oz Cu"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Heavy 2 ounce copper plane weight" />
+
+            <Switch
+                android:id="@+id/switchGroundPlane"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:text="Ground Plane Load"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Toggle thermal dissipation ground plane connection" />
+        </LinearLayout>
+
+        <!-- Solder Wire Diameter Guage Selector Deck -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SOLDER WIRE DIAMETER &amp; PITCH MATRIX"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface_variant"
+            android:layout_marginBottom="6dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <Button
+                android:id="@+id/chipWire03"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/chip_inactive"
+                android:text="0.3mm"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Select 0.3mm fine pitch wire gauge" />
+
+            <Button
+                android:id="@+id/chipWire05"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/chip_active"
+                android:text="0.5mm"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_primary"
+                android:contentDescription="Select 0.5mm general SMD wire gauge" />
+
+            <Button
+                android:id="@+id/chipWire08"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/chip_inactive"
+                android:text="0.8mm"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Select 0.8mm through-hole wire gauge" />
+
+            <Button
+                android:id="@+id/chipWire10"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:background="@drawable/chip_inactive"
+                android:text="1.0mm"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Select 1.0mm heavy lug power wire gauge" />
+        </LinearLayout>
+
+        <!-- Tip Thermal Calibration Offset Stepper -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IRON CARTRIDGE THERMAL OFFSET (-30°C TO +30°C)"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface_variant"
+            android:layout_marginBottom="6dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <Button
+                android:id="@+id/btnOffsetMinus"
+                android:layout_width="52dp"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:background="@drawable/btn_stepper"
+                android:text="-5°"
+                android:textSize="13sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Decrement iron tip offset by 5 degrees Celsius" />
+
+            <EditText
+                android:id="@+id/etTipOffset"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/edittext_m3"
+                android:gravity="center"
+                android:inputType="numberSigned"
+                android:imeOptions="actionDone"
+                android:text="0"
+                android:textSize="15sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Tip thermal calibration offset input in Celsius" />
+
+            <Button
+                android:id="@+id/btnOffsetPlus"
+                android:layout_width="52dp"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:background="@drawable/btn_stepper"
+                android:text="+5°"
+                android:textSize="13sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Increment iron tip offset by 5 degrees Celsius" />
+
+            <Button
+                android:id="@+id/btnSavePreset"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/btn_m3_outlined"
+                android:text="Save Preset"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Persist custom bench solder profile" />
+        </LinearLayout>
+
+        <!-- 3-Phase State Containers -->
+        <LinearLayout
+            android:id="@+id/llEmptyState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/card_m3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Eutectic Bench Profile Calibrated"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Tap Start Joint Dwell, or customize parameters above."
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llActiveState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:visibility="gone"
+            android:background="@drawable/card_m3_high">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Active Joint Dwell Chronometer Running"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#F59E0B" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Live notification chronometer mirrored to lockscreen. Release iron tip immediately on chronometer tick completion."
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface" />
+        </LinearLayout>
+
+        <!-- Inspection Result Card (Tabular Telemetry) -->
+        <LinearLayout
+            android:id="@+id/llResultCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="14dp"
+            android:layout_marginBottom="12dp"
+            android:visibility="gone"
+            android:background="@drawable/card_m3">
+
+            <TextView
+                android:id="@+id/tvResultImcSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Optimal Joint: Proper intermetallic Cu6Sn5 boundary layer formed."
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#10B981" />
+
+            <!-- Tabular 2-Column Telemetry Grid -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingEnd="6dp">
+
+                    <TextView
+                        android:id="@+id/tvResultDwellPrimary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2.35s"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface" />
+
+                    <TextView
+                        android:id="@+id/tvResultDwellSub"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Actual Dwell (Budget 2.50s)"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/m3_outline_variant" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingStart="8dp">
+
+                    <TextView
+                        android:id="@+id/tvResultTempPrimary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="320°C"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface" />
+
+                    <TextView
+                        android:id="@+id/tvResultTempSub"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tip Setpoint (608°F)"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvResultMetrics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Stackup: 2-Layer 1.0oz Cu | Alloy: 63/37 SnPb"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant" />
+
+            <Button
+                android:id="@+id/btnShareResult"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_m3_outlined"
+                android:text="Share Inspection Report"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Export and share joint inspection metrics" />
+        </LinearLayout>
+
+        <!-- Flux Chemistry Auxiliary Deck -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="J-STD-004 FLUX CHEMISTRY MATRIX"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface_variant"
+            android:layout_marginBottom="6dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <Button
+                android:id="@+id/chipFluxRma"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/chip_active"
+                android:text="RMA Rosin"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_primary"
+                android:contentDescription="Select Rosin Mildly Activated flux chemistry" />
+
+            <Button
+                android:id="@+id/chipFluxNoClean"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/chip_inactive"
+                android:text="No-Clean"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Select No-Clean Rosin flux chemistry" />
+
+            <Button
+                android:id="@+id/chipFluxWaterSoluble"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:background="@drawable/chip_inactive"
+                android:text="Water-Soluble"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:contentDescription="Select Water-Soluble Organic Acid flux chemistry" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cardFluxInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/card_m3">
+
+            <TextView
+                android:id="@+id/tvFluxDesignation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ROL1 / RMA (Rosin Mildly Activated)"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="#F59E0B" />
+
+            <TextView
+                android:id="@+id/tvFluxActivation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Activation Window: 130°C – 160°C"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface" />
+
+            <TextView
+                android:id="@+id/tvFluxSolids"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Solids Content: 15% – 25%"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant" />
+
+            <TextView
+                android:id="@+id/tvFluxCleaning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Residue Cleanliness: 99% IPA scrub recommended"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant" />
+
+            <TextView
+                android:id="@+id/tvFluxApplication"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Recommended Application: Through-hole &amp; vintage repair"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant" />
+        </LinearLayout>
+
+        <!-- Bench History Badge -->
+        <TextView
+            android:id="@+id/tvJointCountBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Joints Logged: 0"
+            android:textSize="12sp"
+            android:textColor="@color/m3_on_surface_variant" />
+
+    </LinearLayout>
+</ScrollView>

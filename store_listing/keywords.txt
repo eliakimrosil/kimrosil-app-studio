@@ -1,0 +1,1 @@
+electronics reference, smd code lookup, pcb trace calculator, thermal dissipation calculator, resistor color code, workbench electronics utility, component marking decoder, hardware engineering tools
