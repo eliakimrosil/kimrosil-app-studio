@@ -662,5 +662,19 @@
     "privacy_policy": "https://apps.kimrosil.com/solder-wick/privacy.html",
     "icon": "assets/icons/solder-wick.svg",
     "updated_at": "2026-10-12T19:29:26.590184+00:00"
+  },
+  {
+    "slug": "belt-deflect",
+    "title": "BeltDeflect",
+    "category": "UTILITIES",
+    "tagline": "Offline V-belt deflection tension calculator and acoustic frequency gauge.",
+    "status": "PENDING_BUILD",
+    "branch": "app/belt-deflect",
+    "tag": "v1.0.0-belt-deflect",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-belt-deflect/belt-deflect.apk",
+    "landing_page": "https://apps.kimrosil.com/belt-deflect/",
+    "privacy_policy": "https://apps.kimrosil.com/belt-deflect/privacy.html",
+    "icon": "assets/icons/belt-deflect.svg",
+    "updated_at": "2026-10-12T19:54:09.060522+00:00"
   }
 ]
