@@ -614,12 +614,12 @@
     "tagline": "Offline flange dimensions, bolt patterns, and torque tables for pipefitters.",
     "status": "BUILT",
     "branch": "app/flangematch",
-    "tag": "v1.0.1-flangematch",
-    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-flangematch/flangematch.apk",
+    "tag": "v1.1.0-flangematch",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-flangematch/flangematch.apk",
     "landing_page": "https://apps.kimrosil.com/flangematch/",
     "privacy_policy": "https://apps.kimrosil.com/flangematch/privacy.html",
     "icon": "assets/icons/flangematch.svg",
-    "updated_at": "2026-10-12T12:46:10.795633+00:00"
+    "updated_at": "2026-10-12T18:49:34.520560+00:00"
   },
   {
     "slug": "camber-shim",
