@@ -1,5 +1,6 @@
-Welcome to TankPulse 1.0.0! Fast, private fuel tracking is here:
-• Quick Settings Tile for 5-second fill-up logging
-• Home Screen Glance Widget for live cost-per-mile stats
-• 100% offline local database with zero ads and zero logins
-• Accurate MPG and L/100km fuel economy calculations
+Initial release of TankPulse v1.0.0:
+• Offline fuel and mileage logging
+• Home screen widget and Quick Settings tile for rapid data entry
+• Real-time fuel economy calculations (MPG, L/100km, km/L)
+• Local CSV data export and backup
+• Multi-vehicle expense management

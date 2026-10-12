@@ -47,6 +47,29 @@ public class MainActivity extends Activity {
     private static final String KEY_THEME_MODE = "ui_theme_mode"; // 0: Auto, 1: Light, 2: Dark
     private static final String KEY_PRICE_PER_UNIT = "draft_price_unit";
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        SharedPreferences p = newBase.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        int themeMode = p.getInt(KEY_THEME_MODE, 0);
+        android.content.res.Configuration config = new android.content.res.Configuration(newBase.getResources().getConfiguration());
+        if (themeMode == 1) {
+            config.uiMode = (config.uiMode & ~android.content.res.Configuration.UI_MODE_NIGHT_MASK) | android.content.res.Configuration.UI_MODE_NIGHT_NO;
+        } else if (themeMode == 2) {
+            config.uiMode = (config.uiMode & ~android.content.res.Configuration.UI_MODE_NIGHT_MASK) | android.content.res.Configuration.UI_MODE_NIGHT_YES;
+        } else {
+            int sysNight = 0;
+            try {
+                sysNight = android.provider.Settings.Secure.getInt(newBase.getContentResolver(), "ui_night_mode", 0);
+            } catch (Exception ignored) {}
+            if (sysNight == 2) {
+                config.uiMode = (config.uiMode & ~android.content.res.Configuration.UI_MODE_NIGHT_MASK) | android.content.res.Configuration.UI_MODE_NIGHT_YES;
+            } else if (sysNight == 1) {
+                config.uiMode = (config.uiMode & ~android.content.res.Configuration.UI_MODE_NIGHT_MASK) | android.content.res.Configuration.UI_MODE_NIGHT_NO;
+            }
+        }
+        super.attachBaseContext(newBase.createConfigurationContext(config));
+    }
+
     // Data structures
     public static class FuelEntry {
         public long timestamp;
@@ -141,6 +164,14 @@ public class MainActivity extends Activity {
         loadPreferences();
         setupListeners();
         renderDashboardAndHistory();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            android.view.WindowInsetsController controller = getWindow().getInsetsController();
+            if (controller != null) {
+                boolean isNight = (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+                controller.setSystemBarsAppearance(isNight ? 0 : android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
+            }
+        }
     }
 
     private void bindViews() {
@@ -360,8 +391,7 @@ public class MainActivity extends Activity {
     private void cycleTheme() {
         currentThemeMode = (currentThemeMode + 1) % 3;
         prefs.edit().putInt(KEY_THEME_MODE, currentThemeMode).apply();
-        applyThemeMode(currentThemeMode);
-        updateThemeButtonLabel();
+        recreate();
     }
 
     private void updateThemeButtonLabel() {
@@ -371,18 +401,6 @@ public class MainActivity extends Activity {
             btnThemeToggle.setText("Theme: Dark");
         } else {
             btnThemeToggle.setText("Theme: Auto");
-        }
-    }
-
-    private void applyThemeMode(int mode) {
-        if (uiModeManager != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            if (mode == 1) {
-                uiModeManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_NO);
-            } else if (mode == 2) {
-                uiModeManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_YES);
-            } else {
-                uiModeManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_AUTO);
-            }
         }
     }
 

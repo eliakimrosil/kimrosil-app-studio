@@ -1,1 +1,1 @@
-TankPulse: Offline Fuel Log
+TankPulse Fuel Mileage Tracker

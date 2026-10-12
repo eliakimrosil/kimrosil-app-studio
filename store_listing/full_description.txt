@@ -1,21 +1,8 @@
-Tired of standing at the gas pump waiting for slow ads to load just to log a fill-up? Frustrated by mileage apps that demand an account, track your location, and lock basic CSV exports behind monthly subscriptions?
+TankPulse is an offline-first fuel log, vehicle mileage tracker, and fuel economy calculator designed for speed, clarity, and complete data privacy. Log fill-ups in seconds right at the pump without waiting for network connectivity or slow cloud synchronizations. TankPulse operates entirely on your device, requiring zero account sign-ups, zero logins, and zero unnecessary background data usage. KEY CAPABILITIES • Quick Entry at the Pump: Log odometer readings, fuel volume, and total cost in seconds via a lightweight dialog designed for one-handed operation. • Home Screen Widgets & Quick Settings: Add the Quick Settings Tile or Home Screen Glance Widget to record refuels instantly without opening the full application. • Fuel Economy Analytics: Automatically compute fuel consumption (MPG, L/100km, km/L, or MPG UK) alongside running costs per kilometer or mile. • Fully Offline Architecture: Never worry about weak cellular reception at remote fuel stations. All calculations and records run locally on your device. • Privacy-Centered Storage: Your driving and fueling logs remain strictly on your phone. TankPulse requires no account registration and contains zero analytics trackers. • Unrestricted Data Export: Backup your complete vehicle history anytime with standard CSV and spreadsheet exports directly to your local file storage. • Multi-Vehicle Management: Track individual logs, fuel expenses, and service milestones across multiple cars, motorcycles, or commercial fleet vehicles. • Metric and Imperial Support: Seamlessly switch between Liters, US Gallons, UK Gallons, Kilometers, and Miles with customizable currency formatting. Take control of your vehicle operating expenses with a streamlined, dependable fuel tracking tool.
 
-Meet TankPulse: the lightning-fast, 100% offline fuel economy and mileage tracker engineered for drivers who value speed, privacy, and simplicity.
 
-WHY DRIVERS CHOOSE TANKPULSE:
-Most fuel logs have turned into bloated subscription traps with forced cloud accounts and 30-second unskippable video ads. TankPulse strips away the bloat. Track fuel efficiency, calculate MPG or L/100km, monitor vehicle running costs, and log fill-ups instantly without an internet connection.
-
-CORE FEATURES:
-✓ 100% Offline Fuel Log: Works seamlessly with zero cellular reception at remote highway gas stations.
-✓ 5-Second Quick Settings Tile: Log fill-ups directly from your Android notification shade without opening the full app.
-✓ Home Screen Glance Widget: Live rolling Cost-Per-Mile and estimated distance-to-empty right on your home screen.
-✓ Zero Account Creation: No sign-ups, no emails, no passwords, and zero tracking.
-✓ Instant Fuel Economy Math: Accurate MPG, L/100km, km/L, cost per gallon, and cost per mile calculation.
-✓ Clean Expense Tracking: Keep tabs on fuel costs, service intervals, and vehicle operating expenses.
-✓ Lifetime Simplicity: No monthly fees. Unlimited core logging free forever.
-✓ One-Time Pro Upgrade: Unlock multi-vehicle garage management, tax-ready PDF/CSV expense exports, and true AMOLED dark mode.
-
-BUILT FOR PRIVACY & SPEED:
-TankPulse operates entirely on-device with modern Material 3 design. Your financial and travel logs never leave your phone. No telemetry, no third-party ad networks, and no cloud dependency.
-
-Take control of your car expenses today with TankPulse—the fast, private fuel tracker that respects your time and data.
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
