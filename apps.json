@@ -642,11 +642,11 @@
     "tagline": "Offline tap drill size charts, thread percentage calculations, and spindle RPM.",
     "status": "BUILT",
     "branch": "app/tap-drill",
-    "tag": "v1.2.0-tap-drill",
-    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.0-tap-drill/tap-drill.apk",
+    "tag": "v1.2.2-tap-drill",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.2-tap-drill/tap-drill.apk",
     "landing_page": "https://apps.kimrosil.com/tap-drill/",
     "privacy_policy": "https://apps.kimrosil.com/tap-drill/privacy.html",
     "icon": "assets/icons/tap-drill.svg",
-    "updated_at": "2026-10-12T17:48:06.429669+00:00"
+    "updated_at": "2026-10-12T18:05:21.469081+00:00"
   }
 ]
