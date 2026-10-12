@@ -1,4 +1,4 @@
-FlowStep is a bespoke, 100% offline-first native Android focus pacer engineered specifically for adults experiencing ADHD, task paralysis, and executive dysfunction.
+FlowStep is a 100% offline-first native Android focus pacer engineered specifically for adults experiencing ADHD, task paralysis, and executive dysfunction.
 
 When a task feels too large, executive function breaks down. Willpower cannot bridge that gap — but lowering the physical activation threshold can. FlowStep dissolves overwhelming obligations into single, 2-minute physical actions that require almost zero mental friction to initiate.
 

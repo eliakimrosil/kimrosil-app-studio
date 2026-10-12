@@ -1,2 +1,2 @@
 Release v1.0.0 - FlowStep
-Initial release of FlowStep: Bespoke single-step focus pacer for ADHD and executive dysfunction with 100% offline task atomizer
+Initial release of FlowStep: Single-step focus pacer for ADHD and executive dysfunction with 100% offline task atomizer
