@@ -1,0 +1,29 @@
+FlowStep is a bespoke, 100% offline-first native Android focus pacer engineered specifically for adults experiencing ADHD, task paralysis, and executive dysfunction.
+
+When a task feels too large, executive function breaks down. Willpower cannot bridge that gap — but lowering the physical activation threshold can. FlowStep dissolves overwhelming obligations into single, 2-minute physical actions that require almost zero mental friction to initiate.
+
+KEY CRAFTSMANSHIP & FEATURES:
+
+1. TUNNEL-VISION ACTIVE INTERFACE
+Never stare at overwhelming, anxiety-inducing 20-item to-do lists again. FlowStep displays exactly ONE single micro-action at a time. The rest of the world and future steps remain completely hidden until you tap complete.
+
+2. ORGANIC VISUAL PACER (NO TICKING CLOCKS)
+Standard countdown clocks trigger time blindness panic and adrenaline spikes. FlowStep's custom Canvas Visual Pacer breathes with a gentle, soothing expansion cycle to keep your brain anchored without ever displaying a single numeric countdown second.
+
+3. PHYSICAL ACTION ATOMIZER (OFFLINE + GEMINI BRIDGE)
+Type any vague or dreaded task ("Clean my room", "Do my taxes", "Reply to emails"). FlowStep instantly deconstructs it into 3 to 5 hyper-concrete physical movements that begin with real physical starting verbs ("Pick up", "Open", "Sit", "Wipe", "Gather"). Works 100% offline via local heuristic decomposition, with an optional Bring-Your-Own-Key Gemini 3.8 Flash cloud bridge.
+
+4. "TOO HARD" BREAKDOWN RESCUE
+Hit a wall of executive paralysis on a specific step? Tap "Too Hard? Break it Down" to instantly subdivide the stalled action into two 60-second micro-starter movements.
+
+5. 2-SECOND STRAY THOUGHT BUFFER
+ADHD minds are constantly interrupted by intrusive ideas ("Did I pay the electric bill?"). A persistent floating capture button lets you park any distraction into local device storage in under 2 seconds without losing your place or interrupting active flow.
+
+6. NON-PUNITIVE LIFETIME MOMENTUM
+Streaks punish neurodivergent brains when life happens. FlowStep replaces fragile streaks with a cumulative Lifetime Momentum Ledger. Every single completed step belongs to you forever. No broken streak alerts, no red penalty badges.
+
+100% PRIVACY & OFFLINE GUARANTEE:
+FlowStep contains zero advertising trackers, zero user telemetry, and zero background analytics. All data is persisted exclusively in local SQLite on your device.
+
+KimRosil App Studio Company
+Crafted with pride by Eliakim Rosil.

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- FlowStep Bespoke Dark Theme: Deep Obsidian Sanctuary Palette -->
+    <color name="colorPrimary">#72D09D</color>
+    <color name="colorPrimaryDark">#0E1612</color>
+    <color name="colorAccent">#FBBF24</color>
+    <color name="windowBackground">#0E1612</color>
+
+    <color name="m3_primary">#72D09D</color>
+    <color name="m3_on_primary">#053821</color>
+    <color name="m3_primary_container">#1A4F35</color>
+    <color name="m3_on_primary_container">#C9E8D6</color>
+
+    <color name="m3_secondary">#B5CBC0</color>
+    <color name="m3_on_secondary">#1E3529</color>
+    <color name="m3_secondary_container">#334D3F</color>
+    <color name="m3_on_secondary_container">#D4E4D9</color>
+
+    <color name="m3_tertiary">#FDE68A</color>
+    <color name="m3_on_tertiary">#451A03</color>
+    <color name="m3_tertiary_container">#78350F</color>
+    <color name="m3_on_tertiary_container">#FEF3C7</color>
+
+    <color name="m3_surface">#0E1612</color>
+    <color name="m3_surface_container">#16221C</color>
+    <color name="m3_surface_container_high">#1F2E26</color>
+    <color name="m3_surface_container_highest">#293A30</color>
+
+    <color name="m3_on_surface">#E2EAE4</color>
+    <color name="m3_on_surface_variant">#BAC8BE</color>
+    <color name="m3_outline">#86968B</color>
+    <color name="m3_outline_variant">#3F4E44</color>
+
+    <color name="m3_success">#72D09D</color>
+    <color name="m3_on_success">#053821</color>
+    <color name="m3_error">#EF5350</color>
+    <color name="m3_on_error">#5F1414</color>
+
+    <!-- Visual Pacer Colors -->
+    <color name="pacer_track">#213227</color>
+    <color name="pacer_arc">#72D09D</color>
+    <color name="pacer_glow">#4ADE80</color>
+
+    <!-- Legacy compatibility tokens -->
+    <color name="cardBackground">#16221C</color>
+    <color name="cardStroke">#293A30</color>
+    <color name="textPrimary">#E2EAE4</color>
+    <color name="textSecondary">#A2B2A7</color>
+    <color name="btnColor">#72D09D</color>
+    <color name="btnTextColor">#053821</color>
+    <color name="verbBadgeBg">#1D3E2C</color>
+    <color name="verbBadgeText">#86E3B0</color>
+    <color name="breakDownBtnBg">#3A2C11</color>
+    <color name="breakDownBtnText">#FCD34D</color>
+</resources>

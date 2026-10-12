@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FlowStep</string>
+    <string name="app_tagline">Single-Step Focus Pacer</string>
+    <string name="intake_hint">What task feels overwhelming right now?</string>
+    <string name="atomize_action">Atomize Task</string>
+    <string name="complete_step_action">✓ Step Complete (+1 Win)</string>
+    <string name="too_hard_action">⚡ Too Hard? Break it Down</string>
+    <string name="park_thought_action">+ Park Stray Thought</string>
+    <string name="tab_focus">Focus</string>
+    <string name="tab_thoughts">Parked Thoughts</string>
+    <string name="tab_momentum">Lifetime Wins</string>
+</resources>
