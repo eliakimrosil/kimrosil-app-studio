@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Industrial Workshop & Technical Drafting Color Palette -->
+    <color name="m3_surface">#0F141C</color>
+    <color name="m3_surface_container">#1A222D</color>
+    <color name="m3_primary">#00ADB5</color>
+    <color name="m3_on_primary">#002022</color>
+    <color name="m3_on_surface">#EEEEEE</color>
+    <color name="m3_on_surface_variant">#8A9BA8</color>
+    <color name="m3_outline">#2D3C4D</color>
+
+    <!-- Visual Sequence Indicator States -->
+    <color name="color_amber_active">#FFA500</color>
+    <color name="color_verified_green">#2ECC71</color>
+</resources>

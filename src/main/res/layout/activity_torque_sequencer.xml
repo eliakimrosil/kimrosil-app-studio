@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/m3_surface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Up-Navigation Toolbar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dp">
+
+            <Button
+                android:id="@+id/btnToolbarBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&lt; Back"
+                android:background="@drawable/bg_technical_button"
+                android:textColor="@color/m3_on_surface"
+                android:layout_marginEnd="12dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvSequencerTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ASME B16.5 4&quot; (150#)"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_surface" />
+
+                <TextView
+                    android:id="@+id/tvSequencerSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Socket: 1-1/16&quot; | Stud: 5/8&quot;"
+                    android:textSize="12sp"
+                    android:textColor="@color/m3_on_surface_variant" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Current Pass Indicator Badge -->
+        <TextView
+            android:id="@+id/tvPassBadge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pass 1: 30% Target (Star Sequence)"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_primary"
+            android:background="@drawable/bg_badge_primary"
+            android:padding="8dp"
+            android:gravity="center"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Radial Flange Canvas Gauge -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_workshop_card"
+            android:padding="12dp"
+            android:layout_marginBottom="14dp">
+
+            <com.kimrosil.flangematch.FlangeDiagramView
+                android:id="@+id/flangeHUD"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <!-- Active Bolt HUD Readout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_workshop_card"
+            android:padding="16dp"
+            android:layout_marginBottom="14dp">
+
+            <TextView
+                android:id="@+id/tvActiveBoltTelemetry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TIGHTEN BOLT #1"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/color_amber_active" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Stage Torque Setting:"
+                    android:textSize="14sp"
+                    android:textColor="@color/m3_on_surface_variant" />
+
+                <TextView
+                    android:id="@+id/tvStageTorqueReadout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18.0 ft-lb"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_primary" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvProgressReadout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bolt 1 of 8 (Completed: 0/8)"
+                android:textSize="13sp"
+                android:textColor="@color/m3_on_surface_variant" />
+        </LinearLayout>
+
+        <!-- Stepper Controls Deck -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <Button
+                android:id="@+id/btnPrevBolt"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:text="&lt; PREV BOLT"
+                android:background="@drawable/bg_technical_button"
+                android:textColor="@color/m3_on_surface"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnNextBolt"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:text="NEXT BOLT &gt;"
+                android:background="@drawable/bg_primary_tactile_button"
+                android:textColor="@color/m3_on_primary"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnConfirmPass"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="CONFIRM PASS &amp; ADVANCE STAGE"
+            android:background="@drawable/bg_technical_button"
+            android:textColor="@color/m3_on_surface"
+            android:textStyle="bold"
+            android:layout_marginBottom="14dp" />
+
+        <!-- Completion Modal/Banner -->
+        <LinearLayout
+            android:id="@+id/cardCompletionBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_completion_card"
+            android:padding="16dp"
+            android:visibility="gone"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100% FLANGE TORQUE VERIFIED"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/color_verified_green"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All 4 tightening passes (30%, 60%, 100%, and final 100% rotational check) executed cleanly according to ASME PCC-1 guidelines. Session saved in offline database."
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface"
+                android:layout_marginBottom="12dp" />
+
+            <Button
+                android:id="@+id/btnShareLog"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="EXPORT INSPECTION CERTIFICATE"
+                android:background="@drawable/bg_primary_tactile_button"
+                android:textColor="@color/m3_on_primary"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
