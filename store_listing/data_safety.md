@@ -33,4 +33,14 @@ The Application explicitly **DOES NOT** collect, store, or share any user data:
 ---
 
 ## 3. Sandboxed On-Device Operation
-All calculations, lookup tables, and preferences remain strictly within the sandboxed local application storage on the user's device and are never transmitted over any network.
+All calculations, records, and preferences remain strictly within the sandboxed local application storage on the user's device and are never transmitted over any network.
+
+---
+
+## 4. Google Play Console Form Submission Steps
+1. Navigate to **Google Play Console** → Select `FlangeMatch` (`com.kimrosil.flangematch`).
+2. Go to **Policy and programs** → **App content** → **Data safety** → Click **Manage** (or **Start**).
+3. Under **Data collection and security**:
+   - Select **No** for "Does your app collect or share any of the required user data types?".
+4. Click **Next** → Review the summary (all categories show 'No data collected').
+5. Click **Save** / **Submit**.

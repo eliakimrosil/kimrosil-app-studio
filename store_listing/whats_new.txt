@@ -1,2 +1,1 @@
-Release v1.0.1 - FlangeMatch
-Initial release: Offline ASME pipe flange and bolt torque calculator
+Initial release of FlangeMatch v1.0.0. Features offline ASME/ANSI flange dimensions, stud bolt specifications, wrench sizes, cross-pattern torque sequences, and instant search indexing.
