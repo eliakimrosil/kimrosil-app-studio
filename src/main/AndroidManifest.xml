@@ -4,7 +4,7 @@
     android:versionCode="1"
     android:versionName="1.0.0">
 
-    <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="33" />
+    <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="34" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
@@ -19,7 +19,7 @@
             android:exported="true"
             android:resizeableActivity="true"
             android:supportsPictureInPicture="true"
-            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboardHidden|uiMode">
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
