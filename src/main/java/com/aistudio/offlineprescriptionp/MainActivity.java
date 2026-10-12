@@ -128,6 +128,32 @@ public class MainActivity extends Activity {
     private int selectedMedicationIndex = -1;
 
     @Override
+    protected void attachBaseContext(Context newBase) {
+        SharedPreferences sp = newBase.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        int mode = sp.getInt(KEY_THEME_MODE, 0); // 0=Auto, 1=Light, 2=Dark
+        
+        boolean isDark;
+        if (mode == 1) {
+            isDark = false;
+        } else if (mode == 2) {
+            isDark = true;
+        } else {
+            int sysSetting = android.provider.Settings.Secure.getInt(newBase.getContentResolver(), "ui_night_mode", 0);
+            if (sysSetting == 2) {
+                isDark = true;
+            } else if (sysSetting == 1) {
+                isDark = false;
+            } else {
+                isDark = (newBase.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+            }
+        }
+
+        Configuration config = new Configuration(newBase.getResources().getConfiguration());
+        config.uiMode = (config.uiMode & ~Configuration.UI_MODE_NIGHT_MASK) | (isDark ? Configuration.UI_MODE_NIGHT_YES : Configuration.UI_MODE_NIGHT_NO);
+        super.attachBaseContext(newBase.createConfigurationContext(config));
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -143,6 +169,15 @@ public class MainActivity extends Activity {
         }
 
         setContentView(R.layout.activity_main);
+
+        boolean isNight = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            android.view.WindowInsetsController controller = getWindow().getInsetsController();
+            if (controller != null) {
+                int appearance = isNight ? 0 : (android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS | android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS);
+                controller.setSystemBarsAppearance(appearance, android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS | android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS);
+            }
+        }
 
         prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -216,29 +251,8 @@ public class MainActivity extends Activity {
 
     private void cycleThemeMode() {
         currentThemeMode = (currentThemeMode + 1) % 3;
-        prefs.edit().putInt(KEY_THEME_MODE, currentThemeMode).apply();
-        applyThemeMode(currentThemeMode);
-        updateThemeToggleLabel();
-    }
-
-    private void applyThemeMode(int mode) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            UiModeManager uiModeManager = (UiModeManager) getSystemService(Context.UI_MODE_SERVICE);
-            if (uiModeManager != null) {
-                switch (mode) {
-                    case 1:
-                        uiModeManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_NO);
-                        break;
-                    case 2:
-                        uiModeManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_YES);
-                        break;
-                    case 0:
-                    default:
-                        uiModeManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_AUTO);
-                        break;
-                }
-            }
-        }
+        prefs.edit().putInt(KEY_THEME_MODE, currentThemeMode).commit();
+        recreate();
     }
 
     private void updateThemeToggleLabel() {
@@ -707,7 +721,10 @@ public class MainActivity extends Activity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        // Preserves UI tree state & scroll positions seamlessly across desktop window resize
+        if (currentThemeMode == 0) {
+            recreate();
+            return;
+        }
         renderMedicationList();
         updateSentinelDashboard();
     }

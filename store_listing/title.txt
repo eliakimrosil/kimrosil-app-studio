@@ -1,1 +1,1 @@
-DoseGuard: Med & Refill Alert
+DoseGuard
