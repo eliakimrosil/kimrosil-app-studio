@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- DevSysMonitor Material 3 Expressive Light Theme -->
-    <color name="background">#F8F9FA</color>
-    <color name="card_bg">#FFFFFF</color>
-    <color name="card_stroke">#E0E3E7</color>
-    <color name="primary">#006874</color>
-    <color name="primary_variant">#00838F</color>
-    <color name="accent">#006E1C</color>
-    <color name="text_primary">#191C1D</color>
-    <color name="text_secondary">#6F797A</color>
-    <color name="battery_green">#006E1C</color>
-    <color name="battery_orange">#994600</color>
+    <!-- Material 3 Expressive Light Theme Color Tokens -->
+    <color name="colorPrimary">#006874</color>
+    <color name="colorPrimaryDark">#F4FAFA</color>
+    <color name="colorAccent">#006874</color>
+    <color name="windowBackground">#F4FAFA</color>
+
+    <color name="m3_primary">#006874</color>
+    <color name="m3_on_primary">#FFFFFF</color>
+    <color name="m3_primary_container">#97F0FF</color>
+    <color name="m3_on_primary_container">#001F24</color>
+
+    <color name="m3_secondary">#4A6267</color>
+    <color name="m3_on_secondary">#FFFFFF</color>
+    <color name="m3_secondary_container">#CDE7EC</color>
+    <color name="m3_on_secondary_container">#051F23</color>
+
+    <color name="m3_tertiary">#525E7D</color>
+    <color name="m3_on_tertiary">#FFFFFF</color>
+    <color name="m3_tertiary_container">#DAE2FF</color>
+    <color name="m3_on_tertiary_container">#0E1B37</color>
+
+    <color name="m3_surface">#F4FAFA</color>
+    <color name="m3_surface_container">#E7EFF0</color>
+    <color name="m3_surface_container_high">#E1EAEB</color>
+    <color name="m3_surface_container_highest">#DBE4E5</color>
+
+    <color name="m3_on_surface">#161D1E</color>
+    <color name="m3_on_surface_variant">#3F484A</color>
+    <color name="m3_outline">#6F797B</color>
+    <color name="m3_outline_variant">#BFC8CA</color>
+
+    <color name="m3_success">#1B6D36</color>
+    <color name="m3_on_success">#FFFFFF</color>
+    <color name="m3_error">#BA1A1A</color>
+    <color name="m3_on_error">#FFFFFF</color>
+
+    <!-- Legacy compatibility aliases -->
+    <color name="cardBackground">#E7EFF0</color>
+    <color name="cardStroke">#BFC8CA</color>
+    <color name="textPrimary">#161D1E</color>
+    <color name="textSecondary">#3F484A</color>
+    <color name="btnColor">#006874</color>
+    <color name="btnTextColor">#FFFFFF</color>
 </resources>

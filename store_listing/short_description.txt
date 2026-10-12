@@ -1,0 +1,1 @@
+Track CPU, GPU, memory, battery, and device hardware diagnostics in real time.

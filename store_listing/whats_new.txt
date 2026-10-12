@@ -1,0 +1,1 @@
+Initial release of DevSys Hardware Monitor v1.0.0. Real-time CPU, RAM, battery, thermal, and sensor diagnostics with offline-first monitoring.

@@ -1,0 +1,1 @@
+hardware monitor, cpu monitor, system diagnostics, device info, ram monitor, battery health, developer tools, hardware info, thermal monitor
