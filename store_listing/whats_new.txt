@@ -1,1 +1,6 @@
-Welcome to IronPulse v1.0.0! Initial release featuring 100% offline logging, built-in PPL, Upper/Lower, and 5x5 routines, automatic rest timer with vibration cues, and complete local volume tracking.
+Initial release of IronPulse.
+- Built-in training templates: PPL, Upper/Lower, and 5x5 routines
+- Rapid set, weight, and rep logger with progressive overload cues
+- Configurable rest timer with haptic vibration alerts
+- Workout history vault with volume and tonnage metrics
+- 100% offline local storage

@@ -1,30 +1,56 @@
-# Privacy Policy for IronPulse
+# Privacy Policy for IronPulse: Offline Workout Program & Gym Tracker
 
-**Effective Date:** October 1, 2026
+*Last Updated: October 9, 2026*
 
-IronPulse ("we", "our", or "the app") is designed with a strict offline-first, privacy-by-design architecture. Your workout data belongs exclusively to you.
+This privacy policy applies to the Android mobile application **IronPulse: Offline Workout Program & Gym Tracker** (the "Application"), developed and published by Eliakim Rosil ("we", "us", or "our") under the KimRosil App Studio developer portfolio (https://apps.kimrosil.com).
 
-### 1. Information Collection and Storage
-- **No Personal Data Collected:** IronPulse does not collect, transmit, store, or sell any personal information, names, email addresses, device identifiers, or biometric data.
-- **No Account Required:** You can use all features of IronPulse without creating an account or logging in.
-- **100% Local Storage:** All workout routines, logs, set histories, and app settings are stored locally on your device using native local storage (SharedPreferences / local database). 
+The Application is distributed via the Google Play Store, official APK releases, and https://apps.kimrosil.com/workout-program-tracker/.
 
-### 2. Network and Internet Access
-- IronPulse operates 100% offline.
-- The app does not require or request internet permissions for its core tracking functionality.
-- No data is ever transmitted to external servers, cloud providers, or third parties.
+---
 
-### 3. Third-Party Analytics and Advertising
-- IronPulse contains **no third-party advertising SDKs**.
-- IronPulse contains **no third-party tracking or behavioral analytics tools** (such as Google Analytics or Firebase Crashlytics).
+### 1. Offline-First Architecture & Sandboxed Local Storage
+The Application is engineered as an offline-first mobile utility: *Minimalist offline workout program tracker with progressive overload logging and auto rest timer.*
+- **Personal Information:** We do NOT collect, harvest, store, or transmit personal identity details (such as names, email addresses, phone numbers, contacts, or location history) to any proprietary developer servers.
+- **Sandboxed Local Storage:** Any user inputs, notes, item records, history logs, or user preferences are stored strictly on your local device within Android's sandboxed storage (`SharedPreferences`, Room, or local SQLite database). Your personal application records never leave your physical device.
+- **Data Deletion:** Uninstalling the Application or clearing its storage via Android Settings (`Settings > Apps > IronPulse: Offline Workout Program & Gym Tracker > Storage > Clear Data`) permanently and irreversibly deletes all locally saved records.
 
-### 4. Data Retention and Deletion
-Because all data is stored exclusively on your device, you have complete control over your information at all times:
-- Clearing the app's cache or data through your Android device settings will permanently remove all saved workouts and preferences.
-- Uninstalling IronPulse will delete all associated local application files.
+### 2. Advertising & Monetization (Google AdMob)
+To support ongoing independent development and keep our utility applications free to users, the Application may display advertisements served by **Google AdMob** (a service provided by Google LLC).
 
-### 5. Policy Updates
-If we update our privacy practices, any changes will be reflected in an updated version of this document. However, our commitment to 100% local, offline execution remains core to our philosophy.
+When advertisements are displayed, the Google Mobile Ads SDK may automatically process certain pseudonymous device information strictly for advertising delivery, contextual ad frequency capping, fraud prevention, and performance diagnostics:
+- **Device & Advertising Identifiers:** Google Advertising ID (AAID / GAID) for ad attribution and frequency capping.
+- **Approximate Location:** General, non-precise location inferred from your IP address (country or city level) to serve regionally relevant ads.
+- **Diagnostics & SDK Performance:** Ad interaction events, crash diagnostics, and device characteristics (e.g. device model, Android OS version).
 
-### 6. Contact Us
-If you have any questions or feedback regarding this Privacy Policy, please contact us via our developer listing page.
+For more information on how Google processes and protects advertising data, please review:
+- **Google Privacy Policy:** https://policies.google.com/privacy
+- **Google Advertising Technologies:** https://policies.google.com/technologies/ads
+- **How Google uses information from sites or apps that use our services:** https://policies.google.com/technologies/partner-sites
+
+#### User Controls & Opting Out of Personalized Ads
+You can reset or delete your Google Advertising ID or opt out of personalized advertisements at any time directly through your Android device settings:
+1. Open Android **Settings**.
+2. Go to **Google** → **Ads** (or **Security & Privacy** → **Privacy** → **Ads** on Android 12+).
+3. Tap **Delete advertising ID** or enable **Opt out of Ads Personalization**.
+
+### 3. Permissions & Device Access
+The Application requests only minimal, standard Android platform permissions strictly required to perform local utility operations:
+- **`POST_NOTIFICATIONS`**: Display on-device alarm notifications and timer countdown alerts when timers expire. No alert content is transmitted remotely.
+- **`VIBRATE`**: Provide tactile haptic alarms and cue alerts upon timer completion.
+
+Any requested device permissions are executed strictly on-device to power the requested utility features. The Application never sells, brokers, or exfiltrates permission-derived data.
+
+### 4. Children's Privacy (COPPA & Families Compliance)
+The Application is designed as a general-audience utility and is not directed at children under the age of 13 (or under 16 in the European Union). We do not knowingly collect personal information from children. If you believe personal data has inadvertently been processed, please contact us immediately so we can promptly address the matter.
+
+### 5. Master Privacy Policy & Developer Profile
+This privacy policy is part of the unified KimRosil App Studio developer portfolio. For our developer-wide data safety commitments, please visit:
+- **Master Developer Privacy Policy:** https://apps.kimrosil.com/privacy.html
+- **Official Showcase:** https://apps.kimrosil.com/workout-program-tracker/
+
+### 6. Contact Information
+If you have any questions, inquiries, or support requests regarding this Privacy Policy or your data rights, please contact:
+- **Developer:** Eliakim Rosil
+- **Email:** eliakimrosil@gmail.com
+- **Website:** https://apps.kimrosil.com
+- **Project Repository:** https://github.com/eliakimrosil/kimrosil-app-studio

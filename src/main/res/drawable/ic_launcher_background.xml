@@ -6,17 +6,15 @@
     android:viewportHeight="108">
     <!-- Solid Base Layer -->
     <path
-        android:fillColor="#022C22"
+        android:fillColor="#180B0B"
         android:pathData="M0,0h108v108h-108z" />
     
-        <!-- Circular Mint Elevation Disc -->
         <path
-            android:fillColor="#064E3B"
+            android:fillColor="#2D1212"
             android:pathData="M54,16a38,38 0 1 1 0,76a38,38 0 1 1 0,-76" />
-        <!-- Subtle Division Axis -->
         <path
-            android:strokeColor="#047857"
+            android:strokeColor="#4E1A1A"
             android:strokeWidth="1.5"
-            android:pathData="M24,54h60" />
+            android:pathData="M54,24a30,30 0 1 1 0,60a30,30 0 1 1 0,-60" />
         
 </vector>

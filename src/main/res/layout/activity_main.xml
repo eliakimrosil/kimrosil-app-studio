@@ -39,7 +39,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Material 3 Expressive Offline Gym Tracker"
+                    android:text="Pro Offline Strength &amp; Conditioning Studio"
                     android:textColor="@color/m3_on_surface_variant"
                     android:textSize="13sp"
                     android:layout_marginTop="2dp" />

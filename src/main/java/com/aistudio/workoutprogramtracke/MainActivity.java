@@ -263,7 +263,7 @@ public class MainActivity extends Activity {
                     label = "Dark OLED";
                 } else if (nextMode == 2) {
                     nightMode = UiModeManager.MODE_NIGHT_NO;
-                    label = "Light Expressive";
+                    label = "Light Mode";
                 }
                 ui.setApplicationNightMode(nightMode);
                 updateThemeButtonLabel(nextMode);
