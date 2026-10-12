@@ -9,6 +9,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.media.projection.MediaProjectionManager;
 import android.net.Uri;
 import android.os.Build;
@@ -17,6 +20,9 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowInsetsController;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -88,10 +94,93 @@ public class MainActivity extends Activity implements StreamService.StreamListen
     private Spinner spinnerBitrate;
     private Spinner spinnerAudio;
     private EditText etPort;
+    private TextView btnThemeToggle;
+
+    private static final String PREFS_NAME = "screenstream_prefs";
+    private static final String KEY_THEME_MODE = "theme_mode";
+    public static final int THEME_SYSTEM = 0;
+    public static final int THEME_LIGHT = 1;
+    public static final int THEME_DARK = 2;
 
     private StreamConfig config;
     private StreamService streamService;
     private boolean isBound = false;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        int mode = newBase.getSharedPreferences(PREFS_NAME, MODE_PRIVATE).getInt(KEY_THEME_MODE, THEME_SYSTEM);
+        if (mode != THEME_SYSTEM) {
+            Configuration overrideConfig = new Configuration();
+            overrideConfig.uiMode = (mode == THEME_LIGHT ? Configuration.UI_MODE_NIGHT_NO : Configuration.UI_MODE_NIGHT_YES)
+                    | (newBase.getResources().getConfiguration().uiMode & ~Configuration.UI_MODE_NIGHT_MASK);
+            applyOverrideConfiguration(overrideConfig);
+        }
+        super.attachBaseContext(newBase);
+    }
+
+    private int getSavedThemeMode() {
+        return getSharedPreferences(PREFS_NAME, MODE_PRIVATE).getInt(KEY_THEME_MODE, THEME_SYSTEM);
+    }
+
+    private void saveThemeMode(int mode) {
+        getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit().putInt(KEY_THEME_MODE, mode).apply();
+    }
+
+    private void applySystemBarAppearance() {
+        Window window = getWindow();
+        int nightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        boolean isNight = (nightMode == Configuration.UI_MODE_NIGHT_YES);
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(getColor(R.color.background));
+        window.setNavigationBarColor(getColor(R.color.background));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            WindowInsetsController controller = window.getInsetsController();
+            if (controller != null) {
+                int flags = WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS;
+                controller.setSystemBarsAppearance(isNight ? 0 : flags, flags);
+            }
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            View decor = window.getDecorView();
+            int flags = decor.getSystemUiVisibility();
+            if (isNight) {
+                flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    flags &= ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+                }
+            } else {
+                flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    flags |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+                }
+            }
+            decor.setSystemUiVisibility(flags);
+        }
+    }
+
+    private void updateThemeToggleBtn() {
+        if (btnThemeToggle == null) return;
+        int mode = getSavedThemeMode();
+        int nightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        boolean isNight = (nightMode == Configuration.UI_MODE_NIGHT_YES);
+
+        if (mode == THEME_SYSTEM) {
+            btnThemeToggle.setText(isNight ? "🌓 Auto (Dark)" : "🌓 Auto (Light)");
+        } else if (mode == THEME_LIGHT) {
+            btnThemeToggle.setText("☀️ Day");
+        } else {
+            btnThemeToggle.setText("🌙 Night");
+        }
+    }
+
+    private void toggleTheme() {
+        int current = getSavedThemeMode();
+        int next = (current + 1) % 3;
+        saveThemeMode(next);
+        saveCurrentConfig();
+        recreate();
+    }
 
     private final ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -118,6 +207,8 @@ public class MainActivity extends Activity implements StreamService.StreamListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        applySystemBarAppearance();
+
         config = StreamConfig.load(this);
 
         initViews();
@@ -132,6 +223,8 @@ public class MainActivity extends Activity implements StreamService.StreamListen
     @Override
     protected void onResume() {
         super.onResume();
+        applySystemBarAppearance();
+        updateThemeToggleBtn();
         if (floatingCameraManager != null && switchFloatingCamera != null) {
             boolean showing = floatingCameraManager.isShowing();
             switchFloatingCamera.setChecked(showing);
@@ -163,6 +256,12 @@ public class MainActivity extends Activity implements StreamService.StreamListen
 
     private void initViews() {
         tvStatusBadge = findViewById(R.id.tv_status_badge);
+        btnThemeToggle = findViewById(R.id.btn_theme_toggle);
+        if (btnThemeToggle != null) {
+            updateThemeToggleBtn();
+            btnThemeToggle.setOnClickListener(v -> toggleTheme());
+        }
+
         tabRtsp = findViewById(R.id.tab_rtsp);
         tabYoutube = findViewById(R.id.tab_youtube);
         tabFacebook = findViewById(R.id.tab_facebook);
@@ -467,12 +566,18 @@ public class MainActivity extends Activity implements StreamService.StreamListen
                     "480p (854x480)"
             };
         }
-        ArrayAdapter<String> resAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, resolutions);
+        ArrayAdapter<String> resAdapter = createHighContrastSpinnerAdapter(resolutions);
         spinnerResolution.setAdapter(resAdapter);
         if (config.targetDimension == 1080) spinnerResolution.setSelection(1);
         else if (config.targetDimension <= 0) spinnerResolution.setSelection(2);
         else if (config.targetDimension == 480) spinnerResolution.setSelection(3);
         else spinnerResolution.setSelection(0);
+    }
+
+    private ArrayAdapter<String> createHighContrastSpinnerAdapter(String[] items) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_spinner, items);
+        adapter.setDropDownViewResource(R.layout.item_spinner_dropdown);
+        return adapter;
     }
 
     private void setupSpinners() {
@@ -481,7 +586,7 @@ public class MainActivity extends Activity implements StreamService.StreamListen
                 "Portrait 9:16 (Shorts)",
                 "Auto (Screen)"
         };
-        ArrayAdapter<String> oriAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, orientations);
+        ArrayAdapter<String> oriAdapter = createHighContrastSpinnerAdapter(orientations);
         spinnerOrientation.setAdapter(oriAdapter);
         if (config.orientation == StreamConfig.ORIENTATION_PORTRAIT) spinnerOrientation.setSelection(1);
         else if (config.orientation == StreamConfig.ORIENTATION_AUTO) spinnerOrientation.setSelection(2);
@@ -490,7 +595,7 @@ public class MainActivity extends Activity implements StreamService.StreamListen
         updateResolutionSpinner();
 
         String[] fpsList = new String[]{"60 FPS (Gaming)", "30 FPS (Standard)", "90 FPS (High Refresh)", "120 FPS (Ultra Smooth)"};
-        ArrayAdapter<String> fpsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, fpsList);
+        ArrayAdapter<String> fpsAdapter = createHighContrastSpinnerAdapter(fpsList);
         spinnerFps.setAdapter(fpsAdapter);
         if (config.fps == 30) spinnerFps.setSelection(1);
         else if (config.fps == 90) spinnerFps.setSelection(2);
@@ -498,7 +603,7 @@ public class MainActivity extends Activity implements StreamService.StreamListen
         else spinnerFps.setSelection(0);
 
         String[] bitrates = new String[]{"4 Mbps", "6 Mbps", "8 Mbps", "12 Mbps", "16 Mbps", "20 Mbps"};
-        ArrayAdapter<String> bitrateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, bitrates);
+        ArrayAdapter<String> bitrateAdapter = createHighContrastSpinnerAdapter(bitrates);
         spinnerBitrate.setAdapter(bitrateAdapter);
         int br = config.bitrate / 1000000;
         if (br <= 4) spinnerBitrate.setSelection(0);
@@ -509,7 +614,7 @@ public class MainActivity extends Activity implements StreamService.StreamListen
         else spinnerBitrate.setSelection(5);
 
         String[] audios = new String[]{"Internal Game Audio", "Microphone", "Mute (No Audio)", "Game Audio + Mic (Dual)"};
-        ArrayAdapter<String> audioAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, audios);
+        ArrayAdapter<String> audioAdapter = createHighContrastSpinnerAdapter(audios);
         spinnerAudio.setAdapter(audioAdapter);
         spinnerAudio.setSelection(Math.min(config.audioMode, 3));
 
@@ -743,7 +848,7 @@ public class MainActivity extends Activity implements StreamService.StreamListen
 
             btnStreamAction.setText(R.string.stop_stream);
             btnStreamAction.setBackgroundResource(R.drawable.btn_stop);
-            btnStreamAction.setTextColor(getColor(R.color.text_primary));
+            btnStreamAction.setTextColor(Color.WHITE);
 
             if (targetInfo != null && targetInfo.startsWith("rtsp://")) {
                 tvRtspUrl.setText(targetInfo);
@@ -875,9 +980,24 @@ public class MainActivity extends Activity implements StreamService.StreamListen
                 } else if (keyCode == KeyEvent.KEYCODE_F && switchFloatingCamera != null) {
                     switchFloatingCamera.setChecked(!switchFloatingCamera.isChecked());
                     return true;
+                } else if (keyCode == KeyEvent.KEYCODE_T) {
+                    toggleTheme();
+                    return true;
                 }
             }
         }
         return super.dispatchKeyEvent(event);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        applySystemBarAppearance();
+        updateThemeToggleBtn();
+        int mode = getSavedThemeMode();
+        if (mode == THEME_SYSTEM) {
+            saveCurrentConfig();
+            recreate();
+        }
     }
 }

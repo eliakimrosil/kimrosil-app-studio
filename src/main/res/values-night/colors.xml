@@ -1,32 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- ScreenStream RTSP Material 3 Expressive Dark OLED Theme -->
-    <color name="background">#0F1015</color>
-    <color name="surface">#16171F</color>
-    <color name="surface_container">#1C1D26</color>
-    <color name="surface_container_high">#252733</color>
-    <color name="surface_variant">#2E303E</color>
-    <color name="outline">#3A3C4D</color>
-    <color name="outline_variant">#252733</color>
+    <!-- Material 3 Expressive Dark Theme Color Tokens -->
+    <color name="colorPrimary">#4FD8EB</color>
+    <color name="colorPrimaryDark">#0E1516</color>
+    <color name="colorAccent">#4FD8EB</color>
+    <color name="windowBackground">#0E1516</color>
 
-    <color name="primary">#4EE2EC</color>
-    <color name="primary_dim">#319B9F</color>
-    <color name="primary_container">#0E383B</color>
-    <color name="on_primary">#002022</color>
-    <color name="on_primary_container">#82F5FE</color>
+    <color name="m3_primary">#4FD8EB</color>
+    <color name="m3_on_primary">#00363D</color>
+    <color name="m3_primary_container">#004E58</color>
+    <color name="m3_on_primary_container">#97F0FF</color>
 
-    <color name="secondary">#A8C7FA</color>
-    <color name="secondary_container">#28354A</color>
+    <color name="m3_secondary">#B1CBD0</color>
+    <color name="m3_on_secondary">#1C3438</color>
+    <color name="m3_secondary_container">#334B4F</color>
+    <color name="m3_on_secondary_container">#CDE7EC</color>
 
-    <color name="live_green">#00E676</color>
-    <color name="live_green_bg">#123824</color>
-    <color name="stop_red">#FF5252</color>
-    <color name="stop_red_bg">#421A1A</color>
+    <color name="m3_tertiary">#BAC6EA</color>
+    <color name="m3_on_tertiary">#24304D</color>
+    <color name="m3_tertiary_container">#3B4664</color>
+    <color name="m3_on_tertiary_container">#DAE2FF</color>
 
-    <color name="text_primary">#F4F6FB</color>
-    <color name="text_secondary">#9DA3AE</color>
-    <color name="text_tertiary">#666B77</color>
+    <color name="m3_surface">#0E1516</color>
+    <color name="m3_surface_container">#182122</color>
+    <color name="m3_surface_container_high">#232B2D</color>
+    <color name="m3_surface_container_highest">#2D3637</color>
 
-    <color name="badge_bg">#252733</color>
-    <color name="code_box_bg">#12131A</color>
+    <color name="m3_on_surface">#DEE4E5</color>
+    <color name="m3_on_surface_variant">#BFC8CA</color>
+    <color name="m3_outline">#899294</color>
+    <color name="m3_outline_variant">#3F484A</color>
+
+    <color name="m3_success">#7FDC95</color>
+    <color name="m3_on_success">#00391A</color>
+    <color name="m3_error">#FFB4AB</color>
+    <color name="m3_on_error">#690005</color>
+
+    <!-- Legacy compatibility aliases -->
+    <color name="cardBackground">#182122</color>
+    <color name="cardStroke">#3F484A</color>
+    <color name="textPrimary">#DEE4E5</color>
+    <color name="textSecondary">#BFC8CA</color>
+    <color name="btnColor">#4FD8EB</color>
+    <color name="btnTextColor">#00363D</color>
 </resources>

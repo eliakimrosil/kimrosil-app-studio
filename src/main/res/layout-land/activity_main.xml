@@ -39,6 +39,25 @@
                 android:textSize="12sp" />
         </LinearLayout>
 
+        <!-- Day / Night Mode Toggle Button -->
+        <TextView
+            android:id="@+id/btn_theme_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_secondary"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:layout_marginEnd="8dp"
+            android:text="☀️ Day"
+            android:textColor="@color/text_primary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.02"
+            android:clickable="true"
+            android:focusable="true" />
+
         <!-- Status Pill Badge -->
         <TextView
             android:id="@+id/tv_status_badge"
@@ -696,6 +715,7 @@
                             android:layout_height="40dp"
                             android:layout_weight="1"
                             android:background="@drawable/code_box"
+                            android:popupBackground="@drawable/card_surface"
                             android:paddingStart="12dp"
                             android:paddingEnd="12dp" />
                     </LinearLayout>
@@ -719,6 +739,7 @@
                             android:layout_height="40dp"
                             android:layout_weight="1"
                             android:background="@drawable/code_box"
+                            android:popupBackground="@drawable/card_surface"
                             android:paddingStart="12dp"
                             android:paddingEnd="12dp" />
                     </LinearLayout>
@@ -742,6 +763,7 @@
                             android:layout_height="40dp"
                             android:layout_weight="1"
                             android:background="@drawable/code_box"
+                            android:popupBackground="@drawable/card_surface"
                             android:paddingStart="12dp"
                             android:paddingEnd="12dp" />
                     </LinearLayout>
@@ -765,6 +787,7 @@
                             android:layout_height="40dp"
                             android:layout_weight="1"
                             android:background="@drawable/code_box"
+                            android:popupBackground="@drawable/card_surface"
                             android:paddingStart="12dp"
                             android:paddingEnd="12dp" />
                     </LinearLayout>
@@ -788,6 +811,7 @@
                             android:layout_height="40dp"
                             android:layout_weight="1"
                             android:background="@drawable/code_box"
+                            android:popupBackground="@drawable/card_surface"
                             android:paddingStart="12dp"
                             android:paddingEnd="12dp" />
                     </LinearLayout>

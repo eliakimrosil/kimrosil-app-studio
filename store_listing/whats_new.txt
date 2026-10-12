@@ -1,0 +1,5 @@
+Initial release of ScreenStream RTSP Broadcaster (v1.0.0).
+- Low-latency RTSP video streaming over local network
+- Hardware-accelerated screen capture and encoding
+- Configurable resolution, bitrate, and frame rate settings
+- Integrated connection management and stream status dashboard
