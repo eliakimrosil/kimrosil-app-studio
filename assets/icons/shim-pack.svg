@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:android="http://schemas.android.com/apk/res/android" viewBox="0 0 108 108" width="512" height="512">
+    <rect width="108" height="108" rx="24" fill="#0F172A" />
+    <!-- Background Decor -->
+    
+        <!-- Geometric Elevation Shield -->
+        <path
+            fill="#1E293B"
+            d="M24,18h60a12,12 0 0 1 12,12v48a12,12 0 0 1 -12,12h-60a12,12 0 0 1 -12,-12v-48a12,12 0 0 1 12,-12z" />
+        <path
+            stroke="#334155"
+            stroke-width="1.2"
+            d="M24,36h60 M24,54h60 M24,72h60" />
+        
+    <!-- Foreground Iconography -->
+    
+        <!-- Premium Multi-Tone Focal Symbol -->
+        <path
+            fill="#38BDF8"
+            d="M54,24L78,38v32L54,84L30,70V38Z" />
+        <path
+            fill="#0284C7"
+            d="M54,30L72,40v26L54,76L36,66V40Z" />
+        <path
+            fill="#FFFFFF"
+            d="M54,40a14,14 0 1 1 0,28a14,14 0 1 1 0,-28 M52,48h4v12h-4z M52,64h4v4h-4z" />
+        
+</svg>
