@@ -9,7 +9,10 @@
     <meta name="author" content="Eliakim Rosil">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://apps.kimrosil.com/">
-    <link rel="icon" type="image/svg+xml" href="assets/icons/kim-live-studio.svg">
+    <link rel="icon" type="image/svg+xml" href="https://apps.kimrosil.com/favicon.svg">
+    <link rel="alternate icon" href="https://apps.kimrosil.com/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://apps.kimrosil.com/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://apps.kimrosil.com/favicon.png">
 
     <!-- Google Search Console verification: set GOOGLE_SITE_VERIFICATION in .env -->
 
@@ -64,6 +67,27 @@
         }
         .container { max-width: 1200px; margin: 0 auto; width: 100%; }
         header { margin-bottom: 28px; text-align: center; }
+        .brand-logo-frame {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        .site-brand-logo {
+            width: 76px;
+            height: 76px;
+            border-radius: 20px;
+            background: #111827;
+            border: 1.5px solid #233152;
+            padding: 8px;
+            box-shadow: 0 10px 28px rgba(0, 229, 255, 0.2);
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s;
+        }
+        .site-brand-logo:hover {
+            transform: scale(1.08) rotate(-1deg);
+            box-shadow: 0 14px 36px rgba(0, 229, 255, 0.35);
+            border-color: #00E5FF;
+        }
         .brand-badge {
             display: inline-flex;
             align-items: center;
@@ -413,6 +437,9 @@
 <body>
     <div class="container">
         <header>
+            <div class="brand-logo-frame">
+                <img src="assets/icons/kim-live-studio.svg" alt="KimRosil App Studio" width="76" height="76" class="site-brand-logo">
+            </div>
             <div class="brand-badge">KIMROSIL APP STUDIO &bull; NATIVE ANDROID ECOSYSTEM</div>
             <h1>⚡ KimRosil App Studio</h1>
             <p class="subtitle">Suite of 50 high-performance, offline-first Android applications built natively on ARM64 with pure Java &amp; XML, zero bloat, and domain craftsmanship.</p>
