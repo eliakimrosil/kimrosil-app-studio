@@ -67,31 +67,6 @@
         }
         .container { max-width: 1200px; margin: 0 auto; width: 100%; }
         header { margin-bottom: 28px; text-align: center; }
-        .brand-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(0, 229, 255, 0.1);
-            border: 1px solid rgba(0, 229, 255, 0.3);
-            color: #00E5FF;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 14px;
-            max-width: 100%;
-            word-break: break-word;
-        }
-        .brand-badge::before {
-            content: "";
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #00E5FF;
-            box-shadow: 0 0 8px #00E5FF;
-            flex-shrink: 0;
-        }
         h1 {
             color: #FFFFFF;
             font-size: clamp(26px, 5.5vw, 38px);
@@ -352,7 +327,6 @@
         @media (max-width: 640px) {
             body { padding: 16px 12px; }
             header { margin-bottom: 20px; }
-            .brand-badge { font-size: 11px; padding: 4px 10px; }
             p.subtitle { margin-bottom: 18px; }
             .stats-bar { gap: 6px; margin-bottom: 20px; }
             .stat-chip { padding: 6px 12px; font-size: 12px; }
@@ -416,7 +390,6 @@
 <body>
     <div class="container">
         <header>
-            <div class="brand-badge">KIMROSIL APP STUDIO &bull; NATIVE ANDROID ECOSYSTEM</div>
             <h1>⚡ KimRosil App Studio</h1>
             <p class="subtitle">Suite of 50 high-performance, offline-first Android applications built natively on ARM64 with pure Java &amp; XML, zero bloat, and domain craftsmanship.</p>
             <div class="stats-bar">
