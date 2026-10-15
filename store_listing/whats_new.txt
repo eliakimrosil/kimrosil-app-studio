@@ -1,0 +1,7 @@
+Release v1.2.0 - ShimPack
+• Machinery Setup & Dial Sweep Controls: Added rapid clock position sweep steppers (12, 3, 6, 9 o'clock) and numeric-constrained input guards preventing string overflow.
+• Tactile Industrial Haptics: Integrated mechanical clock tick haptic feedback for dial sweep increments and foot solution card taps for gloved field operation.
+• State Preservation: Full configuration state retention across portrait/landscape orientation changes on plant inspection rounds.
+• Depleted Stock Inventory Manager: Flag exhausted shim sizes so the combinatorial solver automatically excludes missing thicknesses.
+• Quick Settings Tile & Notification HUD: Track live bolt-down progression and target thickness without keeping the app foregrounded.
+```

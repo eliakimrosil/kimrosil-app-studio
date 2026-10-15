@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Heavy Workshop Slate Theme Tokens -->
+    <color name="m3_surface">#0B0F17</color>
+    <color name="m3_surface_container">#131C2E</color>
+    <color name="m3_surface_container_high">#1E293B</color>
+    <color name="m3_surface_container_highest">#334155</color>
+    <color name="m3_primary">#38BDF8</color>
+    <color name="m3_primary_container">#0C4A6E</color>
+    <color name="m3_on_primary">#082F49</color>
+    <color name="m3_accent">#FBBF24</color>
+    <color name="m3_on_surface">#F8FAFC</color>
+    <color name="m3_on_surface_variant">#94A3B8</color>
+    <color name="m3_outline">#1E293B</color>
+    <color name="m3_outline_variant">#334155</color>
+    <color name="cardBackground">#131C2E</color>
+    <color name="cardStroke">#1E293B</color>
+    <color name="btnColor">#38BDF8</color>
+    <color name="btnTextColor">#082F49</color>
+</resources>

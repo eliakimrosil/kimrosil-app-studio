@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/m3_surface">
+
+    <!-- Top Action Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:background="@color/m3_surface_container">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SHIMPACK"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.08"
+            android:textColor="@color/m3_primary" />
+
+        <Button
+            android:id="@+id/btnStockManager"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
+            android:text="STOCK"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface"
+            android:background="@drawable/bg_topbar_button"
+            android:contentDescription="Manage physical slotted shim stock inventory"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:layout_marginRight="8dp" />
+
+        <Button
+            android:id="@+id/btnReset"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
+            android:text="RESET"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface"
+            android:background="@drawable/bg_topbar_button"
+            android:contentDescription="Reset sweep readings and machinery inputs"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:layout_marginRight="8dp" />
+
+        <Button
+            android:id="@+id/btnThemeToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
+            android:text="AUTO"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface"
+            android:background="@drawable/bg_topbar_button"
+            android:contentDescription="Toggle display mode between auto, light, and dark"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Mode & Unit Selectors -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <!-- Imperial / Metric Toggle -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_toggle_group"
+                    android:padding="2dp"
+                    android:layout_marginRight="6dp">
+
+                    <Button
+                        android:id="@+id/btnUnitImperial"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="IMPERIAL (MIL)"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_pill_selected"
+                        android:contentDescription="Select Imperial measurement system in mils and inches" />
+
+                    <Button
+                        android:id="@+id/btnUnitMetric"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="METRIC (MM)"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:contentDescription="Select Metric measurement system in millimeters" />
+                </LinearLayout>
+
+                <!-- Method Toggle: Rim-Face vs Reverse Dial -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_toggle_group"
+                    android:padding="2dp"
+                    android:layout_marginLeft="6dp">
+
+                    <Button
+                        android:id="@+id/btnMethodRimFace"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="RIM-FACE"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_pill_selected"
+                        android:contentDescription="Select Rim and Face indicator alignment method" />
+
+                    <Button
+                        android:id="@+id/btnMethodReverse"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="REV DIAL"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:contentDescription="Select Reverse Dial indicator alignment method" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Hero Card: Kinematic Cross-Section Canvas -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_frame"
+                android:padding="12dp"
+                android:layout_marginBottom="14dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="KINEMATIC SHAFT TELEMETRY"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.05"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <TextView
+                        android:id="@+id/tvToleranceBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="STATUS: CALIBRATING"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:background="@drawable/bg_badge"
+                        android:textColor="@color/m3_on_surface" />
+                </LinearLayout>
+
+                <com.kimrosil.shimpack.MotorAlignmentCanvasView
+                    android:id="@+id/alignmentMotorView"
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp"
+                    android:contentDescription="Interactive motor alignment diagram. Tap feet or coupling for details." />
+            </LinearLayout>
+
+            <!-- Quick Demo Presets -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:layout_marginBottom="14dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnPreset1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:text="1800 RPM PUMP"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_topbar_button"
+                        android:contentDescription="Load preset for 1800 RPM centrifugal pump"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:layout_marginRight="8dp" />
+
+                    <Button
+                        android:id="@+id/btnPreset2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:text="3600 RPM COMPRESSOR"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_topbar_button"
+                        android:contentDescription="Load preset for 3600 RPM screw compressor"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:layout_marginRight="8dp" />
+
+                    <Button
+                        android:id="@+id/btnPreset3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:text="1200 RPM SLURRY"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_topbar_button"
+                        android:contentDescription="Load preset for 1200 RPM slurry pump"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Machine Setup Parameters Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_frame"
+                android:padding="14dp"
+                android:layout_marginBottom="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1. MACHINE GEOMETRY SETUP"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_surface"
+                    android:layout_marginBottom="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <EditText
+                        android:id="@+id/etMachineTag"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="2"
+                        android:hint="Machine Tag"
+                        android:textSize="14sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_input_field"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:contentDescription="Machine identification tag"
+                        android:layout_marginRight="6dp" />
+
+                    <EditText
+                        android:id="@+id/etRpm"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:hint="RPM"
+                        android:textSize="14sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_input_field"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:contentDescription="Operating machine RPM"
+                        android:layout_marginLeft="6dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/etD1Front"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:hint="D1 Front"
+                        android:textSize="13sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_input_field"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:contentDescription="Coupling to front foot distance D1"
+                        android:layout_marginRight="4dp" />
+
+                    <EditText
+                        android:id="@+id/etD2Back"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:hint="D2 Back"
+                        android:textSize="13sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_input_field"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:contentDescription="Front foot to back foot distance D2"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginLeft="4dp" />
+
+                    <EditText
+                        android:id="@+id/etD3DialDiam"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:hint="Dial Dia"
+                        android:textSize="13sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_input_field"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:contentDescription="Indicator diameter or span D3"
+                        android:layout_marginLeft="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Dial Sweep Readings Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_frame"
+                android:padding="14dp"
+                android:layout_marginBottom="14dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="2. DIAL SWEEP READINGS (TIR)"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SWEEP STEPPERS"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary" />
+                </LinearLayout>
+
+                <!-- Clock Position Quick Stepper Controls -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <Button
+                        android:id="@+id/btnDial12"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="12:00\n(0°)"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_topbar_button"
+                        android:contentDescription="Dial sweep 12 o'clock top zero position"
+                        android:layout_marginRight="4dp" />
+
+                    <Button
+                        android:id="@+id/btnDial3"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="3:00\n(+90°)"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_topbar_button"
+                        android:contentDescription="Dial sweep 3 o'clock position"
+                        android:layout_marginRight="4dp" />
+
+                    <Button
+                        android:id="@+id/btnDial6"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="6:00\n(180°)"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_topbar_button"
+                        android:contentDescription="Dial sweep 6 o'clock bottom reading position"
+                        android:layout_marginRight="4dp" />
+
+                    <Button
+                        android:id="@+id/btnDial9"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="9:00\n(270°)"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_topbar_button"
+                        android:contentDescription="Dial sweep 9 o'clock position" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/etDialRimTir"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:hint="Rim TIR"
+                        android:textSize="13sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_input_field"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal|numberSigned"
+                        android:contentDescription="Rim total indicator reading"
+                        android:layout_marginRight="4dp" />
+
+                    <EditText
+                        android:id="@+id/etDialFaceTir"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:hint="Face TIR"
+                        android:textSize="13sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_input_field"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal|numberSigned"
+                        android:contentDescription="Face total indicator reading"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginLeft="4dp" />
+
+                    <EditText
+                        android:id="@+id/etIndicatorSag"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:hint="Dial Sag"
+                        android:textSize="13sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_input_field"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
+                        android:contentDescription="Bracket indicator sag calibration"
+                        android:layout_marginLeft="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Calculate Button -->
+            <Button
+                android:id="@+id/btnCalculateShims"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:minHeight="48dp"
+                android:text="CALCULATE &amp; OPTIMIZE SHIM STACKS"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:textColor="@color/m3_on_primary"
+                android:background="@drawable/bg_primary_button"
+                android:contentDescription="Compute machinery alignment targets and optimize slotted shim stacks"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Empty Guidance State -->
+            <LinearLayout
+                android:id="@+id/llEmptyState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_card_frame"
+                android:padding="24dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NO CALCULATION ACTIVE"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_surface"
+                    android:layout_marginBottom="6dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Input machine geometry &amp; dial sweep TIR or choose a quick demo preset above to generate optimal shim stacks."
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:textColor="@color/m3_on_surface_variant" />
+            </LinearLayout>
+
+            <!-- Result Deck: Shim Stack Optimization Recipes -->
+            <LinearLayout
+                android:id="@+id/llResultDeck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Front Foot F1 Card -->
+                <LinearLayout
+                    android:id="@+id/cardF1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card_frame"
+                    android:padding="14dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:contentDescription="Front Foot F1 solution card. Tap to inspect stack."
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="4dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="INBOARD FOOT (F1)"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvF1ActionDirection"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ADD SHIM (+)"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_primary" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvF1ShimTarget"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+0.038"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface"
+                        android:contentDescription="Front Foot F1 calculated primary thickness target" />
+
+                    <TextView
+                        android:id="@+id/tvF1ShimSubtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="in (0.965 mm)"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="6dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="OPTIMIZED STACK SANDWICH (MAX 4 SHIMS):"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="2dp" />
+
+                    <TextView
+                        android:id="@+id/tvF1StackRecipe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="[ 0.025 + 0.010 + 0.003 ]"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_accent" />
+                </LinearLayout>
+
+                <!-- Back Foot F2 Card -->
+                <LinearLayout
+                    android:id="@+id/cardF2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card_frame"
+                    android:padding="14dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:contentDescription="Back Foot F2 solution card. Tap to inspect stack."
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="4dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="OUTBOARD FOOT (F2)"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvF2ActionDirection"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ADD SHIM (+)"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_primary" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvF2ShimTarget"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+0.075"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface"
+                        android:contentDescription="Back Foot F2 calculated primary thickness target" />
+
+                    <TextView
+                        android:id="@+id/tvF2ShimSubtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="in (1.905 mm)"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="6dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="OPTIMIZED STACK SANDWICH (MAX 4 SHIMS):"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="2dp" />
+
+                    <TextView
+                        android:id="@+id/tvF2StackRecipe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="[ 0.050 + 0.025 ]"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_accent" />
+                </LinearLayout>
+
+                <!-- Two-Column Tabular Error Telemetry -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_card_frame"
+                    android:padding="12dp"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ANGULAR TILT"
+                            android:textSize="11sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvAngularErrorVal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.042°"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface" />
+
+                        <TextView
+                            android:id="@+id/tvAngularErrorSub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.73 mrad"
+                            android:textSize="11sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="48dp"
+                        android:background="@color/m3_outline" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PARALLEL OFFSET"
+                            android:textSize="11sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvParallelErrorVal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.003 in"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface" />
+
+                        <TextView
+                            android:id="@+id/tvParallelErrorSub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.076 mm"
+                            android:textSize="11sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Audit Persistence & Export Actions -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="24dp">
+
+                    <Button
+                        android:id="@+id/btnSaveRecord"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:layout_weight="1"
+                        android:text="SAVE AUDIT"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_topbar_button"
+                        android:contentDescription="Save alignment record to local database"
+                        android:layout_marginRight="6dp" />
+
+                    <Button
+                        android:id="@+id/btnShareReport"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:layout_weight="1"
+                        android:text="EXPORT REPORT"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/bg_topbar_button"
+                        android:contentDescription="Export alignment audit report to clipboard or field technician"
+                        android:layout_marginLeft="6dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

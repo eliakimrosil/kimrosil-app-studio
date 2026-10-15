@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ShimPack</string>
+    <string name="qs_tile_label">ShimPack Alignment</string>
+    <string name="qs_tile_description">Track live motor alignment and shim stack bolt-down</string>
+    <string name="notification_channel_name">ShimPack Live Bolt-Down HUD</string>
+    <string name="notification_channel_desc">Real-time machinery alignment shim stack progression</string>
+</resources>

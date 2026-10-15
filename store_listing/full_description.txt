@@ -1,0 +1,8 @@
+Experience ShimPack - the clean, fast, and completely private Android tool. - 100% Offline: No internet connection required. - Zero Ads & No Subscriptions: Clean experience without interruptions. - Modern Material 3 Design: Built with Android's latest UI standards. - Private & Secure: Your data never leaves your device.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
