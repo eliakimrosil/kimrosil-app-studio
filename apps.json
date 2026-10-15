@@ -690,5 +690,19 @@
     "privacy_policy": "https://apps.kimrosil.com/comb-gauge/privacy.html",
     "icon": "assets/icons/comb-gauge.svg",
     "updated_at": "2026-10-15T13:44:29.507268+00:00"
+  },
+  {
+    "slug": "shim-pack",
+    "title": "ShimPack",
+    "category": "UTILITIES",
+    "tagline": "Fast, private and offline tools & utilities / engineering utility.",
+    "status": "BUILT",
+    "branch": "app/shim-pack",
+    "tag": "v1.2.0-shim-pack",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.0-shim-pack/shim-pack.apk",
+    "landing_page": "https://apps.kimrosil.com/shim-pack/",
+    "privacy_policy": "https://apps.kimrosil.com/shim-pack/privacy.html",
+    "icon": "assets/icons/shim-pack.svg",
+    "updated_at": "2026-10-15T18:34:18.464380+00:00"
   }
 ]
