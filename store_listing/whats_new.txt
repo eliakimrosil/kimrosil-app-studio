@@ -1,2 +1,2 @@
-Release v1.0.0 - CombGauge
-Initial release of CombGauge offline wet and dry film coat calculator
+Release v1.0.1 - CombGauge
+v1.0.1: Industrial safety hazard theme & tailored HUD styling
