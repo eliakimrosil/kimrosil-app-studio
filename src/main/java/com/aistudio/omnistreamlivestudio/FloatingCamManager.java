@@ -84,12 +84,12 @@ public class FloatingCamManager {
     private TextView pipBubbleBadge;
 
     // Camera Header Controls
+    private View pipHeaderScroll;
     private View pipHeader;
     private TextView tvPipBadge;
     private TextView btnPipRotate;
     private TextView btnPipFlip;
     private TextView btnPipShape;
-    private TextView btnPipSize;
     private TextView btnPipDock;
     private TextView btnPipClose;
     private TextureView tvPipCamera;
@@ -99,13 +99,12 @@ public class FloatingCamManager {
     private final Runnable hideControlsRunnable = this::hideControls;
     private boolean areControlsVisible = true;
 
-    // Aspect Ratio & Sizing
+    // Aspect Ratio & Compact Gaming Sizing
     private AspectRatio currentAspectRatio = AspectRatio.PORTRAIT_3_4;
-    private static final float[] PRESET_WIDTHS_DP = {135f, 175f, 230f};
-    private int currentSizeIndex = 1; // 175dp default
-    private float currentWidthDp = 175f;
-    private static final float MIN_WIDTH_DP = 100f;
-    private static final float MAX_WIDTH_DP = 320f;
+    private static final float DEFAULT_WIDTH_DP = 110f; // Compact gaming starting size
+    private static final float MIN_WIDTH_DP = 64f;      // Ultra-compact corner thumbnail
+    private static final float MAX_WIDTH_DP = 220f;     // Non-intrusive upper limit
+    private float currentWidthDp = DEFAULT_WIDTH_DP;
 
     // Docked Edge Bubble State
     private boolean isDocked = false;
@@ -164,6 +163,10 @@ public class FloatingCamManager {
 
     public boolean isCircleShape() {
         return currentAspectRatio == AspectRatio.CIRCLE;
+    }
+
+    public float getCurrentWidthDp() {
+        return currentWidthDp;
     }
 
     public void setLiveState(boolean isLive) {
@@ -309,14 +312,6 @@ public class FloatingCamManager {
         resetControlsTimer();
     }
 
-    public void cycleSize() {
-        if (isDocked) return;
-        currentSizeIndex = (currentSizeIndex + 1) % PRESET_WIDTHS_DP.length;
-        currentWidthDp = PRESET_WIDTHS_DP[currentSizeIndex];
-        updateWindowDimensions();
-        resetControlsTimer();
-    }
-
     private void updateWindowDimensions() {
         if (!isOverlayShowing || overlayView == null || windowParams == null || windowManager == null || isDocked) return;
 
@@ -362,13 +357,13 @@ public class FloatingCamManager {
 
         DisplayMetrics metrics = appContext.getResources().getDisplayMetrics();
         float density = metrics.density;
-        int bubbleSizePx = (int) (54 * density);
+        int bubbleSizePx = (int) (52 * density);
 
         // Snap bubble to nearest screen edge
         int screenWidth = metrics.widthPixels;
         int targetX = (windowParams.x + windowParams.width / 2 < screenWidth / 2)
-                ? (int) (6 * density)
-                : screenWidth - bubbleSizePx - (int) (6 * density);
+                ? (int) (4 * density)
+                : screenWidth - bubbleSizePx - (int) (4 * density);
 
         windowParams.width = bubbleSizePx;
         windowParams.height = bubbleSizePx;
@@ -398,7 +393,7 @@ public class FloatingCamManager {
         float density = metrics.density;
         int screenWidth = metrics.widthPixels;
 
-        float widthDp = currentWidthDp > 0 ? currentWidthDp : PRESET_WIDTHS_DP[currentSizeIndex];
+        float widthDp = currentWidthDp > 0 ? currentWidthDp : DEFAULT_WIDTH_DP;
         int widthPx = (int) (widthDp * density);
         int heightPx;
 
@@ -420,7 +415,7 @@ public class FloatingCamManager {
         windowParams.height = savedHeightPx > 0 ? savedHeightPx : heightPx;
 
         if (windowParams.x + windowParams.width > screenWidth) {
-            windowParams.x = screenWidth - windowParams.width - (int) (12 * density);
+            windowParams.x = screenWidth - windowParams.width - (int) (8 * density);
         }
         clampPosition(windowParams);
 
@@ -464,7 +459,7 @@ public class FloatingCamManager {
                     int top = (h - minDim) / 2;
                     outline.setOval(left, top, left + minDim, top + minDim);
                 } else {
-                    outline.setRoundRect(0, 0, w, h, 16 * density);
+                    outline.setRoundRect(0, 0, w, h, 14 * density);
                 }
             }
         });
@@ -478,11 +473,10 @@ public class FloatingCamManager {
             if (btnPipRotate != null) btnPipRotate.setVisibility(View.GONE);
             if (btnPipFlip != null) btnPipFlip.setVisibility(View.GONE);
             if (btnPipShape != null) btnPipShape.setVisibility(View.GONE);
-            if (btnPipSize != null) btnPipSize.setVisibility(View.GONE);
             if (btnPipDock != null) btnPipDock.setVisibility(View.GONE);
             if (btnPipClose != null) btnPipClose.setVisibility(View.GONE);
-            if (pipHeader != null) {
-                pipHeader.setBackgroundColor(Color.TRANSPARENT);
+            if (pipHeaderScroll != null) {
+                pipHeaderScroll.setBackgroundColor(Color.TRANSPARENT);
             }
         });
     }
@@ -495,11 +489,10 @@ public class FloatingCamManager {
             if (btnPipRotate != null) btnPipRotate.setVisibility(View.VISIBLE);
             if (btnPipFlip != null) btnPipFlip.setVisibility(View.VISIBLE);
             if (btnPipShape != null) btnPipShape.setVisibility(View.VISIBLE);
-            if (btnPipSize != null) btnPipSize.setVisibility(View.VISIBLE);
             if (btnPipDock != null) btnPipDock.setVisibility(View.VISIBLE);
             if (btnPipClose != null) btnPipClose.setVisibility(View.VISIBLE);
-            if (pipHeader != null) {
-                pipHeader.setBackgroundResource(R.drawable.bg_floating_cam_header);
+            if (pipHeaderScroll != null) {
+                pipHeaderScroll.setBackgroundResource(R.drawable.bg_floating_cam_header);
             }
         });
         mainHandler.postDelayed(hideControlsRunnable, AUTO_HIDE_DELAY_MS);
@@ -516,7 +509,7 @@ public class FloatingCamManager {
         DisplayMetrics metrics = appContext.getResources().getDisplayMetrics();
         int screenWidth = metrics.widthPixels;
         float density = metrics.density;
-        int marginPx = isDocked ? (int) (6 * density) : (int) (12 * density);
+        int marginPx = isDocked ? (int) (4 * density) : (int) (8 * density);
 
         int viewWidth = windowParams.width;
         int centerX = windowParams.x + (viewWidth / 2);
@@ -529,7 +522,7 @@ public class FloatingCamManager {
         }
 
         ValueAnimator animator = ValueAnimator.ofInt(windowParams.x, targetX);
-        animator.setDuration(220);
+        animator.setDuration(200);
         animator.setInterpolator(new DecelerateInterpolator(1.5f));
         animator.addUpdateListener(animation -> {
             if (overlayView != null && isOverlayShowing) {
@@ -550,12 +543,12 @@ public class FloatingCamManager {
         pipBubbleContainer = overlayView.findViewById(R.id.pipBubbleContainer);
         pipBubbleBadge = overlayView.findViewById(R.id.pipBubbleBadge);
 
+        pipHeaderScroll = overlayView.findViewById(R.id.pipHeaderScroll);
         pipHeader = overlayView.findViewById(R.id.pipHeader);
         tvPipBadge = overlayView.findViewById(R.id.pipBadge);
         btnPipRotate = overlayView.findViewById(R.id.pipBtnRotate);
         btnPipFlip = overlayView.findViewById(R.id.pipBtnFlip);
         btnPipShape = overlayView.findViewById(R.id.pipBtnShape);
-        btnPipSize = overlayView.findViewById(R.id.pipBtnSize);
         btnPipDock = overlayView.findViewById(R.id.pipBtnDock);
         btnPipClose = overlayView.findViewById(R.id.pipBtnClose);
         tvPipCamera = overlayView.findViewById(R.id.pipCameraView);
@@ -579,8 +572,8 @@ public class FloatingCamManager {
                 PixelFormat.TRANSLUCENT
         );
         windowParams.gravity = Gravity.TOP | Gravity.START;
-        windowParams.x = (int) (12 * density);
-        windowParams.y = (int) (80 * density);
+        windowParams.x = (int) (8 * density);
+        windowParams.y = (int) (70 * density);
 
         setupOverlayListeners();
         applyShapeOutline();
@@ -610,13 +603,6 @@ public class FloatingCamManager {
             });
         }
 
-        if (btnPipSize != null) {
-            btnPipSize.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                cycleSize();
-            });
-        }
-
         if (btnPipDock != null) {
             btnPipDock.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
@@ -635,8 +621,8 @@ public class FloatingCamManager {
             @Override
             public boolean onScale(ScaleGestureDetector detector) {
                 float factor = detector.getScaleFactor();
-                float newWidth = currentWidthDp * factor;
-                if (newWidth >= MIN_WIDTH_DP && newWidth <= MAX_WIDTH_DP) {
+                float newWidth = Math.max(MIN_WIDTH_DP, Math.min(MAX_WIDTH_DP, currentWidthDp * factor));
+                if (Math.abs(newWidth - currentWidthDp) > 0.5f) {
                     currentWidthDp = newWidth;
                     updateWindowDimensions();
                 }
@@ -761,9 +747,9 @@ public class FloatingCamManager {
         int screenHeight = metrics.heightPixels;
 
         if (params.x < 0) params.x = 0;
-        if (params.y < 40) params.y = 40; // Keep below notification status bar
+        if (params.y < 30) params.y = 30; // Keep below notification status bar
         if (params.x + params.width > screenWidth) params.x = screenWidth - params.width;
-        if (params.y + params.height > screenHeight - 60) params.y = screenHeight - params.height - 60;
+        if (params.y + params.height > screenHeight - 40) params.y = screenHeight - params.height - 40;
     }
 
     // =========================================================================
