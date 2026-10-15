@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/m3_surface"
+    android:padding="16dp">
+
+    <!-- Dialog Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="4dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Coating Formulations"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:textColor="@color/m3_on_surface" />
+
+        <Button
+            android:id="@+id/btnClosePresets"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:text="Close"
+            android:textSize="11sp"
+            android:background="@drawable/bg_topbar_button"
+            android:textColor="@color/m3_on_surface"
+            android:paddingHorizontal="12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Standard specifications &amp; custom formulations"
+            android:textSize="11sp"
+            android:singleLine="true"
+            android:textColor="@color/m3_on_surface_variant" />
+
+        <Button
+            android:id="@+id/btnCreatePreset"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:text="+ Custom"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:background="@drawable/btn_primary"
+            android:textColor="@color/m3_on_primary"
+            android:paddingHorizontal="12dp" />
+    </LinearLayout>
+
+    <!-- Category Filter Chips -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_marginBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/chipFilterAll"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="All"
+                android:textSize="11sp"
+                android:background="@drawable/btn_secondary"
+                android:textColor="@color/m3_on_surface"
+                android:paddingHorizontal="12dp"
+                android:layout_marginEnd="6dp" />
+
+            <Button
+                android:id="@+id/chipFilterZinc"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Zinc"
+                android:textSize="11sp"
+                android:background="@drawable/btn_secondary"
+                android:textColor="@color/m3_on_surface"
+                android:paddingHorizontal="12dp"
+                android:layout_marginEnd="6dp" />
+
+            <Button
+                android:id="@+id/chipFilterEpoxy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Epoxy"
+                android:textSize="11sp"
+                android:background="@drawable/btn_secondary"
+                android:textColor="@color/m3_on_surface"
+                android:paddingHorizontal="12dp"
+                android:layout_marginEnd="6dp" />
+
+            <Button
+                android:id="@+id/chipFilterPoly"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Polyurethane"
+                android:textSize="11sp"
+                android:background="@drawable/btn_secondary"
+                android:textColor="@color/m3_on_surface"
+                android:paddingHorizontal="12dp"
+                android:layout_marginEnd="6dp" />
+
+            <Button
+                android:id="@+id/chipFilterHighSolids"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="High-Solids"
+                android:textSize="11sp"
+                android:background="@drawable/btn_secondary"
+                android:textColor="@color/m3_on_surface"
+                android:paddingHorizontal="12dp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- New Custom Preset Form Container -->
+    <LinearLayout
+        android:id="@+id/llAddPresetForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/card_m3_high"
+        android:padding="12dp"
+        android:visibility="gone"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Custom Formulation"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:textColor="@color/m3_on_surface"
+            android:layout_marginBottom="6dp" />
+
+        <EditText
+            android:id="@+id/edtPresetName"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:hint="Coating Name"
+            android:textSize="13sp"
+            android:textColor="@color/m3_on_surface"
+            android:background="@drawable/edittext_m3"
+            android:paddingHorizontal="10dp"
+            android:layout_marginBottom="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edtPresetSolids"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:hint="Solids % (1-100)"
+                android:textSize="12sp"
+                android:inputType="numberDecimal"
+                android:textColor="@color/m3_on_surface"
+                android:background="@drawable/edittext_m3"
+                android:paddingHorizontal="10dp"
+                android:layout_marginEnd="6dp" />
+
+            <EditText
+                android:id="@+id/edtMaxThinnerLimit"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:hint="Max Thinner %"
+                android:textSize="12sp"
+                android:inputType="numberDecimal"
+                android:textColor="@color/m3_on_surface"
+                android:background="@drawable/edittext_m3"
+                android:paddingHorizontal="10dp"
+                android:layout_marginEnd="6dp" />
+
+            <Button
+                android:id="@+id/btnSavePreset"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:text="Save"
+                android:textSize="12sp"
+                android:background="@drawable/btn_primary"
+                android:textColor="@color/m3_on_primary" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Presets List -->
+    <ListView
+        android:id="@+id/rvCoatingPresets"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:divider="@color/m3_outline"
+        android:dividerHeight="1dp" />
+</LinearLayout>

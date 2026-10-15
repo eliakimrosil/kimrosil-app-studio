@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/m3_surface"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADJUST COMB TOOTH READING"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:textColor="@color/m3_on_surface_variant"
+        android:layout_marginBottom="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="8dp">
+
+        <Button
+            android:id="@+id/btnTileMinus"
+            android:layout_width="52dp"
+            android:layout_height="match_parent"
+            android:text="-"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:background="@drawable/btn_stepper"
+            android:textColor="@color/m3_on_surface" />
+
+        <TextView
+            android:id="@+id/tvTileValue"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="160"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_primary" />
+
+        <TextView
+            android:id="@+id/tvTileUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="µm"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface"
+            android:layout_marginEnd="10dp" />
+
+        <Button
+            android:id="@+id/btnTilePlus"
+            android:layout_width="52dp"
+            android:layout_height="match_parent"
+            android:text="+"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:background="@drawable/btn_stepper"
+            android:textColor="@color/m3_on_surface" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvTileDftResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Expected DFT: 120 µm"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:textColor="@color/m3_on_surface_variant" />
+</LinearLayout>

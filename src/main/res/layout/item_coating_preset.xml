@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingVertical="10dp"
+    android:paddingHorizontal="4dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvPresetItemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Polyamide Epoxy Intermediate"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface" />
+
+        <TextView
+            android:id="@+id/tvPresetItemDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Epoxy • 75% Volume Solids • Max 15% Thinner"
+            android:textSize="11sp"
+            android:textColor="@color/m3_on_surface_variant"
+            android:layout_marginTop="2dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvPresetItemBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CUSTOM"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        android:textColor="@color/m3_primary"
+        android:background="@drawable/bg_topbar_button"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="2dp"
+        android:visibility="gone" />
+</LinearLayout>
