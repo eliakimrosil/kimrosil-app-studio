@@ -1,2 +1,2 @@
-Release v1.3.0 - KR Live Studio
-v1.3.0: Dual audio mixer, Privacy Shield, thermal HUD, RTMP auto-reconnect
+Release v1.4.0 - KR Live Studio
+v1.4.0: Floating camera magnetic edge snapping, docking bubble mode, continuous pinch-to-resize, and 4 aspect ratio presets (3:4, 16:9, 1:1, Circle).

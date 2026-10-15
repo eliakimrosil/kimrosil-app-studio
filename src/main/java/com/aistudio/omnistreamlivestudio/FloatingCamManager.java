@@ -1,8 +1,8 @@
 package com.aistudio.omnistreamlivestudio;
 
 import android.Manifest;
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -10,7 +10,6 @@ import android.graphics.Outline;
 import android.graphics.PixelFormat;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
-import android.view.ViewOutlineProvider;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
@@ -22,6 +21,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -30,10 +30,13 @@ import android.view.Gravity;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
+import android.view.ViewOutlineProvider;
 import android.view.WindowManager;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +50,25 @@ public class FloatingCamManager {
         void onFacecamToggled(boolean isShowing);
         void onCameraFlipped(boolean isFront);
         default void onCameraRotated(int rotationDegrees) {}
+        default void onCameraDocked(boolean isDocked) {}
+        default void onAspectRatioChanged(AspectRatio ratio) {}
+    }
+
+    public enum AspectRatio {
+        PORTRAIT_3_4("3:4 Portrait", 3f / 4f, "▯"),
+        LANDSCAPE_16_9("16:9 Widescreen", 16f / 9f, "▭"),
+        SQUARE_1_1("1:1 Square", 1f, "□"),
+        CIRCLE("Circular Mask", 1f, "◯");
+
+        public final String title;
+        public final float ratio; // width / height
+        public final String icon;
+
+        AspectRatio(String title, float ratio, String icon) {
+            this.title = title;
+            this.ratio = ratio;
+            this.icon = icon;
+        }
     }
 
     private static FloatingCamManager instance;
@@ -56,12 +78,19 @@ public class FloatingCamManager {
     private View overlayView;
     private WindowManager.LayoutParams windowParams;
 
+    // View Containers
+    private View pipCameraContainer;
+    private View pipBubbleContainer;
+    private TextView pipBubbleBadge;
+
+    // Camera Header Controls
     private View pipHeader;
     private TextView tvPipBadge;
     private TextView btnPipRotate;
     private TextView btnPipFlip;
     private TextView btnPipShape;
     private TextView btnPipSize;
+    private TextView btnPipDock;
     private TextView btnPipClose;
     private TextureView tvPipCamera;
 
@@ -70,8 +99,18 @@ public class FloatingCamManager {
     private final Runnable hideControlsRunnable = this::hideControls;
     private boolean areControlsVisible = true;
 
-    // Facecam Shape Mask (false: Studio Card, true: Circle)
-    private boolean isCircleShape = false;
+    // Aspect Ratio & Sizing
+    private AspectRatio currentAspectRatio = AspectRatio.PORTRAIT_3_4;
+    private static final float[] PRESET_WIDTHS_DP = {135f, 175f, 230f};
+    private int currentSizeIndex = 1; // 175dp default
+    private float currentWidthDp = 175f;
+    private static final float MIN_WIDTH_DP = 100f;
+    private static final float MAX_WIDTH_DP = 320f;
+
+    // Docked Edge Bubble State
+    private boolean isDocked = false;
+    private int savedWidthPx = 0;
+    private int savedHeightPx = 0;
 
     // Camera2 State
     private HandlerThread cameraThread;
@@ -87,14 +126,7 @@ public class FloatingCamManager {
     // Camera Rotation: 0 = 0° (Portrait), 90 = 90° (Landscape), 180 = 180° (Inverted), 270 = 270° (Rev. Landscape)
     private int currentRotationDegrees = 0;
 
-    // Window Sizing: 0 = Compact, 1 = Studio Medium (Default), 2 = Large
-    private int currentSizeIndex = 1;
-    private static final int[][] SIZES_DP = {
-            {140, 185}, // Compact
-            {175, 230}, // Medium (Default)
-            {220, 290}  // Large
-    };
-
+    private ScaleGestureDetector scaleGestureDetector;
     private StateListener stateListener;
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
 
@@ -118,22 +150,39 @@ public class FloatingCamManager {
         return isOverlayShowing;
     }
 
+    public boolean isDocked() {
+        return isDocked;
+    }
+
     public boolean isFrontCamera() {
         return isFrontCamera;
+    }
+
+    public AspectRatio getCurrentAspectRatio() {
+        return currentAspectRatio;
+    }
+
+    public boolean isCircleShape() {
+        return currentAspectRatio == AspectRatio.CIRCLE;
     }
 
     public void setLiveState(boolean isLive) {
         this.isLiveBroadcasting = isLive;
         mainHandler.post(() -> {
-            if (overlayView != null && tvPipBadge != null) {
-                if (isLive) {
-                    overlayView.setBackgroundResource(R.drawable.bg_floating_cam_live);
-                    tvPipBadge.setText("● LIVE");
-                    tvPipBadge.setTextColor(0xFFEF4444); // Studio Ruby
-                } else {
-                    overlayView.setBackgroundResource(R.drawable.bg_floating_cam_standby);
-                    tvPipBadge.setText("●");
-                    tvPipBadge.setTextColor(0xFF00E5FF); // Studio Cyan
+            if (overlayView != null) {
+                if (pipCameraContainer != null) {
+                    pipCameraContainer.setBackgroundResource(isLive ? R.drawable.bg_floating_cam_live : R.drawable.bg_floating_cam_standby);
+                }
+                if (pipBubbleContainer != null) {
+                    pipBubbleContainer.setBackgroundResource(isLive ? R.drawable.bg_floating_cam_bubble_live : R.drawable.bg_floating_cam_bubble_standby);
+                }
+                if (tvPipBadge != null) {
+                    tvPipBadge.setText(isLive ? "● LIVE" : "●");
+                    tvPipBadge.setTextColor(isLive ? 0xFFEF4444 : 0xFF00E5FF);
+                }
+                if (pipBubbleBadge != null) {
+                    pipBubbleBadge.setText(isLive ? "LIVE" : "CAM");
+                    pipBubbleBadge.setTextColor(isLive ? 0xFFEF4444 : 0xFF00E5FF);
                 }
             }
         });
@@ -157,6 +206,7 @@ public class FloatingCamManager {
                 initOverlayView();
                 windowManager.addView(overlayView, windowParams);
                 isOverlayShowing = true;
+                isDocked = false;
                 setLiveState(isLiveBroadcasting);
                 showControls();
 
@@ -189,6 +239,7 @@ public class FloatingCamManager {
                 overlayView = null;
             }
             isOverlayShowing = false;
+            isDocked = false;
             areControlsVisible = true;
 
             if (stateListener != null) {
@@ -236,12 +287,163 @@ public class FloatingCamManager {
     }
 
     public void toggleShape() {
-        isCircleShape = !isCircleShape;
+        cycleAspectRatio();
+    }
+
+    public void cycleAspectRatio() {
+        if (isDocked) return;
+        AspectRatio[] ratios = AspectRatio.values();
+        int nextIndex = (currentAspectRatio.ordinal() + 1) % ratios.length;
+        currentAspectRatio = ratios[nextIndex];
+
         if (btnPipShape != null) {
-            btnPipShape.setText(isCircleShape ? "▢" : "◯");
+            btnPipShape.setText(currentAspectRatio.icon);
         }
+
+        updateWindowDimensions();
+        Toast.makeText(appContext, "Facecam: " + currentAspectRatio.title, Toast.LENGTH_SHORT).show();
+
+        if (stateListener != null) {
+            stateListener.onAspectRatioChanged(currentAspectRatio);
+        }
+        resetControlsTimer();
+    }
+
+    public void cycleSize() {
+        if (isDocked) return;
+        currentSizeIndex = (currentSizeIndex + 1) % PRESET_WIDTHS_DP.length;
+        currentWidthDp = PRESET_WIDTHS_DP[currentSizeIndex];
+        updateWindowDimensions();
+        resetControlsTimer();
+    }
+
+    private void updateWindowDimensions() {
+        if (!isOverlayShowing || overlayView == null || windowParams == null || windowManager == null || isDocked) return;
+
+        float density = appContext.getResources().getDisplayMetrics().density;
+        int widthPx = (int) (currentWidthDp * density);
+        int heightPx;
+
+        switch (currentAspectRatio) {
+            case LANDSCAPE_16_9:
+                heightPx = (int) (currentWidthDp / (16f / 9f) * density);
+                break;
+            case SQUARE_1_1:
+            case CIRCLE:
+                heightPx = widthPx;
+                break;
+            case PORTRAIT_3_4:
+            default:
+                heightPx = (int) (currentWidthDp * (4f / 3f) * density);
+                break;
+        }
+
+        windowParams.width = widthPx;
+        windowParams.height = heightPx;
+        clampPosition(windowParams);
+
+        try {
+            windowManager.updateViewLayout(overlayView, windowParams);
+        } catch (Exception ignored) {}
+
+        overlayView.post(() -> {
+            applyShapeOutline();
+            if (tvPipCamera != null && tvPipCamera.getWidth() > 0 && tvPipCamera.getHeight() > 0) {
+                configureTransform(tvPipCamera.getWidth(), tvPipCamera.getHeight());
+            }
+        });
+    }
+
+    public void dockToBubble() {
+        if (!isOverlayShowing || overlayView == null || isDocked) return;
+        isDocked = true;
+        savedWidthPx = windowParams.width;
+        savedHeightPx = windowParams.height;
+
+        DisplayMetrics metrics = appContext.getResources().getDisplayMetrics();
+        float density = metrics.density;
+        int bubbleSizePx = (int) (54 * density);
+
+        // Snap bubble to nearest screen edge
+        int screenWidth = metrics.widthPixels;
+        int targetX = (windowParams.x + windowParams.width / 2 < screenWidth / 2)
+                ? (int) (6 * density)
+                : screenWidth - bubbleSizePx - (int) (6 * density);
+
+        windowParams.width = bubbleSizePx;
+        windowParams.height = bubbleSizePx;
+        windowParams.x = targetX;
+        clampPosition(windowParams);
+
+        if (pipCameraContainer != null) pipCameraContainer.setVisibility(View.GONE);
+        if (pipBubbleContainer != null) pipBubbleContainer.setVisibility(View.VISIBLE);
+
         applyShapeOutline();
-        Toast.makeText(appContext, isCircleShape ? "Facecam: Circular Mask" : "Facecam: Studio Card", Toast.LENGTH_SHORT).show();
+        try {
+            windowManager.updateViewLayout(overlayView, windowParams);
+        } catch (Exception ignored) {}
+
+        Toast.makeText(appContext, "Facecam Docked (Tap bubble to expand)", Toast.LENGTH_SHORT).show();
+
+        if (stateListener != null) {
+            stateListener.onCameraDocked(true);
+        }
+    }
+
+    public void expandFromDock() {
+        if (!isOverlayShowing || overlayView == null || !isDocked) return;
+        isDocked = false;
+
+        DisplayMetrics metrics = appContext.getResources().getDisplayMetrics();
+        float density = metrics.density;
+        int screenWidth = metrics.widthPixels;
+
+        float widthDp = currentWidthDp > 0 ? currentWidthDp : PRESET_WIDTHS_DP[currentSizeIndex];
+        int widthPx = (int) (widthDp * density);
+        int heightPx;
+
+        switch (currentAspectRatio) {
+            case LANDSCAPE_16_9:
+                heightPx = (int) (widthDp / (16f / 9f) * density);
+                break;
+            case SQUARE_1_1:
+            case CIRCLE:
+                heightPx = widthPx;
+                break;
+            case PORTRAIT_3_4:
+            default:
+                heightPx = (int) (widthDp * (4f / 3f) * density);
+                break;
+        }
+
+        windowParams.width = savedWidthPx > 0 ? savedWidthPx : widthPx;
+        windowParams.height = savedHeightPx > 0 ? savedHeightPx : heightPx;
+
+        if (windowParams.x + windowParams.width > screenWidth) {
+            windowParams.x = screenWidth - windowParams.width - (int) (12 * density);
+        }
+        clampPosition(windowParams);
+
+        if (pipBubbleContainer != null) pipBubbleContainer.setVisibility(View.GONE);
+        if (pipCameraContainer != null) pipCameraContainer.setVisibility(View.VISIBLE);
+
+        applyShapeOutline();
+        try {
+            windowManager.updateViewLayout(overlayView, windowParams);
+        } catch (Exception ignored) {}
+
+        overlayView.post(() -> {
+            if (tvPipCamera != null && tvPipCamera.getWidth() > 0 && tvPipCamera.getHeight() > 0) {
+                configureTransform(tvPipCamera.getWidth(), tvPipCamera.getHeight());
+            }
+        });
+
+        showControls();
+        snapToEdge();
+
+        if (stateListener != null) {
+            stateListener.onCameraDocked(false);
+        }
     }
 
     private void applyShapeOutline() {
@@ -252,14 +454,17 @@ public class FloatingCamManager {
                 int w = view.getWidth();
                 int h = view.getHeight();
                 if (w <= 0 || h <= 0) return;
-                if (isCircleShape) {
+                float density = appContext.getResources().getDisplayMetrics().density;
+
+                if (isDocked) {
+                    outline.setOval(0, 0, w, h);
+                } else if (currentAspectRatio == AspectRatio.CIRCLE) {
                     int minDim = Math.min(w, h);
                     int left = (w - minDim) / 2;
                     int top = (h - minDim) / 2;
                     outline.setOval(left, top, left + minDim, top + minDim);
                 } else {
-                    float density = appContext.getResources().getDisplayMetrics().density;
-                    outline.setRoundRect(0, 0, w, h, 14 * density);
+                    outline.setRoundRect(0, 0, w, h, 16 * density);
                 }
             }
         });
@@ -267,13 +472,14 @@ public class FloatingCamManager {
     }
 
     public void hideControls() {
-        if (!isOverlayShowing || overlayView == null) return;
+        if (!isOverlayShowing || overlayView == null || isDocked) return;
         areControlsVisible = false;
         mainHandler.post(() -> {
             if (btnPipRotate != null) btnPipRotate.setVisibility(View.GONE);
             if (btnPipFlip != null) btnPipFlip.setVisibility(View.GONE);
             if (btnPipShape != null) btnPipShape.setVisibility(View.GONE);
             if (btnPipSize != null) btnPipSize.setVisibility(View.GONE);
+            if (btnPipDock != null) btnPipDock.setVisibility(View.GONE);
             if (btnPipClose != null) btnPipClose.setVisibility(View.GONE);
             if (pipHeader != null) {
                 pipHeader.setBackgroundColor(Color.TRANSPARENT);
@@ -282,7 +488,7 @@ public class FloatingCamManager {
     }
 
     public void showControls() {
-        if (!isOverlayShowing || overlayView == null) return;
+        if (!isOverlayShowing || overlayView == null || isDocked) return;
         areControlsVisible = true;
         mainHandler.removeCallbacks(hideControlsRunnable);
         mainHandler.post(() -> {
@@ -290,6 +496,7 @@ public class FloatingCamManager {
             if (btnPipFlip != null) btnPipFlip.setVisibility(View.VISIBLE);
             if (btnPipShape != null) btnPipShape.setVisibility(View.VISIBLE);
             if (btnPipSize != null) btnPipSize.setVisibility(View.VISIBLE);
+            if (btnPipDock != null) btnPipDock.setVisibility(View.VISIBLE);
             if (btnPipClose != null) btnPipClose.setVisibility(View.VISIBLE);
             if (pipHeader != null) {
                 pipHeader.setBackgroundResource(R.drawable.bg_floating_cam_header);
@@ -303,30 +510,45 @@ public class FloatingCamManager {
         mainHandler.postDelayed(hideControlsRunnable, AUTO_HIDE_DELAY_MS);
     }
 
-    public void cycleSize() {
-        currentSizeIndex = (currentSizeIndex + 1) % SIZES_DP.length;
-        if (isOverlayShowing && overlayView != null && windowParams != null && windowManager != null) {
-            float density = appContext.getResources().getDisplayMetrics().density;
-            windowParams.width = (int) (SIZES_DP[currentSizeIndex][0] * density);
-            windowParams.height = (int) (SIZES_DP[currentSizeIndex][1] * density);
-            clampPosition(windowParams);
-            try {
-                windowManager.updateViewLayout(overlayView, windowParams);
-            } catch (Exception ignored) {}
+    private void snapToEdge() {
+        if (overlayView == null || windowParams == null || windowManager == null || !isOverlayShowing) return;
 
-            overlayView.post(() -> {
-                applyShapeOutline();
-                if (tvPipCamera != null && tvPipCamera.getWidth() > 0 && tvPipCamera.getHeight() > 0) {
-                    configureTransform(tvPipCamera.getWidth(), tvPipCamera.getHeight());
-                }
-            });
-            resetControlsTimer();
+        DisplayMetrics metrics = appContext.getResources().getDisplayMetrics();
+        int screenWidth = metrics.widthPixels;
+        float density = metrics.density;
+        int marginPx = isDocked ? (int) (6 * density) : (int) (12 * density);
+
+        int viewWidth = windowParams.width;
+        int centerX = windowParams.x + (viewWidth / 2);
+        int targetX;
+
+        if (centerX < screenWidth / 2) {
+            targetX = marginPx; // Snap to Left edge
+        } else {
+            targetX = screenWidth - viewWidth - marginPx; // Snap to Right edge
         }
+
+        ValueAnimator animator = ValueAnimator.ofInt(windowParams.x, targetX);
+        animator.setDuration(220);
+        animator.setInterpolator(new DecelerateInterpolator(1.5f));
+        animator.addUpdateListener(animation -> {
+            if (overlayView != null && isOverlayShowing) {
+                windowParams.x = (int) animation.getAnimatedValue();
+                try {
+                    windowManager.updateViewLayout(overlayView, windowParams);
+                } catch (Exception ignored) {}
+            }
+        });
+        animator.start();
     }
 
     private void initOverlayView() {
         LayoutInflater inflater = LayoutInflater.from(appContext);
         overlayView = inflater.inflate(R.layout.layout_floating_cam, null);
+
+        pipCameraContainer = overlayView.findViewById(R.id.pipCameraContainer);
+        pipBubbleContainer = overlayView.findViewById(R.id.pipBubbleContainer);
+        pipBubbleBadge = overlayView.findViewById(R.id.pipBubbleBadge);
 
         pipHeader = overlayView.findViewById(R.id.pipHeader);
         tvPipBadge = overlayView.findViewById(R.id.pipBadge);
@@ -334,12 +556,17 @@ public class FloatingCamManager {
         btnPipFlip = overlayView.findViewById(R.id.pipBtnFlip);
         btnPipShape = overlayView.findViewById(R.id.pipBtnShape);
         btnPipSize = overlayView.findViewById(R.id.pipBtnSize);
+        btnPipDock = overlayView.findViewById(R.id.pipBtnDock);
         btnPipClose = overlayView.findViewById(R.id.pipBtnClose);
         tvPipCamera = overlayView.findViewById(R.id.pipCameraView);
 
+        if (btnPipShape != null) {
+            btnPipShape.setText(currentAspectRatio.icon);
+        }
+
         float density = appContext.getResources().getDisplayMetrics().density;
-        int widthPx = (int) (SIZES_DP[currentSizeIndex][0] * density);
-        int heightPx = (int) (SIZES_DP[currentSizeIndex][1] * density);
+        int widthPx = (int) (currentWidthDp * density);
+        int heightPx = (int) (currentWidthDp * (4f / 3f) * density);
 
         int layoutType = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
                 ? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
@@ -352,7 +579,7 @@ public class FloatingCamManager {
                 PixelFormat.TRANSLUCENT
         );
         windowParams.gravity = Gravity.TOP | Gravity.START;
-        windowParams.x = (int) (16 * density);
+        windowParams.x = (int) (12 * density);
         windowParams.y = (int) (80 * density);
 
         setupOverlayListeners();
@@ -368,46 +595,83 @@ public class FloatingCamManager {
             });
         }
 
-        btnPipFlip.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-            flipCamera();
-            resetControlsTimer();
-        });
-
-        if (btnPipShape != null) {
-            btnPipShape.setOnClickListener(v -> {
+        if (btnPipFlip != null) {
+            btnPipFlip.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                toggleShape();
+                flipCamera();
                 resetControlsTimer();
             });
         }
 
-        btnPipSize.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-            cycleSize();
-            resetControlsTimer();
-        });
+        if (btnPipShape != null) {
+            btnPipShape.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                cycleAspectRatio();
+            });
+        }
 
-        btnPipClose.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-            hideOverlay();
+        if (btnPipSize != null) {
+            btnPipSize.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                cycleSize();
+            });
+        }
+
+        if (btnPipDock != null) {
+            btnPipDock.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                dockToBubble();
+            });
+        }
+
+        if (btnPipClose != null) {
+            btnPipClose.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                hideOverlay();
+            });
+        }
+
+        scaleGestureDetector = new ScaleGestureDetector(appContext, new ScaleGestureDetector.SimpleOnScaleGestureListener() {
+            @Override
+            public boolean onScale(ScaleGestureDetector detector) {
+                float factor = detector.getScaleFactor();
+                float newWidth = currentWidthDp * factor;
+                if (newWidth >= MIN_WIDTH_DP && newWidth <= MAX_WIDTH_DP) {
+                    currentWidthDp = newWidth;
+                    updateWindowDimensions();
+                }
+                return true;
+            }
         });
 
         View.OnTouchListener dragListener = new View.OnTouchListener() {
             private int initialX, initialY;
             private float initialTouchX, initialTouchY;
             private boolean isMoving = false;
+            private long downTime = 0;
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
+                if (!isDocked && scaleGestureDetector != null) {
+                    scaleGestureDetector.onTouchEvent(event);
+                    if (scaleGestureDetector.isInProgress() || event.getPointerCount() > 1) {
+                        isMoving = false;
+                        mainHandler.removeCallbacks(hideControlsRunnable);
+                        return true;
+                    }
+                }
+
+                switch (event.getAction() & MotionEvent.ACTION_MASK) {
                     case MotionEvent.ACTION_DOWN:
                         initialX = windowParams.x;
                         initialY = windowParams.y;
                         initialTouchX = event.getRawX();
                         initialTouchY = event.getRawY();
                         isMoving = false;
-                        showControls();
+                        downTime = SystemClock.uptimeMillis();
+                        if (!isDocked) {
+                            showControls();
+                        }
                         return true;
 
                     case MotionEvent.ACTION_MOVE:
@@ -426,14 +690,27 @@ public class FloatingCamManager {
                         return true;
 
                     case MotionEvent.ACTION_UP:
-                        if (!isMoving) {
-                            if (!areControlsVisible) {
-                                showControls();
+                        long clickDuration = SystemClock.uptimeMillis() - downTime;
+                        if (!isMoving && clickDuration < 320) {
+                            v.performClick();
+                            if (isDocked) {
+                                expandFromDock();
                             } else {
+                                if (!areControlsVisible) {
+                                    showControls();
+                                } else {
+                                    hideControls();
+                                }
+                            }
+                        } else if (isMoving) {
+                            snapToEdge();
+                            if (!isDocked) {
                                 resetControlsTimer();
                             }
                         } else {
-                            resetControlsTimer();
+                            if (!isDocked) {
+                                resetControlsTimer();
+                            }
                         }
                         return true;
                 }
@@ -441,11 +718,18 @@ public class FloatingCamManager {
             }
         };
 
-        tvPipCamera.setOnTouchListener(dragListener);
-        tvPipBadge.setOnTouchListener(dragListener);
+        if (tvPipCamera != null) {
+            tvPipCamera.setOnTouchListener(dragListener);
+        }
+        if (tvPipBadge != null) {
+            tvPipBadge.setOnTouchListener(dragListener);
+        }
         View spacer = overlayView.findViewById(R.id.pipHeaderSpacer);
         if (spacer != null) {
             spacer.setOnTouchListener(dragListener);
+        }
+        if (pipBubbleContainer != null) {
+            pipBubbleContainer.setOnTouchListener(dragListener);
         }
 
         tvPipCamera.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
@@ -477,7 +761,7 @@ public class FloatingCamManager {
         int screenHeight = metrics.heightPixels;
 
         if (params.x < 0) params.x = 0;
-        if (params.y < 50) params.y = 50; // Keep below notification status bar
+        if (params.y < 40) params.y = 40; // Keep below notification status bar
         if (params.x + params.width > screenWidth) params.x = screenWidth - params.width;
         if (params.y + params.height > screenHeight - 60) params.y = screenHeight - params.height - 60;
     }
@@ -609,8 +893,8 @@ public class FloatingCamManager {
                 float centerY = viewRect.centerY();
 
                 boolean isRotated90or270 = (currentRotationDegrees == 90 || currentRotationDegrees == 270);
-                float naturalBufW = previewSize.getHeight(); // 480
-                float naturalBufH = previewSize.getWidth();  // 640
+                float naturalBufW = previewSize.getHeight(); // e.g. 480
+                float naturalBufH = previewSize.getWidth();  // e.g. 640
 
                 RectF bufferRect = new RectF(0, 0, naturalBufW, naturalBufH);
                 bufferRect.offset(centerX - bufferRect.centerX(), centerY - bufferRect.centerY());
@@ -630,7 +914,7 @@ public class FloatingCamManager {
                 }
 
                 if (isFrontCamera) {
-                    // Mirror horizontally for selfie orientation
+                    // Mirror horizontally for natural selfie orientation
                     matrix.postScale(-1, 1, centerX, centerY);
                 }
 
@@ -643,7 +927,7 @@ public class FloatingCamManager {
         if (choices == null || choices.length == 0) {
             return new Size(640, 480);
         }
-        // Prefer standard 640x480 or 1280x720 for optimal performance & heat management
+        // Prefer standard 640x480 for optimal performance, low heat, and zero frame drops
         for (Size size : choices) {
             if (size.getWidth() == 640 && size.getHeight() == 480) {
                 return size;
