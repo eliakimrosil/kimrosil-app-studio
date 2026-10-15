@@ -684,11 +684,11 @@
     "tagline": "Calculate dry film thickness, wet film target, and thinner dilution offline.",
     "status": "BUILT",
     "branch": "app/comb-gauge",
-    "tag": "v1.0.0-comb-gauge",
-    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-comb-gauge/comb-gauge.apk",
+    "tag": "v1.0.1-comb-gauge",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-comb-gauge/comb-gauge.apk",
     "landing_page": "https://apps.kimrosil.com/comb-gauge/",
     "privacy_policy": "https://apps.kimrosil.com/comb-gauge/privacy.html",
     "icon": "assets/icons/comb-gauge.svg",
-    "updated_at": "2026-10-15T13:18:52.819247+00:00"
+    "updated_at": "2026-10-15T13:44:29.507268+00:00"
   }
 ]
