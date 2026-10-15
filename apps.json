@@ -690,19 +690,5 @@
     "privacy_policy": "https://apps.kimrosil.com/comb-gauge/privacy.html",
     "icon": "assets/icons/comb-gauge.svg",
     "updated_at": "2026-10-15T13:44:29.507268+00:00"
-  },
-  {
-    "slug": "rune-grind",
-    "title": "RuneGrind",
-    "category": "UTILITIES",
-    "tagline": "Offline Ragnarok Renewal-inspired RPG battler with stats, cards & MVP raids.",
-    "status": "BUILT",
-    "branch": "app/rune-grind",
-    "tag": "v1.0.1-rune-grind",
-    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-rune-grind/rune-grind.apk",
-    "landing_page": "https://apps.kimrosil.com/rune-grind/",
-    "privacy_policy": "https://apps.kimrosil.com/rune-grind/privacy.html",
-    "icon": "assets/icons/rune-grind.svg",
-    "updated_at": "2026-10-15T14:21:40.244806+00:00"
   }
 ]
