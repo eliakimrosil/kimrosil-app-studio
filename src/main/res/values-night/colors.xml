@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Slate & Emerald Editorial Palette (Dark Mode) -->
+    <color name="colorPrimary">#10B981</color>
+    <color name="colorPrimaryDark">#090D16</color>
+    <color name="colorAccent">#10B981</color>
+    <color name="windowBackground">#090D16</color>
+
+    <color name="m3_primary">#10B981</color>
+    <color name="m3_on_primary">#064E3B</color>
+    <color name="m3_primary_container">#065F46</color>
+    <color name="m3_on_primary_container">#A7F3D0</color>
+
+    <color name="m3_secondary">#94A3B8</color>
+    <color name="m3_on_secondary">#0F172A</color>
+    <color name="m3_secondary_container">#1E293B</color>
+    <color name="m3_on_secondary_container">#E2E8F0</color>
+
+    <color name="m3_surface">#090D16</color>
+    <color name="m3_surface_container">#111827</color>
+    <color name="m3_surface_container_high">#1E293B</color>
+    <color name="m3_surface_container_highest">#334155</color>
+
+    <color name="m3_on_surface">#F1F5F9</color>
+    <color name="m3_on_surface_variant">#94A3B8</color>
+    <color name="m3_outline">#475569</color>
+    <color name="m3_outline_variant">#1F2E45</color>
+
+    <color name="m3_success">#10B981</color>
+    <color name="m3_on_success">#064E3B</color>
+    <color name="m3_error">#F87171</color>
+    <color name="m3_on_error">#450A0A</color>
+
+    <!-- Runtime Domain Color Tokens (Dark) -->
+    <color name="bg_main">#090D16</color>
+    <color name="bg_card">#111827</color>
+    <color name="bg_card_inner">#1E293B</color>
+    <color name="stroke_card">#1F2E45</color>
+
+    <color name="text_high">#F1F5F9</color>
+    <color name="text_mid">#94A3B8</color>
+    <color name="text_muted">#64748B</color>
+
+    <color name="accent_emerald">#10B981</color>
+    <color name="accent_amber">#F59E0B</color>
+    <color name="accent_blue">#38BDF8</color>
+
+    <!-- Legacy compatibility aliases -->
+    <color name="cardBackground">#111827</color>
+    <color name="cardStroke">#1F2E45</color>
+    <color name="textPrimary">#F1F5F9</color>
+    <color name="textSecondary">#94A3B8</color>
+    <color name="btnColor">#10B981</color>
+    <color name="btnTextColor">#10B981</color>
+</resources>

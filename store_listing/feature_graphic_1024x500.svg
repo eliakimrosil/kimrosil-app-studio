@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 500" width="1024" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B111A" />
+      <stop offset="60%" stop-color="#080D14" />
+      <stop offset="100%" stop-color="#020408" />
+    </linearGradient>
+    <radialGradient id="glowGrad" cx="25%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FFFFFF" stroke-width="0.5" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+
+  <rect width="1024" height="500" fill="url(#bgGrad)" />
+  <rect width="1024" height="500" fill="url(#glowGrad)" />
+  <rect width="1024" height="500" fill="url(#grid)" />
+
+  <g transform="translate(80, 130)">
+    <rect x="-10" y="-10" width="260" height="260" rx="54" fill="#10B981" fill-opacity="0.12" />
+    <rect x="0" y="0" width="240" height="240" rx="48" fill="#0B111A" stroke="#10B981" stroke-width="2" stroke-opacity="0.4" />
+    <g transform="translate(20, 20) scale(1.85185)">
+      
+        <!-- Editorial Slate Subtle Border Coordinates & Grid -->
+        <path
+            stroke="#172338"
+            stroke-width="1.2"
+            d="M18,18 h72 v72 h-72 z" />
+        <path
+            stroke="#1A2942"
+            stroke-width="0.8"
+            d="M54,14 v80 M14,54 h80" />
+        <path
+            stroke="#243859"
+            stroke-width="1.2"
+            stroke-linecap="round"
+            d="M18,28 h4 M18,80 h4 M86,28 h4 M86,80 h4" />
+        
+      
+        <!-- Physical Folded Warranty Slip (White / Slate Parchment) -->
+        <path
+            fill="#1E293B"
+            stroke="#475569"
+            stroke-width="2.0"
+            stroke-linejoin="round"
+            d="M32,24 h28 l16,16 v42 c0,2.2 -1.8,4 -4,4 h-40 c-2.2,0 -4,-1.8 -4,-4 v-54 c0,-2.2 1.8,-4 4,-4 z" />
+        <!-- Folded Corner Flap Accent (Emerald highlight) -->
+        <path
+            fill="#10B981"
+            d="M60,24 v16 h16 z" />
+        <!-- Thermal Receipt Item Lines -->
+        <path
+            stroke="#94A3B8"
+            stroke-width="2.0"
+            stroke-linecap="round"
+            d="M38,36 h16 M38,44 h24 M38,52 h20 M38,60 h14" />
+        <!-- Gold/Amber Verified Seal Ribbon Badge (Claim / Guarantee) -->
+        <path
+            fill="#F59E0B"
+            d="M64,62 c0,0 -4,3 -4,7 l3,9 l5,-3 l5,3 l3,-9 c0,-4 -4,-7 -4,-7 z" />
+        <path
+            fill="#10B981"
+            stroke="#064E3B"
+            stroke-width="1.2"
+            d="M68,54 a8,8 0 1,0 0.001,0 z" />
+        <!-- Crisp White Checkmark inside Warranty Seal -->
+        <path
+            stroke="#FFFFFF"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M65,54 l2,2.2 l4.5,-4.5" />
+        
+    </g>
+  </g>
+
+  <g transform="translate(390, 150)">
+    <rect x="0" y="0" width="210" height="28" rx="6" fill="#10B981" fill-opacity="0.15" />
+    <text x="12" y="19" font-family="sans-serif" font-size="12" font-weight="bold" fill="#10B981" letter-spacing="2">KIMROSIL APP STUDIO</text>
+    <text x="0" y="85" font-family="sans-serif" font-size="44" font-weight="900" fill="#FFFFFF" letter-spacing="-0.5">ClaimSlip</text>
+    <text x="0" y="125" font-family="sans-serif" font-size="19" fill="#94A3B8">Offline warranty tracker and receipt ledger for ap...</text>
+
+    <g transform="translate(0, 165)">
+      <rect x="0" y="0" width="135" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="16" y="22" font-family="sans-serif" font-size="12" font-weight="bold" fill="#38BDF8">⚡ 100% OFFLINE</text>
+      <rect x="145" y="0" width="160" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="160" y="22" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34D399">🛡️ NO SUBSCRIPTION</text>
+      <rect x="315" y="0" width="165" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="330" y="22" font-family="sans-serif" font-size="12" font-weight="bold" fill="#F472B6">🔒 PRIVATE &amp; LOCAL</text>
+    </g>
+  </g>
+</svg>

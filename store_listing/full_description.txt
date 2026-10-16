@@ -1,0 +1,21 @@
+When major home appliances, power tools, or electronic gadgets fail, buyers scramble to find receipts only to discover faded thermal slips or missing paperwork. ClaimSlip solves this problem with an offline-first warranty registry and high-contrast receipt archive.
+
+KEY UTILITIES:
+
+• 100% OFFLINE PRIVACY
+No accounts, no cloud sync, and zero tracking. All warranty metadata, receipts, serial numbers, and claim details remain strictly on your local device.
+
+• THERMAL RECEIPT DIGITAL VAULT
+Save paper receipts and thermal store slips directly to your local registry. High-contrast display filters enhance faded or faint thermal print so proof-of-purchase remains readable years later when making a manufacturer claim.
+
+• LIVE WARRANTY COUNTDOWN LEDGER
+Instantly see how many days remain on every warranty. Filter by Active, Expiring Soon (within 30 days), or Expired. Receive local alerts before coverage lapses so you can schedule timely service or extended claims.
+
+• COMPLETE PURCHASE PROOF RECORDS
+Record model numbers, serial numbers, purchase dates, store retailers, and prices in clean 2-column telemetry cards. Tap to copy serial numbers directly when on support calls.
+
+• FAST SEARCH & FILTERING
+Find items instantly by appliance name, brand, store, or serial number. Sort by expiration date to keep upcoming deadlines front and center.
+
+• LIGHTWEIGHT & RESOURCE EFFICIENT
+Zero heavy libraries, instant cold start, and minimal storage footprint. Built purely with native Android components.

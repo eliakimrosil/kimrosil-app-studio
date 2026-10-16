@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ClaimSlip</string>
+    <string name="app_subtitle">Offline Warranty &amp; Receipt Ledger</string>
+
+    <string name="tab_all">All</string>
+    <string name="tab_active">Active</string>
+    <string name="tab_expiring">Expiring Soon</string>
+    <string name="tab_expired">Expired</string>
+
+    <string name="btn_add_warranty">+ New Warranty</string>
+    <string name="empty_title">No Warranties Recorded</string>
+    <string name="empty_desc">Tap &quot;+ New Warranty&quot; to archive proof-of-purchase, track coverage dates, and protect thermal receipts from fading.</string>
+
+    <string name="dialog_add_title">New Warranty Record</string>
+    <string name="hint_item_name">Appliance or Gadget Name</string>
+    <string name="hint_retailer">Retailer / Store (e.g. Best Buy, Amazon)</string>
+    <string name="hint_price">Purchase Amount</string>
+    <string name="hint_model">Model Number</string>
+    <string name="hint_serial">Serial Number (S/N)</string>
+    <string name="hint_notes">Coverage Notes / Support Phone</string>
+
+    <string name="label_purchase_date">Purchase Date</string>
+    <string name="label_warranty_period">Warranty Period</string>
+    <string name="btn_save">Save Record</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_export">Export JSON</string>
+</resources>
