@@ -1,11 +1,63 @@
+# ==============================================================================
+# robots.txt for KimRosil App Studio
+# Domain: https://apps.kimrosil.com/
+# Configured for maximum search engine detection, indexing & AI discovery
+# ==============================================================================
+
+# Default rule for all web crawlers & search engines
 User-agent: *
 Allow: /
-Allow: /app-ads.txt
+Allow: /index.html
+Allow: /organization.html
+Allow: /testers.html
+Allow: /privacy.html
 Allow: /sitemap.xml
 Allow: /apps.json
+Allow: /app-ads.txt
 Allow: /llms.txt
 Allow: /llms-full.txt
-Allow: /organization.html
+Allow: /assets/
+Disallow: /.git/
+
+# Major Search Engine Crawlers (Explicit Allow Directives)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Sogou spider
+Allow: /
+
+User-agent: Exabot
+Allow: /
 
 # Explicit Directives for AI Search Engines & LLM Discovery Crawlers
 User-agent: GPTBot
@@ -53,4 +105,9 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
+User-agent: YouBot
+Allow: /
+
+# Host & Sitemaps
+Host: https://apps.kimrosil.com
 Sitemap: https://apps.kimrosil.com/sitemap.xml
