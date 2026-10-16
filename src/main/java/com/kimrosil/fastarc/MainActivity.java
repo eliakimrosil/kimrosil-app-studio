@@ -169,6 +169,20 @@ public class MainActivity extends Activity {
         mRowStage2 = findViewById(R.id.row_stage_2);
         mRowStage3 = findViewById(R.id.row_stage_3);
         mRowStage4 = findViewById(R.id.row_stage_4);
+
+        Button[] allButtons = {
+            mBtnThemeToggle, mBtnToggleFast, mBtnCustomTime,
+            mChipNow, mChip15m, mChip30m, mChip1h, mChip2h,
+            mBtnWaterAdd, mBtnWaterReset
+        };
+        for (Button btn : allButtons) {
+            if (btn != null) {
+                btn.setElevation(0);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    btn.setStateListAnimator(null);
+                }
+            }
+        }
     }
 
     private void setupListeners() {
@@ -370,13 +384,18 @@ public class MainActivity extends Activity {
         mFastArcView.updateData(mIsFasting, elapsed, targetMillis, stageIndex, stageName, stageColor);
 
         // Action Button
+        int accentEmerald = isDark ? 0xFFA3E635 : 0xFF4D7C0F;
+        int errorColor = isDark ? 0xFFF87171 : 0xFFDC2626;
+
         if (!mIsFasting) {
             mBtnToggleFast.setText(R.string.btn_start_fast);
             mBtnToggleFast.setBackgroundResource(R.drawable.btn_fast_primary);
+            mBtnToggleFast.setTextColor(accentEmerald);
             mCardStartAdjust.setVisibility(View.GONE);
         } else {
             mBtnToggleFast.setText(R.string.btn_end_fast);
             mBtnToggleFast.setBackgroundResource(R.drawable.btn_fast_stop);
+            mBtnToggleFast.setTextColor(errorColor);
             mCardStartAdjust.setVisibility(View.VISIBLE);
         }
 
@@ -464,12 +483,18 @@ public class MainActivity extends Activity {
     }
 
     private void updateThemeButtonLabel() {
+        boolean isDark = isDarkThemeActive();
+        int accentEmerald = isDark ? 0xFFA3E635 : 0xFF4D7C0F;
         if (mThemeMode == 1) {
             mBtnThemeToggle.setText("☀️ Light");
         } else if (mThemeMode == 2) {
             mBtnThemeToggle.setText("🌙 Dark");
         } else {
             mBtnThemeToggle.setText("🌓 Auto");
+        }
+        mBtnThemeToggle.setTextColor(accentEmerald);
+        if (mBtnCustomTime != null) {
+            mBtnCustomTime.setTextColor(accentEmerald);
         }
     }
 

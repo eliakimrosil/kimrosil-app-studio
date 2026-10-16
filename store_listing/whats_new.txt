@@ -1,2 +1,2 @@
-Release v1.0.2 - FastArc
-Fix Day/Night theme switching and upgrade tactile button craftsmanship
+Release v1.0.3 - FastArc
+Adopt VatCal PH tactile button design and complete working Day/Night switching

@@ -3,16 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@color/m3_surface">
+    android:background="@color/bg_main">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="32dp">
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="28dp">
 
         <!-- Header Bar -->
         <LinearLayout
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginBottom="12dp">
+            android:layout_marginBottom="10dp">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -33,10 +33,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/app_name"
-                    android:textColor="@color/m3_on_surface"
+                    android:textColor="@color/accent_emerald"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:fontFamily="sans-serif-black"
                     android:letterSpacing="0.02" />
 
                 <TextView
@@ -44,25 +43,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/app_subtitle"
-                    android:textColor="@color/m3_on_surface_variant"
-                    android:textSize="12sp"
-                    android:fontFamily="sans-serif-medium" />
+                    android:textColor="@color/text_mid"
+                    android:textSize="11sp" />
             </LinearLayout>
 
-            <!-- Working Theme Switcher Button (minHeight 48dp) -->
+            <!-- Working Theme Switcher Button (VatCal PH Chip Style) -->
             <Button
                 android:id="@+id/btn_theme_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:minHeight="48dp"
-                android:minWidth="100dp"
-                android:paddingStart="14dp"
-                android:paddingEnd="14dp"
-                android:background="@drawable/btn_tonal_action"
-                android:text="Theme: Auto"
-                android:textColor="@color/m3_on_surface"
+                android:minWidth="84dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:background="@drawable/chip_btn"
+                android:text="🌓 Auto"
+                android:textColor="@color/accent_emerald"
                 android:textSize="12sp"
                 android:textStyle="bold"
+                android:elevation="0dp"
+                android:stateListAnimator="@null"
                 android:textAllCaps="false" />
         </LinearLayout>
 
@@ -70,25 +70,25 @@
         <com.kimrosil.fastarc.FastArcView
             android:id="@+id/fast_arc_view"
             android:layout_width="match_parent"
-            android:layout_height="310dp"
+            android:layout_height="300dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="12dp" />
+            android:layout_marginBottom="10dp" />
 
-        <!-- Main Action Button (Primary Fast / Stop Toggle) -->
+        <!-- Main Action Button (VatCal PH Action Style) -->
         <Button
             android:id="@+id/btn_toggle_fast"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:minHeight="54dp"
-            android:elevation="3dp"
+            android:layout_height="52dp"
+            android:minHeight="52dp"
+            android:elevation="0dp"
+            android:stateListAnimator="@null"
             android:background="@drawable/btn_fast_primary"
             android:text="@string/btn_start_fast"
-            android:textColor="@color/btnTextColor"
-            android:textSize="16sp"
+            android:textColor="@color/accent_emerald"
+            android:textSize="15sp"
             android:textStyle="bold"
-            android:fontFamily="sans-serif-black"
             android:letterSpacing="0.04"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="14dp" />
 
         <!-- Quick Start Time Adjustment Card -->
         <LinearLayout
@@ -97,8 +97,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/card_telemetry"
             android:orientation="vertical"
-            android:padding="14dp"
-            android:layout_marginBottom="14dp">
+            android:padding="12dp"
+            android:layout_marginBottom="12dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -112,23 +112,26 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="QUICK START ADJUST"
-                    android:textColor="@color/m3_on_surface_variant"
-                    android:textSize="11sp"
+                    android:textColor="@color/text_muted"
+                    android:textSize="10sp"
                     android:textStyle="bold"
-                    android:letterSpacing="0.08" />
+                    android:letterSpacing="0.05" />
 
                 <Button
                     android:id="@+id/btn_custom_time"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:minHeight="48dp"
+                    android:minWidth="80dp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    android:background="@drawable/btn_tonal_action"
+                    android:background="@drawable/chip_btn"
                     android:text="Custom Time"
-                    android:textColor="@color/m3_primary"
-                    android:textSize="12sp"
+                    android:textColor="@color/accent_emerald"
+                    android:textSize="11sp"
                     android:textStyle="bold"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"
                     android:textAllCaps="false" />
             </LinearLayout>
 
@@ -145,9 +148,11 @@
                     android:minHeight="48dp"
                     android:background="@drawable/chip_quick_btn"
                     android:text="@string/chip_now"
-                    android:textColor="@color/m3_on_surface"
+                    android:textColor="@color/text_high"
                     android:textSize="11sp"
                     android:textStyle="bold"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"
                     android:layout_marginEnd="4dp" />
 
                 <Button
@@ -158,9 +163,11 @@
                     android:minHeight="48dp"
                     android:background="@drawable/chip_quick_btn"
                     android:text="@string/chip_minus_15m"
-                    android:textColor="@color/m3_on_surface"
+                    android:textColor="@color/text_high"
                     android:textSize="11sp"
                     android:textStyle="bold"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"
                     android:layout_marginEnd="4dp" />
 
                 <Button
@@ -171,9 +178,11 @@
                     android:minHeight="48dp"
                     android:background="@drawable/chip_quick_btn"
                     android:text="@string/chip_minus_30m"
-                    android:textColor="@color/m3_on_surface"
+                    android:textColor="@color/text_high"
                     android:textSize="11sp"
                     android:textStyle="bold"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"
                     android:layout_marginEnd="4dp" />
 
                 <Button
@@ -184,9 +193,11 @@
                     android:minHeight="48dp"
                     android:background="@drawable/chip_quick_btn"
                     android:text="@string/chip_minus_1h"
-                    android:textColor="@color/m3_on_surface"
+                    android:textColor="@color/text_high"
                     android:textSize="11sp"
                     android:textStyle="bold"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"
                     android:layout_marginEnd="4dp" />
 
                 <Button
@@ -197,9 +208,11 @@
                     android:minHeight="48dp"
                     android:background="@drawable/chip_quick_btn"
                     android:text="@string/chip_minus_2h"
-                    android:textColor="@color/m3_on_surface"
+                    android:textColor="@color/text_high"
                     android:textSize="11sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null" />
             </LinearLayout>
         </LinearLayout>
 
@@ -209,8 +222,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/card_telemetry"
             android:orientation="vertical"
-            android:padding="14dp"
-            android:layout_marginBottom="14dp">
+            android:padding="12dp"
+            android:layout_marginBottom="12dp">
 
             <!-- Top Row: Started & Goal -->
             <LinearLayout
@@ -228,10 +241,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/telemetry_started"
-                        android:textColor="@color/m3_on_surface_variant"
-                        android:textSize="11sp"
+                        android:textColor="@color/text_muted"
+                        android:textSize="10sp"
                         android:textStyle="bold"
-                        android:letterSpacing="0.06" />
+                        android:letterSpacing="0.05" />
 
                     <TextView
                         android:id="@+id/tv_telemetry_start_time"
@@ -239,17 +252,16 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:text="--:--"
-                        android:textColor="@color/m3_on_surface"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:fontFamily="sans-serif-black" />
+                        android:textColor="@color/text_high"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_telemetry_start_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Not Started"
-                        android:textColor="@color/m3_on_surface_variant"
+                        android:textColor="@color/text_mid"
                         android:textSize="11sp" />
                 </LinearLayout>
 
@@ -271,10 +283,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/telemetry_target"
-                        android:textColor="@color/m3_on_surface_variant"
-                        android:textSize="11sp"
+                        android:textColor="@color/text_muted"
+                        android:textSize="10sp"
                         android:textStyle="bold"
-                        android:letterSpacing="0.06" />
+                        android:letterSpacing="0.05" />
 
                     <TextView
                         android:id="@+id/tv_telemetry_goal_time"
@@ -282,17 +294,16 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:text="--:--"
-                        android:textColor="@color/m3_on_surface"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:fontFamily="sans-serif-black" />
+                        android:textColor="@color/text_high"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_telemetry_goal_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="16h Target"
-                        android:textColor="@color/m3_on_surface_variant"
+                        android:textColor="@color/text_mid"
                         android:textSize="11sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -302,8 +313,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@drawable/divider_hairline"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
 
             <!-- Hydration Tracker Row -->
             <LinearLayout
@@ -322,10 +333,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/telemetry_water"
-                        android:textColor="@color/m3_on_surface_variant"
-                        android:textSize="11sp"
+                        android:textColor="@color/text_muted"
+                        android:textSize="10sp"
                         android:textStyle="bold"
-                        android:letterSpacing="0.06" />
+                        android:letterSpacing="0.05" />
 
                     <TextView
                         android:id="@+id/tv_water_count"
@@ -349,6 +360,8 @@
                     android:textColor="@color/water_accent"
                     android:textSize="12sp"
                     android:textStyle="bold"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"
                     android:textAllCaps="false"
                     android:layout_marginEnd="6dp" />
 
@@ -357,12 +370,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:minHeight="48dp"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
                     android:background="@drawable/btn_tonal_action"
                     android:text="@string/action_reset_water"
-                    android:textColor="@color/m3_on_surface_variant"
+                    android:textColor="@color/text_mid"
                     android:textSize="12sp"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"
                     android:textAllCaps="false" />
             </LinearLayout>
         </LinearLayout>
@@ -373,17 +388,17 @@
             android:layout_height="wrap_content"
             android:background="@drawable/card_telemetry"
             android:orientation="vertical"
-            android:padding="14dp">
+            android:padding="12dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="16:8 METABOLIC PHASES"
-                android:textColor="@color/m3_on_surface_variant"
-                android:textSize="11sp"
+                android:textColor="@color/text_muted"
+                android:textSize="10sp"
                 android:textStyle="bold"
-                android:letterSpacing="0.08"
-                android:layout_marginBottom="10dp" />
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="8dp" />
 
             <!-- Stage 1 -->
             <LinearLayout
@@ -407,7 +422,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/stage_1_desc"
-                    android:textColor="@color/m3_on_surface_variant"
+                    android:textColor="@color/text_mid"
                     android:textSize="11sp" />
             </LinearLayout>
 
@@ -433,7 +448,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/stage_2_desc"
-                    android:textColor="@color/m3_on_surface_variant"
+                    android:textColor="@color/text_mid"
                     android:textSize="11sp" />
             </LinearLayout>
 
@@ -459,7 +474,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/stage_3_desc"
-                    android:textColor="@color/m3_on_surface_variant"
+                    android:textColor="@color/text_mid"
                     android:textSize="11sp" />
             </LinearLayout>
 
@@ -484,7 +499,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/stage_4_desc"
-                    android:textColor="@color/m3_on_surface_variant"
+                    android:textColor="@color/text_mid"
                     android:textSize="11sp" />
             </LinearLayout>
         </LinearLayout>
@@ -493,9 +508,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="14dp"
             android:text="🔒 Lock-Screen Widget: Add FastArc to your lock screen (Keyguard) or home screen for live 16:8 countdown without unlocking."
-            android:textColor="@color/m3_on_surface_variant"
+            android:textColor="@color/text_mid"
             android:textSize="11sp"
             android:gravity="center" />
     </LinearLayout>

@@ -46,11 +46,21 @@
     <color name="arc_track_eating">#FED7AA</color>
     <color name="water_accent">#0284C7</color>
 
+    <!-- VatCal PH Compatibility Tokens (Light) -->
+    <color name="bg_main">#FAFAFA</color>
+    <color name="bg_card">#FFFFFF</color>
+    <color name="bg_card_inner">#F1F5F9</color>
+    <color name="stroke_card">#E2E8F0</color>
+    <color name="text_high">#09090B</color>
+    <color name="text_mid">#3F3F46</color>
+    <color name="text_muted">#71717A</color>
+    <color name="accent_emerald">#4D7C0F</color>
+
     <!-- Legacy compatibility aliases -->
     <color name="cardBackground">#FFFFFF</color>
-    <color name="cardStroke">#E4E4E7</color>
+    <color name="cardStroke">#E2E8F0</color>
     <color name="textPrimary">#09090B</color>
     <color name="textSecondary">#52525B</color>
     <color name="btnColor">#4D7C0F</color>
-    <color name="btnTextColor">#FFFFFF</color>
+    <color name="btnTextColor">#4D7C0F</color>
 </resources>
