@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:android="http://schemas.android.com/apk/res/android" viewBox="0 0 108 108" width="512" height="512">
+    <rect width="108" height="108" rx="24" fill="#0B111A" />
+    <!-- Background Decor -->
+    
+        <!-- Editorial Slate Subtle Border Coordinates & Grid -->
+        <path
+            stroke="#172338"
+            stroke-width="1.2"
+            d="M18,18 h72 v72 h-72 z" />
+        <path
+            stroke="#1A2942"
+            stroke-width="0.8"
+            d="M54,14 v80 M14,54 h80" />
+        <path
+            stroke="#243859"
+            stroke-width="1.2"
+            stroke-linecap="round"
+            d="M18,28 h4 M18,80 h4 M86,28 h4 M86,80 h4" />
+        
+    <!-- Foreground Iconography -->
+    
+        <!-- Physical Folded Warranty Slip (White / Slate Parchment) -->
+        <path
+            fill="#1E293B"
+            stroke="#475569"
+            stroke-width="2.0"
+            stroke-linejoin="round"
+            d="M32,24 h28 l16,16 v42 c0,2.2 -1.8,4 -4,4 h-40 c-2.2,0 -4,-1.8 -4,-4 v-54 c0,-2.2 1.8,-4 4,-4 z" />
+        <!-- Folded Corner Flap Accent (Emerald highlight) -->
+        <path
+            fill="#10B981"
+            d="M60,24 v16 h16 z" />
+        <!-- Thermal Receipt Item Lines -->
+        <path
+            stroke="#94A3B8"
+            stroke-width="2.0"
+            stroke-linecap="round"
+            d="M38,36 h16 M38,44 h24 M38,52 h20 M38,60 h14" />
+        <!-- Gold/Amber Verified Seal Ribbon Badge (Claim / Guarantee) -->
+        <path
+            fill="#F59E0B"
+            d="M64,62 c0,0 -4,3 -4,7 l3,9 l5,-3 l5,3 l3,-9 c0,-4 -4,-7 -4,-7 z" />
+        <path
+            fill="#10B981"
+            stroke="#064E3B"
+            stroke-width="1.2"
+            d="M68,54 a8,8 0 1,0 0.001,0 z" />
+        <!-- Crisp White Checkmark inside Warranty Seal -->
+        <path
+            stroke="#FFFFFF"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M65,54 l2,2.2 l4.5,-4.5" />
+        
+</svg>
