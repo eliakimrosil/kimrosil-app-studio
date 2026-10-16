@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bespoke Domain Light Theme Color Tokens -->
+    <color name="colorPrimary">#D97706</color>
+    <color name="colorPrimaryDark">#F5F0E6</color>
+    <color name="colorAccent">#06B6D4</color>
+    <color name="windowBackground">#F5F0E6</color>
+
+    <color name="m3_primary">#D97706</color>
+    <color name="m3_on_primary">#FFFFFF</color>
+    <color name="m3_primary_container">#FEF3C7</color>
+    <color name="m3_on_primary_container">#451A03</color>
+
+    <color name="m3_secondary">#475569</color>
+    <color name="m3_on_secondary">#FFFFFF</color>
+    <color name="m3_secondary_container">#E2E8F0</color>
+    <color name="m3_on_secondary_container">#0F172A</color>
+
+    <color name="m3_tertiary">#06B6D4</color>
+    <color name="m3_on_tertiary">#FFFFFF</color>
+    <color name="m3_tertiary_container">#EAE3D2</color>
+    <color name="m3_on_tertiary_container">#2B1810</color>
+
+    <color name="m3_surface">#F5F0E6</color>
+    <color name="m3_surface_container">#EAE3D2</color>
+    <color name="m3_surface_container_high">#DDD4C0</color>
+    <color name="m3_surface_container_highest">#C9BFAF</color>
+
+    <color name="m3_on_surface">#2B1810</color>
+    <color name="m3_on_surface_variant">#594033</color>
+    <color name="m3_outline">#8D7B68</color>
+    <color name="m3_outline_variant">#C4B5A5</color>
+
+    <color name="m3_success">#16A34A</color>
+    <color name="m3_on_success">#FFFFFF</color>
+    <color name="m3_error">#DC2626</color>
+    <color name="m3_on_error">#FFFFFF</color>
+
+    <!-- Legacy compatibility aliases -->
+    <color name="cardBackground">#EFE8DA</color>
+    <color name="cardStroke">#8D7B68</color>
+    <color name="textPrimary">#2B1810</color>
+    <color name="textSecondary">#594033</color>
+    <color name="btnColor">#D97706</color>
+    <color name="btnTextColor">#FFFFFF</color>
+</resources>
