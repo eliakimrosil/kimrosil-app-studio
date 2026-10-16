@@ -340,6 +340,50 @@ Notice of Non-Affiliation: All product and company names, logos, and brands ment
 
 ---
 
+## FastArc (`fast-arc`)
+- **Category**: Health & Fitness
+- **Tagline**: Zero-Bloat 16:8 Fasting Timer & Lock-Screen Widget
+- **Landing Page**: https://apps.kimrosil.com/fast-arc/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-fast-arc/fast-arc.apk
+- **Privacy Policy**: https://apps.kimrosil.com/fast-arc/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+FastArc is a lightweight, zero-bloat intermittent fasting timer built specifically for the 16:8 protocol. Designed with an offline-first philosophy, it requires zero account creation, displays zero advertisements, collects zero telemetry, and operates completely without an internet connection.
+
+KEY FEATURES
+
+• Zero-Bloat 16:8 Protocol Engine
+Track your 16-hour fasting window and 8-hour eating window with precision. Clear elapsed time, remaining countdown, and projected finish targets updated in real time.
+
+• Real-Time Metabolic Stage Telemetry
+Understand what happens inside your body as your fast progresses through 4 distinct physiological stages:
+1. Digestion & Blood Sugar Stabilization (0h – 4h)
+2. Glycogen Depletion & Fat Mobilization (4h – 12h)
+3. Ketosis & Accelerated Fat Oxidation (12h – 16h)
+4. Autophagy Threshold & Cellular Cleanup (16h+)
+
+• Lock-Screen & Home-Screen Keyguard Widget
+Check your fasting progress without unlocking your device. FastArc includes a native Android AppWidget compatible with both home screens and keyguard lock screens, displaying active fasting status, elapsed time, and metabolic stage at a glance.
+
+• Public Lock-Screen Notification Live Tile
+Optional silent, ongoing notification tile with Android Public Visibility lets you view your live fasting countdown and log water intake directly from your lock screen.
+
+• One-Tap Quick Start Adjustment
+Forgot to tap start right after dinner? Adjust your start time backward in one tap (-15m, -30m, -1h, -2h, or custom time) without resetting your history.
+
+• Hydration Logger
+Quickly log water intake in 250ml intervals to maintain optimal hydration during fasting windows.
+
+• Working Dark, Light & Auto Themes
+Built with athletic typography, high-contrast visual telemetry, and dynamic themes designed for instant readability indoors, outdoors, or in pitch darkness.
+
+• True Native Android Performance
+Written cleanly in pure native Android framework code. Under 1 MB total download size, instant cold start in under 50 milliseconds, and zero background battery drain.
+
+---
+
 ## FastTrack (`fast-track-intermittent-fasting-sentinel`)
 - **Category**: Health & Fitness
 - **Tagline**: Frictionless, offline-first intermittent fasting tracker driven by Quick Settings and persistent Lock Screen chronometer.
