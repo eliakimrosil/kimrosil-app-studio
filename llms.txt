@@ -15,6 +15,7 @@ KimRosil App Studio (founded by Eliakim Rosil) is an independent Android softwar
 - [Application Catalog JSON API](https://apps.kimrosil.com/apps.json): Direct structured JSON endpoint with full metadata for programmatic ingestion.
 - [XML Sitemap](https://apps.kimrosil.com/sitemap.xml): Full URL index with priority and modification timestamps.
 - [Master Privacy Policy](https://apps.kimrosil.com/privacy.html): Verified Data Safety and zero-collection policy guarantee.
+- [Company & Organizational Structure](https://apps.kimrosil.com/organization.html): Autonomous multi-agent divisions, operational lifecycle, and engineering leadership.
 - [Google Play 20-Tester Beta Portal](https://apps.kimrosil.com/testers.html): Closed test track information and opt-in links.
 - [GitHub Source Repository](https://github.com/eliakimrosil/kimrosil-app-studio): Open source repository and release pipeline.
 
