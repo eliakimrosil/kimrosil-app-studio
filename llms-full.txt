@@ -1,0 +1,1210 @@
+# KimRosil App Studio - Full Application Specifications & System Reference
+
+> Complete technical documentation, calculation models, and privacy specifications for the entire KimRosil App Studio suite.
+
+## Studio Technical Profile
+- **Founder & Lead Developer**: Eliakim Rosil
+- **Platform Target**: Android (Minimum SDK: 24 / Android 7.0; Target SDK: 33+ / Android 13+)
+- **Development Paradigm**: Pure Native Android Framework (Java + XML and Kotlin + XML)
+- **Compilation Hardware**: Lenovo Legion Y70 (Qualcomm Snapdragon 8+ Gen 1, ARM64 / aarch64 native compilation in Termux)
+- **Network & Privacy Guarantee**: 100% Offline-First. No internet permission requested where possible. Zero analytics, zero ad SDKs, zero cloud telemetry.
+- **Primary Domain**: https://apps.kimrosil.com/
+- **Catalog API**: https://apps.kimrosil.com/apps.json
+- **GitHub Repository**: https://github.com/eliakimrosil/kimrosil-app-studio
+
+---
+
+## AuraFocus (`aurafocus-minimalist-pomodoro-ambient-sound`)
+- **Category**: Productivity
+- **Tagline**: Offline distraction-free timer with embedded ambient white noise & AMOLED dark theme.
+- **Landing Page**: https://apps.kimrosil.com/aurafocus-minimalist-pomodoro-ambient-sound/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-aurafocus-minimalist-pomodoro-ambient-sound/aurafocus-minimalist-pomodoro-ambient-sound.apk
+- **Privacy Policy**: https://apps.kimrosil.com/aurafocus-minimalist-pomodoro-ambient-sound/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+AuraFocus is a minimalist, offline-first productivity timer designed for deep work, study sessions, and uninterrupted flow. Eliminate digital fatigue with a streamlined workflow that respects your attention and device resources. Key Features: • Flexible Interval Timing: Customize work intervals, short breaks, and long breaks based on the proven Pomodoro technique to maintain consistent productivity. • Curated Ambient Audio: Blend calming, high-fidelity soundscapes including rain, forest, white noise, and gentle streams directly on your device. • Offline and Private: All countdowns, session logs, and audio playback run entirely on-device. No accounts, cloud sign-ins, or telemetry trackers are required. • Native Android Integration: Control sessions seamlessly via interactive Home Screen widgets, persistent status notifications, and a dedicated Quick Settings tile without opening the app. • Minimal Battery Impact: Engineered with a lightweight local architecture to ensure zero unnecessary background battery drain. • Clean Statistics: Review completed intervals, total focus hours, and daily streaks through intuitive, privacy-conscious charts. Whether preparing for exams, managing coding sprints, or practicing structured reading, AuraFocus delivers a quiet, distraction-free environment tailored to your daily routine.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## BeltDeflect (`belt-deflect`)
+- **Category**: TOOLS & UTILITIES / MECHANICAL
+- **Tagline**: Offline V-belt and serpentine tension calculation and audio frequency gauge for mechanics and millwrights
+- **Landing Page**: https://apps.kimrosil.com/belt-deflect/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-belt-deflect/belt-deflect.apk
+- **Privacy Policy**: https://apps.kimrosil.com/belt-deflect/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+Experience BeltDeflect - the clean, fast, and completely private Android tool. - 100% Offline: No internet connection required. - Zero Ads & No Subscriptions: Clean experience without interruptions. - Modern Material 3 Design: Built with Android's latest UI standards. - Private & Secure: Your data never leaves your device.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## Cadence (`cadence-habit-ledger`)
+- **Category**: Lifestyle & Productivity
+- **Tagline**: Minimalist, 100% offline daily ritual ledger with haptic streaks and local SQLite privacy.
+- **Landing Page**: https://apps.kimrosil.com/cadence-habit-ledger/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-cadence-habit-ledger/cadence-habit-ledger.apk
+- **Privacy Policy**: https://apps.kimrosil.com/cadence-habit-ledger/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+Cadence is a minimalist, distraction-free daily habit and ritual ledger designed for intentional living. Built on an offline-first architecture, Cadence helps you cultivate consistency across mind, body, craft, and focus without digital noise, forced accounts, or recurring subscription fees. Every check-in is saved directly to your device using secure local storage. Your routine telemetry remains strictly private, accessible only to you, with zero cloud dependency. Key Features: • Daily Overview: Monitor your progress with a clean completion ring, one-tap check-ins, and active streak counters. • Dedicated Detail View: Inspect any habit with an editorial master-detail layout displaying a 30-day consistency heatmap, lifetime completions, and historical streaks. • Categorized Routines: Organize habits effortlessly across core domains including Mind, Body, Craft, and Focus. • Local SQLite Architecture: All entries and historical logs are managed defensively in on-device storage for instant offline access and complete privacy. • Tactile Design: Thoughtfully designed interface focusing on clarity, typography, and uninterrupted workflow. • Zero Accounts Required: No email signups, no sync latency, and no background tracking services. Cadence prioritizes personal accountability through deliberate design. Build meaningful rituals and maintain steady momentum on your own terms.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## CamberShim (`camber-shim`)
+- **Category**: Tools & Utilities
+- **Tagline**: Offline door hinge mortise and sag correction angle calculator
+- **Landing Page**: https://apps.kimrosil.com/camber-shim/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-camber-shim/camber-shim.apk
+- **Privacy Policy**: https://apps.kimrosil.com/camber-shim/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+CamberShim is an offline-first carpentry and door hanging calculator engineered for tradespeople, finish carpenters, and woodworkers who demand precise job site measurements without interruptions. Traditional utility calculators interrupt your workflow with forced account sign-ins, full-screen ads, and mandatory internet connectivity. CamberShim operates fully offline on remote job sites, basements, and workshops, delivering instant trigonometric cuts and hinge calculations directly to your fingertips. CORE CAPABILITIES • Door Shimming and Plumb Calculator: Instantly calculate shim thicknesses and hinge adjustments required to hang out-of-square doors accurately. • Hinge Mortise Specs: Compute hinge mortise depths, setbacks, and spacing configurations for residential and commercial door frames. • Miter and Bevel Calculations: Solve compound angles, casing cuts, and trim slopes quickly using verified woodworking trigonometry. • Quick Settings Tile Integration: Launch a lightweight floating calculation overlay instantly without navigating away from your camera, level, or blueprint viewers. • Home Screen Glance Widget: Keep active cut specifications, reveal gaps, and multi-door measurements visible directly on your home screen. • Fraction and Metric Support: Switch seamlessly between imperial fractional inches down to 1/64 inch and metric millimeters. • Zero Accounts Required: Works immediately upon launch with no cloud logins, telemetry tracking, or background data consumption.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## Caulk Bead & Skin Sentinel (`caulk-bead-skin-sentinel`)
+- **Category**: Tools & Utilities
+- **Tagline**: Offline workshop and tiling assistant tracking caulk tooling pot life and cure phases right from Quick Settings.
+- **Landing Page**: https://apps.kimrosil.com/caulk-bead-skin-sentinel/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-caulk-bead-skin-sentinel/caulk-bead-skin-sentinel.apk
+- **Privacy Policy**: https://apps.kimrosil.com/caulk-bead-skin-sentinel/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+Caulk Bead & Skin Sentinel is an offline utility designed for contractors, painters, and remodelers to calculate accurate sealant tooling windows and cure schedules based on ambient working conditions. Applying silicone, polyurethane, and acrylic caulking requires precise timing. Premature tooling tears half-skinned beads, while delayed tooling ruins smooth joint finishes and water seals. Standard timers do not account for environmental changes. Caulk Bead & Skin Sentinel factors in local ambient temperature and relative humidity to estimate skin-over thresholds and rain-ready exposure windows accurately. Engineered for fast, distraction-free use on the job site: • Environmental Compensation: Calculates estimated tooling open times and cure duration based on user-entered ambient temperature and relative humidity levels. • Chemistry Presets: Profiles for 100% silicone, hybrid polymer, acrylic latex, polyurethane, and specialty sealants. • Quick Settings Tile: Start and monitor active bead timers directly from the Android Quick Settings shade without navigating menus. • Live Bead Progress: Ongoing status alerts provide clear progress updates, audible signals, and distinct vibration patterns tailored for noisy jobsites. • Multi-Joint Tracking: Monitor tooling deadlines across multiple active joints and surfaces simultaneously. • Zero Accounts or Cloud Logins: Fully functional without an internet connection, account creation, or external servers. • Privacy Respecting: No background analytics, third-party advertising frameworks, or unnecessary system permissions. Ensure clean, compliant, and watertight sealant joints on every finish.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+
+Notice of Non-Affiliation: All product and company names, logos, and brands mentioned are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
+
+---
+
+## ChillThaw (`defrost-safe-meat-prep-sentinel`)
+- **Category**: Food & Drink / Utilities
+- **Tagline**: Safe food-prep countdowns and USDA defrost window alerts right from your Quick Settings and Lock Screen.
+- **Landing Page**: https://apps.kimrosil.com/defrost-safe-meat-prep-sentinel/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-defrost-safe-meat-prep-sentinel/defrost-safe-meat-prep-sentinel.apk
+- **Privacy Policy**: https://apps.kimrosil.com/defrost-safe-meat-prep-sentinel/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+ChillThaw helps home cooks and professional chefs defrost meat safely and accurately using established USDA food safety standards. Improper thawing risks foodborne bacterial growth in the food safety danger zone (40°F to 140°F / 4°C to 60°C). ChillThaw replaces guesswork with thermodynamic time estimation based on cut thickness, weight, meat type, and defrost method. KEY CAPABILITIES • Accurate Thaw Calculations: Precise defrost durations for beef, poultry, pork, seafood, and lamb. • Multiple Thawing Methods: Calculate safe schedules for refrigerator thawing, cold water baths with reminder intervals, or microwave cycles. • Food Safety Countdown: Track USDA bacterial safety thresholds with live timers. • Android System Integration: Check ongoing progress from your notification drawer, home screen glance widget, or Quick Settings tile. • Offline Operation: Calculate kitchen defrost times anywhere without an internet connection. • Clean User Experience: Zero intrusive interstitial interruptions while cooking. SUPPORTED CUTS & METHODS • Refrigerator Thawing: Multi-day countdowns for whole turkeys, roasts, and large primal cuts. • Cold Water Submersion: 30-minute water refresh alert reminders. • Safety Threshold Warnings: Direct guidance on maximum room temperature exposure limits. ChillThaw operates completely offline without mandatory account registration or personal data collection.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## ClampGuard (`glue-set-clamp-sentinel`)
+- **Category**: Tools & Productivity
+- **Tagline**: Track exact clamp-time and full-cure windows for wood glues and epoxies with one-tap Quick Settings, lock-screen chronometers, and ambient cure temperature compensation.
+- **Landing Page**: https://apps.kimrosil.com/glue-set-clamp-sentinel/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-glue-set-clamp-sentinel/glue-set-clamp-sentinel.apk
+- **Privacy Policy**: https://apps.kimrosil.com/glue-set-clamp-sentinel/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+ClampGuard provides reliable, offline-first clamp countdown timers and epoxy cure calculations engineered specifically for woodworking shops and makers. Premature clamp removal ruins glue joints, while guessing cure schedules risks structural failure. ClampGuard eliminates guesswork by calculating precise open times and clamp pressure duration based on ambient workshop temperatures, adhesive chemistry, and joint requirements. Built for messy hands and workshop environments, ClampGuard requires no account creation, no internet connection, and zero intrusive distractions while you work. Key Features: • Temperature-Adjusted Cure Times: Compensates for workshop temperature fluctuations using accurate cure curve modeling for standard PVA, polyurethane, and epoxy resins. • One-Touch Quick Settings Tile: Trigger preset clamp timers directly from Android Quick Settings without navigating through menus with glue on your gloves. • Lock Screen Countdown: Track remaining clamp hold time and full cure progress via persistent lock screen chronometer notifications. • Offline-First Reliability: Operates completely offline with zero data collection, no mandatory cloud sync, and no login requirements. • Multiple Adhesive Presets: Pre-configured profiles for yellow wood glue, liquid hide glue, fast-set cyanoacrylate, structural polyurethane, and casting epoxies. • Multi-Clamp Project Tracking: Monitor multiple glue-ups, laminations, and resin pours concurrently with custom project tags. • Configurable Safety Margins: Add buffer times for stressed joints, high-humidity environments, or bent laminations. Work with precision and protect your woodworking projects from joint failure.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## ClipScrub (`clip-scrub-sanitize-share`)
+- **Category**: Productivity & Privacy Utilities
+- **Tagline**: Instantly strip tracking parameters, UTMs, referral bloat, and metadata from copied links and images before sharing.
+- **Landing Page**: https://apps.kimrosil.com/clip-scrub-sanitize-share/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-clip-scrub-sanitize-share/clip-scrub-sanitize-share.apk
+- **Privacy Policy**: https://apps.kimrosil.com/clip-scrub-sanitize-share/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+ClipScrub is a lightweight, on-device utility designed to sanitize shared links and remove sensitive metadata before you send content to others. Every day, web links carry invasive tracking parameters (such as UTM tags, click identifiers, and referral tokens), while camera photos contain embedded EXIF metadata, including exact GPS coordinates, device models, and timestamps. ClipScrub integrates directly into your Android share sheet to sanitize your content instantly, keeping your sharing habits private. Key Features: • Universal Link Cleaning: Strips tracking tokens, campaign parameters, and analytics tags from URLs while preserving the core destination link. • EXIF and Location Stripping: Cleans embedded GPS coordinates, camera specs, and capture timestamps from photos before they are transmitted. • Native Share Target: Works effortlessly with your existing workflow. Tap Share in any app, select ClipScrub, and forward sanitized content to your intended recipient. • Zero Network Permissions: Operates completely offline on your device. ClipScrub contains no trackers, no third-party analytics, and no remote servers. • Fast and Frictionless: Clean links and media with minimal taps, avoiding disruptive redirections and multi-step dialogs. Protect your digital footprint and share with confidence using a dedicated, privacy-first utility.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+
+Notice of Non-Affiliation: All product and company names, logos, and brands mentioned are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
+
+Government Disclaimer: This application is an independent calculation reference tool designed for personal and business accounting estimations. It is not affiliated with, authorized by, or endorsed by the Bureau of Internal Revenue (BIR) or any government department or tax authority.
+
+---
+
+## CombGauge (`comb-gauge`)
+- **Category**: TOOLS & UTILITIES / ENGINEERING
+- **Tagline**: Offline wet film thickness and dry film coat calculator for industrial spray painters
+- **Landing Page**: https://apps.kimrosil.com/comb-gauge/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-comb-gauge/comb-gauge.apk
+- **Privacy Policy**: https://apps.kimrosil.com/comb-gauge/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+CombGauge is a field calculator designed for industrial spray coaters, marine painters, and protective coating inspectors who need fast, accurate film thickness verification on the job. Applying coatings without real-time thickness validation risks costly failures including runs, sags, mud cracking, and solvent entrapment. CombGauge converts raw notched wet-film comb measurements directly into specified Dry Film Thickness (DFT) while accounting for solvent evaporation, thinner cut percentages, and surface roughness absorption. BUILT FOR INDUSTRIAL FIELD CONDITIONS • 100% Offline Capability: Operates entirely without cellular reception or Wi-Fi, making it reliable inside ballast tanks, ship hulls, fabrication yards, and blast booths. • No Accounts or Cloud Sync: Instant access with zero sign-in barriers, trackers, or background data consumption. • Bidirectional Calculations: Determine target Wet Film Thickness (WFT) from specified DFT, or calculate predicted cured DFT from a live comb reading. • Thinner Dilution Compensation: Adjust calculations accurately for reduction percentages added during field mixing. • Surface Profile Correction: Factor in blast profile anchor patterns and substrate absorption to prevent dry spray and under-thickness non-conformance. • Dual Unit Support: Switch seamlessly between metric (microns/µm) and imperial (mils) measurement systems. CombGauge delivers practical, accurate coating calculations directly to field operators, supporting quality control compliance and reducing rework across structural steel, marine, and industrial maintenance projects.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## CrumbWatch (`sourdough-rise-ferment-sentinel`)
+- **Category**: Food & Drink / Utilities
+- **Tagline**: Offline-first artisan dough fermentation tracker with temperature-compensated proofing timers, flour-safe Quick Settings tap, and ongoing lock screen chronometer.
+- **Landing Page**: https://apps.kimrosil.com/sourdough-rise-ferment-sentinel/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-sourdough-rise-ferment-sentinel/sourdough-rise-ferment-sentinel.apk
+- **Privacy Policy**: https://apps.kimrosil.com/sourdough-rise-ferment-sentinel/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+Master artisanal bread baking and fermentation with CrumbWatch, the reliable sourdough companion built specifically for home bakers. CrumbWatch eliminates the frustration of dropped timers, intrusive pop-up ads, and mandatory online accounts, giving you dependable tools designed for flour-dusted kitchen workflows. Key Features: • Resilient Kitchen Timers: Background service architecture ensures your stretch-and-fold, coil-fold, and bulk fermentation timers persist reliably, even during aggressive device battery optimization. • Precision Baker Math: Quickly calculate dough hydration percentages, flour weights, starter inoculation ratios, and salt levels with an intuitive offline calculator. • Lock Screen Chronometer: Monitor active proofing cycles directly from your ambient display and ongoing notifications without unlocking your phone with dough-covered hands. • Quick Settings Action: Add time or trigger next-step folds directly from your Android Quick Settings panel for minimal touch interaction. • 100% Offline and Private: All recipes, logs, and schedule data stay securely on your device. No cloud account creation, no tracking libraries, and no unexpected network dependencies. • Sourdough Starter Log: Track feed schedules, rise-to-peak times, and ambient kitchen temperatures to refine proofing schedules across seasons. Whether preparing a weekend sourdough boule, focaccia, or rye loaf, CrumbWatch provides the precision tracking you need to bake consistent, well-aerated crumb structures every time.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## CryoPulse (`steep-chill-ice-bath-timer`)
+- **Category**: Health & Fitness / Utilities
+- **Tagline**: Frictionless offline cold plunge timer with Quick Settings 1-tap start, ongoing lock screen chronometer, and haptic breath pacing.
+- **Landing Page**: https://apps.kimrosil.com/steep-chill-ice-bath-timer/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-steep-chill-ice-bath-timer/steep-chill-ice-bath-timer.apk
+- **Privacy Policy**: https://apps.kimrosil.com/steep-chill-ice-bath-timer/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+CryoPulse is a dedicated cold exposure and ice bath companion engineered for focus, precision, and privacy. Designed specifically to solve common frustrations with cold plunge timers, CryoPulse delivers essential timing and nervous system regulation tools without forced paywalls, mandatory account creation, or disruptive full-screen ads. Optimized for wet hands and phone-free operation, CryoPulse integrates with Android Quick Settings so you can start, pause, and monitor your session with a single tap straight from your notification shade or lock screen. Key Features: • One-Tap Quick Settings Tile: Launch your cold plunge timer directly from your Android quick settings without unlocking your screen with wet fingers. • Haptic Breathing Pacer: Guided breathwork cadence using silent vibration cues to help maintain parasympathetic control and focus during cold exposure. • Ongoing Lock Screen Controls: Track elapsed time, remaining targets, and current intervals at a glance while your device remains locked. • True Offline Reliability: Complete offline-first functionality ensures your timer never stalls, crashes, or demands internet connectivity by the water. • Battery Efficient Architecture: Minimalist background processing prevents unexpected battery drain during long routines. • Privacy First Design: No mandatory registration, no intrusive account setup, and zero analytics tracking. Whether stepping into an ice bath, performing deliberate cold exposure, or practicing post-workout recovery, CryoPulse offers the precise, distraction-free utility you need.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## CycleGuard (`laundry-cycle-sentinel`)
+- **Category**: Utilities
+- **Tagline**: Zero-friction offline laundry timer with Quick Settings 1-tap start, ongoing lock-screen chronometer, and mold-prevention reminders.
+- **Landing Page**: https://apps.kimrosil.com/laundry-cycle-sentinel/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-laundry-cycle-sentinel/laundry-cycle-sentinel.apk
+- **Privacy Policy**: https://apps.kimrosil.com/laundry-cycle-sentinel/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+CycleGuard provides dedicated cycle tracking and sequence management for your laundry routines. Built with an offline-first architecture, the app manages your multi-stage cycles without requiring accounts, logins, or unnecessary network permissions. Never forget wet clothes in the washing machine again. CycleGuard ensures timely transitions between washing, transferring, drying, and folding through clear, persistent status alerts. KEY FEATURES • Multi-Stage Sequencing: Configure sequential countdowns to track wash cycles, prompt timely drum-to-dryer transfers, monitor drying durations, and schedule folding tasks. • Anti-Mildew Reminders: Receive repeated follow-up reminders when completed cycles are left unattended, keeping laundry fresh and preventing odor buildup. • Persistent Notification Displays: Monitor running timers directly from your notification panel and lock screen with real-time countdown progress. • Quick Settings Tile: Trigger frequent routines with single-tap shortcuts directly from your device quick settings menu. • Custom Cycle Presets: Save personalized presets for standard loads, delicate garments, heavy bedding, and custom machine settings. • Privacy-Focused and Offline: Operates entirely on your device. No cloud account required, no behavioral analytics tracking, and no background network transfers. CycleGuard is built specifically to address the daily friction of laundry management through clean utility and practical device integration.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## DevSys Monitor (`devsys-monitor`)
+- **Category**: Developer Tools & System Utilities
+- **Tagline**: Lightweight real-time CPU frequencies, RAM utilization, thermal sensors, and system processes monitor.
+- **Landing Page**: https://apps.kimrosil.com/devsys-monitor/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-devsys-monitor/devsys-monitor.apk
+- **Privacy Policy**: https://apps.kimrosil.com/devsys-monitor/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+DevSys Hardware Monitor provides detailed real-time performance insights and diagnostics for developers, engineers, and power users seeking comprehensive Android device metrics. Monitor your hardware status accurately through a clean, lightweight interface designed for low resource overhead and maximum reliability. Key Features: - Real-Time Processor Metrics: Inspect active CPU frequencies per core, load percentages, and architecture specifications. - Memory and Storage Tracking: Monitor RAM allocation, swap memory usage, and internal storage read/write performance. - Battery Health and Thermals: Check voltage, current draw, battery temperature, charge cycles, and real-time power dissipation. - Display and Graphics Diagnostics: Review refresh rates, screen resolution, GPU renderer details, and display pipeline parameters. - Network and Sensor Status: View active connection speeds, network interface states, and hardware sensor telemetry. - Export and Session Logs: Export system metrics in standard formats for benchmark verification and debugging workflows. Privacy and Performance Commitment: DevSys is engineered with an offline-first architecture. It functions completely without an internet connection, requires no account registration, and contains zero third-party tracking libraries or background analytics. Get direct, transparent access to your hardware data whenever you need it.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## DoseGuard (`offline-prescription-pill-refill-sentinel`)
+- **Category**: Health & Fitness
+- **Tagline**: Frictionless offline medication compliance and zero-panic refill countdowns powered by Quick Settings and Glance widgets.
+- **Landing Page**: https://apps.kimrosil.com/offline-prescription-pill-refill-sentinel/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-offline-prescription-pill-refill-sentinel/offline-prescription-pill-refill-sentinel.apk
+- **Privacy Policy**: https://apps.kimrosil.com/offline-prescription-pill-refill-sentinel/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+DoseGuard is a secure, offline medication reminder and pill tracker designed to help you manage your daily prescriptions, vitamins, and refills without compromising your personal health privacy. Unlike traditional health apps that require account creation, cloud syncing, or recurring subscriptions, DoseGuard operates entirely on your device. Your sensitive medical schedules and logs never leave your phone, ensuring complete privacy, zero trackers, and reliable access even without an active internet connection. Key Features: • On-Device Privacy: No account creation or email login required. Your medication data stays encrypted on your local hardware. • Reliable Pill Reminders: Schedule daily, weekly, or custom recurring alerts for prescriptions, supplements, and vitamins. • Quick Action Confirmation: Log doses directly from your notification drawer or Quick Settings tile with a single tap. • Refill Inventory Tracking: Monitor remaining tablet counts automatically and receive low-stock alerts before prescriptions run out. • Flexible Dosage Scheduling: Support for complex regimens, interval dosing, as-needed (PRN) logs, and custom notes per medicine. • Ad-Free Experience: Clean, distraction-free interface built for fast logging without disruptive pop-up ads during critical moments. • Exportable Records: Generate structured intake logs on demand to share directly with your healthcare provider or caregiver. DoseGuard provides a dependable, transparent utility for individuals and caregivers seeking peace of mind through disciplined medication adherence and uncompromising data protection.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## DropScribe (`offline-audio-drop-transcribe`)
+- **Category**: Productivity / Utilities
+- **Tagline**: Offline WhatsApp & Telegram voice note transcription via local Whisper with zero cloud leakage.
+- **Landing Page**: https://apps.kimrosil.com/offline-audio-drop-transcribe/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-offline-audio-drop-transcribe/offline-audio-drop-transcribe.apk
+- **Privacy Policy**: https://apps.kimrosil.com/offline-audio-drop-transcribe/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+DropScribe delivers fast, accurate, and completely private speech-to-text transcription directly on your Android device. Designed for seamless productivity, DropScribe allows you to convert voice messages and audio recordings into clear text without routing your private data through remote servers. Key Capabilities • Instant Share Sheet Integration: Transcribe voice notes directly from any messaging app. Tap share on any audio clip, select DropScribe, and view the transcription instantly in an overlay window without switching apps. • 100% On-Device Processing: Your audio never leaves your phone. All speech recognition models execute locally on your device hardware, safeguarding sensitive business discussions, medical records, and legal conversations. • Zero Account Requirement: Start transcribing immediately upon installation. No email registrations, no profile setup, and no mandatory cloud sign-ins. • Flexible Audio File Support: Transcribe standard audio formats including voice notes, lectures, meetings, and voice memos seamlessly. • Clean Export & Copy: Easily copy formatted text to your clipboard or export transcripts to notes and document editors with a single tap. • Privacy by Design: Built with zero background data collection and strict respect for device permissions. No audio files are ever uploaded, retained, or shared. Experience private, dependable transcription built specifically for Android power users who value security and speed.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+
+Notice of Non-Affiliation: All product and company names, logos, and brands mentioned are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
+
+---
+
+## FastTrack (`fast-track-intermittent-fasting-sentinel`)
+- **Category**: Health & Fitness
+- **Tagline**: Frictionless, offline-first intermittent fasting tracker driven by Quick Settings and persistent Lock Screen chronometer.
+- **Landing Page**: https://apps.kimrosil.com/fast-track-intermittent-fasting-sentinel/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-fast-track-intermittent-fasting-sentinel/fast-track-intermittent-fasting-sentinel.apk
+- **Privacy Policy**: https://apps.kimrosil.com/fast-track-intermittent-fasting-sentinel/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+FastTrack is an offline intermittent fasting tracker designed for privacy, speed, and simplicity. Monitor your fasting intervals without mandatory accounts, recurring subscription paywalls, or third-party data tracking. Key Features: • Offline-First Architecture: All fasting sessions, schedules, and history stay stored securely on your device. • No Account Required: Open the app and begin tracking immediately without email registration or social logins. • Quick Settings Tile: Toggle fasting states directly from your Android notification shade without opening the application. • Real-Time Chronometer: Track elapsed and remaining fasting time with a lightweight, battery-efficient status bar notification. • Standard Fasting Protocols: Support for popular schedules including 16:8, 14:10, 18:6, 20:4, and custom duration timers. • Clean History and Statistics: Review past fasts, completion rates, and streak consistency with straightforward local charts. • Minimal Battery Footprint: Operates with zero background network polling and zero analytics SDKs. Take control of your daily routine with a fast, private, and distraction-free fasting timer built specifically for Android.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## FlangeMatch (`flangematch`)
+- **Category**: TOOLS & UTILITIES / ENGINEERING
+- **Tagline**: Offline pipe flange bolt pattern identifier and torque pattern sequencer.
+- **Landing Page**: https://apps.kimrosil.com/flangematch/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-flangematch/flangematch.apk
+- **Privacy Policy**: https://apps.kimrosil.com/flangematch/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+FlangeMatch is an offline engineering reference designed for pipefitters, boilermakers, and turnaround technicians working in refineries, offshore platforms, and industrial facilities. Built for harsh field environments with zero cellular connectivity, FlangeMatch provides instant access to standardized flange dimensions, bolt hole counts, wrench sizes, and recommended torque sequences without requiring internet access or account logins. KEY ENGINEERING REFERENCE FEATURES • Flange Dimension Tables: Rapidly look up nominal pipe sizes (NPS), pressure classes (150 through 2500), outside diameter, bolt circle, and facing thickness. • Bolting & Stud Specifications: Retrieve stud diameters, total bolt counts, stud lengths, and required heavy hex wrench socket sizes across ASME, ANSI, and API standards. • Torque Sequences & Patterns: Step-by-step cross-pattern bolting sequences to ensure even gasket compression and eliminate flange leakage. • Instant Offline Search: SQLite-powered indexing delivers instant search queries with zero input lag, even when searching deep across multi-class industrial tables. • Gasket Clearance Reference: Verify raised face (RF), flat face (FF), and ring joint (RTJ) dimensions before setting up pipe joints. DESIGNED FOR FIELD RELIABILITY • Zero Connectivity Required: Fully functional inside steel containment vessels, remote pipelines, and offshore platforms. • No Subscriptions: All reference charts and calculations are fully accessible directly upon installation. • Zero Trackers & Zero Ads: No intrusive popups or background telemetry draining battery life during turnaround shifts. • High-Contrast Interface: Clean typography optimized for high visibility in low-light industrial spaces.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## FlowStep (`flow-step`)
+- **Category**: HEALTH_AND_FITNESS
+- **Tagline**: Single-Step Focus Pacer
+- **Landing Page**: https://apps.kimrosil.com/flow-step/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-flow-step/flow-step.apk
+- **Privacy Policy**: https://apps.kimrosil.com/flow-step/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+FlowStep is a 100% offline-first native Android focus pacer engineered specifically for adults experiencing ADHD, task paralysis, and executive dysfunction.
+
+When a task feels too large, executive function breaks down. Willpower cannot bridge that gap — but lowering the physical activation threshold can. FlowStep dissolves overwhelming obligations into single, 2-minute physical actions that require almost zero mental friction to initiate.
+
+KEY CRAFTSMANSHIP & FEATURES:
+
+1. TUNNEL-VISION ACTIVE INTERFACE
+Never stare at overwhelming, anxiety-inducing 20-item to-do lists again. FlowStep displays exactly ONE single micro-action at a time. The rest of the world and future steps remain completely hidden until you tap complete.
+
+2. ORGANIC VISUAL PACER (NO TICKING CLOCKS)
+Standard countdown clocks trigger time blindness panic and adrenaline spikes. FlowStep's custom Canvas Visual Pacer breathes with a gentle, soothing expansion cycle to keep your brain anchored without ever displaying a single numeric countdown second.
+
+3. PHYSICAL ACTION ATOMIZER (OFFLINE + GEMINI BRIDGE)
+Type any vague or dreaded task ("Clean my room", "Do my taxes", "Reply to emails"). FlowStep instantly deconstructs it into 3 to 5 hyper-concrete physical movements that begin with real physical starting verbs ("Pick up", "Open", "Sit", "Wipe", "Gather"). Works 100% offline via local heuristic decomposition, with an optional Bring-Your-Own-Key Gemini 3.8 Flash cloud bridge.
+
+4. "TOO HARD" BREAKDOWN RESCUE
+Hit a wall of executive paralysis on a specific step? Tap "Too Hard? Break it Down" to instantly subdivide the stalled action into two 60-second micro-starter movements.
+
+5. 2-SECOND STRAY THOUGHT BUFFER
+ADHD minds are constantly interrupted by intrusive ideas ("Did I pay the electric bill?"). A persistent floating capture button lets you park any distraction into local device storage in under 2 seconds without losing your place or interrupting active flow.
+
+6. NON-PUNITIVE LIFETIME MOMENTUM
+Streaks punish neurodivergent brains when life happens. FlowStep replaces fragile streaks with a cumulative Lifetime Momentum Ledger. Every single completed step belongs to you forever. No broken streak alerts, no red penalty badges.
+
+100% PRIVACY & OFFLINE GUARANTEE:
+FlowStep contains zero advertising trackers, zero user telemetry, and zero background analytics. All data is persisted exclusively in local SQLite on your device.
+
+KimRosil App Studio Company
+Crafted with pride by Eliakim Rosil.
+
+---
+
+## Gemini Power Bridge (`gemini-power-bridge`)
+- **Category**: Productivity & Utilities
+- **Tagline**: Hardware key interceptor configuring Lenovo ZUI power button long-press to launch Google Gemini directly.
+- **Landing Page**: https://apps.kimrosil.com/gemini-power-bridge/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-gemini-power-bridge/gemini-power-bridge.apk
+- **Privacy Policy**: https://apps.kimrosil.com/gemini-power-bridge/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+Power Key Assistant Bridge provides seamless hardware button remapping, enabling you to launch your favorite virtual assistant, digital companion, or utility shortcut directly via your device power key. Many devices lock hardware shortcut keys to proprietary assistant software or system search engines. Power Key Assistant Bridge acts as an intelligent interceptor service, capturing hardware key events and seamlessly redirecting the intent to your chosen application without latency or interruption. Key Features: - Instant Hardware Interception: Detects power key events and redirects execution instantly to your preferred assistant or shortcut. - Custom Target Selection: Configure any installed assistant, automation tool, or frequently used app as the primary trigger. - Offline-First Architecture: Operates entirely locally on your device with no remote servers or external dependencies. - Privacy Focused: Zero network tracking, zero analytics SDKs, and zero telemetry collection. - Lightweight and Efficient: Optimized background listener designed to consume negligible battery and system memory. - No Subscriptions: All utility features are available out of the box with no account creation or recurring fees required. Permissions and Accessibility Disclosure: This app utilizes the Android AccessibilityService API to detect hardware key presses when the screen is active and route them to your configured assistant. The Accessibility Service is strictly used for button detection and intent dispatch. It does not monitor screen contents, collect personal data, or transmit keystrokes. Take full control of your hardware shortcuts with a lightweight, secure utility designed to personalize your everyday workflow.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+
+Notice of Non-Affiliation: All product and company names, logos, and brands mentioned are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
+
+---
+
+## GrainLine (`grainline`)
+- **Category**: Tools / Productivity
+- **Tagline**: Offline textile yardage calculator and pattern layout optimizer with Quick Settings bolt yardage scanner.
+- **Landing Page**: https://apps.kimrosil.com/grainline/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-grainline/grainline.apk
+- **Privacy Policy**: https://apps.kimrosil.com/grainline/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+GrainLine is a reliable fabric yardage calculator and cut planner designed specifically for sewists, quilters, and crafters. Plan project requirements, calculate yardage accurately at the cutting counter, and track bolt remainders without delays or connectivity issues. Designed for real-world sewing environments, GrainLine operates entirely offline. Whether you are browsing aisles in brick-and-mortar craft shops, attending quilt retreats, or working in your personal studio, all conversion tools and cutting calculations remain fully functional without internet access or mandatory account sign-in. Key Features: • Precise Fabric Calculations: Convert between yards, inches, meters, and centimeters with exact fractional readouts tailored for pattern cutting. • Quilt Block & Strip Estimator: Accurately estimate required yardage for quilt borders, backing, binding, and patchwork blocks to minimize fabric waste. • Bolt Remainder Tracking: Calculate remaining fabric on bolts instantly to know whether enough yardage exists before making a purchase. • Quick Counter Access: Fast input fields allow rapid calculations directly at the cutting table with minimal taps. • Offline Functionality: Complete standalone functionality ensures zero dependence on cellular reception or cloud services. • Privacy-Focused: No mandatory registration, no background tracking, and no external analytics collection. Eliminate guesswork and overbuying. Plan sewing projects with clean measurements, practical cut estimation, and dependable offline calculations.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## GrainRun (`grain-run`)
+- **Category**: Tools & Utilities
+- **Tagline**: Offline wood grain reading helper and tearout calculator with quick visual tilt checks for workshop benches.
+- **Landing Page**: https://apps.kimrosil.com/grain-run/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.0-grain-run/grain-run.apk
+- **Privacy Policy**: https://apps.kimrosil.com/grain-run/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+GrainRun helps woodworkers, cabinetmakers, and luthiers identify wood grain direction and avoid costly surface tearout when planing, jointing, or routing hardwood lumber. Planing against the grain frequently leads to rough surfaces, tearout, and damaged workpieces. GrainRun provides clear visual references and systematic inspection guides to help you read cathedral patterns, end-grain growth rings, ray flecks, and edge grain runout before making a cut. Built for real workshops, GrainRun operates completely offline with no cellular connection required. Whether working in a basement shop, an off-grid timber frame site, or a metal building with poor reception, all visual diagnostic guides and grain reading references remain immediately accessible. Key Features: • Grain Direction Diagnostics: Step-by-step guides for interpreting face-grain cathedral arches, edge runout angles, and bark-side versus pith-side orientation. • End-Grain Growth Ring Reference: Analyze annular ring curvature and annual growth patterns to anticipate board movement and proper orientation on the jointer. • Figured Wood Support: Practical techniques for identifying grain shifts in curly maple, quartersawn oak ray flecks, burl, and interlocked grain species. • Surface Defect Prevention: Diagnostic checklist to eliminate chatter, tearout, scalloping, and gouges on bench planes and thickness planers. • 100% Offline Reliability: Zero dependence on cloud connectivity, user accounts, or external network access inside your workshop. • Privacy-Focused: No analytics trackers, no account registration, and no background network calls. Elevate your milling accuracy and achieve smooth hand-planed surfaces with GrainRun.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+
+Notice of Non-Affiliation: All product and company names, logos, and brands mentioned are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
+
+---
+
+## IronPulse (`workout-program-tracker`)
+- **Category**: Health & Fitness
+- **Tagline**: Minimalist offline workout program tracker with progressive overload logging and auto rest timer.
+- **Landing Page**: https://apps.kimrosil.com/workout-program-tracker/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-workout-program-tracker/workout-program-tracker.apk
+- **Privacy Policy**: https://apps.kimrosil.com/workout-program-tracker/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+IronPulse is an offline strength training and workout log designed for focused lifters. Built for speed and reliability, it removes unnecessary clutter, forced cloud accounts, and intrusive interruptions so you can focus entirely on your training session. Whether you train in a commercial gym, garage gym, or basement with limited reception, IronPulse operates with zero network dependencies. All workout data is stored locally on your device for immediate access and complete privacy. Structured Training Programs Select from established lifting templates or tailor a routine to match your schedule: • Push Pull Legs (PPL) • Upper / Lower Split • 5x5 Strength Routine • Custom Routine Builder Efficient Workout Logging • Clean set, rep, and weight entry without friction • Progressive overload tracking cues based on previous performances • Integrated rest timer with visual alerts and haptic vibration feedback • Quick adjustments between warm-up and working sets Performance History & Volume Tracking • Comprehensive log vault documenting completed workouts • Calculation of total volume lifted, sets completed, and session duration • Review past training sessions to measure strength progression over time Designed for Focus • Complete offline utility: No internet connection required to log workouts • Zero registration: No email signups, passwords, or personal profiles needed • Private: Your workout history remains stored on your local device
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## KerfNotch (`kerf-notch`)
+- **Category**: TOOLS & UTILITIES / CARPENTRY
+- **Tagline**: Offline table saw box joint and dado stack spacer calculator.
+- **Landing Page**: https://apps.kimrosil.com/kerf-notch/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-kerf-notch/kerf-notch.apk
+- **Privacy Policy**: https://apps.kimrosil.com/kerf-notch/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+KerfNotch is an offline-first Android utility engineered natively for Android. Operates completely without internet connectivity, storing all data securely in on-device sandboxed storage.
+
+---
+
+## KR Live Studio (`kim-live-studio`)
+- **Category**: Video & Broadcasting
+- **Tagline**: Broadcast screen, camera & audio directly to RTMP live platforms
+- **Landing Page**: https://apps.kimrosil.com/kim-live-studio/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.6.1-kim-live-studio/kr-live-studio.apk
+- **Privacy Policy**: https://apps.kimrosil.com/kim-live-studio/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+KR Live Studio delivers direct live broadcasting from your Android device. Designed for content creators, mobile gamers, and live presenters, KR Live Studio enables you to stream your display, camera overlay, and microphone audio directly to standard RTMP and RTMPS endpoints.
+
+Direct Ingest Architecture
+KR Live Studio connects straight to your specified streaming endpoint using hardware-accelerated MediaCodec H.264 video encoding and MediaProjection capture. Because streams transmit directly between your device and your chosen ingest server without third-party cloud intermediaries or relay proxies, your transmission latency is minimized and your broadcast credentials remain secure.
+
+Core Features:
+• Hardware Video Encoding: MediaCodec H.264/AVC processing engineered for efficient real-time compression and battery balance.
+• Direct RTMP & RTMPS Protocol: Native streaming engine supporting standard port 1935 and TLS-encrypted port 443 endpoints with auto-reconnection and exponential backoff.
+• Internal Game Audio & Dual-Mixer: Android 10+ AudioPlaybackCapture for pristine game sound, mixed in real-time with linear PCM mic commentary.
+• One-Tap Privacy Shield: Instantly detach screen projection and mute audio without severing the RTMP socket or resetting stream uptime.
+• Dynamic Keyframe Recovery: Automatically requests IDR sync frames from MediaCodec upon congestion packet drops to eliminate visual artifacting.
+• Multi-Platform Stream Key Vault: Save and recall distinct stream keys for YouTube, Twitch, TikTok, Kick, Facebook, and Custom servers.
+• Clean Floating Facecam: Draggable PiP camera overlay with Squircle/Circle shape masking and auto-hiding controls.
+• Hardware Telemetry HUD: Real-time SoC thermal state monitoring, network health gauge, live bitrate, FPS, and dropped frame telemetry.
+• Tactile Controls: Clear bitrate adjustments, resolution selection (1080p, 720p, 480p), and visual audio VU indicators.
+
+Permissions & Usage:
+• Screen Capture (MediaProjection): Required to capture display content during active broadcasts.
+• Microphone (RECORD_AUDIO): Required to record microphone commentary for your stream.
+• Camera (CAMERA): Optional permission used only when you enable the picture-in-picture facecam overlay.
+• Display Over Other Apps: Optional permission used to show the floating camera preview while navigating other apps.
+
+Privacy & Data Safety:
+• Direct Connection Only: Video and audio packets flow directly to your designated RTMP server. No third-party proxy or intermediary server is used.
+• Zero Data Harvesting: No personal identifiable information (PII), stream keys, or device identifiers are collected or tracked.
+• No Account Required: Full functionality without accounts, sign-ups, or subscriptions.
+• Sandboxed Local Storage: All preferences and stream settings are saved securely on your local device.
+
+---
+
+## MeterPulse (`tap-meter-parking-sentinel`)
+- **Category**: Auto & Vehicles / Productivity
+- **Tagline**: One-tap Quick Settings parking timer with interactive Glance countdown and GPS breadcrumb, completely offline.
+- **Landing Page**: https://apps.kimrosil.com/tap-meter-parking-sentinel/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-tap-meter-parking-sentinel/tap-meter-parking-sentinel.apk
+- **Privacy Policy**: https://apps.kimrosil.com/tap-meter-parking-sentinel/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+Never miss an expiring parking meter again. MeterPulse delivers reliable, offline parking countdown timers and timely notifications to protect you from unexpected parking citations. Built for drivers who need an immediate, distraction-free utility, MeterPulse starts instantly without account sign-ups, unnecessary location tracking, or intrusive full-screen popups. KEY FEATURES • Instant Timer Setup: Set your parking duration in seconds using intuitive presets or custom time inputs. • Quick Settings Tile: Start, monitor, or extend active parking sessions directly from your Android quick notification panel. • Interactive Home Screen Widget: Track remaining parking minutes right on your home screen with clean glanceable widgets. • Live Progress Alerts: Receive persistent, high-visibility notifications and heads-up alerts before meter expiration. • 100% Offline Architecture: All timers and configurations remain strictly on your device. No cloud sync required and zero background data consumption. • Battery Efficient: Lightweight service design ensures exact alarm triggers without draining your mobile battery. • Privacy by Default: No sign-in required, no personal profile creation, and no background location tracking permissions. Take control of your street parking intervals with an efficient, private utility designed to get you moving quickly.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## MuckCure (`muck-cure`)
+- **Category**: Tools & Productivity
+- **Tagline**: Offline Quick Settings tile and lockscreen vibration monitor for masonry mortar pot life, initial set, and strike-off timing.
+- **Landing Page**: https://apps.kimrosil.com/muck-cure/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-muck-cure/muck-cure.apk
+- **Privacy Policy**: https://apps.kimrosil.com/muck-cure/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+MuckCure is a jobsite utility designed for masons, tile setters, and bricklayers to track mortar pot life, initial set windows, and grout cure timelines accurately. Working with cementitious mixtures requires strict timing. Ambient temperature, humidity, and mix ratios alter working windows, leading to premature dry-out, weak bonding, or difficult tile cleanup. MuckCure provides dedicated batch timers configured for masonry and tile applications without distractions. BUILT FOR REAL JOBSITE CONDITIONS • Offline Calculation: All curing estimates and timers run entirely on your device with no network connection required. • Glove-Friendly Controls: High-contrast interface with enlarged tap targets designed for one-handed operation. • Tactile Haptic Patterns: Distinct vibration signatures signal warning intervals and cure thresholds, allowing hands-free monitoring directly from your pocket. • Lock Screen Progress: Monitor remaining pot life and cleanup windows via persistent ongoing notifications without unlocking your screen. • Quick Settings Tile: Start and toggle standard batch timers instantly from your Android status shade. • Mix Presets: Configure custom time parameters for standard thinset, type N and S mortars, epoxy grouts, and self-leveling underlayments. PRIVACY AND RELIABILITY MuckCure requires no user account registration, collects no personal telemetry, and operates without third-party analytics trackers. Designed to preserve device battery life on active work sites. Optimize your mix windows, prevent cold joints, and standardize cleanup timing with MuckCure.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+
+Notice of Non-Affiliation: All product and company names, logos, and brands mentioned are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
+
+---
+
+## PanFlip (`pan-flip-sear-timer`)
+- **Category**: Food & Drink / Utilities
+- **Tagline**: Offline culinary flip and sear timer with Quick Settings 1-tap activation and hands-free lock-screen pacing for busy home cooks.
+- **Landing Page**: https://apps.kimrosil.com/pan-flip-sear-timer/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-pan-flip-sear-timer/pan-flip-sear-timer.apk
+- **Privacy Policy**: https://apps.kimrosil.com/pan-flip-sear-timer/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+PanFlip is a specialized kitchen timer engineered to eliminate overcooked proteins and uneven sears. Designed specifically for cast iron cooking, stovetop searing, and grilling, PanFlip simplifies two-stage timing for steaks, fish fillets, smash burgers, pork chops, and delicate items like grilled cheese. Traditional kitchen timers only count down a single interval, forcing you to manually calculate flip splits and resting times while managing hot cookware. PanFlip calculates precise side-A and side-B ratios alongside post-cook resting durations, helping you achieve consistent crusts and ideal internal doneness. Key Features: - Two-Stage Flip Timing: Automatically calculates and alerts when it is time to flip your protein for balanced heat distribution. - Integrated Resting Counter: Prompts and monitors carryover cooking times so juices redistribute properly before serving. - High-Contrast Cooking View: Clean, legible interface allows quick glances across the kitchen without distraction. - Single-Tap Presets: Quick-start timers optimized for common pan-searing scenarios and protein thicknesses. - Audio and Vibration Alerts: Clear stage transitions ensure you never miss a flip or rest interval. - 100% Offline Architecture: Fully functional without an active internet connection, ideal for remote grilling or low-connectivity kitchen setups. - Privacy Focused: No accounts, no mandatory sign-ups, and zero background analytics or tracking. Take the guesswork out of pan-searing. Master temperature control and consistent doneness with an intentional, dedicated cooking sentinel.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## ParkPin (`park-pin-offline-spot-finder`)
+- **Category**: Auto & Vehicles / Travel & Local
+- **Tagline**: Instantly record parking spot level, pillar number, and photos with zero network connectivity or latency.
+- **Landing Page**: https://apps.kimrosil.com/park-pin-offline-spot-finder/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-park-pin-offline-spot-finder/park-pin-offline-spot-finder.apk
+- **Privacy Policy**: https://apps.kimrosil.com/park-pin-offline-spot-finder/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+ParkPin: Offline Spot Anchor helps you remember exactly where you parked your vehicle without relying on an active internet connection, GPS signal, or external accounts. Designed specifically for subterranean garages, multi-story parking structures, and crowded outdoor lots where cellular reception is unavailable, ParkPin provides a fast, offline-first experience directly on your device. Key Features: - True Offline Operation: All parking records, floor levels, notes, and photos are saved directly on your local device storage. No account creation, cloud sync, or internet connection required. - One-Tap Quick Settings Tile: Save your current spot instantly from your Android Quick Settings panel without opening the full application. - Multi-Level Structure Support: Record exact garage levels, pillar numbers, zone letters, and custom text notes for complex multi-story lots. - Visual Spot Anchor: Attach a local camera snapshot of your parking stall, nearby signs, or reference landmarks to easily guide you back. - Home Screen Widget: Monitor your saved stall details and floor level directly from your home screen using an interactive Android widget. - Ongoing Notification: Keep your saved spot handy in your notification shade for immediate one-tap reference when returning to your vehicle. - Lightweight and Private: Zero trackers, zero invasive permissions, and no background location tracking. Your data never leaves your device. ParkPin focuses entirely on quick utility so you can save your parking space in seconds and return to it with total confidence.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+
+Notice of Non-Affiliation: All product and company names, logos, and brands mentioned are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
+
+---
+
+## PebbleDrift (`pebble-drift`)
+- **Category**: Games / Casual / Relaxing
+- **Tagline**: Tactile water ripples, floating petals, stone stacking, and harmonic pentatonic chimes in an offline oasis.
+- **Landing Page**: https://apps.kimrosil.com/pebble-drift/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-pebble-drift/pebble-drift.apk
+- **Privacy Policy**: https://apps.kimrosil.com/pebble-drift/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+PebbleDrift is a peaceful ambient garden experience designed to help you unwind and practice daily mindfulness. Escape digital noise through tactile physics, fluid water simulations, and soothing audio. Key Features: - Interactive Water Ripples: Touch to create gentle fluid waves across dynamic lily ponds and drifting sakura petals. - Cairn Stone Stacking: Balance smooth river pebbles using authentic, low-gravity physical interactions. - Sand Garden Raking: Draw smooth patterns in Japanese raked sand with intuitive touch gestures and clear sweeps. - Procedural Ambient Audio: Unwind with calming harmonic chords and subtle acoustic water textures that adapt to your touch. - Distraction-Free Design: Completely free of countdown timers, intrusive pop-ups, and aggressive progression bars. - Offline Capable: Enjoy full access to ambient interactions anywhere without requiring an active internet connection. Whether taking a short five-minute work break or winding down before sleep, PebbleDrift provides an authentic sanctuary for quiet reflection and stress relief.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## PH VAT Calculator (`ph-vat-calculator`)
+- **Category**: Finance & Business
+- **Tagline**: Fast offline 12% VAT (inclusive/exclusive), Expanded Withholding Tax (EWT), and invoice net/gross calculation tool.
+- **Landing Page**: https://apps.kimrosil.com/ph-vat-calculator/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.4-ph-vat-calculator/ph-vat-calculator.apk
+- **Privacy Policy**: https://apps.kimrosil.com/ph-vat-calculator/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+VatCal PH is an offline business utility designed for Filipino freelancers, small business owners, accountants, and retail merchants. Quickly compute value-added tax, net amounts, and withholding deductions according to standard Philippine tax formats. Whether preparing sales receipts, auditing supplier billing, or verifying official invoices, this tool eliminates manual calculation errors with instant breakdown summaries. Key Features: • VAT Inclusive and Exclusive Computation: Enter gross or net sales to instantly calculate 12% VAT and net amounts. • Withholding Tax Calculations: Apply standard creditable withholding tax rates (such as 1%, 2%, or 5%) to invoice values seamlessly. • Clear Invoice Item Breakdown: View itemized totals showing gross price, net sales, VAT portion, and deductible taxes. • Offline-First Functionality: Perform every calculation without an active internet connection, ensuring reliable operation anywhere. • Privacy and Security: Operates locally on your device with no required account registration, background analytics, or third-party trackers. • Copy and Share Results: Export calculated breakdowns directly into messaging apps, email, or accounting spreadsheets. Designed for everyday commercial and bookkeeping tasks in the Philippines, VatCal PH simplifies financial reporting and tax verification with a clean, efficient interface.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+
+Government Disclaimer: This application is an independent calculation reference tool designed for personal and business accounting estimations. It is not affiliated with, authorized by, or endorsed by the Bureau of Internal Revenue (BIR) or any government department or tax authority.
+
+---
+
+## PitchGrid (`pitch-grid`)
+- **Category**: Music & Audio / Production Tools
+- **Tagline**: Tactile studio frequency generator & audio workbench with real-time waveform synthesis and microtonal cents precision.
+- **Landing Page**: https://apps.kimrosil.com/pitch-grid/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-pitch-grid/pitch-grid.apk
+- **Privacy Policy**: https://apps.kimrosil.com/pitch-grid/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+PitchGrid is a studio-grade audio frequency generator and musical microtonal workbench crafted for sound designers, acoustic engineers, synth enthusiasts, and musicians.
+
+Engineered with a pure native Android 44.1 kHz PCM audio synthesis engine, PitchGrid produces mathematically pure waveforms in real time with zero latency, zero audible popping, and zero cloud dependencies.
+
+KEY STUDIO FEATURES:
+
+1. REAL-TIME MULTI-WAVEFORM OSCILLATOR
+• Sine: Pure fundamental harmonic tone for acoustic calibration and resonance isolation.
+• Triangle: Warm, mellow waveform with odd-order harmonics.
+• Sawtooth: Rich analog synth harmonic spectrum for filter and gear testing.
+• Square: Punchy vintage pulse wave with odd harmonic series.
+• Pink Noise: -3 dB/octave acoustic reference noise for room and speaker response calibration.
+
+2. HARDWARE-ACCELERATED CRT OSCILLOSCOPE
+• Live audio waveform visualizer with phosphor glow persistence.
+• Calibrated division reticle grid and real-time amplitude tracking.
+• Instant visual feedback of frequency and harmonic shape changes.
+
+3. MICROTONAL & MUSICAL WORKBENCH
+• Continuous 20 Hz to 20,000 Hz coverage with smooth logarithmic sweep seekbar.
+• Precision sub-Hz nudging (+1, -1, +10, -10, +100, -100 Hz) and direct numerical frequency input.
+• Full musical note mapping from C0 to B8 with octave transpositions.
+• Microtonal cents fine-tuning dial (-50 to +50 cents) with instant center reset.
+• Reference concert pitch calibration: A4 = 440 Hz (Standard), A4 = 432 Hz (Pythagorean / Verdi), A4 = 444 Hz.
+• 1-tap harmonic interval transposition: Major 3rd (5:4), Perfect 4th (4:3), Perfect 5th (3:2), Octave (2:1).
+
+4. AUTOMATED FREQUENCY SWEEP & CALIBRATION
+• Continuous 20 Hz to 20 kHz automated logarithmic frequency sweep for testing speakers, headphones, and room standing waves.
+• Output attenuation control with calibrated decibel (dB) and percentage readout.
+
+5. PRESETS & CALIBRATION VAULT
+• Built-in factory benchmarks: 440 Hz Concert Pitch, 432 Hz Natural Tuning, 1 kHz Line Level Reference, 60 Hz Ground Hum, 40 Hz Subwoofer Resonance, and Guitar String Tunings.
+• Save unlimited custom frequency and waveform presets to local SQLite storage.
+
+6. ZERO-BLOAT NATIVE PERFORMANCE
+• 100% offline-first. Zero internet permissions required.
+• Zero telemetry, zero analytics, zero ads.
+• Quick Settings Tile for instant 1-tap playback from your notification shade.
+• Tactile synthesizer rack aesthetic with Day, Night, and System Auto theme switching.
+
+---
+
+## PotLife (`epoxy-cure-pot-life-sentinel`)
+- **Category**: Tools & Utilities
+- **Tagline**: Zero-friction pot life, gel phase, and demold countdowns triggered directly from Quick Settings with sticky resin hands.
+- **Landing Page**: https://apps.kimrosil.com/epoxy-cure-pot-life-sentinel/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-epoxy-cure-pot-life-sentinel/epoxy-cure-pot-life-sentinel.apk
+- **Privacy Policy**: https://apps.kimrosil.com/epoxy-cure-pot-life-sentinel/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+PotLife is a dedicated countdown timer and pot life monitor engineered for woodworkers, artists, and composite fabricators working with two-part epoxy systems, casting resins, and polyurethane. Working with reactive chemical mixtures requires precise timing to prevent flash cures and ruined projects. When wearing resin-covered gloves, navigating complex screens or dealing with unexpected interruptions can compromise your pour. PotLife provides an offline-first, streamlined workflow designed specifically for workshop environments. KEY WORKFLOW FEATURES: • Instant Timer Presets: Save exact working times for your favorite deep-pour, coating, and casting formulations. • Quick Settings Tile Integration: Launch and monitor active countdowns directly from your Android notification shade with a single touch. • Lock Screen Live Controls: Monitor elapsed time and remaining work windows via high-contrast notifications without unlocking your device. • Large Touch Targets: High-contrast controls designed to be operated reliably when wearing protective gloves. • Stage-Based Alerts: Receive distinct acoustic and vibration cues when approaching initial gel phase and final pot life cutoffs. • Fully Offline Utility: No account registration, network access, or cloud synchronization required. All data remains stored locally on your device. PotLife eliminates friction in the workshop, giving you dependable timing control from initial mix to final demold.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## ReturnGuard (`return-guard-receipt-countdown`)
+- **Category**: Shopping & Lifestyle
+- **Tagline**: Stop losing money on clothes and purchases you meant to return with visual deadline countdowns and cashier-ready receipt displays.
+- **Landing Page**: https://apps.kimrosil.com/return-guard-receipt-countdown/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/actions
+- **Privacy Policy**: https://apps.kimrosil.com/return-guard-receipt-countdown/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+Never miss a store return deadline again. ReturnGuard helps you organize your purchases, store receipts securely on your device, and track return windows with clear visual countdowns. Every retailer has different return policies, ranging from 14 to 90 days. Misplaced receipts and forgotten dates often lead to wasted money on items you cannot use. ReturnGuard provides a reliable, private system to keep all your return windows organized in one central place. Key Features: - Active Return Countdown: View all pending returns sorted by urgency. Circular countdown meters show exactly how many days remain before deadlines expire. - Receipt Archival: Capture photos of paper receipts or import digital invoice screenshots. Keep proof of purchase ready whenever needed. - Cashier Return Mode: Instantly bring up receipt barcodes on full screen with one tap for smooth customer service counter processing. - Custom Store Policies: Easily set custom return durations to match store policies, seasonal extensions, or membership benefits. - Privacy First and Offline: Your receipts and purchase data remain stored strictly on your local device. No account creation required, no external server uploads, and zero tracking. Designed for clothing shoppers, gift recipients, and busy households seeking an organized way to manage purchases and protect their budgets.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## RoastRest (`roast-rest-meat-thermo-sentinel`)
+- **Category**: Food & Drink / Utilities
+- **Tagline**: Offline culinary carryover calculator and target rest timer with a 1-tap Quick Settings tile and lock-screen chronometer.
+- **Landing Page**: https://apps.kimrosil.com/roast-rest-meat-thermo-sentinel/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-roast-rest-meat-thermo-sentinel/roast-rest-meat-thermo-sentinel.apk
+- **Privacy Policy**: https://apps.kimrosil.com/roast-rest-meat-thermo-sentinel/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+Master meat resting and carryover cooking with precision thermal calculations. RoastRest helps home cooks and pitmasters calculate target internal temperatures and resting durations for steaks, roasts, poultry, and barbecue. When meat is removed from heat, internal temperature continues to rise while moisture redistributes throughout the muscle fibers. RoastRest uses predictive mathematical models to determine exact resting times based on cut thickness, cooking method, probe pull temperature, and target doneness. Key Features: - Predictive Carryover Calculations: Estimate temperature rise after removing meat from grill, oven, or smoker. - Built-in Cut Profiles: Preset configurations for steak cuts, whole poultry, pork roasts, and barbecue briskets. - Large Kitchen-Friendly Controls: High-contrast buttons and expanded touch targets designed for quick operation while cooking. - Quick Settings Tile: Launch or view active resting timers directly from the Android system panel. - Timed Resting Alerts: Reliable device notifications trigger when the resting window completes. - Fully Offline Functionality: Operates completely without internet connectivity, external hardware, or Bluetooth pairing. - Privacy-Focused: No mandatory user accounts, no cloud profile synchronization, and zero background activity tracking. Achieve consistent, tender cooking results by taking the guesswork out of resting time.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## RunSheet (`run-sheet-workflow`)
+- **Category**: Business & Productivity
+- **Tagline**: Professional offline stage-gate workflow engine and sequential production runner with local SQLite telemetry.
+- **Landing Page**: https://apps.kimrosil.com/run-sheet-workflow/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-run-sheet-workflow/run-sheet-workflow.apk
+- **Privacy Policy**: https://apps.kimrosil.com/run-sheet-workflow/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+RunSheet is a reliable, offline-first execution runner engineered for live broadcasts, production operations, field events, and sequential industrial workflows. Built for professionals who require strict procedural control, RunSheet eliminates execution delays with high-visibility stage timers, sequential checklists, and real-time operational telemetry—completely independent of network connectivity. KEY CAPABILITIES - Active Stage Hero Card: Monitor the current stage at a glance with real-time elapsed chronometers, target runtimes, and single-tap advance or hold controls. - Pipeline Sequencer: Maintain situational awareness across the entire procedure with visual stage indicators (Ready, In Progress, Blocked, Completed). - Real-Time Duration Telemetry: Track pacing against predefined schedule benchmarks to detect overruns before they impact subsequent milestones. - Workflow Presets & Templates: Quickly launch standardized run sheets for broadcast programming, technical checklists, or field deployments. - Subtask Checklists: Verify stage-level requirements before advancing to ensure compliance with operational protocols. - 100% Offline Architecture: Operates entirely on-device without cloud dependencies, user accounts, or external network calls. - Privacy by Design: Zero telemetry, zero analytics tracking, and no background network synchronization. IDEAL USE CASES - Live event production, stage management, and broadcast directing - Manufacturing shift handovers and procedural machinery startups - Technical operations and multi-step dispatch runbooks - Field audits and rigorous multi-stage checklists RunSheet gives operations teams the discipline and timing needed to execute complex workflows flawlessly.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## ScreenStream RTSP (`screenstream-rtsp`)
+- **Category**: Multimedia & Networking
+- **Tagline**: Low-latency local network RTSP live screen broadcasting server utilizing Android MediaProjection API.
+- **Landing Page**: https://apps.kimrosil.com/screenstream-rtsp/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-screenstream-rtsp/screenstream-rtsp.apk
+- **Privacy Policy**: https://apps.kimrosil.com/screenstream-rtsp/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+ScreenStream RTSP Broadcaster turns your Android device into a high-performance, real-time video streaming server. Broadcast your screen activity directly over your local Wi-Fi network using standard RTSP (Real-Time Streaming Protocol) with minimal delay. Whether you need to demonstrate mobile workflows, monitor device activity, present mobile presentations on a desktop monitor, or feed live gameplay into production software like OBS Studio or VLC, ScreenStream delivers consistent, hardware-accelerated performance. Key Features: - Ultra-Low Latency: Optimized H.264/AVC hardware encoding ensures fluid, near-instant screen mirroring. - Local Network First: Streams operate entirely within your local area network (LAN/WLAN) without sending data to external cloud servers. - Standard Protocol Support: Connect effortlessly from any RTSP-compliant media player, including VLC, MPV, OBS Studio, and smart displays. - Configurable Stream Parameters: Adjust video resolution, frame rate (FPS), and bitrate to balance quality and network bandwidth. - Internal and Microphone Audio: Capture and transmit synchronized audio streams alongside high-definition video. - Privacy Focused: No user tracking, no third-party analytics SDKs, and no unnecessary background telemetry. - Clean Control Interface: Start and stop broadcasts with a single tap, accompanied by clear IP and port connection details. Designed for developers, content creators, network administrators, and educators seeking a dependable, zero-friction screen streaming solution across local environments.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+
+Notice of Non-Affiliation: All product and company names, logos, and brands mentioned (including VLC and OBS Studio) are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
+
+---
+
+## ShimPack (`shim-pack`)
+- **Category**: TOOLS & UTILITIES / ENGINEERING
+- **Tagline**: Offline motor alignment tolerance solver and precision shim stack builder
+- **Landing Page**: https://apps.kimrosil.com/shim-pack/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.0-shim-pack/shim-pack.apk
+- **Privacy Policy**: https://apps.kimrosil.com/shim-pack/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+Experience ShimPack - the clean, fast, and completely private Android tool. - 100% Offline: No internet connection required. - Zero Ads & No Subscriptions: Clean experience without interruptions. - Modern Material 3 Design: Built with Android's latest UI standards. - Private & Secure: Your data never leaves your device.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## SizeVault (`size-vault-family-clothing`)
+- **Category**: Lifestyle & Family
+- **Tagline**: The instant pocket size guide for parents, spouses, and gift shoppers browsing sales and thrift stores.
+- **Landing Page**: https://apps.kimrosil.com/size-vault-family-clothing/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/actions
+- **Privacy Policy**: https://apps.kimrosil.com/size-vault-family-clothing/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+Never guess or forget clothing measurements while shopping again. SizeVault is a private, offline-first personal size manager designed to keep track of shoe sizes, shirt fits, pant measurements, and ring dimensions for yourself, your partner, your children, and extended family members. Whether you are shopping holiday sales, picking up back-to-school outfits, or finding the perfect surprise gift, SizeVault gives you immediate access to accurate measurements without needing an active internet connection. Key Features: • Comprehensive Family Profiles: Create distinct visual profiles for yourself, partner, children, and parents to keep sizes organized. • Detailed Measurement Tracking: Record shoe sizes across US, EU, and cm standards, alongside shirt sizes, waist and inseam measurements, jacket cuts, and ring sizes. • Custom Brand Fit Notes: Document specific fit quirks directly on each profile, such as specific brands running narrow or preferences for relaxed fits. • Convenient Text Sharing: Generate cleanly formatted measurement summaries ready to send to relatives or friends via standard messaging apps. • Offline-First Privacy: Your family data is stored directly on your device. SizeVault operates completely offline without tracking, analytics, or mandatory account creation. SizeVault removes the guesswork from apparel shopping and gift buying, ensuring you always select the right fit the first time.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+
+Notice of Non-Affiliation: All product and company names, logos, and brands mentioned are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
+
+---
+
+## SkimSkim (`skim-skim`)
+- **Category**: Tools & Utilities
+- **Tagline**: Offline pool filter cycle countdowns, media doser, and Quick Settings backwash timer designed for wet, chlorine-slick hands.
+- **Landing Page**: https://apps.kimrosil.com/skim-skim/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-skim-skim/skim-skim.apk
+- **Privacy Policy**: https://apps.kimrosil.com/skim-skim/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+Maintain your swimming pool filter system with precision and ease. SkimSkim: Pool Backwash Aide is an offline-first utility engineered specifically for pool owners and service technicians operating filter valves in bright outdoor environments. Performing filter maintenance requires accurate timing and exact chemical dosages. Traditional apps often require network connections, mandatory accounts, and complex touch controls that fail when hands are wet. SkimSkim removes friction with a streamlined, utility-focused workflow designed for direct use at the equipment pad. Key Features: • Multi-Stage Backwash Timer: Step through backwash, rinse, waste, and filter cycles with clear acoustic cues and high-contrast stage progression. • Precise DE Dosage Calculator: Instantly calculate diatomaceous earth recharge quantities based on filter area ratings or pump capacity, eliminating guesswork and cloudy water. • High-Contrast Sunlight Interface: Large visual elements and readable indicators ensure clear visibility even in direct midday sun. • Hardware Key & Lock Controls: Prevent accidental screen taps from water droplets with a dedicated screen lock mode and support for physical volume buttons to progress timer stages. • Quick Settings Tile: Launch your maintenance timer directly from your Android notification shade without searching through your app drawer. • Complete Privacy & Offline Reliability: Zero account creation, no mandatory cloud sync, and full functionality without mobile reception or Wi-Fi. Keep your sand or DE filter clean, extend pump life, and manage routine pool maintenance without unnecessary complexity or monthly subscriptions.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## SnipShelf (`snip-shelf-receipt-ocr`)
+- **Category**: Productivity & Utilities
+- **Tagline**: Instantly stash paper serial numbers, warranty barcodes, and appliance manuals directly from camera or share sheet with on-device text indexing.
+- **Landing Page**: https://apps.kimrosil.com/snip-shelf-receipt-ocr/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-snip-shelf-receipt-ocr/snip-shelf-receipt-ocr.apk
+- **Privacy Policy**: https://apps.kimrosil.com/snip-shelf-receipt-ocr/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+Keep every receipt, user manual, and warranty document organized directly on your device. SnipShelf provides a secure, private, offline-first vault for your home inventory and electronics, eliminating account requirements and third-party data tracking. Key Features: • Completely Offline Storage: Your receipts, model numbers, and invoices stay stored locally on your device storage. No cloud leaks, no account registrations, and no remote servers. • Instant Manual Ingestion: Ingest PDF user manuals and specification sheets directly from your browser or file manager using the system share menu without manual uploads. • Quick Capture Utility: Capture receipts, serial numbers, and appliance labels instantly from your notification shade or Quick Settings tile. • Home Inventory Organization: Categorize assets by room, manufacturer, or purchase date. Track warranty expiration windows and return deadlines with on-device notifications. • Fast Local Search: Instantly locate model numbers, customer support contacts, and purchase proofs when making warranty claims or booking repairs. • Built-In Document Viewer: View high-resolution receipt images and multi-page equipment manuals quickly even without an active internet connection. • Backup & Export Control: Retain full ownership of your data with simple on-device export and local backup options. SnipShelf is built for users who value privacy, speed, and reliability. Organize your appliances, electronics, tools, and valuable belongings without recurring fees or forced logins.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## SnoozeGuard Commute Vigil (`snooze-guard-microsleep-commute`)
+- **Category**: Travel & Local / Utilities
+- **Tagline**: Offline motion & dead-man vigilance timer that stops public transit riders from sleeping past their stop.
+- **Landing Page**: https://apps.kimrosil.com/snooze-guard-microsleep-commute/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-snooze-guard-microsleep-commute/snooze-guard-microsleep-commute.apk
+- **Privacy Policy**: https://apps.kimrosil.com/snooze-guard-microsleep-commute/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+Never miss your transit stop on subways, buses, or trains. SnoozeGuard is a reliable commute wake-up companion designed specifically for public transit commuters navigating underground tunnels, subways, and low-connectivity routes where GPS location signals fail. Traditional transit alarms rely heavily on continuous GPS tracking, which drains battery life, fails completely underground, and causes missed stops. SnoozeGuard solves this by operating entirely offline using motion-assisted timers and periodic vigilance checks to keep you on schedule without location tracking. Key Features: - Tunnel and Subway Ready: Operates offline without requiring GPS, satellite fix, or network connectivity. Perfect for underground transit systems and remote routes. - Dead-Man Vigilance Timer: Optional gentle tactile prompts require a subtle tap or volume-key confirmation to verify you are awake before reaching your final stop. - Tactile and Headphone Audio: Audio routing prioritizes connected headphones or silent haptic vibration patterns, preventing loud accidental speaker alarms in quiet passenger cars. - Quick Settings Tile: Arm or disarm your commute alert directly from the Android Quick Settings panel without opening the full application interface. - Battery Efficient: Built with lightweight local sensors rather than continuous background location polling, preserving power on long trips. - Private and Account-Free: No cloud sign-in, no account registration, and zero tracking analytics. Your commute schedules remain stored on your device. SnoozeGuard provides a dependable, distraction-free travel timer built for everyday transit riders.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+
+Notice of Non-Affiliation: All product and company names, logos, and brands mentioned are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
+
+---
+
+## SolderWick (`solder-wick`)
+- **Category**: TOOLS & UTILITIES / ELECTRONICS
+- **Tagline**: Offline electronics bench flux match, thermal dwell timer, and tip temperature aide
+- **Landing Page**: https://apps.kimrosil.com/solder-wick/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-solder-wick/solder-wick.apk
+- **Privacy Policy**: https://apps.kimrosil.com/solder-wick/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+SolderWick is an offline reference toolkit and calculator built for electronics engineers, hardware technicians, PCB designers, and hobbyists at the workbench. Engineered for RF-shielded environments, remote field repair, and clean hardware labs, SolderWick functions entirely without network connectivity. Access physical reference tables, formulas, and pinout diagrams immediately without telemetry, accounts, or recurring subscriptions. CORE WORKBENCH TOOLS • SMD Marking & Package Decoder: Identify semiconductor marking codes, resistor EIA-96 standards, diode footprints, and IC packaging. • Thermal Dissipation Calculators: Calculate junction temperature, heatsink thermal resistance (Rth), and trace temperature rise under load. • PCB Trace Width & Impedance: IPC-2152 current capacity limits, microstrip, and coplanar waveguide characteristic impedance analysis. • Passive Component Tooling: Color code decoders for 4, 5, and 6-band resistors, ceramic capacitor codes, and inductor reactance calculators. • Power & Battery Metrics: Ohm's law relationships, voltage divider ratios, LED series dropping resistance, and battery runtime estimation. • Live Chronometer Integration: Monitor solder paste cure times and reflow soaking cycles directly through system status chronometers. BUILT FOR INTEGRITY & PRIVACY • True Offline Architecture: Complete functionality without internet permissions or cloud synchronization. • Zero Accounts Required: No registration, authentication prompts, or cloud profiles. • Predictable Reference Data: Standardized formulas and industry tables available instantly during assembly and diagnostics.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## SproutKnight (`sprout-knight-rpg`)
+- **Category**: Games / RPG / Adventure
+- **Tagline**: Embark on a charming forest RPG quest—upgrade acorn blades, walnut armor, and dewdrop magic at the cozy forge.
+- **Landing Page**: https://apps.kimrosil.com/sprout-knight-rpg/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.3.0-sprout-knight-rpg/sprout-knight-rpg.apk
+- **Privacy Policy**: https://apps.kimrosil.com/sprout-knight-rpg/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+Step into the enchanted Bramblewood in SproutKnight: Cozy Forest RPG, a charming tactical adventure designed for offline pocket play. Take up the mantle of a tiny sprout knight on a quest through lush woodlands. Encounter whimsical woodland adversaries, gather precious forest resources, and master tactical combat at your own pace. CORE FEATURES • Fluid Tactical Combat Engage in responsive turn-based skirmishes featuring smooth animations. Balance offense and defense with deliberate actions: strike with forged blades, raise your shield to parry attacks, channel elemental spells, or recover vitality using wild forest berries. • Whimsical Forest Adversaries Cross paths with charming woodland foes, from Mossy Slimes and Grumble Shrooms to cunning Acorn Bandits and mighty Bramble Treants. Read opponent patterns and tailor your strategy for each encounter. • Cozy Blacksmith Forge Gather golden acorns and glistening dewdrops across your journey. Return to the rustic woodland forge to upgrade your weaponry, reinforce protective armor, and unlock powerful elemental enchantments. • Responsive Visual Feedback Enjoy clear combat indicators, including gold critical strikes, emerald healing numbers, and cyan mana sparks, paired with handcrafted character animations. FAIR AND TRANSPARENT DESIGN • Offline Play Support: Embark on your adventure anywhere without requiring an active internet connection. • No Mandatory Subscriptions: Experience the full journey without recurring membership barriers. • Respectful Experience: Designed without intrusive tracking libraries or aggressive telemetry. Equip your wooden blade, steady your resolve, and bring harmony back to the Bramblewood in SproutKnight.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## StealthDrop (`stealth-drop-secret-pad`)
+- **Category**: Productivity & Security
+- **Tagline**: Instant zero-trace burner notes and sensitive snippets from your notification shade with auto-purge timers.
+- **Landing Page**: https://apps.kimrosil.com/stealth-drop-secret-pad/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-stealth-drop-secret-pad/stealth-drop-secret-pad.apk
+- **Privacy Policy**: https://apps.kimrosil.com/stealth-drop-secret-pad/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+StealthDrop provides a fast, offline-first ephemeral scratchpad designed for private, distraction-free temporary note-taking. Traditional notepad apps frequently require mandatory cloud logins, disrupt writing with intrusive interstitials, and store unnecessary database trails on your device. StealthDrop takes the opposite approach by prioritizing local-only data control, immediate access, and deliberate privacy. Key Features: • Ephemeral Note Taking: Jot down transient thoughts, codes, or temporary snippets with configurable auto-clear rules and local-only persistence. • Quick Settings Tile: Access your scratchpad instantly from Android Quick Settings without leaving your current workflow. • Floating Overlay Mode: Take rapid notes over any app using an unobtrusive floating window interface designed for multitaskers. • Zero Account Requirement: No registration, no email address, and no sign-in screens. Open the app and begin writing immediately. • Offline by Design: All data remains securely on your local hardware. No remote sync, no telemetry, and no background cloud uploading. • Streamlined Experience: Fast cold-start performance, minimal battery consumption, and a clean interface built for single-purpose productivity. StealthDrop is engineered for journalists, researchers, developers, and privacy-conscious users who need a trustworthy scratchpad that vanishes when the job is done.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## SteepPulse (`steep-brew-tea-timer`)
+- **Category**: Food & Drink / Utilities
+- **Tagline**: Precision multi-step infusion timing with 1-tap Quick Settings logging, lock screen chronometer, and zero account friction.
+- **Landing Page**: https://apps.kimrosil.com/steep-brew-tea-timer/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-steep-brew-tea-timer/steep-brew-tea-timer.apk
+- **Privacy Policy**: https://apps.kimrosil.com/steep-brew-tea-timer/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+Master specialty tea and coffee extraction with precision multi-infusion timing. SteepPulse is an offline brewing assistant designed to track complex steep schedules, water temperatures, and infusion curves without interruptions or accounts. Key Features: • Multi-Infusion Sequences: Track consecutive steeps for Gongfu tea sessions, pour-over bloom phases, and multi-stage extractions with automated interval transitions. • Foreground Brewing Sentinel: Reliable background timing backed by an ongoing system chronometer so you never miss a steep, even when your display turns off. • Quick Controls: Adjust extraction schedules on the fly with instant steep extension buttons directly from your active notifications. • Homescreen Widget and Quick Tile: Monitor active infusion counts, remaining brew duration, and target water temperature directly from your home screen or system status panel. • Offline and Private: All brew logs and custom recipes stay on your device. No account registration, email sign-ups, or analytics trackers required. • Customizable Extraction Profiles: Fine-tune brewing ratios, water heat targets, and extraction timing for loose-leaf teas, espresso puck pre-infusion, and manual drip coffee methods. Designed for coffee roasters, baristas, and loose-leaf tea enthusiasts who demand reliable extraction timing without ads or cloud bloat.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## TankPulse (`offline-fuel-log-tracker`)
+- **Category**: Auto & Vehicles / Utilities
+- **Tagline**: Instantly record fuel fill-ups and compute real-world mileage and cost-per-mile without accounts, ads, or internet connection.
+- **Landing Page**: https://apps.kimrosil.com/offline-fuel-log-tracker/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-offline-fuel-log-tracker/offline-fuel-log-tracker.apk
+- **Privacy Policy**: https://apps.kimrosil.com/offline-fuel-log-tracker/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+TankPulse is an offline-first fuel log, vehicle mileage tracker, and fuel economy calculator designed for speed, clarity, and complete data privacy. Log fill-ups in seconds right at the pump without waiting for network connectivity or slow cloud synchronizations. TankPulse operates entirely on your device, requiring zero account sign-ups, zero logins, and zero unnecessary background data usage. KEY CAPABILITIES • Quick Entry at the Pump: Log odometer readings, fuel volume, and total cost in seconds via a lightweight dialog designed for one-handed operation. • Home Screen Widgets & Quick Settings: Add the Quick Settings Tile or Home Screen Glance Widget to record refuels instantly without opening the full application. • Fuel Economy Analytics: Automatically compute fuel consumption (MPG, L/100km, km/L, or MPG UK) alongside running costs per kilometer or mile. • Fully Offline Architecture: Never worry about weak cellular reception at remote fuel stations. All calculations and records run locally on your device. • Privacy-Centered Storage: Your driving and fueling logs remain strictly on your phone. TankPulse requires no account registration and contains zero analytics trackers. • Unrestricted Data Export: Backup your complete vehicle history anytime with standard CSV and spreadsheet exports directly to your local file storage. • Multi-Vehicle Management: Track individual logs, fuel expenses, and service milestones across multiple cars, motorcycles, or commercial fleet vehicles. • Metric and Imperial Support: Seamlessly switch between Liters, US Gallons, UK Gallons, Kilometers, and Miles with customizable currency formatting. Take control of your vehicle operating expenses with a streamlined, dependable fuel tracking tool.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## TapDrill (`tap-drill`)
+- **Category**: TOOLS & UTILITIES / ENGINEERING
+- **Tagline**: Offline machinist thread pitch, tap drill clearance, and feed rate lookup.
+- **Landing Page**: https://apps.kimrosil.com/tap-drill/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.2-tap-drill/tap-drill.apk
+- **Privacy Policy**: https://apps.kimrosil.com/tap-drill/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+TapDrill is an offline reference calculator built for machinists, toolmakers, CNC programmers, and fabricators working in demanding shop floor environments. Operating in metal-clad manufacturing plants often means zero cellular connectivity. TapDrill runs completely offline without requiring an internet connection, account creation, or background data access. Retrieve exact tooling parameters instantly at your manual knee mill, lathe, or CNC machining center. KEY ENGINEERING FEATURES • Comprehensive Thread Standards: Fast lookup for Unified National (UNC, UNF, UNEF), ISO Metric coarse and fine, NPT pipe threads, and British Standard pipe fittings (BSPP/BSPT). • Precise Engagement Calculations: Determine exact pilot hole diameters based on target thread percentage (50% to 75% engagement). Prevent broken taps in hardened alloys and eliminate weak, stripped threads in structural assemblies. • Cutting Speeds & Feeds: Calculate spindle RPM and cutting feed rates directly from Surface Feet per Minute (SFM) or meters per minute (m/min) across common materials, including mild steel, stainless grades, brass, and aluminum. • Clearance Hole Tolerances: Inspect standard close, normal, and loose clearance drill sizes for machine screws and structural bolts. • Unit Conversion Utility: Seamless bidirectional conversion between decimal inch fractions and metric millimeters to verify digital blueprint dimensions instantly. BUILT FOR SHOP FLOORS • 100% Offline Architecture: All lookup tables and mathematical formulas are stored locally on your device. • Clean Visual Layout: High-contrast typography designed for quick reading under machine shop lighting conditions. • Zero Intrusive Tracking: No unnecessary device permissions requested.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## ThawGuard (`frost-thaw-prep-timer`)
+- **Category**: Tools & Food Safety
+- **Tagline**: Safe, USDA-calibrated kitchen thaw timer with Quick Settings instant-log and lock screen live countdown.
+- **Landing Page**: https://apps.kimrosil.com/frost-thaw-prep-timer/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-frost-thaw-prep-timer/frost-thaw-prep-timer.apk
+- **Privacy Policy**: https://apps.kimrosil.com/frost-thaw-prep-timer/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+ThawGuard is an offline food thawing chronometer designed to eliminate guesswork from defrosting meat, poultry, and seafood. Built around recognized food safety guidelines and temperature danger zone curves (40°F to 140°F), ThawGuard provides calculated thaw times based on food type, weight, thickness, and thawing environment. Key Features: • Scientifically Calibrated Thaw Curves: Calculate precise defrost schedules for refrigerator thawing, submerged cold-water baths, and ambient recovery. • Danger Zone Chronometer: Receive high-priority notifications when food approaches critical surface temperature thresholds to help prevent foodborne bacterial proliferation. • Quick Settings Tile Integration: Initiate thaw tracking directly from your Android Quick Settings panel without unlocking your device with messy hands. • Persistent Lock Screen Timer: View elapsed time, remaining duration, and next cold-water replenishment prompts directly from ongoing notifications. • True Offline-First Architecture: Every calculation runs locally on your device. Works seamlessly in walk-in freezers, remote cabins, or kitchens without network reception. • Private by Design: No accounts, no sign-ins, and zero third-party tracking or behavioral analytics. Your kitchen habits remain entirely on your device. Whether preparing weekly meal preps or defrosting poultry for dinner, ThawGuard delivers dependable, straightforward temperature-safe tracking without intrusive interruptions.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## TurfNotch (`turf-notch`)
+- **Category**: Home & Garden Tools
+- **Tagline**: Offline lawn seed and spreader gate notch calibrator
+- **Landing Page**: https://apps.kimrosil.com/turf-notch/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.0-turf-notch/turf-notch.apk
+- **Privacy Policy**: https://apps.kimrosil.com/turf-notch/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+TurfNotch provides instant, offline spreader gate calibration for homeowners, DIY lawn care enthusiasts, and turf managers. Bag labels specify application rates in pounds per 1,000 square feet, but rotary and drop spreaders use proprietary dial notches. Calculating the correct gate opening often leads to uneven patches or scorched turf from over-fertilization. TurfNotch eliminates guesswork with direct rate-to-notch calculations and walking pace cadence guidance, designed specifically for bright sunlight and outdoor yard work. CORE FEATURES • Universal Rate Converter: Convert bag application targets (lbs/1,000 sq ft or grams/sq meter) into exact gate dial notches across broadcast and drop spreaders. • Offline Turf Utility: Fully operational without an internet connection. Calibrate spreaders in backyards and remote acreage without connectivity dropouts. • High-Contrast Outdoor Display: Built for direct daylight readability and designed with large tap targets suitable for work gloves. • Integrated Pace Guide: Built-in walking cadence reference helps maintain consistent walking speed to ensure uniform distribution and prevent nitrogen banding. • Custom Granule Calibration: Measure a test run, enter your spreader width and collected material weight, and calibrate proprietary granules or custom seed blends. • Privacy by Design: No account creation, no analytics tracking, no network requests, and no device permissions required. Achieve uniform seed coverage and precise fertilizer distribution on every pass with TurfNotch.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## VoltDrop (`volt-drop`)
+- **Category**: Tools & Utilities / Electrical
+- **Tagline**: Offline wire gauge sizing, voltage drop calculator, and electrical ampacity guide.
+- **Landing Page**: https://apps.kimrosil.com/volt-drop/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-volt-drop/volt-drop.apk
+- **Privacy Policy**: https://apps.kimrosil.com/volt-drop/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+VoltDrop is a field-ready electrical calculator engineered for solar installers, RV builders, marine mechanics, and electricians. Calculate circuit voltage loss and determine recommended wire gauges instantly without requiring an internet connection. Whether sizing 12V battery banks, 24V solar arrays, 120V household runs, or 240V heavy machinery lines, VoltDrop provides precise conductor sizing to keep your electrical systems safe and efficient. Key Features: • Instant Voltage Drop Calculation: Enter voltage, current, one-way or round-trip distance, and allowable drop percentage to calculate conductor resistance and voltage loss. • Wire Gauge Sizer: Get recommended American Wire Gauge (AWG) and metric millimeter sizes for both copper and aluminum conductors. • Multi-Voltage Support: Preconfigured presets for low-voltage DC applications (12V, 24V, 48V) and AC branch circuits (120V, 208V, 240V, 480V). • Conductor Material Selection: Compare copper and aluminum conductors side by side to evaluate cost, weight, and conductivity trade-offs. • 100% Offline Functionality: Designed for crawlspaces, engine bays, remote off-grid cabins, and marine vessels where cellular coverage is unavailable. • Distraction-Free Workspace: Clean interface with no full-screen interruptions, no forced account creation, and zero analytics tracking. Built for professionals and serious DIY builders seeking reliable electrical formulas in demanding field conditions.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## WeldCool (`weld-cool`)
+- **Category**: Tools & Utilities
+- **Tagline**: Single-tap Quick Settings interpass cooling timer and preheat soak calculator for welders wearing heavy gloves.
+- **Landing Page**: https://apps.kimrosil.com/weld-cool/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-weld-cool/weld-cool.apk
+- **Privacy Policy**: https://apps.kimrosil.com/weld-cool/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+WeldCool is a dedicated interpass temperature and preheat soak countdown clock engineered for structural fabricators, pipe welders, and welding inspectors. Designed specifically for industrial shop floors, metal fab booths, and remote pipeline trenches, WeldCool delivers accurate thermal soak timing without distractions. Built for Harsh Shop Environments: Standard kitchen and phone timers require delicate touch inputs, require cloud logins, or interrupt work with intrusive pop-ups. WeldCool operates entirely offline and features high-contrast touch targets designed for operation while wearing welding gloves. Android Quick Settings Integration: Control your cooling cycles directly from your device pull-down shade. Start, pause, and reset your interpass cooldown timer using the Quick Settings tile without unlocking your phone or leaving your active workflow. Core Features: - Dedicated Interpass & Preheat Timers: Track critical cooling intervals and thermal soak durations between weld passes. - Glove-Friendly Interface: Large tactile buttons and clean high-contrast readouts prevent accidental inputs on the shop floor. - One-Tap Quick Settings Tile: Trigger and monitor cooling cycles straight from the Android notification shade. - 100% Offline Reliability: Zero account sign-up, zero cloud sync dependencies, and zero network requirements. Works seamlessly in shielded fabrication shops and remote trenches. - Audio and Vibration Alerts: Clear multi-modal notifications notify you when your joint reaches target cooling intervals. - Lightweight and Efficient: Minimal battery consumption and zero background data tracking. Maintain consistent thermal control across multi-pass welds with WeldCool.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+
+Notice of Non-Affiliation: All product and company names, logos, and brands mentioned are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
+
+---
+
+## WhoHasMy (`who-has-my-tool-lending`)
+- **Category**: Home & Community
+- **Tagline**: Stop losing your tools, camping gear, books, and board games to neighbors and friends with friendly photo records and polite WhatsApp reminders.
+- **Landing Page**: https://apps.kimrosil.com/who-has-my-tool-lending/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/actions
+- **Privacy Policy**: https://apps.kimrosil.com/who-has-my-tool-lending/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+Never lose track of your borrowed tools, books, or outdoor gear again. WhoHasMy is a dedicated personal lending organizer designed for homeowners, hobbyists, DIY enthusiasts, and friendly neighbors who frequently share equipment. When you lend out a power drill, lawnmower, board game, or camping tent, it is easy to forget who borrowed it months later. WhoHasMy provides a simple, structured vault to record every lent item immediately, helping you protect your valuable gear without awkward social friction. Key Features: • Item Vault: Log items with photos, borrower names, lending dates, and expected return dates for fast visual reference. • Friendly Reminders: Generate considerate check-in messages with a single tap to follow up easily without uncomfortable confrontation. • Quick Return Archive: Mark returned gear instantly to maintain a clean dashboard and keep a complete historical log of past loans. • Privacy Focused: Your records remain private on your device. We do not sell your personal data or track your personal lending activities. • Fast and Lightweight: Minimalist design built for quick entry so you can log items in seconds right when handing them over. Whether sharing workshop machinery with family or lending novels to friends, WhoHasMy keeps your belongings organized and accounted for over time.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
