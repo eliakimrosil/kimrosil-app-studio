@@ -344,7 +344,7 @@ Notice of Non-Affiliation: All product and company names, logos, and brands ment
 - **Category**: Health & Fitness
 - **Tagline**: Zero-Bloat 16:8 Fasting Timer & Lock-Screen Widget
 - **Landing Page**: https://apps.kimrosil.com/fast-arc/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-fast-arc/fast-arc.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-fast-arc/fast-arc.apk
 - **Privacy Policy**: https://apps.kimrosil.com/fast-arc/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
