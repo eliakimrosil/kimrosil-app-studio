@@ -1,2 +1,2 @@
 Release v1.0.0 - ClaimSlip
-Initial release of ClaimSlip: offline warranty tracking and thermal receipt ledger for appliances and gadgets.
+Initial launch of ClaimSlip offline warranty ledger and receipt vault
