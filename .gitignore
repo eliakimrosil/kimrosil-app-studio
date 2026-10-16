@@ -1,4 +1,12 @@
-.gradle/
+# Built binaries & intermediate artifacts
 build/
+.gradle/
+local.properties
 *.apk
-*.log
+*.aab
+*.idsig
+*.dex
+*.class
+.idea/
+*.iml
+.DS_Store
