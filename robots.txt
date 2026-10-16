@@ -5,6 +5,7 @@ Allow: /sitemap.xml
 Allow: /apps.json
 Allow: /llms.txt
 Allow: /llms-full.txt
+Allow: /organization.html
 
 # Explicit Directives for AI Search Engines & LLM Discovery Crawlers
 User-agent: GPTBot
