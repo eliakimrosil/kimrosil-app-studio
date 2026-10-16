@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false"
+    android:scrollbars="none"
+    android:background="@color/m3_surface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="36dp">
+
+        <!-- Top Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:text="← BACK"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/textPrimary"
+                android:background="@drawable/btn_header"
+                android:layout_marginEnd="12dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="GEAR &amp; LASH REFERENCE"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_primary"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <!-- Card 1: Hypoid Tooth Contact Pattern Interpretation -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_surface"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TOOTH CONTACT PATTERN GUIDE"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@color/brand_amber"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Drive Side is the convex face of the ring gear tooth. Coast Side is the concave face. When applying gear marking compound:"
+                android:textSize="13sp"
+                android:textColor="@color/textSecondary"
+                android:layout_marginBottom="10dp" />
+
+            <!-- Pattern 1 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Centered Contact (Ideal): Oval contact evenly placed midway between tooth top (face) and bottom (flank), slightly biased towards toe under light hand load."
+                android:textSize="13sp"
+                android:textColor="@color/status_in_spec"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Pattern 2 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• High Contact (Face): Pinion is set too far away from ring gear center. Add shim thickness to pinion depth."
+                android:textSize="13sp"
+                android:textColor="@color/status_caution"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Pattern 3 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Low Contact (Flank): Pinion is set too deep into ring gear. Remove shim thickness from pinion depth."
+                android:textSize="13sp"
+                android:textColor="@color/status_out_spec"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Pattern 4 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Heel or Toe Contact: Correct carrier backlash first before adjusting pinion depth shims."
+                android:textSize="13sp"
+                android:textColor="@color/textPrimary" />
+        </LinearLayout>
+
+        <!-- Card 2: Differential Carrier Shim Principles -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_surface"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CARRIER PRELOAD &amp; SHIM MATH"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@color/brand_cyan"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="To preserve differential carrier bearing preload, always swap equal thickness shims from side to side.\n\n• For 20° pressure angle gearsets: Each 0.001 in change in backlash requires approximately 0.0015 in shim change from left to right.\n\n• Always re-verify backlash at 4 equidistant ring gear points (0°, 90°, 180°, 270°) to verify runout variation does not exceed 0.002 in."
+                android:textSize="13sp"
+                android:textColor="@color/textPrimary" />
+        </LinearLayout>
+
+        <!-- Card 3: Valve Lash Thermal Expansion Matrix -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_surface"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SOLID LIFTER EXPANSION REFERENCE"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@color/brand_amber"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• Cast Iron Block + Iron Head:\n  Thermal expansion coefficients are nearly identical. Net hot clearance typically tightens by ~0.001 in.\n\n• Cast Iron Block + Aluminum Head:\n  Aluminum expands at ~23 µm/m·°C vs ~12 µm/m·°C for steel. Rocker studs rise with head expansion, loosening hot clearance by +0.005 in. Cold lash must be set tighter on the bench.\n\n• All-Aluminum Engine:\n  Net clearance grows +0.007 in hot when using steel pushrods. Set cold lash 0.006–0.008 in tighter."
+                android:textSize="13sp"
+                android:textColor="@color/textPrimary" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

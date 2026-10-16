@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Dial Circle -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.5"
+        android:pathData="M54,26 A28,28 0 1,1 53.99,26 Z" />
+
+    <!-- Tolerance Band -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:pathData="M54,30 A24,24 0 0,1 71,37" />
+
+    <!-- Indicator Needle -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="M54,54 L69,35" />
+
+    <!-- Center Hub -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,51 A3,3 0 1,1 53.99,51 Z" />
+
+    <!-- Gear Teeth Base -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M38,82 L42,88 L47,88 L49,82 Z M51,82 L53,88 L58,88 L60,82 Z M62,82 L64,88 L69,88 L73,82 Z" />
+</vector>

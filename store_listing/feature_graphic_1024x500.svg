@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 500" width="1024" height="500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F1318"/>
+      <stop offset="50%" stop-color="#181D24"/>
+      <stop offset="100%" stop-color="#0B0D11"/>
+    </linearGradient>
+    <linearGradient id="goldText" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFD54F"/>
+      <stop offset="100%" stop-color="#FFB300"/>
+    </linearGradient>
+    <linearGradient id="cyanLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00E5FF"/>
+      <stop offset="100%" stop-color="#00B0FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1024" height="500" fill="url(#bg)"/>
+
+  <!-- Subtle Blueprint Grid -->
+  <g stroke="#1E293B" stroke-width="1" opacity="0.4">
+    <line x1="0" y1="100" x2="1024" y2="100"/>
+    <line x1="0" y1="200" x2="1024" y2="200"/>
+    <line x1="0" y1="300" x2="1024" y2="300"/>
+    <line x1="0" y1="400" x2="1024" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="600" y1="0" x2="600" y2="500"/>
+    <line x1="800" y1="0" x2="800" y2="500"/>
+  </g>
+
+  <!-- Left: Stylized Dial Gauge Display -->
+  <g transform="translate(180, 250)">
+    <!-- Dial Bezel -->
+    <circle cx="0" cy="0" r="160" fill="#151921" stroke="#334155" stroke-width="8"/>
+    <circle cx="0" cy="0" r="140" fill="#0D1117" stroke="#1E293B" stroke-width="3"/>
+    <!-- In-Spec Tolerance Arc -->
+    <path d="M0 -120 A120 120 0 0 1 85 -85" fill="none" stroke="#10B981" stroke-width="12" stroke-linecap="round"/>
+    <!-- Needle -->
+    <line x1="0" y1="0" x2="65" y2="-95" stroke="#FFB300" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="16" fill="#1E293B" stroke="#64748B" stroke-width="3"/>
+    <circle cx="0" cy="0" r="8" fill="#E11D48"/>
+    <!-- Readout -->
+    <text x="0" y="55" font-family="monospace, sans-serif" font-size="24" font-weight="bold" fill="#00E5FF" text-anchor="middle">0.008 IN</text>
+    <text x="0" y="80" font-family="monospace, sans-serif" font-size="14" fill="#10B981" text-anchor="middle">IN SPEC (±0.001)</text>
+  </g>
+
+  <!-- Right: Typography & Feature Bullets -->
+  <g transform="translate(450, 140)">
+    <!-- Badge -->
+    <rect x="0" y="-30" width="220" height="32" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1.5"/>
+    <text x="110" y="-9" font-family="monospace, sans-serif" font-size="13" font-weight="bold" fill="#00E5FF" text-anchor="middle" letter-spacing="1.5">OFFLINE PRECISION</text>
+
+    <!-- Main Title -->
+    <text x="0" y="55" font-family="sans-serif" font-size="56" font-weight="900" fill="url(#goldText)" letter-spacing="1">LashGage</text>
+
+    <!-- Subtitle -->
+    <text x="0" y="100" font-family="sans-serif" font-size="20" fill="#CBD5E1">Mechanical Backlash &amp; Valve Lash Calculator</text>
+
+    <!-- Divider -->
+    <line x1="0" y1="125" x2="480" y2="125" stroke="url(#cyanLine)" stroke-width="2"/>
+
+    <!-- Key Bullet Features -->
+    <g transform="translate(0, 160)" font-family="sans-serif" font-size="17" fill="#94A3B8">
+      <circle cx="10" cy="0" r="5" fill="#FFB300"/>
+      <text x="28" y="5">Differential Ring &amp; Pinion Carrier Shim Math</text>
+
+      <circle cx="10" cy="40" r="5" fill="#00E5FF"/>
+      <text x="28" y="45">Solid-Lifter Valve Clearance Cold Staging</text>
+
+      <circle cx="10" cy="80" r="5" fill="#10B981"/>
+      <text x="28" y="85">100% Offline • Zero Trackers • Dual Unit (In/Mm)</text>
+    </g>
+  </g>
+</svg>

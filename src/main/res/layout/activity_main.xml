@@ -1,0 +1,929 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/m3_surface"
+    android:orientation="vertical">
+
+    <!-- Fixed Top Action Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/m3_surface_container"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingTop="12dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="12dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvAppTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Backlash &amp; Valve Lash HUD"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnPatterns"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="Guide"
+            android:textSize="12sp"
+            android:textColor="@color/m3_on_surface"
+            android:background="@drawable/btn_header"
+            android:layout_marginEnd="6dp" />
+
+        <Button
+            android:id="@+id/btnLogs"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="Logs"
+            android:textSize="12sp"
+            android:textColor="@color/m3_on_surface"
+            android:background="@drawable/btn_header"
+            android:layout_marginEnd="6dp" />
+
+        <Button
+            android:id="@+id/btnThemeToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="Auto"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_primary"
+            android:background="@drawable/btn_header" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/cardStroke" />
+
+    <!-- Scrollable Content -->
+    <ScrollView
+        android:id="@+id/mainScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="false"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingTop="14dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="36dp">
+
+            <!-- Mode Navigation Chips -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="14dp">
+
+                <Button
+                    android:id="@+id/btnTabGear"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:text="@string/tab_gear_backlash"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/chip_selected_text"
+                    android:background="@drawable/chip_selected"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnTabValve"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:text="@string/tab_valve_lash"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/chip_unselected_text"
+                    android:background="@drawable/chip_bg"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnTabTir"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:text="@string/tab_runout_tir"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/chip_unselected_text"
+                    android:background="@drawable/chip_bg" />
+            </LinearLayout>
+
+            <!-- DECK 1: GEAR BACKLASH -->
+            <LinearLayout
+                android:id="@+id/llGearDeck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Card: Inputs & Controls (Placed at Top for Ergonomics & Rotation Safety) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/card_surface"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:layout_marginBottom="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TOOTH PRESSURE ANGLE (PA)"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/textSecondary"
+                        android:layout_marginBottom="8dp" />
+
+                    <!-- PA Buttons -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="14dp">
+
+                        <Button
+                            android:id="@+id/btnPa14"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:minWidth="48dp"
+                            android:text="14.5°"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/chip_unselected_text"
+                            android:background="@drawable/chip_bg"
+                            android:layout_marginEnd="4dp" />
+
+                        <Button
+                            android:id="@+id/btnPa20"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:minWidth="48dp"
+                            android:text="20.0° (Std)"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/chip_selected_text"
+                            android:background="@drawable/chip_selected"
+                            android:layout_marginEnd="4dp" />
+
+                        <Button
+                            android:id="@+id/btnPa25"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:minWidth="48dp"
+                            android:text="25.0°"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/chip_unselected_text"
+                            android:background="@drawable/chip_bg" />
+                    </LinearLayout>
+
+                    <!-- Input: Measured Backlash -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MEASURED DIAL BACKLASH"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/textSecondary"
+                        android:layout_marginBottom="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <EditText
+                            android:id="@+id/etMeasuredBacklash"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:hint="e.g. 0.0080"
+                            android:text="0.0080"
+                            android:saveEnabled="true"
+                            android:textSize="16sp"
+                            android:textColor="@color/textPrimary"
+                            android:textColorHint="@color/textSecondary"
+                            android:background="@drawable/input_bg"
+                            android:inputType="numberDecimal"
+                            android:imeOptions="actionDone"
+                            android:layout_marginEnd="8dp" />
+
+                        <Button
+                            android:id="@+id/btnUnitToggle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="@string/btn_unit_in"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/textPrimary"
+                            android:background="@drawable/btn_header" />
+                    </LinearLayout>
+
+                    <!-- Targets: Min and Max -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="16dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginEnd="6dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="SPEC MIN"
+                                android:textSize="10sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/textSecondary" />
+
+                            <EditText
+                                android:id="@+id/etTargetMin"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:minHeight="48dp"
+                                android:text="0.0060"
+                                android:hint="0.006"
+                                android:saveEnabled="true"
+                                android:textSize="15sp"
+                                android:textColor="@color/textPrimary"
+                                android:textColorHint="@color/textSecondary"
+                                android:background="@drawable/input_bg"
+                                android:inputType="numberDecimal"
+                                android:imeOptions="actionNext" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="6dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="SPEC MAX"
+                                android:textSize="10sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/textSecondary" />
+
+                            <EditText
+                                android:id="@+id/etTargetMax"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:minHeight="48dp"
+                                android:text="0.0100"
+                                android:hint="0.010"
+                                android:saveEnabled="true"
+                                android:textSize="15sp"
+                                android:textColor="@color/textPrimary"
+                                android:textColorHint="@color/textSecondary"
+                                android:background="@drawable/input_bg"
+                                android:inputType="numberDecimal"
+                                android:imeOptions="actionDone" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Compute Button -->
+                    <Button
+                        android:id="@+id/btnComputeGear"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:text="@string/btn_calc"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/btnTextColor"
+                        android:background="@drawable/btn_action" />
+                </LinearLayout>
+
+                <!-- Custom Interactive Dial Indicator Visual -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/card_surface"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:padding="12dp"
+                    android:layout_marginBottom="14dp">
+
+                    <TextView
+                        android:id="@+id/tvDialHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DIAL DEFLECTION GAUGE"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/textSecondary"
+                        android:letterSpacing="0.08"
+                        android:layout_marginBottom="6dp" />
+
+                    <com.kimrosil.lashgage.LashDialView
+                        android:id="@+id/lashDialView"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp" />
+                </LinearLayout>
+
+                <!-- Results Card: Tabular Telemetry & Correction -->
+                <LinearLayout
+                    android:id="@+id/llGearResultCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/card_surface"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:layout_marginBottom="14dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="BACKLASH DIAGNOSTIC"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/textSecondary" />
+
+                        <TextView
+                            android:id="@+id/tvGearStatusBadge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="IN SPEC"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="#FFFFFF"
+                            android:background="@drawable/badge_in_spec" />
+                    </LinearLayout>
+
+                    <!-- Action Instruction -->
+                    <TextView
+                        android:id="@+id/tvGearAction"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Optimal tooth mesh. No carrier shim changes required."
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/textPrimary"
+                        android:layout_marginBottom="14dp" />
+
+                    <!-- Tabular 2-Column Telemetry -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- Col 1: Measured Backlash -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MEASURED"
+                                android:textSize="10sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/textSecondary" />
+
+                            <TextView
+                                android:id="@+id/tvMeasuredPrimary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.0080 in"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/brand_cyan" />
+
+                            <TextView
+                                android:id="@+id/tvMeasuredSecondary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.203 mm"
+                                android:textSize="12sp"
+                                android:textColor="@color/textSecondary" />
+                        </LinearLayout>
+
+                        <!-- Hairline Divider -->
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/cardStroke"
+                            android:layout_marginHorizontal="12dp" />
+
+                        <!-- Col 2: Carrier Shim Delta -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="CARRIER SHIM DELTA"
+                                android:textSize="10sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/textSecondary" />
+
+                            <TextView
+                                android:id="@+id/tvShimPrimary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.0000 in"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/brand_amber" />
+
+                            <TextView
+                                android:id="@+id/tvShimSecondary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.000 mm"
+                                android:textSize="12sp"
+                                android:textColor="@color/textSecondary" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- DECK 2: VALVE LASH (Initially GONE) -->
+            <LinearLayout
+                android:id="@+id/llValveDeck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/card_surface"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:layout_marginBottom="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ENGINE METALLURGY"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/textSecondary"
+                        android:layout_marginBottom="8dp" />
+
+                    <!-- Metallurgy Chips -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <Button
+                            android:id="@+id/btnMatIronIron"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:minHeight="48dp"
+                            android:text="Cast Iron Block + Iron Head"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/chip_unselected_text"
+                            android:background="@drawable/chip_bg"
+                            android:layout_marginBottom="6dp" />
+
+                        <Button
+                            android:id="@+id/btnMatIronAlum"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:minHeight="48dp"
+                            android:text="Iron Block + Aluminum Head"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/chip_selected_text"
+                            android:background="@drawable/chip_selected"
+                            android:layout_marginBottom="6dp" />
+
+                        <Button
+                            android:id="@+id/btnMatAlumAlum"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:minHeight="48dp"
+                            android:text="All-Aluminum Block &amp; Head"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/chip_unselected_text"
+                            android:background="@drawable/chip_bg" />
+                    </LinearLayout>
+
+                    <!-- Pushrod material toggle -->
+                    <Button
+                        android:id="@+id/btnPushrodToggle"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:text="Pushrod: Chromoly / Steel"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/textPrimary"
+                        android:background="@drawable/btn_header"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Hot Spec Input -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SPECIFIED HOT LASH CLEARANCE"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/textSecondary"
+                        android:layout_marginBottom="4dp" />
+
+                    <EditText
+                        android:id="@+id/etHotLashSpec"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:hint="e.g. 0.0220"
+                        android:text="0.0220"
+                        android:saveEnabled="true"
+                        android:textSize="16sp"
+                        android:textColor="@color/textPrimary"
+                        android:textColorHint="@color/textSecondary"
+                        android:background="@drawable/input_bg"
+                        android:inputType="numberDecimal"
+                        android:imeOptions="actionDone"
+                        android:layout_marginBottom="14dp" />
+
+                    <Button
+                        android:id="@+id/btnComputeValve"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:text="COMPUTE COLD STAGING"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/btnTextColor"
+                        android:background="@drawable/btn_action" />
+                </LinearLayout>
+
+                <!-- Valve Results Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/card_surface"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:layout_marginBottom="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="COLD STAGING BENCH TARGET"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/textSecondary"
+                        android:layout_marginBottom="6dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="COLD SETTING"
+                                android:textSize="10sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/textSecondary" />
+
+                            <TextView
+                                android:id="@+id/tvColdTargetPrimary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.0170 in"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/brand_cyan" />
+
+                            <TextView
+                                android:id="@+id/tvColdTargetSecondary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.432 mm"
+                                android:textSize="12sp"
+                                android:textColor="@color/textSecondary" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/cardStroke"
+                            android:layout_marginHorizontal="12dp" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="FEELER BLADES"
+                                android:textSize="10sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/textSecondary" />
+
+                            <TextView
+                                android:id="@+id/tvFeelerGo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="GO: 0.017 in"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/status_in_spec" />
+
+                            <TextView
+                                android:id="@+id/tvFeelerNoGo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="NO-GO: 0.019 in"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/status_out_spec" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvValveThermalNote"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Engine expands 0.0050 in hot. Set cold clearance tighter on bench."
+                        android:textSize="13sp"
+                        android:textColor="@color/textPrimary" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- DECK 3: 4-POINT RUNOUT TIR (Initially GONE) -->
+            <LinearLayout
+                android:id="@+id/llRunoutDeck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/card_surface"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:layout_marginBottom="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RING GEAR 4-POINT DIAL READINGS"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/textSecondary"
+                        android:layout_marginBottom="10dp" />
+
+                    <!-- Quadrant inputs (2x2 grid) -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginEnd="6dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="POINT 1 (0°)"
+                                android:textSize="10sp"
+                                android:textColor="@color/textSecondary" />
+                            <EditText
+                                android:id="@+id/etRunout1"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:minHeight="48dp"
+                                android:hint="0.0080"
+                                android:text="0.0080"
+                                android:saveEnabled="true"
+                                android:textSize="15sp"
+                                android:textColor="@color/textPrimary"
+                                android:background="@drawable/input_bg"
+                                android:inputType="numberDecimal" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="6dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="POINT 2 (90°)"
+                                android:textSize="10sp"
+                                android:textColor="@color/textSecondary" />
+                            <EditText
+                                android:id="@+id/etRunout2"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:minHeight="48dp"
+                                android:hint="0.0085"
+                                android:text="0.0085"
+                                android:saveEnabled="true"
+                                android:textSize="15sp"
+                                android:textColor="@color/textPrimary"
+                                android:background="@drawable/input_bg"
+                                android:inputType="numberDecimal" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="14dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginEnd="6dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="POINT 3 (180°)"
+                                android:textSize="10sp"
+                                android:textColor="@color/textSecondary" />
+                            <EditText
+                                android:id="@+id/etRunout3"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:minHeight="48dp"
+                                android:hint="0.0080"
+                                android:text="0.0080"
+                                android:saveEnabled="true"
+                                android:textSize="15sp"
+                                android:textColor="@color/textPrimary"
+                                android:background="@drawable/input_bg"
+                                android:inputType="numberDecimal" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="6dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="POINT 4 (270°)"
+                                android:textSize="10sp"
+                                android:textColor="@color/textSecondary" />
+                            <EditText
+                                android:id="@+id/etRunout4"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:minHeight="48dp"
+                                android:hint="0.0075"
+                                android:text="0.0075"
+                                android:saveEnabled="true"
+                                android:textSize="15sp"
+                                android:textColor="@color/textPrimary"
+                                android:background="@drawable/input_bg"
+                                android:inputType="numberDecimal" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnComputeRunout"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:text="COMPUTE TOTAL INDICATOR READING"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/btnTextColor"
+                        android:background="@drawable/btn_action" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/card_surface"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:layout_marginBottom="14dp">
+
+                    <TextView
+                        android:id="@+id/tvRunoutResult"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TIR: 0.0010 in (ACCEPTABLE &lt;= 0.0025 in)"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/brand_cyan" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Save Record to Local SQLite Button -->
+            <Button
+                android:id="@+id/btnSaveRecord"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:text="SAVE SETUP TO LOG SHEET"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@color/textPrimary"
+                android:background="@drawable/btn_header" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

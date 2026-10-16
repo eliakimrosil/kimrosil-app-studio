@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E242C"/>
+      <stop offset="100%" stop-color="#0E1115"/>
+    </linearGradient>
+    <linearGradient id="bezelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="50%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="dialFace" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#151921"/>
+      <stop offset="100%" stop-color="#0B0D11"/>
+    </linearGradient>
+    <linearGradient id="needleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFC107"/>
+      <stop offset="100%" stop-color="#FF8F00"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Outer Rounded Plate -->
+  <rect x="16" y="16" width="480" height="480" rx="96" fill="url(#bgGrad)" stroke="#334155" stroke-width="4"/>
+
+  <!-- Gear Silhouette at Bottom Base -->
+  <path d="M176 430 L200 395 L225 395 L235 430 Z" fill="#334155" opacity="0.6"/>
+  <path d="M245 430 L256 390 L280 390 L290 430 Z" fill="#334155" opacity="0.6"/>
+  <path d="M305 430 L315 395 L340 395 L360 430 Z" fill="#334155" opacity="0.6"/>
+
+  <!-- Dial Indicator Housing Bezel -->
+  <circle cx="256" cy="236" r="170" fill="url(#bezelGrad)" stroke="#64748B" stroke-width="6"/>
+  <circle cx="256" cy="236" r="150" fill="url(#dialFace)" stroke="#1E293B" stroke-width="4"/>
+
+  <!-- Tolerance Arc (In-Spec Green Band) -->
+  <path d="M256 106 A130 130 0 0 1 348 144" fill="none" stroke="#10B981" stroke-width="12" stroke-linecap="round" opacity="0.9"/>
+  <!-- Warning Out-of-Spec Amber Band -->
+  <path d="M348 144 A130 130 0 0 1 386 236" fill="none" stroke="#F59E0B" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Dial Ticks -->
+  <!-- Top Center Tick (0) -->
+  <line x1="256" y1="106" x2="256" y2="124" stroke="#00E5FF" stroke-width="4" stroke-linecap="round"/>
+  <!-- Radial Major Ticks -->
+  <line x1="335" y1="128" x2="323" y2="142" stroke="#94A3B8" stroke-width="3"/>
+  <line x1="386" y1="195" x2="370" y2="201" stroke="#94A3B8" stroke-width="3"/>
+  <line x1="386" y1="277" x2="370" y2="271" stroke="#94A3B8" stroke-width="3"/>
+  <line x1="335" y1="344" x2="323" y2="330" stroke="#94A3B8" stroke-width="3"/>
+  <line x1="256" y1="366" x2="256" y2="348" stroke="#94A3B8" stroke-width="3"/>
+  <line x1="177" y1="344" x2="189" y2="330" stroke="#94A3B8" stroke-width="3"/>
+  <line x1="126" y1="277" x2="142" y2="271" stroke="#94A3B8" stroke-width="3"/>
+  <line x1="126" y1="195" x2="142" y2="201" stroke="#94A3B8" stroke-width="3"/>
+  <line x1="177" y1="128" x2="189" y2="142" stroke="#94A3B8" stroke-width="3"/>
+
+  <!-- Legend Text -->
+  <text x="256" y="180" font-family="monospace, sans-serif" font-size="16" font-weight="bold" fill="#00E5FF" text-anchor="middle" letter-spacing="2">0.001 IN</text>
+  <text x="256" y="300" font-family="monospace, sans-serif" font-size="14" font-weight="bold" fill="#64748B" text-anchor="middle" letter-spacing="1">LASH GAGE</text>
+
+  <!-- Needle Shadow & Indicator Needle (pointing into tolerance band ~25 deg) -->
+  <g transform="rotate(32, 256, 236)">
+    <!-- Pointer -->
+    <path d="M253 236 L255 116 L256 108 L257 116 L259 236 Z" fill="url(#needleGrad)" filter="url(#glow)"/>
+    <!-- Counterweight -->
+    <path d="M252 236 L251 266 L261 266 L260 236 Z" fill="#94A3B8"/>
+    <circle cx="256" cy="268" r="8" fill="#475569"/>
+  </g>
+
+  <!-- Center Hub Bezel and Ruby Jewel -->
+  <circle cx="256" cy="236" r="22" fill="#1E293B" stroke="#64748B" stroke-width="3"/>
+  <circle cx="256" cy="236" r="10" fill="#E11D48"/>
+  <circle cx="253" cy="233" r="3" fill="#FDA4AF"/>
+
+  <!-- Lower Feeler Blade Stacks -->
+  <path d="M120 440 L392 440 L380 460 L132 460 Z" fill="#475569" stroke="#64748B" stroke-width="2"/>
+  <rect x="236" y="445" width="40" height="10" rx="4" fill="#00E5FF"/>
+</svg>

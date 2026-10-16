@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand Accents & Telemetry -->
+    <color name="brand_amber">#D97706</color>
+    <color name="brand_cyan">#0284C7</color>
+    <color name="status_in_spec">#16A34A</color>
+    <color name="status_out_spec">#DC2626</color>
+    <color name="status_caution">#D97706</color>
+
+    <!-- Light Theme Palette (High-Contrast White & Precision Steel) -->
+    <color name="colorPrimary">#D97706</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorAccent">#0284C7</color>
+    <color name="windowBackground">#FFFFFF</color>
+
+    <color name="m3_primary">#D97706</color>
+    <color name="m3_on_primary">#FFFFFF</color>
+    <color name="m3_primary_container">#FEF3C7</color>
+    <color name="m3_on_primary_container">#451A03</color>
+
+    <color name="m3_secondary">#475569</color>
+    <color name="m3_on_secondary">#FFFFFF</color>
+    <color name="m3_secondary_container">#F1F5F9</color>
+    <color name="m3_on_secondary_container">#0F172A</color>
+
+    <color name="m3_surface">#FFFFFF</color>
+    <color name="m3_surface_container">#FFFFFF</color>
+    <color name="m3_surface_container_high">#F8FAFC</color>
+    <color name="m3_surface_container_highest">#E2E8F0</color>
+
+    <color name="m3_on_surface">#0F172A</color>
+    <color name="m3_on_surface_variant">#475569</color>
+    <color name="m3_outline">#94A3B8</color>
+    <color name="m3_outline_variant">#CBD5E1</color>
+
+    <color name="m3_success">#16A34A</color>
+    <color name="m3_on_success">#FFFFFF</color>
+    <color name="m3_error">#DC2626</color>
+    <color name="m3_on_error">#FFFFFF</color>
+
+    <!-- Legacy / Layout Aliases -->
+    <color name="cardBackground">#F8FAFC</color>
+    <color name="cardStroke">#CBD5E1</color>
+    <color name="textPrimary">#0F172A</color>
+    <color name="textSecondary">#475569</color>
+    <color name="btnColor">#D97706</color>
+    <color name="btnTextColor">#FFFFFF</color>
+    <color name="chip_selected_bg">#D97706</color>
+    <color name="chip_unselected_bg">#F1F5F9</color>
+    <color name="chip_selected_text">#FFFFFF</color>
+    <color name="chip_unselected_text">#0F172A</color>
+</resources>

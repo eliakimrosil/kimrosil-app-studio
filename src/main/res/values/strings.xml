@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LashGage</string>
+    <string name="tile_name">Lash Checker</string>
+    <string name="theme_toggle">THEME</string>
+    <string name="nav_specs">PATTERNS</string>
+    <string name="nav_logs">LOGS</string>
+    <string name="btn_calc">COMPUTE ADJUSTMENT</string>
+    <string name="btn_unit_in">IN (0.001")</string>
+    <string name="btn_unit_mm">MM (0.01 mm)</string>
+
+    <!-- Tabs -->
+    <string name="tab_gear_backlash">GEAR BACKLASH</string>
+    <string name="tab_valve_lash">VALVE LASH</string>
+    <string name="tab_runout_tir">FLANGE TIR</string>
+
+    <!-- Pressure Angles -->
+    <string name="pa_14_5">14.5° PA (Vintage/Spur)</string>
+    <string name="pa_20_0">20.0° PA (Automotive)</string>
+    <string name="pa_25_0">25.0° PA (Heavy Hypoid)</string>
+
+    <!-- Metallurgy Types -->
+    <string name="mat_iron_iron">Iron Block / Iron Head</string>
+    <string name="mat_iron_alum">Iron Block / Aluminum Head</string>
+    <string name="mat_alum_alum">All-Aluminum Block &amp; Head</string>
+</resources>

@@ -1,0 +1,22 @@
+LashGage is an offline mechanical precision utility engineered for automotive drivetrain builders, transmission technicians, and engine rebuilders. Eliminate manual guesswork when setting differential ring-and-pinion gear backlash, shimming carrier bearings, and staging solid-lifter valve clearances.
+
+GEAR BACKLASH & DIFFERENTIAL CARRIER SHIM CALCULATOR
+- Compute required carrier shim thickness changes to bring backlash into manufacturer specification.
+- Supports 14.5°, 20.0°, and 25.0° gear tooth pressure angles for Dana, Ford, GM, and aftermarket hypoid gearsets.
+- Provides directional left/right carrier shim thickness changes in thousandths of an inch (0.001 in) and hundredths of a millimeter (0.01 mm).
+- Interactive dial indicator display showing measured clearance relative to acceptable tolerance bands.
+
+SOLID LIFTER VALVE LASH & THERMAL COLD STAGING
+- Accurately determine cold setup valve clearances from hot camshaft manufacturer specifications.
+- Metallurgy compensation: All-Iron (Cast Iron block & heads), Mixed (Iron block & Aluminum heads), and All-Aluminum engines.
+- Pushrod material expansion compensation (Chromoly/Steel vs Aluminum pushrods).
+- Recommended Go / No-Go feeler gauge blade selections for precise valve adjustments.
+
+DIFFERENTIAL RUNOUT & MULTI-POINT RECORDING
+- Record 4-point ring gear backlash measurements (0°, 90°, 180°, 270°) to verify total indicator reading (TIR) and detect warped ring gear flanges.
+- Local SQLite database log sheet to save differential and cylinder head setups with zero internet permissions.
+
+100% OFFLINE & PRIVACY FIRST
+- Zero internet permissions, zero advertising SDKs, and zero telemetry.
+- Operates reliably in metal workshops, service bays, and trackside pits without Wi-Fi or cellular service.
+- High-contrast Day and Night themes designed for readability under fluorescent shop lights or under-car drop lights.
