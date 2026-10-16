@@ -1,0 +1,2 @@
+Release v1.0.1 - FlareGage Flare Dimension Tool
+Initial release of FlareGage tubing flare dimensional verification and torque reference

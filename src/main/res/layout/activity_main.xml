@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/m3_surface"
+    android:orientation="vertical">
+
+    <!-- Top Action Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/m3_surface_container"
+        android:gravity="center_vertical"
+        android:paddingBottom="12dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="12dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvAppTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:singleLine="true"
+                android:text="FlareGage"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="Tubing Flare &amp; Torque Spec"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Consistent 10dp rounded action bar buttons (48dp minimum touch target) -->
+        <Button
+            android:id="@+id/btnSignoffLogs"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginRight="6dp"
+            android:background="@drawable/bg_header_button"
+            android:minHeight="48dp"
+            android:minWidth="48dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:text="Logs"
+            android:textColor="@color/m3_on_surface"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/btnSpecsDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginRight="6dp"
+            android:background="@drawable/bg_header_button"
+            android:minHeight="48dp"
+            android:minWidth="48dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:text="Guide"
+            android:textColor="@color/m3_on_surface"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/btnThemeToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_header_button"
+            android:minHeight="48dp"
+            android:minWidth="48dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:text="Auto"
+            android:textColor="@color/m3_primary"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/m3_outline_variant" />
+
+    <!-- Main Scrollable Deck -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="32dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="12dp">
+
+            <!-- Standard Selector Chips -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:text="FLARING STANDARD"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/llStandards"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnStdSae45Double"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/bg_pill_selected"
+                        android:minHeight="40dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="45° Double (Brake)"
+                        android:textColor="@color/m3_on_primary"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnStdSae45Single"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:minHeight="40dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="45° Single (HVAC)"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnStdAn37"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:minHeight="40dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="37° AN / JIC"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnStdDinBubble"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:minHeight="40dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="DIN Bubble (ISO)"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Tubing Size Selector Chips -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:text="TUBING OUTER DIAMETER"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/llSizes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnSize316"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/bg_pill_selected"
+                        android:minHeight="40dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="3/16 in (4.76mm)"
+                        android:textColor="@color/m3_on_primary"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnSize14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:minHeight="40dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="1/4 in (6.35mm)"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnSize516"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:minHeight="40dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="5/16 in (7.94mm)"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnSize38"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:minHeight="40dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="3/8 in (9.53mm)"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnSize12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:minHeight="40dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="1/2 in (12.7mm)"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnSize58"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:minHeight="40dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="5/8 in (15.8mm)"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnSize34"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:minHeight="40dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="3/4 in (19.0mm)"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Material Selector Chips -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:text="ALLOY / TUBE MATERIAL"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/llMaterials"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnMatCuni"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/bg_pill_selected"
+                        android:minHeight="40dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="CuNi (Cunifer)"
+                        android:textColor="@color/m3_on_primary"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnMatSoftCopper"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:minHeight="40dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="Soft Copper"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnMatSteel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:minHeight="40dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="Steel (Bundy)"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnMatStainless"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:minHeight="40dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="304 Stainless"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnMatHardCopper"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="6dp"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:minHeight="40dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="Hard Copper"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnMatAluminum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_pill_unselected"
+                        android:minHeight="40dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="Aluminum"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Material Warning Alert Card -->
+            <LinearLayout
+                android:id="@+id/llMaterialAlert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_badge_warn"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvMaterialAlertTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="METALLURGY ALERT"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvMaterialAlertBody"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textColor="#FFEDD5"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- Hero Visual: FlareProfileView -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-black"
+                        android:text="ENGINEERING PROFILE"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvProfileSubtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="45° Double • 3/16 in OD"
+                        android:textColor="@color/m3_primary"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <com.kimrosil.flaregage.FlareProfileView
+                    android:id="@+id/flareProfileView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+
+            <!-- Tabular 2-Column Telemetry Deck (Stacked Numbers) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:text="DIMENSIONAL &amp; TORQUE SPECIFICATIONS"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <!-- Row 1: Flare OD & Stickout -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+                <!-- Card 1: Flare OD -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_card"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TARGET FLARE OD"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvSpecFlareOdMm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="7.10 - 7.50 mm"
+                        android:textColor="@color/m3_primary"
+                        android:textSize="19sp" />
+
+                    <TextView
+                        android:id="@+id/tvSpecFlareOdIn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.280 - 0.295 in"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- Card 2: Stickout Depth -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_card"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="STICKOUT DEPTH"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvSpecStickoutMm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="1.5 - 2.0 mm"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="19sp" />
+
+                    <TextView
+                        android:id="@+id/tvSpecStickoutFrac"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1/16 in gauge gap"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="11sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Row 2: Torque & Nut Threads -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:orientation="horizontal">
+
+                <!-- Card 3: Seating Torque -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_card"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SEATING TORQUE"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvSpecTorqueNm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="14 - 18 N·m"
+                        android:textColor="@color/m3_primary"
+                        android:textSize="19sp" />
+
+                    <TextView
+                        android:id="@+id/tvSpecTorqueFtLb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10 - 13 ft·lb"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- Card 4: Nut Threads & FFT -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_card"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NUT THREAD &amp; FFT"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvSpecThread"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="sans-serif-black"
+                        android:singleLine="true"
+                        android:text="3/8 in-24 UNF"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvSpecFft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="1/6 Turn (1 Flat)"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="11sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Caliper Verification Deck -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="CALIPER VERIFICATION (FIELD CHECK)"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Measure flare head across widest diameter with caliper"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="11sp" />
+
+                <!-- Input Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/etCaliperInput"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_input_field"
+                        android:fontFamily="sans-serif-medium"
+                        android:hint="Caliper reading..."
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
+                        android:singleLine="true"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/btnUnitToggle"
+                        android:layout_width="60dp"
+                        android:layout_height="48dp"
+                        android:layout_marginLeft="6dp"
+                        android:background="@drawable/bg_header_button"
+                        android:text="mm"
+                        android:textColor="@color/m3_primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnVerify"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginLeft="6dp"
+                        android:background="@drawable/bg_action_button"
+                        android:paddingLeft="14dp"
+                        android:paddingRight="14dp"
+                        android:text="Check"
+                        android:textColor="@color/m3_on_primary"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <!-- Result Status Box -->
+                <LinearLayout
+                    android:id="@+id/llVerificationResult"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_badge_pass"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tvResultBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:text="PASS: IN TOLERANCE"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvResultDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Within nominal bounds."
+                        android:textColor="#DCFCE7"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- Job / VIN Signoff Field -->
+                <LinearLayout
+                    android:id="@+id/llSignoffContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/etJobRef"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_input_field"
+                        android:hint="Job / VIN ref (e.g. WO-42)"
+                        android:imeOptions="actionDone"
+                        android:singleLine="true"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="13sp" />
+
+                    <Button
+                        android:id="@+id/btnSaveSignoff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        android:layout_marginLeft="6dp"
+                        android:background="@drawable/bg_header_button"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="Sign Off"
+                        android:textColor="@color/m3_primary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

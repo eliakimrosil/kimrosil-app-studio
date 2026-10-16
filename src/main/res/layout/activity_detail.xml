@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/m3_surface"
+    android:orientation="vertical">
+
+    <!-- Detail Top Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/m3_surface_container"
+        android:gravity="center_vertical"
+        android:paddingBottom="12dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="12dp">
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bg_header_button"
+            android:minHeight="48dp"
+            android:minWidth="48dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:text="← Back"
+            android:textColor="@color/m3_on_surface"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:singleLine="true"
+                android:text="Flaring Field Guide"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="Engineering Specs &amp; Best Practices"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnShareGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_header_button"
+            android:minHeight="48dp"
+            android:minWidth="48dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:text="Share"
+            android:textColor="@color/m3_primary"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/m3_outline_variant" />
+
+    <!-- Guide Scroll Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="36dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="14dp">
+
+            <!-- Card 1: 4 Standard Geometries -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="1. FLARING STANDARDS RECOGNITION"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="• 45° SAE Single Flare: Standard in residential mini-splits, refrigeration coils, and HVAC brass flare fittings. Single wall flare. Never use in brake circuits."
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="• 45° SAE Double (Inverted): Automotive standard for hydraulic brake lines (SAE J533). Tube lip folds inward upon itself to double the wall thickness, resisting fatigue from pulsation."
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="• 37° AN / JIC: High-pressure aerospace and motorsport hydraulic lines (MIL-F-5509 / SAE J514). Steeper 37° angle provides greater sealing contact surface with aluminum or stainless fittings."
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="• DIN / ISO Bubble Flare: European automotive brake lines (DIN 74234). Flares outward into a convex mushroom bulb mating with flat-bottom port seats."
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Card 2: 5-Step Flaring Protocol -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="2. FIVE-STEP FIELD FLARING PROTOCOL"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="1. Square Cut: Cut tube squarely using a dedicated roller tube cutter. Never use a hacksaw which distorts roundness."
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="2. Inside &amp; Outside Deburr: Point tube downward so shavings fall out. Chamfer inner lip cleanly; any burr creates stress risers that split the flare."
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="3. Flare Nut First: ALWAYS slide flare nut onto tube facing correct orientation before flaring."
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="4. Flare Bar Stickout: Clamp tube with exact stickout depth (e.g. 1/16 in for 3/16 in line). Too little stickout produces undersized blowouts; too much stickout splits the rim."
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="5. Drop of Oil on Cone: Place 1 drop of compatible oil (POE oil for HVAC, clean brake fluid for brake lines) on flaring cone face to eliminate friction galling."
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Card 3: FFT Standard -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="3. FFT (TURNS-FROM-FINGER-TIGHT) RULE"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="When a calibrated torque wrench is unavailable in tight engine bays or roof linesets, use the FFT standard:"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="• Tighten flare nut by hand until it bottoms firmly on the cone face."
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="• Using a wrench, turn nut exactly 1 hex flat (1/6 turn / 60°) for 3/16 in to 3/8 in lines, or 1.5 hex flats (1/4 turn / 90°) for 1/2 in to 3/4 in lines."
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="• OVERTIGHTENING RUINS FLARES: Excessive torque crushes the copper cone into fitting threads, galling the brass and creating micro-fractures that leak weeks later."
+                    android:textColor="#F59E0B"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
