@@ -11,6 +11,12 @@
     <link rel="alternate icon" href="https://apps.kimrosil.com/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="https://apps.kimrosil.com/apple-touch-icon.png">
 
+    <!-- Machine-Readable LLM Discovery & Alternative Endpoints -->
+    <link rel="alternate" type="text/markdown" title="LLM Overview" href="https://apps.kimrosil.com/llms.txt">
+    <link rel="alternate" type="text/markdown" title="Full Portfolio Specs" href="https://apps.kimrosil.com/llms-full.txt">
+    <link rel="alternate" type="application/json" title="Catalog JSON" href="https://apps.kimrosil.com/apps.json">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://apps.kimrosil.com/sitemap.xml">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://apps.kimrosil.com/gemini-power-bridge/">
@@ -31,17 +37,99 @@
 {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
+    "@id": "https://apps.kimrosil.com/gemini-power-bridge/#software",
     "name": "Power Key Assistant Bridge",
-    "operatingSystem": "Android",
+    "operatingSystem": "Android 7.0 and up",
     "applicationCategory": "UtilitiesApplication",
     "offers": {
         "@type": "Offer",
         "price": "0",
-        "priceCurrency": "USD"
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
     },
     "description": "Remap your device power button to trigger your preferred assistant or app.",
     "image": "https://apps.kimrosil.com/assets/icons/gemini-power-bridge.svg",
-    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-gemini-power-bridge/gemini-power-bridge.apk"
+    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-gemini-power-bridge/gemini-power-bridge.apk",
+    "softwareVersion": "1.0.0",
+    "fileSize": "< 5MB",
+    "author": {
+        "@type": "Organization",
+        "name": "KimRosil App Studio",
+        "url": "https://apps.kimrosil.com/"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "KimRosil App Studio",
+        "url": "https://apps.kimrosil.com/"
+    },
+    "permissions": "android.permission.INTERNET (Not Requested - 100% Offline)",
+    "featureList": [
+        "100% Offline Functionality (No Internet Required)",
+        "Zero Telemetry or Data Collection",
+        "No Subscriptions, Paywalls, or Ads",
+        "Pure Native Android Framework UI (Java / Kotlin + XML)"
+    ]
+}
+    </script>
+    <!-- BreadcrumbList JSON-LD -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "KimRosil App Studio",
+            "item": "https://apps.kimrosil.com/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Broadcasting, Audio Production & System Telemetry",
+            "item": "https://apps.kimrosil.com/?domain=dev_audio"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Power Key Assistant Bridge",
+            "item": "https://apps.kimrosil.com/gemini-power-bridge/"
+        }
+    ]
+}
+    </script>
+    <!-- FAQPage JSON-LD -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://apps.kimrosil.com/gemini-power-bridge/#faq",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Is Power Key Assistant Bridge completely offline?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Power Key Assistant Bridge operates entirely locally on your Android device without requiring internet connectivity, external servers, or cloud synchronization."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Does Power Key Assistant Bridge collect telemetry or display ads?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Power Key Assistant Bridge is built without tracking SDKs, advertising libraries, or telemetry frameworks. All calculation state and user logs stay strictly within on-device sandboxed storage."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How do I install Power Key Assistant Bridge on Android?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can download the APK binary directly from the official KimRosil App Studio GitHub Releases CDN (https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-gemini-power-bridge/gemini-power-bridge.apk) and open the file on your device to install."
+            }
+        }
+    ]
 }
     </script>
     <style>
@@ -180,6 +268,67 @@
             word-break: break-word;
         }
         .desc p { margin-bottom: 12px; }
+
+        .tech-specs-card {
+            background: #0B101B;
+            border: 1px solid #1E293B;
+            border-radius: 14px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+        .tech-specs-card h3, .app-faq-card h3 {
+            color: #FFFFFF;
+            font-size: 16px;
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+        }
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .spec-label {
+            font-size: 11.5px;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .spec-val {
+            font-size: 13.5px;
+            color: #F1F5F9;
+            font-weight: 600;
+        }
+        .app-faq-card {
+            background: #0B101B;
+            border: 1px solid #1E293B;
+            border-radius: 14px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+        .faq-accordion {
+            border-bottom: 1px solid #1E293B;
+            padding: 10px 0;
+        }
+        .faq-accordion:last-child { border-bottom: none; }
+        .faq-accordion summary {
+            color: #00E5FF;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+        }
+        .faq-accordion p {
+            color: #94A3B8;
+            font-size: 13.5px;
+            line-height: 1.6;
+            margin-top: 6px;
+        }
+
         .footer {
             margin-top: 36px;
             border-top: 1px solid #1F2937;
@@ -202,6 +351,7 @@
             .btn { width: 100%; min-height: 46px; font-size: 14px; padding: 12px 18px; }
             .meta-links { flex-direction: column; gap: 8px; text-align: center; }
             .desc { font-size: 14px; line-height: 1.6; }
+            .specs-grid { grid-template-columns: 1fr; }
             .footer { margin-top: 24px; padding-top: 16px; font-size: 12px; }
         }
     </style>
@@ -231,9 +381,38 @@
         </div>
         <hr>
         <div class="desc"><p>Power Key Assistant Bridge provides seamless hardware button remapping, enabling you to launch your favorite virtual assistant, digital companion, or utility shortcut directly via your device power key. Many devices lock hardware shortcut keys to proprietary assistant software or system search engines. Power Key Assistant Bridge acts as an intelligent interceptor service, capturing hardware key events and seamlessly redirecting the intent to your chosen application without latency or interruption. Key Features: - Instant Hardware Interception: Detects power key events and redirects execution instantly to your preferred assistant or shortcut. - Custom Target Selection: Configure any installed assistant, automation tool, or frequently used app as the primary trigger. - Offline-First Architecture: Operates entirely locally on your device with no remote servers or external dependencies. - Privacy Focused: Zero network tracking, zero analytics SDKs, and zero telemetry collection. - Lightweight and Efficient: Optimized background listener designed to consume negligible battery and system memory. - No Subscriptions: All utility features are available out of the box with no account creation or recurring fees required. Permissions and Accessibility Disclosure: This app utilizes the Android AccessibilityService API to detect hardware key presses when the screen is active and route them to your configured assistant. The Accessibility Service is strictly used for button detection and intent dispatch. It does not monitor screen contents, collect personal data, or transmit keystrokes. Take full control of your hardware shortcuts with a lightweight, secure utility designed to personalize your everyday workflow.</p><p><br>Data Safety & Offline Privacy Guarantee:<br>- 100% Offline: This application operates entirely on your device without requiring an active internet connection.<br>- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.<br>- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.<br>- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.</p><p><br>Notice of Non-Affiliation: All product and company names, logos, and brands mentioned are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.</p></div>
+
+        <div class="tech-specs-card">
+            <h3>Technical Specifications &amp; Architecture</h3>
+            <div class="specs-grid">
+                <div class="spec-item"><span class="spec-label">Operating System</span><span class="spec-val">Android 7.0+ (API 24+)</span></div>
+                <div class="spec-item"><span class="spec-label">Architecture</span><span class="spec-val">Pure Native (Java/Kotlin + XML)</span></div>
+                <div class="spec-item"><span class="spec-label">Network Requirement</span><span class="spec-val">0 KB / 100% Offline</span></div>
+                <div class="spec-item"><span class="spec-label">Data Collection</span><span class="spec-val">Zero Telemetry / No SDKs</span></div>
+                <div class="spec-item"><span class="spec-label">Binary Footprint</span><span class="spec-val">&lt; 5 MB Micro-APK</span></div>
+                <div class="spec-item"><span class="spec-label">Distribution</span><span class="spec-val">Free &bull; Open CDN</span></div>
+            </div>
+        </div>
+
+        <div class="app-faq-card">
+            <h3>Frequently Asked Questions</h3>
+            <details class="faq-accordion" open>
+                <summary>Is Power Key Assistant Bridge completely offline?</summary>
+                <p>Yes. Power Key Assistant Bridge operates entirely locally on your Android device without requiring internet connectivity or external server calls.</p>
+            </details>
+            <details class="faq-accordion">
+                <summary>Does this utility collect any telemetry or personal data?</summary>
+                <p>No. KimRosil App Studio adheres to a strict zero-telemetry standard. No analytics SDKs, advertising frameworks, or background trackers are included in the binary.</p>
+            </details>
+            <details class="faq-accordion">
+                <summary>How do I install the direct APK?</summary>
+                <p>Click the "Download APK" button above to get the signed APK binary directly from our verified GitHub Releases CDN. Open the downloaded file to install on your Android device.</p>
+            </details>
+        </div>
+
         <div class="footer">
             <p>100% Offline Freeware &bull; Zero Trackers &bull; Pure Native Android</p>
-            <p><a href="../index.html">← View All Applications</a> &bull; <a href="../privacy.html">Developer Privacy Policy</a> &bull; <a href="https://github.com/eliakimrosil/kimrosil-app-studio">GitHub Repository</a></p>
+            <p><a href="../index.html">← View All Applications</a> &bull; <a href="../llms.txt">LLM Index</a> &bull; <a href="../privacy.html">Developer Privacy Policy</a> &bull; <a href="https://github.com/eliakimrosil/kimrosil-app-studio">GitHub Repository</a></p>
         </div>
     </div>
 </body>

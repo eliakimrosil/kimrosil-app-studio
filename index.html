@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
     <title>KimRosil App Studio | High-Performance Offline Native Android Applications</title>
     <meta name="description" content="Suite of 52 high-performance, offline-first Android apps built natively on ARM64 with pure Java/XML and domain craftsmanship.">
-    <meta name="keywords" content="Android apps, offline android utilities, open source android, freeware APK, privacy-first android apps, APK direct download">
+    <meta name="keywords" content="Android apps, offline android utilities, open source android, freeware APK, privacy-first android apps, APK direct download, KimRosil App Studio, Eliakim Rosil">
     <meta name="author" content="Eliakim Rosil">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://apps.kimrosil.com/">
@@ -13,6 +13,12 @@
     <link rel="alternate icon" href="https://apps.kimrosil.com/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="https://apps.kimrosil.com/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="https://apps.kimrosil.com/favicon.png">
+
+    <!-- Machine-Readable LLM Discovery & Alternative Endpoints -->
+    <link rel="alternate" type="text/markdown" title="LLM Overview" href="https://apps.kimrosil.com/llms.txt">
+    <link rel="alternate" type="text/markdown" title="Full Portfolio Specs" href="https://apps.kimrosil.com/llms-full.txt">
+    <link rel="alternate" type="application/json" title="Machine-Readable Catalog API" href="https://apps.kimrosil.com/apps.json">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://apps.kimrosil.com/sitemap.xml">
 
     <!-- Google Search Console verification: set GOOGLE_SITE_VERIFICATION in .env -->
 
@@ -31,27 +37,1160 @@
     <meta name="twitter:description" content="Suite of 52 high-performance, offline-first Android apps built natively on ARM64 with domain craftsmanship.">
     <meta name="twitter:image" content="https://apps.kimrosil.com/assets/icon.svg">
 
-    <!-- Structured Data (JSON-LD) -->
+    <!-- Structured Data (JSON-LD Knowledge Graph) -->
     <script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": "https://apps.kimrosil.com/#organization",
     "name": "KimRosil App Studio",
+    "legalName": "KimRosil App Studio",
+    "alternateName": "KimRosil Mobile Studio",
     "url": "https://apps.kimrosil.com/",
     "logo": "https://apps.kimrosil.com/assets/icon.svg",
-    "description": "Suite of high-performance, offline-first Android applications built natively on ARM64 with domain craftsmanship.",
+    "image": "https://apps.kimrosil.com/assets/icon.svg",
+    "description": "Independent software studio engineering 100% offline-first, privacy-centric native Android utilities with zero trackers, compiled natively on ARM64.",
+    "founder": {
+        "@type": "Person",
+        "name": "Eliakim Rosil",
+        "url": "https://github.com/eliakimrosil"
+    },
+    "knowsAbout": [
+        "Android Utility Applications",
+        "Offline-First Software Architecture",
+        "Pure Native Framework Development",
+        "Privacy-Preserving Mobile Apps",
+        "Zero-Telemetry Freeware",
+        "ARM64 Snapdragon Native Compilation",
+        "Kotlin Coroutines",
+        "Android Java"
+    ],
     "sameAs": [
-        "https://github.com/eliakimrosil/kimrosil-app-studio"
-    ]
+        "https://github.com/eliakimrosil/kimrosil-app-studio",
+        "https://github.com/eliakimrosil"
+    ],
+    "publishingPrinciples": "https://apps.kimrosil.com/privacy.html"
 }
     </script>
     <script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": "https://apps.kimrosil.com/#website",
     "name": "KimRosil App Studio",
     "url": "https://apps.kimrosil.com/",
-    "description": "Catalog of 52 offline native Android freeware applications."
+    "publisher": {
+        "@id": "https://apps.kimrosil.com/#organization"
+    },
+    "description": "Catalog of 52 offline native Android freeware applications.",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://apps.kimrosil.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+    </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://apps.kimrosil.com/#catalog",
+    "url": "https://apps.kimrosil.com/",
+    "name": "KimRosil App Studio Android Application Catalog",
+    "description": "Comprehensive index of 52 high-performance, offline-first native Android freeware applications.",
+    "isPartOf": {
+        "@id": "https://apps.kimrosil.com/#website"
+    },
+    "about": {
+        "@id": "https://apps.kimrosil.com/#organization"
+    },
+    "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": 52,
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "KerfNotch",
+                    "url": "https://apps.kimrosil.com/kerf-notch/",
+                    "image": "https://apps.kimrosil.com/assets/icons/kerf-notch.svg",
+                    "description": "Offline table saw box joint and dado stack spacer calculator.",
+                    "applicationCategory": "TOOLS & UTILITIES / CARPENTRY",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-kerf-notch/kerf-notch.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "CombGauge",
+                    "url": "https://apps.kimrosil.com/comb-gauge/",
+                    "image": "https://apps.kimrosil.com/assets/icons/comb-gauge.svg",
+                    "description": "Offline wet film thickness and dry film coat calculator for industrial spray painters",
+                    "applicationCategory": "TOOLS & UTILITIES / ENGINEERING",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-comb-gauge/comb-gauge.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "ShimPack",
+                    "url": "https://apps.kimrosil.com/shim-pack/",
+                    "image": "https://apps.kimrosil.com/assets/icons/shim-pack.svg",
+                    "description": "Offline motor alignment tolerance solver and precision shim stack builder",
+                    "applicationCategory": "TOOLS & UTILITIES / ENGINEERING",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.0-shim-pack/shim-pack.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "BeltDeflect",
+                    "url": "https://apps.kimrosil.com/belt-deflect/",
+                    "image": "https://apps.kimrosil.com/assets/icons/belt-deflect.svg",
+                    "description": "Offline V-belt and serpentine tension calculation and audio frequency gauge for mechanics and millwrights",
+                    "applicationCategory": "TOOLS & UTILITIES / MECHANICAL",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-belt-deflect/belt-deflect.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "TapDrill",
+                    "url": "https://apps.kimrosil.com/tap-drill/",
+                    "image": "https://apps.kimrosil.com/assets/icons/tap-drill.svg",
+                    "description": "Offline machinist thread pitch, tap drill clearance, and feed rate lookup.",
+                    "applicationCategory": "TOOLS & UTILITIES / ENGINEERING",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.2-tap-drill/tap-drill.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 6,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "SolderWick",
+                    "url": "https://apps.kimrosil.com/solder-wick/",
+                    "image": "https://apps.kimrosil.com/assets/icons/solder-wick.svg",
+                    "description": "Offline electronics bench flux match, thermal dwell timer, and tip temperature aide",
+                    "applicationCategory": "TOOLS & UTILITIES / ELECTRONICS",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-solder-wick/solder-wick.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 7,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "FlangeMatch",
+                    "url": "https://apps.kimrosil.com/flangematch/",
+                    "image": "https://apps.kimrosil.com/assets/icons/flangematch.svg",
+                    "description": "Offline pipe flange bolt pattern identifier and torque pattern sequencer.",
+                    "applicationCategory": "TOOLS & UTILITIES / ENGINEERING",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-flangematch/flangematch.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 8,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "FlowStep",
+                    "url": "https://apps.kimrosil.com/flow-step/",
+                    "image": "https://apps.kimrosil.com/assets/icons/flow-step.svg",
+                    "description": "Single-Step Focus Pacer",
+                    "applicationCategory": "HEALTH_AND_FITNESS",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-flow-step/flow-step.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 9,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "PitchGrid",
+                    "url": "https://apps.kimrosil.com/pitch-grid/",
+                    "image": "https://apps.kimrosil.com/assets/icons/pitch-grid.svg",
+                    "description": "Tactile studio frequency generator & audio workbench with real-time waveform synthesis and microtonal cents precision.",
+                    "applicationCategory": "Music & Audio / Production Tools",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-pitch-grid/pitch-grid.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 10,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "CamberShim",
+                    "url": "https://apps.kimrosil.com/camber-shim/",
+                    "image": "https://apps.kimrosil.com/assets/icons/camber-shim.svg",
+                    "description": "Offline door hinge mortise and sag correction angle calculator",
+                    "applicationCategory": "Tools & Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-camber-shim/camber-shim.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 11,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "TurfNotch",
+                    "url": "https://apps.kimrosil.com/turf-notch/",
+                    "image": "https://apps.kimrosil.com/assets/icons/turf-notch.svg",
+                    "description": "Offline lawn seed and spreader gate notch calibrator",
+                    "applicationCategory": "Home & Garden Tools",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.0-turf-notch/turf-notch.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 12,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "GrainRun",
+                    "url": "https://apps.kimrosil.com/grain-run/",
+                    "image": "https://apps.kimrosil.com/assets/icons/grain-run.svg",
+                    "description": "Offline wood grain reading helper and tearout calculator with quick visual tilt checks for workshop benches.",
+                    "applicationCategory": "Tools & Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.0-grain-run/grain-run.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 13,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "VoltDrop",
+                    "url": "https://apps.kimrosil.com/volt-drop/",
+                    "image": "https://apps.kimrosil.com/assets/icons/volt-drop.svg",
+                    "description": "Offline wire gauge sizing, voltage drop calculator, and electrical ampacity guide.",
+                    "applicationCategory": "Tools & Utilities / Electrical",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-volt-drop/volt-drop.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 14,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "GrainLine",
+                    "url": "https://apps.kimrosil.com/grainline/",
+                    "image": "https://apps.kimrosil.com/assets/icons/grainline.svg",
+                    "description": "Offline textile yardage calculator and pattern layout optimizer with Quick Settings bolt yardage scanner.",
+                    "applicationCategory": "Tools / Productivity",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-grainline/grainline.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 15,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "SproutKnight",
+                    "url": "https://apps.kimrosil.com/sprout-knight-rpg/",
+                    "image": "https://apps.kimrosil.com/assets/icons/sprout-knight-rpg.svg",
+                    "description": "Embark on a charming forest RPG quest\u2014upgrade acorn blades, walnut armor, and dewdrop magic at the cozy forge.",
+                    "applicationCategory": "Games / RPG / Adventure",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.3.0-sprout-knight-rpg/sprout-knight-rpg.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 16,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "PebbleDrift",
+                    "url": "https://apps.kimrosil.com/pebble-drift/",
+                    "image": "https://apps.kimrosil.com/assets/icons/pebble-drift.svg",
+                    "description": "Tactile water ripples, floating petals, stone stacking, and harmonic pentatonic chimes in an offline oasis.",
+                    "applicationCategory": "Games / Casual / Relaxing",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-pebble-drift/pebble-drift.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 17,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "SkimSkim",
+                    "url": "https://apps.kimrosil.com/skim-skim/",
+                    "image": "https://apps.kimrosil.com/assets/icons/skim-skim.svg",
+                    "description": "Offline pool filter cycle countdowns, media doser, and Quick Settings backwash timer designed for wet, chlorine-slick hands.",
+                    "applicationCategory": "Tools & Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-skim-skim/skim-skim.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 18,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "RunSheet",
+                    "url": "https://apps.kimrosil.com/run-sheet-workflow/",
+                    "image": "https://apps.kimrosil.com/assets/icons/run-sheet-workflow.svg",
+                    "description": "Professional offline stage-gate workflow engine and sequential production runner with local SQLite telemetry.",
+                    "applicationCategory": "Business & Productivity",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-run-sheet-workflow/run-sheet-workflow.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 19,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "Cadence",
+                    "url": "https://apps.kimrosil.com/cadence-habit-ledger/",
+                    "image": "https://apps.kimrosil.com/assets/icons/cadence-habit-ledger.svg",
+                    "description": "Minimalist, 100% offline daily ritual ledger with haptic streaks and local SQLite privacy.",
+                    "applicationCategory": "Lifestyle & Productivity",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-cadence-habit-ledger/cadence-habit-ledger.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 20,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "MuckCure",
+                    "url": "https://apps.kimrosil.com/muck-cure/",
+                    "image": "https://apps.kimrosil.com/assets/icons/muck-cure.svg",
+                    "description": "Offline Quick Settings tile and lockscreen vibration monitor for masonry mortar pot life, initial set, and strike-off timing.",
+                    "applicationCategory": "Tools & Productivity",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-muck-cure/muck-cure.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 21,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "WeldCool",
+                    "url": "https://apps.kimrosil.com/weld-cool/",
+                    "image": "https://apps.kimrosil.com/assets/icons/weld-cool.svg",
+                    "description": "Single-tap Quick Settings interpass cooling timer and preheat soak calculator for welders wearing heavy gloves.",
+                    "applicationCategory": "Tools & Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-weld-cool/weld-cool.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 22,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "Caulk Bead & Skin Sentinel",
+                    "url": "https://apps.kimrosil.com/caulk-bead-skin-sentinel/",
+                    "image": "https://apps.kimrosil.com/assets/icons/caulk-bead-skin-sentinel.svg",
+                    "description": "Offline workshop and tiling assistant tracking caulk tooling pot life and cure phases right from Quick Settings.",
+                    "applicationCategory": "Tools & Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-caulk-bead-skin-sentinel/caulk-bead-skin-sentinel.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 23,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "PotLife",
+                    "url": "https://apps.kimrosil.com/epoxy-cure-pot-life-sentinel/",
+                    "image": "https://apps.kimrosil.com/assets/icons/epoxy-cure-pot-life-sentinel.svg",
+                    "description": "Zero-friction pot life, gel phase, and demold countdowns triggered directly from Quick Settings with sticky resin hands.",
+                    "applicationCategory": "Tools & Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-epoxy-cure-pot-life-sentinel/epoxy-cure-pot-life-sentinel.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 24,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "ClampGuard",
+                    "url": "https://apps.kimrosil.com/glue-set-clamp-sentinel/",
+                    "image": "https://apps.kimrosil.com/assets/icons/glue-set-clamp-sentinel.svg",
+                    "description": "Track exact clamp-time and full-cure windows for wood glues and epoxies with one-tap Quick Settings, lock-screen chronometers, and ambient cure temperature compensation.",
+                    "applicationCategory": "Tools & Productivity",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-glue-set-clamp-sentinel/glue-set-clamp-sentinel.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 25,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "RoastRest",
+                    "url": "https://apps.kimrosil.com/roast-rest-meat-thermo-sentinel/",
+                    "image": "https://apps.kimrosil.com/assets/icons/roast-rest-meat-thermo-sentinel.svg",
+                    "description": "Offline culinary carryover calculator and target rest timer with a 1-tap Quick Settings tile and lock-screen chronometer.",
+                    "applicationCategory": "Food & Drink / Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-roast-rest-meat-thermo-sentinel/roast-rest-meat-thermo-sentinel.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 26,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "ChillThaw",
+                    "url": "https://apps.kimrosil.com/defrost-safe-meat-prep-sentinel/",
+                    "image": "https://apps.kimrosil.com/assets/icons/defrost-safe-meat-prep-sentinel.svg",
+                    "description": "Safe food-prep countdowns and USDA defrost window alerts right from your Quick Settings and Lock Screen.",
+                    "applicationCategory": "Food & Drink / Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-defrost-safe-meat-prep-sentinel/defrost-safe-meat-prep-sentinel.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 27,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "CrumbWatch",
+                    "url": "https://apps.kimrosil.com/sourdough-rise-ferment-sentinel/",
+                    "image": "https://apps.kimrosil.com/assets/icons/sourdough-rise-ferment-sentinel.svg",
+                    "description": "Offline-first artisan dough fermentation tracker with temperature-compensated proofing timers, flour-safe Quick Settings tap, and ongoing lock screen chronometer.",
+                    "applicationCategory": "Food & Drink / Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-sourdough-rise-ferment-sentinel/sourdough-rise-ferment-sentinel.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 28,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "PanFlip",
+                    "url": "https://apps.kimrosil.com/pan-flip-sear-timer/",
+                    "image": "https://apps.kimrosil.com/assets/icons/pan-flip-sear-timer.svg",
+                    "description": "Offline culinary flip and sear timer with Quick Settings 1-tap activation and hands-free lock-screen pacing for busy home cooks.",
+                    "applicationCategory": "Food & Drink / Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-pan-flip-sear-timer/pan-flip-sear-timer.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 29,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "FastTrack",
+                    "url": "https://apps.kimrosil.com/fast-track-intermittent-fasting-sentinel/",
+                    "image": "https://apps.kimrosil.com/assets/icons/fast-track-intermittent-fasting-sentinel.svg",
+                    "description": "Frictionless, offline-first intermittent fasting tracker driven by Quick Settings and persistent Lock Screen chronometer.",
+                    "applicationCategory": "Health & Fitness",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-fast-track-intermittent-fasting-sentinel/fast-track-intermittent-fasting-sentinel.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 30,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "SnoozeGuard Commute Vigil",
+                    "url": "https://apps.kimrosil.com/snooze-guard-microsleep-commute/",
+                    "image": "https://apps.kimrosil.com/assets/icons/snooze-guard-microsleep-commute.svg",
+                    "description": "Offline motion & dead-man vigilance timer that stops public transit riders from sleeping past their stop.",
+                    "applicationCategory": "Travel & Local / Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-snooze-guard-microsleep-commute/snooze-guard-microsleep-commute.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 31,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "CryoPulse",
+                    "url": "https://apps.kimrosil.com/steep-chill-ice-bath-timer/",
+                    "image": "https://apps.kimrosil.com/assets/icons/steep-chill-ice-bath-timer.svg",
+                    "description": "Frictionless offline cold plunge timer with Quick Settings 1-tap start, ongoing lock screen chronometer, and haptic breath pacing.",
+                    "applicationCategory": "Health & Fitness / Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-steep-chill-ice-bath-timer/steep-chill-ice-bath-timer.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 32,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "AuraFocus",
+                    "url": "https://apps.kimrosil.com/aurafocus-minimalist-pomodoro-ambient-sound/",
+                    "image": "https://apps.kimrosil.com/assets/icons/aurafocus-minimalist-pomodoro-ambient-sound.svg",
+                    "description": "Offline distraction-free timer with embedded ambient white noise & AMOLED dark theme.",
+                    "applicationCategory": "Productivity",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-aurafocus-minimalist-pomodoro-ambient-sound/aurafocus-minimalist-pomodoro-ambient-sound.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 33,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "CycleGuard",
+                    "url": "https://apps.kimrosil.com/laundry-cycle-sentinel/",
+                    "image": "https://apps.kimrosil.com/assets/icons/laundry-cycle-sentinel.svg",
+                    "description": "Zero-friction offline laundry timer with Quick Settings 1-tap start, ongoing lock-screen chronometer, and mold-prevention reminders.",
+                    "applicationCategory": "Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-laundry-cycle-sentinel/laundry-cycle-sentinel.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 34,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "SteepPulse",
+                    "url": "https://apps.kimrosil.com/steep-brew-tea-timer/",
+                    "image": "https://apps.kimrosil.com/assets/icons/steep-brew-tea-timer.svg",
+                    "description": "Precision multi-step infusion timing with 1-tap Quick Settings logging, lock screen chronometer, and zero account friction.",
+                    "applicationCategory": "Food & Drink / Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-steep-brew-tea-timer/steep-brew-tea-timer.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 35,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "ThawGuard",
+                    "url": "https://apps.kimrosil.com/frost-thaw-prep-timer/",
+                    "image": "https://apps.kimrosil.com/assets/icons/frost-thaw-prep-timer.svg",
+                    "description": "Safe, USDA-calibrated kitchen thaw timer with Quick Settings instant-log and lock screen live countdown.",
+                    "applicationCategory": "Tools & Food Safety",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-frost-thaw-prep-timer/frost-thaw-prep-timer.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 36,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "ParkPin",
+                    "url": "https://apps.kimrosil.com/park-pin-offline-spot-finder/",
+                    "image": "https://apps.kimrosil.com/assets/icons/park-pin-offline-spot-finder.svg",
+                    "description": "Instantly record parking spot level, pillar number, and photos with zero network connectivity or latency.",
+                    "applicationCategory": "Auto & Vehicles / Travel & Local",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-park-pin-offline-spot-finder/park-pin-offline-spot-finder.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 37,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "KR Live Studio",
+                    "url": "https://apps.kimrosil.com/kim-live-studio/",
+                    "image": "https://apps.kimrosil.com/assets/icons/kim-live-studio.svg",
+                    "description": "Broadcast screen, camera & audio directly to RTMP live platforms",
+                    "applicationCategory": "Video & Broadcasting",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.6.1-kim-live-studio/kr-live-studio.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 38,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "StealthDrop",
+                    "url": "https://apps.kimrosil.com/stealth-drop-secret-pad/",
+                    "image": "https://apps.kimrosil.com/assets/icons/stealth-drop-secret-pad.svg",
+                    "description": "Instant zero-trace burner notes and sensitive snippets from your notification shade with auto-purge timers.",
+                    "applicationCategory": "Productivity & Security",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-stealth-drop-secret-pad/stealth-drop-secret-pad.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 39,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "MeterPulse",
+                    "url": "https://apps.kimrosil.com/tap-meter-parking-sentinel/",
+                    "image": "https://apps.kimrosil.com/assets/icons/tap-meter-parking-sentinel.svg",
+                    "description": "One-tap Quick Settings parking timer with interactive Glance countdown and GPS breadcrumb, completely offline.",
+                    "applicationCategory": "Auto & Vehicles / Productivity",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-tap-meter-parking-sentinel/tap-meter-parking-sentinel.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 40,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "DoseGuard",
+                    "url": "https://apps.kimrosil.com/offline-prescription-pill-refill-sentinel/",
+                    "image": "https://apps.kimrosil.com/assets/icons/offline-prescription-pill-refill-sentinel.svg",
+                    "description": "Frictionless offline medication compliance and zero-panic refill countdowns powered by Quick Settings and Glance widgets.",
+                    "applicationCategory": "Health & Fitness",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-offline-prescription-pill-refill-sentinel/offline-prescription-pill-refill-sentinel.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 41,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "TankPulse",
+                    "url": "https://apps.kimrosil.com/offline-fuel-log-tracker/",
+                    "image": "https://apps.kimrosil.com/assets/icons/offline-fuel-log-tracker.svg",
+                    "description": "Instantly record fuel fill-ups and compute real-world mileage and cost-per-mile without accounts, ads, or internet connection.",
+                    "applicationCategory": "Auto & Vehicles / Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-offline-fuel-log-tracker/offline-fuel-log-tracker.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 42,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "DropScribe",
+                    "url": "https://apps.kimrosil.com/offline-audio-drop-transcribe/",
+                    "image": "https://apps.kimrosil.com/assets/icons/offline-audio-drop-transcribe.svg",
+                    "description": "Offline WhatsApp & Telegram voice note transcription via local Whisper with zero cloud leakage.",
+                    "applicationCategory": "Productivity / Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-offline-audio-drop-transcribe/offline-audio-drop-transcribe.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 43,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "SnipShelf",
+                    "url": "https://apps.kimrosil.com/snip-shelf-receipt-ocr/",
+                    "image": "https://apps.kimrosil.com/assets/icons/snip-shelf-receipt-ocr.svg",
+                    "description": "Instantly stash paper serial numbers, warranty barcodes, and appliance manuals directly from camera or share sheet with on-device text indexing.",
+                    "applicationCategory": "Productivity & Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-snip-shelf-receipt-ocr/snip-shelf-receipt-ocr.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 44,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "ClipScrub",
+                    "url": "https://apps.kimrosil.com/clip-scrub-sanitize-share/",
+                    "image": "https://apps.kimrosil.com/assets/icons/clip-scrub-sanitize-share.svg",
+                    "description": "Instantly strip tracking parameters, UTMs, referral bloat, and metadata from copied links and images before sharing.",
+                    "applicationCategory": "Productivity & Privacy Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-clip-scrub-sanitize-share/clip-scrub-sanitize-share.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 45,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "Gemini Power Bridge",
+                    "url": "https://apps.kimrosil.com/gemini-power-bridge/",
+                    "image": "https://apps.kimrosil.com/assets/icons/gemini-power-bridge.svg",
+                    "description": "Hardware key interceptor configuring Lenovo ZUI power button long-press to launch Google Gemini directly.",
+                    "applicationCategory": "Productivity & Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-gemini-power-bridge/gemini-power-bridge.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 46,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "ScreenStream RTSP",
+                    "url": "https://apps.kimrosil.com/screenstream-rtsp/",
+                    "image": "https://apps.kimrosil.com/assets/icons/screenstream-rtsp.svg",
+                    "description": "Low-latency local network RTSP live screen broadcasting server utilizing Android MediaProjection API.",
+                    "applicationCategory": "Multimedia & Networking",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-screenstream-rtsp/screenstream-rtsp.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 47,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "PH VAT Calculator",
+                    "url": "https://apps.kimrosil.com/ph-vat-calculator/",
+                    "image": "https://apps.kimrosil.com/assets/icons/ph-vat-calculator.svg",
+                    "description": "Fast offline 12% VAT (inclusive/exclusive), Expanded Withholding Tax (EWT), and invoice net/gross calculation tool.",
+                    "applicationCategory": "Finance & Business",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.4-ph-vat-calculator/ph-vat-calculator.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 48,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "DevSys Monitor",
+                    "url": "https://apps.kimrosil.com/devsys-monitor/",
+                    "image": "https://apps.kimrosil.com/assets/icons/devsys-monitor.svg",
+                    "description": "Lightweight real-time CPU frequencies, RAM utilization, thermal sensors, and system processes monitor.",
+                    "applicationCategory": "Developer Tools & System Utilities",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-devsys-monitor/devsys-monitor.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 49,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "IronPulse",
+                    "url": "https://apps.kimrosil.com/workout-program-tracker/",
+                    "image": "https://apps.kimrosil.com/assets/icons/workout-program-tracker.svg",
+                    "description": "Minimalist offline workout program tracker with progressive overload logging and auto rest timer.",
+                    "applicationCategory": "Health & Fitness",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-workout-program-tracker/workout-program-tracker.apk",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 50,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "WhoHasMy",
+                    "url": "https://apps.kimrosil.com/who-has-my-tool-lending/",
+                    "image": "https://apps.kimrosil.com/assets/icons/who-has-my-tool-lending.svg",
+                    "description": "Stop losing your tools, camping gear, books, and board games to neighbors and friends with friendly photo records and polite WhatsApp reminders.",
+                    "applicationCategory": "Home & Community",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/actions",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 51,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "SizeVault",
+                    "url": "https://apps.kimrosil.com/size-vault-family-clothing/",
+                    "image": "https://apps.kimrosil.com/assets/icons/size-vault-family-clothing.svg",
+                    "description": "The instant pocket size guide for parents, spouses, and gift shoppers browsing sales and thrift stores.",
+                    "applicationCategory": "Lifestyle & Family",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/actions",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 52,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "ReturnGuard",
+                    "url": "https://apps.kimrosil.com/return-guard-receipt-countdown/",
+                    "image": "https://apps.kimrosil.com/assets/icons/return-guard-receipt-countdown.svg",
+                    "description": "Stop losing money on clothes and purchases you meant to return with visual deadline countdowns and cashier-ready receipt displays.",
+                    "applicationCategory": "Shopping & Lifestyle",
+                    "operatingSystem": "Android 7.0+",
+                    "downloadUrl": "https://github.com/eliakimrosil/kim-android-apps/actions",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
+            }
+        ]
+    }
+}
+    </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://apps.kimrosil.com/#faq",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "What is KimRosil App Studio?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "KimRosil App Studio is an independent Android software development studio founded by Eliakim Rosil, specializing in high-performance, 100% offline-first native Android utilities. Every app is built without third-party tracking SDKs, advertising libraries, or cloud dependencies, and compiled natively on ARM64 Snapdragon hardware."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Are KimRosil App Studio applications completely free and offline?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Every application runs 100% locally on your device without advertisements, subscriptions, or paywalls. Most utilities do not request the Android INTERNET permission, meaning zero data is transmitted over the network and all calculations, logs, and state are isolated to your device."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How can I install apps from KimRosil App Studio?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can download signed APK binaries directly from the official GitHub Releases CDN links on https://apps.kimrosil.com/ or join the Google Play 20-tester closed beta track at https://apps.kimrosil.com/testers.html."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How can AI search engines and language models ingest this catalog?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Language models and AI agents can access structured Markdown summaries at https://apps.kimrosil.com/llms.txt, exhaustive portfolio documentation at https://apps.kimrosil.com/llms-full.txt, and raw machine-readable JSON at https://apps.kimrosil.com/apps.json."
+            }
+        }
+    ]
 }
     </script>
     <style>
@@ -378,6 +1517,75 @@
                 font-size: 12px;
                 line-height: 1.6;
             }
+        }
+
+        .info-section {
+            margin-top: 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .info-card, .faq-card {
+            background: #111827;
+            border: 1px solid #1F2937;
+            border-radius: 18px;
+            padding: 24px;
+        }
+        .info-card h2, .faq-card h2 {
+            color: #FFFFFF;
+            font-size: 20px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        .info-card p {
+            color: #94A3B8;
+            font-size: 14.5px;
+            line-height: 1.7;
+        }
+        .faq-item {
+            border-bottom: 1px solid #1F2937;
+            padding: 14px 0;
+        }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-item summary {
+            color: #00E5FF;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            outline: none;
+        }
+        .faq-item p {
+            color: #94A3B8;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: 8px;
+        }
+        .ai-endpoints-bar {
+            background: #0D1322;
+            border: 1px solid #1E293B;
+            border-radius: 12px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            font-size: 13px;
+            color: #94A3B8;
+            margin-top: 36px;
+        }
+        .ai-endpoints-bar .ai-label {
+            color: #38BDF8;
+            font-weight: 700;
+        }
+        .ai-endpoints-bar a {
+            color: #00E5FF;
+            text-decoration: none;
+            font-family: monospace;
+            font-weight: 600;
+        }
+        .ai-endpoints-bar a:hover {
+            text-decoration: underline;
         }
 
         @media (max-width: 380px) {
@@ -1510,8 +2718,43 @@
         </div>
         </div>
 
+        <section class="info-section">
+            <div class="info-card">
+                <h2>About KimRosil App Studio</h2>
+                <p>KimRosil App Studio is an independent Android software development studio founded by Eliakim Rosil. The studio creates domain-tailored, 100% offline-first native Android utilities. Every application is built with pure Android framework components in Java + XML and Kotlin + XML, compiled natively on ARM64 Snapdragon hardware, and distributed without third-party tracking, advertising, or recurring subscriptions.</p>
+            </div>
+            <div class="faq-card">
+                <h2>Frequently Asked Questions</h2>
+                <details class="faq-item" open>
+                    <summary>What makes KimRosil App Studio applications unique?</summary>
+                    <p>Every tool is designed to work completely offline with zero tracking, zero ads, and zero server dependencies. Most apps do not request the Android INTERNET permission, guaranteeing total privacy and immediate responsiveness.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Are these applications completely free?</summary>
+                    <p>Yes. All applications in the KimRosil portfolio are 100% freeware with no subscriptions, in-app purchases, or hidden monetization.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>How can I install the APKs on my device?</summary>
+                    <p>Click "Download APK" on any card or detail page to download the signed APK directly from our verified GitHub Releases CDN. You can also join our Google Play closed beta testing track on the Testers page.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>How can AI search engines and language models ingest this catalog?</summary>
+                    <p>We provide standard machine-readable documentation: <a href="llms.txt">llms.txt</a> for structured AI model summaries, <a href="llms-full.txt">llms-full.txt</a> for comprehensive technical specifications, and <a href="apps.json">apps.json</a> for direct programmatic JSON ingestion.</p>
+                </details>
+            </div>
+        </section>
+
         <footer>
-            <p>Crafted with precision by <b><a href="https://github.com/eliakimrosil">Eliakim Rosil</a></b> on Lenovo Legion Y70 (Qualcomm Snapdragon 8+ Gen 1).</p>
+            <div class="ai-endpoints-bar">
+                <span class="ai-label">🤖 Machine-Readable &amp; AI Search Endpoints:</span>
+                <a href="llms.txt">/llms.txt</a> &bull;
+                <a href="llms-full.txt">/llms-full.txt</a> &bull;
+                <a href="apps.json">/apps.json</a> &bull;
+                <a href="sitemap.xml">/sitemap.xml</a> &bull;
+                <a href="privacy.html">/privacy.html</a> &bull;
+                <a href="testers.html">/testers.html</a>
+            </div>
+            <p style="margin-top: 14px;">Crafted with precision by <b><a href="https://github.com/eliakimrosil">Eliakim Rosil</a></b> on Lenovo Legion Y70 (Qualcomm Snapdragon 8+ Gen 1).</p>
             <p>100% Free Freeware &bull; On-Device Sandboxed Storage &bull; <a href="privacy.html"><strong>Developer Privacy Policy</strong></a> &bull; <a href="testers.html"><strong>Closed Testing (20-Testers)</strong></a> &bull; <a href="app-ads.txt">app-ads.txt</a> &bull; <a href="https://github.com/eliakimrosil/kimrosil-app-studio">GitHub Repository</a></p>
         </footer>
     </div>

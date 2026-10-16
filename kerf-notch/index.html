@@ -3,27 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    <title>Kerf Notch - 100% Offline Android Utility</title>
-    <meta name="description" content="Offline native Android utility for kerf notch.">
+    <title>KerfNotch - 100% Offline Android Utility</title>
+    <meta name="description" content="Offline table saw box joint and dado stack spacer calculator.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://apps.kimrosil.com/kerf-notch/">
     <link rel="icon" type="image/svg+xml" href="https://apps.kimrosil.com/favicon.svg">
     <link rel="alternate icon" href="https://apps.kimrosil.com/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="https://apps.kimrosil.com/apple-touch-icon.png">
 
+    <!-- Machine-Readable LLM Discovery & Alternative Endpoints -->
+    <link rel="alternate" type="text/markdown" title="LLM Overview" href="https://apps.kimrosil.com/llms.txt">
+    <link rel="alternate" type="text/markdown" title="Full Portfolio Specs" href="https://apps.kimrosil.com/llms-full.txt">
+    <link rel="alternate" type="application/json" title="Catalog JSON" href="https://apps.kimrosil.com/apps.json">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://apps.kimrosil.com/sitemap.xml">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://apps.kimrosil.com/kerf-notch/">
     <meta property="og:site_name" content="KimRosil App Studio">
-    <meta property="og:title" content="Kerf Notch - 100% Offline Android Utility">
-    <meta property="og:description" content="Offline native Android utility for kerf notch.">
+    <meta property="og:title" content="KerfNotch - 100% Offline Android Utility">
+    <meta property="og:description" content="Offline table saw box joint and dado stack spacer calculator.">
     <meta property="og:image" content="https://apps.kimrosil.com/assets/icons/kerf-notch.svg">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:url" content="https://apps.kimrosil.com/kerf-notch/">
-    <meta name="twitter:title" content="Kerf Notch">
-    <meta name="twitter:description" content="Offline native Android utility for kerf notch.">
+    <meta name="twitter:title" content="KerfNotch">
+    <meta name="twitter:description" content="Offline table saw box joint and dado stack spacer calculator.">
     <meta name="twitter:image" content="https://apps.kimrosil.com/assets/icons/kerf-notch.svg">
 
     <!-- Schema.org SoftwareApplication JSON-LD -->
@@ -31,17 +37,99 @@
 {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Kerf Notch",
-    "operatingSystem": "Android",
+    "@id": "https://apps.kimrosil.com/kerf-notch/#software",
+    "name": "KerfNotch",
+    "operatingSystem": "Android 7.0 and up",
     "applicationCategory": "UtilitiesApplication",
     "offers": {
         "@type": "Offer",
         "price": "0",
-        "priceCurrency": "USD"
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
     },
-    "description": "Offline native Android utility for kerf notch.",
+    "description": "Offline table saw box joint and dado stack spacer calculator.",
     "image": "https://apps.kimrosil.com/assets/icons/kerf-notch.svg",
-    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-kerf-notch/kerf-notch.apk"
+    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-kerf-notch/kerf-notch.apk",
+    "softwareVersion": "1.0.0",
+    "fileSize": "< 5MB",
+    "author": {
+        "@type": "Organization",
+        "name": "KimRosil App Studio",
+        "url": "https://apps.kimrosil.com/"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "KimRosil App Studio",
+        "url": "https://apps.kimrosil.com/"
+    },
+    "permissions": "android.permission.INTERNET (Not Requested - 100% Offline)",
+    "featureList": [
+        "100% Offline Functionality (No Internet Required)",
+        "Zero Telemetry or Data Collection",
+        "No Subscriptions, Paywalls, or Ads",
+        "Pure Native Android Framework UI (Java / Kotlin + XML)"
+    ]
+}
+    </script>
+    <!-- BreadcrumbList JSON-LD -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "KimRosil App Studio",
+            "item": "https://apps.kimrosil.com/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Mechanical, Workshop & Electrical Fabrication Utilities",
+            "item": "https://apps.kimrosil.com/?domain=workshop"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "KerfNotch",
+            "item": "https://apps.kimrosil.com/kerf-notch/"
+        }
+    ]
+}
+    </script>
+    <!-- FAQPage JSON-LD -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://apps.kimrosil.com/kerf-notch/#faq",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Is KerfNotch completely offline?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. KerfNotch operates entirely locally on your Android device without requiring internet connectivity, external servers, or cloud synchronization."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Does KerfNotch collect telemetry or display ads?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. KerfNotch is built without tracking SDKs, advertising libraries, or telemetry frameworks. All calculation state and user logs stay strictly within on-device sandboxed storage."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How do I install KerfNotch on Android?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can download the APK binary directly from the official KimRosil App Studio GitHub Releases CDN (https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-kerf-notch/kerf-notch.apk) and open the file on your device to install."
+            }
+        }
+    ]
 }
     </script>
     <style>
@@ -180,6 +268,67 @@
             word-break: break-word;
         }
         .desc p { margin-bottom: 12px; }
+
+        .tech-specs-card {
+            background: #0B101B;
+            border: 1px solid #1E293B;
+            border-radius: 14px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+        .tech-specs-card h3, .app-faq-card h3 {
+            color: #FFFFFF;
+            font-size: 16px;
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+        }
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .spec-label {
+            font-size: 11.5px;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .spec-val {
+            font-size: 13.5px;
+            color: #F1F5F9;
+            font-weight: 600;
+        }
+        .app-faq-card {
+            background: #0B101B;
+            border: 1px solid #1E293B;
+            border-radius: 14px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+        .faq-accordion {
+            border-bottom: 1px solid #1E293B;
+            padding: 10px 0;
+        }
+        .faq-accordion:last-child { border-bottom: none; }
+        .faq-accordion summary {
+            color: #00E5FF;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+        }
+        .faq-accordion p {
+            color: #94A3B8;
+            font-size: 13.5px;
+            line-height: 1.6;
+            margin-top: 6px;
+        }
+
         .footer {
             margin-top: 36px;
             border-top: 1px solid #1F2937;
@@ -202,6 +351,7 @@
             .btn { width: 100%; min-height: 46px; font-size: 14px; padding: 12px 18px; }
             .meta-links { flex-direction: column; gap: 8px; text-align: center; }
             .desc { font-size: 14px; line-height: 1.6; }
+            .specs-grid { grid-template-columns: 1fr; }
             .footer { margin-top: 24px; padding-top: 16px; font-size: 12px; }
         }
     </style>
@@ -213,11 +363,11 @@
         </div>
         <div class="app-header">
             <div class="icon-frame">
-                <img src="../assets/icons/kerf-notch.svg" alt="Kerf Notch icon" onerror="this.style.opacity='0.2'">
+                <img src="../assets/icons/kerf-notch.svg" alt="KerfNotch icon" onerror="this.style.opacity='0.2'">
             </div>
             <div class="app-titles">
-                <h1>Kerf Notch</h1>
-                <p class="tagline">Offline native Android utility for kerf notch.</p>
+                <h1>KerfNotch</h1>
+                <p class="tagline">Offline table saw box joint and dado stack spacer calculator.</p>
             </div>
         </div>
         <div class="badge-row">
@@ -231,9 +381,38 @@
         </div>
         <hr>
         <div class="desc"><p>Offline native Android utility for kerf notch.</p></div>
+
+        <div class="tech-specs-card">
+            <h3>Technical Specifications &amp; Architecture</h3>
+            <div class="specs-grid">
+                <div class="spec-item"><span class="spec-label">Operating System</span><span class="spec-val">Android 7.0+ (API 24+)</span></div>
+                <div class="spec-item"><span class="spec-label">Architecture</span><span class="spec-val">Pure Native (Java/Kotlin + XML)</span></div>
+                <div class="spec-item"><span class="spec-label">Network Requirement</span><span class="spec-val">0 KB / 100% Offline</span></div>
+                <div class="spec-item"><span class="spec-label">Data Collection</span><span class="spec-val">Zero Telemetry / No SDKs</span></div>
+                <div class="spec-item"><span class="spec-label">Binary Footprint</span><span class="spec-val">&lt; 5 MB Micro-APK</span></div>
+                <div class="spec-item"><span class="spec-label">Distribution</span><span class="spec-val">Free &bull; Open CDN</span></div>
+            </div>
+        </div>
+
+        <div class="app-faq-card">
+            <h3>Frequently Asked Questions</h3>
+            <details class="faq-accordion" open>
+                <summary>Is KerfNotch completely offline?</summary>
+                <p>Yes. KerfNotch operates entirely locally on your Android device without requiring internet connectivity or external server calls.</p>
+            </details>
+            <details class="faq-accordion">
+                <summary>Does this utility collect any telemetry or personal data?</summary>
+                <p>No. KimRosil App Studio adheres to a strict zero-telemetry standard. No analytics SDKs, advertising frameworks, or background trackers are included in the binary.</p>
+            </details>
+            <details class="faq-accordion">
+                <summary>How do I install the direct APK?</summary>
+                <p>Click the "Download APK" button above to get the signed APK binary directly from our verified GitHub Releases CDN. Open the downloaded file to install on your Android device.</p>
+            </details>
+        </div>
+
         <div class="footer">
             <p>100% Offline Freeware &bull; Zero Trackers &bull; Pure Native Android</p>
-            <p><a href="../index.html">← View All Applications</a> &bull; <a href="../privacy.html">Developer Privacy Policy</a> &bull; <a href="https://github.com/eliakimrosil/kimrosil-app-studio">GitHub Repository</a></p>
+            <p><a href="../index.html">← View All Applications</a> &bull; <a href="../llms.txt">LLM Index</a> &bull; <a href="../privacy.html">Developer Privacy Policy</a> &bull; <a href="https://github.com/eliakimrosil/kimrosil-app-studio">GitHub Repository</a></p>
         </div>
     </div>
 </body>

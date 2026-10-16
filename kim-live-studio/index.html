@@ -11,6 +11,12 @@
     <link rel="alternate icon" href="https://apps.kimrosil.com/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="https://apps.kimrosil.com/apple-touch-icon.png">
 
+    <!-- Machine-Readable LLM Discovery & Alternative Endpoints -->
+    <link rel="alternate" type="text/markdown" title="LLM Overview" href="https://apps.kimrosil.com/llms.txt">
+    <link rel="alternate" type="text/markdown" title="Full Portfolio Specs" href="https://apps.kimrosil.com/llms-full.txt">
+    <link rel="alternate" type="application/json" title="Catalog JSON" href="https://apps.kimrosil.com/apps.json">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://apps.kimrosil.com/sitemap.xml">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://apps.kimrosil.com/kim-live-studio/">
@@ -31,17 +37,99 @@
 {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
+    "@id": "https://apps.kimrosil.com/kim-live-studio/#software",
     "name": "KR Live Studio",
-    "operatingSystem": "Android",
+    "operatingSystem": "Android 7.0 and up",
     "applicationCategory": "UtilitiesApplication",
     "offers": {
         "@type": "Offer",
         "price": "0",
-        "priceCurrency": "USD"
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
     },
     "description": "Broadcast your mobile screen, camera, and audio to RTMP live platforms.",
     "image": "https://apps.kimrosil.com/assets/icons/kim-live-studio.svg",
-    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.6.1-kim-live-studio/kr-live-studio.apk"
+    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.6.1-kim-live-studio/kr-live-studio.apk",
+    "softwareVersion": "1.0.0",
+    "fileSize": "< 5MB",
+    "author": {
+        "@type": "Organization",
+        "name": "KimRosil App Studio",
+        "url": "https://apps.kimrosil.com/"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "KimRosil App Studio",
+        "url": "https://apps.kimrosil.com/"
+    },
+    "permissions": "android.permission.INTERNET (Not Requested - 100% Offline)",
+    "featureList": [
+        "100% Offline Functionality (No Internet Required)",
+        "Zero Telemetry or Data Collection",
+        "No Subscriptions, Paywalls, or Ads",
+        "Pure Native Android Framework UI (Java / Kotlin + XML)"
+    ]
+}
+    </script>
+    <!-- BreadcrumbList JSON-LD -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "KimRosil App Studio",
+            "item": "https://apps.kimrosil.com/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Broadcasting, Audio Production & System Telemetry",
+            "item": "https://apps.kimrosil.com/?domain=dev_audio"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "KR Live Studio",
+            "item": "https://apps.kimrosil.com/kim-live-studio/"
+        }
+    ]
+}
+    </script>
+    <!-- FAQPage JSON-LD -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://apps.kimrosil.com/kim-live-studio/#faq",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Is KR Live Studio completely offline?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. KR Live Studio operates entirely locally on your Android device without requiring internet connectivity, external servers, or cloud synchronization."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Does KR Live Studio collect telemetry or display ads?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. KR Live Studio is built without tracking SDKs, advertising libraries, or telemetry frameworks. All calculation state and user logs stay strictly within on-device sandboxed storage."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How do I install KR Live Studio on Android?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can download the APK binary directly from the official KimRosil App Studio GitHub Releases CDN (https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.6.1-kim-live-studio/kr-live-studio.apk) and open the file on your device to install."
+            }
+        }
+    ]
 }
     </script>
     <style>
@@ -180,6 +268,67 @@
             word-break: break-word;
         }
         .desc p { margin-bottom: 12px; }
+
+        .tech-specs-card {
+            background: #0B101B;
+            border: 1px solid #1E293B;
+            border-radius: 14px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+        .tech-specs-card h3, .app-faq-card h3 {
+            color: #FFFFFF;
+            font-size: 16px;
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+        }
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .spec-label {
+            font-size: 11.5px;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .spec-val {
+            font-size: 13.5px;
+            color: #F1F5F9;
+            font-weight: 600;
+        }
+        .app-faq-card {
+            background: #0B101B;
+            border: 1px solid #1E293B;
+            border-radius: 14px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+        .faq-accordion {
+            border-bottom: 1px solid #1E293B;
+            padding: 10px 0;
+        }
+        .faq-accordion:last-child { border-bottom: none; }
+        .faq-accordion summary {
+            color: #00E5FF;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+        }
+        .faq-accordion p {
+            color: #94A3B8;
+            font-size: 13.5px;
+            line-height: 1.6;
+            margin-top: 6px;
+        }
+
         .footer {
             margin-top: 36px;
             border-top: 1px solid #1F2937;
@@ -202,6 +351,7 @@
             .btn { width: 100%; min-height: 46px; font-size: 14px; padding: 12px 18px; }
             .meta-links { flex-direction: column; gap: 8px; text-align: center; }
             .desc { font-size: 14px; line-height: 1.6; }
+            .specs-grid { grid-template-columns: 1fr; }
             .footer { margin-top: 24px; padding-top: 16px; font-size: 12px; }
         }
     </style>
@@ -231,9 +381,38 @@
         </div>
         <hr>
         <div class="desc"><p>KR Live Studio delivers direct live broadcasting from your Android device. Designed for content creators, mobile gamers, and live presenters, KR Live Studio enables you to stream your display, camera overlay, and microphone audio directly to standard RTMP and RTMPS endpoints.</p><p>Direct Ingest Architecture<br>KR Live Studio connects straight to your specified streaming endpoint using hardware-accelerated MediaCodec H.264 video encoding and MediaProjection capture. Because streams transmit directly between your device and your chosen ingest server without third-party cloud intermediaries or relay proxies, your transmission latency is minimized and your broadcast credentials remain secure.</p><p>Core Features:<br>• Hardware Video Encoding: MediaCodec H.264/AVC processing engineered for efficient real-time compression and battery balance.<br>• Direct RTMP & RTMPS Protocol: Native streaming engine supporting standard port 1935 and TLS-encrypted port 443 endpoints with auto-reconnection and exponential backoff.<br>• Internal Game Audio & Dual-Mixer: Android 10+ AudioPlaybackCapture for pristine game sound, mixed in real-time with linear PCM mic commentary.<br>• One-Tap Privacy Shield: Instantly detach screen projection and mute audio without severing the RTMP socket or resetting stream uptime.<br>• Dynamic Keyframe Recovery: Automatically requests IDR sync frames from MediaCodec upon congestion packet drops to eliminate visual artifacting.<br>• Multi-Platform Stream Key Vault: Save and recall distinct stream keys for YouTube, Twitch, TikTok, Kick, Facebook, and Custom servers.<br>• Clean Floating Facecam: Draggable PiP camera overlay with Squircle/Circle shape masking and auto-hiding controls.<br>• Hardware Telemetry HUD: Real-time SoC thermal state monitoring, network health gauge, live bitrate, FPS, and dropped frame telemetry.<br>• Tactile Controls: Clear bitrate adjustments, resolution selection (1080p, 720p, 480p), and visual audio VU indicators.</p><p>Permissions & Usage:<br>• Screen Capture (MediaProjection): Required to capture display content during active broadcasts.<br>• Microphone (RECORD_AUDIO): Required to record microphone commentary for your stream.<br>• Camera (CAMERA): Optional permission used only when you enable the picture-in-picture facecam overlay.<br>• Display Over Other Apps: Optional permission used to show the floating camera preview while navigating other apps.</p><p>Privacy & Data Safety:<br>• Direct Connection Only: Video and audio packets flow directly to your designated RTMP server. No third-party proxy or intermediary server is used.<br>• Zero Data Harvesting: No personal identifiable information (PII), stream keys, or device identifiers are collected or tracked.<br>• No Account Required: Full functionality without accounts, sign-ups, or subscriptions.<br>• Sandboxed Local Storage: All preferences and stream settings are saved securely on your local device.</p></div>
+
+        <div class="tech-specs-card">
+            <h3>Technical Specifications &amp; Architecture</h3>
+            <div class="specs-grid">
+                <div class="spec-item"><span class="spec-label">Operating System</span><span class="spec-val">Android 7.0+ (API 24+)</span></div>
+                <div class="spec-item"><span class="spec-label">Architecture</span><span class="spec-val">Pure Native (Java/Kotlin + XML)</span></div>
+                <div class="spec-item"><span class="spec-label">Network Requirement</span><span class="spec-val">0 KB / 100% Offline</span></div>
+                <div class="spec-item"><span class="spec-label">Data Collection</span><span class="spec-val">Zero Telemetry / No SDKs</span></div>
+                <div class="spec-item"><span class="spec-label">Binary Footprint</span><span class="spec-val">&lt; 5 MB Micro-APK</span></div>
+                <div class="spec-item"><span class="spec-label">Distribution</span><span class="spec-val">Free &bull; Open CDN</span></div>
+            </div>
+        </div>
+
+        <div class="app-faq-card">
+            <h3>Frequently Asked Questions</h3>
+            <details class="faq-accordion" open>
+                <summary>Is KR Live Studio completely offline?</summary>
+                <p>Yes. KR Live Studio operates entirely locally on your Android device without requiring internet connectivity or external server calls.</p>
+            </details>
+            <details class="faq-accordion">
+                <summary>Does this utility collect any telemetry or personal data?</summary>
+                <p>No. KimRosil App Studio adheres to a strict zero-telemetry standard. No analytics SDKs, advertising frameworks, or background trackers are included in the binary.</p>
+            </details>
+            <details class="faq-accordion">
+                <summary>How do I install the direct APK?</summary>
+                <p>Click the "Download APK" button above to get the signed APK binary directly from our verified GitHub Releases CDN. Open the downloaded file to install on your Android device.</p>
+            </details>
+        </div>
+
         <div class="footer">
             <p>100% Offline Freeware &bull; Zero Trackers &bull; Pure Native Android</p>
-            <p><a href="../index.html">← View All Applications</a> &bull; <a href="../privacy.html">Developer Privacy Policy</a> &bull; <a href="https://github.com/eliakimrosil/kimrosil-app-studio">GitHub Repository</a></p>
+            <p><a href="../index.html">← View All Applications</a> &bull; <a href="../llms.txt">LLM Index</a> &bull; <a href="../privacy.html">Developer Privacy Policy</a> &bull; <a href="https://github.com/eliakimrosil/kimrosil-app-studio">GitHub Repository</a></p>
         </div>
     </div>
 </body>
