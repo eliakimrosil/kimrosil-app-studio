@@ -107,7 +107,7 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Offline wood grain reading helper and tearout calculator with quick visual tilt checks for workshop benches.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.0-grain-run/grain-run.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/grain-run/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/grain-run)
 
-#### [Kerf Notch](https://apps.kimrosil.com/kerf-notch/) (`kerf-notch`) • `v1.0.0`
+#### [KerfNotch](https://apps.kimrosil.com/kerf-notch/) (`kerf-notch`) • `v1.0.0`
 > **Utility**: Offline native Android utility for kerf notch.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-kerf-notch/kerf-notch.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/kerf-notch/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/kerf-notch)
 
