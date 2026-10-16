@@ -760,5 +760,19 @@
     "privacy_policy": "https://apps.kimrosil.com/flare-gage/privacy.html",
     "icon": "assets/icons/flare-gage.svg",
     "updated_at": "2026-10-16T06:57:55.235335+00:00"
+  },
+  {
+    "slug": "lash-gage",
+    "title": "LashGage",
+    "category": "UTILITIES",
+    "tagline": "Calculate gear backlash, carrier shim changes, and cold valve lash targets.",
+    "status": "BUILT",
+    "branch": "app/lash-gage",
+    "tag": "v1.0.0-lash-gage",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-lash-gage/lash-gage.apk",
+    "landing_page": "https://apps.kimrosil.com/lash-gage/",
+    "privacy_policy": "https://apps.kimrosil.com/lash-gage/privacy.html",
+    "icon": "assets/icons/lash-gage.svg",
+    "updated_at": "2026-10-16T10:21:05.761559+00:00"
   }
 ]

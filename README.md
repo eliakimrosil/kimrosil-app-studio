@@ -267,6 +267,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Offline textile yardage calculator and pattern layout optimizer for fabric counters and sewing tables.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-grainline/grainline.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/grainline/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/grainline)
 
+#### [LashGage](https://apps.kimrosil.com/lash-gage/) (`lash-gage`) • `v1.0.0`
+> **Utility**: Calculate gear backlash, carrier shim changes, and cold valve lash targets.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-lash-gage/lash-gage.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/lash-gage/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/lash-gage)
+
 #### [MeterPulse](https://apps.kimrosil.com/tap-meter-parking-sentinel/) (`tap-meter-parking-sentinel`) • `v1.0.0`
 > **Utility**: One-tap Quick Settings parking timer with interactive Glance countdown and GPS breadcrumb, completely offline.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-tap-meter-parking-sentinel/tap-meter-parking-sentinel.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/tap-meter-parking-sentinel/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/tap-meter-parking-sentinel)
