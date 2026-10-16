@@ -50,7 +50,7 @@
             <Button
                 android:id="@+id/btnThemeToggle"
                 android:layout_width="wrap_content"
-                android:layout_height="38dp"
+                android:layout_height="48dp"
                 android:minWidth="56dp"
                 android:text="Theme"
                 android:textSize="12sp"
@@ -64,7 +64,7 @@
             <Button
                 android:id="@+id/btnOpenPresets"
                 android:layout_width="wrap_content"
-                android:layout_height="38dp"
+                android:layout_height="48dp"
                 android:minWidth="56dp"
                 android:text="Specs"
                 android:textSize="12sp"
@@ -78,7 +78,7 @@
         <!-- Mode & Unit Control Bar -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="44dp"
+            android:layout_height="54dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_marginBottom="12dp">
@@ -125,7 +125,7 @@
 
                 <Button
                     android:id="@+id/btnUnitMicrons"
-                    android:layout_width="44dp"
+                    android:layout_width="52dp"
                     android:layout_height="match_parent"
                     android:text="µm"
                     android:textSize="12sp"
@@ -136,7 +136,7 @@
 
                 <Button
                     android:id="@+id/btnUnitMils"
-                    android:layout_width="44dp"
+                    android:layout_width="52dp"
                     android:layout_height="match_parent"
                     android:text="mils"
                     android:textSize="12sp"
@@ -181,12 +181,12 @@
             <Button
                 android:id="@+id/btnTileSettings"
                 android:layout_width="wrap_content"
-                android:layout_height="32dp"
+                android:layout_height="48dp"
                 android:text="Quick Tile"
                 android:textSize="11sp"
                 android:textColor="@color/m3_primary"
                 android:background="@drawable/bg_topbar_button"
-                android:paddingHorizontal="8dp" />
+                android:paddingHorizontal="10dp" />
         </LinearLayout>
 
         <!-- Hero Card: Notched Comb Visual HUD -->
@@ -360,7 +360,7 @@
                 <Button
                     android:id="@+id/btnQuickPresetEpoxy"
                     android:layout_width="0dp"
-                    android:layout_height="44dp"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
                     android:text="Load Epoxy 75%"
                     android:textSize="12sp"
@@ -371,7 +371,7 @@
                 <Button
                     android:id="@+id/btnQuickPresetPoly"
                     android:layout_width="0dp"
-                    android:layout_height="44dp"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
                     android:text="Load Poly 58%"
                     android:textSize="12sp"
@@ -478,13 +478,13 @@
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:layout_height="48dp"
                         android:orientation="horizontal"
                         android:gravity="center_vertical">
 
                         <Button
                             android:id="@+id/btnSolidsMinus"
-                            android:layout_width="40dp"
+                            android:layout_width="48dp"
                             android:layout_height="match_parent"
                             android:text="-"
                             android:textSize="16sp"
@@ -493,7 +493,7 @@
 
                         <EditText
                             android:id="@+id/edtSolidsPercent"
-                            android:layout_width="60dp"
+                            android:layout_width="64dp"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:textSize="16sp"
@@ -506,7 +506,7 @@
 
                         <Button
                             android:id="@+id/btnSolidsPlus"
-                            android:layout_width="40dp"
+                            android:layout_width="48dp"
                             android:layout_height="match_parent"
                             android:text="+"
                             android:textSize="16sp"

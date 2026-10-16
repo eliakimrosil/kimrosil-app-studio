@@ -94,6 +94,9 @@ public final class CoatingCalculatorEngine {
     }
 
     public static String formatThickness(double value, int unit) {
+        if (Double.isNaN(value) || Double.isInfinite(value)) {
+            return unit == UNIT_MICRONS ? "0" : "0.0";
+        }
         if (unit == UNIT_MICRONS) {
             return String.format(Locale.US, "%.0f", Math.max(0.0, value));
         } else {
