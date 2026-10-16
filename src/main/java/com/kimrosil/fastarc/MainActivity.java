@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
 
     // Adjust Card & Chips
     private LinearLayout mCardStartAdjust;
-    private TextView mTvCustomTimeBtn;
+    private Button mBtnCustomTime;
     private Button mChipNow;
     private Button mChip15m;
     private Button mChip30m;
@@ -79,13 +79,37 @@ public class MainActivity extends Activity {
     private final SimpleDateFormat mDateFmt = new SimpleDateFormat("EEE, MMM d", Locale.US);
 
     @Override
+    protected void attachBaseContext(Context newBase) {
+        SharedPreferences prefs = newBase.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        int themeMode = prefs.getInt(KEY_THEME_MODE, 0); // 0=Auto, 1=Light, 2=Dark
+        Configuration config = new Configuration(newBase.getResources().getConfiguration());
+        if (themeMode == 1) {
+            config.uiMode = Configuration.UI_MODE_NIGHT_NO | (config.uiMode & ~Configuration.UI_MODE_NIGHT_MASK);
+        } else if (themeMode == 2) {
+            config.uiMode = Configuration.UI_MODE_NIGHT_YES | (config.uiMode & ~Configuration.UI_MODE_NIGHT_MASK);
+        }
+        Context context = newBase.createConfigurationContext(config);
+        super.attachBaseContext(context);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         mPrefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         mThemeMode = mPrefs.getInt(KEY_THEME_MODE, 0);
-        applyThemeMode(false);
+
+        // Apply explicit parent theme before super.onCreate
+        if (mThemeMode == 1) {
+            setTheme(R.style.AppTheme_Light);
+        } else if (mThemeMode == 2) {
+            setTheme(R.style.AppTheme_Dark);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        applyStatusBarContrast();
 
         mHandler = new Handler(Looper.getMainLooper());
 
@@ -126,7 +150,7 @@ public class MainActivity extends Activity {
         mBtnToggleFast = findViewById(R.id.btn_toggle_fast);
 
         mCardStartAdjust = findViewById(R.id.card_start_adjust);
-        mTvCustomTimeBtn = findViewById(R.id.tv_custom_time_btn);
+        mBtnCustomTime = findViewById(R.id.btn_custom_time);
         mChipNow = findViewById(R.id.chip_adjust_now);
         mChip15m = findViewById(R.id.chip_adjust_15m);
         mChip30m = findViewById(R.id.chip_adjust_30m);
@@ -194,7 +218,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        mTvCustomTimeBtn.setOnClickListener(new View.OnClickListener() {
+        mBtnCustomTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openCustomTimePicker();
@@ -410,14 +434,25 @@ public class MainActivity extends Activity {
     // =========================================================================
 
     private void cycleThemeMode() {
+        mBtnThemeToggle.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK);
         mThemeMode = (mThemeMode + 1) % 3;
         mPrefs.edit().putInt(KEY_THEME_MODE, mThemeMode).apply();
-        applyThemeMode(true);
+        recreate();
     }
 
-    private void applyThemeMode(boolean recreateIfChanged) {
-        if (recreateIfChanged) {
-            recreate();
+    private void applyStatusBarContrast() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            android.view.WindowInsetsController controller = getWindow().getInsetsController();
+            if (controller != null) {
+                if (isDarkThemeActive()) {
+                    controller.setSystemBarsAppearance(0, android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS | android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS);
+                } else {
+                    controller.setSystemBarsAppearance(
+                            android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS | android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
+                            android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS | android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+                    );
+                }
+            }
         }
     }
 
@@ -430,11 +465,11 @@ public class MainActivity extends Activity {
 
     private void updateThemeButtonLabel() {
         if (mThemeMode == 1) {
-            mBtnThemeToggle.setText("Theme: Light");
+            mBtnThemeToggle.setText("☀️ Light");
         } else if (mThemeMode == 2) {
-            mBtnThemeToggle.setText("Theme: Dark");
+            mBtnThemeToggle.setText("🌙 Dark");
         } else {
-            mBtnThemeToggle.setText("Theme: Auto");
+            mBtnThemeToggle.setText("🌓 Auto");
         }
     }
 

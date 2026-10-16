@@ -80,6 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:minHeight="54dp"
+            android:elevation="3dp"
             android:background="@drawable/btn_fast_primary"
             android:text="@string/btn_start_fast"
             android:textColor="@color/btnTextColor"
@@ -116,20 +117,19 @@
                     android:textStyle="bold"
                     android:letterSpacing="0.08" />
 
-                <TextView
-                    android:id="@+id/tv_custom_time_btn"
+                <Button
+                    android:id="@+id/btn_custom_time"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:minHeight="48dp"
-                    android:gravity="center"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:background="@drawable/btn_tonal_action"
                     android:text="Custom Time"
                     android:textColor="@color/m3_primary"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    android:clickable="true"
-                    android:focusable="true" />
+                    android:textAllCaps="false" />
             </LinearLayout>
 
             <LinearLayout

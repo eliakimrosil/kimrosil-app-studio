@@ -2,12 +2,34 @@
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
     android:color="@color/m3_on_surface">
     <item>
-        <shape android:shape="rectangle">
-            <solid android:color="@color/m3_surface_container" />
-            <stroke
-                android:width="1.2dp"
-                android:color="@color/m3_outline_variant" />
-            <corners android:radius="10dp" />
-        </shape>
+        <selector>
+            <item android:state_pressed="true">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/m3_primary_container" />
+                    <stroke
+                        android:width="1.5dp"
+                        android:color="@color/m3_primary" />
+                    <corners android:radius="12dp" />
+                </shape>
+            </item>
+            <item android:state_selected="true">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/m3_primary_container" />
+                    <stroke
+                        android:width="1.5dp"
+                        android:color="@color/m3_primary" />
+                    <corners android:radius="12dp" />
+                </shape>
+            </item>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/m3_surface_container" />
+                    <stroke
+                        android:width="1.2dp"
+                        android:color="@color/m3_outline_variant" />
+                    <corners android:radius="12dp" />
+                </shape>
+            </item>
+        </selector>
     </item>
 </ripple>

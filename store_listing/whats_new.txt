@@ -1,2 +1,5 @@
-Release v1.0.1 - FastArc
-Initial release: zero-bloat 16:8 fasting timer with lock-screen widget
+FastArc 1.0.2 Update:
+- Fixed Day / Night / Auto theme switcher: Added native configuration overrides and explicit Light/Dark styles with dynamic contrast adaptation.
+- Upgraded button craftsmanship: Added tactile elevation, hairline highlight borders, state-aware pressed selectors, and pill-shaped quick adjust chips.
+- Upgraded Custom Time selector into a tactile secondary action button.
+- Verified live screen luminance transition and touch target compliance over ADB.

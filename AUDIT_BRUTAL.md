@@ -1,5 +1,5 @@
 # 👹 Brutal User & Adversarial ADB Audit: fast-arc
-*Generated on 2026-10-16 12:28:17 on 127.0.0.1:5555*
+*Generated on 2026-10-16 12:46:03 on 127.0.0.1:5555*
 
 ---
 
@@ -10,8 +10,8 @@
 
 ## 📊 Live ADB Diagnostic Telemetry
 - **Target Package**: `com.kimrosil.fastarc`
-- **Cold Boot Latency**: `145 ms`
-- **Memory Footprint (PSS)**: `17 MB` (`17561 KB`)
+- **Cold Boot Latency**: `146 ms`
+- **Memory Footprint (PSS)**: `17 MB` (`18124 KB`)
 - **Interactive UI Nodes Audited**: `5`
 - **Adversarial Fuzz Tests Passed**: `0 / 0`
 - **State Preserved on Rotation (90°)**: `✅ YES`
