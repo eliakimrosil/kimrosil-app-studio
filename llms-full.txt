@@ -623,7 +623,14 @@ Data Safety & Offline Privacy Guarantee:
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
 
 ### Detailed Overview & Capabilities
-KerfNotch is an offline-first Android utility engineered natively for Android. Operates completely without internet connectivity, storing all data securely in on-device sandboxed storage.
+KerfNotch is a dedicated cut layout and joinery calculator designed for carpenters, woodworkers, and timber framers who require accurate measurements directly on the workshop floor. Accurate cutting calculations require accounting for blade thickness and material removal. KerfNotch calculates kerf offsets, dado spacing, lap joints, and repeated notch patterns with exact decimal and fractional dimensions. Designed to operate completely offline, the application ensures uninterrupted workflow in basement shops, remote job sites, and low-connectivity environments. Key Features: - Kerf Offset Calculation: Accurately compensate for table saw, miter saw, and circular saw blade widths to prevent undersized stock. - Notch and Dado Spacing: Compute equal-spaced slots, half-lap joints, and box joint cut sequences with consistent spacing. - Quick Settings Integration: Access your cut calculations immediately through the Android Quick Settings tile without interrupting shop tasks. - Complete Offline Reliability: Operates without internet connectivity, cloud authentication, or external account requirements. - State Preservation: Active measurements and cut lists remain preserved when switching between tools or backgrounding the application. - Zero Telemetry: Completely private with no background analytics tracking, background network activity, or unnecessary system permissions. Built for trade professionals and serious woodworkers seeking a dependable layout tool that performs reliably under demanding shop conditions.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
 
 ---
 
