@@ -1,4 +1,2 @@
-Initial release of LashGage:
-- Gear backlash and differential carrier shim calculator
-- Solid-lifter valve lash thermal cold staging
-- 100% offline
+Release v1.0.0 - LashGage
+Initial release of LashGage v1.0.0 - Precision mechanical gear backlash, carrier shim & valve lash calculator
