@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- 16:8 Fasting Arc -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="5.5"
+        android:strokeLineCap="round"
+        android:pathData="M54,29 A25,25 0 1,1 32.35,66.5" />
+
+    <!-- Eating Window Segment -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:strokeAlpha="0.4"
+        android:pathData="M30.2,62.8 A25,25 0 0,1 50,29.2" />
+
+    <!-- Markers -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M32.35,66.5 A3.5,3.5 0 1,0 32.35,66.49 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,29 A2.8,2.8 0 1,0 54,28.99 Z" />
+
+    <!-- Center Energy Glyph -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,43 C54,43 46,50 46,56 A8,8 0 0,0 62,56 C62,50 54,43 54,43 Z" />
+</vector>

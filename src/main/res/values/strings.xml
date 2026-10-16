@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FastArc</string>
+    <string name="app_subtitle">16:8 Fasting Arc</string>
+    <string name="widget_name">FastArc 16:8</string>
+    <string name="widget_description">16:8 Fasting Arc live status and lock-screen countdown</string>
+    
+    <string name="status_fasting">FASTING WINDOW</string>
+    <string name="status_eating">EATING WINDOW</string>
+    <string name="btn_start_fast">Start 16:8 Fast</string>
+    <string name="btn_end_fast">End Fast &amp; Open Window</string>
+    <string name="btn_reset_fast">Reset Timer</string>
+    
+    <string name="stage_1_name">1. Digestion &amp; Sugar Drop</string>
+    <string name="stage_1_desc">Blood glucose stabilizes (0h–4h)</string>
+    <string name="stage_2_name">2. Glycogen Depletion</string>
+    <string name="stage_2_desc">Liver glycogen used, fat burn starts (4h–12h)</string>
+    <string name="stage_3_name">3. Ketosis &amp; Fat Oxidation</string>
+    <string name="stage_3_desc">Ketones elevate, accelerated fat loss (12h–16h)</string>
+    <string name="stage_4_name">4. Autophagy Threshold</string>
+    <string name="stage_4_desc">Cellular cleanup &amp; deep repair active (16h+)</string>
+
+    <string name="telemetry_elapsed">Elapsed Time</string>
+    <string name="telemetry_remaining">Time Remaining</string>
+    <string name="telemetry_started">Fast Started</string>
+    <string name="telemetry_target">16h Goal</string>
+    <string name="telemetry_stage">Current Stage</string>
+    <string name="telemetry_water">Hydration Log</string>
+
+    <string name="action_adjust_start">Adjust Start Time</string>
+    <string name="action_log_water">+250ml Water</string>
+    <string name="action_reset_water">Reset</string>
+
+    <string name="chip_now">Just Now</string>
+    <string name="chip_minus_15m">-15m</string>
+    <string name="chip_minus_30m">-30m</string>
+    <string name="chip_minus_1h">-1h</string>
+    <string name="chip_minus_2h">-2h</string>
+
+    <string name="notif_channel_name">Fasting Live Status</string>
+    <string name="notif_channel_desc">Shows active 16:8 fasting progress on status bar and lock screen</string>
+</resources>

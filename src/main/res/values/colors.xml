@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bespoke Domain Light Theme Color Tokens -->
+    <color name="colorPrimary">#4D7C0F</color>
+    <color name="colorPrimaryDark">#FAFAFA</color>
+    <color name="colorAccent">#EA580C</color>
+    <color name="windowBackground">#FAFAFA</color>
+
+    <color name="m3_primary">#4D7C0F</color>
+    <color name="m3_on_primary">#FFFFFF</color>
+    <color name="m3_primary_container">#D9F99D</color>
+    <color name="m3_on_primary_container">#1A2E05</color>
+
+    <color name="m3_secondary">#52525B</color>
+    <color name="m3_on_secondary">#FFFFFF</color>
+    <color name="m3_secondary_container">#E4E4E7</color>
+    <color name="m3_on_secondary_container">#18181B</color>
+
+    <color name="m3_tertiary">#C2410C</color>
+    <color name="m3_on_tertiary">#FFFFFF</color>
+    <color name="m3_tertiary_container">#FFEDD5</color>
+    <color name="m3_on_tertiary_container">#431407</color>
+
+    <color name="m3_surface">#FAFAFA</color>
+    <color name="m3_surface_container">#F4F4F5</color>
+    <color name="m3_surface_container_high">#E4E4E7</color>
+    <color name="m3_surface_container_highest">#D4D4D8</color>
+
+    <color name="m3_on_surface">#09090B</color>
+    <color name="m3_on_surface_variant">#3F3F46</color>
+    <color name="m3_outline">#71717A</color>
+    <color name="m3_outline_variant">#D4D4D8</color>
+
+    <color name="m3_success">#16A34A</color>
+    <color name="m3_on_success">#FFFFFF</color>
+    <color name="m3_error">#DC2626</color>
+    <color name="m3_on_error">#FFFFFF</color>
+
+    <!-- Fasting Metabolic Stage Colors (Light) -->
+    <color name="stage_digestion">#0284C7</color>
+    <color name="stage_glycogen">#16A34A</color>
+    <color name="stage_ketosis">#D97706</color>
+    <color name="stage_autophagy">#7C3AED</color>
+    <color name="stage_eating">#EA580C</color>
+    <color name="arc_track_base">#E4E4E7</color>
+    <color name="arc_track_eating">#FED7AA</color>
+    <color name="water_accent">#0284C7</color>
+
+    <!-- Legacy compatibility aliases -->
+    <color name="cardBackground">#FFFFFF</color>
+    <color name="cardStroke">#E4E4E7</color>
+    <color name="textPrimary">#09090B</color>
+    <color name="textSecondary">#52525B</color>
+    <color name="btnColor">#4D7C0F</color>
+    <color name="btnTextColor">#FFFFFF</color>
+</resources>

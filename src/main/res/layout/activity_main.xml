@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/m3_surface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="32dp">
+
+        <!-- Header Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_header_brand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-black"
+                    android:letterSpacing="0.02" />
+
+                <TextView
+                    android:id="@+id/tv_header_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_subtitle"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp"
+                    android:fontFamily="sans-serif-medium" />
+            </LinearLayout>
+
+            <!-- Working Theme Switcher Button (minHeight 48dp) -->
+            <Button
+                android:id="@+id/btn_theme_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minHeight="48dp"
+                android:minWidth="100dp"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:background="@drawable/btn_tonal_action"
+                android:text="Theme: Auto"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <!-- Fasting Arc Custom View -->
+        <com.kimrosil.fastarc.FastArcView
+            android:id="@+id/fast_arc_view"
+            android:layout_width="match_parent"
+            android:layout_height="310dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Main Action Button (Primary Fast / Stop Toggle) -->
+        <Button
+            android:id="@+id/btn_toggle_fast"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:minHeight="54dp"
+            android:background="@drawable/btn_fast_primary"
+            android:text="@string/btn_start_fast"
+            android:textColor="@color/btnTextColor"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="0.04"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Quick Start Time Adjustment Card -->
+        <LinearLayout
+            android:id="@+id/card_start_adjust"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_telemetry"
+            android:orientation="vertical"
+            android:padding="14dp"
+            android:layout_marginBottom="14dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="QUICK START ADJUST"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.08" />
+
+                <TextView
+                    android:id="@+id/tv_custom_time_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:gravity="center"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Custom Time"
+                    android:textColor="@color/m3_primary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/chip_adjust_now"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:background="@drawable/chip_quick_btn"
+                    android:text="@string/chip_now"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/chip_adjust_15m"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:background="@drawable/chip_quick_btn"
+                    android:text="@string/chip_minus_15m"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/chip_adjust_30m"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:background="@drawable/chip_quick_btn"
+                    android:text="@string/chip_minus_30m"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/chip_adjust_1h"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:background="@drawable/chip_quick_btn"
+                    android:text="@string/chip_minus_1h"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/chip_adjust_2h"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:background="@drawable/chip_quick_btn"
+                    android:text="@string/chip_minus_2h"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Tabular 2-Column Telemetry Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_telemetry"
+            android:orientation="vertical"
+            android:padding="14dp"
+            android:layout_marginBottom="14dp">
+
+            <!-- Top Row: Started & Goal -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/telemetry_started"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.06" />
+
+                    <TextView
+                        android:id="@+id/tv_telemetry_start_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="--:--"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-black" />
+
+                    <TextView
+                        android:id="@+id/tv_telemetry_start_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Not Started"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- Hairline Vertical Divider -->
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/divider_hairline"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="12dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/telemetry_target"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.06" />
+
+                    <TextView
+                        android:id="@+id/tv_telemetry_goal_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="--:--"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-black" />
+
+                    <TextView
+                        android:id="@+id/tv_telemetry_goal_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="16h Target"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="11sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Hairline Horizontal Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/divider_hairline"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Hydration Tracker Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/telemetry_water"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.06" />
+
+                    <TextView
+                        android:id="@+id/tv_water_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 ml"
+                        android:textColor="@color/water_accent"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_water_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:background="@drawable/btn_tonal_action"
+                    android:text="@string/action_log_water"
+                    android:textColor="@color/water_accent"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:layout_marginEnd="6dp" />
+
+                <Button
+                    android:id="@+id/btn_water_reset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:background="@drawable/btn_tonal_action"
+                    android:text="@string/action_reset_water"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp"
+                    android:textAllCaps="false" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 4-Stage Metabolic Progress Guide -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_telemetry"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="16:8 METABOLIC PHASES"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.08"
+                android:layout_marginBottom="10dp" />
+
+            <!-- Stage 1 -->
+            <LinearLayout
+                android:id="@+id/row_stage_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="6dp"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:id="@+id/tv_stage_1_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stage_1_name"
+                    android:textColor="@color/stage_digestion"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stage_1_desc"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- Stage 2 -->
+            <LinearLayout
+                android:id="@+id/row_stage_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="6dp"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:id="@+id/tv_stage_2_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stage_2_name"
+                    android:textColor="@color/stage_glycogen"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stage_2_desc"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- Stage 3 -->
+            <LinearLayout
+                android:id="@+id/row_stage_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="6dp"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:id="@+id/tv_stage_3_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stage_3_name"
+                    android:textColor="@color/stage_ketosis"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stage_3_desc"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- Stage 4 -->
+            <LinearLayout
+                android:id="@+id/row_stage_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="6dp">
+
+                <TextView
+                    android:id="@+id/tv_stage_4_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stage_4_name"
+                    android:textColor="@color/stage_autophagy"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stage_4_desc"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Lock Screen & Widget Guide Note -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="🔒 Lock-Screen Widget: Add FastArc to your lock screen (Keyguard) or home screen for live 16:8 countdown without unlocking."
+            android:textColor="@color/m3_on_surface_variant"
+            android:textSize="11sp"
+            android:gravity="center" />
+    </LinearLayout>
+</ScrollView>
