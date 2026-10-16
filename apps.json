@@ -704,5 +704,19 @@
     "privacy_policy": "https://apps.kimrosil.com/shim-pack/privacy.html",
     "icon": "assets/icons/shim-pack.svg",
     "updated_at": "2026-10-15T18:34:18.464380+00:00"
+  },
+  {
+    "slug": "kerf-notch",
+    "title": "Kerf Notch",
+    "category": "UTILITIES",
+    "tagline": "Offline native Android utility for kerf notch.",
+    "status": "PENDING_BUILD",
+    "branch": "app/kerf-notch",
+    "tag": "v1.0.0-kerf-notch",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-kerf-notch/kerf-notch.apk",
+    "landing_page": "https://apps.kimrosil.com/kerf-notch/",
+    "privacy_policy": "https://apps.kimrosil.com/kerf-notch/privacy.html",
+    "icon": "assets/icons/kerf-notch.svg",
+    "updated_at": "2026-10-16T01:36:54.194232+00:00"
   }
 ]
