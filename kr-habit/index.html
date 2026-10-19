@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>KR Habit - 100% Offline Android Utility</title>
+    <meta name="description" content="Daily habit routine with habit strength scoring, heatmap grid, and cloud sync.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://apps.kimrosil.com/kr-habit/">
+    <link rel="icon" type="image/svg+xml" href="https://apps.kimrosil.com/favicon.svg">
+    <link rel="alternate icon" href="https://apps.kimrosil.com/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://apps.kimrosil.com/apple-touch-icon.png">
+
+    <!-- Machine-Readable LLM Discovery & Alternative Endpoints -->
+    <link rel="alternate" type="text/markdown" title="LLM Overview" href="https://apps.kimrosil.com/llms.txt">
+    <link rel="alternate" type="text/markdown" title="Full Portfolio Specs" href="https://apps.kimrosil.com/llms-full.txt">
+    <link rel="alternate" type="application/json" title="Catalog JSON" href="https://apps.kimrosil.com/apps.json">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://apps.kimrosil.com/sitemap.xml">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://apps.kimrosil.com/kr-habit/">
+    <meta property="og:site_name" content="KimRosil App Studio">
+    <meta property="og:title" content="KR Habit - 100% Offline Android Utility">
+    <meta property="og:description" content="Daily habit routine with habit strength scoring, heatmap grid, and cloud sync.">
+    <meta property="og:image" content="https://apps.kimrosil.com/assets/icons/kr-habit.svg">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="https://apps.kimrosil.com/kr-habit/">
+    <meta name="twitter:title" content="KR Habit">
+    <meta name="twitter:description" content="Daily habit routine with habit strength scoring, heatmap grid, and cloud sync.">
+    <meta name="twitter:image" content="https://apps.kimrosil.com/assets/icons/kr-habit.svg">
+
+    <!-- Schema.org SoftwareApplication JSON-LD -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://apps.kimrosil.com/kr-habit/#software",
+    "name": "KR Habit",
+    "operatingSystem": "Android 7.0 and up",
+    "applicationCategory": "UtilitiesApplication",
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+    },
+    "description": "Daily habit routine with habit strength scoring, heatmap grid, and cloud sync.",
+    "image": "https://apps.kimrosil.com/assets/icons/kr-habit.svg",
+    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-kr-habit/kr-habit.apk",
+    "softwareVersion": "1.0.0",
+    "fileSize": "< 5MB",
+    "author": {
+        "@type": "Organization",
+        "name": "KimRosil App Studio",
+        "url": "https://apps.kimrosil.com/"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "KimRosil App Studio",
+        "url": "https://apps.kimrosil.com/"
+    },
+    "permissions": "android.permission.INTERNET (Not Requested - 100% Offline)",
+    "featureList": [
+        "100% Offline Functionality (No Internet Required)",
+        "Zero Telemetry or Data Collection",
+        "No Subscriptions, Paywalls, or Ads",
+        "Pure Native Android Framework UI (Java / Kotlin + XML)"
+    ]
+}
+    </script>
+    <!-- BreadcrumbList JSON-LD -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "KimRosil App Studio",
+            "item": "https://apps.kimrosil.com/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Health, Athletic & Circadian Habit Trackers",
+            "item": "https://apps.kimrosil.com/?domain=health"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "KR Habit",
+            "item": "https://apps.kimrosil.com/kr-habit/"
+        }
+    ]
+}
+    </script>
+    <!-- FAQPage JSON-LD -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://apps.kimrosil.com/kr-habit/#faq",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Is KR Habit completely offline?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. KR Habit operates entirely locally on your Android device without requiring internet connectivity, external servers, or cloud synchronization."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Does KR Habit collect telemetry or display ads?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. KR Habit is built without tracking SDKs, advertising libraries, or telemetry frameworks. All calculation state and user logs stay strictly within on-device sandboxed storage."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How do I install KR Habit on Android?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can download the APK binary directly from the official KimRosil App Studio GitHub Releases CDN (https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-kr-habit/kr-habit.apk) and open the file on your device to install."
+            }
+        }
+    ]
+}
+    </script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #090D16;
+            color: #F1F5F9;
+            margin: 0;
+            padding: 32px 16px;
+            line-height: 1.65;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            background: #111827;
+            border: 1px solid #1F2937;
+            border-radius: 20px;
+            padding: 36px 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+        }
+        .nav-back {
+            margin-bottom: 20px;
+        }
+        .nav-back a {
+            color: #00E5FF;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .nav-back a:hover { text-decoration: underline; }
+        .app-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+        .icon-frame {
+            width: 72px;
+            height: 72px;
+            border-radius: 18px;
+            background: #162032;
+            padding: 8px;
+            border: 1px solid #233152;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+        }
+        .icon-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .app-titles { flex: 1; min-width: 0; }
+        h1 {
+            color: #FFFFFF;
+            margin: 0 0 6px 0;
+            font-size: clamp(20px, 5vw, 26px);
+            font-weight: 800;
+            line-height: 1.25;
+            word-break: break-word;
+        }
+        .tagline {
+            color: #00E5FF;
+            font-weight: 700;
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.45;
+        }
+        .badge-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 16px 0;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            color: #34D399;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .badge-domain {
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            color: #00E5FF;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #00E5FF, #38BDF8);
+            color: #090D16;
+            font-weight: 800;
+            padding: 14px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 14.5px;
+            min-height: 48px;
+            transition: opacity 0.2s, transform 0.1s;
+            box-shadow: 0 4px 16px rgba(0, 229, 255, 0.25);
+            text-align: center;
+            touch-action: manipulation;
+        }
+        .btn:hover { opacity: 0.95; transform: scale(1.01); }
+        .meta-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+            font-size: 13.5px;
+        }
+        .meta-links a {
+            color: #38BDF8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .meta-links a:hover { text-decoration: underline; color: #00E5FF; }
+        hr { border: 0; border-top: 1px solid #1F2937; margin: 24px 0; }
+        .desc {
+            color: #94A3B8;
+            font-size: 14.5px;
+            line-height: 1.7;
+            word-break: break-word;
+        }
+        .desc p { margin-bottom: 12px; }
+
+        .tech-specs-card {
+            background: #0B101B;
+            border: 1px solid #1E293B;
+            border-radius: 14px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+        .tech-specs-card h3, .app-faq-card h3 {
+            color: #FFFFFF;
+            font-size: 16px;
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+        }
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .spec-label {
+            font-size: 11.5px;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .spec-val {
+            font-size: 13.5px;
+            color: #F1F5F9;
+            font-weight: 600;
+        }
+        .app-faq-card {
+            background: #0B101B;
+            border: 1px solid #1E293B;
+            border-radius: 14px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+        .faq-accordion {
+            border-bottom: 1px solid #1E293B;
+            padding: 10px 0;
+        }
+        .faq-accordion:last-child { border-bottom: none; }
+        .faq-accordion summary {
+            color: #00E5FF;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+        }
+        .faq-accordion p {
+            color: #94A3B8;
+            font-size: 13.5px;
+            line-height: 1.6;
+            margin-top: 6px;
+        }
+
+        .footer {
+            margin-top: 36px;
+            border-top: 1px solid #1F2937;
+            padding-top: 20px;
+            font-size: 12.5px;
+            color: #64748B;
+            text-align: center;
+            line-height: 1.8;
+        }
+        .footer a { color: #00E5FF; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 640px) {
+            body { padding: 12px 8px; }
+            .container { padding: 20px 14px; border-radius: 16px; }
+            .app-header { gap: 14px; margin-bottom: 16px; }
+            .icon-frame { width: 56px; height: 56px; border-radius: 14px; padding: 6px; }
+            h1 { font-size: 19px; }
+            .tagline { font-size: 13px; }
+            .btn { width: 100%; min-height: 46px; font-size: 14px; padding: 12px 18px; }
+            .meta-links { flex-direction: column; gap: 8px; text-align: center; }
+            .desc { font-size: 14px; line-height: 1.6; }
+            .specs-grid { grid-template-columns: 1fr; }
+            .footer { margin-top: 24px; padding-top: 16px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-back">
+            <a href="../index.html">← Master Application Catalog</a>
+        </div>
+        <div class="app-header">
+            <div class="icon-frame">
+                <img src="../assets/icons/kr-habit.svg" alt="KR Habit icon" onerror="this.style.opacity='0.2'">
+            </div>
+            <div class="app-titles">
+                <h1>KR Habit</h1>
+                <p class="tagline">Daily habit routine with habit strength scoring, heatmap grid, and cloud sync.</p>
+            </div>
+        </div>
+        <div class="badge-row">
+            <span class="badge">✓ Google Play Data Safety Certified</span>
+            <span class="badge badge-domain">✓ 100% Offline Native</span>
+        </div>
+        <a class="btn" href="https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-kr-habit/kr-habit.apk">⬇ Download APK (Direct CDN)</a>
+        <div class="meta-links">
+            <a href="privacy.html"><strong>🛡️ Verified Data Safety &amp; Privacy Policy →</strong></a>
+            <a href="../testers.html"><strong>🧪 Join 20-Tester Beta Track →</strong></a>
+        </div>
+        <hr>
+        <div class="desc"><p>KR Habit is a bespoke, offline-first daily habit and routine engine engineered for lasting behavioral momentum.</p><p>BUILD GENUINE HABIT AUTOMATICITY<br>Unlike simplistic streak trackers that punish you completely for missing a single day due to travel or illness, KR Habit calculates a scientifically grounded Habit Strength score (0% to 100%) using exponential smoothing. Every consistent day builds compounding momentum, and occasional misses cause only graceful decay rather than wiping out weeks of hard work.</p><p>KEY FEATURES<br>• Exponential Habit Strength Scoring: Measure real habit automaticity, not just fragile streaks.<br>• Visual Consistency Heatmap: View your last 60+ days of progress in an interactive multi-week matrix.<br>• Tactile Haptic Check-Ins: Feel satisfying physical haptic feedback with every check-in.<br>• Google Account & Cloud Sync: Sign in with your Google account to backup and synchronize habits with Cloud Firestore across multiple devices.<br>• 100% Offline-First Architecture: Your habit ledger is always stored locally in SQLite with zero latency. Cloud sync operates unobtrusively in the background.<br>• Working Day & Night Theming: Handcrafted Emerald Obsidian aesthetic with dark, light, and automatic system modes.<br>• Ad-Free & Respectful: Zero ads, zero background telemetry tracking.</p><p>OPEN SOURCE ATTRIBUTION & COMPLIANCE<br>KR Habit is distributed under the GNU General Public License v3.0 (GPLv3).<br>The habit strength exponential scoring algorithm is adapted from Loop Habit Tracker (Álisson Linhares & Loop Contributors, GPLv3).<br>Complete corresponding source code is available at: https://github.com/eliakimrosil/kr-habit</p></div>
+
+        <div class="tech-specs-card">
+            <h3>Technical Specifications &amp; Architecture</h3>
+            <div class="specs-grid">
+                <div class="spec-item"><span class="spec-label">Operating System</span><span class="spec-val">Android 7.0+ (API 24+)</span></div>
+                <div class="spec-item"><span class="spec-label">Architecture</span><span class="spec-val">Pure Native (Java/Kotlin + XML)</span></div>
+                <div class="spec-item"><span class="spec-label">Network Requirement</span><span class="spec-val">0 KB / 100% Offline</span></div>
+                <div class="spec-item"><span class="spec-label">Data Collection</span><span class="spec-val">Zero Telemetry / No SDKs</span></div>
+                <div class="spec-item"><span class="spec-label">Binary Footprint</span><span class="spec-val">&lt; 5 MB Micro-APK</span></div>
+                <div class="spec-item"><span class="spec-label">Distribution</span><span class="spec-val">Free &bull; Open CDN</span></div>
+            </div>
+        </div>
+
+        <div class="app-faq-card">
+            <h3>Frequently Asked Questions</h3>
+            <details class="faq-accordion" open>
+                <summary>Is KR Habit completely offline?</summary>
+                <p>Yes. KR Habit operates entirely locally on your Android device without requiring internet connectivity or external server calls.</p>
+            </details>
+            <details class="faq-accordion">
+                <summary>Does this utility collect any telemetry or personal data?</summary>
+                <p>No. KimRosil App Studio adheres to a strict zero-telemetry standard. No analytics SDKs, advertising frameworks, or background trackers are included in the binary.</p>
+            </details>
+            <details class="faq-accordion">
+                <summary>How do I install the direct APK?</summary>
+                <p>Click the "Download APK" button above to get the signed APK binary directly from our verified GitHub Releases CDN. Open the downloaded file to install on your Android device.</p>
+            </details>
+        </div>
+
+        <div class="footer">
+            <p>100% Offline Freeware &bull; Zero Trackers &bull; Pure Native Android</p>
+            <p><a href="../index.html">← View All Applications</a> &bull; <a href="../llms.txt">LLM Index</a> &bull; <a href="../privacy.html">Developer Privacy Policy</a> &bull; <a href="https://github.com/eliakimrosil/kimrosil-app-studio">GitHub Repository</a></p>
+        </div>
+    </div>
+</body>
+</html>

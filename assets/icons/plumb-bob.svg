@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:android="http://schemas.android.com/apk/res/android" viewBox="0 0 108 108" width="512" height="512">
+    <rect width="108" height="108" rx="24" fill="#1A1C1E" />
+    <!-- Background Decor -->
+    <path fill="#282A2D" d="M54,20 A34,34 0 1,0 54,88 A34,34 0 1,0 54,20 Z"/><path fill="#004D40" fill-opacity="0.35" d="M54,24 A30,30 0 1,0 54,84 A30,30 0 1,0 54,24 Z"/><path stroke="#394A46" stroke-width="1" stroke-linejoin="round" d="M24,54 L84,54 M54,24 L54,84"/>
+    <!-- Foreground Iconography -->
+    <path stroke="#7CE8D5" stroke-width="2" stroke-linecap="round" d="M54,22 L54,34"/><path fill="#A7F3D0" d="M51,32 h6 a2,2 0 0,1 2,2 v2 a0,0 0 0,1 0,0 h-10 a0,0 0 0,1 0,0 v-2 a2,2 0 0,1 2,-2 Z"/><path fill="#00BFA5" d="M38,36 H70 L64,56 L54,82 L44,56 Z"/><path fill="#1DE9B6" d="M54,36 H70 L64,56 L54,82 Z"/><circle cy="46" fill="#004D40"/><circle cy="46" fill="#E0F2F1"/><path stroke="#64FFDA" stroke-width="1.5" stroke-linecap="round" d="M54,82 L54,86"/><circle cy="86" fill="#64FFDA"/>
+</svg>
