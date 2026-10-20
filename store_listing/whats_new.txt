@@ -1,2 +1,2 @@
-Release v1.2.18 - KR Habit
-Reposition New Habit button to match Loop Habit Tracker top bar layout
+Release v1.2.21 - KR Habit
+Revert layout changes to restore clean Loop Habit Tracker interface
