@@ -31,7 +31,9 @@
             android:text="✕"
             android:textSize="14sp"
             android:textColor="@color/text_secondary"
-            android:background="@drawable/btn_icon" />
+            android:background="@drawable/btn_icon"
+            android:stateListAnimator="@null"
+            android:elevation="0dp" />
     </LinearLayout>
 
     <!-- User Account Profile Card -->
@@ -122,6 +124,8 @@
             android:textStyle="bold"
             android:textColor="@color/text_on_accent"
             android:background="@drawable/btn_primary"
+            android:stateListAnimator="@null"
+            android:elevation="0dp"
             android:layout_marginBottom="12dp" />
 
         <TextView
@@ -160,7 +164,9 @@
                 android:textSize="13sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_on_accent"
-                android:background="@drawable/btn_primary" />
+                android:background="@drawable/btn_primary"
+                android:stateListAnimator="@null"
+                android:elevation="0dp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -181,6 +187,8 @@
             android:textStyle="bold"
             android:textColor="@color/text_primary"
             android:background="@drawable/btn_secondary"
+            android:stateListAnimator="@null"
+            android:elevation="0dp"
             android:layout_marginBottom="8dp" />
 
         <Button
@@ -190,7 +198,9 @@
             android:text="Sign Out (Keep Local Only)"
             android:textSize="13sp"
             android:textColor="@color/cat_body"
-            android:background="@drawable/btn_icon" />
+            android:background="@drawable/btn_icon"
+            android:stateListAnimator="@null"
+            android:elevation="0dp" />
     </LinearLayout>
 
 </LinearLayout>

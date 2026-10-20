@@ -32,6 +32,8 @@
         android:text="@string/btn_close"
         android:textSize="14sp"
         android:textColor="@color/text_primary"
-        android:background="@drawable/btn_secondary" />
+        android:background="@drawable/btn_secondary"
+        android:stateListAnimator="@null"
+        android:elevation="0dp" />
 
 </LinearLayout>

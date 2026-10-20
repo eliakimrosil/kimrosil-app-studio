@@ -97,6 +97,8 @@
             android:textSize="14sp"
             android:textColor="@color/text_secondary"
             android:background="@drawable/btn_secondary"
+            android:stateListAnimator="@null"
+            android:elevation="0dp"
             android:layout_marginEnd="10dp" />
 
         <Button
@@ -108,7 +110,9 @@
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="@color/text_on_accent"
-            android:background="@drawable/btn_primary" />
+            android:background="@drawable/btn_primary"
+            android:stateListAnimator="@null"
+            android:elevation="0dp" />
     </LinearLayout>
 
 </LinearLayout>

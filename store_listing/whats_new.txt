@@ -1,2 +1,2 @@
-Release v1.2.4 - KR Habit
-Mini profile avatar and unified settings dialog for theme and about
+Release v1.2.6 - KR Habit
+Professional flat button styling with zero muddy shadows and crisp hairline borders

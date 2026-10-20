@@ -99,7 +99,9 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/text_secondary"
-            android:background="@drawable/btn_checkin_pending" />
+            android:background="@drawable/btn_checkin_pending"
+            android:stateListAnimator="@null"
+            android:elevation="0dp" />
     </LinearLayout>
 
     <View

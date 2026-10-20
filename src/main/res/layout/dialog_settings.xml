@@ -35,7 +35,9 @@
                 android:text="✕"
                 android:textSize="14sp"
                 android:textColor="@color/text_secondary"
-                android:background="@drawable/btn_icon" />
+                android:background="@drawable/btn_icon"
+                android:stateListAnimator="@null"
+                android:elevation="0dp" />
         </LinearLayout>
 
         <!-- Section 1: Appearance / Theme Mode -->
@@ -66,7 +68,9 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary"
-                android:background="@drawable/chip_inactive" />
+                android:background="@drawable/chip_inactive"
+                android:stateListAnimator="@null"
+                android:elevation="0dp" />
 
             <Button
                 android:id="@+id/btnThemeLight"
@@ -79,7 +83,9 @@
                 android:textColor="@color/text_primary"
                 android:background="@drawable/chip_inactive"
                 android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp" />
+                android:layout_marginEnd="3dp"
+                android:stateListAnimator="@null"
+                android:elevation="0dp" />
 
             <Button
                 android:id="@+id/btnThemeDark"
@@ -90,7 +96,9 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary"
-                android:background="@drawable/chip_inactive" />
+                android:background="@drawable/chip_inactive"
+                android:stateListAnimator="@null"
+                android:elevation="0dp" />
         </LinearLayout>
 
         <!-- Section 2: Mini Google Profile & Cloud Sync -->
@@ -194,7 +202,9 @@
                 android:textStyle="bold"
                 android:textColor="@color/text_primary"
                 android:background="@drawable/btn_secondary"
-                android:layout_marginEnd="6dp" />
+                android:layout_marginEnd="6dp"
+                android:stateListAnimator="@null"
+                android:elevation="0dp" />
 
             <Button
                 android:id="@+id/btnSettingsSignOut"
@@ -204,7 +214,9 @@
                 android:text="Sign Out"
                 android:textSize="12sp"
                 android:textColor="@color/cat_body"
-                android:background="@drawable/btn_icon" />
+                android:background="@drawable/btn_icon"
+                android:stateListAnimator="@null"
+                android:elevation="0dp" />
         </LinearLayout>
 
         <Button
@@ -216,6 +228,8 @@
             android:textStyle="bold"
             android:textColor="@color/text_on_accent"
             android:background="@drawable/btn_primary"
+            android:stateListAnimator="@null"
+            android:elevation="0dp"
             android:layout_marginBottom="20dp" />
 
         <!-- Section 3: About KR Habit -->
