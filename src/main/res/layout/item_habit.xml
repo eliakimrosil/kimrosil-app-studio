@@ -48,7 +48,7 @@
                 android:textSize="11sp"
                 android:textStyle="bold"
                 android:textColor="@color/primary_accent"
-                android:background="@drawable/chip_active"
+                android:background="@drawable/chip_reminder"
                 android:paddingStart="6dp"
                 android:paddingEnd="6dp"
                 android:paddingTop="2dp"

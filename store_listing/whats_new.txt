@@ -1,2 +1,2 @@
-Release v1.2.25 - KR Habit
-Refine settings modal styling and remove harsh green outlines
+Release v1.2.26 - KR Habit
+Refine reminder time pill outline and stroke weight

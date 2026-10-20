@@ -98,7 +98,7 @@
             android:text="🔔 08:00 AM"
             android:textSize="12sp"
             android:textColor="@color/primary_accent"
-            android:background="@drawable/chip_active"
+            android:background="@drawable/btn_reminder_time"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:visibility="gone"

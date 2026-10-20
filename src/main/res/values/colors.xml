@@ -20,6 +20,10 @@
     <color name="border_accent">#059669</color>
     <color name="divider_subtle">#E2E8F0</color>
 
+    <!-- Reminder Pill Badges -->
+    <color name="reminder_chip_bg">#18059669</color>
+    <color name="reminder_chip_stroke">#38059669</color>
+
     <!-- Habit Scoring & Telemetry -->
     <color name="metric_strength">#059669</color>
     <color name="metric_streak">#D97706</color>
