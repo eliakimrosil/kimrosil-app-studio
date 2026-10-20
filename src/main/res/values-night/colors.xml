@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Night Mode Obsidian & Electric Emerald Palette -->
+    <!-- Night Mode Obsidian & Emerald Palette -->
     <color name="bg_primary">#0B100D</color>
     <color name="bg_surface">#141D17</color>
     <color name="bg_surface_elevated">#1C2A22</color>
@@ -24,16 +24,6 @@
     <color name="metric_strength">#00E676</color>
     <color name="metric_streak">#F59E0B</color>
     <color name="metric_completions">#38BDF8</color>
-
-    <!-- Capsule Progress Bar & Circular Check-In Buttons -->
-    <color name="progress_track">#1C2A22</color>
-    <color name="btn_pending_bg">#1C2A22</color>
-    <color name="btn_pending_stroke">#2D4235</color>
-    <color name="btn_pending_icon">#64748B</color>
-
-    <color name="btn_done_bg">#00E676</color>
-    <color name="btn_done_stroke">#00C853</color>
-    <color name="btn_done_icon">#0B100D</color>
 
     <!-- Heatmap Intensity Levels -->
     <color name="heatmap_0">#18241D</color>

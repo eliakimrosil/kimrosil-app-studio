@@ -84,16 +84,6 @@
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
                 android:visibility="gone" />
-
-            <!-- Green Online Dot (krhabit.jpg) -->
-            <View
-                android:id="@+id/viewOnlineDot"
-                android:layout_width="8dp"
-                android:layout_height="8dp"
-                android:layout_gravity="top|end"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="3dp"
-                android:background="@drawable/dot_online" />
         </FrameLayout>
 
         <!-- Settings Button (Houses Theme Switcher, Account, About) -->
@@ -133,47 +123,34 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Telemetry 3-Column Card Row with Ring Gauge (krhabit.jpg) -->
+            <!-- Telemetry 3-Column Card Row -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="@drawable/card_surface"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:layout_marginBottom="16dp">
 
-                <!-- Column 1: Daily Progress with Ring Gauge (krhabit.jpg) -->
+                <!-- Column 1: Daily Progress -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:layout_gravity="center_vertical"
                     android:orientation="vertical">
 
-                    <FrameLayout
-                        android:layout_width="66dp"
-                        android:layout_height="66dp"
-                        android:layout_marginBottom="4dp">
-
-                        <com.kimrosil.krhabit.RingProgressView
-                            android:id="@+id/ringProgressView"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                        <TextView
-                            android:id="@+id/tvDailyProgressValue"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="0%"
-                            android:textSize="17sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/text_primary" />
-                    </FrameLayout>
+                    <TextView
+                        android:id="@+id/tvDailyProgressValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0%"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/metric_strength" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -186,7 +163,7 @@
 
                 <View
                     android:layout_width="1dp"
-                    android:layout_height="48dp"
+                    android:layout_height="36dp"
                     android:layout_gravity="center_vertical"
                     android:background="@color/border_hairline" />
 
@@ -196,7 +173,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:layout_gravity="center_vertical"
                     android:orientation="vertical">
 
                     <TextView
@@ -219,7 +195,7 @@
 
                 <View
                     android:layout_width="1dp"
-                    android:layout_height="48dp"
+                    android:layout_height="36dp"
                     android:layout_gravity="center_vertical"
                     android:background="@color/border_hairline" />
 
@@ -229,7 +205,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:layout_gravity="center_vertical"
                     android:orientation="vertical">
 
                     <TextView

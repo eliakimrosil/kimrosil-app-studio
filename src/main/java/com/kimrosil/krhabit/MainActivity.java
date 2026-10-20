@@ -27,7 +27,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -47,12 +46,10 @@ public class MainActivity extends Activity {
     private TextView tvDailyProgressValue;
     private TextView tvTotalHabitsValue;
     private TextView tvTopStreakValue;
-    private RingProgressView ringProgressView;
     private ReorderableLinearLayout habitListContainer;
     private LinearLayout layoutEmptyState;
     private PullToRefreshLayout pullToRefreshLayout;
     private View btnAccount;
-    private View viewOnlineDot;
     private TextView tvTopBarAvatarText;
     private ImageView ivTopBarAvatar;
     private Button btnSettings;
@@ -206,10 +203,8 @@ public class MainActivity extends Activity {
     private void initViews() {
         tvSyncIndicator = findViewById(R.id.tvSyncIndicator);
         tvDailyProgressValue = findViewById(R.id.tvDailyProgressValue);
-        ringProgressView = findViewById(R.id.ringProgressView);
         tvTotalHabitsValue = findViewById(R.id.tvTotalHabitsValue);
         tvTopStreakValue = findViewById(R.id.tvTopStreakValue);
-        viewOnlineDot = findViewById(R.id.viewOnlineDot);
         habitListContainer = findViewById(R.id.habitListContainer);
         if (habitListContainer != null) {
             habitListContainer.setOnOrderChangedListener(new ReorderableLinearLayout.OnOrderChangedListener() {
@@ -297,9 +292,6 @@ public class MainActivity extends Activity {
         if (syncEngine.isSignedIn()) {
             tvSyncIndicator.setText("● Synced with Google");
             tvSyncIndicator.setTextColor(getColor(R.color.sync_online));
-            if (viewOnlineDot != null) {
-                viewOnlineDot.setVisibility(View.VISIBLE);
-            }
 
             // Load Google Profile Picture into Mini Top Bar Avatar
             final String userEmail = syncEngine.getUserEmail();
@@ -317,9 +309,6 @@ public class MainActivity extends Activity {
         } else {
             tvSyncIndicator.setText("● Local Storage");
             tvSyncIndicator.setTextColor(getColor(R.color.text_tertiary));
-            if (viewOnlineDot != null) {
-                viewOnlineDot.setVisibility(View.GONE);
-            }
             if (ivTopBarAvatar != null) {
                 ivTopBarAvatar.setVisibility(View.GONE);
             }
@@ -343,9 +332,6 @@ public class MainActivity extends Activity {
 
         int progressPct = total > 0 ? (int) Math.round((completedToday * 100.0) / total) : 0;
         tvDailyProgressValue.setText(progressPct + "%");
-        if (ringProgressView != null) {
-            ringProgressView.setProgress(progressPct);
-        }
         tvTotalHabitsValue.setText(String.valueOf(total));
         tvTopStreakValue.setText(topStreak + "d");
 
@@ -364,11 +350,12 @@ public class MainActivity extends Activity {
 
                 TextView tvTitle = itemView.findViewById(R.id.tvHabitTitle);
                 TextView tvDesc = itemView.findViewById(R.id.tvHabitDesc);
+                TextView tvReminderBadge = itemView.findViewById(R.id.tvReminderBadge);
                 TextView tvFreq = itemView.findViewById(R.id.tvFrequencyTarget);
                 TextView tvStreak = itemView.findViewById(R.id.tvStreakBadge);
                 TextView tvStrength = itemView.findViewById(R.id.tvStrengthScore);
-                ProgressBar pbStrength = itemView.findViewById(R.id.pbStrength);
                 final Button btnCheckIn = itemView.findViewById(R.id.btnCheckIn);
+                LinearLayout layoutMicroHeatmap = itemView.findViewById(R.id.layoutMicroHeatmap);
 
                 tvTitle.setText(habit.title);
                 if (habit.description != null && !habit.description.trim().isEmpty()) {
@@ -379,31 +366,17 @@ public class MainActivity extends Activity {
                 }
 
                 if (habit.reminderEnabled) {
-                    tvFreq.setText("Daily • 🔔 " + ReminderManager.formatReminderTime(habit.reminderHour, habit.reminderMinute));
+                    tvReminderBadge.setVisibility(View.VISIBLE);
+                    tvReminderBadge.setText("🔔 " + ReminderManager.formatReminderTime(habit.reminderHour, habit.reminderMinute));
                 } else {
-                    tvFreq.setText(habit.targetDaysPerWeek == 7 ? "Daily" : habit.targetDaysPerWeek + "x / week");
+                    tvReminderBadge.setVisibility(View.GONE);
                 }
 
-                if (habit.currentStreak > 0) {
-                    tvStreak.setText("🔥 " + habit.currentStreak + "d");
-                    tvStreak.setTextColor(getColor(R.color.metric_streak));
-                } else {
-                    tvStreak.setText("🔥 0d");
-                    tvStreak.setTextColor(getColor(R.color.text_tertiary));
-                }
+                tvFreq.setText(habit.targetDaysPerWeek == 7 ? "Daily" : habit.targetDaysPerWeek + "x / week");
+                tvStreak.setText("🔥 " + habit.currentStreak + "d");
+                tvStrength.setText(HabitMath.formatStrength(habit.strengthScore));
 
-                int strengthPct = Math.min(100, Math.max(0, (int) Math.round(habit.strengthScore * 100)));
-                tvStrength.setText(strengthPct + "%");
-                if (strengthPct > 0) {
-                    tvStrength.setTextColor(getColor(R.color.metric_strength));
-                } else {
-                    tvStrength.setTextColor(getColor(R.color.text_tertiary));
-                }
-                if (pbStrength != null) {
-                    pbStrength.setProgress(strengthPct);
-                }
-
-                // Style Circular Check-In Button (krhabit.jpg)
+                // Style Check-In Button
                 updateCheckInButtonStyle(btnCheckIn, habit.isCompletedToday);
 
                 btnCheckIn.setOnClickListener(new View.OnClickListener() {
@@ -417,6 +390,9 @@ public class MainActivity extends Activity {
                         triggerAutoSync();
                     }
                 });
+
+                // Micro 14-day heatmap dots
+                populateMicroHeatmap(layoutMicroHeatmap, habit.thirtyDayHistory);
 
                 // Card Click -> Open Detail Activity
                 itemView.setOnClickListener(new View.OnClickListener() {
@@ -445,13 +421,32 @@ public class MainActivity extends Activity {
 
     private void updateCheckInButtonStyle(Button btn, boolean completed) {
         if (completed) {
-            btn.setBackgroundResource(R.drawable.btn_checkin_circle_done);
+            btn.setBackgroundResource(R.drawable.btn_checkin_done);
             btn.setText("✓");
-            btn.setTextColor(getColor(R.color.btn_done_icon));
+            btn.setTextColor(Color.WHITE);
         } else {
-            btn.setBackgroundResource(R.drawable.btn_checkin_circle_pending);
+            btn.setBackgroundResource(R.drawable.btn_checkin_pending);
             btn.setText("✓");
-            btn.setTextColor(getColor(R.color.btn_pending_icon));
+            btn.setTextColor(getColor(R.color.text_tertiary));
+        }
+    }
+
+    private void populateMicroHeatmap(LinearLayout container, boolean[] thirtyDayHistory) {
+        container.removeAllViews();
+        // Show last 14 days (index 16 to 29)
+        int start = Math.max(0, thirtyDayHistory.length - 14);
+        int dotSize = (int) (10 * getResources().getDisplayMetrics().density);
+        int dotMargin = (int) (3 * getResources().getDisplayMetrics().density);
+
+        for (int i = start; i < thirtyDayHistory.length; i++) {
+            View dot = new View(this);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(dotSize, dotSize);
+            lp.setMargins(dotMargin, 0, dotMargin, 0);
+            dot.setLayoutParams(lp);
+
+            boolean done = thirtyDayHistory[i];
+            dot.setBackgroundColor(getColor(done ? R.color.heatmap_3 : R.color.heatmap_0));
+            container.addView(dot);
         }
     }
 

@@ -1,55 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Light Mode Pristine Porcelain & Mint Emerald Palette (krhabit.jpg) -->
-    <color name="bg_primary">#F8F9FA</color>
+    <!-- Light Mode Obsidian & Emerald Palette -->
+    <color name="bg_primary">#F4F7F5</color>
     <color name="bg_surface">#FFFFFF</color>
-    <color name="bg_surface_elevated">#F1F5F9</color>
+    <color name="bg_surface_elevated">#EAF0EC</color>
     <color name="bg_input">#FFFFFF</color>
 
-    <color name="primary_accent">#10B981</color>
-    <color name="primary_accent_dark">#059669</color>
-    <color name="primary_accent_subtle">#ECFDF5</color>
+    <color name="primary_accent">#059669</color>
+    <color name="primary_accent_dark">#047857</color>
+    <color name="primary_accent_subtle">#E6F4EA</color>
     <color name="primary_accent_glow">#34D399</color>
 
     <color name="text_primary">#0F172A</color>
-    <color name="text_secondary">#64748B</color>
+    <color name="text_secondary">#475569</color>
     <color name="text_tertiary">#94A3B8</color>
     <color name="text_on_accent">#FFFFFF</color>
 
-    <color name="border_hairline">#E2E8F0</color>
-    <color name="border_accent">#10B981</color>
+    <color name="border_hairline">#CBD5E1</color>
+    <color name="border_accent">#059669</color>
     <color name="divider_subtle">#E2E8F0</color>
 
     <!-- Habit Scoring & Telemetry -->
-    <color name="metric_strength">#10B981</color>
-    <color name="metric_streak">#F59E0B</color>
+    <color name="metric_strength">#059669</color>
+    <color name="metric_streak">#D97706</color>
     <color name="metric_completions">#2563EB</color>
-
-    <!-- Capsule Progress Bar & Circular Check-In Buttons -->
-    <color name="progress_track">#E2E8F0</color>
-    <color name="btn_pending_bg">#E2E8F0</color>
-    <color name="btn_pending_stroke">#CBD5E1</color>
-    <color name="btn_pending_icon">#94A3B8</color>
-
-    <color name="btn_done_bg">#34D399</color>
-    <color name="btn_done_stroke">#059669</color>
-    <color name="btn_done_icon">#064E3B</color>
 
     <!-- Heatmap Intensity Levels -->
     <color name="heatmap_0">#E2E8F0</color>
     <color name="heatmap_1">#A7F3D0</color>
     <color name="heatmap_2">#34D399</color>
-    <color name="heatmap_3">#10B981</color>
+    <color name="heatmap_3">#059669</color>
 
     <!-- Cloud Sync Status -->
-    <color name="sync_online">#10B981</color>
+    <color name="sync_online">#059669</color>
     <color name="sync_offline">#64748B</color>
-    <color name="sync_pending">#F59E0B</color>
+    <color name="sync_pending">#D97706</color>
 
     <!-- Category Badges -->
     <color name="cat_mind">#4338CA</color>
     <color name="cat_body">#B91C1C</color>
     <color name="cat_craft">#0D9488</color>
-    <color name="cat_health">#10B981</color>
-    <color name="cat_focus">#F59E0B</color>
+    <color name="cat_health">#059669</color>
+    <color name="cat_focus">#D97706</color>
 </resources>
