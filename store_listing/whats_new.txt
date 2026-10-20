@@ -1,2 +1,2 @@
-Release v1.2.2 - KR Habit
-Google profile picture integration and minimal hardcoded cloud configuration
+Release v1.2.4 - KR Habit
+Mini profile avatar and unified settings dialog for theme and about

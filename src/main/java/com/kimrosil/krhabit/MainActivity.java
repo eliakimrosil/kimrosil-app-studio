@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -41,8 +42,10 @@ public class MainActivity extends Activity {
     private TextView tvTopStreakValue;
     private LinearLayout habitListContainer;
     private LinearLayout layoutEmptyState;
-    private Button btnAccount;
+    private View btnAccount;
+    private TextView tvTopBarAvatarText;
     private ImageView ivTopBarAvatar;
+    private Button btnSettings;
 
     private TextView chipAll, chipHealth, chipMind, chipBody, chipCraft, chipFocus;
 
@@ -177,48 +180,43 @@ public class MainActivity extends Activity {
         habitListContainer = findViewById(R.id.habitListContainer);
         layoutEmptyState = findViewById(R.id.layoutEmptyState);
 
-        // Header click -> Account Settings
+        // Header click -> Settings
         View layoutBrandHeader = findViewById(R.id.layoutBrandHeader);
         if (layoutBrandHeader != null) {
             layoutBrandHeader.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                    showCloudSyncDialog();
+                    showSettingsDialog();
                 }
             });
         }
 
-        // Top Bar Buttons
+        // Mini Avatar Button -> Settings
         btnAccount = findViewById(R.id.btnAccount);
+        tvTopBarAvatarText = findViewById(R.id.tvTopBarAvatarText);
         ivTopBarAvatar = findViewById(R.id.ivTopBarAvatar);
         if (btnAccount != null) {
             btnAccount.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                    showCloudSyncDialog();
+                    showSettingsDialog();
                 }
             });
         }
 
-        Button btnToggleTheme = findViewById(R.id.btnToggleTheme);
-        btnToggleTheme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                cycleTheme();
-            }
-        });
-
-        Button btnAbout = findViewById(R.id.btnAbout);
-        btnAbout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                showAboutDialog();
-            }
-        });
+        // Settings Button -> Settings (Houses Theme, Account, About)
+        btnSettings = findViewById(R.id.btnSettings);
+        if (btnSettings != null) {
+            btnSettings.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                    showSettingsDialog();
+                }
+            });
+        }
 
         Button btnAddNewHabit = findViewById(R.id.btnAddNewHabit);
         btnAddNewHabit.setOnClickListener(new View.OnClickListener() {
@@ -274,12 +272,12 @@ public class MainActivity extends Activity {
     }
 
     private void refreshDashboard() {
-        // Update Sync Indicator
+        // Update Sync Indicator & Mini Avatar
         if (syncEngine.isSignedIn()) {
             tvSyncIndicator.setText("● Synced with Google");
             tvSyncIndicator.setTextColor(getColor(R.color.sync_online));
 
-            // Load Google Profile Picture into Top Bar
+            // Load Google Profile Picture into Mini Top Bar Avatar
             final String userEmail = syncEngine.getUserEmail();
             ProfileImageHelper.loadProfileImage(this, userEmail, ivTopBarAvatar, new ProfileImageHelper.ImageCallback() {
                 @Override
@@ -287,8 +285,8 @@ public class MainActivity extends Activity {
                     if (ivTopBarAvatar != null) {
                         ivTopBarAvatar.setVisibility(View.VISIBLE);
                     }
-                    if (btnAccount != null) {
-                        btnAccount.setText("");
+                    if (tvTopBarAvatarText != null) {
+                        tvTopBarAvatarText.setVisibility(View.GONE);
                     }
                 }
             });
@@ -298,8 +296,9 @@ public class MainActivity extends Activity {
             if (ivTopBarAvatar != null) {
                 ivTopBarAvatar.setVisibility(View.GONE);
             }
-            if (btnAccount != null) {
-                btnAccount.setText("👤");
+            if (tvTopBarAvatarText != null) {
+                tvTopBarAvatarText.setVisibility(View.VISIBLE);
+                tvTopBarAvatarText.setText("👤");
             }
         }
 
@@ -419,11 +418,17 @@ public class MainActivity extends Activity {
         }
     }
 
+    private void setThemeMode(int mode) {
+        if (themeMode != mode) {
+            themeMode = mode;
+            SharedPreferences sp = getSharedPreferences("kr_habit_theme", Context.MODE_PRIVATE);
+            sp.edit().putInt("theme_mode", themeMode).apply();
+            recreate();
+        }
+    }
+
     private void cycleTheme() {
-        themeMode = (themeMode + 1) % 3; // 0=Auto, 1=Light, 2=Dark
-        SharedPreferences sp = getSharedPreferences("kr_habit_theme", Context.MODE_PRIVATE);
-        sp.edit().putInt("theme_mode", themeMode).apply();
-        recreate();
+        setThemeMode((themeMode + 1) % 3);
     }
 
     // -------------------------------------------------------------
@@ -592,6 +597,155 @@ public class MainActivity extends Activity {
         });
 
         dialog.show();
+    }
+
+    private void showSettingsDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_settings, null);
+        builder.setView(dialogView);
+        final AlertDialog dialog = builder.create();
+
+        // 1. Appearance / Theme Controls
+        final Button btnAuto = dialogView.findViewById(R.id.btnThemeAuto);
+        final Button btnLight = dialogView.findViewById(R.id.btnThemeLight);
+        final Button btnDark = dialogView.findViewById(R.id.btnThemeDark);
+        updateThemeButtons(btnAuto, btnLight, btnDark);
+
+        btnAuto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+                dialog.dismiss();
+                setThemeMode(0);
+            }
+        });
+
+        btnLight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+                dialog.dismiss();
+                setThemeMode(1);
+            }
+        });
+
+        btnDark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+                dialog.dismiss();
+                setThemeMode(2);
+            }
+        });
+
+        // 2. Google Account & Sync Controls
+        final TextView tvUserName = dialogView.findViewById(R.id.tvSettingsUserName);
+        final TextView tvUserEmail = dialogView.findViewById(R.id.tvSettingsUserEmail);
+        final TextView tvAvatar = dialogView.findViewById(R.id.tvSettingsAvatar);
+        final ImageView ivAvatar = dialogView.findViewById(R.id.ivSettingsAvatar);
+        final TextView tvSyncStatus = dialogView.findViewById(R.id.tvSettingsSyncStatus);
+        final View layoutSignedInActions = dialogView.findViewById(R.id.layoutSettingsSignedInActions);
+        final Button btnSignIn = dialogView.findViewById(R.id.btnSettingsSignIn);
+        final Button btnSwitch = dialogView.findViewById(R.id.btnSettingsSwitchAccount);
+        final Button btnSignOut = dialogView.findViewById(R.id.btnSettingsSignOut);
+        Button btnClose = dialogView.findViewById(R.id.btnCloseSettings);
+        TextView tvWebLink = dialogView.findViewById(R.id.tvSettingsWebLink);
+
+        final Runnable updateAccountUi = new Runnable() {
+            @Override
+            public void run() {
+                if (syncEngine.isSignedIn()) {
+                    layoutSignedInActions.setVisibility(View.VISIBLE);
+                    btnSignIn.setVisibility(View.GONE);
+                    tvUserName.setText(syncEngine.getUserName());
+                    tvUserEmail.setText(syncEngine.getUserEmail());
+                    String name = syncEngine.getUserName();
+                    tvAvatar.setText(name.length() > 0 ? String.valueOf(name.charAt(0)).toUpperCase(Locale.US) : "👤");
+                    tvSyncStatus.setText("● Synced with Google Account (" + syncEngine.getLastSyncTimeFormatted() + ")");
+
+                    // Load User Google Avatar into Settings Modal
+                    ProfileImageHelper.loadProfileImage(MainActivity.this, syncEngine.getUserEmail(), ivAvatar, new ProfileImageHelper.ImageCallback() {
+                        @Override
+                        public void onLoaded(Bitmap bitmap) {
+                            if (ivAvatar != null) ivAvatar.setVisibility(View.VISIBLE);
+                            if (tvAvatar != null) tvAvatar.setVisibility(View.GONE);
+                        }
+                    });
+                } else {
+                    layoutSignedInActions.setVisibility(View.GONE);
+                    btnSignIn.setVisibility(View.VISIBLE);
+                    tvUserName.setText("Not Signed In");
+                    tvUserEmail.setText("Sign in to automatically sync habits with Google");
+                    tvAvatar.setText("👤");
+                    tvAvatar.setVisibility(View.VISIBLE);
+                    if (ivAvatar != null) ivAvatar.setVisibility(View.GONE);
+                    tvSyncStatus.setText("● Offline Mode (Local Storage only)");
+                }
+            }
+        };
+
+        updateAccountUi.run();
+
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+                dialog.dismiss();
+                promptAccountSelection();
+            }
+        });
+
+        btnSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+                dialog.dismiss();
+                promptAccountSelection();
+            }
+        });
+
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+                syncEngine.signOut();
+                Toast.makeText(MainActivity.this, "Signed out of Google", Toast.LENGTH_SHORT).show();
+                updateAccountUi.run();
+                refreshDashboard();
+            }
+        });
+
+        if (tvWebLink != null) {
+            tvWebLink.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                    try {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://apps.kimrosil.com/kr-habit/"));
+                        startActivity(browserIntent);
+                    } catch (Exception ignored) {
+                    }
+                }
+            });
+        }
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void updateThemeButtons(Button btnAuto, Button btnLight, Button btnDark) {
+        Button[] buttons = {btnAuto, btnLight, btnDark};
+        for (int i = 0; i < 3; i++) {
+            boolean active = (themeMode == i);
+            buttons[i].setBackgroundResource(active ? R.drawable.chip_active : R.drawable.chip_inactive);
+            buttons[i].setTextColor(getColor(active ? R.color.primary_accent : R.color.text_primary));
+        }
     }
 
     private void showAboutDialog() {
