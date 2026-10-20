@@ -12,6 +12,8 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -694,6 +696,20 @@ public class MainActivity extends Activity {
         View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_settings, null);
         builder.setView(dialogView);
         final AlertDialog dialog = builder.create();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+
+        // Dynamic App Version Header
+        TextView tvAppVersion = dialogView.findViewById(R.id.tvSettingsAppVersion);
+        if (tvAppVersion != null) {
+            try {
+                String ver = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+                tvAppVersion.setText("KR Habit v" + ver);
+            } catch (Exception e) {
+                tvAppVersion.setText("KR Habit v1.2.24");
+            }
+        }
 
         // 1. Appearance / Theme Controls
         final Button btnAuto = dialogView.findViewById(R.id.btnThemeAuto);
@@ -833,8 +849,9 @@ public class MainActivity extends Activity {
         Button[] buttons = {btnAuto, btnLight, btnDark};
         for (int i = 0; i < 3; i++) {
             boolean active = (themeMode == i);
-            buttons[i].setBackgroundResource(active ? R.drawable.chip_active : R.drawable.chip_inactive);
-            buttons[i].setTextColor(getColor(active ? R.color.primary_accent : R.color.text_primary));
+            buttons[i].setBackgroundResource(active ? R.drawable.bg_segmented_active : R.drawable.bg_segmented_inactive);
+            buttons[i].setTextColor(getColor(active ? R.color.text_primary : R.color.text_secondary));
+            buttons[i].setTypeface(null, active ? Typeface.BOLD : Typeface.NORMAL);
         }
     }
 

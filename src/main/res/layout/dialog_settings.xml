@@ -16,14 +16,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="18dp">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Settings"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary" />
 
@@ -55,9 +55,9 @@
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:orientation="horizontal"
-            android:background="@drawable/card_surface_accent"
+            android:background="@drawable/bg_segmented_container"
             android:padding="3dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="22dp">
 
             <Button
                 android:id="@+id/btnThemeAuto"
@@ -68,7 +68,7 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary"
-                android:background="@drawable/chip_inactive"
+                android:background="@drawable/bg_segmented_inactive"
                 android:stateListAnimator="@null"
                 android:elevation="0dp" />
 
@@ -81,7 +81,7 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary"
-                android:background="@drawable/chip_inactive"
+                android:background="@drawable/bg_segmented_inactive"
                 android:layout_marginStart="3dp"
                 android:layout_marginEnd="3dp"
                 android:stateListAnimator="@null"
@@ -96,7 +96,7 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary"
-                android:background="@drawable/chip_inactive"
+                android:background="@drawable/bg_segmented_inactive"
                 android:stateListAnimator="@null"
                 android:elevation="0dp" />
         </LinearLayout>
@@ -118,31 +118,31 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:background="@drawable/card_surface_accent"
-            android:padding="12dp"
-            android:layout_marginBottom="10dp">
+            android:background="@drawable/card_surface_subtle"
+            android:padding="14dp"
+            android:layout_marginBottom="12dp">
 
             <!-- Mini Avatar Container -->
             <FrameLayout
-                android:layout_width="38dp"
-                android:layout_height="38dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginEnd="12dp">
 
                 <TextView
                     android:id="@+id/tvSettingsAvatar"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:gravity="center"
                     android:text="👤"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="@color/primary_accent"
-                    android:background="@drawable/chip_active" />
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/bg_avatar_placeholder" />
 
                 <ImageView
                     android:id="@+id/ivSettingsAvatar"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:scaleType="centerCrop"
                     android:visibility="gone" />
             </FrameLayout>
@@ -158,7 +158,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Not Signed In"
-                    android:textSize="14sp"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     android:textColor="@color/text_primary" />
 
@@ -167,7 +167,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sign in to sync habits across devices"
-                    android:textSize="11sp"
+                    android:textSize="12sp"
                     android:textColor="@color/text_secondary"
                     android:maxLines="1"
                     android:ellipsize="end" />
@@ -177,9 +177,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="● Offline Mode"
-                    android:textSize="10sp"
+                    android:textSize="11sp"
                     android:textColor="@color/text_tertiary"
-                    android:layout_marginTop="2dp" />
+                    android:layout_marginTop="3dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -189,32 +189,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="22dp"
             android:visibility="gone">
 
             <Button
                 android:id="@+id/btnSettingsSwitchAccount"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:text="Switch Account"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary"
                 android:background="@drawable/btn_secondary"
-                android:layout_marginEnd="6dp"
+                android:layout_marginEnd="8dp"
                 android:stateListAnimator="@null"
                 android:elevation="0dp" />
 
             <Button
                 android:id="@+id/btnSettingsSignOut"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
                 android:text="Sign Out"
                 android:textSize="12sp"
+                android:textStyle="bold"
                 android:textColor="@color/cat_body"
-                android:background="@drawable/btn_icon"
+                android:background="@drawable/btn_secondary"
                 android:stateListAnimator="@null"
                 android:elevation="0dp" />
         </LinearLayout>
@@ -230,7 +231,7 @@
             android:background="@drawable/btn_primary"
             android:stateListAnimator="@null"
             android:elevation="0dp"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="22dp" />
 
         <!-- Section 3: About KR Habit -->
         <TextView
@@ -247,14 +248,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/card_surface_accent"
+            android:background="@drawable/card_surface_subtle"
             android:padding="14dp">
 
             <TextView
+                android:id="@+id/tvSettingsAppVersion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="KR Habit v1.2.3"
-                android:textSize="14sp"
+                android:text="KR Habit"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary" />
 
@@ -264,9 +266,9 @@
                 android:text="Offline-first habit tracking with seamless Google Account cloud synchronization. Built with pure native Android framework components."
                 android:textSize="12sp"
                 android:textColor="@color/text_secondary"
-                android:lineSpacingExtra="2dp"
+                android:lineSpacingExtra="3dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="12dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -277,24 +279,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="GPLv3 Open Source"
-                    android:textSize="10sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/primary_accent"
-                    android:background="@drawable/chip_active"
-                    android:paddingHorizontal="8dp"
-                    android:paddingVertical="3dp"
-                    android:layout_marginEnd="6dp" />
+                    android:textSize="11sp"
+                    android:textColor="@color/text_secondary"
+                    android:background="@drawable/chip_neutral"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="4dp"
+                    android:layout_marginEnd="8dp" />
 
                 <TextView
                     android:id="@+id/tvSettingsWebLink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="apps.kimrosil.com/kr-habit"
-                    android:textSize="10sp"
-                    android:textColor="@color/text_secondary"
-                    android:background="@drawable/chip_inactive"
-                    android:paddingHorizontal="8dp"
-                    android:paddingVertical="3dp" />
+                    android:text="apps.kimrosil.com/kr-habit ↗"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:background="@drawable/chip_link"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="4dp" />
             </LinearLayout>
         </LinearLayout>
 

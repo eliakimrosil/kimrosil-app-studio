@@ -1,2 +1,2 @@
-Release v1.2.24 - KR Habit
-Switch placement of day and reminder time
+Release v1.2.25 - KR Habit
+Refine settings modal styling and remove harsh green outlines
