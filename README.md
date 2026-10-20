@@ -287,6 +287,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Tactile water ripples, floating petals, stone stacking, and harmonic pentatonic chimes in an offline oasis.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-pebble-drift/pebble-drift.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/pebble-drift/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/pebble-drift)
 
+#### [Plumb Bob](https://apps.kimrosil.com/plumb-bob/) (`plumb-bob`) • `v1.0.0`
+> **Utility**: Offline native Android utility for plumb bob.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-plumb-bob/plumb-bob.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/plumb-bob/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/plumb-bob)
+
 #### [ReturnGuard](https://apps.kimrosil.com/return-guard-receipt-countdown/) (`return-guard-receipt-countdown`) • `v1.0.0`
 > **Utility**: Stop losing money on clothes and purchases you meant to return with visual deadline countdowns and cashier-ready receipt displays.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/actions) • [🌐 Web Documentation](https://apps.kimrosil.com/return-guard-receipt-countdown/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/return-guard-receipt-countdown)
@@ -311,9 +315,17 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Embark on a charming 2D action fighting RPG quest—upgrade acorn blades, walnut armor, and dewdrop magic at the cozy forge.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.5.0-sprout-knight-rpg/sprout-knight-rpg.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/sprout-knight-rpg/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/sprout-knight-rpg)
 
+#### [SpurMesh Gear Calculator](https://apps.kimrosil.com/spur-mesh/) (`spur-mesh`) • `v1.0.0`
+> **Utility**: Offline spur gear geometry, center distance, and diametral pitch calculator.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-spur-mesh/spur-mesh.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/spur-mesh/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/spur-mesh)
+
 #### [StealthDrop](https://apps.kimrosil.com/stealth-drop-secret-pad/) (`stealth-drop-secret-pad`) • `v1.0.0`
 > **Utility**: Instant zero-trace burner notes and sensitive snippets from your notification shade with auto-purge timers.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-stealth-drop-secret-pad/stealth-drop-secret-pad.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/stealth-drop-secret-pad/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/stealth-drop-secret-pad)
+
+#### [Swage Die](https://apps.kimrosil.com/swage-die/) (`swage-die`) • `v1.0.0`
+> **Utility**: Offline native Android utility for swage die.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-swage-die/swage-die.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/swage-die/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/swage-die)
 
 #### [TankPulse](https://apps.kimrosil.com/offline-fuel-log-tracker/) (`offline-fuel-log-tracker`) • `v1.0.0`
 > **Utility**: Instantly record fuel fill-ups and compute real-world mileage and cost-per-mile without accounts, ads, or internet connection.
