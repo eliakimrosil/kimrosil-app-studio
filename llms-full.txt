@@ -927,6 +927,20 @@ KEY STUDIO FEATURES:
 
 ---
 
+## PlumbBob (`plumb-bob`)
+- **Category**: TOOLS & UTILITIES / TRADES
+- **Tagline**: Offline pipe slope, invert depth, and fall calculator for drain plumbers
+- **Landing Page**: https://apps.kimrosil.com/plumb-bob/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-plumb-bob/plumb-bob.apk
+- **Privacy Policy**: https://apps.kimrosil.com/plumb-bob/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+PlumbBob is an offline-first Android utility engineered natively for Android. Operates completely without internet connectivity, storing all data securely in on-device sandboxed storage.
+
+---
+
 ## PotLife (`epoxy-cure-pot-life-sentinel`)
 - **Category**: Tools & Utilities
 - **Tagline**: Zero-friction pot life, gel phase, and demold countdowns triggered directly from Quick Settings with sticky resin hands.
