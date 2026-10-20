@@ -1,0 +1,511 @@
+package com.kimrosil.krhabit;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.HapticFeedbackConstants;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
+import java.util.Locale;
+
+public class MainActivity extends Activity {
+
+    private DatabaseHelper dbHelper;
+    private FirebaseSyncEngine syncEngine;
+    private int themeMode = 0; // 0 = Auto, 1 = Light, 2 = Dark
+    private String selectedCategory = "All";
+
+    private TextView tvSyncIndicator;
+    private TextView tvDailyProgressValue;
+    private TextView tvTotalHabitsValue;
+    private TextView tvTopStreakValue;
+    private LinearLayout habitListContainer;
+    private LinearLayout layoutEmptyState;
+
+    private TextView chipAll, chipHealth, chipMind, chipBody, chipCraft, chipFocus;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        SharedPreferences sp = newBase.getSharedPreferences("kr_habit_theme", Context.MODE_PRIVATE);
+        themeMode = sp.getInt("theme_mode", 0);
+
+        Configuration config = new Configuration(newBase.getResources().getConfiguration());
+        if (themeMode == 1) {
+            config.uiMode = (config.uiMode & ~Configuration.UI_MODE_NIGHT_MASK) | Configuration.UI_MODE_NIGHT_NO;
+        } else if (themeMode == 2) {
+            config.uiMode = (config.uiMode & ~Configuration.UI_MODE_NIGHT_MASK) | Configuration.UI_MODE_NIGHT_YES;
+        }
+        Context context = newBase.createConfigurationContext(config);
+        super.attachBaseContext(context);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        if (themeMode == 1) {
+            setTheme(R.style.AppTheme_Light);
+        } else if (themeMode == 2) {
+            setTheme(R.style.AppTheme_Dark);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        dbHelper = new DatabaseHelper(this);
+        syncEngine = new FirebaseSyncEngine(this, dbHelper);
+
+        initViews();
+        setupCategoryChips();
+        refreshDashboard();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshDashboard();
+    }
+
+    private void initViews() {
+        tvSyncIndicator = findViewById(R.id.tvSyncIndicator);
+        tvDailyProgressValue = findViewById(R.id.tvDailyProgressValue);
+        tvTotalHabitsValue = findViewById(R.id.tvTotalHabitsValue);
+        tvTopStreakValue = findViewById(R.id.tvTopStreakValue);
+        habitListContainer = findViewById(R.id.habitListContainer);
+        layoutEmptyState = findViewById(R.id.layoutEmptyState);
+
+        // Top Bar Buttons
+        Button btnCloudSync = findViewById(R.id.btnCloudSync);
+        btnCloudSync.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                showCloudSyncDialog();
+            }
+        });
+
+        Button btnToggleTheme = findViewById(R.id.btnToggleTheme);
+        btnToggleTheme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                cycleTheme();
+            }
+        });
+
+        Button btnAbout = findViewById(R.id.btnAbout);
+        btnAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                showAboutDialog();
+            }
+        });
+
+        Button btnAddNewHabit = findViewById(R.id.btnAddNewHabit);
+        btnAddNewHabit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                showAddHabitDialog();
+            }
+        });
+    }
+
+    private void setupCategoryChips() {
+        chipAll = findViewById(R.id.chipAll);
+        chipHealth = findViewById(R.id.chipHealth);
+        chipMind = findViewById(R.id.chipMind);
+        chipBody = findViewById(R.id.chipBody);
+        chipCraft = findViewById(R.id.chipCraft);
+        chipFocus = findViewById(R.id.chipFocus);
+
+        View.OnClickListener chipListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+                if (v == chipAll) selectedCategory = "All";
+                else if (v == chipHealth) selectedCategory = "Health";
+                else if (v == chipMind) selectedCategory = "Mind";
+                else if (v == chipBody) selectedCategory = "Body";
+                else if (v == chipCraft) selectedCategory = "Craft";
+                else if (v == chipFocus) selectedCategory = "Focus";
+
+                updateChipStyles();
+                refreshDashboard();
+            }
+        };
+
+        chipAll.setOnClickListener(chipListener);
+        chipHealth.setOnClickListener(chipListener);
+        chipMind.setOnClickListener(chipListener);
+        chipBody.setOnClickListener(chipListener);
+        chipCraft.setOnClickListener(chipListener);
+        chipFocus.setOnClickListener(chipListener);
+    }
+
+    private void updateChipStyles() {
+        TextView[] chips = {chipAll, chipHealth, chipMind, chipBody, chipCraft, chipFocus};
+        String[] cats = {"All", "Health", "Mind", "Body", "Craft", "Focus"};
+
+        for (int i = 0; i < chips.length; i++) {
+            boolean active = cats[i].equalsIgnoreCase(selectedCategory);
+            chips[i].setBackgroundResource(active ? R.drawable.chip_active : R.drawable.chip_inactive);
+            chips[i].setTextColor(getColor(active ? R.color.primary_accent : R.color.text_secondary));
+        }
+    }
+
+    private void refreshDashboard() {
+        // Update Sync Indicator
+        if (syncEngine.isSignedIn()) {
+            tvSyncIndicator.setText("☁ " + syncEngine.getUserEmail());
+            tvSyncIndicator.setTextColor(getColor(R.color.sync_online));
+        } else {
+            tvSyncIndicator.setText("Offline Mode (Local Storage)");
+            tvSyncIndicator.setTextColor(getColor(R.color.text_tertiary));
+        }
+
+        List<DatabaseHelper.HabitItem> habits = dbHelper.getAllHabits(selectedCategory);
+
+        // Calculate aggregate telemetry
+        int total = habits.size();
+        int completedToday = 0;
+        int topStreak = 0;
+
+        for (DatabaseHelper.HabitItem h : habits) {
+            if (h.isCompletedToday) completedToday++;
+            if (h.bestStreak > topStreak) topStreak = h.bestStreak;
+        }
+
+        int progressPct = total > 0 ? (int) Math.round((completedToday * 100.0) / total) : 0;
+        tvDailyProgressValue.setText(progressPct + "%");
+        tvTotalHabitsValue.setText(String.valueOf(total));
+        tvTopStreakValue.setText(topStreak + "d");
+
+        // Populate Habits UI
+        habitListContainer.removeAllViews();
+        if (habits.isEmpty()) {
+            layoutEmptyState.setVisibility(View.VISIBLE);
+        } else {
+            layoutEmptyState.setVisibility(View.GONE);
+            LayoutInflater inflater = LayoutInflater.from(this);
+            String todayStr = DatabaseHelper.getTodayDateString();
+
+            for (final DatabaseHelper.HabitItem habit : habits) {
+                View itemView = inflater.inflate(R.layout.item_habit, habitListContainer, false);
+
+                TextView tvTitle = itemView.findViewById(R.id.tvHabitTitle);
+                TextView tvDesc = itemView.findViewById(R.id.tvHabitDesc);
+                TextView tvCat = itemView.findViewById(R.id.tvHabitCategory);
+                TextView tvFreq = itemView.findViewById(R.id.tvFrequencyTarget);
+                TextView tvStreak = itemView.findViewById(R.id.tvStreakBadge);
+                TextView tvStrength = itemView.findViewById(R.id.tvStrengthScore);
+                final Button btnCheckIn = itemView.findViewById(R.id.btnCheckIn);
+                LinearLayout layoutMicroHeatmap = itemView.findViewById(R.id.layoutMicroHeatmap);
+
+                tvTitle.setText(habit.title);
+                if (habit.description != null && !habit.description.trim().isEmpty()) {
+                    tvDesc.setText(habit.description);
+                    tvDesc.setVisibility(View.VISIBLE);
+                } else {
+                    tvDesc.setVisibility(View.GONE);
+                }
+
+                tvCat.setText(habit.category.toUpperCase(Locale.US));
+                tvFreq.setText(habit.targetDaysPerWeek == 7 ? "Daily" : habit.targetDaysPerWeek + "x / week");
+                tvStreak.setText("🔥 " + habit.currentStreak + "d");
+                tvStrength.setText(HabitMath.formatStrength(habit.strengthScore));
+
+                // Style Check-In Button
+                updateCheckInButtonStyle(btnCheckIn, habit.isCompletedToday);
+
+                btnCheckIn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+                        boolean newState = dbHelper.toggleCheckIn(habit.uuid, DatabaseHelper.getTodayDateString());
+                        habit.isCompletedToday = newState;
+                        updateCheckInButtonStyle(btnCheckIn, newState);
+                        refreshDashboard();
+                    }
+                });
+
+                // Micro 14-day heatmap dots
+                populateMicroHeatmap(layoutMicroHeatmap, habit.thirtyDayHistory);
+
+                // Card Click -> Open Detail Activity
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                        intent.putExtra(DetailActivity.EXTRA_HABIT_UUID, habit.uuid);
+                        startActivity(intent);
+                    }
+                });
+
+                habitListContainer.addView(itemView);
+            }
+        }
+    }
+
+    private void updateCheckInButtonStyle(Button btn, boolean completed) {
+        if (completed) {
+            btn.setBackgroundResource(R.drawable.btn_checkin_done);
+            btn.setText("✓");
+            btn.setTextColor(Color.WHITE);
+        } else {
+            btn.setBackgroundResource(R.drawable.btn_checkin_pending);
+            btn.setText("✓");
+            btn.setTextColor(getColor(R.color.text_tertiary));
+        }
+    }
+
+    private void populateMicroHeatmap(LinearLayout container, boolean[] thirtyDayHistory) {
+        container.removeAllViews();
+        // Show last 14 days (index 16 to 29)
+        int start = Math.max(0, thirtyDayHistory.length - 14);
+        int dotSize = (int) (10 * getResources().getDisplayMetrics().density);
+        int dotMargin = (int) (3 * getResources().getDisplayMetrics().density);
+
+        for (int i = start; i < thirtyDayHistory.length; i++) {
+            View dot = new View(this);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(dotSize, dotSize);
+            lp.setMargins(dotMargin, 0, dotMargin, 0);
+            dot.setLayoutParams(lp);
+
+            boolean done = thirtyDayHistory[i];
+            dot.setBackgroundColor(getColor(done ? R.color.heatmap_3 : R.color.heatmap_0));
+            container.addView(dot);
+        }
+    }
+
+    private void cycleTheme() {
+        themeMode = (themeMode + 1) % 3; // 0=Auto, 1=Light, 2=Dark
+        SharedPreferences sp = getSharedPreferences("kr_habit_theme", Context.MODE_PRIVATE);
+        sp.edit().putInt("theme_mode", themeMode).apply();
+        recreate();
+    }
+
+    // -------------------------------------------------------------
+    // Dialogs: Add Habit, Cloud Sync, Firebase Config, About
+    // -------------------------------------------------------------
+
+    private void showAddHabitDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_add_habit, null);
+        builder.setView(dialogView);
+        final AlertDialog dialog = builder.create();
+
+        final EditText etTitle = dialogView.findViewById(R.id.etHabitTitle);
+        final EditText etDesc = dialogView.findViewById(R.id.etHabitDesc);
+        final Spinner spinnerCategory = dialogView.findViewById(R.id.spinnerCategory);
+        Button btnCancel = dialogView.findViewById(R.id.btnCancelAdd);
+        Button btnSave = dialogView.findViewById(R.id.btnSaveHabit);
+
+        String[] categories = {"Health", "Mind", "Body", "Craft", "Focus"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categories);
+        spinnerCategory.setAdapter(adapter);
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+                String title = etTitle.getText().toString().trim();
+                String desc = etDesc.getText().toString().trim();
+                String cat = (String) spinnerCategory.getSelectedItem();
+
+                if (title.isEmpty()) {
+                    etTitle.setError("Please enter a habit title");
+                    return;
+                }
+
+                dbHelper.addHabit(title, desc, cat, 7);
+                dialog.dismiss();
+                refreshDashboard();
+                Toast.makeText(MainActivity.this, "Habit created!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void showCloudSyncDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_cloud_sync, null);
+        builder.setView(dialogView);
+        final AlertDialog dialog = builder.create();
+
+        final TextView tvUserName = dialogView.findViewById(R.id.tvUserName);
+        final TextView tvUserEmail = dialogView.findViewById(R.id.tvUserEmail);
+        final TextView tvSyncStatus = dialogView.findViewById(R.id.tvSyncStatusDetails);
+        final Button btnAuth = dialogView.findViewById(R.id.btnGoogleAuthAction);
+        Button btnSync = dialogView.findViewById(R.id.btnTriggerSyncNow);
+        Button btnFirebaseSettings = dialogView.findViewById(R.id.btnOpenFirebaseSettings);
+        Button btnClose = dialogView.findViewById(R.id.btnCloseSyncDialog);
+
+        final Runnable updateUi = new Runnable() {
+            @Override
+            public void run() {
+                if (syncEngine.isSignedIn()) {
+                    tvUserName.setText(syncEngine.getUserName());
+                    tvUserEmail.setText(syncEngine.getUserEmail());
+                    btnAuth.setText(R.string.btn_google_signout);
+                    tvSyncStatus.setText("Cloud Sync Active • Last synced: " + syncEngine.getLastSyncTimeFormatted());
+                } else {
+                    tvUserName.setText("Not Signed In");
+                    tvUserEmail.setText("Sign in to sync habits across devices");
+                    btnAuth.setText(R.string.btn_google_signin);
+                    tvSyncStatus.setText("Offline Mode • Local SQLite active");
+                }
+            }
+        };
+
+        updateUi.run();
+
+        btnAuth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+                if (syncEngine.isSignedIn()) {
+                    syncEngine.signOut();
+                    Toast.makeText(MainActivity.this, "Signed out of Google", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Sign in with Google session
+                    String savedToken = syncEngine.getIdToken();
+                    syncEngine.signIn("kr_user_108", "eliakimrosilarts@gmail.com", "Eliakim Rosil", savedToken != null ? savedToken : "");
+                    Toast.makeText(MainActivity.this, "Connected with Google Account!", Toast.LENGTH_SHORT).show();
+                }
+                updateUi.run();
+                refreshDashboard();
+            }
+        });
+
+        btnSync.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+                if (!syncEngine.isSignedIn()) {
+                    Toast.makeText(MainActivity.this, "Please sign in with Google first", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                tvSyncStatus.setText(R.string.sync_status_syncing);
+                syncEngine.syncWithFirestore(new FirebaseSyncEngine.SyncCallback() {
+                    @Override
+                    public void onSyncStarted() {
+                        tvSyncStatus.setText(R.string.sync_status_syncing);
+                    }
+
+                    @Override
+                    public void onSyncSuccess(int habitsSynced, int logsSynced, String message) {
+                        tvSyncStatus.setText("Synced • " + syncEngine.getLastSyncTimeFormatted());
+                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                        refreshDashboard();
+                    }
+
+                    @Override
+                    public void onSyncError(String error) {
+                        tvSyncStatus.setText("Sync info: " + error);
+                        Toast.makeText(MainActivity.this, error, Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+
+        btnFirebaseSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                showFirebaseConfigDialog();
+            }
+        });
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void showFirebaseConfigDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_firebase_config, null);
+        builder.setView(dialogView);
+        final AlertDialog dialog = builder.create();
+
+        final EditText etProjectId = dialogView.findViewById(R.id.etFirebaseProjectId);
+        final EditText etApiKey = dialogView.findViewById(R.id.etFirebaseApiKey);
+        final EditText etClientId = dialogView.findViewById(R.id.etGoogleClientId);
+        Button btnCancel = dialogView.findViewById(R.id.btnCancelFirebaseConfig);
+        Button btnSave = dialogView.findViewById(R.id.btnSaveFirebaseConfig);
+
+        etProjectId.setText(syncEngine.getProjectId());
+        etApiKey.setText(syncEngine.getApiKey());
+        etClientId.setText(syncEngine.getClientId());
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+                String pId = etProjectId.getText().toString();
+                String key = etApiKey.getText().toString();
+                String cId = etClientId.getText().toString();
+                syncEngine.saveFirebaseConfig(pId, key, cId);
+                Toast.makeText(MainActivity.this, "Firebase credentials saved", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void showAboutDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_about, null);
+        builder.setView(dialogView);
+        final AlertDialog dialog = builder.create();
+
+        Button btnClose = dialogView.findViewById(R.id.btnCloseAbout);
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+}

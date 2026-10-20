@@ -1,0 +1,18 @@
+KR Habit is a bespoke, offline-first daily habit and routine engine engineered for lasting behavioral momentum.
+
+BUILD GENUINE HABIT AUTOMATICITY
+Unlike simplistic streak trackers that punish you completely for missing a single day due to travel or illness, KR Habit calculates a scientifically grounded Habit Strength score (0% to 100%) using exponential smoothing. Every consistent day builds compounding momentum, and occasional misses cause only graceful decay rather than wiping out weeks of hard work.
+
+KEY FEATURES
+• Exponential Habit Strength Scoring: Measure real habit automaticity, not just fragile streaks.
+• Visual Consistency Heatmap: View your last 60+ days of progress in an interactive multi-week matrix.
+• Tactile Haptic Check-Ins: Feel satisfying physical haptic feedback with every check-in.
+• Google Account & Cloud Sync: Sign in with your Google account to backup and synchronize habits with Cloud Firestore across multiple devices.
+• 100% Offline-First Architecture: Your habit ledger is always stored locally in SQLite with zero latency. Cloud sync operates unobtrusively in the background.
+• Working Day & Night Theming: Handcrafted Emerald Obsidian aesthetic with dark, light, and automatic system modes.
+• Ad-Free & Respectful: Zero ads, zero background telemetry tracking.
+
+OPEN SOURCE ATTRIBUTION & COMPLIANCE
+KR Habit is distributed under the GNU General Public License v3.0 (GPLv3).
+The habit strength exponential scoring algorithm is adapted from Loop Habit Tracker (Álisson Linhares & Loop Contributors, GPLv3).
+Complete corresponding source code is available at: https://github.com/eliakimrosil/kr-habit

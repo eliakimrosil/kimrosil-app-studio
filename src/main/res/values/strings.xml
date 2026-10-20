@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KR Habit</string>
+    <string name="tagline">Daily Routine &amp; Cloud Sync</string>
+
+    <!-- Navigation & Headers -->
+    <string name="title_dashboard">Habits</string>
+    <string name="btn_add_habit">New Habit</string>
+    <string name="btn_theme">Theme</string>
+    <string name="btn_cloud_sync">Cloud Sync</string>
+    <string name="btn_about">About &amp; Licenses</string>
+
+    <!-- Categories -->
+    <string name="cat_all">All</string>
+    <string name="cat_mind">Mind</string>
+    <string name="cat_body">Body</string>
+    <string name="cat_craft">Craft</string>
+    <string name="cat_health">Health</string>
+    <string name="cat_focus">Focus</string>
+
+    <!-- Telemetry Cards -->
+    <string name="label_daily_progress">Today\'s Progress</string>
+    <string name="label_total_habits">Active Habits</string>
+    <string name="label_best_streak">Best Streak</string>
+    <string name="label_habit_strength">Habit Strength</string>
+    <string name="label_current_streak">Current Streak</string>
+    <string name="label_total_completions">Total Check-ins</string>
+    <string name="label_heatmap">60-Day Consistency Heatmap</string>
+
+    <!-- Actions -->
+    <string name="action_checkin">Done</string>
+    <string name="action_undo">Undo</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_save">Save Habit</string>
+    <string name="action_cancel">Cancel</string>
+
+    <!-- Form Inputs -->
+    <string name="hint_habit_title">Habit name (e.g. Read 20 mins)</string>
+    <string name="hint_habit_desc">Optional notes or ritual cues</string>
+    <string name="hint_category">Category</string>
+    <string name="hint_frequency">Target Days / Week (1-7)</string>
+
+    <!-- Google Login & Firebase Cloud Sync -->
+    <string name="title_cloud_sync">Google &amp; Cloud Sync</string>
+    <string name="btn_google_signin">Sign in with Google</string>
+    <string name="btn_google_signout">Sign Out</string>
+    <string name="btn_sync_now">Sync Now</string>
+    <string name="btn_configure_firebase">Firebase Settings</string>
+    <string name="sync_status_offline">Offline Mode (Local Storage)</string>
+    <string name="sync_status_connected">Connected: %1$s</string>
+    <string name="sync_status_syncing">Syncing habits with Cloud Firestore…</string>
+    <string name="sync_status_success">Last synced: %1$s</string>
+    <string name="sync_status_error">Sync failed: %1$s</string>
+
+    <!-- Firebase Config Dialog -->
+    <string name="title_firebase_config">Firebase Project Setup</string>
+    <string name="desc_firebase_config">Enter your Firebase Project credentials to sync habits with your personal Google Cloud Firestore database.</string>
+    <string name="hint_firebase_project_id">Firebase Project ID</string>
+    <string name="hint_firebase_api_key">Web API Key</string>
+    <string name="hint_google_client_id">OAuth 2.0 Web Client ID</string>
+
+    <!-- About & GPLv3 Attribution -->
+    <string name="title_about">About KR Habit</string>
+    <string name="about_description">KR Habit is a bespoke, offline-first habit routine engine with optional Google Cloud sync.\n\nOpen Source Compliance:\nHabit strength exponential smoothing scoring algorithm inspired by Loop Habit Tracker (Álisson Linhares &amp; Loop Contributors), licensed under GNU GPLv3.\n\nSource code repository: github.com/eliakimrosil/kr-habit\nLicense: GNU General Public License v3.0</string>
+    <string name="btn_close">Close</string>
+</resources>
