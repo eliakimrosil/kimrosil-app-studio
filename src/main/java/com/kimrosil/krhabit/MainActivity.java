@@ -275,14 +275,16 @@ public class MainActivity extends Activity {
             });
         }
 
-        Button btnAddNewHabit = findViewById(R.id.btnAddNewHabit);
-        btnAddNewHabit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                showAddHabitDialog();
-            }
-        });
+        View btnAddNewHabit = findViewById(R.id.btnAddNewHabit);
+        if (btnAddNewHabit != null) {
+            btnAddNewHabit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                    showAddHabitDialog();
+                }
+            });
+        }
     }
 
     private void refreshDashboard() {

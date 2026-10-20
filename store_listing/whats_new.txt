@@ -1,2 +1,2 @@
-Release v1.2.16 - KR Habit
-Streamlined Loop Habit Tracker interface: Removed category clutter and added rich daily reminder alarms
+Release v1.2.18 - KR Habit
+Reposition New Habit button to match Loop Habit Tracker top bar layout
