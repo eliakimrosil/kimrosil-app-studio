@@ -638,7 +638,7 @@ Data Safety & Offline Privacy Guarantee:
 - **Category**: Productivity & Habits
 - **Tagline**: Daily habit routine with habit strength scoring, heatmap grid, and cloud sync.
 - **Landing Page**: https://apps.kimrosil.com/kr-habit/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.28-kr-habit/kr-habit.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.29-kr-habit/kr-habit.apk
 - **Privacy Policy**: https://apps.kimrosil.com/kr-habit/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
@@ -658,10 +658,10 @@ KEY FEATURES
 • Working Day & Night Theming: Handcrafted Emerald Obsidian aesthetic with dark, light, and automatic system modes.
 • Ad-Free & Respectful: Zero ads, zero background telemetry tracking.
 
-OPEN SOURCE ATTRIBUTION & COMPLIANCE
-KR Habit is distributed under the GNU General Public License v3.0 (GPLv3).
-The habit strength exponential scoring algorithm is adapted from Loop Habit Tracker (Álisson Linhares & Loop Contributors, GPLv3).
-Complete corresponding source code is available at: https://github.com/eliakimrosil/kr-habit
+PRIVATE, LOCAL & RESPECTFUL
+KR Habit is distributed as pure, offline-first freeware by KimRosil App Studio.
+Zero ads, zero subscriptions, zero tracking. All your habit records stay securely on your device.
+Copyright © 2026 Eliakim Rosil. All Rights Reserved.
 
 ---
 
