@@ -123,34 +123,47 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Telemetry 3-Column Card Row -->
+            <!-- Telemetry 3-Column Card Row with Circular Ring Gauge (krhabit.jpg) -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="@drawable/card_surface"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:layout_marginBottom="12dp">
 
-                <!-- Column 1: Daily Progress -->
+                <!-- Column 1: Daily Progress with Ring Gauge (krhabit.jpg) -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:layout_gravity="center_vertical"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tvDailyProgressValue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0%"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/metric_strength" />
+                    <FrameLayout
+                        android:layout_width="62dp"
+                        android:layout_height="62dp"
+                        android:layout_marginBottom="4dp">
+
+                        <com.kimrosil.krhabit.RingProgressView
+                            android:id="@+id/ringProgressView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:id="@+id/tvDailyProgressValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="0%"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary" />
+                    </FrameLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -163,7 +176,7 @@
 
                 <View
                     android:layout_width="1dp"
-                    android:layout_height="36dp"
+                    android:layout_height="48dp"
                     android:layout_gravity="center_vertical"
                     android:background="@color/border_hairline" />
 
@@ -173,6 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:layout_gravity="center_vertical"
                     android:orientation="vertical">
 
                     <TextView
@@ -190,12 +204,13 @@
                         android:text="@string/label_total_habits"
                         android:textSize="11sp"
                         android:textColor="@color/text_secondary"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:layout_marginTop="6dp" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="1dp"
-                    android:layout_height="36dp"
+                    android:layout_height="48dp"
                     android:layout_gravity="center_vertical"
                     android:background="@color/border_hairline" />
 
@@ -205,6 +220,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:layout_gravity="center_vertical"
                     android:orientation="vertical">
 
                     <TextView
@@ -222,7 +238,8 @@
                         android:text="@string/label_best_streak"
                         android:textSize="11sp"
                         android:textColor="@color/text_secondary"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:layout_marginTop="6dp" />
                 </LinearLayout>
             </LinearLayout>
 

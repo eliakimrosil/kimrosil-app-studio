@@ -1,2 +1,2 @@
-Release v1.2.22 - KR Habit
-Compact Bento habit layout with inline 14-day micro heatmaps and dynamic per-habit Chroma color accents
+Release v1.2.23 - KR Habit
+Add circular ring gauge for Today's Progress matching Pictures/krhabit.jpg

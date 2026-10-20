@@ -43,6 +43,7 @@ public class MainActivity extends Activity {
     private int themeMode = 0; // 0 = Auto, 1 = Light, 2 = Dark
 
     private TextView tvSyncIndicator;
+    private RingProgressView ringProgressView;
     private TextView tvDailyProgressValue;
     private TextView tvTotalHabitsValue;
     private TextView tvTopStreakValue;
@@ -202,6 +203,7 @@ public class MainActivity extends Activity {
 
     private void initViews() {
         tvSyncIndicator = findViewById(R.id.tvSyncIndicator);
+        ringProgressView = findViewById(R.id.ringProgressView);
         tvDailyProgressValue = findViewById(R.id.tvDailyProgressValue);
         tvTotalHabitsValue = findViewById(R.id.tvTotalHabitsValue);
         tvTopStreakValue = findViewById(R.id.tvTopStreakValue);
@@ -332,6 +334,9 @@ public class MainActivity extends Activity {
 
         int progressPct = total > 0 ? (int) Math.round((completedToday * 100.0) / total) : 0;
         tvDailyProgressValue.setText(progressPct + "%");
+        if (ringProgressView != null) {
+            ringProgressView.setProgress(progressPct);
+        }
         tvTotalHabitsValue.setText(String.valueOf(total));
         tvTopStreakValue.setText(topStreak + "d");
 

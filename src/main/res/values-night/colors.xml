@@ -24,6 +24,7 @@
     <color name="metric_strength">#00E676</color>
     <color name="metric_streak">#F59E0B</color>
     <color name="metric_completions">#38BDF8</color>
+    <color name="progress_track">#1C2A22</color>
 
     <!-- Heatmap Intensity Levels -->
     <color name="heatmap_0">#18241D</color>
