@@ -638,7 +638,7 @@ Data Safety & Offline Privacy Guarantee:
 - **Category**: Productivity & Habits
 - **Tagline**: Daily habit routine with habit strength scoring, heatmap grid, and cloud sync.
 - **Landing Page**: https://apps.kimrosil.com/kr-habit/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.8-kr-habit/kr-habit.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.10-kr-habit/kr-habit.apk
 - **Privacy Policy**: https://apps.kimrosil.com/kr-habit/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
