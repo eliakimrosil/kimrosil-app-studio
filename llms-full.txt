@@ -634,20 +634,20 @@ Data Safety & Offline Privacy Guarantee:
 
 ---
 
-## KR Habit (`kr-habit`)
+## KR Habits (`kr-habit`)
 - **Category**: Productivity & Habits
 - **Tagline**: Daily habit routine with habit strength scoring, heatmap grid, and cloud sync.
 - **Landing Page**: https://apps.kimrosil.com/kr-habit/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.32-kr-habit/kr-habit.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.33-kr-habit/kr-habit.apk
 - **Privacy Policy**: https://apps.kimrosil.com/kr-habit/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
 
 ### Detailed Overview & Capabilities
-KR Habit is a bespoke, offline-first daily habit and routine engine engineered for lasting behavioral momentum.
+KR Habits is an offline-first daily habit and routine engine engineered for lasting behavioral momentum.
 
 BUILD GENUINE HABIT AUTOMATICITY
-Unlike simplistic streak trackers that punish you completely for missing a single day due to travel or illness, KR Habit calculates a scientifically grounded Habit Strength score (0% to 100%) using exponential smoothing. Every consistent day builds compounding momentum, and occasional misses cause only graceful decay rather than wiping out weeks of hard work.
+Unlike simplistic streak trackers that punish you completely for missing a single day due to travel or illness, KR Habits calculates a scientifically grounded Habit Strength score (0% to 100%) using exponential smoothing. Every consistent day builds compounding momentum, and occasional misses cause only graceful decay rather than wiping out weeks of hard work.
 
 KEY FEATURES
 • Exponential Habit Strength Scoring: Measure real habit automaticity, not just fragile streaks.
@@ -659,7 +659,7 @@ KEY FEATURES
 • Ad-Free & Respectful: Zero ads, zero background telemetry tracking.
 
 PRIVATE, LOCAL & RESPECTFUL
-KR Habit is distributed as pure, offline-first freeware by KimRosil App Studio.
+KR Habits is distributed as pure, offline-first freeware by KimRosil App Studio.
 Zero ads, zero subscriptions, zero tracking. All your habit records stay securely on your device.
 Copyright © 2026 Eliakim Rosil. All Rights Reserved.
 
