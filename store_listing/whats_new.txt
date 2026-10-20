@@ -1,2 +1,2 @@
-Release v1.2.32 - KR Habit
-Restore About info card in Settings without buttons
+Release v1.2.33 - KR Habit
+Google Play Store Policy & Security Compliance: remove GET_ACCOUNTS, USE_EXACT_ALARM, enhance data deletion

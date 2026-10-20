@@ -18,10 +18,10 @@ KR Habit is designed with an offline-first architecture.
 ### 2. Google Account Permissions
 When using Google Sign-In, KR Habit requests basic profile information (display name, email address, and user ID) solely to identify your account and authenticate access to your synchronized cloud habit database.
 
-### 3. Data Retention & Deletion
+### 3. Data Retention & Deletion (Google Play Compliance)
 You retain complete ownership of your data at all times:
-* To delete all local data, simply clear the application data in Android Settings or uninstall the app.
-* To disconnect Google Cloud Sync, tap "Sign Out" in the Cloud Sync dialog inside the app.
+* **Local Data Deletion:** To delete all local habit records, clear the application storage in Android Settings or uninstall the app.
+* **Cloud Data Deletion:** If you synced habits with Google Cloud Firestore and wish to permanently delete your cloud records, you can disconnect and clear your data directly within the app, or email a data deletion request to **eliakimrosil@gmail.com** with your account email address. All associated cloud records will be permanently purged within 48 hours.
 
 ### 4. Software License
 KR Habit is proprietary freeware created and maintained by KimRosil App Studio.

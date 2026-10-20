@@ -81,13 +81,19 @@ public class ReminderManager {
         long triggerMs = target.getTimeInMillis();
 
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                if (am.canScheduleExactAlarms()) {
+                    am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerMs, pi);
+                } else {
+                    am.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerMs, pi);
+                }
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerMs, pi);
             } else {
                 am.setExact(AlarmManager.RTC_WAKEUP, triggerMs, pi);
             }
         } catch (SecurityException ignored) {
-            // Fallback for non-exact alarm if permission not held
+            // Fallback for non-exact alarm if exact permission not granted
             am.set(AlarmManager.RTC_WAKEUP, triggerMs, pi);
         }
     }
