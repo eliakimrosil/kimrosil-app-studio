@@ -1,2 +1,2 @@
-Release v1.2.6 - KR Habit
-Professional flat button styling with zero muddy shadows and crisp hairline borders
+Release v1.2.8 - KR Habit
+Native swipe down to refresh and resync with tactile haptic physics

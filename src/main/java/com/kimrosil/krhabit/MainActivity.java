@@ -42,6 +42,7 @@ public class MainActivity extends Activity {
     private TextView tvTopStreakValue;
     private LinearLayout habitListContainer;
     private LinearLayout layoutEmptyState;
+    private PullToRefreshLayout pullToRefreshLayout;
     private View btnAccount;
     private TextView tvTopBarAvatarText;
     private ImageView ivTopBarAvatar;
@@ -141,9 +142,17 @@ public class MainActivity extends Activity {
     }
 
     private void triggerAutoSync() {
+        triggerAutoSync(null);
+    }
+
+    private void triggerAutoSync(final Runnable onComplete) {
         if (!syncEngine.isSignedIn()) {
             tvSyncIndicator.setText("● Local Storage");
             tvSyncIndicator.setTextColor(getColor(R.color.text_tertiary));
+            refreshDashboard();
+            if (onComplete != null) {
+                new Handler(Looper.getMainLooper()).postDelayed(onComplete, 350);
+            }
             return;
         }
 
@@ -162,12 +171,19 @@ public class MainActivity extends Activity {
                 tvSyncIndicator.setText("● Synced with Google");
                 tvSyncIndicator.setTextColor(getColor(R.color.sync_online));
                 refreshDashboard();
+                if (onComplete != null) {
+                    onComplete.run();
+                }
             }
 
             @Override
             public void onSyncError(String error) {
                 tvSyncIndicator.setText("● Synced (Offline)");
                 tvSyncIndicator.setTextColor(getColor(R.color.sync_offline));
+                refreshDashboard();
+                if (onComplete != null) {
+                    onComplete.run();
+                }
             }
         });
     }
@@ -179,6 +195,24 @@ public class MainActivity extends Activity {
         tvTopStreakValue = findViewById(R.id.tvTopStreakValue);
         habitListContainer = findViewById(R.id.habitListContainer);
         layoutEmptyState = findViewById(R.id.layoutEmptyState);
+
+        // Pull to refresh / resync
+        pullToRefreshLayout = findViewById(R.id.pullToRefreshLayout);
+        if (pullToRefreshLayout != null) {
+            pullToRefreshLayout.setOnRefreshListener(new PullToRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    triggerAutoSync(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (pullToRefreshLayout != null) {
+                                pullToRefreshLayout.setRefreshing(false);
+                            }
+                        }
+                    });
+                }
+            });
+        }
 
         // Header click -> Settings
         View layoutBrandHeader = findViewById(R.id.layoutBrandHeader);
