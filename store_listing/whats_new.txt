@@ -1,2 +1,2 @@
-Release v1.0.0 - KR Habit
-Initial release of KR Habit with exponential habit strength scoring, 60-day heatmap, and Google Cloud Firestore sync
+Release v1.2.0 - KR Habit
+Seamless automatic background sync with Google Account and minimal header ergonomics

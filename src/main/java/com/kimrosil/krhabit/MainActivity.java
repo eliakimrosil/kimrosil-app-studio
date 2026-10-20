@@ -73,12 +73,41 @@ public class MainActivity extends Activity {
         initViews();
         setupCategoryChips();
         refreshDashboard();
+        triggerAutoSync();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         refreshDashboard();
+        triggerAutoSync();
+    }
+
+    private void triggerAutoSync() {
+        if (!syncEngine.isSignedIn()) return;
+
+        tvSyncIndicator.setText("● Syncing…");
+        tvSyncIndicator.setTextColor(getColor(R.color.sync_pending));
+
+        syncEngine.syncWithFirestore(new FirebaseSyncEngine.SyncCallback() {
+            @Override
+            public void onSyncStarted() {
+                tvSyncIndicator.setText("● Syncing…");
+                tvSyncIndicator.setTextColor(getColor(R.color.sync_pending));
+            }
+
+            @Override
+            public void onSyncSuccess(int habitsSynced, int logsSynced, String message) {
+                tvSyncIndicator.setText("● Synced with Google");
+                tvSyncIndicator.setTextColor(getColor(R.color.sync_online));
+            }
+
+            @Override
+            public void onSyncError(String error) {
+                tvSyncIndicator.setText("● Offline");
+                tvSyncIndicator.setTextColor(getColor(R.color.sync_offline));
+            }
+        });
     }
 
     private void initViews() {
@@ -89,15 +118,29 @@ public class MainActivity extends Activity {
         habitListContainer = findViewById(R.id.habitListContainer);
         layoutEmptyState = findViewById(R.id.layoutEmptyState);
 
+        // Header click -> Account Settings
+        View layoutBrandHeader = findViewById(R.id.layoutBrandHeader);
+        if (layoutBrandHeader != null) {
+            layoutBrandHeader.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                    showCloudSyncDialog();
+                }
+            });
+        }
+
         // Top Bar Buttons
-        Button btnCloudSync = findViewById(R.id.btnCloudSync);
-        btnCloudSync.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                showCloudSyncDialog();
-            }
-        });
+        Button btnAccount = findViewById(R.id.btnAccount);
+        if (btnAccount != null) {
+            btnAccount.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                    showCloudSyncDialog();
+                }
+            });
+        }
 
         Button btnToggleTheme = findViewById(R.id.btnToggleTheme);
         btnToggleTheme.setOnClickListener(new View.OnClickListener() {
@@ -173,10 +216,10 @@ public class MainActivity extends Activity {
     private void refreshDashboard() {
         // Update Sync Indicator
         if (syncEngine.isSignedIn()) {
-            tvSyncIndicator.setText("☁ " + syncEngine.getUserEmail());
+            tvSyncIndicator.setText("● Synced with Google");
             tvSyncIndicator.setTextColor(getColor(R.color.sync_online));
         } else {
-            tvSyncIndicator.setText("Offline Mode (Local Storage)");
+            tvSyncIndicator.setText("● Local Storage");
             tvSyncIndicator.setTextColor(getColor(R.color.text_tertiary));
         }
 
@@ -242,6 +285,7 @@ public class MainActivity extends Activity {
                         habit.isCompletedToday = newState;
                         updateCheckInButtonStyle(btnCheckIn, newState);
                         refreshDashboard();
+                        triggerAutoSync();
                     }
                 });
 
@@ -345,6 +389,7 @@ public class MainActivity extends Activity {
                 dbHelper.addHabit(title, desc, cat, 7);
                 dialog.dismiss();
                 refreshDashboard();
+                triggerAutoSync();
                 Toast.makeText(MainActivity.this, "Habit created!", Toast.LENGTH_SHORT).show();
             }
         });
@@ -362,7 +407,6 @@ public class MainActivity extends Activity {
         final TextView tvUserEmail = dialogView.findViewById(R.id.tvUserEmail);
         final TextView tvSyncStatus = dialogView.findViewById(R.id.tvSyncStatusDetails);
         final Button btnAuth = dialogView.findViewById(R.id.btnGoogleAuthAction);
-        Button btnSync = dialogView.findViewById(R.id.btnTriggerSyncNow);
         Button btnFirebaseSettings = dialogView.findViewById(R.id.btnOpenFirebaseSettings);
         Button btnClose = dialogView.findViewById(R.id.btnCloseSyncDialog);
 
@@ -373,12 +417,12 @@ public class MainActivity extends Activity {
                     tvUserName.setText(syncEngine.getUserName());
                     tvUserEmail.setText(syncEngine.getUserEmail());
                     btnAuth.setText(R.string.btn_google_signout);
-                    tvSyncStatus.setText("Cloud Sync Active • Last synced: " + syncEngine.getLastSyncTimeFormatted());
+                    tvSyncStatus.setText("● Auto-sync active with Google Cloud\nLast synced: " + syncEngine.getLastSyncTimeFormatted());
                 } else {
                     tvUserName.setText("Not Signed In");
-                    tvUserEmail.setText("Sign in to sync habits across devices");
+                    tvUserEmail.setText("Sign in to automatically sync habits with Google");
                     btnAuth.setText(R.string.btn_google_signin);
-                    tvSyncStatus.setText("Offline Mode • Local SQLite active");
+                    tvSyncStatus.setText("● Offline Mode (Local Storage only)");
                 }
             }
         };
@@ -397,41 +441,10 @@ public class MainActivity extends Activity {
                     String savedToken = syncEngine.getIdToken();
                     syncEngine.signIn("kr_user_108", "eliakimrosilarts@gmail.com", "Eliakim Rosil", savedToken != null ? savedToken : "");
                     Toast.makeText(MainActivity.this, "Connected with Google Account!", Toast.LENGTH_SHORT).show();
+                    triggerAutoSync();
                 }
                 updateUi.run();
                 refreshDashboard();
-            }
-        });
-
-        btnSync.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-                if (!syncEngine.isSignedIn()) {
-                    Toast.makeText(MainActivity.this, "Please sign in with Google first", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                tvSyncStatus.setText(R.string.sync_status_syncing);
-                syncEngine.syncWithFirestore(new FirebaseSyncEngine.SyncCallback() {
-                    @Override
-                    public void onSyncStarted() {
-                        tvSyncStatus.setText(R.string.sync_status_syncing);
-                    }
-
-                    @Override
-                    public void onSyncSuccess(int habitsSynced, int logsSynced, String message) {
-                        tvSyncStatus.setText("Synced • " + syncEngine.getLastSyncTimeFormatted());
-                        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                        refreshDashboard();
-                    }
-
-                    @Override
-                    public void onSyncError(String error) {
-                        tvSyncStatus.setText("Sync info: " + error);
-                        Toast.makeText(MainActivity.this, error, Toast.LENGTH_LONG).show();
-                    }
-                });
             }
         });
 

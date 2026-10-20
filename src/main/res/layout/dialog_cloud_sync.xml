@@ -18,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Google &amp; Cloud Sync"
+            android:text="Google Account"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/text_primary" />
@@ -101,17 +101,6 @@
         android:textStyle="bold"
         android:textColor="@color/text_on_accent"
         android:background="@drawable/btn_primary"
-        android:layout_marginBottom="10dp" />
-
-    <!-- Cloud Sync Now Button -->
-    <Button
-        android:id="@+id/btnTriggerSyncNow"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:text="Sync With Cloud Now"
-        android:textSize="14sp"
-        android:textColor="@color/text_primary"
-        android:background="@drawable/btn_secondary"
         android:layout_marginBottom="10dp" />
 
     <!-- Firebase Project Setup Button -->
