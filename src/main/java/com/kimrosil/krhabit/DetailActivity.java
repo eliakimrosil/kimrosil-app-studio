@@ -123,7 +123,7 @@ public class DetailActivity extends Activity {
         tvTitle.setText(item.title);
         String freqText = item.targetDaysPerWeek == 7 ? "Daily" : item.targetDaysPerWeek + "x / week";
         if (item.reminderEnabled) {
-            tvCategory.setText(freqText + " • 🔔 " + ReminderManager.formatReminderTime(item.reminderHour, item.reminderMinute));
+            tvCategory.setText("🔔 " + ReminderManager.formatReminderTime(item.reminderHour, item.reminderMinute) + " • " + freqText);
         } else {
             tvCategory.setText(freqText + " • No reminder");
         }

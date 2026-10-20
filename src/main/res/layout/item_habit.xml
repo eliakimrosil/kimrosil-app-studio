@@ -39,22 +39,6 @@
                 android:maxLines="1"
                 android:ellipsize="end" />
 
-            <!-- Compact Streak Flame Pill -->
-            <TextView
-                android:id="@+id/tvStreakBadge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🔥 0d"
-                android:textSize="11sp"
-                android:textStyle="bold"
-                android:textColor="@color/metric_streak"
-                android:background="@drawable/chip_streak"
-                android:paddingStart="6dp"
-                android:paddingEnd="6dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:layout_marginStart="6dp" />
-
             <!-- Compact Reminder Bell Badge -->
             <TextView
                 android:id="@+id/tvReminderBadge"
@@ -71,6 +55,22 @@
                 android:paddingBottom="2dp"
                 android:layout_marginStart="6dp"
                 android:visibility="gone" />
+
+            <!-- Compact Streak Flame Pill -->
+            <TextView
+                android:id="@+id/tvStreakBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔥 0d"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="@color/metric_streak"
+                android:background="@drawable/chip_streak"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:layout_marginStart="6dp" />
         </LinearLayout>
 
         <!-- Compact 40x40dp Check-In Button -->

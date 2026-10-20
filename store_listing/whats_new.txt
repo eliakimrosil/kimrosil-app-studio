@@ -1,2 +1,2 @@
-Release v1.2.23 - KR Habit
-Add circular ring gauge for Today's Progress matching Pictures/krhabit.jpg
+Release v1.2.24 - KR Habit
+Switch placement of day and reminder time
