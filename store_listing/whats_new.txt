@@ -1,2 +1,2 @@
-Release v1.2.18 - KR Habit
-Reposition New Habit button to match Loop Habit Tracker top bar layout
+Release v1.2.20 - KR Habit
+Match layout and visual style from Pictures/krhabit.jpg with circular ring progress, circular check-in, and capsule progress bar without categories

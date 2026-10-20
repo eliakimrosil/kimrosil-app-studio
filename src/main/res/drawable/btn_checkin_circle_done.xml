@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/primary_accent_glow">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/btn_done_bg" />
+            <stroke
+                android:width="2dp"
+                android:color="@color/btn_done_stroke" />
+        </shape>
+    </item>
+</ripple>
