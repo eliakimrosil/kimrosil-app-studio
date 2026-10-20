@@ -1,6 +1,6 @@
-# Privacy Policy for KR Habit
+# Privacy Policy for KR Habits
 
-**Last Updated:** October 19, 2026
+**Last Updated:** October 20, 2026
 
 **Developer:** Eliakim Rosil (KimRosil App Studio)  
 **Contact:** eliakim.rosil@gmail.com  
@@ -9,14 +9,14 @@
 ---
 
 ### 1. Data Collection & Storage
-KR Habit is designed with an offline-first architecture. 
+KR Habits is designed with an offline-first architecture. 
 
 * **Local Storage:** All your habit titles, schedules, notes, and completion logs are stored locally on your device in a private SQLite database.
 * **Optional Google Cloud Sync:** If you choose to sign in with your Google Account, habit metadata and check-in logs are transmitted securely via HTTPS to Google Cloud Firestore under your authenticated user record.
 * **No Third-Party Telemetry:** We do not include third-party advertising SDKs, tracking pixels, or analytics trackers.
 
 ### 2. Google Account Permissions
-When using Google Sign-In, KR Habit requests basic profile information (display name, email address, and user ID) solely to identify your account and authenticate access to your synchronized cloud habit database.
+When using Google Sign-In, KR Habits requests basic profile information (display name, email address, and user ID) solely to identify your account and authenticate access to your synchronized cloud habit database.
 
 ### 3. Data Retention & Deletion (Google Play Compliance)
 You retain complete ownership of your data at all times:
@@ -24,7 +24,7 @@ You retain complete ownership of your data at all times:
 * **Cloud Data Deletion:** If you synced habits with Google Cloud Firestore and wish to permanently delete your cloud records, you can disconnect and clear your data directly within the app, or email a data deletion request to **eliakimrosil@gmail.com** with your account email address. All associated cloud records will be permanently purged within 48 hours.
 
 ### 4. Software License
-KR Habit is proprietary freeware created and maintained by KimRosil App Studio.
+KR Habits is proprietary freeware created and maintained by KimRosil App Studio.
 Copyright © 2026 Eliakim Rosil. All Rights Reserved.
 
 ### 5. Changes to This Policy

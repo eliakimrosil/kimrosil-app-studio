@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
- * Chroma Palette & Dynamic Accent Engine for KR Habit.
+ * Chroma Palette & Dynamic Accent Engine for KR Habits.
  * Provides curated domain colors and tactile check-in / heatmap drawables.
  */
 public final class HabitColors {

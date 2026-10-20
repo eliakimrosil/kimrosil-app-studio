@@ -70,7 +70,7 @@ public class ProfileImageHelper {
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setConnectTimeout(6000);
                     conn.setReadTimeout(6000);
-                    conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Android; KR Habit)");
+                    conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Android; KR Habits)");
 
                     if (conn.getResponseCode() == 200) {
                         InputStream is = conn.getInputStream();

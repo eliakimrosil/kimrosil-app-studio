@@ -1,7 +1,7 @@
-KR Habit is a bespoke, offline-first daily habit and routine engine engineered for lasting behavioral momentum.
+KR Habits is an offline-first daily habit and routine engine engineered for lasting behavioral momentum.
 
 BUILD GENUINE HABIT AUTOMATICITY
-Unlike simplistic streak trackers that punish you completely for missing a single day due to travel or illness, KR Habit calculates a scientifically grounded Habit Strength score (0% to 100%) using exponential smoothing. Every consistent day builds compounding momentum, and occasional misses cause only graceful decay rather than wiping out weeks of hard work.
+Unlike simplistic streak trackers that punish you completely for missing a single day due to travel or illness, KR Habits calculates a scientifically grounded Habit Strength score (0% to 100%) using exponential smoothing. Every consistent day builds compounding momentum, and occasional misses cause only graceful decay rather than wiping out weeks of hard work.
 
 KEY FEATURES
 • Exponential Habit Strength Scoring: Measure real habit automaticity, not just fragile streaks.
@@ -13,6 +13,6 @@ KEY FEATURES
 • Ad-Free & Respectful: Zero ads, zero background telemetry tracking.
 
 PRIVATE, LOCAL & RESPECTFUL
-KR Habit is distributed as pure, offline-first freeware by KimRosil App Studio.
+KR Habits is distributed as pure, offline-first freeware by KimRosil App Studio.
 Zero ads, zero subscriptions, zero tracking. All your habit records stay securely on your device.
 Copyright © 2026 Eliakim Rosil. All Rights Reserved.

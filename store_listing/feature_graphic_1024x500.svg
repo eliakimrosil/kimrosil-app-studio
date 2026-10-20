@@ -93,7 +93,7 @@
   <g transform="translate(390, 150)">
     <rect x="0" y="0" width="210" height="28" rx="6" fill="#10B981" fill-opacity="0.15" />
     <text x="12" y="19" font-family="sans-serif" font-size="12" font-weight="bold" fill="#10B981" letter-spacing="2">KIMROSIL APP STUDIO</text>
-    <text x="0" y="85" font-family="sans-serif" font-size="44" font-weight="900" fill="#FFFFFF" letter-spacing="-0.5">KR Habit</text>
+    <text x="0" y="85" font-family="sans-serif" font-size="44" font-weight="900" fill="#FFFFFF" letter-spacing="-0.5">KR Habits</text>
     <text x="0" y="125" font-family="sans-serif" font-size="19" fill="#94A3B8">Daily habit routine with habit strength scoring, h...</text>
 
     <g transform="translate(0, 165)">

@@ -19,7 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 /**
- * Pure native, ultra-lightweight pull-to-refresh layout for KR Habit.
+ * Pure native, ultra-lightweight pull-to-refresh layout for KR Habits.
  * Provides tactile drag resistance, threshold haptic click, and smooth animations.
  */
 public class PullToRefreshLayout extends FrameLayout {

@@ -1,2 +1,2 @@
-Release v1.2.33 - KR Habit
-Google Play Store Policy & Security Compliance: remove GET_ACCOUNTS, USE_EXACT_ALARM, enhance data deletion
+Release v1.2.34 - KR Habits
+Full rebrand app title to KR Habits

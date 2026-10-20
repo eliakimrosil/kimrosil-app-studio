@@ -692,9 +692,9 @@ public class MainActivity extends Activity {
         if (tvAppVersion != null) {
             try {
                 String ver = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-                tvAppVersion.setText("KR Habit v" + ver);
+                tvAppVersion.setText("KR Habits v" + ver);
             } catch (Exception e) {
-                tvAppVersion.setText("KR Habit v1.2.24");
+                tvAppVersion.setText("KR Habits v1.2.34");
             }
         }
 

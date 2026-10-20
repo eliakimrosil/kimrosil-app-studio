@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">KR Habit</string>
+    <string name="app_name">KR Habits</string>
     <string name="tagline">Daily Routine &amp; Cloud Sync</string>
 
     <!-- Navigation & Headers -->
@@ -61,7 +61,7 @@
     <string name="hint_google_client_id">OAuth 2.0 Web Client ID</string>
 
     <!-- About & Copyright -->
-    <string name="title_about">About KR Habit</string>
-    <string name="about_description">KR Habit is a bespoke, offline-first daily habit routine engine with optional Google Cloud sync.\n\nDesigned for native Android speed, privacy, and zero battery drain.\n\nAuthor: Eliakim Rosil\nStudio: KimRosil App Studio\nCopyright © 2026. All Rights Reserved.</string>
+    <string name="title_about">About KR Habits</string>
+    <string name="about_description">KR Habits is an offline-first daily habit routine engine with optional Google Cloud sync.\n\nDesigned for native Android speed, privacy, and zero battery drain.\n\nAuthor: Eliakim Rosil\nStudio: KimRosil App Studio\nCopyright © 2026. All Rights Reserved.</string>
     <string name="btn_close">Close</string>
 </resources>
