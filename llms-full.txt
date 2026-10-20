@@ -1265,6 +1265,20 @@ Data Safety & Offline Privacy Guarantee:
 
 ---
 
+## SwageDie (`swage-die`)
+- **Category**: TOOLS & UTILITIES / ENGINEERING
+- **Tagline**: Offline Sheet Metal Punch Clearance & Tonnage Calculator
+- **Landing Page**: https://apps.kimrosil.com/swage-die/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-swage-die/swage-die.apk
+- **Privacy Policy**: https://apps.kimrosil.com/swage-die/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+SwageDie is an offline-first Android utility engineered natively for Android. Operates completely without internet connectivity, storing all data securely in on-device sandboxed storage.
+
+---
+
 ## TankPulse (`offline-fuel-log-tracker`)
 - **Category**: Auto & Vehicles / Utilities
 - **Tagline**: Instantly record fuel fill-ups and compute real-world mileage and cost-per-mile without accounts, ads, or internet connection.
