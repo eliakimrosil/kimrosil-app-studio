@@ -58,7 +58,7 @@
             android:stateListAnimator="@null"
             android:elevation="0dp" />
 
-        <!-- Mini Google Account Avatar Button -->
+        <!-- Unified Google Account & Settings Avatar Button -->
         <FrameLayout
             android:id="@+id/btnAccount"
             android:layout_width="38dp"
@@ -66,7 +66,7 @@
             android:background="@drawable/btn_icon"
             android:clickable="true"
             android:focusable="true"
-            android:layout_marginEnd="8dp">
+            android:contentDescription="Settings and Account">
 
             <TextView
                 android:id="@+id/tvTopBarAvatarText"
@@ -85,19 +85,6 @@
                 android:scaleType="centerCrop"
                 android:visibility="gone" />
         </FrameLayout>
-
-        <!-- Settings Button (Houses Theme Switcher, Account, About) -->
-        <Button
-            android:id="@+id/btnSettings"
-            android:layout_width="38dp"
-            android:layout_height="38dp"
-            android:minWidth="38dp"
-            android:text="⚙"
-            android:textSize="18sp"
-            android:textColor="@color/text_primary"
-            android:background="@drawable/btn_icon"
-            android:stateListAnimator="@null"
-            android:elevation="0dp" />
     </LinearLayout>
 
     <View

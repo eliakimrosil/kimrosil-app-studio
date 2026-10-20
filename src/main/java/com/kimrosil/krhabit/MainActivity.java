@@ -55,7 +55,6 @@ public class MainActivity extends Activity {
     private View btnAccount;
     private TextView tvTopBarAvatarText;
     private ImageView ivTopBarAvatar;
-    private Button btnSettings;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -253,24 +252,12 @@ public class MainActivity extends Activity {
             });
         }
 
-        // Mini Avatar Button -> Settings
+        // Unified Avatar Button -> Settings & Account
         btnAccount = findViewById(R.id.btnAccount);
         tvTopBarAvatarText = findViewById(R.id.tvTopBarAvatarText);
         ivTopBarAvatar = findViewById(R.id.ivTopBarAvatar);
         if (btnAccount != null) {
             btnAccount.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                    showSettingsDialog();
-                }
-            });
-        }
-
-        // Settings Button -> Settings (Houses Theme, Account, About)
-        btnSettings = findViewById(R.id.btnSettings);
-        if (btnSettings != null) {
-            btnSettings.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);

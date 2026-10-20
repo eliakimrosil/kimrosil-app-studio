@@ -1,2 +1,2 @@
-Release v1.2.26 - KR Habit
-Refine reminder time pill outline and stroke weight
+Release v1.2.27 - KR Habit
+Unify top bar actions by using the Profile Avatar as the single Settings entry point
