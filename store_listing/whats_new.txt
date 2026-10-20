@@ -1,2 +1,2 @@
-Release v1.2.27 - KR Habit
-Unify top bar actions by using the Profile Avatar as the single Settings entry point
+Release v1.2.28 - KR Habit
+Upgrade brand identity with bespoke adaptive vector icons and feature graphic

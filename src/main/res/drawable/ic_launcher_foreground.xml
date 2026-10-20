@@ -4,28 +4,50 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <!-- Habit Momentum Loop Ring -->
-    <path
-        android:strokeColor="#00E676"
-        android:strokeWidth="6"
-        android:strokeLineCap="round"
-        android:pathData="M54,26 A28,28 0 1,1 32,37" />
-
-    <!-- Leading Momentum Spark -->
-    <path
-        android:fillColor="#69F0AE"
-        android:pathData="M54,26 A4,4 0 1,0 54,25.9 Z" />
-
-    <!-- Bold Checkmark in Core -->
-    <path
-        android:strokeColor="#FFFFFF"
-        android:strokeWidth="5.5"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round"
-        android:pathData="M43,55 L51,63 L67,46" />
-
-    <!-- Top-Right Sparkle Accent -->
-    <path
-        android:fillColor="#FFD54F"
-        android:pathData="M78,32 L80,26 L82,32 L88,34 L82,36 L80,42 L78,36 L72,34 Z" />
+    <group>
+        
+        <!-- Ambient Progress Ring Track -->
+        <path
+            android:strokeColor="#172F21"
+            android:strokeWidth="5.5"
+            android:pathData="M54,28 A26,26 0 1,0 54.001,28 Z" />
+        <!-- Dynamic Habit Momentum Progress Arc -->
+        <path
+            android:strokeColor="#00E676"
+            android:strokeWidth="6"
+            android:strokeLineCap="round"
+            android:pathData="M54,28 A26,26 0 1,1 32,69" />
+        <!-- Momentum Spark Beacon at Leading Tip -->
+        <path
+            android:fillColor="#69F0AE"
+            android:pathData="M32,69 A3.8,3.8 0 1,0 32,68.99 Z" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M32,69 A1.8,1.8 0 1,0 32,68.99 Z" />
+        <!-- Top Anchor Node -->
+        <path
+            android:fillColor="#34D399"
+            android:pathData="M54,28 A2.8,2.8 0 1,0 54,27.99 Z" />
+        <!-- Streak Flame Accent Beacon (Orbiting at Top-Right) -->
+        <path
+            android:fillColor="#F59E0B"
+            android:pathData="M67,29 C67,29 63,34.5 63,38.5 C63,42 65.5,44.5 68.5,44.5 C71.5,44.5 74,42 74,38.5 C74,35 71,32.5 71,32.5 C71,32.5 70.5,34.5 69,34.5 C68,34.5 67,33.5 67,29 Z" />
+        <path
+            android:fillColor="#FDE047"
+            android:pathData="M68,35.5 C68,35.5 65.5,38 65.5,40 C65.5,41.7 67,43 68.5,43 C70,43 71.5,41.7 71.5,40 C71.5,38 69.5,37 69.5,37 Z" />
+        <!-- Precision Tactile Checkmark with Depth Backing -->
+        <path
+            android:strokeColor="#0A1810"
+            android:strokeWidth="7"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M42,54 L49,61 L65,45" />
+        <path
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="5"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M42,54 L49,61 L65,45" />
+        
+    </group>
 </vector>
