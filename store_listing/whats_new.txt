@@ -1,2 +1,2 @@
-Release v1.2.21 - KR Habit
-Revert layout changes to restore clean Loop Habit Tracker interface
+Release v1.2.22 - KR Habit
+Compact Bento habit layout with inline 14-day micro heatmaps and dynamic per-habit Chroma color accents

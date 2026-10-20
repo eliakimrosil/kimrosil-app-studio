@@ -5,123 +5,111 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/card_surface"
-    android:padding="16dp"
-    android:layout_marginBottom="12dp">
+    android:paddingStart="14dp"
+    android:paddingEnd="12dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:layout_marginBottom="8dp">
 
-    <!-- Top Row: Reminder Badge, Frequency & Streak Counter -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="8dp">
-
-        <TextView
-            android:id="@+id/tvReminderBadge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="🔔 08:00 AM"
-            android:textSize="11sp"
-            android:textStyle="bold"
-            android:textColor="@color/primary_accent"
-            android:background="@drawable/chip_active"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp"
-            android:layout_marginEnd="8dp"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/tvFrequencyTarget"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Daily"
-            android:textSize="12sp"
-            android:textColor="@color/text_tertiary" />
-
-        <TextView
-            android:id="@+id/tvStreakBadge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="🔥 0d"
-            android:textSize="13sp"
-            android:textStyle="bold"
-            android:textColor="@color/metric_streak" />
-    </LinearLayout>
-
-    <!-- Middle Row: Habit Title, Description & Big Check-In Button -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="12dp">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingEnd="12dp">
-
-            <TextView
-                android:id="@+id/tvHabitTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Drink 2L Water"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_primary"
-                android:maxLines="2"
-                android:ellipsize="end" />
-
-            <TextView
-                android:id="@+id/tvHabitDesc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hydrate throughout morning work sprint"
-                android:textSize="12sp"
-                android:textColor="@color/text_secondary"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:layout_marginTop="2dp" />
-        </LinearLayout>
-
-        <!-- Big Tactile Check-In Button -->
-        <Button
-            android:id="@+id/btnCheckIn"
-            android:layout_width="54dp"
-            android:layout_height="50dp"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:text="✓"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/text_secondary"
-            android:background="@drawable/btn_checkin_pending"
-            android:stateListAnimator="@null"
-            android:elevation="0dp" />
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/border_hairline"
-        android:layout_marginBottom="10dp" />
-
-    <!-- Bottom Row: Loop Habit Strength Score & 14-Day Activity Dots Container -->
+    <!-- Row 1: Habit Title & Inline Badges on Left | Compact Check-In Button on Right -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
+        <!-- Title & Badges Sub-Container -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingEnd="10dp">
+
+            <TextView
+                android:id="@+id/tvHabitTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Drink 2L Water"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <!-- Compact Streak Flame Pill -->
+            <TextView
+                android:id="@+id/tvStreakBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔥 0d"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="@color/metric_streak"
+                android:background="@drawable/chip_streak"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:layout_marginStart="6dp" />
+
+            <!-- Compact Reminder Bell Badge -->
+            <TextView
+                android:id="@+id/tvReminderBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔔 08:00 AM"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary_accent"
+                android:background="@drawable/chip_active"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:layout_marginStart="6dp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- Compact 40x40dp Check-In Button -->
+        <Button
+            android:id="@+id/btnCheckIn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:minWidth="40dp"
+            android:minHeight="40dp"
+            android:text="✓"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_secondary"
+            android:background="@drawable/btn_checkin_pending"
+            android:stateListAnimator="@null"
+            android:elevation="0dp"
+            android:padding="0dp" />
+    </LinearLayout>
+
+    <!-- Row 2: Frequency & Strength Score on Left | 14-Day Micro Heatmap on Right -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="6dp">
+
+        <TextView
+            android:id="@+id/tvFrequencyTarget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Daily"
+            android:textSize="11sp"
+            android:textColor="@color/text_tertiary" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Strength: "
+            android:text=" • "
             android:textSize="11sp"
             android:textColor="@color/text_tertiary" />
 
@@ -130,12 +118,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="85%"
-            android:textSize="12sp"
+            android:textSize="11sp"
             android:textStyle="bold"
-            android:textColor="@color/metric_strength"
-            android:layout_marginEnd="12dp" />
+            android:textColor="@color/metric_strength" />
 
-        <!-- 14-Day Micro Heatmap Container -->
+        <!-- 14-Day Micro Heatmap Dots Container -->
         <LinearLayout
             android:id="@+id/layoutMicroHeatmap"
             android:layout_width="0dp"
@@ -144,5 +131,12 @@
             android:gravity="end|center_vertical"
             android:orientation="horizontal" />
     </LinearLayout>
+
+    <!-- Hidden description element for compatibility -->
+    <TextView
+        android:id="@+id/tvHabitDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
 </LinearLayout>

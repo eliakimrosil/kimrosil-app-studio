@@ -129,11 +129,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:background="@drawable/card_surface"
-                android:paddingTop="14dp"
-                android:paddingBottom="14dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="12dp">
 
                 <!-- Column 1: Daily Progress -->
                 <LinearLayout

@@ -39,6 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_HABIT_REMINDER_MINUTE = "reminder_minute"; // 0-59
     public static final String COL_HABIT_CREATED_AT = "created_at";
     public static final String COL_HABIT_UPDATED_AT = "updated_at";
+    public static final String COL_HABIT_COLOR = "color_hex";
     public static final String COL_HABIT_SYNCED = "synced"; // 0 or 1
 
     // Table habit_logs
@@ -66,6 +67,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         public boolean reminderEnabled;
         public int reminderHour = 8;
         public int reminderMinute = 0;
+        public String colorHex = HabitColors.DEFAULT_COLOR;
         public long createdAt;
         public long updatedAt;
         public boolean isCompletedToday;
@@ -100,6 +102,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COL_HABIT_REMINDER_ENABLED + " INTEGER DEFAULT 0, "
                 + COL_HABIT_REMINDER_HOUR + " INTEGER DEFAULT 8, "
                 + COL_HABIT_REMINDER_MINUTE + " INTEGER DEFAULT 0, "
+                + COL_HABIT_COLOR + " TEXT DEFAULT '#10B981', "
                 + COL_HABIT_CREATED_AT + " INTEGER NOT NULL, "
                 + COL_HABIT_UPDATED_AT + " INTEGER NOT NULL, "
                 + COL_HABIT_SYNCED + " INTEGER DEFAULT 0)");
@@ -147,6 +150,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } catch (Exception ignored) {
             // Column already exists
         }
+        try {
+            db.execSQL("ALTER TABLE " + TABLE_HABITS + " ADD COLUMN " + COL_HABIT_COLOR + " TEXT DEFAULT '#10B981'");
+        } catch (Exception ignored) {
+            // Column already exists
+        }
     }
 
     private void insertSampleHabits(SQLiteDatabase db) {
@@ -158,6 +166,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv1.put(COL_HABIT_DESC, "Drink water with morning routine");
         cv1.put(COL_HABIT_CATEGORY, "Health");
         cv1.put(COL_HABIT_FREQ, 7);
+        cv1.put(COL_HABIT_COLOR, "#0D9488");
         cv1.put(COL_HABIT_CREATED_AT, now - 86400000L * 7);
         cv1.put(COL_HABIT_UPDATED_AT, now);
         cv1.put(COL_HABIT_SYNCED, 1);
@@ -169,6 +178,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv2.put(COL_HABIT_DESC, "20 minutes reading before sleep");
         cv2.put(COL_HABIT_CATEGORY, "Mind");
         cv2.put(COL_HABIT_FREQ, 7);
+        cv2.put(COL_HABIT_COLOR, "#2563EB");
         cv2.put(COL_HABIT_CREATED_AT, now - 86400000L * 5);
         cv2.put(COL_HABIT_UPDATED_AT, now);
         cv2.put(COL_HABIT_SYNCED, 1);
@@ -197,7 +207,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return next;
     }
 
-    public long addHabit(String title, String description, int freq, boolean reminderEnabled, int reminderHour, int reminderMinute) {
+    public long addHabit(String title, String description, int freq, boolean reminderEnabled, int reminderHour, int reminderMinute, String colorHex) {
         SQLiteDatabase db = getWritableDatabase();
         long now = System.currentTimeMillis();
         ContentValues cv = new ContentValues();
@@ -206,14 +216,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COL_HABIT_DESC, description != null ? description : "");
         cv.put(COL_HABIT_CATEGORY, "General");
         cv.put(COL_HABIT_FREQ, freq > 0 ? freq : 7);
-        cv.put(COL_HABIT_POSITION, getNextHabitPosition());
+        int pos = getNextHabitPosition();
+        cv.put(COL_HABIT_POSITION, pos);
         cv.put(COL_HABIT_REMINDER_ENABLED, reminderEnabled ? 1 : 0);
         cv.put(COL_HABIT_REMINDER_HOUR, reminderHour);
         cv.put(COL_HABIT_REMINDER_MINUTE, reminderMinute);
+        if (colorHex == null || colorHex.trim().isEmpty()) {
+            colorHex = HabitColors.getColorForIndex(pos);
+        }
+        cv.put(COL_HABIT_COLOR, colorHex);
         cv.put(COL_HABIT_CREATED_AT, now);
         cv.put(COL_HABIT_UPDATED_AT, now);
         cv.put(COL_HABIT_SYNCED, 0);
         return db.insert(TABLE_HABITS, null, cv);
+    }
+
+    public long addHabit(String title, String description, int freq, boolean reminderEnabled, int reminderHour, int reminderMinute) {
+        return addHabit(title, description, freq, reminderEnabled, reminderHour, reminderMinute, null);
     }
 
     public long addHabit(String title, String description, String category, int freq) {
@@ -286,7 +305,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
-    public boolean updateHabit(String uuid, String title, String description, int freq, boolean reminderEnabled, int reminderHour, int reminderMinute) {
+    public boolean updateHabit(String uuid, String title, String description, int freq, boolean reminderEnabled, int reminderHour, int reminderMinute, String colorHex) {
         SQLiteDatabase db = getWritableDatabase();
         long now = System.currentTimeMillis();
         ContentValues cv = new ContentValues();
@@ -296,9 +315,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COL_HABIT_REMINDER_ENABLED, reminderEnabled ? 1 : 0);
         cv.put(COL_HABIT_REMINDER_HOUR, reminderHour);
         cv.put(COL_HABIT_REMINDER_MINUTE, reminderMinute);
+        if (colorHex != null && !colorHex.trim().isEmpty()) {
+            cv.put(COL_HABIT_COLOR, colorHex);
+        }
         cv.put(COL_HABIT_UPDATED_AT, now);
         cv.put(COL_HABIT_SYNCED, 0);
         return db.update(TABLE_HABITS, cv, COL_HABIT_UUID + " = ?", new String[]{uuid}) > 0;
+    }
+
+    public boolean updateHabit(String uuid, String title, String description, int freq, boolean reminderEnabled, int reminderHour, int reminderMinute) {
+        return updateHabit(uuid, title, description, freq, reminderEnabled, reminderHour, reminderMinute, null);
     }
 
     public boolean updateHabit(String uuid, String title, String description, String category, int freq) {
@@ -379,6 +405,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 item.reminderEnabled = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_REMINDER_ENABLED)) == 1;
                 item.reminderHour = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_REMINDER_HOUR));
                 item.reminderMinute = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_REMINDER_MINUTE));
+                int colorIdx = c.getColumnIndex(COL_HABIT_COLOR);
+                if (colorIdx >= 0 && !c.isNull(colorIdx)) {
+                    item.colorHex = c.getString(colorIdx);
+                }
+                if (item.colorHex == null || item.colorHex.trim().isEmpty()) {
+                    item.colorHex = HabitColors.getColorForIndex(item.position);
+                }
                 item.createdAt = c.getLong(c.getColumnIndexOrThrow(COL_HABIT_CREATED_AT));
                 item.updatedAt = c.getLong(c.getColumnIndexOrThrow(COL_HABIT_UPDATED_AT));
 
@@ -518,6 +551,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 item.reminderEnabled = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_REMINDER_ENABLED)) == 1;
                 item.reminderHour = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_REMINDER_HOUR));
                 item.reminderMinute = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_REMINDER_MINUTE));
+                int colorIdx = c.getColumnIndex(COL_HABIT_COLOR);
+                if (colorIdx >= 0 && !c.isNull(colorIdx)) {
+                    item.colorHex = c.getString(colorIdx);
+                }
+                if (item.colorHex == null || item.colorHex.trim().isEmpty()) {
+                    item.colorHex = HabitColors.getColorForIndex(item.position);
+                }
                 item.createdAt = c.getLong(c.getColumnIndexOrThrow(COL_HABIT_CREATED_AT));
                 item.updatedAt = c.getLong(c.getColumnIndexOrThrow(COL_HABIT_UPDATED_AT));
                 list.add(item);
@@ -560,7 +600,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{habitUuid, dateStr});
     }
 
-    public void mergeRemoteHabit(String uuid, String title, String description, String category, int freq, int position, boolean reminderEnabled, int reminderHour, int reminderMinute, long createdAt, long updatedAt) {
+    public void mergeRemoteHabit(String uuid, String title, String description, String category, int freq, int position, boolean reminderEnabled, int reminderHour, int reminderMinute, String colorHex, long createdAt, long updatedAt) {
         SQLiteDatabase db = getWritableDatabase();
         Cursor c = db.query(TABLE_HABITS, new String[]{COL_HABIT_UPDATED_AT, COL_HABIT_POSITION}, COL_HABIT_UUID + " = ?", new String[]{uuid}, null, null, null);
         if (c != null && c.moveToFirst()) {
@@ -577,6 +617,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cv.put(COL_HABIT_REMINDER_ENABLED, reminderEnabled ? 1 : 0);
                 cv.put(COL_HABIT_REMINDER_HOUR, reminderHour);
                 cv.put(COL_HABIT_REMINDER_MINUTE, reminderMinute);
+                if (colorHex != null && !colorHex.trim().isEmpty()) {
+                    cv.put(COL_HABIT_COLOR, colorHex);
+                }
                 cv.put(COL_HABIT_UPDATED_AT, updatedAt);
                 cv.put(COL_HABIT_SYNCED, 1);
                 db.update(TABLE_HABITS, cv, COL_HABIT_UUID + " = ?", new String[]{uuid});
@@ -597,11 +640,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cv.put(COL_HABIT_REMINDER_ENABLED, reminderEnabled ? 1 : 0);
             cv.put(COL_HABIT_REMINDER_HOUR, reminderHour);
             cv.put(COL_HABIT_REMINDER_MINUTE, reminderMinute);
+            cv.put(COL_HABIT_COLOR, (colorHex != null && !colorHex.trim().isEmpty()) ? colorHex : HabitColors.getColorForIndex(position));
             cv.put(COL_HABIT_CREATED_AT, createdAt);
             cv.put(COL_HABIT_UPDATED_AT, updatedAt);
             cv.put(COL_HABIT_SYNCED, 1);
             db.insert(TABLE_HABITS, null, cv);
         }
+    }
+
+    public void mergeRemoteHabit(String uuid, String title, String description, String category, int freq, int position, boolean reminderEnabled, int reminderHour, int reminderMinute, long createdAt, long updatedAt) {
+        mergeRemoteHabit(uuid, title, description, category, freq, position, reminderEnabled, reminderHour, reminderMinute, null, createdAt, updatedAt);
     }
 
     public void mergeRemoteHabit(String uuid, String title, String description, String category, int freq, int position, long createdAt, long updatedAt) {

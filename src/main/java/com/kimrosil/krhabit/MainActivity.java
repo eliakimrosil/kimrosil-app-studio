@@ -357,12 +357,15 @@ public class MainActivity extends Activity {
                 final Button btnCheckIn = itemView.findViewById(R.id.btnCheckIn);
                 LinearLayout layoutMicroHeatmap = itemView.findViewById(R.id.layoutMicroHeatmap);
 
+                final int habitColor = HabitColors.parseColor(habit.colorHex);
+
                 tvTitle.setText(habit.title);
-                if (habit.description != null && !habit.description.trim().isEmpty()) {
-                    tvDesc.setText(habit.description);
-                    tvDesc.setVisibility(View.VISIBLE);
-                } else {
-                    tvDesc.setVisibility(View.GONE);
+                if (tvDesc != null) {
+                    if (habit.description != null && !habit.description.trim().isEmpty()) {
+                        tvDesc.setText(habit.description);
+                    } else {
+                        tvDesc.setVisibility(View.GONE);
+                    }
                 }
 
                 if (habit.reminderEnabled) {
@@ -375,9 +378,10 @@ public class MainActivity extends Activity {
                 tvFreq.setText(habit.targetDaysPerWeek == 7 ? "Daily" : habit.targetDaysPerWeek + "x / week");
                 tvStreak.setText("🔥 " + habit.currentStreak + "d");
                 tvStrength.setText(HabitMath.formatStrength(habit.strengthScore));
+                tvStrength.setTextColor(habitColor);
 
                 // Style Check-In Button
-                updateCheckInButtonStyle(btnCheckIn, habit.isCompletedToday);
+                updateCheckInButtonStyle(btnCheckIn, habit.isCompletedToday, habitColor);
 
                 btnCheckIn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -385,14 +389,14 @@ public class MainActivity extends Activity {
                         v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                         boolean newState = dbHelper.toggleCheckIn(habit.uuid, DatabaseHelper.getTodayDateString());
                         habit.isCompletedToday = newState;
-                        updateCheckInButtonStyle(btnCheckIn, newState);
+                        updateCheckInButtonStyle(btnCheckIn, newState, habitColor);
                         refreshDashboard();
                         triggerAutoSync();
                     }
                 });
 
                 // Micro 14-day heatmap dots
-                populateMicroHeatmap(layoutMicroHeatmap, habit.thirtyDayHistory);
+                populateMicroHeatmap(layoutMicroHeatmap, habit.thirtyDayHistory, habitColor);
 
                 // Card Click -> Open Detail Activity
                 itemView.setOnClickListener(new View.OnClickListener() {
@@ -419,24 +423,27 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void updateCheckInButtonStyle(Button btn, boolean completed) {
+    private void updateCheckInButtonStyle(Button btn, boolean completed, int habitColor) {
         if (completed) {
-            btn.setBackgroundResource(R.drawable.btn_checkin_done);
+            btn.setBackground(HabitColors.createCheckInDoneDrawable(this, habitColor, 10f));
             btn.setText("✓");
             btn.setTextColor(Color.WHITE);
         } else {
-            btn.setBackgroundResource(R.drawable.btn_checkin_pending);
+            btn.setBackground(HabitColors.createCheckInPendingDrawable(this, habitColor, 10f));
             btn.setText("✓");
             btn.setTextColor(getColor(R.color.text_tertiary));
         }
     }
 
-    private void populateMicroHeatmap(LinearLayout container, boolean[] thirtyDayHistory) {
+    private void populateMicroHeatmap(LinearLayout container, boolean[] thirtyDayHistory, int habitColor) {
         container.removeAllViews();
         // Show last 14 days (index 16 to 29)
         int start = Math.max(0, thirtyDayHistory.length - 14);
-        int dotSize = (int) (10 * getResources().getDisplayMetrics().density);
-        int dotMargin = (int) (3 * getResources().getDisplayMetrics().density);
+        float density = getResources().getDisplayMetrics().density;
+        int dotSize = (int) (8 * density);
+        int dotMargin = (int) (1.5f * density);
+        int cornerRadius = (int) (2.5f * density);
+        int inactiveColor = getColor(R.color.heatmap_0);
 
         for (int i = start; i < thirtyDayHistory.length; i++) {
             View dot = new View(this);
@@ -445,7 +452,11 @@ public class MainActivity extends Activity {
             dot.setLayoutParams(lp);
 
             boolean done = thirtyDayHistory[i];
-            dot.setBackgroundColor(getColor(done ? R.color.heatmap_3 : R.color.heatmap_0));
+            android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
+            gd.setShape(android.graphics.drawable.GradientDrawable.RECTANGLE);
+            gd.setCornerRadius(cornerRadius);
+            gd.setColor(done ? habitColor : inactiveColor);
+            dot.setBackground(gd);
             container.addView(dot);
         }
     }
@@ -478,10 +489,21 @@ public class MainActivity extends Activity {
         final Switch switchReminder = dialogView.findViewById(R.id.switchReminder);
         final TextView tvReminderLabel = dialogView.findViewById(R.id.tvReminderLabel);
         final Button btnPickTime = dialogView.findViewById(R.id.btnPickReminderTime);
+        final LinearLayout layoutColorPicker = dialogView.findViewById(R.id.layoutAddColorPicker);
         Button btnCancel = dialogView.findViewById(R.id.btnCancelAdd);
         Button btnSave = dialogView.findViewById(R.id.btnSaveHabit);
 
         final int[] reminderTime = new int[]{8, 0}; // [hour, minute]
+        final String[] selectedColor = new String[]{HabitColors.getColorForIndex(dbHelper.getNextHabitPosition())};
+
+        if (layoutColorPicker != null) {
+            HabitColors.populateColorPicker(MainActivity.this, layoutColorPicker, selectedColor[0], new HabitColors.OnColorSelectedListener() {
+                @Override
+                public void onColorSelected(String colorHex) {
+                    selectedColor[0] = colorHex;
+                }
+            });
+        }
 
         switchReminder.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -531,7 +553,7 @@ public class MainActivity extends Activity {
                     return;
                 }
 
-                long rowId = dbHelper.addHabit(title, desc, 7, reminderOn, reminderTime[0], reminderTime[1]);
+                long rowId = dbHelper.addHabit(title, desc, 7, reminderOn, reminderTime[0], reminderTime[1], selectedColor[0]);
                 if (reminderOn) {
                     ReminderManager.rescheduleAllReminders(MainActivity.this);
                 }

@@ -280,6 +280,7 @@ public class FirebaseSyncEngine {
             fields.put("reminder_enabled", new JSONObject().put("booleanValue", habit.reminderEnabled));
             fields.put("reminder_hour", new JSONObject().put("integerValue", habit.reminderHour));
             fields.put("reminder_minute", new JSONObject().put("integerValue", habit.reminderMinute));
+            fields.put("color_hex", new JSONObject().put("stringValue", habit.colorHex != null ? habit.colorHex : HabitColors.DEFAULT_COLOR));
             fields.put("created_at", new JSONObject().put("integerValue", habit.createdAt));
             fields.put("updated_at", new JSONObject().put("integerValue", habit.updatedAt));
 
@@ -389,12 +390,13 @@ public class FirebaseSyncEngine {
                             boolean reminderEnabled = f.has("reminder_enabled") && f.getJSONObject("reminder_enabled").optBoolean("booleanValue", false);
                             int reminderHour = f.has("reminder_hour") ? f.getJSONObject("reminder_hour").optInt("integerValue", 8) : 8;
                             int reminderMinute = f.has("reminder_minute") ? f.getJSONObject("reminder_minute").optInt("integerValue", 0) : 0;
+                            String colorHex = f.has("color_hex") ? f.getJSONObject("color_hex").optString("stringValue", HabitColors.DEFAULT_COLOR) : HabitColors.DEFAULT_COLOR;
                             long createdAt = f.has("created_at") ? f.getJSONObject("created_at").optLong("integerValue", System.currentTimeMillis()) : System.currentTimeMillis();
                             long updatedAt = f.has("updated_at") ? f.getJSONObject("updated_at").optLong("integerValue", System.currentTimeMillis()) : System.currentTimeMillis();
 
                             if (!uuid.isEmpty() && !title.isEmpty() && !dbHelper.isHabitDeleted(uuid)) {
                                 remoteUuids.add(uuid);
-                                dbHelper.mergeRemoteHabit(uuid, title, desc, cat, freq, pos, reminderEnabled, reminderHour, reminderMinute, createdAt, updatedAt);
+                                dbHelper.mergeRemoteHabit(uuid, title, desc, cat, freq, pos, reminderEnabled, reminderHour, reminderMinute, colorHex, createdAt, updatedAt);
                             }
                         }
                     }

@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -128,6 +129,9 @@ public class DetailActivity extends Activity {
         }
 
         tvStrength.setText(HabitMath.formatStrength(item.strengthScore));
+        int habitColor = HabitColors.parseColor(item.colorHex);
+        heatmapView.setAccentColor(habitColor);
+        tvStrength.setTextColor(habitColor);
         tvCurrentStreak.setText(item.currentStreak + "d");
         tvBestStreak.setText(item.bestStreak + "d");
 
@@ -226,8 +230,19 @@ public class DetailActivity extends Activity {
         final Switch switchReminder = dialogView.findViewById(R.id.switchEditReminder);
         final TextView tvReminderLabel = dialogView.findViewById(R.id.tvEditReminderLabel);
         final Button btnPickTime = dialogView.findViewById(R.id.btnEditPickReminderTime);
+        final LinearLayout layoutColorPicker = dialogView.findViewById(R.id.layoutEditColorPicker);
         Button btnCancel = dialogView.findViewById(R.id.btnCancelEdit);
         Button btnSave = dialogView.findViewById(R.id.btnSaveEditHabit);
+
+        final String[] selectedColor = new String[]{item.colorHex};
+        if (layoutColorPicker != null) {
+            HabitColors.populateColorPicker(DetailActivity.this, layoutColorPicker, selectedColor[0], new HabitColors.OnColorSelectedListener() {
+                @Override
+                public void onColorSelected(String colorHex) {
+                    selectedColor[0] = colorHex;
+                }
+            });
+        }
 
         etTitle.setText(item.title);
         etTitle.setSelection(item.title.length());
@@ -288,7 +303,8 @@ public class DetailActivity extends Activity {
                     return;
                 }
 
-                dbHelper.updateHabit(habitUuid, newTitle, newDesc, item.targetDaysPerWeek, reminderOn, reminderTime[0], reminderTime[1]);
+                dbHelper.updateHabit(habitUuid, newTitle, newDesc, item.targetDaysPerWeek, reminderOn, reminderTime[0], reminderTime[1], selectedColor[0]);
+                item.colorHex = selectedColor[0];
                 if (reminderOn) {
                     item.reminderEnabled = true;
                     item.reminderHour = reminderTime[0];

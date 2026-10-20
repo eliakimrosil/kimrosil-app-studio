@@ -71,6 +71,21 @@ public class HeatmapGridView extends View {
         invalidate();
     }
 
+    public void setAccentColor(int color) {
+        this.colorLevel3 = color;
+        this.colorLevel2 = blendColors(color, colorLevel0, 0.65f);
+        this.colorLevel1 = blendColors(color, colorLevel0, 0.35f);
+        invalidate();
+    }
+
+    private int blendColors(int fg, int bg, float ratio) {
+        float inv = 1f - ratio;
+        int r = (int) (android.graphics.Color.red(fg) * ratio + android.graphics.Color.red(bg) * inv);
+        int g = (int) (android.graphics.Color.green(fg) * ratio + android.graphics.Color.green(bg) * inv);
+        int b = (int) (android.graphics.Color.blue(fg) * ratio + android.graphics.Color.blue(bg) * inv);
+        return android.graphics.Color.rgb(r, g, b);
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
