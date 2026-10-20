@@ -743,7 +743,6 @@ public class MainActivity extends Activity {
         final Button btnSignOut = dialogView.findViewById(R.id.btnSettingsSignOut);
         Button btnClose = dialogView.findViewById(R.id.btnCloseSettings);
         TextView tvWebLink = dialogView.findViewById(R.id.tvSettingsWebLink);
-        TextView tvLicenseBadge = dialogView.findViewById(R.id.tvSettingsLicenseBadge);
 
         final Runnable updateAccountUi = new Runnable() {
             @Override
@@ -823,16 +822,6 @@ public class MainActivity extends Activity {
             });
         }
 
-        if (tvLicenseBadge != null) {
-            tvLicenseBadge.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                    showAboutDialog();
-                }
-            });
-        }
-
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -851,22 +840,5 @@ public class MainActivity extends Activity {
             buttons[i].setTextColor(getColor(active ? R.color.text_primary : R.color.text_secondary));
             buttons[i].setTypeface(null, active ? Typeface.BOLD : Typeface.NORMAL);
         }
-    }
-
-    private void showAboutDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_about, null);
-        builder.setView(dialogView);
-        final AlertDialog dialog = builder.create();
-
-        Button btnClose = dialogView.findViewById(R.id.btnCloseAbout);
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
     }
 }

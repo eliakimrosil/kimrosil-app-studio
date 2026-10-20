@@ -1,2 +1,2 @@
-Release v1.2.30 - KR Habit
-Close-source transition: Adopt KimRosil Freeware proprietary EULA, update About modal and store listings
+Release v1.2.31 - KR Habit
+Streamline settings modal: remove About button and dialog
