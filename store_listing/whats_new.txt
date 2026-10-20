@@ -1,2 +1,2 @@
-Release v1.2.12 - KR Habit
-Fluid long-press drag-and-drop habit reordering with cloud sync
+Release v1.2.14 - KR Habit
+Cross-device habit position sync via cloud order registry

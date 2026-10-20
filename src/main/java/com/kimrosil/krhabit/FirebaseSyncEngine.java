@@ -16,6 +16,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -36,6 +37,8 @@ public class FirebaseSyncEngine {
     private static final String KEY_USER_NAME = "user_name";
     private static final String KEY_ID_TOKEN = "id_token";
     private static final String KEY_LAST_SYNC = "last_sync_time";
+    private static final String KEY_PENDING_ORDER_SYNC = "pending_order_sync";
+    private static final String KEY_ORDER_UPDATED_AT = "local_order_updated_at";
 
     // Firebase credentials hardcoded directly for zero configuration
     private static final String HARDCODED_PROJECT_ID = "gen-lang-client-0189236416";
@@ -139,6 +142,13 @@ public class FirebaseSyncEngine {
                 .apply();
     }
 
+    public void markOrderNeedsSync(long updatedAt) {
+        prefs.edit()
+                .putBoolean(KEY_PENDING_ORDER_SYNC, true)
+                .putLong(KEY_ORDER_UPDATED_AT, updatedAt)
+                .apply();
+    }
+
     /**
      * Synchronizes local SQLite habits & logs with Cloud Firestore.
      */
@@ -199,8 +209,23 @@ public class FirebaseSyncEngine {
                         }
                     }
 
-                    // 4. Fetch remote changes from Firestore (habits + logs)
+                    // 4. Push Habit Order if pending or first time
+                    boolean orderNeedsSync = prefs.getBoolean(KEY_PENDING_ORDER_SYNC, false);
+                    long localOrderUpdated = prefs.getLong(KEY_ORDER_UPDATED_AT, 0);
+                    List<String> currentOrder = dbHelper.getAllHabitUuidsInCurrentOrder();
+                    if (!currentOrder.isEmpty() && (orderNeedsSync || localOrderUpdated == 0)) {
+                        long pushTimestamp = localOrderUpdated > 0 ? localOrderUpdated : System.currentTimeMillis();
+                        if (pushHabitOrderToFirestore(projectId, uid, apiKey, currentOrder, pushTimestamp)) {
+                            prefs.edit()
+                                    .putBoolean(KEY_PENDING_ORDER_SYNC, false)
+                                    .putLong(KEY_ORDER_UPDATED_AT, pushTimestamp)
+                                    .apply();
+                        }
+                    }
+
+                    // 5. Fetch remote changes from Firestore (habits first, then habit order, then logs)
                     fetchRemoteHabits(projectId, uid, apiKey);
+                    fetchRemoteHabitOrder(projectId, uid, apiKey);
                     fetchRemoteLogs(projectId, uid, apiKey);
 
                     // Update last sync timestamp
@@ -418,6 +443,111 @@ public class FirebaseSyncEngine {
 
                             if (!habitUuid.isEmpty() && !dateStr.isEmpty()) {
                                 dbHelper.mergeRemoteLog(habitUuid, dateStr, completed, updatedAt);
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception ignored) {
+        } finally {
+            if (conn != null) conn.disconnect();
+        }
+    }
+
+    private boolean pushHabitOrderToFirestore(String projectId, String uid, String apiKey, List<String> orderedUuids, long updatedAt) {
+        HttpURLConnection conn = null;
+        try {
+            String urlStr = "https://firestore.googleapis.com/v1/projects/" + projectId
+                    + "/databases/(default)/documents/users/" + uid + "/settings/habit_order";
+            if (!apiKey.isEmpty()) {
+                urlStr += "?key=" + apiKey;
+            }
+
+            URL url = new URL(urlStr);
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("PATCH");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setConnectTimeout(8000);
+            conn.setReadTimeout(8000);
+            conn.setDoOutput(true);
+
+            JSONArray arrayValues = new JSONArray();
+            for (String uuid : orderedUuids) {
+                arrayValues.put(new JSONObject().put("stringValue", uuid));
+            }
+
+            JSONObject fields = new JSONObject();
+            fields.put("order", new JSONObject().put("arrayValue", new JSONObject().put("values", arrayValues)));
+            fields.put("updated_at", new JSONObject().put("integerValue", updatedAt));
+
+            JSONObject doc = new JSONObject();
+            doc.put("fields", fields);
+
+            OutputStream os = conn.getOutputStream();
+            os.write(doc.toString().getBytes(StandardCharsets.UTF_8));
+            os.flush();
+            os.close();
+
+            int code = conn.getResponseCode();
+            return code == 200 || code == 201;
+        } catch (Exception ignored) {
+            return false;
+        } finally {
+            if (conn != null) conn.disconnect();
+        }
+    }
+
+    private void fetchRemoteHabitOrder(String projectId, String uid, String apiKey) {
+        HttpURLConnection conn = null;
+        try {
+            String urlStr = "https://firestore.googleapis.com/v1/projects/" + projectId
+                    + "/databases/(default)/documents/users/" + uid + "/settings/habit_order";
+            if (!apiKey.isEmpty()) {
+                urlStr += "?key=" + apiKey;
+            }
+
+            URL url = new URL(urlStr);
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setConnectTimeout(8000);
+            conn.setReadTimeout(8000);
+
+            int code = conn.getResponseCode();
+            if (code == 200) {
+                InputStream is = conn.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                }
+                reader.close();
+
+                JSONObject response = new JSONObject(sb.toString());
+                if (response.has("fields")) {
+                    JSONObject fields = response.getJSONObject("fields");
+                    long remoteUpdatedAt = fields.has("updated_at") ? fields.getJSONObject("updated_at").optLong("integerValue", 0) : 0;
+                    long localOrderUpdated = prefs.getLong(KEY_ORDER_UPDATED_AT, 0);
+
+                    // If remote has newer order, or local order hasn't been set yet
+                    if ((remoteUpdatedAt > localOrderUpdated || localOrderUpdated == 0) && fields.has("order")) {
+                        JSONObject orderObj = fields.getJSONObject("order");
+                        if (orderObj.has("arrayValue")) {
+                            JSONObject arrayVal = orderObj.getJSONObject("arrayValue");
+                            if (arrayVal.has("values")) {
+                                JSONArray values = arrayVal.getJSONArray("values");
+                                List<String> remoteUuids = new ArrayList<>();
+                                for (int i = 0; i < values.length(); i++) {
+                                    JSONObject valItem = values.getJSONObject(i);
+                                    String u = valItem.optString("stringValue", "");
+                                    if (!u.isEmpty()) {
+                                        remoteUuids.add(u);
+                                    }
+                                }
+                                if (!remoteUuids.isEmpty()) {
+                                    dbHelper.applyGlobalHabitOrder(remoteUuids);
+                                    prefs.edit().putLong(KEY_ORDER_UPDATED_AT, remoteUpdatedAt).apply();
+                                }
                             }
                         }
                     }

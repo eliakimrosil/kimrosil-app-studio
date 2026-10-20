@@ -198,7 +198,9 @@ public class MainActivity extends Activity {
             habitListContainer.setOnOrderChangedListener(new ReorderableLinearLayout.OnOrderChangedListener() {
                 @Override
                 public void onOrderChanged(List<String> reorderedUuids) {
+                    long now = System.currentTimeMillis();
                     dbHelper.updateHabitPositions(reorderedUuids);
+                    syncEngine.markOrderNeedsSync(now);
                     triggerAutoSync();
                 }
             });

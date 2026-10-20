@@ -226,6 +226,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void applyGlobalHabitOrder(List<String> orderedUuids) {
+        if (orderedUuids == null || orderedUuids.isEmpty()) return;
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        try {
+            for (int i = 0; i < orderedUuids.size(); i++) {
+                ContentValues cv = new ContentValues();
+                cv.put(COL_HABIT_POSITION, i);
+                db.update(TABLE_HABITS, cv, COL_HABIT_UUID + " = ?", new String[]{orderedUuids.get(i)});
+            }
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
+    }
+
+    public List<String> getAllHabitUuidsInCurrentOrder() {
+        List<String> list = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.query(TABLE_HABITS, new String[]{COL_HABIT_UUID}, null, null, null, null, COL_HABIT_POSITION + " ASC, " + COL_HABIT_ID + " ASC");
+        if (c != null && c.moveToFirst()) {
+            do {
+                list.add(c.getString(0));
+            } while (c.moveToNext());
+            c.close();
+        }
+        return list;
+    }
+
     public boolean updateHabit(String uuid, String title, String description, String category, int freq) {
         SQLiteDatabase db = getWritableDatabase();
         long now = System.currentTimeMillis();
@@ -272,12 +301,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COL_LOG_UPDATED_AT, now);
         cv.put(COL_LOG_SYNCED, 0);
         db.insertWithOnConflict(TABLE_HABIT_LOGS, null, cv, SQLiteDatabase.CONFLICT_REPLACE);
-
-        // Also update habit's updated_at
-        ContentValues habitCv = new ContentValues();
-        habitCv.put(COL_HABIT_UPDATED_AT, now);
-        habitCv.put(COL_HABIT_SYNCED, 0);
-        db.update(TABLE_HABITS, habitCv, COL_HABIT_UUID + " = ?", new String[]{habitUuid});
 
         return newState;
     }
@@ -436,6 +459,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 item.description = c.getString(c.getColumnIndexOrThrow(COL_HABIT_DESC));
                 item.category = c.getString(c.getColumnIndexOrThrow(COL_HABIT_CATEGORY));
                 item.targetDaysPerWeek = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_FREQ));
+                item.position = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_POSITION));
                 item.createdAt = c.getLong(c.getColumnIndexOrThrow(COL_HABIT_CREATED_AT));
                 item.updatedAt = c.getLong(c.getColumnIndexOrThrow(COL_HABIT_UPDATED_AT));
                 list.add(item);
@@ -480,9 +504,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void mergeRemoteHabit(String uuid, String title, String description, String category, int freq, int position, long createdAt, long updatedAt) {
         SQLiteDatabase db = getWritableDatabase();
-        Cursor c = db.query(TABLE_HABITS, new String[]{COL_HABIT_UPDATED_AT}, COL_HABIT_UUID + " = ?", new String[]{uuid}, null, null, null);
+        Cursor c = db.query(TABLE_HABITS, new String[]{COL_HABIT_UPDATED_AT, COL_HABIT_POSITION}, COL_HABIT_UUID + " = ?", new String[]{uuid}, null, null, null);
         if (c != null && c.moveToFirst()) {
             long localUpdated = c.getLong(0);
+            int localPos = c.getInt(1);
             c.close();
             if (updatedAt > localUpdated) {
                 ContentValues cv = new ContentValues();
@@ -493,6 +518,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cv.put(COL_HABIT_POSITION, position);
                 cv.put(COL_HABIT_UPDATED_AT, updatedAt);
                 cv.put(COL_HABIT_SYNCED, 1);
+                db.update(TABLE_HABITS, cv, COL_HABIT_UUID + " = ?", new String[]{uuid});
+            } else if (localPos == 0 && position > 0) {
+                ContentValues cv = new ContentValues();
+                cv.put(COL_HABIT_POSITION, position);
                 db.update(TABLE_HABITS, cv, COL_HABIT_UUID + " = ?", new String[]{uuid});
             }
         } else {
