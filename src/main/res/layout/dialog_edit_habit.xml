@@ -42,20 +42,50 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CATEGORY"
+        android:text="DAILY REMINDER"
         android:textSize="11sp"
         android:textStyle="bold"
         android:textColor="@color/text_tertiary"
         android:layout_marginBottom="4dp" />
 
-    <Spinner
-        android:id="@+id/spinnerEditCategory"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:background="@drawable/edittext_bg"
         android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:layout_marginBottom="14dp" />
+        android:paddingEnd="10dp"
+        android:layout_marginBottom="14dp">
+
+        <TextView
+            android:id="@+id/tvEditReminderLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Reminder Off"
+            android:textSize="14sp"
+            android:textColor="@color/text_primary" />
+
+        <Button
+            android:id="@+id/btnEditPickReminderTime"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:text="🔔 08:00 AM"
+            android:textSize="12sp"
+            android:textColor="@color/primary_accent"
+            android:background="@drawable/chip_active"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:visibility="gone"
+            android:layout_marginEnd="8dp"
+            android:stateListAnimator="@null" />
+
+        <Switch
+            android:id="@+id/switchEditReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"

@@ -8,7 +8,7 @@
     android:padding="16dp"
     android:layout_marginBottom="12dp">
 
-    <!-- Top Row: Category Badge & Streak Counter -->
+    <!-- Top Row: Reminder Badge, Frequency & Streak Counter -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,11 +17,11 @@
         android:layout_marginBottom="8dp">
 
         <TextView
-            android:id="@+id/tvHabitCategory"
+            android:id="@+id/tvReminderBadge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="HEALTH"
-            android:textSize="10sp"
+            android:text="🔔 08:00 AM"
+            android:textSize="11sp"
             android:textStyle="bold"
             android:textColor="@color/primary_accent"
             android:background="@drawable/chip_active"
@@ -29,7 +29,8 @@
             android:paddingEnd="8dp"
             android:paddingTop="3dp"
             android:paddingBottom="3dp"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginEnd="8dp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tvFrequencyTarget"

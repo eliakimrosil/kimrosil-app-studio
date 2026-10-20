@@ -1,2 +1,2 @@
-Release v1.2.14 - KR Habit
-Cross-device habit position sync via cloud order registry
+Release v1.2.16 - KR Habit
+Streamlined Loop Habit Tracker interface: Removed category clutter and added rich daily reminder alarms

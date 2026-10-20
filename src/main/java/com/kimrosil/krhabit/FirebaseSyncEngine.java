@@ -277,6 +277,9 @@ public class FirebaseSyncEngine {
             fields.put("category", new JSONObject().put("stringValue", habit.category));
             fields.put("frequency", new JSONObject().put("integerValue", habit.targetDaysPerWeek));
             fields.put("position", new JSONObject().put("integerValue", habit.position));
+            fields.put("reminder_enabled", new JSONObject().put("booleanValue", habit.reminderEnabled));
+            fields.put("reminder_hour", new JSONObject().put("integerValue", habit.reminderHour));
+            fields.put("reminder_minute", new JSONObject().put("integerValue", habit.reminderMinute));
             fields.put("created_at", new JSONObject().put("integerValue", habit.createdAt));
             fields.put("updated_at", new JSONObject().put("integerValue", habit.updatedAt));
 
@@ -383,17 +386,21 @@ public class FirebaseSyncEngine {
                             String cat = f.has("category") ? f.getJSONObject("category").optString("stringValue", "Health") : "Health";
                             int freq = f.has("frequency") ? f.getJSONObject("frequency").optInt("integerValue", 7) : 7;
                             int pos = f.has("position") ? f.getJSONObject("position").optInt("integerValue", 0) : 0;
+                            boolean reminderEnabled = f.has("reminder_enabled") && f.getJSONObject("reminder_enabled").optBoolean("booleanValue", false);
+                            int reminderHour = f.has("reminder_hour") ? f.getJSONObject("reminder_hour").optInt("integerValue", 8) : 8;
+                            int reminderMinute = f.has("reminder_minute") ? f.getJSONObject("reminder_minute").optInt("integerValue", 0) : 0;
                             long createdAt = f.has("created_at") ? f.getJSONObject("created_at").optLong("integerValue", System.currentTimeMillis()) : System.currentTimeMillis();
                             long updatedAt = f.has("updated_at") ? f.getJSONObject("updated_at").optLong("integerValue", System.currentTimeMillis()) : System.currentTimeMillis();
 
                             if (!uuid.isEmpty() && !title.isEmpty() && !dbHelper.isHabitDeleted(uuid)) {
                                 remoteUuids.add(uuid);
-                                dbHelper.mergeRemoteHabit(uuid, title, desc, cat, freq, pos, createdAt, updatedAt);
+                                dbHelper.mergeRemoteHabit(uuid, title, desc, cat, freq, pos, reminderEnabled, reminderHour, reminderMinute, createdAt, updatedAt);
                             }
                         }
                     }
                     if (!remoteUuids.isEmpty()) {
                         dbHelper.purgeDeletedRemoteHabits(remoteUuids);
+                        ReminderManager.rescheduleAllReminders(context);
                     }
                 }
             }

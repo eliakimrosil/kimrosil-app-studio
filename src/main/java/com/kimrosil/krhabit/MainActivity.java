@@ -1,15 +1,19 @@
 package com.kimrosil.krhabit;
 
+import android.Manifest;
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -19,11 +23,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.List;
@@ -34,7 +41,6 @@ public class MainActivity extends Activity {
     private DatabaseHelper dbHelper;
     private FirebaseSyncEngine syncEngine;
     private int themeMode = 0; // 0 = Auto, 1 = Light, 2 = Dark
-    private String selectedCategory = "All";
 
     private TextView tvSyncIndicator;
     private TextView tvDailyProgressValue;
@@ -47,8 +53,6 @@ public class MainActivity extends Activity {
     private TextView tvTopBarAvatarText;
     private ImageView ivTopBarAvatar;
     private Button btnSettings;
-
-    private TextView chipAll, chipHealth, chipMind, chipBody, chipCraft, chipFocus;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -82,7 +86,15 @@ public class MainActivity extends Activity {
         syncEngine = new FirebaseSyncEngine(this, dbHelper);
 
         initViews();
-        setupCategoryChips();
+        ReminderManager.createNotificationChannel(this);
+        ReminderManager.rescheduleAllReminders(this);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
+            }
+        }
+
         refreshDashboard();
         triggerAutoSync();
 
@@ -273,49 +285,6 @@ public class MainActivity extends Activity {
         });
     }
 
-    private void setupCategoryChips() {
-        chipAll = findViewById(R.id.chipAll);
-        chipHealth = findViewById(R.id.chipHealth);
-        chipMind = findViewById(R.id.chipMind);
-        chipBody = findViewById(R.id.chipBody);
-        chipCraft = findViewById(R.id.chipCraft);
-        chipFocus = findViewById(R.id.chipFocus);
-
-        View.OnClickListener chipListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                if (v == chipAll) selectedCategory = "All";
-                else if (v == chipHealth) selectedCategory = "Health";
-                else if (v == chipMind) selectedCategory = "Mind";
-                else if (v == chipBody) selectedCategory = "Body";
-                else if (v == chipCraft) selectedCategory = "Craft";
-                else if (v == chipFocus) selectedCategory = "Focus";
-
-                updateChipStyles();
-                refreshDashboard();
-            }
-        };
-
-        chipAll.setOnClickListener(chipListener);
-        chipHealth.setOnClickListener(chipListener);
-        chipMind.setOnClickListener(chipListener);
-        chipBody.setOnClickListener(chipListener);
-        chipCraft.setOnClickListener(chipListener);
-        chipFocus.setOnClickListener(chipListener);
-    }
-
-    private void updateChipStyles() {
-        TextView[] chips = {chipAll, chipHealth, chipMind, chipBody, chipCraft, chipFocus};
-        String[] cats = {"All", "Health", "Mind", "Body", "Craft", "Focus"};
-
-        for (int i = 0; i < chips.length; i++) {
-            boolean active = cats[i].equalsIgnoreCase(selectedCategory);
-            chips[i].setBackgroundResource(active ? R.drawable.chip_active : R.drawable.chip_inactive);
-            chips[i].setTextColor(getColor(active ? R.color.primary_accent : R.color.text_secondary));
-        }
-    }
-
     private void refreshDashboard() {
         // Update Sync Indicator & Mini Avatar
         if (syncEngine.isSignedIn()) {
@@ -347,7 +316,7 @@ public class MainActivity extends Activity {
             }
         }
 
-        List<DatabaseHelper.HabitItem> habits = dbHelper.getAllHabits(selectedCategory);
+        List<DatabaseHelper.HabitItem> habits = dbHelper.getAllHabits(null);
 
         // Calculate aggregate telemetry
         int total = habits.size();
@@ -379,7 +348,7 @@ public class MainActivity extends Activity {
 
                 TextView tvTitle = itemView.findViewById(R.id.tvHabitTitle);
                 TextView tvDesc = itemView.findViewById(R.id.tvHabitDesc);
-                TextView tvCat = itemView.findViewById(R.id.tvHabitCategory);
+                TextView tvReminderBadge = itemView.findViewById(R.id.tvReminderBadge);
                 TextView tvFreq = itemView.findViewById(R.id.tvFrequencyTarget);
                 TextView tvStreak = itemView.findViewById(R.id.tvStreakBadge);
                 TextView tvStrength = itemView.findViewById(R.id.tvStrengthScore);
@@ -394,7 +363,13 @@ public class MainActivity extends Activity {
                     tvDesc.setVisibility(View.GONE);
                 }
 
-                tvCat.setText(habit.category.toUpperCase(Locale.US));
+                if (habit.reminderEnabled) {
+                    tvReminderBadge.setVisibility(View.VISIBLE);
+                    tvReminderBadge.setText("🔔 " + ReminderManager.formatReminderTime(habit.reminderHour, habit.reminderMinute));
+                } else {
+                    tvReminderBadge.setVisibility(View.GONE);
+                }
+
                 tvFreq.setText(habit.targetDaysPerWeek == 7 ? "Daily" : habit.targetDaysPerWeek + "x / week");
                 tvStreak.setText("🔥 " + habit.currentStreak + "d");
                 tvStrength.setText(HabitMath.formatStrength(habit.strengthScore));
@@ -498,13 +473,41 @@ public class MainActivity extends Activity {
 
         final EditText etTitle = dialogView.findViewById(R.id.etHabitTitle);
         final EditText etDesc = dialogView.findViewById(R.id.etHabitDesc);
-        final Spinner spinnerCategory = dialogView.findViewById(R.id.spinnerCategory);
+        final Switch switchReminder = dialogView.findViewById(R.id.switchReminder);
+        final TextView tvReminderLabel = dialogView.findViewById(R.id.tvReminderLabel);
+        final Button btnPickTime = dialogView.findViewById(R.id.btnPickReminderTime);
         Button btnCancel = dialogView.findViewById(R.id.btnCancelAdd);
         Button btnSave = dialogView.findViewById(R.id.btnSaveHabit);
 
-        String[] categories = {"Health", "Mind", "Body", "Craft", "Focus"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categories);
-        spinnerCategory.setAdapter(adapter);
+        final int[] reminderTime = new int[]{8, 0}; // [hour, minute]
+
+        switchReminder.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                btnPickTime.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+                tvReminderLabel.setText(isChecked ? "Daily at" : "Reminder Off");
+                if (isChecked && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                        requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
+                    }
+                }
+            }
+        });
+
+        btnPickTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog tpd = new TimePickerDialog(MainActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        reminderTime[0] = hourOfDay;
+                        reminderTime[1] = minute;
+                        btnPickTime.setText("🔔 " + ReminderManager.formatReminderTime(hourOfDay, minute));
+                    }
+                }, reminderTime[0], reminderTime[1], false);
+                tpd.show();
+            }
+        });
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -519,14 +522,17 @@ public class MainActivity extends Activity {
                 v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                 String title = etTitle.getText().toString().trim();
                 String desc = etDesc.getText().toString().trim();
-                String cat = (String) spinnerCategory.getSelectedItem();
+                boolean reminderOn = switchReminder.isChecked();
 
                 if (title.isEmpty()) {
                     etTitle.setError("Please enter a habit title");
                     return;
                 }
 
-                dbHelper.addHabit(title, desc, cat, 7);
+                long rowId = dbHelper.addHabit(title, desc, 7, reminderOn, reminderTime[0], reminderTime[1]);
+                if (reminderOn) {
+                    ReminderManager.rescheduleAllReminders(MainActivity.this);
+                }
                 dialog.dismiss();
                 refreshDashboard();
                 triggerAutoSync();

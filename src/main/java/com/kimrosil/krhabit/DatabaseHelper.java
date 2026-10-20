@@ -34,6 +34,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_HABIT_CATEGORY = "category";
     public static final String COL_HABIT_FREQ = "frequency"; // days per week (1-7)
     public static final String COL_HABIT_POSITION = "position"; // Custom sort order
+    public static final String COL_HABIT_REMINDER_ENABLED = "reminder_enabled"; // 0 or 1
+    public static final String COL_HABIT_REMINDER_HOUR = "reminder_hour"; // 0-23
+    public static final String COL_HABIT_REMINDER_MINUTE = "reminder_minute"; // 0-59
     public static final String COL_HABIT_CREATED_AT = "created_at";
     public static final String COL_HABIT_UPDATED_AT = "updated_at";
     public static final String COL_HABIT_SYNCED = "synced"; // 0 or 1
@@ -60,6 +63,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         public String category;
         public int targetDaysPerWeek;
         public int position;
+        public boolean reminderEnabled;
+        public int reminderHour = 8;
+        public int reminderMinute = 0;
         public long createdAt;
         public long updatedAt;
         public boolean isCompletedToday;
@@ -91,6 +97,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COL_HABIT_CATEGORY + " TEXT NOT NULL, "
                 + COL_HABIT_FREQ + " INTEGER DEFAULT 7, "
                 + COL_HABIT_POSITION + " INTEGER DEFAULT 0, "
+                + COL_HABIT_REMINDER_ENABLED + " INTEGER DEFAULT 0, "
+                + COL_HABIT_REMINDER_HOUR + " INTEGER DEFAULT 8, "
+                + COL_HABIT_REMINDER_MINUTE + " INTEGER DEFAULT 0, "
                 + COL_HABIT_CREATED_AT + " INTEGER NOT NULL, "
                 + COL_HABIT_UPDATED_AT + " INTEGER NOT NULL, "
                 + COL_HABIT_SYNCED + " INTEGER DEFAULT 0)");
@@ -120,6 +129,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COL_DEL_TIMESTAMP + " INTEGER NOT NULL)");
         try {
             db.execSQL("ALTER TABLE " + TABLE_HABITS + " ADD COLUMN " + COL_HABIT_POSITION + " INTEGER DEFAULT 0");
+        } catch (Exception ignored) {
+            // Column already exists
+        }
+        try {
+            db.execSQL("ALTER TABLE " + TABLE_HABITS + " ADD COLUMN " + COL_HABIT_REMINDER_ENABLED + " INTEGER DEFAULT 0");
+        } catch (Exception ignored) {
+            // Column already exists
+        }
+        try {
+            db.execSQL("ALTER TABLE " + TABLE_HABITS + " ADD COLUMN " + COL_HABIT_REMINDER_HOUR + " INTEGER DEFAULT 8");
+        } catch (Exception ignored) {
+            // Column already exists
+        }
+        try {
+            db.execSQL("ALTER TABLE " + TABLE_HABITS + " ADD COLUMN " + COL_HABIT_REMINDER_MINUTE + " INTEGER DEFAULT 0");
         } catch (Exception ignored) {
             // Column already exists
         }
@@ -173,20 +197,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return next;
     }
 
-    public long addHabit(String title, String description, String category, int freq) {
+    public long addHabit(String title, String description, int freq, boolean reminderEnabled, int reminderHour, int reminderMinute) {
         SQLiteDatabase db = getWritableDatabase();
         long now = System.currentTimeMillis();
         ContentValues cv = new ContentValues();
         cv.put(COL_HABIT_UUID, UUID.randomUUID().toString());
         cv.put(COL_HABIT_TITLE, title);
         cv.put(COL_HABIT_DESC, description != null ? description : "");
-        cv.put(COL_HABIT_CATEGORY, category);
+        cv.put(COL_HABIT_CATEGORY, "General");
         cv.put(COL_HABIT_FREQ, freq > 0 ? freq : 7);
         cv.put(COL_HABIT_POSITION, getNextHabitPosition());
+        cv.put(COL_HABIT_REMINDER_ENABLED, reminderEnabled ? 1 : 0);
+        cv.put(COL_HABIT_REMINDER_HOUR, reminderHour);
+        cv.put(COL_HABIT_REMINDER_MINUTE, reminderMinute);
         cv.put(COL_HABIT_CREATED_AT, now);
         cv.put(COL_HABIT_UPDATED_AT, now);
         cv.put(COL_HABIT_SYNCED, 0);
         return db.insert(TABLE_HABITS, null, cv);
+    }
+
+    public long addHabit(String title, String description, String category, int freq) {
+        return addHabit(title, description, freq, false, 8, 0);
     }
 
     public void updateHabitPositions(List<String> habitUuidsInOrder) {
@@ -255,14 +286,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
-    public boolean updateHabit(String uuid, String title, String description, String category, int freq) {
+    public boolean updateHabit(String uuid, String title, String description, int freq, boolean reminderEnabled, int reminderHour, int reminderMinute) {
         SQLiteDatabase db = getWritableDatabase();
         long now = System.currentTimeMillis();
         ContentValues cv = new ContentValues();
         cv.put(COL_HABIT_TITLE, title);
         cv.put(COL_HABIT_DESC, description != null ? description : "");
-        cv.put(COL_HABIT_CATEGORY, category);
         cv.put(COL_HABIT_FREQ, freq > 0 ? freq : 7);
+        cv.put(COL_HABIT_REMINDER_ENABLED, reminderEnabled ? 1 : 0);
+        cv.put(COL_HABIT_REMINDER_HOUR, reminderHour);
+        cv.put(COL_HABIT_REMINDER_MINUTE, reminderMinute);
+        cv.put(COL_HABIT_UPDATED_AT, now);
+        cv.put(COL_HABIT_SYNCED, 0);
+        return db.update(TABLE_HABITS, cv, COL_HABIT_UUID + " = ?", new String[]{uuid}) > 0;
+    }
+
+    public boolean updateHabit(String uuid, String title, String description, String category, int freq) {
+        return updateHabit(uuid, title, description, freq, false, 8, 0);
+    }
+
+    public boolean updateReminder(String uuid, boolean enabled, int hour, int minute) {
+        SQLiteDatabase db = getWritableDatabase();
+        long now = System.currentTimeMillis();
+        ContentValues cv = new ContentValues();
+        cv.put(COL_HABIT_REMINDER_ENABLED, enabled ? 1 : 0);
+        cv.put(COL_HABIT_REMINDER_HOUR, hour);
+        cv.put(COL_HABIT_REMINDER_MINUTE, minute);
         cv.put(COL_HABIT_UPDATED_AT, now);
         cv.put(COL_HABIT_SYNCED, 0);
         return db.update(TABLE_HABITS, cv, COL_HABIT_UUID + " = ?", new String[]{uuid}) > 0;
@@ -327,6 +376,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 item.category = c.getString(c.getColumnIndexOrThrow(COL_HABIT_CATEGORY));
                 item.targetDaysPerWeek = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_FREQ));
                 item.position = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_POSITION));
+                item.reminderEnabled = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_REMINDER_ENABLED)) == 1;
+                item.reminderHour = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_REMINDER_HOUR));
+                item.reminderMinute = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_REMINDER_MINUTE));
                 item.createdAt = c.getLong(c.getColumnIndexOrThrow(COL_HABIT_CREATED_AT));
                 item.updatedAt = c.getLong(c.getColumnIndexOrThrow(COL_HABIT_UPDATED_AT));
 
@@ -350,6 +402,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             item.category = c.getString(c.getColumnIndexOrThrow(COL_HABIT_CATEGORY));
             item.targetDaysPerWeek = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_FREQ));
             item.position = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_POSITION));
+            item.reminderEnabled = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_REMINDER_ENABLED)) == 1;
+            item.reminderHour = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_REMINDER_HOUR));
+            item.reminderMinute = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_REMINDER_MINUTE));
             item.createdAt = c.getLong(c.getColumnIndexOrThrow(COL_HABIT_CREATED_AT));
             item.updatedAt = c.getLong(c.getColumnIndexOrThrow(COL_HABIT_UPDATED_AT));
 
@@ -460,6 +515,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 item.category = c.getString(c.getColumnIndexOrThrow(COL_HABIT_CATEGORY));
                 item.targetDaysPerWeek = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_FREQ));
                 item.position = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_POSITION));
+                item.reminderEnabled = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_REMINDER_ENABLED)) == 1;
+                item.reminderHour = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_REMINDER_HOUR));
+                item.reminderMinute = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_REMINDER_MINUTE));
                 item.createdAt = c.getLong(c.getColumnIndexOrThrow(COL_HABIT_CREATED_AT));
                 item.updatedAt = c.getLong(c.getColumnIndexOrThrow(COL_HABIT_UPDATED_AT));
                 list.add(item);
@@ -502,7 +560,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{habitUuid, dateStr});
     }
 
-    public void mergeRemoteHabit(String uuid, String title, String description, String category, int freq, int position, long createdAt, long updatedAt) {
+    public void mergeRemoteHabit(String uuid, String title, String description, String category, int freq, int position, boolean reminderEnabled, int reminderHour, int reminderMinute, long createdAt, long updatedAt) {
         SQLiteDatabase db = getWritableDatabase();
         Cursor c = db.query(TABLE_HABITS, new String[]{COL_HABIT_UPDATED_AT, COL_HABIT_POSITION}, COL_HABIT_UUID + " = ?", new String[]{uuid}, null, null, null);
         if (c != null && c.moveToFirst()) {
@@ -516,6 +574,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cv.put(COL_HABIT_CATEGORY, category);
                 cv.put(COL_HABIT_FREQ, freq);
                 cv.put(COL_HABIT_POSITION, position);
+                cv.put(COL_HABIT_REMINDER_ENABLED, reminderEnabled ? 1 : 0);
+                cv.put(COL_HABIT_REMINDER_HOUR, reminderHour);
+                cv.put(COL_HABIT_REMINDER_MINUTE, reminderMinute);
                 cv.put(COL_HABIT_UPDATED_AT, updatedAt);
                 cv.put(COL_HABIT_SYNCED, 1);
                 db.update(TABLE_HABITS, cv, COL_HABIT_UUID + " = ?", new String[]{uuid});
@@ -533,11 +594,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cv.put(COL_HABIT_CATEGORY, category);
             cv.put(COL_HABIT_FREQ, freq);
             cv.put(COL_HABIT_POSITION, position);
+            cv.put(COL_HABIT_REMINDER_ENABLED, reminderEnabled ? 1 : 0);
+            cv.put(COL_HABIT_REMINDER_HOUR, reminderHour);
+            cv.put(COL_HABIT_REMINDER_MINUTE, reminderMinute);
             cv.put(COL_HABIT_CREATED_AT, createdAt);
             cv.put(COL_HABIT_UPDATED_AT, updatedAt);
             cv.put(COL_HABIT_SYNCED, 1);
             db.insert(TABLE_HABITS, null, cv);
         }
+    }
+
+    public void mergeRemoteHabit(String uuid, String title, String description, String category, int freq, int position, long createdAt, long updatedAt) {
+        mergeRemoteHabit(uuid, title, description, category, freq, position, false, 8, 0, createdAt, updatedAt);
     }
 
     public void mergeRemoteHabit(String uuid, String title, String description, String category, int freq, long createdAt, long updatedAt) {
