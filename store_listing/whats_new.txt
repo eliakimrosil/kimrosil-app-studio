@@ -1,2 +1,2 @@
-Release v1.2.1 - KR Habit
-Full multi-device bi-directional synchronization for habits and check-in logs with native Google Account picker
+Release v1.2.2 - KR Habit
+Google profile picture integration and minimal hardcoded cloud configuration

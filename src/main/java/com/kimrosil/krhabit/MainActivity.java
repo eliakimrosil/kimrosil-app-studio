@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -39,6 +41,8 @@ public class MainActivity extends Activity {
     private TextView tvTopStreakValue;
     private LinearLayout habitListContainer;
     private LinearLayout layoutEmptyState;
+    private Button btnAccount;
+    private ImageView ivTopBarAvatar;
 
     private TextView chipAll, chipHealth, chipMind, chipBody, chipCraft, chipFocus;
 
@@ -186,7 +190,8 @@ public class MainActivity extends Activity {
         }
 
         // Top Bar Buttons
-        Button btnAccount = findViewById(R.id.btnAccount);
+        btnAccount = findViewById(R.id.btnAccount);
+        ivTopBarAvatar = findViewById(R.id.ivTopBarAvatar);
         if (btnAccount != null) {
             btnAccount.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -273,9 +278,29 @@ public class MainActivity extends Activity {
         if (syncEngine.isSignedIn()) {
             tvSyncIndicator.setText("● Synced with Google");
             tvSyncIndicator.setTextColor(getColor(R.color.sync_online));
+
+            // Load Google Profile Picture into Top Bar
+            final String userEmail = syncEngine.getUserEmail();
+            ProfileImageHelper.loadProfileImage(this, userEmail, ivTopBarAvatar, new ProfileImageHelper.ImageCallback() {
+                @Override
+                public void onLoaded(Bitmap bitmap) {
+                    if (ivTopBarAvatar != null) {
+                        ivTopBarAvatar.setVisibility(View.VISIBLE);
+                    }
+                    if (btnAccount != null) {
+                        btnAccount.setText("");
+                    }
+                }
+            });
         } else {
             tvSyncIndicator.setText("● Local Storage");
             tvSyncIndicator.setTextColor(getColor(R.color.text_tertiary));
+            if (ivTopBarAvatar != null) {
+                ivTopBarAvatar.setVisibility(View.GONE);
+            }
+            if (btnAccount != null) {
+                btnAccount.setText("👤");
+            }
         }
 
         List<DatabaseHelper.HabitItem> habits = dbHelper.getAllHabits(selectedCategory);
@@ -461,6 +486,7 @@ public class MainActivity extends Activity {
         final TextView tvUserName = dialogView.findViewById(R.id.tvUserName);
         final TextView tvUserEmail = dialogView.findViewById(R.id.tvUserEmail);
         final TextView tvUserAvatar = dialogView.findViewById(R.id.tvUserAvatar);
+        final ImageView ivUserAvatar = dialogView.findViewById(R.id.ivUserAvatar);
         final TextView tvSyncStatus = dialogView.findViewById(R.id.tvSyncStatusDetails);
         final View layoutSignedOut = dialogView.findViewById(R.id.layoutSignedOutActions);
         final View layoutSignedIn = dialogView.findViewById(R.id.layoutSignedInActions);
@@ -469,7 +495,6 @@ public class MainActivity extends Activity {
         final Button btnConnectManual = dialogView.findViewById(R.id.btnConnectManualEmail);
         final Button btnSwitch = dialogView.findViewById(R.id.btnSwitchGoogleAccount);
         final Button btnSignOut = dialogView.findViewById(R.id.btnGoogleSignOut);
-        Button btnFirebaseSettings = dialogView.findViewById(R.id.btnOpenFirebaseSettings);
         Button btnClose = dialogView.findViewById(R.id.btnCloseSyncDialog);
 
         final Runnable updateUi = new Runnable() {
@@ -483,12 +508,30 @@ public class MainActivity extends Activity {
                     String name = syncEngine.getUserName();
                     tvUserAvatar.setText(name.length() > 0 ? String.valueOf(name.charAt(0)).toUpperCase(Locale.US) : "👤");
                     tvSyncStatus.setText("● Auto-sync active with Google Cloud\nLast synced: " + syncEngine.getLastSyncTimeFormatted());
+
+                    // Load User's Google Profile Picture
+                    final String userEmail = syncEngine.getUserEmail();
+                    ProfileImageHelper.loadProfileImage(MainActivity.this, userEmail, ivUserAvatar, new ProfileImageHelper.ImageCallback() {
+                        @Override
+                        public void onLoaded(Bitmap bitmap) {
+                            if (ivUserAvatar != null) {
+                                ivUserAvatar.setVisibility(View.VISIBLE);
+                            }
+                            if (tvUserAvatar != null) {
+                                tvUserAvatar.setVisibility(View.GONE);
+                            }
+                        }
+                    });
                 } else {
                     layoutSignedOut.setVisibility(View.VISIBLE);
                     layoutSignedIn.setVisibility(View.GONE);
                     tvUserName.setText("Not Signed In");
                     tvUserEmail.setText("Sign in to automatically sync habits with Google");
                     tvUserAvatar.setText("👤");
+                    tvUserAvatar.setVisibility(View.VISIBLE);
+                    if (ivUserAvatar != null) {
+                        ivUserAvatar.setVisibility(View.GONE);
+                    }
                     tvSyncStatus.setText("● Offline Mode (Local Storage only)");
                 }
             }
@@ -541,56 +584,9 @@ public class MainActivity extends Activity {
             }
         });
 
-        btnFirebaseSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                showFirebaseConfigDialog();
-            }
-        });
-
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
-    }
-
-    private void showFirebaseConfigDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_firebase_config, null);
-        builder.setView(dialogView);
-        final AlertDialog dialog = builder.create();
-
-        final EditText etProjectId = dialogView.findViewById(R.id.etFirebaseProjectId);
-        final EditText etApiKey = dialogView.findViewById(R.id.etFirebaseApiKey);
-        final EditText etClientId = dialogView.findViewById(R.id.etGoogleClientId);
-        Button btnCancel = dialogView.findViewById(R.id.btnCancelFirebaseConfig);
-        Button btnSave = dialogView.findViewById(R.id.btnSaveFirebaseConfig);
-
-        etProjectId.setText(syncEngine.getProjectId());
-        etApiKey.setText(syncEngine.getApiKey());
-        etClientId.setText(syncEngine.getClientId());
-
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-                String pId = etProjectId.getText().toString();
-                String key = etApiKey.getText().toString();
-                String cId = etClientId.getText().toString();
-                syncEngine.saveFirebaseConfig(pId, key, cId);
-                Toast.makeText(MainActivity.this, "Firebase credentials saved", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });

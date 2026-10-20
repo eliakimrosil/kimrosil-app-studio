@@ -35,10 +35,11 @@ public class FirebaseSyncEngine {
     private static final String KEY_USER_EMAIL = "user_email";
     private static final String KEY_USER_NAME = "user_name";
     private static final String KEY_ID_TOKEN = "id_token";
-    private static final String KEY_PROJECT_ID = "project_id";
-    private static final String KEY_API_KEY = "api_key";
-    private static final String KEY_CLIENT_ID = "client_id";
     private static final String KEY_LAST_SYNC = "last_sync_time";
+
+    // Firebase credentials hardcoded directly for zero configuration
+    private static final String HARDCODED_PROJECT_ID = "gen-lang-client-0189236416";
+    private static final String HARDCODED_API_KEY = "AIzaSyCVp76Ac2QCds-fe7kiPbC1J6N_BvuOcuQ";
 
     private final Context context;
     private final SharedPreferences prefs;
@@ -87,23 +88,11 @@ public class FirebaseSyncEngine {
     }
 
     public String getProjectId() {
-        return prefs.getString(KEY_PROJECT_ID, "gen-lang-client-0189236416");
+        return HARDCODED_PROJECT_ID;
     }
 
     public String getApiKey() {
-        return prefs.getString(KEY_API_KEY, "AIzaSyCVp76Ac2QCds-fe7kiPbC1J6N_BvuOcuQ");
-    }
-
-    public String getClientId() {
-        return prefs.getString(KEY_CLIENT_ID, "");
-    }
-
-    public void saveFirebaseConfig(String projectId, String apiKey, String clientId) {
-        prefs.edit()
-                .putString(KEY_PROJECT_ID, projectId != null ? projectId.trim() : "")
-                .putString(KEY_API_KEY, apiKey != null ? apiKey.trim() : "")
-                .putString(KEY_CLIENT_ID, clientId != null ? clientId.trim() : "")
-                .apply();
+        return HARDCODED_API_KEY;
     }
 
     /**
