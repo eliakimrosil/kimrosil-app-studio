@@ -50,7 +50,9 @@
             android:layout_height="44dp"
             android:gravity="center"
             android:text="👤"
-            android:textSize="22sp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_accent"
             android:background="@drawable/chip_active"
             android:layout_marginEnd="12dp" />
 
@@ -73,7 +75,7 @@
                 android:id="@+id/tvUserEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sign in to sync habits across devices"
+                android:text="Sign in to sync habits across all your devices"
                 android:textSize="12sp"
                 android:textColor="@color/text_secondary"
                 android:maxLines="1"
@@ -81,7 +83,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Sync Telemetry / Status -->
+    <!-- Sync Status Details -->
     <TextView
         android:id="@+id/tvSyncStatusDetails"
         android:layout_width="match_parent"
@@ -89,25 +91,102 @@
         android:text="Offline Mode • Local SQLite active"
         android:textSize="12sp"
         android:textColor="@color/text_tertiary"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="14dp" />
 
-    <!-- Google Sign-In / Sign-Out Action Button -->
-    <Button
-        android:id="@+id/btnGoogleAuthAction"
+    <!-- Container for Signed-Out State -->
+    <LinearLayout
+        android:id="@+id/layoutSignedOutActions"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:text="@string/btn_google_signin"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:textColor="@color/text_on_accent"
-        android:background="@drawable/btn_primary"
-        android:layout_marginBottom="10dp" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnPickGoogleAccountDevice"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Select Google Account on Device"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_on_accent"
+            android:background="@drawable/btn_primary"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Or sync using your Google email address:"
+            android:textSize="12sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="6dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="14dp">
+
+            <EditText
+                android:id="@+id/etGoogleAccountEmail"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_bg"
+                android:paddingHorizontal="12dp"
+                android:hint="eliakimrosilarts@gmail.com"
+                android:inputType="textEmailAddress"
+                android:textSize="13sp"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_tertiary"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btnConnectManualEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:paddingHorizontal="16dp"
+                android:text="Connect"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_on_accent"
+                android:background="@drawable/btn_primary" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Container for Signed-In State -->
+    <LinearLayout
+        android:id="@+id/layoutSignedInActions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btnSwitchGoogleAccount"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:text="Switch Google Account"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:background="@drawable/btn_secondary"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btnGoogleSignOut"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="Sign Out (Keep Local Only)"
+            android:textSize="13sp"
+            android:textColor="@color/cat_body"
+            android:background="@drawable/btn_icon"
+            android:layout_marginBottom="12dp" />
+    </LinearLayout>
 
     <!-- Firebase Project Setup Button -->
     <Button
         android:id="@+id/btnOpenFirebaseSettings"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="40dp"
         android:text="⚙ Firebase Database Credentials"
         android:textSize="12sp"
         android:textColor="@color/text_secondary"

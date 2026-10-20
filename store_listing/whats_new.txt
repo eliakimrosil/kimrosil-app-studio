@@ -1,2 +1,2 @@
-Release v1.2.0 - KR Habit
-Seamless automatic background sync with Google Account and minimal header ergonomics
+Release v1.2.1 - KR Habit
+Full multi-device bi-directional synchronization for habits and check-in logs with native Google Account picker

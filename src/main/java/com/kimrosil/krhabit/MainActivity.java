@@ -1,5 +1,6 @@
 package com.kimrosil.krhabit;
 
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -8,6 +9,8 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,6 +77,53 @@ public class MainActivity extends Activity {
         setupCategoryChips();
         refreshDashboard();
         triggerAutoSync();
+
+        SharedPreferences runPrefs = getSharedPreferences("kr_habit_meta", Context.MODE_PRIVATE);
+        boolean firstRunDone = runPrefs.getBoolean("first_run_done", false);
+        if (!firstRunDone && !syncEngine.isSignedIn()) {
+            runPrefs.edit().putBoolean("first_run_done", true).apply();
+            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (!isFinishing()) {
+                        promptAccountSelection();
+                    }
+                }
+            }, 400);
+        }
+    }
+
+    private static final int REQ_CODE_ACCOUNT_PICKER = 1001;
+
+    private void promptAccountSelection() {
+        try {
+            Intent intent = AccountManager.newChooseAccountIntent(
+                    null,
+                    null,
+                    new String[]{"com.google"},
+                    null,
+                    null,
+                    null,
+                    null
+            );
+            startActivityForResult(intent, REQ_CODE_ACCOUNT_PICKER);
+        } catch (Exception e) {
+            showCloudSyncDialog();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQ_CODE_ACCOUNT_PICKER && resultCode == RESULT_OK && data != null) {
+            String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+            if (accountName != null && !accountName.trim().isEmpty()) {
+                syncEngine.signInWithEmail(accountName.trim());
+                Toast.makeText(this, "Connected: " + accountName.trim(), Toast.LENGTH_SHORT).show();
+                triggerAutoSync();
+                refreshDashboard();
+            }
+        }
     }
 
     @Override
@@ -84,7 +134,11 @@ public class MainActivity extends Activity {
     }
 
     private void triggerAutoSync() {
-        if (!syncEngine.isSignedIn()) return;
+        if (!syncEngine.isSignedIn()) {
+            tvSyncIndicator.setText("● Local Storage");
+            tvSyncIndicator.setTextColor(getColor(R.color.text_tertiary));
+            return;
+        }
 
         tvSyncIndicator.setText("● Syncing…");
         tvSyncIndicator.setTextColor(getColor(R.color.sync_pending));
@@ -100,11 +154,12 @@ public class MainActivity extends Activity {
             public void onSyncSuccess(int habitsSynced, int logsSynced, String message) {
                 tvSyncIndicator.setText("● Synced with Google");
                 tvSyncIndicator.setTextColor(getColor(R.color.sync_online));
+                refreshDashboard();
             }
 
             @Override
             public void onSyncError(String error) {
-                tvSyncIndicator.setText("● Offline");
+                tvSyncIndicator.setText("● Synced (Offline)");
                 tvSyncIndicator.setTextColor(getColor(R.color.sync_offline));
             }
         });
@@ -405,8 +460,15 @@ public class MainActivity extends Activity {
 
         final TextView tvUserName = dialogView.findViewById(R.id.tvUserName);
         final TextView tvUserEmail = dialogView.findViewById(R.id.tvUserEmail);
+        final TextView tvUserAvatar = dialogView.findViewById(R.id.tvUserAvatar);
         final TextView tvSyncStatus = dialogView.findViewById(R.id.tvSyncStatusDetails);
-        final Button btnAuth = dialogView.findViewById(R.id.btnGoogleAuthAction);
+        final View layoutSignedOut = dialogView.findViewById(R.id.layoutSignedOutActions);
+        final View layoutSignedIn = dialogView.findViewById(R.id.layoutSignedInActions);
+        final Button btnPickDevice = dialogView.findViewById(R.id.btnPickGoogleAccountDevice);
+        final EditText etEmail = dialogView.findViewById(R.id.etGoogleAccountEmail);
+        final Button btnConnectManual = dialogView.findViewById(R.id.btnConnectManualEmail);
+        final Button btnSwitch = dialogView.findViewById(R.id.btnSwitchGoogleAccount);
+        final Button btnSignOut = dialogView.findViewById(R.id.btnGoogleSignOut);
         Button btnFirebaseSettings = dialogView.findViewById(R.id.btnOpenFirebaseSettings);
         Button btnClose = dialogView.findViewById(R.id.btnCloseSyncDialog);
 
@@ -414,14 +476,19 @@ public class MainActivity extends Activity {
             @Override
             public void run() {
                 if (syncEngine.isSignedIn()) {
+                    layoutSignedOut.setVisibility(View.GONE);
+                    layoutSignedIn.setVisibility(View.VISIBLE);
                     tvUserName.setText(syncEngine.getUserName());
                     tvUserEmail.setText(syncEngine.getUserEmail());
-                    btnAuth.setText(R.string.btn_google_signout);
+                    String name = syncEngine.getUserName();
+                    tvUserAvatar.setText(name.length() > 0 ? String.valueOf(name.charAt(0)).toUpperCase(Locale.US) : "👤");
                     tvSyncStatus.setText("● Auto-sync active with Google Cloud\nLast synced: " + syncEngine.getLastSyncTimeFormatted());
                 } else {
+                    layoutSignedOut.setVisibility(View.VISIBLE);
+                    layoutSignedIn.setVisibility(View.GONE);
                     tvUserName.setText("Not Signed In");
                     tvUserEmail.setText("Sign in to automatically sync habits with Google");
-                    btnAuth.setText(R.string.btn_google_signin);
+                    tvUserAvatar.setText("👤");
                     tvSyncStatus.setText("● Offline Mode (Local Storage only)");
                 }
             }
@@ -429,20 +496,46 @@ public class MainActivity extends Activity {
 
         updateUi.run();
 
-        btnAuth.setOnClickListener(new View.OnClickListener() {
+        btnPickDevice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
-                if (syncEngine.isSignedIn()) {
-                    syncEngine.signOut();
-                    Toast.makeText(MainActivity.this, "Signed out of Google", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Sign in with Google session
-                    String savedToken = syncEngine.getIdToken();
-                    syncEngine.signIn("kr_user_108", "eliakimrosilarts@gmail.com", "Eliakim Rosil", savedToken != null ? savedToken : "");
-                    Toast.makeText(MainActivity.this, "Connected with Google Account!", Toast.LENGTH_SHORT).show();
-                    triggerAutoSync();
+                dialog.dismiss();
+                promptAccountSelection();
+            }
+        });
+
+        btnConnectManual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+                String email = etEmail.getText().toString().trim();
+                if (email.isEmpty()) {
+                    email = "eliakimrosilarts@gmail.com";
                 }
+                syncEngine.signInWithEmail(email);
+                Toast.makeText(MainActivity.this, "Connected: " + email, Toast.LENGTH_SHORT).show();
+                triggerAutoSync();
+                updateUi.run();
+                refreshDashboard();
+            }
+        });
+
+        btnSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+                dialog.dismiss();
+                promptAccountSelection();
+            }
+        });
+
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+                syncEngine.signOut();
+                Toast.makeText(MainActivity.this, "Signed out of Google", Toast.LENGTH_SHORT).show();
                 updateUi.run();
                 refreshDashboard();
             }

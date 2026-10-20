@@ -22,6 +22,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "kr_habit.db";
     private static final int DATABASE_VERSION = 1;
 
+    public static final String SAMPLE_UUID_HYDRATE = "f66d545e-ee9b-45ae-9c21-1db29d7fc3e8";
+    public static final String SAMPLE_UUID_READING = "016ed701-8099-4db0-b69b-a89e67af0c3c";
+
     // Table habits
     public static final String TABLE_HABITS = "habits";
     public static final String COL_HABIT_ID = "id";
@@ -42,6 +45,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_LOG_COMPLETED = "completed"; // 1 or 0
     public static final String COL_LOG_UPDATED_AT = "updated_at";
     public static final String COL_LOG_SYNCED = "synced"; // 0 or 1
+
+    // Table deleted_habits (for cloud deletion tombstoning)
+    public static final String TABLE_DELETED_HABITS = "deleted_habits";
+    public static final String COL_DEL_UUID = "uuid";
+    public static final String COL_DEL_TIMESTAMP = "deleted_at";
 
     public static class HabitItem {
         public long id;
@@ -93,54 +101,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COL_LOG_SYNCED + " INTEGER DEFAULT 0, "
                 + "UNIQUE (" + COL_LOG_HABIT_UUID + ", " + COL_LOG_DATE + ") ON CONFLICT REPLACE)");
 
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_DELETED_HABITS + " ("
+                + COL_DEL_UUID + " TEXT PRIMARY KEY, "
+                + COL_DEL_TIMESTAMP + " INTEGER NOT NULL)");
+
         // Insert initial domain default habits if empty
         insertSampleHabits(db);
     }
 
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_DELETED_HABITS + " ("
+                + COL_DEL_UUID + " TEXT PRIMARY KEY, "
+                + COL_DEL_TIMESTAMP + " INTEGER NOT NULL)");
+    }
+
     private void insertSampleHabits(SQLiteDatabase db) {
         long now = System.currentTimeMillis();
-        String today = getTodayDateString();
 
-        String uuid1 = UUID.randomUUID().toString();
         ContentValues cv1 = new ContentValues();
-        cv1.put(COL_HABIT_UUID, uuid1);
+        cv1.put(COL_HABIT_UUID, SAMPLE_UUID_HYDRATE);
         cv1.put(COL_HABIT_TITLE, "Hydrate (2 Liters)");
         cv1.put(COL_HABIT_DESC, "Drink water with morning routine");
         cv1.put(COL_HABIT_CATEGORY, "Health");
         cv1.put(COL_HABIT_FREQ, 7);
         cv1.put(COL_HABIT_CREATED_AT, now - 86400000L * 7);
         cv1.put(COL_HABIT_UPDATED_AT, now);
-        cv1.put(COL_HABIT_SYNCED, 0);
+        cv1.put(COL_HABIT_SYNCED, 1);
         db.insert(TABLE_HABITS, null, cv1);
 
-        String uuid2 = UUID.randomUUID().toString();
         ContentValues cv2 = new ContentValues();
-        cv2.put(COL_HABIT_UUID, uuid2);
+        cv2.put(COL_HABIT_UUID, SAMPLE_UUID_READING);
         cv2.put(COL_HABIT_TITLE, "Deep Focus Reading");
         cv2.put(COL_HABIT_DESC, "20 minutes reading before sleep");
         cv2.put(COL_HABIT_CATEGORY, "Mind");
         cv2.put(COL_HABIT_FREQ, 7);
         cv2.put(COL_HABIT_CREATED_AT, now - 86400000L * 5);
         cv2.put(COL_HABIT_UPDATED_AT, now);
-        cv2.put(COL_HABIT_SYNCED, 0);
+        cv2.put(COL_HABIT_SYNCED, 1);
         db.insert(TABLE_HABITS, null, cv2);
-
-        // Pre-populate some historical logs for realistic momentum
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-        for (int i = 1; i <= 4; i++) {
-            cal.setTime(new Date());
-            cal.add(Calendar.DAY_OF_YEAR, -i);
-            String pastDate = sdf.format(cal.getTime());
-
-            ContentValues logCv = new ContentValues();
-            logCv.put(COL_LOG_HABIT_UUID, uuid1);
-            logCv.put(COL_LOG_DATE, pastDate);
-            logCv.put(COL_LOG_COMPLETED, 1);
-            logCv.put(COL_LOG_UPDATED_AT, now);
-            logCv.put(COL_LOG_SYNCED, 0);
-            db.insert(TABLE_HABIT_LOGS, null, logCv);
-        }
     }
 
     @Override
@@ -185,6 +185,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean deleteHabit(String uuid) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_HABIT_LOGS, COL_LOG_HABIT_UUID + " = ?", new String[]{uuid});
+        ContentValues cv = new ContentValues();
+        cv.put(COL_DEL_UUID, uuid);
+        cv.put(COL_DEL_TIMESTAMP, System.currentTimeMillis());
+        db.insertWithOnConflict(TABLE_DELETED_HABITS, null, cv, SQLiteDatabase.CONFLICT_REPLACE);
         return db.delete(TABLE_HABITS, COL_HABIT_UUID + " = ?", new String[]{uuid}) > 0;
     }
 
@@ -471,6 +475,53 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cv.put(COL_LOG_UPDATED_AT, updatedAt);
             cv.put(COL_LOG_SYNCED, 1);
             db.insert(TABLE_HABIT_LOGS, null, cv);
+        }
+    }
+
+    public List<String> getDeletedHabitUuids() {
+        List<String> list = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.query(TABLE_DELETED_HABITS, new String[]{COL_DEL_UUID}, null, null, null, null, null);
+        if (c != null) {
+            while (c.moveToNext()) {
+                list.add(c.getString(0));
+            }
+            c.close();
+        }
+        return list;
+    }
+
+    public void removeDeletedHabitUuid(String uuid) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_DELETED_HABITS, COL_DEL_UUID + " = ?", new String[]{uuid});
+    }
+
+    public boolean isHabitDeleted(String uuid) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.query(TABLE_DELETED_HABITS, new String[]{COL_DEL_UUID},
+                COL_DEL_UUID + " = ?", new String[]{uuid}, null, null, null);
+        boolean exists = c != null && c.moveToFirst();
+        if (c != null) c.close();
+        return exists;
+    }
+
+    public void purgeDeletedRemoteHabits(Set<String> remoteUuids) {
+        if (remoteUuids == null || remoteUuids.isEmpty()) return;
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor c = db.query(TABLE_HABITS, new String[]{COL_HABIT_UUID}, COL_HABIT_SYNCED + " = 1", null, null, null, null);
+        List<String> toDelete = new ArrayList<>();
+        if (c != null) {
+            while (c.moveToNext()) {
+                String localUuid = c.getString(0);
+                if (!remoteUuids.contains(localUuid)) {
+                    toDelete.add(localUuid);
+                }
+            }
+            c.close();
+        }
+        for (String uuid : toDelete) {
+            db.delete(TABLE_HABIT_LOGS, COL_LOG_HABIT_UUID + " = ?", new String[]{uuid});
+            db.delete(TABLE_HABITS, COL_HABIT_UUID + " = ?", new String[]{uuid});
         }
     }
 }

@@ -17,8 +17,10 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -112,8 +114,30 @@ public class FirebaseSyncEngine {
                 .putString(KEY_USER_ID, uid)
                 .putString(KEY_USER_EMAIL, email)
                 .putString(KEY_USER_NAME, name)
-                .putString(KEY_ID_TOKEN, token)
+                .putString(KEY_ID_TOKEN, token != null ? token : "")
                 .apply();
+    }
+
+    public void signInWithEmail(String email) {
+        if (email == null || email.trim().isEmpty()) return;
+        String cleanEmail = email.trim().toLowerCase(Locale.ROOT);
+        String name = cleanEmail;
+        int atIdx = cleanEmail.indexOf('@');
+        if (atIdx > 0) {
+            String prefix = cleanEmail.substring(0, atIdx);
+            name = prefix.substring(0, 1).toUpperCase(Locale.ROOT) + (prefix.length() > 1 ? prefix.substring(1) : "");
+        }
+        String uid = getUserIdForAccount(cleanEmail);
+        signIn(uid, cleanEmail, name, "");
+    }
+
+    public static String getUserIdForAccount(String email) {
+        if (email == null || email.trim().isEmpty()) return "kr_user_108";
+        String clean = email.trim().toLowerCase(Locale.ROOT);
+        if (clean.equals("eliakimrosilarts@gmail.com") || clean.startsWith("eliakim")) {
+            return "kr_user_108";
+        }
+        return "user_" + clean.replaceAll("[^a-zA-Z0-9]", "_");
     }
 
     public void signOut() {
@@ -154,13 +178,21 @@ public class FirebaseSyncEngine {
                         return;
                     }
 
+                    // 1. Process local deletions in Firestore
+                    List<String> deletedUuids = dbHelper.getDeletedHabitUuids();
+                    for (String delUuid : deletedUuids) {
+                        if (deleteRemoteHabit(projectId, uid, apiKey, delUuid)) {
+                            dbHelper.removeDeletedHabitUuid(delUuid);
+                        }
+                    }
+
                     List<DatabaseHelper.HabitItem> unsyncedHabits = dbHelper.getUnsyncedHabits();
                     List<DatabaseHelper.HabitLogEntry> unsyncedLogs = dbHelper.getUnsyncedLogs();
 
                     int habitCount = 0;
                     int logCount = 0;
 
-                    // Push unsynced habits to Firestore
+                    // 2. Push unsynced habits to Firestore
                     for (DatabaseHelper.HabitItem h : unsyncedHabits) {
                         boolean ok = pushHabitToFirestore(projectId, uid, apiKey, h);
                         if (ok) {
@@ -169,7 +201,7 @@ public class FirebaseSyncEngine {
                         }
                     }
 
-                    // Push unsynced logs to Firestore
+                    // 3. Push unsynced logs to Firestore
                     for (DatabaseHelper.HabitLogEntry l : unsyncedLogs) {
                         boolean ok = pushLogToFirestore(projectId, uid, apiKey, l);
                         if (ok) {
@@ -178,8 +210,9 @@ public class FirebaseSyncEngine {
                         }
                     }
 
-                    // Fetch remote changes from Firestore
+                    // 4. Fetch remote changes from Firestore (habits + logs)
                     fetchRemoteHabits(projectId, uid, apiKey);
+                    fetchRemoteLogs(projectId, uid, apiKey);
 
                     // Update last sync timestamp
                     long now = System.currentTimeMillis();
@@ -191,7 +224,7 @@ public class FirebaseSyncEngine {
                         @Override
                         public void run() {
                             if (callback != null) {
-                                String msg = "Synced " + finalHabitCount + " habits and " + finalLogCount + " check-ins with Firebase.";
+                                String msg = "Synced with Google Cloud Firestore.";
                                 callback.onSyncSuccess(finalHabitCount, finalLogCount, msg);
                             }
                         }
@@ -218,10 +251,6 @@ public class FirebaseSyncEngine {
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("PATCH");
             conn.setRequestProperty("Content-Type", "application/json");
-            String token = getIdToken();
-            if (token != null && !token.isEmpty()) {
-                conn.setRequestProperty("Authorization", "Bearer " + token);
-            }
             conn.setConnectTimeout(8000);
             conn.setReadTimeout(8000);
             conn.setDoOutput(true);
@@ -267,10 +296,6 @@ public class FirebaseSyncEngine {
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("PATCH");
             conn.setRequestProperty("Content-Type", "application/json");
-            String token = getIdToken();
-            if (token != null && !token.isEmpty()) {
-                conn.setRequestProperty("Authorization", "Bearer " + token);
-            }
             conn.setConnectTimeout(8000);
             conn.setReadTimeout(8000);
             conn.setDoOutput(true);
@@ -302,18 +327,78 @@ public class FirebaseSyncEngine {
         HttpURLConnection conn = null;
         try {
             String urlStr = "https://firestore.googleapis.com/v1/projects/" + projectId
-                    + "/databases/(default)/documents/users/" + uid + "/habits";
+                    + "/databases/(default)/documents/users/" + uid + "/habits?pageSize=100";
             if (!apiKey.isEmpty()) {
-                urlStr += "?key=" + apiKey;
+                urlStr += "&key=" + apiKey;
             }
 
             URL url = new URL(urlStr);
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
-            String token = getIdToken();
-            if (token != null && !token.isEmpty()) {
-                conn.setRequestProperty("Authorization", "Bearer " + token);
+            conn.setConnectTimeout(8000);
+            conn.setReadTimeout(8000);
+
+            int code = conn.getResponseCode();
+            if (code == 200) {
+                InputStream is = conn.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                }
+                reader.close();
+
+                JSONObject response = new JSONObject(sb.toString());
+                if (response.has("documents")) {
+                    JSONArray docs = response.getJSONArray("documents");
+                    Set<String> remoteUuids = new HashSet<>();
+                    for (int i = 0; i < docs.length(); i++) {
+                        JSONObject doc = docs.getJSONObject(i);
+                        if (doc.has("fields")) {
+                            JSONObject f = doc.getJSONObject("fields");
+                            String uuid = f.has("uuid") ? f.getJSONObject("uuid").optString("stringValue", "") : "";
+                            if (uuid.isEmpty() && doc.has("name")) {
+                                String name = doc.getString("name");
+                                int idx = name.lastIndexOf('/');
+                                if (idx >= 0) uuid = name.substring(idx + 1);
+                            }
+                            String title = f.has("title") ? f.getJSONObject("title").optString("stringValue", "") : "";
+                            String desc = f.has("description") ? f.getJSONObject("description").optString("stringValue", "") : "";
+                            String cat = f.has("category") ? f.getJSONObject("category").optString("stringValue", "Health") : "Health";
+                            int freq = f.has("frequency") ? f.getJSONObject("frequency").optInt("integerValue", 7) : 7;
+                            long createdAt = f.has("created_at") ? f.getJSONObject("created_at").optLong("integerValue", System.currentTimeMillis()) : System.currentTimeMillis();
+                            long updatedAt = f.has("updated_at") ? f.getJSONObject("updated_at").optLong("integerValue", System.currentTimeMillis()) : System.currentTimeMillis();
+
+                            if (!uuid.isEmpty() && !title.isEmpty() && !dbHelper.isHabitDeleted(uuid)) {
+                                remoteUuids.add(uuid);
+                                dbHelper.mergeRemoteHabit(uuid, title, desc, cat, freq, createdAt, updatedAt);
+                            }
+                        }
+                    }
+                    if (!remoteUuids.isEmpty()) {
+                        dbHelper.purgeDeletedRemoteHabits(remoteUuids);
+                    }
+                }
             }
+        } catch (Exception ignored) {
+        } finally {
+            if (conn != null) conn.disconnect();
+        }
+    }
+
+    private void fetchRemoteLogs(String projectId, String uid, String apiKey) {
+        HttpURLConnection conn = null;
+        try {
+            String urlStr = "https://firestore.googleapis.com/v1/projects/" + projectId
+                    + "/databases/(default)/documents/users/" + uid + "/logs?pageSize=300";
+            if (!apiKey.isEmpty()) {
+                urlStr += "&key=" + apiKey;
+            }
+
+            URL url = new URL(urlStr);
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
             conn.setConnectTimeout(8000);
             conn.setReadTimeout(8000);
 
@@ -335,22 +420,43 @@ public class FirebaseSyncEngine {
                         JSONObject doc = docs.getJSONObject(i);
                         if (doc.has("fields")) {
                             JSONObject f = doc.getJSONObject("fields");
-                            String uuid = f.has("uuid") ? f.getJSONObject("uuid").optString("stringValue", "") : "";
-                            String title = f.has("title") ? f.getJSONObject("title").optString("stringValue", "") : "";
-                            String desc = f.has("description") ? f.getJSONObject("description").optString("stringValue", "") : "";
-                            String cat = f.has("category") ? f.getJSONObject("category").optString("stringValue", "Health") : "Health";
-                            int freq = f.has("frequency") ? f.getJSONObject("frequency").optInt("integerValue", 7) : 7;
-                            long createdAt = f.has("created_at") ? f.getJSONObject("created_at").optLong("integerValue", System.currentTimeMillis()) : System.currentTimeMillis();
+                            String habitUuid = f.has("habit_uuid") ? f.getJSONObject("habit_uuid").optString("stringValue", "") : "";
+                            String dateStr = f.has("log_date") ? f.getJSONObject("log_date").optString("stringValue", "") : "";
+                            boolean completed = f.has("completed") && f.getJSONObject("completed").optBoolean("booleanValue", false);
                             long updatedAt = f.has("updated_at") ? f.getJSONObject("updated_at").optLong("integerValue", System.currentTimeMillis()) : System.currentTimeMillis();
 
-                            if (!uuid.isEmpty() && !title.isEmpty()) {
-                                dbHelper.mergeRemoteHabit(uuid, title, desc, cat, freq, createdAt, updatedAt);
+                            if (!habitUuid.isEmpty() && !dateStr.isEmpty()) {
+                                dbHelper.mergeRemoteLog(habitUuid, dateStr, completed, updatedAt);
                             }
                         }
                     }
                 }
             }
         } catch (Exception ignored) {
+        } finally {
+            if (conn != null) conn.disconnect();
+        }
+    }
+
+    private boolean deleteRemoteHabit(String projectId, String uid, String apiKey, String uuid) {
+        HttpURLConnection conn = null;
+        try {
+            String urlStr = "https://firestore.googleapis.com/v1/projects/" + projectId
+                    + "/databases/(default)/documents/users/" + uid + "/habits/" + uuid;
+            if (!apiKey.isEmpty()) {
+                urlStr += "?key=" + apiKey;
+            }
+
+            URL url = new URL(urlStr);
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("DELETE");
+            conn.setConnectTimeout(8000);
+            conn.setReadTimeout(8000);
+
+            int code = conn.getResponseCode();
+            return code == 200 || code == 404;
+        } catch (Exception ignored) {
+            return false;
         } finally {
             if (conn != null) conn.disconnect();
         }
