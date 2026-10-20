@@ -782,11 +782,11 @@
     "tagline": "Daily habit routine with habit strength scoring, heatmap grid, and cloud sync.",
     "status": "BUILT",
     "branch": "app/kr-habit",
-    "tag": "v1.0.0-kr-habit",
-    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-kr-habit/kr-habit.apk",
+    "tag": "v1.2.0-kr-habit",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.0-kr-habit/kr-habit.apk",
     "landing_page": "https://apps.kimrosil.com/kr-habit/",
     "privacy_policy": "https://apps.kimrosil.com/kr-habit/privacy.html",
     "icon": "assets/icons/kr-habit.svg",
-    "updated_at": "2026-10-19T23:59:05.654100+00:00"
+    "updated_at": "2026-10-20T00:13:13.775601+00:00"
   }
 ]
