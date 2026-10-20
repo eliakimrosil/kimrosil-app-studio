@@ -1,2 +1,2 @@
-Release v1.2.10 - KR Habit
-Add habit editing capability in detail view top bar with cloud auto-sync
+Release v1.2.12 - KR Habit
+Fluid long-press drag-and-drop habit reordering with cloud sync

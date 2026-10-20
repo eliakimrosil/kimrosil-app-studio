@@ -347,8 +347,8 @@
                     android:lineSpacingExtra="3dp" />
             </LinearLayout>
 
-            <!-- Dynamic Habit Container (Inflated Programmatically or ListView) -->
-            <LinearLayout
+            <!-- Dynamic Habit Container (Reorderable via Long-Press Drag-and-Drop) -->
+            <com.kimrosil.krhabit.ReorderableLinearLayout
                 android:id="@+id/habitListContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

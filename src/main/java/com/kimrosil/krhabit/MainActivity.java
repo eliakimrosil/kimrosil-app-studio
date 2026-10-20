@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
     private TextView tvDailyProgressValue;
     private TextView tvTotalHabitsValue;
     private TextView tvTopStreakValue;
-    private LinearLayout habitListContainer;
+    private ReorderableLinearLayout habitListContainer;
     private LinearLayout layoutEmptyState;
     private PullToRefreshLayout pullToRefreshLayout;
     private View btnAccount;
@@ -194,6 +194,15 @@ public class MainActivity extends Activity {
         tvTotalHabitsValue = findViewById(R.id.tvTotalHabitsValue);
         tvTopStreakValue = findViewById(R.id.tvTopStreakValue);
         habitListContainer = findViewById(R.id.habitListContainer);
+        if (habitListContainer != null) {
+            habitListContainer.setOnOrderChangedListener(new ReorderableLinearLayout.OnOrderChangedListener() {
+                @Override
+                public void onOrderChanged(List<String> reorderedUuids) {
+                    dbHelper.updateHabitPositions(reorderedUuids);
+                    triggerAutoSync();
+                }
+            });
+        }
         layoutEmptyState = findViewById(R.id.layoutEmptyState);
 
         // Pull to refresh / resync
@@ -364,6 +373,7 @@ public class MainActivity extends Activity {
 
             for (final DatabaseHelper.HabitItem habit : habits) {
                 View itemView = inflater.inflate(R.layout.item_habit, habitListContainer, false);
+                itemView.setTag(habit.uuid);
 
                 TextView tvTitle = itemView.findViewById(R.id.tvHabitTitle);
                 TextView tvDesc = itemView.findViewById(R.id.tvHabitDesc);
@@ -409,10 +419,19 @@ public class MainActivity extends Activity {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (habitListContainer.isDragging()) return;
                         v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                         Intent intent = new Intent(MainActivity.this, DetailActivity.class);
                         intent.putExtra(DetailActivity.EXTRA_HABIT_UUID, habit.uuid);
                         startActivity(intent);
+                    }
+                });
+
+                // Card Long-Click -> Fluid Drag & Drop Reordering
+                itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        return habitListContainer.startDragForChild(v);
                     }
                 });
 

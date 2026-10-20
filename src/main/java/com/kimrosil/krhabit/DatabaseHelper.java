@@ -33,6 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_HABIT_DESC = "description";
     public static final String COL_HABIT_CATEGORY = "category";
     public static final String COL_HABIT_FREQ = "frequency"; // days per week (1-7)
+    public static final String COL_HABIT_POSITION = "position"; // Custom sort order
     public static final String COL_HABIT_CREATED_AT = "created_at";
     public static final String COL_HABIT_UPDATED_AT = "updated_at";
     public static final String COL_HABIT_SYNCED = "synced"; // 0 or 1
@@ -58,6 +59,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         public String description;
         public String category;
         public int targetDaysPerWeek;
+        public int position;
         public long createdAt;
         public long updatedAt;
         public boolean isCompletedToday;
@@ -88,6 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COL_HABIT_DESC + " TEXT, "
                 + COL_HABIT_CATEGORY + " TEXT NOT NULL, "
                 + COL_HABIT_FREQ + " INTEGER DEFAULT 7, "
+                + COL_HABIT_POSITION + " INTEGER DEFAULT 0, "
                 + COL_HABIT_CREATED_AT + " INTEGER NOT NULL, "
                 + COL_HABIT_UPDATED_AT + " INTEGER NOT NULL, "
                 + COL_HABIT_SYNCED + " INTEGER DEFAULT 0)");
@@ -115,6 +118,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_DELETED_HABITS + " ("
                 + COL_DEL_UUID + " TEXT PRIMARY KEY, "
                 + COL_DEL_TIMESTAMP + " INTEGER NOT NULL)");
+        try {
+            db.execSQL("ALTER TABLE " + TABLE_HABITS + " ADD COLUMN " + COL_HABIT_POSITION + " INTEGER DEFAULT 0");
+        } catch (Exception ignored) {
+            // Column already exists
+        }
     }
 
     private void insertSampleHabits(SQLiteDatabase db) {
@@ -154,6 +162,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(new Date());
     }
 
+    public int getNextHabitPosition() {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT MAX(" + COL_HABIT_POSITION + ") FROM " + TABLE_HABITS, null);
+        int next = 0;
+        if (c != null && c.moveToFirst()) {
+            next = c.getInt(0) + 1;
+            c.close();
+        }
+        return next;
+    }
+
     public long addHabit(String title, String description, String category, int freq) {
         SQLiteDatabase db = getWritableDatabase();
         long now = System.currentTimeMillis();
@@ -163,10 +182,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COL_HABIT_DESC, description != null ? description : "");
         cv.put(COL_HABIT_CATEGORY, category);
         cv.put(COL_HABIT_FREQ, freq > 0 ? freq : 7);
+        cv.put(COL_HABIT_POSITION, getNextHabitPosition());
         cv.put(COL_HABIT_CREATED_AT, now);
         cv.put(COL_HABIT_UPDATED_AT, now);
         cv.put(COL_HABIT_SYNCED, 0);
         return db.insert(TABLE_HABITS, null, cv);
+    }
+
+    public void updateHabitPositions(List<String> habitUuidsInOrder) {
+        if (habitUuidsInOrder == null || habitUuidsInOrder.isEmpty()) return;
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        try {
+            List<Integer> existingPositions = new ArrayList<>();
+            for (String uuid : habitUuidsInOrder) {
+                Cursor c = db.query(TABLE_HABITS, new String[]{COL_HABIT_POSITION}, COL_HABIT_UUID + " = ?", new String[]{uuid}, null, null, null);
+                if (c != null && c.moveToFirst()) {
+                    existingPositions.add(c.getInt(0));
+                    c.close();
+                } else {
+                    if (c != null) c.close();
+                    existingPositions.add(existingPositions.size());
+                }
+            }
+            java.util.Collections.sort(existingPositions);
+            for (int i = 1; i < existingPositions.size(); i++) {
+                if (existingPositions.get(i) <= existingPositions.get(i - 1)) {
+                    existingPositions.set(i, existingPositions.get(i - 1) + 1);
+                }
+            }
+            long now = System.currentTimeMillis();
+            for (int i = 0; i < habitUuidsInOrder.size(); i++) {
+                ContentValues cv = new ContentValues();
+                int pos = (i < existingPositions.size()) ? existingPositions.get(i) : i;
+                cv.put(COL_HABIT_POSITION, pos);
+                cv.put(COL_HABIT_UPDATED_AT, now);
+                cv.put(COL_HABIT_SYNCED, 0);
+                db.update(TABLE_HABITS, cv, COL_HABIT_UUID + " = ?", new String[]{habitUuidsInOrder.get(i)});
+            }
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
     }
 
     public boolean updateHabit(String uuid, String title, String description, String category, int freq) {
@@ -236,7 +293,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             selectionArgs = new String[]{categoryFilter};
         }
 
-        Cursor c = db.query(TABLE_HABITS, null, selection, selectionArgs, null, null, COL_HABIT_ID + " ASC");
+        Cursor c = db.query(TABLE_HABITS, null, selection, selectionArgs, null, null, COL_HABIT_POSITION + " ASC, " + COL_HABIT_ID + " ASC");
         if (c != null && c.moveToFirst()) {
             do {
                 HabitItem item = new HabitItem();
@@ -246,6 +303,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 item.description = c.getString(c.getColumnIndexOrThrow(COL_HABIT_DESC));
                 item.category = c.getString(c.getColumnIndexOrThrow(COL_HABIT_CATEGORY));
                 item.targetDaysPerWeek = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_FREQ));
+                item.position = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_POSITION));
                 item.createdAt = c.getLong(c.getColumnIndexOrThrow(COL_HABIT_CREATED_AT));
                 item.updatedAt = c.getLong(c.getColumnIndexOrThrow(COL_HABIT_UPDATED_AT));
 
@@ -268,6 +326,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             item.description = c.getString(c.getColumnIndexOrThrow(COL_HABIT_DESC));
             item.category = c.getString(c.getColumnIndexOrThrow(COL_HABIT_CATEGORY));
             item.targetDaysPerWeek = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_FREQ));
+            item.position = c.getInt(c.getColumnIndexOrThrow(COL_HABIT_POSITION));
             item.createdAt = c.getLong(c.getColumnIndexOrThrow(COL_HABIT_CREATED_AT));
             item.updatedAt = c.getLong(c.getColumnIndexOrThrow(COL_HABIT_UPDATED_AT));
 
@@ -419,7 +478,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{habitUuid, dateStr});
     }
 
-    public void mergeRemoteHabit(String uuid, String title, String description, String category, int freq, long createdAt, long updatedAt) {
+    public void mergeRemoteHabit(String uuid, String title, String description, String category, int freq, int position, long createdAt, long updatedAt) {
         SQLiteDatabase db = getWritableDatabase();
         Cursor c = db.query(TABLE_HABITS, new String[]{COL_HABIT_UPDATED_AT}, COL_HABIT_UUID + " = ?", new String[]{uuid}, null, null, null);
         if (c != null && c.moveToFirst()) {
@@ -431,6 +490,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cv.put(COL_HABIT_DESC, description != null ? description : "");
                 cv.put(COL_HABIT_CATEGORY, category);
                 cv.put(COL_HABIT_FREQ, freq);
+                cv.put(COL_HABIT_POSITION, position);
                 cv.put(COL_HABIT_UPDATED_AT, updatedAt);
                 cv.put(COL_HABIT_SYNCED, 1);
                 db.update(TABLE_HABITS, cv, COL_HABIT_UUID + " = ?", new String[]{uuid});
@@ -443,11 +503,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cv.put(COL_HABIT_DESC, description != null ? description : "");
             cv.put(COL_HABIT_CATEGORY, category);
             cv.put(COL_HABIT_FREQ, freq);
+            cv.put(COL_HABIT_POSITION, position);
             cv.put(COL_HABIT_CREATED_AT, createdAt);
             cv.put(COL_HABIT_UPDATED_AT, updatedAt);
             cv.put(COL_HABIT_SYNCED, 1);
             db.insert(TABLE_HABITS, null, cv);
         }
+    }
+
+    public void mergeRemoteHabit(String uuid, String title, String description, String category, int freq, long createdAt, long updatedAt) {
+        mergeRemoteHabit(uuid, title, description, category, freq, 0, createdAt, updatedAt);
     }
 
     public void mergeRemoteLog(String habitUuid, String dateStr, boolean completed, long updatedAt) {
