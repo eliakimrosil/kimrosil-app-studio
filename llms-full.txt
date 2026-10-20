@@ -638,7 +638,7 @@ Data Safety & Offline Privacy Guarantee:
 - **Category**: Productivity & Habits
 - **Tagline**: Daily habit routine with habit strength scoring, heatmap grid, and cloud sync.
 - **Landing Page**: https://apps.kimrosil.com/kr-habit/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.33-kr-habit/kr-habit.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.34-kr-habit/kr-habit.apk
 - **Privacy Policy**: https://apps.kimrosil.com/kr-habit/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
@@ -1178,6 +1178,27 @@ Data Safety & Offline Privacy Guarantee:
 
 ### Detailed Overview & Capabilities
 Step into the enchanted Bramblewood in SproutKnight: Cozy Forest RPG, a charming tactical adventure designed for offline pocket play. Take up the mantle of a tiny sprout knight on a quest through lush woodlands. Encounter whimsical woodland adversaries, gather precious forest resources, and master tactical combat at your own pace. CORE FEATURES • Fluid Tactical Combat Engage in responsive turn-based skirmishes featuring smooth animations. Balance offense and defense with deliberate actions: strike with forged blades, raise your shield to parry attacks, channel elemental spells, or recover vitality using wild forest berries. • Whimsical Forest Adversaries Cross paths with charming woodland foes, from Mossy Slimes and Grumble Shrooms to cunning Acorn Bandits and mighty Bramble Treants. Read opponent patterns and tailor your strategy for each encounter. • Cozy Blacksmith Forge Gather golden acorns and glistening dewdrops across your journey. Return to the rustic woodland forge to upgrade your weaponry, reinforce protective armor, and unlock powerful elemental enchantments. • Responsive Visual Feedback Enjoy clear combat indicators, including gold critical strikes, emerald healing numbers, and cyan mana sparks, paired with handcrafted character animations. FAIR AND TRANSPARENT DESIGN • Offline Play Support: Embark on your adventure anywhere without requiring an active internet connection. • No Mandatory Subscriptions: Experience the full journey without recurring membership barriers. • Respectful Experience: Designed without intrusive tracking libraries or aggressive telemetry. Equip your wooden blade, steady your resolve, and bring harmony back to the Bramblewood in SproutKnight.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## SpurMesh (`spur-mesh`)
+- **Category**: TOOLS & UTILITIES / ENGINEERING
+- **Tagline**: Offline Gear Train Ratio & Center Distance Engine
+- **Landing Page**: https://apps.kimrosil.com/spur-mesh/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-spur-mesh/spur-mesh.apk
+- **Privacy Policy**: https://apps.kimrosil.com/spur-mesh/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+SpurMesh is an offline mechanical engineering tool engineered for machinists, robotics mentors, mechanical engineers, and 3D printing makers who need reliable gear geometry calculations in workshop environments. Designed specifically for hands-on fabrication, SpurMesh operates entirely on-device without cellular connectivity, mandatory cloud logins, or recurring subscription fees. Calculate critical spur gear dimensions directly at the machine tool or workbench. Key Engineering Features: - Pitch & Module Conversions: Seamlessly convert between diametral pitch (DP), metric module (m), and circular pitch (CP). - Gear Geometry Solvers: Compute pitch diameter, outer diameter, root diameter, addendum, dedendum, and tooth thickness in standard and custom pressure angles (14.5°, 20°, 25°). - Center Distance & Meshing: Determine exact shaft center distances for mating gear pairs, including backlash allowances and clearance margins. - Gear Ratio Analysis: Evaluate single-stage reductions, velocity ratios, and contact ratios to verify smooth mechanical mesh. - Android Share Integration: Share computed gear specifications directly with teammates via standard Android share targets, CAD messaging channels, or workshop logs. - Workshop Ready: Works completely offline in fabrication shops, machine bays, and field service locations with zero latency and no cloud dependencies. - Privacy First: Operates with zero user tracking, analytics trackers, or account requirements. Built for high-precision workflows in robotics fabrication, rapid prototyping, and manual machining.
 
 
 Data Safety & Offline Privacy Guarantee:
