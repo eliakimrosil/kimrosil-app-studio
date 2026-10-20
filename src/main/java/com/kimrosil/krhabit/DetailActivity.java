@@ -8,8 +8,12 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,6 +78,15 @@ public class DetailActivity extends Activity {
             }
         });
 
+        Button btnEdit = findViewById(R.id.btnEditHabit);
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                showEditHabitDialog();
+            }
+        });
+
         Button btnDelete = findViewById(R.id.btnDeleteHabit);
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,5 +145,73 @@ public class DetailActivity extends Activity {
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
+    }
+
+    private void showEditHabitDialog() {
+        final DatabaseHelper.HabitItem item = dbHelper.getHabitByUuid(habitUuid);
+        if (item == null) return;
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_edit_habit, null);
+        builder.setView(dialogView);
+        final AlertDialog dialog = builder.create();
+
+        final EditText etTitle = dialogView.findViewById(R.id.etEditHabitTitle);
+        final EditText etDesc = dialogView.findViewById(R.id.etEditHabitDesc);
+        final Spinner spinnerCategory = dialogView.findViewById(R.id.spinnerEditCategory);
+        Button btnCancel = dialogView.findViewById(R.id.btnCancelEdit);
+        Button btnSave = dialogView.findViewById(R.id.btnSaveEditHabit);
+
+        String[] categories = {"Health", "Mind", "Body", "Craft", "Focus"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, categories);
+        spinnerCategory.setAdapter(adapter);
+
+        etTitle.setText(item.title);
+        etTitle.setSelection(item.title.length());
+        if (item.description != null) {
+            etDesc.setText(item.description);
+        }
+
+        for (int i = 0; i < categories.length; i++) {
+            if (categories[i].equalsIgnoreCase(item.category)) {
+                spinnerCategory.setSelection(i);
+                break;
+            }
+        }
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+                String newTitle = etTitle.getText().toString().trim();
+                String newDesc = etDesc.getText().toString().trim();
+                String newCat = (String) spinnerCategory.getSelectedItem();
+
+                if (newTitle.isEmpty()) {
+                    etTitle.setError("Please enter a habit title");
+                    return;
+                }
+
+                dbHelper.updateHabit(habitUuid, newTitle, newDesc, newCat, item.targetDaysPerWeek);
+                dialog.dismiss();
+                loadHabitData();
+                Toast.makeText(DetailActivity.this, "Habit updated!", Toast.LENGTH_SHORT).show();
+
+                // Trigger cloud auto-sync in background if signed in
+                FirebaseSyncEngine syncEngine = new FirebaseSyncEngine(DetailActivity.this, dbHelper);
+                if (syncEngine.isSignedIn()) {
+                    syncEngine.syncWithFirestore(null);
+                }
+            }
+        });
+
+        dialog.show();
     }
 }
