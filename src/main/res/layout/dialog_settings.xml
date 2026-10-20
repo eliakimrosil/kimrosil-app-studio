@@ -233,31 +233,53 @@
             android:elevation="0dp"
             android:layout_marginBottom="22dp" />
 
-        <!-- Footer: Clean App Version & Studio Portal -->
+        <!-- Section 3: About KR Habit -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ABOUT"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_tertiary"
+            android:letterSpacing="0.08"
+            android:layout_marginBottom="8dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginTop="16dp"
-            android:paddingHorizontal="4dp">
+            android:orientation="vertical"
+            android:background="@drawable/card_surface_subtle"
+            android:padding="14dp">
 
             <TextView
                 android:id="@+id/tvSettingsAppVersion"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="KR Habit"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Offline-first habit tracking with seamless Google Account cloud synchronization. Built with pure native Android framework components."
                 android:textSize="12sp"
-                android:textColor="@color/text_tertiary" />
+                android:textColor="@color/text_secondary"
+                android:lineSpacingExtra="3dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="12dp" />
 
             <TextView
                 android:id="@+id/tvSettingsWebLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="apps.kimrosil.com ↗"
-                android:textSize="12sp"
-                android:textColor="@color/text_secondary"
+                android:text="apps.kimrosil.com/kr-habit ↗"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"
+                android:background="@drawable/chip_link"
+                android:paddingHorizontal="10dp"
                 android:paddingVertical="4dp" />
         </LinearLayout>
 

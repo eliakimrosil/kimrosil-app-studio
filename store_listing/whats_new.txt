@@ -1,2 +1,2 @@
-Release v1.2.31 - KR Habit
-Streamline settings modal: remove About button and dialog
+Release v1.2.32 - KR Habit
+Restore About info card in Settings without buttons
