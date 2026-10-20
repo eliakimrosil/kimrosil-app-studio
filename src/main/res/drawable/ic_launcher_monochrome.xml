@@ -6,28 +6,27 @@
     android:viewportHeight="108">
     <group>
         
-        <!-- Monochrome Momentum Habit Arc -->
+        <!-- Monochrome Momentum Habit Arc & Track -->
         <path
+            android:fillColor="#00000000"
+            android:strokeColor="#FFFFFF"
+            android:strokeAlpha="0.25"
+            android:strokeWidth="5"
+            android:pathData="M54,28 a26,26 0 1,0 0,52 a26,26 0 1,0 0,-52 Z" />
+        <path
+            android:fillColor="#00000000"
             android:strokeColor="#FFFFFF"
             android:strokeWidth="6"
             android:strokeLineCap="round"
             android:pathData="M54,28 A26,26 0 1,1 32,69" />
-        <path
-            android:strokeColor="#FFFFFF"
-            android:strokeWidth="4"
-            android:strokeAlpha="0.3"
-            android:pathData="M54,28 A26,26 0 1,0 54.001,28 Z" />
         <!-- Core Checkmark -->
         <path
+            android:fillColor="#00000000"
             android:strokeColor="#FFFFFF"
-            android:strokeWidth="5"
+            android:strokeWidth="5.5"
             android:strokeLineCap="round"
             android:strokeLineJoin="round"
-            android:pathData="M42,54 L49,61 L65,45" />
-        <!-- Streak Flame -->
-        <path
-            android:fillColor="#FFFFFF"
-            android:pathData="M67,29 C67,29 63,34.5 63,38.5 C63,42 65.5,44.5 68.5,44.5 C71.5,44.5 74,42 74,38.5 C74,35 71,32.5 71,32.5 C71,32.5 70.5,34.5 69,34.5 C68,34.5 67,33.5 67,29 Z" />
+            android:pathData="M41,54 L49,62 L67,44" />
         
     </group>
 </vector>
