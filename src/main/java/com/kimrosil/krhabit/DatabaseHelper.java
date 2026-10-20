@@ -463,7 +463,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             todayCursor.close();
         }
 
-        // Get past 60 days completions for Loop Habit strength math & streaks
+        // Get past 60 days completions for habit strength math & streaks
         Set<String> completedDates = new HashSet<>();
         Cursor logCursor = db.query(TABLE_HABIT_LOGS, new String[]{COL_LOG_DATE, COL_LOG_COMPLETED},
                 COL_LOG_HABIT_UUID + " = ?", new String[]{item.uuid}, null, null, null);

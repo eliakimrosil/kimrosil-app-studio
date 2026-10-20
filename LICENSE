@@ -1,27 +1,60 @@
-                    GNU GENERAL PUBLIC LICENSE
-                       Version 3, 29 June 2007
+PROPRIETARY FREEWARE END-USER LICENSE AGREEMENT (EULA)
 
- Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
- Everyone is permitted to copy and distribute verbatim copies
- of this license document, but changing it is not allowed.
+Copyright (c) 2026 Eliakim Rosil. All Rights Reserved.
 
-                            Preamble
+IMPORTANT: PLEASE READ THIS LICENSE AGREEMENT CAREFULLY BEFORE DOWNLOADING,
+INSTALLING, OR USING ANY APPLICATIONS, PACKAGES, OR BINARIES DISTRIBUTED
+UNDER THE "KIMROSIL APP STUDIO" ECOSYSTEM.
 
-  The GNU General Public License is a free, copyleft license for
-software and other kinds of works.
+1. PROPRIETARY SOFTWARE & OWNERSHIP
+All applications, binary APK packages, assets, graphics, designs, source code,
+and associated documentation in this repository and its releases are the proprietary
+intellectual property of Eliakim Rosil ("Author"). The software is licensed, not sold.
+All rights not expressly granted herein are reserved by the Author.
 
-  The licenses for most software and other practical works are designed
-to take away your freedom to share and change the works.  By contrast,
-the GNU General Public License is intended to guarantee your freedom to
-share and change all versions of a program--to make sure it remains free
-software for all its users.  We, the Free Software Foundation, use the
-GNU General Public License for most of our software; it applies also to
-any other work released this way by its authors.  You can apply it to
-your programs, too.
+2. FREEWARE GRANT OF LICENSE
+Subject to the terms and restrictions of this Agreement, the Author hereby grants
+you a personal, worldwide, non-exclusive, non-transferable, revocable license to:
+  (a) Download, install, and execute the official binary APK packages on any
+      compatible Android device solely for personal, non-commercial, or internal
+      business use; and
+  (b) Link to the official repository releases (https://github.com/eliakimrosil/kimrosil-app-studio)
+      or web portal (https://apps.kimrosil.com/).
 
-  [Full text of GNU General Public License v3.0: https://www.gnu.org/licenses/gpl-3.0.txt]
+3. RESTRICTIONS
+You may NOT, directly or indirectly:
+  (a) Decompile, disassemble, reverse engineer, decrypt, or attempt to derive
+      the source code of any application, APK binary, or component;
+  (b) Modify, adapt, translate, enhance, or create derivative works of the software
+      or any portion thereof;
+  (c) Re-upload, publish, distribute, or submit the applications or any derivative
+      works to any application store or marketplace (including, without limitation,
+      the Google Play Store, Apple App Store, Amazon Appstore, Samsung Galaxy Store,
+      or third-party APK mirrors) without express prior written consent from the Author;
+  (d) Sell, rent, lease, sublicense, redistribute, or commercially exploit the
+      software or any accompanying materials;
+  (e) Remove, alter, or obscure any copyright, trademark, or other proprietary
+      notices displayed in or on the software.
 
-Portions of this software implement algorithms (specifically the exponential
-smoothing habit strength score formula) inspired by Loop Habit Tracker:
-Copyright (C) 2016-2024 Álisson Linhares and contributors (iSoron/uhabits)
-Licensed under the GNU General Public License, Version 3.0 or later.
+4. 100% OFFLINE PRIVACY GUARANTEE
+The software is provided with a strict Zero-Data Collection Charter:
+No analytics, telemetry tracking, advertising SDKs, or background cloud harvesting
+are embedded in the software. All user data, configuration, and state remain strictly
+stored on your local device (with optional self-configured Google Cloud synchronization).
+
+5. DISCLAIMER OF WARRANTIES
+THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, AND NON-INFRINGEMENT. IN NO EVENT SHALL
+THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES, LOSS OF DATA, OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+6. TERMINATION
+This license is effective until terminated. Your rights under this license will
+terminate automatically without notice from the Author if you fail to comply with
+any of the terms of this Agreement. Upon termination, you must cease all use and
+delete all copies of the software.
+
+For licensing inquiries or commercial distribution requests, contact:
+Eliakim Rosil - eliakimrosil@gmail.com

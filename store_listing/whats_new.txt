@@ -1,2 +1,2 @@
-Release v1.2.29 - KR Habit
-Upgrade brand icon to Concept 1 vibrant emerald momentum ring
+Release v1.2.30 - KR Habit
+Close-source transition: Adopt KimRosil Freeware proprietary EULA, update About modal and store listings

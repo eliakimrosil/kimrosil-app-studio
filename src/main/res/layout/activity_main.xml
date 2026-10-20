@@ -43,7 +43,7 @@
                 android:textColor="@color/text_tertiary" />
         </LinearLayout>
 
-        <!-- New Habit Action Button (Loop-style top bar action) -->
+        <!-- New Habit Action Button -->
         <ImageButton
             android:id="@+id/btnAddNewHabit"
             android:layout_width="38dp"

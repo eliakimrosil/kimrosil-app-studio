@@ -743,6 +743,7 @@ public class MainActivity extends Activity {
         final Button btnSignOut = dialogView.findViewById(R.id.btnSettingsSignOut);
         Button btnClose = dialogView.findViewById(R.id.btnCloseSettings);
         TextView tvWebLink = dialogView.findViewById(R.id.tvSettingsWebLink);
+        TextView tvLicenseBadge = dialogView.findViewById(R.id.tvSettingsLicenseBadge);
 
         final Runnable updateAccountUi = new Runnable() {
             @Override
@@ -818,6 +819,16 @@ public class MainActivity extends Activity {
                         startActivity(browserIntent);
                     } catch (Exception ignored) {
                     }
+                }
+            });
+        }
+
+        if (tvLicenseBadge != null) {
+            tvLicenseBadge.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                    showAboutDialog();
                 }
             });
         }

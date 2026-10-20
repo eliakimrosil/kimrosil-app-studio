@@ -4,8 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * HabitMath implements the exponential smoothing habit strength algorithm
- * inspired by Loop Habit Tracker (Álisson Linhares, GPLv3).
+ * HabitMath implements the exponential smoothing habit strength algorithm.
  *
  * It models habit automaticity where consistency builds strength exponentially,
  * and a single missed day causes only partial decay rather than wiping out progress.

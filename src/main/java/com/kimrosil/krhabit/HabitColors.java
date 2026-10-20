@@ -17,7 +17,7 @@ import android.widget.TextView;
  */
 public final class HabitColors {
 
-    // 8 Curated Chroma Accent Colors (Loop Habit Tracker Inspired)
+    // 8 Curated Chroma Accent Colors
     public static final String[] PALETTE = new String[]{
             "#10B981", // Emerald (Health, Wellness, Mindfulness)
             "#2563EB", // Azure Blue (Deep Focus, Reading, Writing)

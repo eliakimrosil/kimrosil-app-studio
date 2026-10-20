@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * HeatmapGridView renders a multi-week consistency matrix
- * inspired by Loop Habit Tracker and GitHub commit graphs.
+ * HeatmapGridView renders a multi-week consistency matrix.
  */
 public class HeatmapGridView extends View {
 

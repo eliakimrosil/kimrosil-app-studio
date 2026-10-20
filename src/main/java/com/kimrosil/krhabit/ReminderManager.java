@@ -14,7 +14,7 @@ import java.util.Locale;
 
 /**
  * Handles scheduling, canceling, and managing daily habit reminder alarms
- * and notifications, inspired by Loop Habit Tracker.
+ * and notifications.
  */
 public class ReminderManager {
 

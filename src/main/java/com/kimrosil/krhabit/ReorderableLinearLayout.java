@@ -20,8 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Custom LinearLayout supporting fluid in-place drag-and-drop reordering on long press,
- * inspired by Loop Habit Tracker.
+ * Custom LinearLayout supporting fluid in-place drag-and-drop reordering on long press.
  */
 public class ReorderableLinearLayout extends LinearLayout {
 

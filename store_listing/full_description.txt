@@ -12,7 +12,7 @@ KEY FEATURES
 • Working Day & Night Theming: Handcrafted Emerald Obsidian aesthetic with dark, light, and automatic system modes.
 • Ad-Free & Respectful: Zero ads, zero background telemetry tracking.
 
-OPEN SOURCE ATTRIBUTION & COMPLIANCE
-KR Habit is distributed under the GNU General Public License v3.0 (GPLv3).
-The habit strength exponential scoring algorithm is adapted from Loop Habit Tracker (Álisson Linhares & Loop Contributors, GPLv3).
-Complete corresponding source code is available at: https://github.com/eliakimrosil/kr-habit
+PRIVATE, LOCAL & RESPECTFUL
+KR Habit is distributed as pure, offline-first freeware by KimRosil App Studio.
+Zero ads, zero subscriptions, zero tracking. All your habit records stay securely on your device.
+Copyright © 2026 Eliakim Rosil. All Rights Reserved.

@@ -56,7 +56,7 @@ public class HabitReminderReceiver extends BroadcastReceiver {
             DatabaseHelper.HabitItem habit = dbHelper.getHabitByUuid(habitUuid);
             if (habit == null || !habit.reminderEnabled) return;
 
-            // Loop Habit Tracker behavior: if already completed today, skip reminder
+            // If already completed today, skip reminder
             if (!habit.isCompletedToday) {
                 showNotification(context, habit);
             }

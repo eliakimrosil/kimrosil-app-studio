@@ -23,10 +23,9 @@ You retain complete ownership of your data at all times:
 * To delete all local data, simply clear the application data in Android Settings or uninstall the app.
 * To disconnect Google Cloud Sync, tap "Sign Out" in the Cloud Sync dialog inside the app.
 
-### 4. Open Source Attribution
-KR Habit is open-source software licensed under the GNU General Public License v3.0 (GPLv3).
-Portions of the mathematical habit strength scoring algorithms are inspired by Loop Habit Tracker (Álisson Linhares & Loop Contributors, GPLv3).
-Source repository: https://github.com/eliakimrosil/kr-habit
+### 4. Software License
+KR Habit is proprietary freeware created and maintained by KimRosil App Studio.
+Copyright © 2026 Eliakim Rosil. All Rights Reserved.
 
 ### 5. Changes to This Policy
 Any updates to this privacy policy will be posted on this page and reflected in future app releases.
