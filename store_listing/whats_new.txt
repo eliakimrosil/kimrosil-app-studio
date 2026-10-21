@@ -1,2 +1,6 @@
-Release v2.1.0 - PPL Workout
-Evolve PPL Workout to v2.1.0 with live 1RM calculation, Olympic barbell plate math, and SQLite workout history dialog
+Release v2.2.0 - PPL Workout
+- Tactile physics-based scale-down button animations on press
+- Live rest timer with smooth depleting progress bar, Play/Pause toggle, and +30s extension
+- Urgent visual countdown color shift in final 10 seconds with 3-2-1 haptic pulses
+- Personal Record (PR) celebration banner and audio alert toggle in Settings
+- Workout Crushed summary dialog upon completing all routine sets

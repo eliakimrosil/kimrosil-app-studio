@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Glowing Trophy Icon -->
+    <ImageView
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="12dp"
+        android:src="@drawable/ic_trophy" />
+
+    <!-- Big Athletic Celebration Title -->
+    <TextView
+        android:id="@+id/tvCrushedTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:letterSpacing="0.04"
+        android:text="PUSH DAY CRUSHED!"
+        android:textColor="@color/m3_primary"
+        android:textSize="20sp" />
+
+    <!-- Celebration Body & Stats -->
+    <TextView
+        android:id="@+id/tvCrushedStats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp"
+        android:text="All sets completed! Total volume calculated. Hydrate, eat clean, and rest up for tomorrow's split."
+        android:textColor="@color/m3_on_surface"
+        android:textSize="13sp" />
+
+    <!-- Dismiss / Continue Button -->
+    <Button
+        android:id="@+id/btnDismissCrushed"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/btn_action"
+        android:fontFamily="sans-serif-black"
+        android:letterSpacing="0.04"
+        android:minHeight="48dp"
+        android:stateListAnimator="@animator/btn_press_scale"
+        android:text="HELL YEAH! FINISH SESSION"
+        android:textColor="@color/m3_on_primary"
+        android:textSize="14sp" />
+</LinearLayout>

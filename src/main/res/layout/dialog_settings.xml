@@ -196,6 +196,50 @@
                 android:textSize="13sp" />
         </LinearLayout>
 
+        <!-- Sound & Rest Settings Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-bold"
+            android:text="TIMER COMPLETION ALERT"
+            android:textColor="@color/m3_on_surface_variant"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="14dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSoundOn"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/chip_active"
+                android:fontFamily="sans-serif-bold"
+                android:minHeight="48dp"
+                android:text="Audio + Vibrate"
+                android:textColor="@color/m3_on_primary"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btnSoundOff"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/chip_inactive"
+                android:fontFamily="sans-serif-bold"
+                android:minHeight="48dp"
+                android:text="Silent Vibrate"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="12sp" />
+        </LinearLayout>
+
         <!-- About App Card -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -221,7 +265,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:fontFamily="sans-serif-black"
-                    android:text="PPL Workout v2.0.0"
+                    android:text="PPL Workout v2.2.0"
                     android:textColor="@color/m3_on_surface"
                     android:textSize="14sp" />
             </LinearLayout>

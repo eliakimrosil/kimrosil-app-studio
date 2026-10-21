@@ -57,6 +57,7 @@
             android:minHeight="48dp"
             android:padding="12dp"
             android:scaleType="fitCenter"
+            android:stateListAnimator="@animator/btn_press_scale"
             android:src="@drawable/ic_history" />
 
         <!-- Settings Vector Action Button (Replaces cluttered inline buttons) -->
@@ -71,6 +72,7 @@
             android:minHeight="48dp"
             android:padding="12dp"
             android:scaleType="fitCenter"
+            android:stateListAnimator="@animator/btn_press_scale"
             android:src="@drawable/ic_settings" />
     </LinearLayout>
 
@@ -116,6 +118,7 @@
                     android:background="@drawable/chip_active"
                     android:fontFamily="sans-serif-black"
                     android:minHeight="48dp"
+                    android:stateListAnimator="@animator/btn_press_scale"
                     android:text="PUSH"
                     android:textColor="@color/m3_on_primary"
                     android:textSize="14sp" />
@@ -130,6 +133,7 @@
                     android:background="@drawable/chip_inactive"
                     android:fontFamily="sans-serif-black"
                     android:minHeight="48dp"
+                    android:stateListAnimator="@animator/btn_press_scale"
                     android:text="PULL"
                     android:textColor="@color/m3_on_surface"
                     android:textSize="14sp" />
@@ -143,6 +147,7 @@
                     android:background="@drawable/chip_inactive"
                     android:fontFamily="sans-serif-black"
                     android:minHeight="48dp"
+                    android:stateListAnimator="@animator/btn_press_scale"
                     android:text="LEGS"
                     android:textColor="@color/m3_on_surface"
                     android:textSize="14sp" />
@@ -188,81 +193,117 @@
                 android:progressDrawable="@drawable/progress_bar_athletic" />
         </LinearLayout>
 
-        <!-- Compact Glancable Live Rest Bar -->
+        <!-- Upgraded Rest Timer Deck with Progress Indicator & Play/Pause Controls -->
         <LinearLayout
             android:id="@+id/cardRestTimer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:background="@drawable/card_m3_high"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:paddingLeft="12dp"
-            android:paddingTop="8dp"
+            android:paddingTop="10dp"
             android:paddingRight="12dp"
-            android:paddingBottom="8dp">
+            android:paddingBottom="10dp">
 
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_timer" />
-
-            <!-- Giant Monospace Timer Digits + Status -->
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tvTimerCountdown"
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/ivTimerIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_timer" />
+
+                <!-- Giant Monospace Timer Digits + Status -->
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvTimerCountdown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:letterSpacing="0.04"
+                        android:text="01:30"
+                        android:textColor="@color/m3_primary"
+                        android:textSize="26sp" />
+
+                    <TextView
+                        android:id="@+id/tvTimerStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif-medium"
+                        android:singleLine="true"
+                        android:text="Ready for rest interval"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- Rest Controls: Play/Pause Toggle, +30s, Skip -->
+                <ImageButton
+                    android:id="@+id/btnRestToggle"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/bg_topbar_button"
+                    android:contentDescription="Pause or Resume Rest Timer"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:stateListAnimator="@animator/btn_press_scale"
+                    android:src="@drawable/ic_pause" />
+
+                <Button
+                    android:id="@+id/btnRestPlus30"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="52dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/bg_topbar_button"
                     android:fontFamily="sans-serif-black"
-                    android:text="01:30"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:stateListAnimator="@animator/btn_press_scale"
+                    android:text="+30s"
                     android:textColor="@color/m3_primary"
-                    android:textSize="24sp" />
+                    android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/tvTimerStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:fontFamily="sans-serif-medium"
-                    android:singleLine="true"
-                    android:text="Ready for rest interval"
-                    android:textColor="@color/m3_on_surface_variant"
-                    android:textSize="11sp" />
+                <Button
+                    android:id="@+id/btnRestSkip"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="52dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_topbar_button"
+                    android:fontFamily="sans-serif-black"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:stateListAnimator="@animator/btn_press_scale"
+                    android:text="Skip"
+                    android:textColor="@color/m3_tertiary"
+                    android:textSize="12sp" />
             </LinearLayout>
 
-            <!-- Quick Rest Actions -->
-            <Button
-                android:id="@+id/btnRestPlus30"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="52dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="6dp"
-                android:background="@drawable/bg_topbar_button"
-                android:fontFamily="sans-serif-black"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
-                android:text="+30s"
-                android:textColor="@color/m3_primary"
-                android:textSize="12sp" />
-
-            <Button
-                android:id="@+id/btnRestSkip"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="52dp"
-                android:layout_height="48dp"
-                android:background="@drawable/bg_topbar_button"
-                android:fontFamily="sans-serif-black"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
-                android:text="Skip"
-                android:textColor="@color/m3_tertiary"
-                android:textSize="12sp" />
+            <!-- Real-time Depleting Countdown Progress Bar -->
+            <ProgressBar
+                android:id="@+id/pbRestProgress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="8dp"
+                android:max="1000"
+                android:progress="1000"
+                android:progressDrawable="@drawable/progress_bar_rest" />
         </LinearLayout>
 
         <!-- Active Exercise Deck Card -->
@@ -292,6 +333,7 @@
                     android:minHeight="48dp"
                     android:padding="12dp"
                     android:scaleType="fitCenter"
+                    android:stateListAnimator="@animator/btn_press_scale"
                     android:src="@drawable/ic_chevron_left" />
 
                 <LinearLayout
@@ -337,7 +379,40 @@
                     android:minHeight="48dp"
                     android:padding="12dp"
                     android:scaleType="fitCenter"
+                    android:stateListAnimator="@animator/btn_press_scale"
                     android:src="@drawable/ic_chevron_right" />
+            </LinearLayout>
+
+            <!-- Dynamic PR (Personal Record) Celebration Banner -->
+            <LinearLayout
+                android:id="@+id/llPrBanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/card_m3_high"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="12dp"
+                android:paddingTop="8dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="8dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_trophy" />
+
+                <TextView
+                    android:id="@+id/tvPrText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-black"
+                    android:text="🔥 NEW PERSONAL RECORD UNLOCKED!"
+                    android:textColor="@color/m3_primary"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <!-- Set Counter & Previous Telemetry Subline -->
@@ -403,6 +478,7 @@
                         android:fontFamily="sans-serif-black"
                         android:minWidth="48dp"
                         android:minHeight="48dp"
+                        android:stateListAnimator="@animator/btn_press_scale"
                         android:text="-5"
                         android:textColor="@color/m3_on_surface"
                         android:textSize="14sp" />
@@ -433,6 +509,7 @@
                         android:fontFamily="sans-serif-black"
                         android:minWidth="48dp"
                         android:minHeight="48dp"
+                        android:stateListAnimator="@animator/btn_press_scale"
                         android:text="+5"
                         android:textColor="@color/m3_on_surface"
                         android:textSize="14sp" />
@@ -471,6 +548,7 @@
                         android:fontFamily="sans-serif-black"
                         android:minWidth="48dp"
                         android:minHeight="48dp"
+                        android:stateListAnimator="@animator/btn_press_scale"
                         android:text="-1"
                         android:textColor="@color/m3_on_surface"
                         android:textSize="14sp" />
@@ -501,6 +579,7 @@
                         android:fontFamily="sans-serif-black"
                         android:minWidth="48dp"
                         android:minHeight="48dp"
+                        android:stateListAnimator="@animator/btn_press_scale"
                         android:text="+1"
                         android:textColor="@color/m3_on_surface"
                         android:textSize="14sp" />
@@ -577,6 +656,7 @@
                 android:minHeight="48dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
+                android:stateListAnimator="@animator/btn_press_scale"
                 android:text="LOG SET &amp; START REST"
                 android:textColor="@color/m3_on_primary"
                 android:textSize="14sp" />

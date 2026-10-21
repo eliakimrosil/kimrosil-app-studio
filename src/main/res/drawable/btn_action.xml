@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="?android:attr/colorControlHighlight">
+    android:color="@color/m3_on_primary">
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@color/btnColor" />
-            <corners android:radius="12dp" />
+            <solid android:color="@color/m3_primary" />
+            <stroke android:width="1.2dp" android:color="@color/m3_primary_container" />
+            <corners android:radius="14dp" />
         </shape>
     </item>
 </ripple>

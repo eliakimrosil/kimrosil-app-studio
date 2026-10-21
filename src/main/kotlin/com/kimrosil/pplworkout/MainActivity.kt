@@ -11,7 +11,7 @@ import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.Build
 import android.os.Bundle
-import android.os.CountDownTimer
+import android.os.SystemClock
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
@@ -23,11 +23,15 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import java.util.Locale
+import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledExecutorService
+import java.util.concurrent.TimeUnit
 
 data class Exercise(
     val name: String,
@@ -60,10 +64,17 @@ class MainActivity : Activity() {
 
     // Compact Glancable Live Rest Bar
     private lateinit var cardRestTimer: LinearLayout
+    private lateinit var ivTimerIcon: ImageView
     private lateinit var tvTimerCountdown: TextView
     private lateinit var tvTimerStatus: TextView
+    private lateinit var btnRestToggle: ImageButton
     private lateinit var btnRestPlus30: Button
     private lateinit var btnRestSkip: Button
+    private lateinit var pbRestProgress: ProgressBar
+
+    // Personal Record (PR) Celebration Banner
+    private lateinit var llPrBanner: LinearLayout
+    private lateinit var tvPrText: TextView
 
     // Active Exercise Deck
     private lateinit var btnPrevExercise: ImageButton
@@ -94,6 +105,10 @@ class MainActivity : Activity() {
     private var currentUnit = "KG"
     private var themeMode = 0 // 0=Auto, 1=Light, 2=Dark
     private var defaultRestSeconds: Long = 90L
+    private var totalRestSeconds: Long = 90L
+    private var restEndTimeMillis: Long = 0L
+    private var isSoundEnabled: Boolean = true
+    private var isWorkoutCompleteCelebrated: Boolean = false
 
     // Routine definitions
     private val routines = mapOf(
@@ -124,7 +139,7 @@ class MainActivity : Activity() {
     private val completedSets = mutableMapOf<Int, Int>()
 
     // Rest Timer fields
-    private var countDownTimer: CountDownTimer? = null
+    private var timerExecutor: ScheduledExecutorService? = null
     private var restSecondsRemaining: Long = 90
     private var isTimerRunning = false
 
@@ -149,11 +164,27 @@ class MainActivity : Activity() {
         currentUnit = prefs.getString("pref_unit", "KG") ?: "KG"
         currentDay = prefs.getString("pref_last_day", "PUSH") ?: "PUSH"
         defaultRestSeconds = prefs.getLong("pref_default_rest", 90L)
+        isSoundEnabled = prefs.getBoolean("pref_sound_enabled", true)
 
         bindViews()
         setupListeners()
         applyStatusBarAppearance()
         startNewOrResumeSession()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Accurate elapsed time recovery when returning from background or locked screen
+        if (isTimerRunning && restEndTimeMillis > 0) {
+            val remaining = (restEndTimeMillis - SystemClock.elapsedRealtime()) / 1000L
+            if (remaining > 0) {
+                restSecondsRemaining = remaining
+                updateTimerDisplay(remaining)
+                pbRestProgress.progress = remaining.toInt().coerceIn(0, totalRestSeconds.toInt())
+            } else {
+                onRestTimerFinish()
+            }
+        }
     }
 
     private fun bindViews() {
@@ -171,10 +202,16 @@ class MainActivity : Activity() {
         pbWorkoutProgress = findViewById(R.id.pbWorkoutProgress)
 
         cardRestTimer = findViewById(R.id.cardRestTimer)
+        ivTimerIcon = findViewById(R.id.ivTimerIcon)
         tvTimerCountdown = findViewById(R.id.tvTimerCountdown)
         tvTimerStatus = findViewById(R.id.tvTimerStatus)
+        btnRestToggle = findViewById(R.id.btnRestToggle)
         btnRestPlus30 = findViewById(R.id.btnRestPlus30)
         btnRestSkip = findViewById(R.id.btnRestSkip)
+        pbRestProgress = findViewById(R.id.pbRestProgress)
+
+        llPrBanner = findViewById(R.id.llPrBanner)
+        tvPrText = findViewById(R.id.tvPrText)
 
         btnPrevExercise = findViewById(R.id.btnPrevExercise)
         tvExerciseName = findViewById(R.id.tvExerciseName)
@@ -239,13 +276,13 @@ class MainActivity : Activity() {
         btnDayPull.setOnClickListener { switchDay("PULL") }
         btnDayLegs.setOnClickListener { switchDay("LEGS") }
 
-        // Exercise Navigation
+        // Exercise Navigation with smooth directional slide animations
         btnPrevExercise.setOnClickListener { v ->
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             val list = routines[currentDay] ?: return@setOnClickListener
             if (currentExerciseIndex > 0) {
                 currentExerciseIndex--
-                refreshUiForCurrentExercise()
+                animateExerciseTransition(isForward = false)
             }
         }
 
@@ -254,7 +291,7 @@ class MainActivity : Activity() {
             val list = routines[currentDay] ?: return@setOnClickListener
             if (currentExerciseIndex < list.size - 1) {
                 currentExerciseIndex++
-                refreshUiForCurrentExercise()
+                animateExerciseTransition(isForward = true)
             }
         }
 
@@ -295,10 +332,21 @@ class MainActivity : Activity() {
             handleLogSet()
         }
 
+        // Rest Timer Play/Pause Toggle
+        btnRestToggle.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            if (isTimerRunning) {
+                pauseRestTimer()
+            } else {
+                resumeRestTimer()
+            }
+        }
+
         // Rest Timer Quick Actions
         btnRestPlus30.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             val newTime = if (isTimerRunning && restSecondsRemaining > 0) restSecondsRemaining + 30 else 30L
+            totalRestSeconds = maxOf(totalRestSeconds, newTime)
             startRestTimer(newTime)
         }
 
@@ -307,10 +355,32 @@ class MainActivity : Activity() {
             cancelRestTimer()
             tvTimerStatus.text = "Rest skipped • Ready for next set!"
             tvTimerCountdown.text = "00:00"
+            tvTimerCountdown.setTextColor(getColor(R.color.m3_primary))
+            pbRestProgress.progress = 0
+            btnRestToggle.setImageResource(R.drawable.ic_play)
         }
     }
 
+    private fun animateExerciseTransition(isForward: Boolean) {
+        val offset = if (isForward) 30f else -30f
+        tvExerciseName.animate()
+            .translationX(-offset)
+            .alpha(0f)
+            .setDuration(90)
+            .withEndAction {
+                refreshUiForCurrentExercise()
+                tvExerciseName.translationX = offset
+                tvExerciseName.animate()
+                    .translationX(0f)
+                    .alpha(1f)
+                    .setDuration(120)
+                    .start()
+            }
+            .start()
+    }
+
     private fun showSettingsDialog() {
+        if (isTimerRunning) pauseRestTimer()
         btnSettings.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_settings)
@@ -414,12 +484,38 @@ class MainActivity : Activity() {
             }
         }
 
+        // Sound Preference Controls
+        val btnSoundOn: Button = dialog.findViewById(R.id.btnSoundOn)
+        val btnSoundOff: Button = dialog.findViewById(R.id.btnSoundOff)
+
+        fun updateSoundButtons(enabled: Boolean) {
+            btnSoundOn.setBackgroundResource(if (enabled) R.drawable.chip_active else R.drawable.chip_inactive)
+            btnSoundOn.setTextColor(getColor(if (enabled) R.color.m3_on_primary else R.color.m3_on_surface))
+
+            btnSoundOff.setBackgroundResource(if (!enabled) R.drawable.chip_active else R.drawable.chip_inactive)
+            btnSoundOff.setTextColor(getColor(if (!enabled) R.color.m3_on_primary else R.color.m3_on_surface))
+        }
+        updateSoundButtons(isSoundEnabled)
+
+        btnSoundOn.setOnClickListener {
+            isSoundEnabled = true
+            prefs.edit().putBoolean("pref_sound_enabled", true).apply()
+            updateSoundButtons(true)
+        }
+        btnSoundOff.setOnClickListener {
+            isSoundEnabled = false
+            prefs.edit().putBoolean("pref_sound_enabled", false).apply()
+            updateSoundButtons(false)
+        }
+
         btnResetSessionDialog.setOnClickListener {
             AlertDialog.Builder(this)
                 .setTitle("Reset Session")
                 .setMessage("Reset today's $currentDay workout? Logged sets for this active session will be cleared.")
                 .setPositiveButton("Reset") { _, _ ->
                     completedSets.clear()
+                    isWorkoutCompleteCelebrated = false
+                    llPrBanner.visibility = View.GONE
                     cancelRestTimer()
                     sessionId = dbHelper.startSession(currentDay)
                     currentExerciseIndex = 0
@@ -439,6 +535,7 @@ class MainActivity : Activity() {
     }
 
     private fun showHistoryDialog() {
+        if (isTimerRunning) pauseRestTimer()
         btnHistory.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_history)
@@ -592,6 +689,8 @@ class MainActivity : Activity() {
         currentDay = day
         prefs.edit().putString("pref_last_day", day).apply()
         completedSets.clear()
+        isWorkoutCompleteCelebrated = false
+        llPrBanner.visibility = View.GONE
         cancelRestTimer()
         currentExerciseIndex = 0
         sessionId = dbHelper.startSession(currentDay)
@@ -682,6 +781,16 @@ class MainActivity : Activity() {
 
         hideKeyboard()
 
+        // Check for Personal Record before logging
+        val prevBest = dbHelper.getLastPerformance(ex.name)
+        if (prevBest != null) {
+            if (weight > prevBest.first) {
+                showPrBanner("NEW WEIGHT PR! +${String.format(Locale.US, "%.1f", weight - prevBest.first)} $currentUnit (${String.format(Locale.US, "%.1f", weight)} $currentUnit)")
+            } else if (weight == prevBest.first && reps > prevBest.second) {
+                showPrBanner("NEW REP PR! +${reps - prevBest.second} Reps (${reps} reps @ ${String.format(Locale.US, "%.1f", weight)} $currentUnit)")
+            }
+        }
+
         val currentDone = completedSets.getOrDefault(currentExerciseIndex, 0)
         val setNumber = currentDone + 1
         completedSets[currentExerciseIndex] = setNumber
@@ -700,35 +809,133 @@ class MainActivity : Activity() {
         refreshUiForCurrentExercise()
 
         // Start rest interval with user's preferred duration
+        totalRestSeconds = defaultRestSeconds
         startRestTimer(defaultRestSeconds)
+    }
+
+    private fun showPrBanner(message: String) {
+        tvPrText.text = message
+        llPrBanner.visibility = View.VISIBLE
+        llPrBanner.alpha = 0f
+        llPrBanner.scaleY = 0.8f
+        llPrBanner.animate()
+            .alpha(1f)
+            .scaleY(1f)
+            .setDuration(220)
+            .withEndAction {
+                llPrBanner.postDelayed({
+                    llPrBanner.animate()
+                        .alpha(0f)
+                        .setDuration(300)
+                        .withEndAction { llPrBanner.visibility = View.GONE }
+                        .start()
+                }, 3500)
+            }
+            .start()
+
+        // Celebratory double-haptic pulse
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                val vm = getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as? VibratorManager
+                vm?.defaultVibrator?.vibrate(
+                    VibrationEffect.createWaveform(longArrayOf(0, 80, 60, 140), -1)
+                )
+            } else {
+                @Suppress("DEPRECATION")
+                val v = getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
+                @Suppress("DEPRECATION")
+                v?.vibrate(longArrayOf(0, 80, 60, 140), -1)
+            }
+        } catch (_: Exception) {}
     }
 
     private fun startRestTimer(seconds: Long) {
         cancelRestTimer()
         btnLogSet.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
         restSecondsRemaining = seconds
+        totalRestSeconds = maxOf(totalRestSeconds, seconds)
+        pbRestProgress.max = totalRestSeconds.toInt()
+        pbRestProgress.progress = seconds.toInt()
+        restEndTimeMillis = SystemClock.elapsedRealtime() + seconds * 1000L
         isTimerRunning = true
-        tvTimerStatus.text = "Resting • Next: ${routines[currentDay]?.getOrNull(currentExerciseIndex)?.name ?: "Next Set"}"
+        btnRestToggle.setImageResource(R.drawable.ic_pause)
+        tvTimerCountdown.setTextColor(getColor(R.color.m3_primary))
+        val nextExName = routines[currentDay]?.getOrNull(currentExerciseIndex)?.name ?: "Next Set"
+        tvTimerStatus.text = "Resting • Next: $nextExName"
+        updateTimerDisplay(seconds)
 
-        countDownTimer = object : CountDownTimer(seconds * 1000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                restSecondsRemaining = millisUntilFinished / 1000
-                updateTimerDisplay(restSecondsRemaining)
+        val executor = Executors.newSingleThreadScheduledExecutor()
+        timerExecutor = executor
+        executor.scheduleAtFixedRate({
+            val secLeft = (restEndTimeMillis - SystemClock.elapsedRealtime() + 999) / 1000L
+            if (secLeft > 0) {
+                runOnUiThread {
+                    if (isTimerRunning) {
+                        restSecondsRemaining = secLeft
+                        updateTimerDisplay(secLeft)
+                        pbRestProgress.progress = secLeft.toInt()
+                        if (secLeft <= 10) {
+                            tvTimerCountdown.setTextColor(getColor(R.color.m3_error))
+                            if (secLeft in 1..3) {
+                                pulseCountdownTick()
+                            }
+                        } else {
+                            tvTimerCountdown.setTextColor(getColor(R.color.m3_primary))
+                        }
+                    }
+                }
+            } else {
+                runOnUiThread {
+                    if (isTimerRunning) {
+                        onRestTimerFinish()
+                    }
+                }
+                executor.shutdown()
             }
+        }, 1, 1, TimeUnit.SECONDS)
+    }
 
-            override fun onFinish() {
-                isTimerRunning = false
-                updateTimerDisplay(0)
-                tvTimerStatus.text = "⚡ Rest Complete! Hit your next set!"
-                triggerRestAlert()
-            }
-        }.start()
+    private fun pauseRestTimer() {
+        if (!isTimerRunning) return
+        timerExecutor?.shutdownNow()
+        timerExecutor = null
+        isTimerRunning = false
+        btnRestToggle.setImageResource(R.drawable.ic_play)
+        tvTimerStatus.text = "Rest Paused • Tap Play to Resume"
+        tvTimerCountdown.setTextColor(getColor(R.color.m3_on_surface_variant))
+    }
+
+    private fun resumeRestTimer() {
+        val resumeTime = if (restSecondsRemaining > 0) restSecondsRemaining else defaultRestSeconds
+        startRestTimer(resumeTime)
     }
 
     private fun cancelRestTimer() {
-        countDownTimer?.cancel()
-        countDownTimer = null
+        timerExecutor?.shutdownNow()
+        timerExecutor = null
         isTimerRunning = false
+    }
+
+    private fun onRestTimerFinish() {
+        isTimerRunning = false
+        timerExecutor?.shutdownNow()
+        timerExecutor = null
+        restSecondsRemaining = 0
+        pbRestProgress.progress = 0
+        updateTimerDisplay(0)
+        btnRestToggle.setImageResource(R.drawable.ic_play)
+        tvTimerCountdown.setTextColor(getColor(R.color.m3_success))
+        tvTimerStatus.text = "⚡ Rest Complete! Ready to Lift!"
+        triggerRestAlert()
+    }
+
+    private fun pulseCountdownTick() {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                val v = getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
+                v?.vibrate(VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK))
+            }
+        } catch (_: Exception) {}
     }
 
     private fun updateTimerDisplay(sec: Long) {
@@ -743,21 +950,23 @@ class MainActivity : Activity() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 val vm = getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as? VibratorManager
                 vm?.defaultVibrator?.vibrate(
-                    VibrationEffect.createWaveform(longArrayOf(0, 250, 150, 250, 150, 400), -1)
+                    VibrationEffect.createWaveform(longArrayOf(0, 200, 100, 200, 100, 350), -1)
                 )
             } else {
                 @Suppress("DEPRECATION")
                 val v = getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
                 @Suppress("DEPRECATION")
-                v?.vibrate(longArrayOf(0, 250, 150, 250, 150, 400), -1)
+                v?.vibrate(longArrayOf(0, 200, 100, 200, 100, 350), -1)
             }
         } catch (_: Exception) {}
 
-        // 2. Audible notification tone
-        try {
-            val tone = ToneGenerator(AudioManager.STREAM_NOTIFICATION, 90)
-            tone.startTone(ToneGenerator.TONE_PROP_BEEP2, 400)
-        } catch (_: Exception) {}
+        // 2. Audible notification tone if enabled
+        if (isSoundEnabled) {
+            try {
+                val tone = ToneGenerator(AudioManager.STREAM_NOTIFICATION, 85)
+                tone.startTone(ToneGenerator.TONE_PROP_BEEP2, 350)
+            } catch (_: Exception) {}
+        }
     }
 
     private fun updateProgressTelemetry() {
@@ -776,7 +985,31 @@ class MainActivity : Activity() {
         if (totalCompleted >= totalRoutineSets && totalRoutineSets > 0) {
             dbHelper.finishSession(sessionId)
             tvProgressStatus.text = "🎉 Session Complete! All $totalRoutineSets sets crushed!"
+            if (!isWorkoutCompleteCelebrated) {
+                isWorkoutCompleteCelebrated = true
+                showWorkoutCrushedDialog(totalRoutineSets, vol)
+            }
         }
+    }
+
+    private fun showWorkoutCrushedDialog(totalSets: Int, totalVolume: Double) {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_workout_crushed)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val tvCrushedTitle: TextView = dialog.findViewById(R.id.tvCrushedTitle)
+        val tvCrushedStats: TextView = dialog.findViewById(R.id.tvCrushedStats)
+        val btnDismissCrushed: Button = dialog.findViewById(R.id.btnDismissCrushed)
+
+        tvCrushedTitle.text = "$currentDay DAY CRUSHED!"
+        tvCrushedStats.text = "You conquered all $totalSets sets with an epic total volume of ${String.format(Locale.US, "%,.0f", totalVolume)} $currentUnit.\n\nTake recovery seriously, refuel, and prepare to attack your next split!"
+
+        btnDismissCrushed.setOnClickListener {
+            btnDismissCrushed.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
     private fun renderRoutineList() {
@@ -867,10 +1100,9 @@ class MainActivity : Activity() {
                 }
                 KeyEvent.KEYCODE_SPACE -> {
                     if (isTimerRunning) {
-                        cancelRestTimer()
-                        tvTimerStatus.text = "Timer paused"
+                        pauseRestTimer()
                     } else {
-                        startRestTimer(defaultRestSeconds)
+                        resumeRestTimer()
                     }
                     return true
                 }
