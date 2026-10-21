@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="false"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_background"
+        android:orientation="vertical">
+
+        <!-- Dialog Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="14dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_settings" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-black"
+                android:letterSpacing="0.05"
+                android:text="SETTINGS &amp; ABOUT"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <!-- Appearance Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-bold"
+            android:text="THEME MODE"
+            android:textColor="@color/m3_on_surface_variant"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="14dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnThemeLight"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/chip_inactive"
+                android:fontFamily="sans-serif-bold"
+                android:minHeight="48dp"
+                android:text="Light"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/btnThemeDark"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/chip_inactive"
+                android:fontFamily="sans-serif-bold"
+                android:minHeight="48dp"
+                android:text="Dark"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/btnThemeAuto"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/chip_active"
+                android:fontFamily="sans-serif-bold"
+                android:minHeight="48dp"
+                android:text="Auto"
+                android:textColor="@color/m3_on_primary"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Default Rest Timer Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-bold"
+            android:text="DEFAULT REST TIMER"
+            android:textColor="@color/m3_on_surface_variant"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="14dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnDefault60"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_topbar_button"
+                android:fontFamily="sans-serif-bold"
+                android:minHeight="48dp"
+                android:text="60s"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/btnDefault90"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/chip_active"
+                android:fontFamily="sans-serif-bold"
+                android:minHeight="48dp"
+                android:text="90s"
+                android:textColor="@color/m3_on_primary"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/btnDefault120"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_topbar_button"
+                android:fontFamily="sans-serif-bold"
+                android:minHeight="48dp"
+                android:text="120s"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Weight Unit Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-bold"
+            android:text="WEIGHT PREFERENCE"
+            android:textColor="@color/m3_on_surface_variant"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="14dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnUnitKg"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/chip_active"
+                android:fontFamily="sans-serif-bold"
+                android:minHeight="48dp"
+                android:text="Metric (KG)"
+                android:textColor="@color/m3_on_primary"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/btnUnitLbs"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_topbar_button"
+                android:fontFamily="sans-serif-bold"
+                android:minHeight="48dp"
+                android:text="Imperial (LBS)"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- About App Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/card_m3_high"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_dumbbell" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="PPL Workout v2.0.0"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="2dp"
+                android:text="Engineered for lifters following the Push • Pull • Legs split. 100% offline-first, zero ads, zero telemetry tracking."
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="KimRosil App Studio Portfolio"
+                android:textColor="@color/m3_primary"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Reset Session Action Button -->
+        <Button
+            android:id="@+id/btnResetSessionDialog"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_topbar_button"
+            android:fontFamily="sans-serif-bold"
+            android:minHeight="48dp"
+            android:text="Reset Current Session"
+            android:textColor="@color/m3_tertiary"
+            android:textSize="13sp" />
+
+        <!-- Dismiss / Done Button -->
+        <Button
+            android:id="@+id/btnCloseDialog"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/btn_action"
+            android:fontFamily="sans-serif-black"
+            android:minHeight="48dp"
+            android:text="DONE"
+            android:textColor="@color/m3_on_primary"
+            android:textSize="14sp" />
+    </LinearLayout>
+</ScrollView>

@@ -1,6 +1,8 @@
 package com.kimrosil.pplworkout
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Configuration
@@ -20,6 +22,7 @@ import android.view.WindowInsetsController
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -42,8 +45,7 @@ class MainActivity : Activity() {
     // Top Bar Views
     private lateinit var tvAppTitle: TextView
     private lateinit var tvAppSubtitle: TextView
-    private lateinit var btnResetSession: Button
-    private lateinit var btnThemeToggle: Button
+    private lateinit var btnSettings: ImageButton
 
     // Day Chips
     private lateinit var btnDayPush: Button
@@ -55,23 +57,21 @@ class MainActivity : Activity() {
     private lateinit var tvVolumeStats: TextView
     private lateinit var pbWorkoutProgress: ProgressBar
 
-    // Rest Timer
+    // Compact Glancable Live Rest Bar
+    private lateinit var cardRestTimer: LinearLayout
     private lateinit var tvTimerCountdown: TextView
     private lateinit var tvTimerStatus: TextView
-    private lateinit var btnRest60: Button
-    private lateinit var btnRest90: Button
-    private lateinit var btnRest120: Button
     private lateinit var btnRestPlus30: Button
     private lateinit var btnRestSkip: Button
 
     // Active Exercise Deck
-    private lateinit var btnPrevExercise: Button
+    private lateinit var btnPrevExercise: ImageButton
     private lateinit var tvExerciseName: TextView
     private lateinit var tvTargetMuscles: TextView
-    private lateinit var btnNextExercise: Button
+    private lateinit var btnNextExercise: ImageButton
     private lateinit var tvSetCounter: TextView
     private lateinit var tvPreviousBest: TextView
-    private lateinit var btnUnitToggle: Button
+    private lateinit var tvWeightLabel: TextView
     private lateinit var btnWeightMinus: Button
     private lateinit var etWeight: EditText
     private lateinit var btnWeightPlus: Button
@@ -89,6 +89,7 @@ class MainActivity : Activity() {
     private var sessionId: Long = -1
     private var currentUnit = "KG"
     private var themeMode = 0 // 0=Auto, 1=Light, 2=Dark
+    private var defaultRestSeconds: Long = 90L
 
     // Routine definitions
     private val routines = mapOf(
@@ -143,6 +144,7 @@ class MainActivity : Activity() {
         themeMode = prefs.getInt("pref_theme_mode", 0)
         currentUnit = prefs.getString("pref_unit", "KG") ?: "KG"
         currentDay = prefs.getString("pref_last_day", "PUSH") ?: "PUSH"
+        defaultRestSeconds = prefs.getLong("pref_default_rest", 90L)
 
         bindViews()
         setupListeners()
@@ -153,8 +155,7 @@ class MainActivity : Activity() {
     private fun bindViews() {
         tvAppTitle = findViewById(R.id.tvAppTitle)
         tvAppSubtitle = findViewById(R.id.tvAppSubtitle)
-        btnResetSession = findViewById(R.id.btnResetSession)
-        btnThemeToggle = findViewById(R.id.btnThemeToggle)
+        btnSettings = findViewById(R.id.btnSettings)
 
         btnDayPush = findViewById(R.id.btnDayPush)
         btnDayPull = findViewById(R.id.btnDayPull)
@@ -164,11 +165,9 @@ class MainActivity : Activity() {
         tvVolumeStats = findViewById(R.id.tvVolumeStats)
         pbWorkoutProgress = findViewById(R.id.pbWorkoutProgress)
 
+        cardRestTimer = findViewById(R.id.cardRestTimer)
         tvTimerCountdown = findViewById(R.id.tvTimerCountdown)
         tvTimerStatus = findViewById(R.id.tvTimerStatus)
-        btnRest60 = findViewById(R.id.btnRest60)
-        btnRest90 = findViewById(R.id.btnRest90)
-        btnRest120 = findViewById(R.id.btnRest120)
         btnRestPlus30 = findViewById(R.id.btnRestPlus30)
         btnRestSkip = findViewById(R.id.btnRestSkip)
 
@@ -178,7 +177,8 @@ class MainActivity : Activity() {
         btnNextExercise = findViewById(R.id.btnNextExercise)
         tvSetCounter = findViewById(R.id.tvSetCounter)
         tvPreviousBest = findViewById(R.id.tvPreviousBest)
-        btnUnitToggle = findViewById(R.id.btnUnitToggle)
+
+        tvWeightLabel = findViewById(R.id.tvWeightLabel)
         btnWeightMinus = findViewById(R.id.btnWeightMinus)
         etWeight = findViewById(R.id.etWeight)
         btnWeightPlus = findViewById(R.id.btnWeightPlus)
@@ -189,28 +189,23 @@ class MainActivity : Activity() {
 
         llRoutineList = findViewById(R.id.llRoutineList)
 
-        btnUnitToggle.text = currentUnit
-        updateThemeButtonLabel()
+        tvWeightLabel.text = "WEIGHT ($currentUnit)"
+        updateSubtitle()
+    }
+
+    private fun updateSubtitle() {
+        val splitDesc = when (currentDay) {
+            "PUSH" -> "PUSH DAY • CHEST & TRICEPS"
+            "PULL" -> "PULL DAY • BACK & BICEPS"
+            else -> "LEGS DAY • QUADS & POSTERIOR"
+        }
+        tvAppSubtitle.text = splitDesc
     }
 
     private fun setupListeners() {
-        // Theme Switcher
-        btnThemeToggle.setOnClickListener { v ->
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            themeMode = (themeMode + 1) % 3
-            prefs.edit().putInt("pref_theme_mode", themeMode).apply()
-            recreate()
-        }
-
-        // Session Reset
-        btnResetSession.setOnClickListener { v ->
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            completedSets.clear()
-            cancelRestTimer()
-            sessionId = dbHelper.startSession(currentDay)
-            currentExerciseIndex = 0
-            refreshUiForCurrentExercise()
-            Toast.makeText(this, "Session reset for $currentDay", Toast.LENGTH_SHORT).show()
+        // Settings & About Modal Launcher
+        btnSettings.setOnClickListener {
+            showSettingsDialog()
         }
 
         // PPL Day Switchers
@@ -237,18 +232,20 @@ class MainActivity : Activity() {
             }
         }
 
-        // Steppers
+        // Steppers with robust boundary defenses
         btnWeightMinus.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             val w = etWeight.text.toString().toDoubleOrNull() ?: 0.0
-            val newW = if (w.isNaN() || w.isInfinite()) 0.0 else (w - 5.0).coerceIn(0.0, 2000.0)
+            val step = if (currentUnit == "LBS") 5.0 else 2.5
+            val newW = if (w.isNaN() || w.isInfinite()) 0.0 else (w - step).coerceIn(0.0, 2000.0)
             etWeight.setText(String.format(Locale.US, "%.1f", newW))
         }
 
         btnWeightPlus.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             val w = etWeight.text.toString().toDoubleOrNull() ?: 0.0
-            val newW = if (w.isNaN() || w.isInfinite()) 0.0 else (w + 5.0).coerceIn(0.0, 2000.0)
+            val step = if (currentUnit == "LBS") 5.0 else 2.5
+            val newW = if (w.isNaN() || w.isInfinite()) 0.0 else (w + step).coerceIn(0.0, 2000.0)
             etWeight.setText(String.format(Locale.US, "%.1f", newW))
         }
 
@@ -266,38 +263,19 @@ class MainActivity : Activity() {
             etReps.setText(newR.toString())
         }
 
-        // Unit Toggle
-        btnUnitToggle.setOnClickListener { v ->
-            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            currentUnit = if (currentUnit == "KG") "LBS" else "KG"
-            btnUnitToggle.text = currentUnit
-            prefs.edit().putString("pref_unit", currentUnit).apply()
-
-            // Convert displayed weight defensively
-            val currentW = etWeight.text.toString().toDoubleOrNull() ?: 0.0
-            if (!currentW.isNaN() && !currentW.isInfinite() && currentW >= 0.0 && currentW <= 2000.0) {
-                val converted = if (currentUnit == "LBS") currentW * 2.20462 else currentW / 2.20462
-                etWeight.setText(String.format(Locale.US, "%.1f", converted))
-            } else {
-                etWeight.setText("0.0")
-            }
-        }
-
         // Log Set Action
         btnLogSet.setOnClickListener { v ->
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             handleLogSet()
         }
 
-        // Rest Timer Presets
-        btnRest60.setOnClickListener { startRestTimer(60) }
-        btnRest90.setOnClickListener { startRestTimer(90) }
-        btnRest120.setOnClickListener { startRestTimer(120) }
+        // Rest Timer Quick Actions
         btnRestPlus30.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             val newTime = if (isTimerRunning && restSecondsRemaining > 0) restSecondsRemaining + 30 else 30L
             startRestTimer(newTime)
         }
+
         btnRestSkip.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             cancelRestTimer()
@@ -306,9 +284,148 @@ class MainActivity : Activity() {
         }
     }
 
+    private fun showSettingsDialog() {
+        btnSettings.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_settings)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val btnThemeLight: Button = dialog.findViewById(R.id.btnThemeLight)
+        val btnThemeDark: Button = dialog.findViewById(R.id.btnThemeDark)
+        val btnThemeAuto: Button = dialog.findViewById(R.id.btnThemeAuto)
+
+        val btnDefault60: Button = dialog.findViewById(R.id.btnDefault60)
+        val btnDefault90: Button = dialog.findViewById(R.id.btnDefault90)
+        val btnDefault120: Button = dialog.findViewById(R.id.btnDefault120)
+
+        val btnUnitKg: Button = dialog.findViewById(R.id.btnUnitKg)
+        val btnUnitLbs: Button = dialog.findViewById(R.id.btnUnitLbs)
+
+        val btnResetSessionDialog: Button = dialog.findViewById(R.id.btnResetSessionDialog)
+        val btnCloseDialog: Button = dialog.findViewById(R.id.btnCloseDialog)
+
+        // Theme Mode Highlighting
+        fun updateThemeButtons(mode: Int) {
+            btnThemeLight.setBackgroundResource(if (mode == 1) R.drawable.chip_active else R.drawable.chip_inactive)
+            btnThemeLight.setTextColor(getColor(if (mode == 1) R.color.m3_on_primary else R.color.m3_on_surface))
+
+            btnThemeDark.setBackgroundResource(if (mode == 2) R.drawable.chip_active else R.drawable.chip_inactive)
+            btnThemeDark.setTextColor(getColor(if (mode == 2) R.color.m3_on_primary else R.color.m3_on_surface))
+
+            btnThemeAuto.setBackgroundResource(if (mode == 0) R.drawable.chip_active else R.drawable.chip_inactive)
+            btnThemeAuto.setTextColor(getColor(if (mode == 0) R.color.m3_on_primary else R.color.m3_on_surface))
+        }
+        updateThemeButtons(themeMode)
+
+        btnThemeLight.setOnClickListener {
+            themeMode = 1
+            prefs.edit().putInt("pref_theme_mode", 1).apply()
+            dialog.dismiss()
+            recreate()
+        }
+        btnThemeDark.setOnClickListener {
+            themeMode = 2
+            prefs.edit().putInt("pref_theme_mode", 2).apply()
+            dialog.dismiss()
+            recreate()
+        }
+        btnThemeAuto.setOnClickListener {
+            themeMode = 0
+            prefs.edit().putInt("pref_theme_mode", 0).apply()
+            dialog.dismiss()
+            recreate()
+        }
+
+        // Rest Interval Highlighting
+        fun updateRestButtons(sec: Long) {
+            btnDefault60.setBackgroundResource(if (sec == 60L) R.drawable.chip_active else R.drawable.chip_inactive)
+            btnDefault60.setTextColor(getColor(if (sec == 60L) R.color.m3_on_primary else R.color.m3_on_surface))
+
+            btnDefault90.setBackgroundResource(if (sec == 90L) R.drawable.chip_active else R.drawable.chip_inactive)
+            btnDefault90.setTextColor(getColor(if (sec == 90L) R.color.m3_on_primary else R.color.m3_on_surface))
+
+            btnDefault120.setBackgroundResource(if (sec == 120L) R.drawable.chip_active else R.drawable.chip_inactive)
+            btnDefault120.setTextColor(getColor(if (sec == 120L) R.color.m3_on_primary else R.color.m3_on_surface))
+        }
+        updateRestButtons(defaultRestSeconds)
+
+        btnDefault60.setOnClickListener {
+            defaultRestSeconds = 60
+            prefs.edit().putLong("pref_default_rest", 60).apply()
+            updateRestButtons(60)
+        }
+        btnDefault90.setOnClickListener {
+            defaultRestSeconds = 90
+            prefs.edit().putLong("pref_default_rest", 90).apply()
+            updateRestButtons(90)
+        }
+        btnDefault120.setOnClickListener {
+            defaultRestSeconds = 120
+            prefs.edit().putLong("pref_default_rest", 120).apply()
+            updateRestButtons(120)
+        }
+
+        // Unit Preference Highlighting
+        fun updateUnitButtons(unit: String) {
+            btnUnitKg.setBackgroundResource(if (unit == "KG") R.drawable.chip_active else R.drawable.chip_inactive)
+            btnUnitKg.setTextColor(getColor(if (unit == "KG") R.color.m3_on_primary else R.color.m3_on_surface))
+
+            btnUnitLbs.setBackgroundResource(if (unit == "LBS") R.drawable.chip_active else R.drawable.chip_inactive)
+            btnUnitLbs.setTextColor(getColor(if (unit == "LBS") R.color.m3_on_primary else R.color.m3_on_surface))
+        }
+        updateUnitButtons(currentUnit)
+
+        btnUnitKg.setOnClickListener {
+            if (currentUnit != "KG") {
+                convertWeightDisplay("KG")
+                updateUnitButtons("KG")
+            }
+        }
+        btnUnitLbs.setOnClickListener {
+            if (currentUnit != "LBS") {
+                convertWeightDisplay("LBS")
+                updateUnitButtons("LBS")
+            }
+        }
+
+        btnResetSessionDialog.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("Reset Session")
+                .setMessage("Reset today's $currentDay workout? Logged sets for this active session will be cleared.")
+                .setPositiveButton("Reset") { _, _ ->
+                    completedSets.clear()
+                    cancelRestTimer()
+                    sessionId = dbHelper.startSession(currentDay)
+                    currentExerciseIndex = 0
+                    refreshUiForCurrentExercise()
+                    dialog.dismiss()
+                    Toast.makeText(this, "Session reset for $currentDay", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("Cancel", null)
+                .show()
+        }
+
+        btnCloseDialog.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun convertWeightDisplay(newUnit: String) {
+        val currentW = etWeight.text.toString().toDoubleOrNull() ?: 0.0
+        val converted = if (newUnit == "LBS") currentW * 2.20462 else currentW / 2.20462
+        currentUnit = newUnit
+        prefs.edit().putString("pref_unit", newUnit).apply()
+        tvWeightLabel.text = "WEIGHT ($newUnit)"
+        etWeight.setText(String.format(Locale.US, "%.1f", converted))
+        updateProgressTelemetry()
+        refreshUiForCurrentExercise()
+    }
+
     private fun switchDay(day: String) {
         if (currentDay == day) return
-        btnResetSession.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+        btnSettings.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
         currentDay = day
         prefs.edit().putString("pref_last_day", day).apply()
         completedSets.clear()
@@ -316,6 +433,7 @@ class MainActivity : Activity() {
         currentExerciseIndex = 0
         sessionId = dbHelper.startSession(currentDay)
         updateDayChipStyles()
+        updateSubtitle()
         refreshUiForCurrentExercise()
     }
 
@@ -358,15 +476,18 @@ class MainActivity : Activity() {
         if (prev != null) {
             tvPreviousBest.text = "Last: ${String.format(Locale.US, "%.1f", prev.first)} $currentUnit × ${prev.second}"
         } else {
-            tvPreviousBest.text = "Default: ${ex.defaultWeight} $currentUnit × ${ex.defaultReps}"
+            val defW = if (currentUnit == "LBS") ex.defaultWeight * 2.20462 else ex.defaultWeight
+            tvPreviousBest.text = "Default: ${String.format(Locale.US, "%.1f", defW)} $currentUnit × ${ex.defaultReps}"
         }
 
         // Set inputs to previous or default
-        if (etWeight.text.isNullOrEmpty() || etWeight.text.toString() == "0.0") {
-            val w = prev?.first ?: ex.defaultWeight
+        val curW = etWeight.text.toString().toDoubleOrNull()
+        if (curW == null || curW == 0.0) {
+            val w = prev?.first ?: (if (currentUnit == "LBS") ex.defaultWeight * 2.20462 else ex.defaultWeight)
             etWeight.setText(String.format(Locale.US, "%.1f", w))
         }
-        if (etReps.text.isNullOrEmpty() || etReps.text.toString() == "0") {
+        val curR = etReps.text.toString().toIntOrNull()
+        if (curR == null || curR == 0) {
             val r = prev?.second ?: ex.defaultReps
             etReps.setText(r.toString())
         }
@@ -414,8 +535,8 @@ class MainActivity : Activity() {
 
         refreshUiForCurrentExercise()
 
-        // Start standard 90s rest interval
-        startRestTimer(90)
+        // Start rest interval with user's preferred duration
+        startRestTimer(defaultRestSeconds)
     }
 
     private fun startRestTimer(seconds: Long) {
@@ -482,7 +603,7 @@ class MainActivity : Activity() {
 
         val pct = if (totalRoutineSets > 0) ((totalCompleted * 100) / totalRoutineSets).coerceIn(0, 100) else 0
 
-        tvProgressStatus.text = "Session Progress: $totalCompleted of $totalRoutineSets ($pct%)"
+        tvProgressStatus.text = "Progress: $totalCompleted of $totalRoutineSets ($pct%)"
         pbWorkoutProgress.progress = pct
 
         val vol = dbHelper.getSessionVolume(sessionId)
@@ -504,13 +625,14 @@ class MainActivity : Activity() {
 
             val row = LinearLayout(this).apply {
                 orientation = LinearLayout.HORIZONTAL
+                minimumHeight = (resources.displayMetrics.density * 48).toInt()
                 layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 ).apply {
                     setMargins(0, 4, 0, 4)
                 }
-                setPadding(12, 10, 12, 10)
+                setPadding(14, 10, 14, 10)
                 setBackgroundResource(
                     if (isCurrent) R.drawable.card_m3_high else R.drawable.card_background
                 )
@@ -525,7 +647,7 @@ class MainActivity : Activity() {
             val tvName = TextView(this).apply {
                 layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
                 text = "${idx + 1}. ${ex.name}"
-                textSize = 14f
+                textSize = 13f
                 setTextColor(
                     if (isCurrent) getColor(R.color.m3_primary) else getColor(R.color.m3_on_surface)
                 )
@@ -534,7 +656,7 @@ class MainActivity : Activity() {
 
             val tvBadge = TextView(this).apply {
                 text = if (done >= ex.totalSets) "$done/${ex.totalSets} ✓" else "$done/${ex.totalSets}"
-                textSize = 13f
+                textSize = 12f
                 setTextColor(
                     if (done >= ex.totalSets) getColor(R.color.m3_success) else getColor(R.color.m3_on_surface_variant)
                 )
@@ -544,14 +666,6 @@ class MainActivity : Activity() {
             row.addView(tvName)
             row.addView(tvBadge)
             llRoutineList.addView(row)
-        }
-    }
-
-    private fun updateThemeButtonLabel() {
-        btnThemeToggle.text = when (themeMode) {
-            1 -> "Light"
-            2 -> "Dark"
-            else -> "Auto"
         }
     }
 
@@ -592,7 +706,7 @@ class MainActivity : Activity() {
                         cancelRestTimer()
                         tvTimerStatus.text = "Timer paused"
                     } else {
-                        startRestTimer(90)
+                        startRestTimer(defaultRestSeconds)
                     }
                     return true
                 }
