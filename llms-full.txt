@@ -966,7 +966,7 @@ Data Safety & Offline Privacy Guarantee:
 - **Category**: HEALTH & FITNESS / WORKOUT
 - **Tagline**: Offline Push Pull Legs workout tracker with rest interval timer and progress telemetry.
 - **Landing Page**: https://apps.kimrosil.com/ppl-workout/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-ppl-workout/ppl-workout.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.1.0-ppl-workout/ppl-workout.apk
 - **Privacy Policy**: https://apps.kimrosil.com/ppl-workout/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
