@@ -830,5 +830,19 @@
     "privacy_policy": "https://apps.kimrosil.com/swage-die/privacy.html",
     "icon": "assets/icons/swage-die.svg",
     "updated_at": "2026-10-21T00:41:44.294769+00:00"
+  },
+  {
+    "slug": "ppl-workout",
+    "title": "PPL Workout",
+    "category": "UTILITIES",
+    "tagline": "Offline Push Pull Legs workout tracker with rest interval timer and progress bar.",
+    "status": "BUILT",
+    "branch": "app/ppl-workout",
+    "tag": "v2.0.0-ppl-workout",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-ppl-workout/ppl-workout.apk",
+    "landing_page": "https://apps.kimrosil.com/ppl-workout/",
+    "privacy_policy": "https://apps.kimrosil.com/ppl-workout/privacy.html",
+    "icon": "assets/icons/ppl-workout.svg",
+    "updated_at": "2026-10-21T16:19:58.627538+00:00"
   }
 ]
