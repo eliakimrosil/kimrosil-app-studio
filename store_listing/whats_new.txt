@@ -1,2 +1,2 @@
-Release v2.0.0 - PPL Workout
-Elevate PPL Workout to high-density compact pro gym HUD with Settings & About modal
+Release v2.1.0 - PPL Workout
+Evolve PPL Workout to v2.1.0 with live 1RM calculation, Olympic barbell plate math, and SQLite workout history dialog

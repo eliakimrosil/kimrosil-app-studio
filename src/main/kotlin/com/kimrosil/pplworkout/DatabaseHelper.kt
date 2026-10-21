@@ -150,4 +150,33 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         }
         db.update(TABLE_SESSIONS, cv, "id = ?", arrayOf(sessionId.toString()))
     }
+
+    fun getAllSessions(): List<SessionSummary> {
+        val list = mutableListOf<SessionSummary>()
+        val db = readableDatabase
+        val cursor = db.rawQuery(
+            "SELECT id, day_type, timestamp, total_sets, total_volume, is_completed FROM $TABLE_SESSIONS WHERE total_sets > 0 ORDER BY id DESC LIMIT 50",
+            null
+        )
+        try {
+            while (cursor.moveToNext()) {
+                val id = cursor.getLong(0)
+                val dayType = cursor.getString(1)
+                val date = cursor.getString(2)
+                val sets = cursor.getInt(3)
+                val vol = cursor.getDouble(4)
+                val completed = cursor.getInt(5) == 1
+                list.add(SessionSummary(id, dayType, date, sets, vol, completed))
+            }
+        } finally {
+            cursor.close()
+        }
+        return list
+    }
+
+    fun clearAllHistory() {
+        val db = writableDatabase
+        db.execSQL("DELETE FROM $TABLE_SETS")
+        db.execSQL("DELETE FROM $TABLE_SESSIONS")
+    }
 }

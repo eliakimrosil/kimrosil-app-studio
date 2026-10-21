@@ -1,5 +1,5 @@
 # 👹 Brutal User & Adversarial ADB Audit: ppl-workout
-*Generated on 2026-10-22 00:54:43 on 127.0.0.1:5555*
+*Generated on 2026-10-22 01:20:30 on 127.0.0.1:5555*
 
 ---
 
@@ -10,9 +10,9 @@
 
 ## 📊 Live ADB Diagnostic Telemetry
 - **Target Package**: `com.kimrosil.pplworkout`
-- **Cold Boot Latency**: `157 ms`
-- **Memory Footprint (PSS)**: `29 MB` (`30646 KB`)
-- **Interactive UI Nodes Audited**: `15`
+- **Cold Boot Latency**: `130 ms`
+- **Memory Footprint (PSS)**: `22 MB` (`22624 KB`)
+- **Interactive UI Nodes Audited**: `16`
 - **Navigation Tabs Explored**: `3`
 - **Adversarial Fuzz Tests Passed**: `18 / 18`
 - **State Preserved on Rotation (90°)**: `✅ YES`

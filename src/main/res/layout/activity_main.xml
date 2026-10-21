@@ -44,6 +44,21 @@
                 android:textSize="11sp" />
         </LinearLayout>
 
+        <!-- Workout History Button -->
+        <ImageButton
+            android:id="@+id/btnHistory"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/bg_topbar_button"
+            android:contentDescription="Workout History"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_history" />
+
         <!-- Settings Vector Action Button (Replaces cluttered inline buttons) -->
         <ImageButton
             android:id="@+id/btnSettings"
@@ -490,6 +505,61 @@
                         android:textColor="@color/m3_on_surface"
                         android:textSize="14sp" />
                 </LinearLayout>
+            </LinearLayout>
+
+            <!-- Powerlifting Telemetry: Live 1RM & Barbell Plate Breakdown -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/card_m3_high"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="12dp"
+                android:paddingTop="8dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvOneRepMax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:letterSpacing="0.02"
+                        android:text="EST. 1RM: 101.3 KG"
+                        android:textColor="@color/m3_primary"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tvPlateMath"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:singleLine="true"
+                        android:text="Bar: 20 KG • Plates/side: [20, 10]"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvIntensityPct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/chip_active"
+                    android:fontFamily="sans-serif-black"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="4dp"
+                    android:text="79% 1RM"
+                    android:textColor="@color/m3_on_primary"
+                    android:textSize="11sp" />
             </LinearLayout>
 
             <!-- Primary High-Impact Log Action Button -->

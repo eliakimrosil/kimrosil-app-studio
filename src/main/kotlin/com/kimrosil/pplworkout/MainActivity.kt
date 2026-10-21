@@ -45,6 +45,7 @@ class MainActivity : Activity() {
     // Top Bar Views
     private lateinit var tvAppTitle: TextView
     private lateinit var tvAppSubtitle: TextView
+    private lateinit var btnHistory: ImageButton
     private lateinit var btnSettings: ImageButton
 
     // Day Chips
@@ -78,6 +79,9 @@ class MainActivity : Activity() {
     private lateinit var btnRepsMinus: Button
     private lateinit var etReps: EditText
     private lateinit var btnRepsPlus: Button
+    private lateinit var tvOneRepMax: TextView
+    private lateinit var tvPlateMath: TextView
+    private lateinit var tvIntensityPct: TextView
     private lateinit var btnLogSet: Button
 
     // Routine Overview
@@ -155,6 +159,7 @@ class MainActivity : Activity() {
     private fun bindViews() {
         tvAppTitle = findViewById(R.id.tvAppTitle)
         tvAppSubtitle = findViewById(R.id.tvAppSubtitle)
+        btnHistory = findViewById(R.id.btnHistory)
         btnSettings = findViewById(R.id.btnSettings)
 
         btnDayPush = findViewById(R.id.btnDayPush)
@@ -185,6 +190,11 @@ class MainActivity : Activity() {
         btnRepsMinus = findViewById(R.id.btnRepsMinus)
         etReps = findViewById(R.id.etReps)
         btnRepsPlus = findViewById(R.id.btnRepsPlus)
+
+        tvOneRepMax = findViewById(R.id.tvOneRepMax)
+        tvPlateMath = findViewById(R.id.tvPlateMath)
+        tvIntensityPct = findViewById(R.id.tvIntensityPct)
+
         btnLogSet = findViewById(R.id.btnLogSet)
 
         llRoutineList = findViewById(R.id.llRoutineList)
@@ -203,10 +213,26 @@ class MainActivity : Activity() {
     }
 
     private fun setupListeners() {
+        // Workout History Modal
+        btnHistory.setOnClickListener {
+            showHistoryDialog()
+        }
+
         // Settings & About Modal Launcher
         btnSettings.setOnClickListener {
             showSettingsDialog()
         }
+
+        // Live text change listeners for real-time 1RM & plate math
+        val telemetryWatcher = object : android.text.TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                updatePowerliftingTelemetry()
+            }
+            override fun afterTextChanged(s: android.text.Editable?) {}
+        }
+        etWeight.addTextChangedListener(telemetryWatcher)
+        etReps.addTextChangedListener(telemetryWatcher)
 
         // PPL Day Switchers
         btnDayPush.setOnClickListener { switchDay("PUSH") }
@@ -412,6 +438,143 @@ class MainActivity : Activity() {
         dialog.show()
     }
 
+    private fun showHistoryDialog() {
+        btnHistory.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_history)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val llHistoryItems: LinearLayout = dialog.findViewById(R.id.llHistoryItems)
+        val tvEmptyHistory: TextView = dialog.findViewById(R.id.tvEmptyHistory)
+        val btnClearHistory: Button = dialog.findViewById(R.id.btnClearHistory)
+        val btnCloseHistory: Button = dialog.findViewById(R.id.btnCloseHistory)
+
+        fun loadHistoryItems() {
+            llHistoryItems.removeAllViews()
+            val sessions = dbHelper.getAllSessions()
+            if (sessions.isEmpty()) {
+                tvEmptyHistory.visibility = View.VISIBLE
+                llHistoryItems.addView(tvEmptyHistory)
+            } else {
+                tvEmptyHistory.visibility = View.GONE
+                for (s in sessions) {
+                    val card = LinearLayout(this).apply {
+                        orientation = LinearLayout.VERTICAL
+                        layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                        ).apply {
+                            setMargins(0, 4, 0, 8)
+                        }
+                        setBackgroundResource(R.drawable.card_m3)
+                        setPadding(16, 12, 16, 12)
+
+                        val row1 = LinearLayout(context).apply {
+                            orientation = LinearLayout.HORIZONTAL
+                            layoutParams = LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT
+                            )
+                        }
+                        val tag = TextView(context).apply {
+                            text = "${s.dayType} WORKOUT"
+                            typeface = android.graphics.Typeface.DEFAULT_BOLD
+                            textSize = 13f
+                            setTextColor(getColor(R.color.m3_primary))
+                            layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+                        }
+                        val date = TextView(context).apply {
+                            text = s.date
+                            textSize = 11f
+                            setTextColor(getColor(R.color.m3_on_surface_variant))
+                        }
+                        row1.addView(tag)
+                        row1.addView(date)
+                        addView(row1)
+
+                        val row2 = TextView(context).apply {
+                            text = "${s.totalSets} sets logged • Total Volume: ${String.format(Locale.US, "%,.0f", s.totalVolume)} $currentUnit"
+                            textSize = 12f
+                            setTextColor(getColor(R.color.m3_on_surface))
+                            setPadding(0, 4, 0, 0)
+                        }
+                        addView(row2)
+                    }
+                    llHistoryItems.addView(card)
+                }
+            }
+        }
+
+        loadHistoryItems()
+
+        btnClearHistory.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("Clear History")
+                .setMessage("Are you sure you want to delete all past session logs? This cannot be undone.")
+                .setPositiveButton("Clear") { _, _ ->
+                    dbHelper.clearAllHistory()
+                    loadHistoryItems()
+                    Toast.makeText(this, "History cleared", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("Cancel", null)
+                .show()
+        }
+
+        btnCloseHistory.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun updatePowerliftingTelemetry() {
+        val rawW = etWeight.text.toString().toDoubleOrNull() ?: 0.0
+        val rawR = etReps.text.toString().toIntOrNull() ?: 1
+
+        if (rawW.isNaN() || rawW.isInfinite() || rawW <= 0.0 || rawW > 2000.0 || rawR <= 0 || rawR > 500) {
+            tvOneRepMax.text = "EST. 1RM: 0.0 $currentUnit"
+            tvIntensityPct.text = "0% 1RM"
+            tvPlateMath.text = "Enter valid weight (1-2000 $currentUnit)"
+            return
+        }
+
+        // Epley 1RM formula: weight * (1 + reps/30)
+        val oneRepMax = if (rawR <= 1) rawW else rawW * (1.0 + rawR / 30.0)
+        tvOneRepMax.text = "EST. 1RM: ${String.format(Locale.US, "%.1f", oneRepMax)} $currentUnit"
+
+        val intensity = ((rawW / oneRepMax) * 100).toInt().coerceIn(1, 100)
+        tvIntensityPct.text = "$intensity% 1RM"
+
+        // Barbell Plate Math (Instant division without while loops)
+        val barWeight = if (currentUnit == "LBS") 45.0 else 20.0
+        if (rawW < barWeight) {
+            tvPlateMath.text = "Sub-bar weight (${String.format(Locale.US, "%.1f", rawW)} $currentUnit) • Dumbbell/Cable"
+        } else if (rawW == barWeight) {
+            tvPlateMath.text = "Bar only (${barWeight.toInt()} $currentUnit) • No plates needed"
+        } else {
+            val sideWeight = (rawW - barWeight) / 2.0
+            val availablePlates = if (currentUnit == "LBS") {
+                doubleArrayOf(45.0, 35.0, 25.0, 10.0, 5.0, 2.5)
+            } else {
+                doubleArrayOf(25.0, 20.0, 15.0, 10.0, 5.0, 2.5, 1.25)
+            }
+
+            var rem = sideWeight
+            val platesUsed = mutableListOf<String>()
+            for (p in availablePlates) {
+                val count = (rem / p).toInt()
+                if (count > 0) {
+                    val pLabel = if (p % 1.0 == 0.0) p.toInt().toString() else p.toString()
+                    platesUsed.add(if (count > 1) "${count}×${pLabel}" else pLabel)
+                    rem -= count * p
+                }
+            }
+
+            val plateListStr = if (platesUsed.isNotEmpty()) platesUsed.joinToString(", ") else "None"
+            tvPlateMath.text = "Bar: ${barWeight.toInt()} $currentUnit • Side: [$plateListStr] (${String.format(Locale.US, "%.1f", sideWeight)}/side)"
+        }
+    }
+
     private fun convertWeightDisplay(newUnit: String) {
         val currentW = etWeight.text.toString().toDoubleOrNull() ?: 0.0
         val converted = if (newUnit == "LBS") currentW * 2.20462 else currentW / 2.20462
@@ -493,6 +656,7 @@ class MainActivity : Activity() {
         }
 
         updateProgressTelemetry()
+        updatePowerliftingTelemetry()
         renderRoutineList()
     }
 
