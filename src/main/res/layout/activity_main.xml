@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/windowBackground"
+    android:fillViewport="false"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="32dp">
+
+        <!-- Header / Top Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAppTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-black"
+                    android:singleLine="true"
+                    android:text="PPL WORKOUT"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/tvAppSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="PUSH • PULL • LEGS SPLIT"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnResetSession"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_topbar_button"
+                android:fontFamily="sans-serif-medium"
+                android:minWidth="56dp"
+                android:minHeight="48dp"
+                android:text="Reset"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/btnThemeToggle"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_topbar_button"
+                android:fontFamily="sans-serif-medium"
+                android:minWidth="56dp"
+                android:minHeight="48dp"
+                android:text="Theme"
+                android:textColor="@color/m3_primary"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Workout Progress Header Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/card_m3"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Day Selector Segmented Chips -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnDayPush"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:background="@drawable/chip_active"
+                    android:fontFamily="sans-serif-black"
+                    android:text="PUSH"
+                    android:textColor="@color/m3_on_primary"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btnDayPull"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:background="@drawable/chip_inactive"
+                    android:fontFamily="sans-serif-black"
+                    android:text="PULL"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btnDayLegs"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:background="@drawable/chip_inactive"
+                    android:fontFamily="sans-serif-black"
+                    android:text="LEGS"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Progress Telemetry Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvProgressStatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="Session Progress: 0 of 17 (0%)"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvVolumeStats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Volume: 0 kg"
+                    android:textColor="@color/m3_primary"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <!-- High-Energy Athletic Progress Bar -->
+            <ProgressBar
+                android:id="@+id/pbWorkoutProgress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="8dp"
+                android:max="100"
+                android:progress="0"
+                android:progressDrawable="@drawable/progress_bar_athletic" />
+        </LinearLayout>
+
+        <!-- Rest Interval Timer Card -->
+        <LinearLayout
+            android:id="@+id/cardRestTimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/card_m3_high"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:letterSpacing="0.08"
+                android:text="REST INTERVAL TIMER"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="12sp" />
+
+            <!-- Giant Glancable Countdown Readout -->
+            <TextView
+                android:id="@+id/tvTimerCountdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="sans-serif-black"
+                android:text="01:30"
+                android:textColor="@color/m3_primary"
+                android:textSize="44sp" />
+
+            <TextView
+                android:id="@+id/tvTimerStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="Catch your breath • Next set ready soon"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="13sp" />
+
+            <!-- Rest Interval Quick Action Chips -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnRest60"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:background="@drawable/bg_topbar_button"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="60s"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnRest90"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:background="@drawable/bg_topbar_button"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="90s"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnRest120"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:background="@drawable/bg_topbar_button"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="120s"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnRestPlus30"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:background="@drawable/bg_topbar_button"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="+30s"
+                    android:textColor="@color/m3_primary"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/btnRestSkip"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1.2"
+                    android:minHeight="48dp"
+                    android:background="@drawable/bg_topbar_button"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="Skip"
+                    android:textColor="@color/m3_tertiary"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Active Exercise Deck Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/card_m3"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Exercise Navigation Bar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnPrevExercise"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:background="@drawable/bg_topbar_button"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="◀"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp">
+
+                    <TextView
+                        android:id="@+id/tvExerciseName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif-black"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:text="Barbell Bench Press"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvTargetMuscles"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-bold"
+                        android:letterSpacing="0.05"
+                        android:text="CHEST • SHOULDERS • TRICEPS"
+                        android:textColor="@color/m3_primary"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnNextExercise"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:background="@drawable/bg_topbar_button"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="▶"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Set Counter & Previous Best Banner -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvSetCounter"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-black"
+                    android:text="SET 1 OF 4"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tvPreviousBest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Previous: --"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <!-- Inputs Container: Weight and Reps (Stacked for Maximum Tactile Ergonomics) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical">
+
+                <!-- Weight Input Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/card_m3_high"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif-bold"
+                            android:text="WEIGHT"
+                            android:textColor="@color/m3_on_surface_variant"
+                            android:textSize="12sp" />
+
+                        <Button
+                            android:id="@+id/btnUnitToggle"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="56dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/bg_topbar_button"
+                            android:fontFamily="sans-serif-black"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:padding="0dp"
+                            android:text="KG"
+                            android:textColor="@color/m3_primary"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnWeightMinus"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="60dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:background="@drawable/btn_stepper"
+                            android:fontFamily="sans-serif-black"
+                            android:text="-5"
+                            android:textColor="@color/m3_on_surface"
+                            android:textSize="14sp" />
+
+                        <EditText
+                            android:id="@+id/etWeight"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_weight="1"
+                            android:minWidth="60dp"
+                            android:minHeight="48dp"
+                            android:background="@drawable/edittext_m3"
+                            android:fontFamily="sans-serif-black"
+                            android:gravity="center"
+                            android:imeOptions="actionNext"
+                            android:inputType="numberDecimal"
+                            android:text="80.0"
+                            android:textColor="@color/m3_on_surface"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/btnWeightPlus"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="60dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:background="@drawable/btn_stepper"
+                            android:fontFamily="sans-serif-black"
+                            android:text="+5"
+                            android:textColor="@color/m3_on_surface"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Reps Input Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/card_m3_high"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-bold"
+                        android:text="TARGET REPS"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnRepsMinus"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="60dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:background="@drawable/btn_stepper"
+                            android:fontFamily="sans-serif-black"
+                            android:text="-1"
+                            android:textColor="@color/m3_on_surface"
+                            android:textSize="14sp" />
+
+                        <EditText
+                            android:id="@+id/etReps"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_weight="1"
+                            android:minWidth="60dp"
+                            android:minHeight="48dp"
+                            android:background="@drawable/edittext_m3"
+                            android:fontFamily="sans-serif-black"
+                            android:gravity="center"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:text="8"
+                            android:textColor="@color/m3_on_surface"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/btnRepsPlus"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="60dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:background="@drawable/btn_stepper"
+                            android:fontFamily="sans-serif-black"
+                            android:text="+1"
+                            android:textColor="@color/m3_on_surface"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- High-Impact Primary Action Button -->
+            <Button
+                android:id="@+id/btnLogSet"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/btn_m3_primary"
+                android:fontFamily="sans-serif-black"
+                android:letterSpacing="0.04"
+                android:text="LOG SET &amp; START REST"
+                android:textColor="@color/m3_on_primary"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Routine Exercise Overview Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_m3"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:letterSpacing="0.08"
+                android:text="TODAY'S EXERCISE ROUTINE"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:id="@+id/llRoutineList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

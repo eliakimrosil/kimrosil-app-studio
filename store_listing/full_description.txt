@@ -1,0 +1,26 @@
+PPL Workout is a fast, 100% offline Push Pull Legs workout tracker engineered for lifters, athletes, and gym enthusiasts who want zero distractions during training.
+
+Whether you are hitting chest and shoulders on Push day, building your back and biceps on Pull day, or crushing squats on Leg day, PPL Workout keeps you locked in with real-time session progress and automated rest intervals.
+
+FEATURES & HIGHLIGHTS:
+
+• STRUCTURED PPL SPLIT TEMPLATES
+Instantly launch ready-to-lift routines for Push, Pull, and Legs. Each session guides you through core compound movements and targeted isolation exercises with muscle group badges.
+
+• LIVE WORKOUT PROGRESS BAR
+Keep your momentum high with real-time visual telemetry. Watch your session completion percentage climb set by set with total completed vs remaining volume indicators.
+
+• AUTOMATED REST INTERVAL COUNTDOWN
+Never lose track of your rest between sets. Tap "Log Set & Rest" to instantly save your reps and start the rest countdown. Choose between 60s, 90s, 120s, 180s, or add +30s with a single tap. Features vibration and acoustic chime alerts when rest is up so you never cool down.
+
+• RAPID ONE-TAP WEIGHT & REPS LOGGING
+Log progressive overload in seconds. Use rapid steppers (+/- 5 kg/lbs, +/- 1 rep) to update your stats effortlessly between sets without tedious typing.
+
+• 100% OFFLINE ZERO-DATA-LOSS PERSISTENCE
+Works completely offline in gym basements and dead zones. All sessions, weights, reps, and dates are stored securely on your device via SQLite.
+
+• ATHLETIC HIGH-CONTRAST INTERFACE
+Built with high-visibility athletic typography and neon lime accents that are easy to read from a distance. Includes a seamless Dark, Light, and Auto theme switcher.
+
+• ZERO ADS & ZERO TRACKERS
+100% free offline freeware. No monthly subscriptions, no account creation, no analytics bloat, and zero ads. Just pure iron and focused training.

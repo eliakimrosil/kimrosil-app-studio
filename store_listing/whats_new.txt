@@ -1,0 +1,2 @@
+Release v2.0.0 - PPL Workout
+Initial release of PPL Workout v1.0.0

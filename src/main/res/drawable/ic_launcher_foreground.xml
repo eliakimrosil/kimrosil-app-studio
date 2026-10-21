@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group>
+        
+        <!-- Dynamic Workout Progress Ring (Hyper-Lime) -->
+        <path android:fillColor="#00000000" android:strokeColor="#27272A" android:strokeWidth="5" android:pathData="M54,20 a34,34 0 1,0 0,68 a34,34 0 1,0 0,-68 Z" />
+        <path android:fillColor="#00000000" android:strokeColor="#A3E635" android:strokeWidth="5.5" android:strokeLineCap="round" android:pathData="M54,20 A34,34 0 1,1 26,76" />
+        <path android:pathData="M26.0,72.5 a3.5,3.5 0 1,0 0,7.0 a3.5,3.5 0 1,0 0,-7.0 Z" android:fillColor="#FB923C" />
+        
+        <!-- Olympic Barbell Shaft -->
+        <path android:fillColor="#00000000" android:strokeColor="#FFFFFF" android:strokeWidth="4" android:strokeLineCap="round" android:pathData="M24,54 h60" />
+        <!-- Center Knurling Grips -->
+        <path android:fillColor="#00000000" android:strokeColor="#A3E635" android:strokeWidth="3" android:pathData="M48,54 h12" />
+        <!-- Left Weight Plates (Iron & High-Impact Bumpers) -->
+        <path android:pathData="M32,42 h4 v24 h-4 Z" android:fillColor="#71717A" />
+        <path android:pathData="M26,37 h5 v34 h-5 Z" android:fillColor="#E4E4E7" />
+        <path android:pathData="M20,41 h4 v26 h-4 Z" android:fillColor="#FB923C" />
+        <!-- Right Weight Plates (Iron & High-Impact Bumpers) -->
+        <path android:pathData="M72,42 h4 v24 h-4 Z" android:fillColor="#71717A" />
+        <path android:pathData="M77,37 h5 v34 h-5 Z" android:fillColor="#E4E4E7" />
+        <path android:pathData="M84,41 h4 v26 h-4 Z" android:fillColor="#FB923C" />
+        
+    </group>
+</vector>
