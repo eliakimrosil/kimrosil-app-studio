@@ -1275,7 +1275,41 @@ Data Safety & Offline Privacy Guarantee:
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
 
 ### Detailed Overview & Capabilities
-SwageDie is an offline-first Android utility engineered natively for Android. Operates completely without internet connectivity, storing all data securely in on-device sandboxed storage.
+SwageDie is an offline tooling engineering and fabrication calculator designed for sheet metal fabricators, tool and die makers, press brake operators, and mechanical engineers.
+
+FEATURES & CAPABILITIES
+
+1. PUNCH & DIE CLEARANCE CALCULATOR
+- Accurate punch-to-die clearance calculation per side and total die opening for round, rectangular, square, and custom perimeter profiles.
+- Pre-calibrated material shear and tensile strengths: Mild Steel (1018/A36), Stainless Steel (304/316), Aluminum (5052-H32 / 6061-T6), Brass (C26000), Copper (C11000), and High Strength Steel (Domex/Hardox), plus custom shop materials.
+- Exact punching tonnage (Metric Tons, US Tons, and kN) with automatic stripping force estimation (~15%).
+- Recommended straight die land and angular relief draft recommendations.
+
+2. TUBE & SOLID ROD SWAGING ENGINE
+- Rotary and push swaging deformation analysis for hollow tubes and solid rods.
+- Accurate cross-sectional area reduction percentage, diameter reduction, and diameter ratio.
+- Automatic work hardening warning threshold: alerts when reduction per pass exceeds 25%, advising intermediate annealing before cracking occurs.
+- True plastic strain deformation force model and die contact length computation.
+
+3. PRESS BRAKE V-DIE SELECTION & TONNAGE
+- Air bending tonnage calculation across full workpiece bend length.
+- Recommended V-die opening width based on sheet thickness (6t, 8t, 10t, 12t).
+- Minimum flange length and internal bend radius validation.
+- Telemetry breakdown showing total tonnage and force per meter.
+
+4. REAL-TIME TECHNICAL HUD CANVAS
+- Dynamic cross-section schematic illustrating upper punch, sheet metal stock, clearance gaps, and lower die land with relief angle.
+- High-precision press load monitor: compares calculated force against active press machine rating with color-coded safety thresholds (Safe, Heavy, Overload).
+
+5. SHOP PRESS & TOOLING PRESETS (SQLITE)
+- Register your shop machinery (turret punches, press brakes, rotary swagers, hydraulic presses) with custom tonnage limits.
+- Save and load frequently used tooling combinations with 1 tap.
+- 1-tap copy of calculation report formatted for shop job travelers.
+
+6. DUAL UNITS & WORKSHOP THEMES
+- 1-tap switching between Metric (mm, kN, Metric Tons) and Imperial (inches, psi, US Tons).
+- High-contrast Light, Dark (obsidian HUD), and Auto themes for optimal readability in workshop environments.
+- 100% offline, zero ads, zero telemetry, zero accounts.
 
 ---
 
