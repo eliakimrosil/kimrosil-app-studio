@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">SwageDie</string>
+    <string name="app_subtitle">Precision Tooling &amp; Tonnage HUD</string>
+    <string name="unit_metric">Metric (mm/t)</string>
+    <string name="unit_imperial">Imperial (in/T)</string>
+    <string name="theme_auto">Auto</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="tab_punch">Punch &amp; Die</string>
+    <string name="tab_swage">Swage Tube</string>
+    <string name="tab_brake">Press Brake</string>
+    <string name="tab_presets">Tooling &amp; Presses</string>
+    <string name="btn_copy">Copy Report</string>
+    <string name="btn_save">Save Setup</string>
+    <string name="btn_add_machine">Add Machine</string>
+</resources>

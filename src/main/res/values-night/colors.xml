@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bespoke Domain Dark Theme Color Tokens (Obsidian HUD) -->
+    <color name="colorPrimary">#38BDF8</color>
+    <color name="colorPrimaryDark">#090D16</color>
+    <color name="colorAccent">#00E5FF</color>
+    <color name="windowBackground">#090D16</color>
+
+    <color name="m3_primary">#38BDF8</color>
+    <color name="m3_on_primary">#082F49</color>
+    <color name="m3_primary_container">#0C4A6E</color>
+    <color name="m3_on_primary_container">#BAE6FD</color>
+
+    <color name="m3_secondary">#00E5FF</color>
+    <color name="m3_on_secondary">#082F49</color>
+    <color name="m3_secondary_container">#111827</color>
+    <color name="m3_on_secondary_container">#F1F5F9</color>
+
+    <color name="m3_tertiary">#00E5FF</color>
+    <color name="m3_on_tertiary">#000000</color>
+    <color name="m3_tertiary_container">#1E293B</color>
+    <color name="m3_on_tertiary_container">#F1F5F9</color>
+
+    <color name="m3_surface">#090D16</color>
+    <color name="m3_surface_container">#111827</color>
+    <color name="m3_surface_container_high">#1E293B</color>
+    <color name="m3_surface_container_highest">#334155</color>
+
+    <color name="m3_on_surface">#F1F5F9</color>
+    <color name="m3_on_surface_variant">#94A3B8</color>
+    <color name="m3_outline">#1E293B</color>
+    <color name="m3_outline_variant">#334155</color>
+
+    <color name="m3_success">#22C55E</color>
+    <color name="m3_on_success">#052E16</color>
+    <color name="m3_error">#EF4444</color>
+    <color name="m3_on_error">#450A0A</color>
+
+    <!-- Tactical Fabrication & HUD Tokens -->
+    <color name="hud_cyan">#00E5FF</color>
+    <color name="hud_safe">#22C55E</color>
+    <color name="hud_warn">#F59E0B</color>
+    <color name="hud_danger">#EF4444</color>
+    <color name="hud_grid">#1E293B</color>
+    <color name="hud_metal">#94A3B8</color>
+    <color name="hud_die_body">#1E293B</color>
+    <color name="hud_punch_body">#0C4A6E</color>
+
+    <!-- Legacy compatibility aliases -->
+    <color name="cardBackground">#111827</color>
+    <color name="cardStroke">#1E293B</color>
+    <color name="textPrimary">#F1F5F9</color>
+    <color name="textSecondary">#94A3B8</color>
+    <color name="btnColor">#38BDF8</color>
+    <color name="btnTextColor">#082F49</color>
+</resources>

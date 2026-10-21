@@ -1,0 +1,4 @@
+build/
+.gradle/
+*.png
+AUDIT_BRUTAL.md

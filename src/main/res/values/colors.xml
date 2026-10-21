@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bespoke Domain Light Theme Color Tokens -->
+    <color name="colorPrimary">#0284C7</color>
+    <color name="colorPrimaryDark">#0369A1</color>
+    <color name="colorAccent">#0EA5E9</color>
+    <color name="windowBackground">#F8FAFC</color>
+
+    <color name="m3_primary">#0284C7</color>
+    <color name="m3_on_primary">#FFFFFF</color>
+    <color name="m3_primary_container">#E0F2FE</color>
+    <color name="m3_on_primary_container">#0369A1</color>
+
+    <color name="m3_secondary">#0EA5E9</color>
+    <color name="m3_on_secondary">#FFFFFF</color>
+    <color name="m3_secondary_container">#F1F5F9</color>
+    <color name="m3_on_secondary_container">#0F172A</color>
+
+    <color name="m3_tertiary">#0284C7</color>
+    <color name="m3_on_tertiary">#FFFFFF</color>
+    <color name="m3_tertiary_container">#E2E8F0</color>
+    <color name="m3_on_tertiary_container">#0F172A</color>
+
+    <color name="m3_surface">#F8FAFC</color>
+    <color name="m3_surface_container">#FFFFFF</color>
+    <color name="m3_surface_container_high">#F1F5F9</color>
+    <color name="m3_surface_container_highest">#E2E8F0</color>
+
+    <color name="m3_on_surface">#0F172A</color>
+    <color name="m3_on_surface_variant">#64748B</color>
+    <color name="m3_outline">#CBD5E1</color>
+    <color name="m3_outline_variant">#E2E8F0</color>
+
+    <color name="m3_success">#16A34A</color>
+    <color name="m3_on_success">#FFFFFF</color>
+    <color name="m3_error">#DC2626</color>
+    <color name="m3_on_error">#FFFFFF</color>
+
+    <!-- Tactical Fabrication & HUD Tokens -->
+    <color name="hud_cyan">#0284C7</color>
+    <color name="hud_safe">#16A34A</color>
+    <color name="hud_warn">#D97706</color>
+    <color name="hud_danger">#DC2626</color>
+    <color name="hud_grid">#CBD5E1</color>
+    <color name="hud_metal">#64748B</color>
+    <color name="hud_die_body">#E2E8F0</color>
+    <color name="hud_punch_body">#BAE6FD</color>
+
+    <!-- Legacy compatibility aliases -->
+    <color name="cardBackground">#FFFFFF</color>
+    <color name="cardStroke">#CBD5E1</color>
+    <color name="textPrimary">#0F172A</color>
+    <color name="textSecondary">#64748B</color>
+    <color name="btnColor">#0284C7</color>
+    <color name="btnTextColor">#FFFFFF</color>
+</resources>
