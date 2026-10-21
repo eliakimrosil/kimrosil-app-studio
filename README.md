@@ -323,9 +323,9 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Instant zero-trace burner notes and sensitive snippets from your notification shade with auto-purge timers.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-stealth-drop-secret-pad/stealth-drop-secret-pad.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/stealth-drop-secret-pad/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/stealth-drop-secret-pad)
 
-#### [Swage Die](https://apps.kimrosil.com/swage-die/) (`swage-die`) • `v1.0.0`
+#### [SwageDie](https://apps.kimrosil.com/swage-die/) (`swage-die`) • `v1.1.0`
 > **Utility**: Offline native Android utility for swage die.
-> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-swage-die/swage-die.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/swage-die/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/swage-die)
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-swage-die/swage-die.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/swage-die/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/swage-die)
 
 #### [TankPulse](https://apps.kimrosil.com/offline-fuel-log-tracker/) (`offline-fuel-log-tracker`) • `v1.0.0`
 > **Utility**: Instantly record fuel fill-ups and compute real-world mileage and cost-per-mile without accounts, ads, or internet connection.
