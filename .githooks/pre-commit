@@ -1,0 +1,24 @@
+#!/bin/sh
+# KimRosil App Studio - Pre-Commit Verification Hook
+# Validates apps.json schema and icon assets whenever apps.json or icons are modified.
+
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+VALIDATOR="$REPO_ROOT/scripts/validate_catalog.py"
+
+# Only run if apps.json or assets/icons are staged
+STAGED_CATALOG_FILES=$(git diff --cached --name-only | grep -E 'apps\.json|assets/icons/')
+
+if [ -n "$STAGED_CATALOG_FILES" ]; then
+    echo "🛡️  [KimRosil Studio] Catalog or icon changes detected in commit. Validating..."
+    if [ -f "$VALIDATOR" ]; then
+        python3 "$VALIDATOR"
+        STATUS=$?
+        if [ $STATUS -ne 0 ]; then
+            echo "❌ [Pre-Commit Hook] Catalog validation failed! Commit aborted."
+            echo "💡 Fix missing fields or icon files, then try committing again."
+            exit 1
+        fi
+    fi
+fi
+
+exit 0

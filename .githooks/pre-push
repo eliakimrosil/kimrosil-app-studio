@@ -1,0 +1,25 @@
+#!/bin/sh
+# KimRosil App Studio - Pre-Push Verification Hook
+# Validates apps.json schema and icon assets before allowing git push.
+
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+VALIDATOR="$REPO_ROOT/scripts/validate_catalog.py"
+
+echo ""
+echo "🛡️  [KimRosil Studio] Running Pre-Push Verification..."
+
+if [ -f "$VALIDATOR" ]; then
+    python3 "$VALIDATOR"
+    STATUS=$?
+    if [ $STATUS -ne 0 ]; then
+        echo "❌ [Pre-Push Hook] Verification FAILED! Push aborted to prevent breaking CI."
+        echo "💡 Run 'python3 scripts/validate_catalog.py' to inspect and fix errors."
+        exit 1
+    fi
+else
+    echo "⚠️  Validator script not found at $VALIDATOR, skipping pre-push check."
+fi
+
+echo "✅ [Pre-Push Hook] Verification passed. Proceeding with push."
+echo ""
+exit 0
