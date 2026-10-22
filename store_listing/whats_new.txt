@@ -1,2 +1,2 @@
-Release v2.3.2 - PPL Workout
-Overhaul Settings and About dialog for universal multi-device responsive sizing, top-right close trigger, and adaptive height scrolling
+Release v2.3.4 - PPL Workout
+v2.3.3: Bespoke Olympic Barbell and Tri-Phase progress adaptive vector icon

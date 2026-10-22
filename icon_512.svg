@@ -2,29 +2,256 @@
     <rect width="108" height="108" rx="24" fill="#09090B" />
     <!-- Background Decor -->
     
-        <!-- Radial Athletic Telemetry Geometry -->
-        <circle fill="none" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="1.2" />
-        <circle fill="none" stroke="#A3E635" stroke-opacity="0.12" stroke-width="1.2" />
-        <path fill="none" stroke="#FFFFFF" stroke-opacity="0.15" stroke-width="1" d="M54,10v6 M54,92v6 M10,54h6 M92,54h6" />
+        <!-- Stadium Telemetry Geometry -->
+        <path
+            d="M 54,8 a 46,46 0 1 0 0.001,92 a 46,46 0 1 0 -0.001,-92 Z"
+            fill="none"
+            stroke="#27272A"
+            stroke-opacity="0.4"
+            stroke-width="1.2" />
+        <path
+            d="M 54,14 a 40,40 0 1 0 0.001,80 a 40,40 0 1 0 -0.001,-80 Z"
+            fill="none"
+            stroke="#FFFFFF"
+            stroke-opacity="0.06"
+            stroke-width="0.8" />
+        <path
+            d="M 54,31 a 23,23 0 1 0 0.001,46 a 23,23 0 1 0 -0.001,-46 Z"
+            fill="#111115"
+            stroke="#1F2026"
+            stroke-width="1" />
+
+        <!-- Fine Telemetry Ticks & Crosshairs -->
+        <path
+            d="M54,4 v7 M54,97 v7 M4,54 h7 M97,54 h7"
+            fill="none"
+            stroke="#3F3F46"
+            stroke-opacity="0.4"
+            stroke-width="1"
+            stroke-linecap="round" />
+        <path
+            d="M54,14 v4 M54,90 v4 M14,54 h4 M90,54 h4"
+            fill="none"
+            stroke="#A3E635"
+            stroke-opacity="0.3"
+            stroke-width="1.2"
+            stroke-linecap="round" />
         
     <!-- Foreground Iconography -->
     
-        <!-- Dynamic Workout Progress Ring (Hyper-Lime) -->
-        <path fill="none" stroke="#27272A" stroke-width="5" d="M54,20 a34,34 0 1,0 0,68 a34,34 0 1,0 0,-68 Z" />
-        <path fill="none" stroke="#A3E635" stroke-width="5.5" stroke-linecap="round" d="M54,20 A34,34 0 1,1 26,76" />
-        <circle fill="#FB923C" />
-        
-        <!-- Olympic Barbell Shaft -->
-        <path fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" d="M24,54 h60" />
-        <!-- Center Knurling Grips -->
-        <path fill="none" stroke="#A3E635" stroke-width="3" d="M48,54 h12" />
-        <!-- Left Weight Plates (Iron & High-Impact Bumpers) -->
-        <path d="M32,42 h4 v24 h-4 Z" fill="#71717A" />
-        <path d="M26,37 h5 v34 h-5 Z" fill="#E4E4E7" />
-        <path d="M20,41 h4 v26 h-4 Z" fill="#FB923C" />
-        <!-- Right Weight Plates (Iron & High-Impact Bumpers) -->
-        <path d="M72,42 h4 v24 h-4 Z" fill="#71717A" />
-        <path d="M77,37 h5 v34 h-5 Z" fill="#E4E4E7" />
-        <path d="M84,41 h4 v26 h-4 Z" fill="#FB923C" />
+        <!-- Inactive Track Groove -->
+        <path
+            d="M 54,21.5 a 32.5,32.5 0 1 0 0.001,65 a 32.5,32.5 0 1 0 -0.001,-65 Z"
+            fill="none"
+            stroke="#18181C"
+            stroke-width="4.5" />
+
+        <!-- Tri-Phase Athletic Progress Arcs (Push, Pull, Legs) -->
+        <!-- 1. PUSH (Hyper-Lime Arc - Explosive Force) -->
+        <path
+            d="M 29.89,32.26 A 32.50,32.50 0 0 1 78.11,32.26"
+            fill="none"
+            stroke="#A3E635"
+            stroke-width="4.5"
+            stroke-linecap="round" />
+
+        <!-- 2. PULL (Titanium White Arc - Grounded Traction) -->
+        <path
+            d="M 86.18,49.48 A 32.50,32.50 0 0 1 66.18,84.13"
+            fill="none"
+            stroke="#F4F4F5"
+            stroke-width="4.5"
+            stroke-linecap="round" />
+
+        <!-- 3. LEGS (Electric Orange Arc - Foundation Power) -->
+        <path
+            d="M 41.82,84.13 A 32.50,32.50 0 0 1 21.84,58.52"
+            fill="none"
+            stroke="#FB923C"
+            stroke-width="4.5"
+            stroke-linecap="round" />
+
+        <!-- Upward Push Apex Chevron in Hyper-Lime -->
+        <path
+            d="M51,31 L54,27.5 L57,31"
+            fill="none"
+            stroke="#A3E635"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round" />
+
+        <!-- ==================== PRO OLYMPIC BARBELL ==================== -->
+        <!-- Polished Chrome Barbell Shaft -->
+        <path
+            d="M 26.5,51.5 h 55.0 a 2.5,2.5 0 0 1 2.5,2.5 v 0.0 a 2.5,2.5 0 0 1 -2.5,2.5 h -55.0 a 2.5,2.5 0 0 1 -2.5,-2.5 v -0.0 a 2.5,2.5 0 0 1 2.5,-2.5 Z"
+            fill="#E4E4E7" />
+
+        <!-- Specular Highlight Streak -->
+        <path
+            d="M25,52.8 h58"
+            fill="none"
+            stroke="#FFFFFF"
+            stroke-width="1"
+            stroke-linecap="round" />
+
+        <!-- Knurling Texture on Shaft -->
+        <path
+            d="M 45.5,51.5 h 17.0 a 1.5,1.5 0 0 1 1.5,1.5 v 2.0 a 1.5,1.5 0 0 1 -1.5,1.5 h -17.0 a 1.5,1.5 0 0 1 -1.5,-1.5 v -2.0 a 1.5,1.5 0 0 1 1.5,-1.5 Z"
+            fill="#27272A" />
+        <path
+            d="M47,52 v4"
+            fill="none"
+            stroke="#A3E635"
+            stroke-width="0.9"
+            stroke-linecap="round" />
+        <path
+            d="M50.5,52 v4"
+            fill="none"
+            stroke="#71717A"
+            stroke-width="0.8"
+            stroke-linecap="round" />
+        <path
+            d="M54,52 v4"
+            fill="none"
+            stroke="#FFFFFF"
+            stroke-width="1"
+            stroke-linecap="round" />
+        <path
+            d="M57.5,52 v4"
+            fill="none"
+            stroke="#71717A"
+            stroke-width="0.8"
+            stroke-linecap="round" />
+        <path
+            d="M61,52 v4"
+            fill="none"
+            stroke="#A3E635"
+            stroke-width="0.9"
+            stroke-linecap="round" />
+
+        <!-- Inner Olympic Sleeve Bushings (Brushed Stainless Steel) -->
+        <path
+            d="M 38.7,47.5 h 1.1 a 1.2,1.2 0 0 1 1.2,1.2 v 10.6 a 1.2,1.2 0 0 1 -1.2,1.2 h -1.1 a 1.2,1.2 0 0 1 -1.2,-1.2 v -10.6 a 1.2,1.2 0 0 1 1.2,-1.2 Z"
+            fill="#71717A"
+            stroke="#52525B"
+            stroke-width="0.6" />
+        <path
+            d="M39.2,48.5 v11"
+            fill="none"
+            stroke="#A1A1AA"
+            stroke-width="0.6" />
+
+        <path
+            d="M 68.2,47.5 h 1.1 a 1.2,1.2 0 0 1 1.2,1.2 v 10.6 a 1.2,1.2 0 0 1 -1.2,1.2 h -1.1 a 1.2,1.2 0 0 1 -1.2,-1.2 v -10.6 a 1.2,1.2 0 0 1 1.2,-1.2 Z"
+            fill="#71717A"
+            stroke="#52525B"
+            stroke-width="0.6" />
+        <path
+            d="M68.8,48.5 v11"
+            fill="none"
+            stroke="#A1A1AA"
+            stroke-width="0.6" />
+
+        <!-- ========== LEFT PLATES ========== -->
+        <!-- Plate 1: Inner Heavy 45lb Competition Bumper (Obsidian Charcoal) -->
+        <path
+            d="M 35,37.5 h 0 a 2,2 0 0 1 2,2 v 29 a 2,2 0 0 1 -2,2 h -0 a 2,2 0 0 1 -2,-2 v -29 a 2,2 0 0 1 2,-2 Z"
+            fill="#18181C"
+            stroke="#3F3F46"
+            stroke-width="0.9" />
+        <path
+            d="M35,40 v28"
+            fill="none"
+            stroke="#27272A"
+            stroke-width="1" />
+
+        <!-- Plate 2: Middle Heavy Iron Bumper (Steel Core + Lime Highlight) -->
+        <path
+            d="M 30.5,40 h 0 a 2,2 0 0 1 2,2 v 24 a 2,2 0 0 1 -2,2 h -0 a 2,2 0 0 1 -2,-2 v -24 a 2,2 0 0 1 2,-2 Z"
+            fill="#27272A"
+            stroke="#3F3F46"
+            stroke-width="0.9" />
+        <path
+            d="M29.5,42 v24"
+            fill="none"
+            stroke="#A3E635"
+            stroke-width="1"
+            stroke-linecap="round" />
+
+        <!-- Plate 3: Outer High-Impact Bumper (Electric Orange) -->
+        <path
+            d="M 26,43 h 0 a 2,2 0 0 1 2,2 v 18 a 2,2 0 0 1 -2,2 h -0 a 2,2 0 0 1 -2,-2 v -18 a 2,2 0 0 1 2,-2 Z"
+            fill="#FB923C"
+            stroke="#EA580C"
+            stroke-width="0.9" />
+        <path
+            d="M25.2,44.5 v15"
+            fill="none"
+            stroke="#FFEDD5"
+            stroke-width="0.8"
+            stroke-linecap="round" />
+
+        <!-- Left Olympic Precision Compression Clamp -->
+        <path
+            d="M 22.8,48.5 h 0.2 a 0.8,0.8 0 0 1 0.8,0.8 v 9.4 a 0.8,0.8 0 0 1 -0.8,0.8 h -0.2 a 0.8,0.8 0 0 1 -0.8,-0.8 v -9.4 a 0.8,0.8 0 0 1 0.8,-0.8 Z"
+            fill="#E4E4E7"
+            stroke="#A1A1AA"
+            stroke-width="0.5" />
+        <path
+            d="M22.9,49.5 v9"
+            fill="none"
+            stroke="#FFFFFF"
+            stroke-width="0.5" />
+
+        <!-- ========== RIGHT PLATES ========== -->
+        <!-- Plate 1: Inner Heavy 45lb Competition Bumper (Obsidian Charcoal) -->
+        <path
+            d="M 73,37.5 h 0 a 2,2 0 0 1 2,2 v 29 a 2,2 0 0 1 -2,2 h -0 a 2,2 0 0 1 -2,-2 v -29 a 2,2 0 0 1 2,-2 Z"
+            fill="#18181C"
+            stroke="#3F3F46"
+            stroke-width="0.9" />
+        <path
+            d="M73,40 v28"
+            fill="none"
+            stroke="#27272A"
+            stroke-width="1" />
+
+        <!-- Plate 2: Middle Heavy Iron Bumper (Steel Core + Lime Highlight) -->
+        <path
+            d="M 77.5,40 h 0 a 2,2 0 0 1 2,2 v 24 a 2,2 0 0 1 -2,2 h -0 a 2,2 0 0 1 -2,-2 v -24 a 2,2 0 0 1 2,-2 Z"
+            fill="#27272A"
+            stroke="#3F3F46"
+            stroke-width="0.9" />
+        <path
+            d="M78.5,42 v24"
+            fill="none"
+            stroke="#A3E635"
+            stroke-width="1"
+            stroke-linecap="round" />
+
+        <!-- Plate 3: Outer High-Impact Bumper (Electric Orange) -->
+        <path
+            d="M 82,43 h 0 a 2,2 0 0 1 2,2 v 18 a 2,2 0 0 1 -2,2 h -0 a 2,2 0 0 1 -2,-2 v -18 a 2,2 0 0 1 2,-2 Z"
+            fill="#FB923C"
+            stroke="#EA580C"
+            stroke-width="0.9" />
+        <path
+            d="M82.8,44.5 v15"
+            fill="none"
+            stroke="#FFEDD5"
+            stroke-width="0.8"
+            stroke-linecap="round" />
+
+        <!-- Right Olympic Precision Compression Clamp -->
+        <path
+            d="M 85.0,48.5 h 0.2 a 0.8,0.8 0 0 1 0.8,0.8 v 9.4 a 0.8,0.8 0 0 1 -0.8,0.8 h -0.2 a 0.8,0.8 0 0 1 -0.8,-0.8 v -9.4 a 0.8,0.8 0 0 1 0.8,-0.8 Z"
+            fill="#E4E4E7"
+            stroke="#A1A1AA"
+            stroke-width="0.5" />
+        <path
+            d="M85.1,49.5 v9"
+            fill="none"
+            stroke="#FFFFFF"
+            stroke-width="0.5" />
         
 </svg>
