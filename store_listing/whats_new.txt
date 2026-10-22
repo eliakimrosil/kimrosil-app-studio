@@ -1,2 +1,2 @@
-Release v2.3.1 - PPL Workout
-Streamline active exercise view by removing standalone set button in favor of comprehensive exercise editor
+Release v2.3.2 - PPL Workout
+Overhaul Settings and About dialog for universal multi-device responsive sizing, top-right close trigger, and adaptive height scrolling

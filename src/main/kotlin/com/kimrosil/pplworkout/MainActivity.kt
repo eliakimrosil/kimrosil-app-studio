@@ -15,10 +15,12 @@ import android.os.SystemClock
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
+import android.view.Gravity
 import android.view.HapticFeedbackConstants
 import android.view.KeyEvent
 import android.view.View
 import android.view.WindowInsetsController
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
@@ -371,12 +373,51 @@ class MainActivity : Activity() {
             .start()
     }
 
+    private fun configureDialogWindow(dialog: Dialog, maxPercentHeight: Float = 0.78f) {
+        dialog.window?.let { window ->
+            window.setBackgroundDrawableResource(android.R.color.transparent)
+            val dm = resources.displayMetrics
+            val screenWidth = dm.widthPixels
+            val screenHeight = dm.heightPixels
+            val maxDialogWidth = (460 * dm.density).toInt()
+            val targetWidth = minOf((screenWidth * 0.92).toInt(), maxDialogWidth)
+
+            window.setLayout(targetWidth, WindowManager.LayoutParams.WRAP_CONTENT)
+            window.setGravity(Gravity.CENTER)
+        }
+
+        dialog.setOnShowListener {
+            val dm = resources.displayMetrics
+            val screenWidth = dm.widthPixels
+            val screenHeight = dm.heightPixels
+            val maxDialogWidth = (460 * dm.density).toInt()
+            val targetWidth = minOf((screenWidth * 0.92).toInt(), maxDialogWidth)
+            val maxHeight = (screenHeight * maxPercentHeight).toInt()
+
+            val decor = dialog.window?.decorView
+            val contentH = decor?.height ?: 0
+            if (contentH > maxHeight) {
+                dialog.window?.setLayout(targetWidth, maxHeight)
+            } else {
+                dialog.window?.setLayout(targetWidth, WindowManager.LayoutParams.WRAP_CONTENT)
+            }
+        }
+    }
+
     private fun showSettingsDialog() {
         if (isTimerRunning) pauseRestTimer()
         btnSettings.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_settings)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val btnCloseSettingsIcon: ImageButton? = dialog.findViewById(R.id.btnCloseSettingsIcon)
+        btnCloseSettingsIcon?.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        val tvAboutAppVersion: TextView? = dialog.findViewById(R.id.tvAboutAppVersion)
+        val vn = try { packageManager.getPackageInfo(packageName, 0).versionName } catch (e: Exception) { "2.3.1" }
+        tvAboutAppVersion?.text = "PPL Workout v$vn"
 
         val btnThemeLight: Button = dialog.findViewById(R.id.btnThemeLight)
         val btnThemeDark: Button = dialog.findViewById(R.id.btnThemeDark)
@@ -523,6 +564,7 @@ class MainActivity : Activity() {
             dialog.dismiss()
         }
 
+        configureDialogWindow(dialog, 0.85f)
         dialog.show()
     }
 
@@ -531,7 +573,6 @@ class MainActivity : Activity() {
         btnHistory.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_history)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         val llHistoryItems: LinearLayout = dialog.findViewById(R.id.llHistoryItems)
         val tvEmptyHistory: TextView = dialog.findViewById(R.id.tvEmptyHistory)
@@ -613,6 +654,7 @@ class MainActivity : Activity() {
             dialog.dismiss()
         }
 
+        configureDialogWindow(dialog, 0.88f)
         dialog.show()
     }
 
@@ -998,7 +1040,6 @@ class MainActivity : Activity() {
     private fun showWorkoutCrushedDialog(totalSets: Int, totalVolume: Double) {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_workout_crushed)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         val tvCrushedTitle: TextView = dialog.findViewById(R.id.tvCrushedTitle)
         val tvCrushedStats: TextView = dialog.findViewById(R.id.tvCrushedStats)
@@ -1012,13 +1053,13 @@ class MainActivity : Activity() {
             dialog.dismiss()
         }
 
+        configureDialogWindow(dialog, 0.85f)
         dialog.show()
     }
 
     private fun showAddExerciseDialog() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_edit_exercise)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         val tvEditExTitle: TextView = dialog.findViewById(R.id.tvEditExTitle)
         val tvEditExSubtitle: TextView = dialog.findViewById(R.id.tvEditExSubtitle)
@@ -1102,13 +1143,13 @@ class MainActivity : Activity() {
             dialog.dismiss()
         }
 
+        configureDialogWindow(dialog, 0.88f)
         dialog.show()
     }
 
     private fun showEditExerciseDialog(ex: Exercise, onUpdatedOrDeleted: (() -> Unit)? = null) {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_edit_exercise)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         val tvEditExTitle: TextView = dialog.findViewById(R.id.tvEditExTitle)
         val tvEditExSubtitle: TextView = dialog.findViewById(R.id.tvEditExSubtitle)
@@ -1220,13 +1261,13 @@ class MainActivity : Activity() {
             dialog.dismiss()
         }
 
+        configureDialogWindow(dialog, 0.88f)
         dialog.show()
     }
 
     private fun showManageRoutineDialog() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_manage_routine)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         val tvManageRoutineTitle: TextView = dialog.findViewById(R.id.tvManageRoutineTitle)
         val llManageExerciseList: LinearLayout = dialog.findViewById(R.id.llManageExerciseList)
@@ -1431,6 +1472,7 @@ class MainActivity : Activity() {
             dialog.dismiss()
         }
 
+        configureDialogWindow(dialog, 0.88f)
         dialog.show()
     }
 

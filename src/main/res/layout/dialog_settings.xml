@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:fillViewport="false"
-    android:scrollbars="none">
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:overScrollMode="ifContentScrolls"
+    android:scrollbars="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,17 +12,19 @@
         android:background="@drawable/dialog_background"
         android:orientation="vertical">
 
-        <!-- Dialog Header -->
+        <!-- Fixed Header -->
         <LinearLayout
+            android:id="@+id/llSettingsHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingBottom="14dp">
+            android:paddingBottom="8dp">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:contentDescription="Settings"
                 android:src="@drawable/ic_settings" />
 
             <TextView
@@ -30,11 +33,30 @@
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-black"
-                android:letterSpacing="0.05"
+                android:letterSpacing="0.04"
                 android:text="SETTINGS &amp; ABOUT"
                 android:textColor="@color/m3_on_surface"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/btnCloseSettingsIcon"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_topbar_button"
+                android:contentDescription="Close Settings"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_close"
+                android:stateListAnimator="@animator/btn_press_scale" />
         </LinearLayout>
+
+        <!-- Header Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:alpha="0.25"
+            android:background="@color/m3_outline" />
 
         <!-- Appearance Section -->
         <TextView
@@ -43,13 +65,13 @@
             android:fontFamily="sans-serif-bold"
             android:text="THEME MODE"
             android:textColor="@color/m3_on_surface_variant"
-            android:textSize="12sp" />
+            android:textSize="11.5sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="14dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <Button
@@ -60,8 +82,13 @@
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
                 android:background="@drawable/chip_inactive"
+                android:ellipsize="none"
                 android:fontFamily="sans-serif-bold"
+                android:maxLines="1"
                 android:minHeight="48dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:stateListAnimator="@animator/btn_press_scale"
                 android:text="Light"
                 android:textColor="@color/m3_on_surface"
                 android:textSize="13sp" />
@@ -74,8 +101,13 @@
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
                 android:background="@drawable/chip_inactive"
+                android:ellipsize="none"
                 android:fontFamily="sans-serif-bold"
+                android:maxLines="1"
                 android:minHeight="48dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:stateListAnimator="@animator/btn_press_scale"
                 android:text="Dark"
                 android:textColor="@color/m3_on_surface"
                 android:textSize="13sp" />
@@ -87,8 +119,13 @@
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@drawable/chip_active"
+                android:ellipsize="none"
                 android:fontFamily="sans-serif-bold"
+                android:maxLines="1"
                 android:minHeight="48dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:stateListAnimator="@animator/btn_press_scale"
                 android:text="Auto"
                 android:textColor="@color/m3_on_primary"
                 android:textSize="13sp" />
@@ -101,13 +138,13 @@
             android:fontFamily="sans-serif-bold"
             android:text="DEFAULT REST TIMER"
             android:textColor="@color/m3_on_surface_variant"
-            android:textSize="12sp" />
+            android:textSize="11.5sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="14dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <Button
@@ -118,8 +155,13 @@
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_topbar_button"
+                android:ellipsize="none"
                 android:fontFamily="sans-serif-bold"
+                android:maxLines="1"
                 android:minHeight="48dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:stateListAnimator="@animator/btn_press_scale"
                 android:text="60s"
                 android:textColor="@color/m3_on_surface"
                 android:textSize="13sp" />
@@ -132,8 +174,13 @@
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
                 android:background="@drawable/chip_active"
+                android:ellipsize="none"
                 android:fontFamily="sans-serif-bold"
+                android:maxLines="1"
                 android:minHeight="48dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:stateListAnimator="@animator/btn_press_scale"
                 android:text="90s"
                 android:textColor="@color/m3_on_primary"
                 android:textSize="13sp" />
@@ -145,8 +192,13 @@
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_topbar_button"
+                android:ellipsize="none"
                 android:fontFamily="sans-serif-bold"
+                android:maxLines="1"
                 android:minHeight="48dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:stateListAnimator="@animator/btn_press_scale"
                 android:text="120s"
                 android:textColor="@color/m3_on_surface"
                 android:textSize="13sp" />
@@ -159,13 +211,13 @@
             android:fontFamily="sans-serif-bold"
             android:text="WEIGHT PREFERENCE"
             android:textColor="@color/m3_on_surface_variant"
-            android:textSize="12sp" />
+            android:textSize="11.5sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="14dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <Button
@@ -173,14 +225,19 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
-                android:layout_marginEnd="4dp"
+                android:layout_marginEnd="6dp"
                 android:layout_weight="1"
                 android:background="@drawable/chip_active"
+                android:ellipsize="none"
                 android:fontFamily="sans-serif-bold"
+                android:maxLines="1"
                 android:minHeight="48dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:stateListAnimator="@animator/btn_press_scale"
                 android:text="Metric (KG)"
                 android:textColor="@color/m3_on_primary"
-                android:textSize="13sp" />
+                android:textSize="12.5sp" />
 
             <Button
                 android:id="@+id/btnUnitLbs"
@@ -189,11 +246,16 @@
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_topbar_button"
+                android:ellipsize="none"
                 android:fontFamily="sans-serif-bold"
+                android:maxLines="1"
                 android:minHeight="48dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:stateListAnimator="@animator/btn_press_scale"
                 android:text="Imperial (LBS)"
                 android:textColor="@color/m3_on_surface"
-                android:textSize="13sp" />
+                android:textSize="12.5sp" />
         </LinearLayout>
 
         <!-- Sound & Rest Settings Section -->
@@ -203,13 +265,13 @@
             android:fontFamily="sans-serif-bold"
             android:text="TIMER COMPLETION ALERT"
             android:textColor="@color/m3_on_surface_variant"
-            android:textSize="12sp" />
+            android:textSize="11.5sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="14dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <Button
@@ -217,12 +279,17 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
-                android:layout_marginEnd="4dp"
+                android:layout_marginEnd="6dp"
                 android:layout_weight="1"
                 android:background="@drawable/chip_active"
+                android:ellipsize="none"
                 android:fontFamily="sans-serif-bold"
+                android:maxLines="1"
                 android:minHeight="48dp"
-                android:text="Audio + Vibrate"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:stateListAnimator="@animator/btn_press_scale"
+                android:text="Sound + Vibrate"
                 android:textColor="@color/m3_on_primary"
                 android:textSize="12sp" />
 
@@ -233,8 +300,13 @@
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@drawable/chip_inactive"
+                android:ellipsize="none"
                 android:fontFamily="sans-serif-bold"
+                android:maxLines="1"
                 android:minHeight="48dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:stateListAnimator="@animator/btn_press_scale"
                 android:text="Silent Vibrate"
                 android:textColor="@color/m3_on_surface"
                 android:textSize="12sp" />
@@ -244,10 +316,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="14dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/card_m3_high"
             android:orientation="vertical"
-            android:padding="12dp">
+            android:padding="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -256,34 +328,36 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:contentDescription="Dumbbell"
                     android:src="@drawable/ic_dumbbell" />
 
                 <TextView
+                    android:id="@+id/tvAboutAppVersion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:fontFamily="sans-serif-black"
-                    android:text="PPL Workout v2.2.1"
+                    android:text="PPL Workout"
                     android:textColor="@color/m3_on_surface"
-                    android:textSize="14sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="3dp"
                 android:fontFamily="sans-serif"
-                android:lineSpacingExtra="2dp"
+                android:lineSpacingExtra="1.5dp"
                 android:text="Engineered for lifters following the Push • Pull • Legs split. 100% offline-first, zero ads, zero telemetry tracking."
                 android:textColor="@color/m3_on_surface_variant"
-                android:textSize="12sp" />
+                android:textSize="11.5sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="4dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="KimRosil App Studio Portfolio"
                 android:textColor="@color/m3_primary"
@@ -300,6 +374,7 @@
             android:background="@drawable/bg_topbar_button"
             android:fontFamily="sans-serif-bold"
             android:minHeight="48dp"
+            android:stateListAnimator="@animator/btn_press_scale"
             android:text="Reset Current Session"
             android:textColor="@color/m3_tertiary"
             android:textSize="13sp" />
@@ -313,6 +388,7 @@
             android:background="@drawable/btn_action"
             android:fontFamily="sans-serif-black"
             android:minHeight="48dp"
+            android:stateListAnimator="@animator/btn_press_scale"
             android:text="DONE"
             android:textColor="@color/m3_on_primary"
             android:textSize="14sp" />
