@@ -141,6 +141,7 @@
                     android:fontFamily="sans-serif-black" />
 
                 <TextView
+                    android:id="@+id/tvVolumeUnit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
@@ -208,6 +209,7 @@
                 android:layout_marginBottom="8dp">
 
                 <ImageView
+                    android:id="@+id/ivRulerIcon"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:src="@drawable/ic_ruler"
@@ -334,6 +336,7 @@
                 android:layout_marginBottom="12dp">
 
                 <ImageView
+                    android:id="@+id/ivTankIcon"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:src="@drawable/ic_fuel_tank"

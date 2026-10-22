@@ -1,2 +1,2 @@
-Release v1.2.1 - DipLink
-Remove placeholder hint text in depth input box
+Release v1.4.0 - DipLink
+Add dynamic fuel color theming (yellow for diesel, green for prem 91, red for prem 95)

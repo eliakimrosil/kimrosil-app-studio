@@ -1,5 +1,18 @@
 package com.kimrosil.diplink
 
+import android.graphics.Color
+
+data class FuelPalette(
+    val primaryColor: Int,
+    val onPrimaryColor: Int,
+    val containerLight: Int,
+    val containerDark: Int,
+    val onContainerLight: Int,
+    val onContainerDark: Int,
+    val gradientStart: Int,
+    val gradientEnd: Int
+)
+
 enum class TankType(
     val displayName: String,
     val tankModel: String,
@@ -7,7 +20,7 @@ enum class TankType(
     val capacityLiters: Float,
     val diameterMeters: Float,
     val lengthMeters: Float,
-    val fuelColorHex: String
+    val palette: FuelPalette
 ) {
     DIESEL(
         displayName = "Diesel",
@@ -16,7 +29,16 @@ enum class TankType(
         capacityLiters = 22354.0f,
         diameterMeters = 2.42f,
         lengthMeters = 4.86f,
-        fuelColorHex = "#FFB300"
+        palette = FuelPalette(
+            primaryColor = Color.parseColor("#FFB300"),
+            onPrimaryColor = Color.parseColor("#000000"),
+            containerLight = Color.parseColor("#FFF8E1"),
+            containerDark = Color.parseColor("#261C02"),
+            onContainerLight = Color.parseColor("#8C5400"),
+            onContainerDark = Color.parseColor("#FFE082"),
+            gradientStart = Color.parseColor("#FFE082"),
+            gradientEnd = Color.parseColor("#FF8F00")
+        )
     ),
     PREMIUM91(
         displayName = "Prem 91",
@@ -25,7 +47,16 @@ enum class TankType(
         capacityLiters = 16000.0f,
         diameterMeters = 2.03f,
         lengthMeters = 4.88f,
-        fuelColorHex = "#00C853"
+        palette = FuelPalette(
+            primaryColor = Color.parseColor("#00C853"),
+            onPrimaryColor = Color.parseColor("#FFFFFF"),
+            containerLight = Color.parseColor("#E8F5E9"),
+            containerDark = Color.parseColor("#052311"),
+            onContainerLight = Color.parseColor("#006024"),
+            onContainerDark = Color.parseColor("#69F0AE"),
+            gradientStart = Color.parseColor("#69F0AE"),
+            gradientEnd = Color.parseColor("#009624")
+        )
     ),
     PREMIUM95(
         displayName = "Prem 95",
@@ -34,7 +65,16 @@ enum class TankType(
         capacityLiters = 16000.0f,
         diameterMeters = 2.03f,
         lengthMeters = 4.88f,
-        fuelColorHex = "#E53935"
+        palette = FuelPalette(
+            primaryColor = Color.parseColor("#D50000"),
+            onPrimaryColor = Color.parseColor("#FFFFFF"),
+            containerLight = Color.parseColor("#FFEBEE"),
+            containerDark = Color.parseColor("#270505"),
+            onContainerLight = Color.parseColor("#8A0000"),
+            onContainerDark = Color.parseColor("#FF8A80"),
+            gradientStart = Color.parseColor("#FF8A80"),
+            gradientEnd = Color.parseColor("#B71C1C")
+        )
     )
 }
 

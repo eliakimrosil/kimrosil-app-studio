@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Bundle
@@ -18,6 +19,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Switch
 import android.widget.TextView
 import java.util.Locale
@@ -38,11 +40,13 @@ class MainActivity : Activity() {
     private lateinit var cardHeroVolume: View
     private lateinit var tvHeroTankBadge: TextView
     private lateinit var tvVolumeDisplay: TextView
+    private lateinit var tvVolumeUnit: TextView
     private lateinit var tvFillPercentage: TextView
     private lateinit var tvUllageHeadroom: TextView
     private lateinit var viewGaugeFill: View
 
     // Depth Input & Presets
+    private lateinit var ivRulerIcon: ImageView
     private lateinit var etDepthInput: EditText
     private lateinit var tvMaxDepthLimit: TextView
     private lateinit var btnPreset25: Button
@@ -52,6 +56,7 @@ class MainActivity : Activity() {
     private lateinit var btnClearDepth: Button
 
     // Telemetry Table
+    private lateinit var ivTankIcon: ImageView
     private lateinit var tvSpecModel: TextView
     private lateinit var tvSpecCapacity: TextView
     private lateinit var tvSpecDimensions: TextView
@@ -110,10 +115,12 @@ class MainActivity : Activity() {
         cardHeroVolume = findViewById(R.id.cardHeroVolume)
         tvHeroTankBadge = findViewById(R.id.tvHeroTankBadge)
         tvVolumeDisplay = findViewById(R.id.tvVolumeDisplay)
+        tvVolumeUnit = findViewById(R.id.tvVolumeUnit)
         tvFillPercentage = findViewById(R.id.tvFillPercentage)
         tvUllageHeadroom = findViewById(R.id.tvUllageHeadroom)
         viewGaugeFill = findViewById(R.id.viewGaugeFill)
 
+        ivRulerIcon = findViewById(R.id.ivRulerIcon)
         etDepthInput = findViewById(R.id.etDepthInput)
         tvMaxDepthLimit = findViewById(R.id.tvMaxDepthLimit)
         btnPreset25 = findViewById(R.id.btnPreset25)
@@ -122,6 +129,7 @@ class MainActivity : Activity() {
         btnPreset100 = findViewById(R.id.btnPreset100)
         btnClearDepth = findViewById(R.id.btnClearDepth)
 
+        ivTankIcon = findViewById(R.id.ivTankIcon)
         tvSpecModel = findViewById(R.id.tvSpecModel)
         tvSpecCapacity = findViewById(R.id.tvSpecCapacity)
         tvSpecDimensions = findViewById(R.id.tvSpecDimensions)
@@ -209,19 +217,59 @@ class MainActivity : Activity() {
     }
 
     private fun updateTankSelectionUI() {
-        btnTankDiesel.setBackgroundResource(if (currentTank == TankType.DIESEL) R.drawable.bg_chip_selected else R.drawable.bg_chip_unselected)
-        btnTankDiesel.setTextColor(getColor(if (currentTank == TankType.DIESEL) R.color.m3_on_primary else R.color.m3_on_surface))
+        val palette = currentTank.palette
+        val isDark = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
 
-        btnTankPrem91.setBackgroundResource(if (currentTank == TankType.PREMIUM91) R.drawable.bg_chip_selected else R.drawable.bg_chip_unselected)
-        btnTankPrem91.setTextColor(getColor(if (currentTank == TankType.PREMIUM91) R.color.m3_on_primary else R.color.m3_on_surface))
+        // 1. Dynamic Fuel Selector Buttons: Yellow for Diesel, Green for Prem91, Red for Prem95
+        fun styleTankButton(button: Button, isSelected: Boolean, tankPalette: FuelPalette) {
+            if (isSelected) {
+                val bg = GradientDrawable()
+                bg.setColor(tankPalette.primaryColor)
+                bg.cornerRadius = dpToPx(10f)
+                button.background = bg
+                button.setTextColor(tankPalette.onPrimaryColor)
+            } else {
+                button.setBackgroundResource(R.drawable.bg_chip_unselected)
+                button.setTextColor(getColor(R.color.m3_on_surface))
+            }
+        }
 
-        btnTankPrem95.setBackgroundResource(if (currentTank == TankType.PREMIUM95) R.drawable.bg_chip_selected else R.drawable.bg_chip_unselected)
-        btnTankPrem95.setTextColor(getColor(if (currentTank == TankType.PREMIUM95) R.color.m3_on_primary else R.color.m3_on_surface))
+        styleTankButton(btnTankDiesel, currentTank == TankType.DIESEL, TankType.DIESEL.palette)
+        styleTankButton(btnTankPrem91, currentTank == TankType.PREMIUM91, TankType.PREMIUM91.palette)
+        styleTankButton(btnTankPrem95, currentTank == TankType.PREMIUM95, TankType.PREMIUM95.palette)
 
-        tvMaxDepthLimit.text = String.format(Locale.US, "Max: %.1f cm", currentTank.maxDepthCm)
+        // 2. Hero Card Dynamic Surface & Border
+        val heroBg = GradientDrawable()
+        heroBg.setColor(if (isDark) palette.containerDark else palette.containerLight)
+        heroBg.setStroke(dpToPx(1.5f).toInt(), palette.primaryColor)
+        heroBg.cornerRadius = dpToPx(16f)
+        cardHeroVolume.background = heroBg
+
+        // 3. Hero Typography Color
+        val heroTextColor = if (isDark) palette.onContainerDark else palette.onContainerLight
         tvHeroTankBadge.text = "${currentTank.displayName.uppercase(Locale.US)} CALIBRATION READOUT"
+        tvHeroTankBadge.setTextColor(heroTextColor)
+        tvVolumeDisplay.setTextColor(heroTextColor)
+        tvVolumeUnit.setTextColor(heroTextColor)
+        tvFillPercentage.setTextColor(heroTextColor)
+        tvUllageHeadroom.setTextColor(heroTextColor)
 
-        // Update Spec Table
+        // 4. Depth Input Box Border Highlight
+        val inputBg = GradientDrawable()
+        inputBg.setColor(getColor(R.color.input_background))
+        inputBg.setStroke(dpToPx(1.5f).toInt(), palette.primaryColor)
+        inputBg.cornerRadius = dpToPx(12f)
+        etDepthInput.background = inputBg
+
+        // 5. Section Icons Tint
+        ivRulerIcon.setColorFilter(palette.primaryColor)
+        ivTankIcon.setColorFilter(palette.primaryColor)
+
+        // 6. Max Depth Limit Typography
+        tvMaxDepthLimit.text = String.format(Locale.US, "Max: %.1f cm", currentTank.maxDepthCm)
+        tvMaxDepthLimit.setTextColor(heroTextColor)
+
+        // 7. Update Spec Table
         tvSpecModel.text = currentTank.tankModel
         tvSpecCapacity.text = String.format(Locale.US, "%,.0f Liters", currentTank.capacityLiters)
         tvSpecDimensions.text = String.format(Locale.US, "D = %.2fm × L = %.2fm", currentTank.diameterMeters, currentTank.lengthMeters)
@@ -247,16 +295,18 @@ class MainActivity : Activity() {
             params.width = fillWidth
             viewGaugeFill.layoutParams = params
 
-            // Colorize gauge fill according to fuel type
-            try {
-                val fuelColor = Color.parseColor(currentTank.fuelColorHex)
-                val fillBg = GradientDrawable()
-                fillBg.setColor(fuelColor)
-                fillBg.cornerRadius = 16f
-                viewGaugeFill.background = fillBg
-            } catch (ignored: Exception) {}
+            // Colorize gauge fill according to fuel palette
+            val palette = currentTank.palette
+            val gaugeBg = GradientDrawable(
+                GradientDrawable.Orientation.LEFT_RIGHT,
+                intArrayOf(palette.gradientStart, palette.gradientEnd)
+            )
+            gaugeBg.cornerRadius = dpToPx(6f)
+            viewGaugeFill.background = gaugeBg
         }
     }
+
+    private fun dpToPx(dp: Float): Float = dp * resources.displayMetrics.density
 
     private fun showSettingsDialog() {
         val dialog = Dialog(this)
