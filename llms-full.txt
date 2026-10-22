@@ -329,6 +329,35 @@ Data Safety & Offline Privacy Guarantee:
 
 ---
 
+## Dip Link (`dip-link`)
+- **Category**: UTILITIES
+- **Tagline**: Offline Android utility.
+- **Landing Page**: https://apps.kimrosil.com/dip-link/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-dip-link/dip-link.apk
+- **Privacy Policy**: https://apps.kimrosil.com/dip-link/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+DipLink is a high-precision, 100% offline fuel storage tank calibration calculator designed for fuel station operators, transport depot managers, and petroleum logistics technicians.
+
+DipLink converts physical dipstick depth readings (centimeters) into exact liquid volume (liters) using calibrated empirical tank lookup tables and real-time piecewise linear interpolation.
+
+SUPPORTED STORAGE TANKS:
+• Phoenix Diesel Tank: Cylindrical horizontal shell, 2.42 m diameter, 4.86 m length, max depth 242 cm, 22,354 Liters nominal capacity.
+• Premium Tank (91 & 95 Unleaded): Cylindrical horizontal shell, 2.03 m diameter, 4.88 m length, max depth 203 cm, 16,000 Liters nominal capacity.
+
+KEY FEATURES:
+• Empirical Calibration Lookup: Real-time linear interpolation across 242-point Phoenix and 203-point Premium tank calibration charts.
+• Hero Volume HUD: Instant readout of current liquid volume, fill percentage, and remaining ullage headroom.
+• Visual Capacity Gauge: Real-time fluid meniscus level bar reflecting exact tank filling.
+• Tactile Micro-Steppers: Quick-adjust depth buttons (-10, -5, -1, +1, +5, +10 cm) and preset capacity chips (25%, 50%, 75%, 100%).
+• Tabular Telemetry Card: Comprehensive 2-column specifications display showing tank shell dimensions, nominal capacity, and calibration source.
+• 100% Offline & Private: Zero network permissions, zero tracking, zero advertising, and zero third-party telemetry.
+• Day / Night / Auto Theming: Carefully calibrated contrast modes for bright daylight forecourt inspections and nocturnal depot readings.
+
+---
+
 ## DoseGuard (`offline-prescription-pill-refill-sentinel`)
 - **Category**: Health & Fitness
 - **Tagline**: Frictionless offline medication compliance and zero-panic refill countdowns powered by Quick Settings and Glance widgets.
@@ -966,7 +995,7 @@ Data Safety & Offline Privacy Guarantee:
 - **Category**: HEALTH & FITNESS / WORKOUT
 - **Tagline**: Offline Push Pull Legs workout tracker with rest interval timer and progress telemetry.
 - **Landing Page**: https://apps.kimrosil.com/ppl-workout/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.3.1-ppl-workout/ppl-workout.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.3.2-ppl-workout/ppl-workout.apk
 - **Privacy Policy**: https://apps.kimrosil.com/ppl-workout/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
