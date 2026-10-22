@@ -1,2 +1,2 @@
-Release v1.0.0 - DipLink
-Initial release of DipLink fuel tank calibration calculator
+Release v1.2.0 - DipLink
+Streamline diesel label and remove +/- stepper buttons

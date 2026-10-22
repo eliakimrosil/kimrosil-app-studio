@@ -42,15 +42,9 @@ class MainActivity : Activity() {
     private lateinit var tvUllageHeadroom: TextView
     private lateinit var viewGaugeFill: View
 
-    // Depth Input & Steppers
+    // Depth Input & Presets
     private lateinit var etDepthInput: EditText
     private lateinit var tvMaxDepthLimit: TextView
-    private lateinit var btnStepMinus10: Button
-    private lateinit var btnStepMinus5: Button
-    private lateinit var btnStepMinus1: Button
-    private lateinit var btnStepPlus1: Button
-    private lateinit var btnStepPlus5: Button
-    private lateinit var btnStepPlus10: Button
     private lateinit var btnPreset25: Button
     private lateinit var btnPreset50: Button
     private lateinit var btnPreset75: Button
@@ -122,12 +116,6 @@ class MainActivity : Activity() {
 
         etDepthInput = findViewById(R.id.etDepthInput)
         tvMaxDepthLimit = findViewById(R.id.tvMaxDepthLimit)
-        btnStepMinus10 = findViewById(R.id.btnStepMinus10)
-        btnStepMinus5 = findViewById(R.id.btnStepMinus5)
-        btnStepMinus1 = findViewById(R.id.btnStepMinus1)
-        btnStepPlus1 = findViewById(R.id.btnStepPlus1)
-        btnStepPlus5 = findViewById(R.id.btnStepPlus5)
-        btnStepPlus10 = findViewById(R.id.btnStepPlus10)
         btnPreset25 = findViewById(R.id.btnPreset25)
         btnPreset50 = findViewById(R.id.btnPreset50)
         btnPreset75 = findViewById(R.id.btnPreset75)
@@ -171,14 +159,6 @@ class MainActivity : Activity() {
             }
         })
 
-        // Stepper Buttons
-        btnStepMinus10.setOnClickListener { triggerHaptic(it); adjustDepth(-10f) }
-        btnStepMinus5.setOnClickListener { triggerHaptic(it); adjustDepth(-5f) }
-        btnStepMinus1.setOnClickListener { triggerHaptic(it); adjustDepth(-1f) }
-        btnStepPlus1.setOnClickListener { triggerHaptic(it); adjustDepth(1f) }
-        btnStepPlus5.setOnClickListener { triggerHaptic(it); adjustDepth(5f) }
-        btnStepPlus10.setOnClickListener { triggerHaptic(it); adjustDepth(10f) }
-
         // Presets
         btnPreset25.setOnClickListener { triggerHaptic(it); setDepthPreset(0.25f) }
         btnPreset50.setOnClickListener { triggerHaptic(it); setDepthPreset(0.50f) }
@@ -205,13 +185,6 @@ class MainActivity : Activity() {
         }
 
         updateTankSelectionUI()
-        recalculateAndRender()
-    }
-
-    private fun adjustDepth(delta: Float) {
-        val newDepth = (currentDepth + delta).coerceIn(0f, currentTank.maxDepthCm)
-        currentDepth = String.format(Locale.US, "%.1f", newDepth).toFloat()
-        updateDepthInputText(currentDepth)
         recalculateAndRender()
     }
 

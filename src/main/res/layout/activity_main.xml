@@ -250,92 +250,12 @@
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
-            <!-- Tactile Micro-Stepper Grid (48dp height minimum touch targets) -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-
-                <Button
-                    android:id="@+id/btnStepMinus10"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="3dp"
-                    android:background="@drawable/bg_button_stepper"
-                    android:text="-10"
-                    android:textColor="@color/stepper_text"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btnStepMinus5"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:layout_marginHorizontal="2dp"
-                    android:background="@drawable/bg_button_stepper"
-                    android:text="-5"
-                    android:textColor="@color/stepper_text"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btnStepMinus1"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:layout_marginHorizontal="2dp"
-                    android:background="@drawable/bg_button_stepper"
-                    android:text="-1"
-                    android:textColor="@color/stepper_text"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btnStepPlus1"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:layout_marginHorizontal="2dp"
-                    android:background="@drawable/bg_button_stepper"
-                    android:text="+1"
-                    android:textColor="@color/stepper_text"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btnStepPlus5"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:layout_marginHorizontal="2dp"
-                    android:background="@drawable/bg_button_stepper"
-                    android:text="+5"
-                    android:textColor="@color/stepper_text"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btnStepPlus10"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="3dp"
-                    android:background="@drawable/bg_button_stepper"
-                    android:text="+10"
-                    android:textColor="@color/stepper_text"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
             <!-- Presets & Reset Row -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="10dp">
 
                 <Button
                     android:id="@+id/btnPreset25"

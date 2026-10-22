@@ -3,7 +3,7 @@
     <string name="app_name">DipLink</string>
     <string name="app_subtitle">Industrial Petroleum Telemetry</string>
     <string name="tank_selector_title">STORAGE TANK MODEL</string>
-    <string name="tank_diesel">DIESEL (PHOENIX)</string>
+    <string name="tank_diesel">DIESEL</string>
     <string name="tank_prem91">PREMIUM 91</string>
     <string name="tank_prem95">PREMIUM 95</string>
     <string name="depth_input_label">DIPSTICK READING (CM)</string>
