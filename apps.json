@@ -392,7 +392,12 @@
       "100% Offline",
       "Zero Tracking",
       "Pure Native ARM64"
-    ]
+    ],
+    "landing_page": "https://apps.kimrosil.com/epoxy-cure-pot-life-sentinel/",
+    "icon": "assets/icons/epoxy-cure-pot-life-sentinel.svg",
+    "privacy_policy": "https://apps.kimrosil.com/epoxy-cure-pot-life-sentinel/privacy.html",
+    "branch": "app/epoxy-cure-pot-life-sentinel",
+    "tag": "v1.0.0-epoxy-cure-pot-life-sentinel"
   },
   {
     "slug": "caulk-bead-skin-sentinel",
@@ -408,7 +413,12 @@
       "100% Offline",
       "Zero Tracking",
       "Pure Native ARM64"
-    ]
+    ],
+    "landing_page": "https://apps.kimrosil.com/caulk-bead-skin-sentinel/",
+    "icon": "assets/icons/caulk-bead-skin-sentinel.svg",
+    "privacy_policy": "https://apps.kimrosil.com/caulk-bead-skin-sentinel/privacy.html",
+    "branch": "app/caulk-bead-skin-sentinel",
+    "tag": "v1.0.0-caulk-bead-skin-sentinel"
   },
   {
     "slug": "sprout-knight-rpg",
@@ -427,7 +437,12 @@
       "Aerial Dive Slam & Sekiro Poise",
       "Verdant Sunburst Cyclone Ultimate",
       "100% Offline Pure Native (< 170 KB)"
-    ]
+    ],
+    "landing_page": "https://apps.kimrosil.com/sprout-knight-rpg/",
+    "icon": "assets/icons/sprout-knight-rpg.svg",
+    "privacy_policy": "https://apps.kimrosil.com/sprout-knight-rpg/privacy.html",
+    "branch": "app/sprout-knight-rpg",
+    "tag": "v1.5.0-sprout-knight-rpg"
   },
   {
     "slug": "grainline",
@@ -446,7 +461,11 @@
       "Pure Native ARM64"
     ],
     "tag": "v1.1.0-grainline",
-    "updated_at": "2026-10-11T12:14:50.355806+00:00"
+    "updated_at": "2026-10-11T12:14:50.355806+00:00",
+    "landing_page": "https://apps.kimrosil.com/grainline/",
+    "icon": "assets/icons/grainline.svg",
+    "privacy_policy": "https://apps.kimrosil.com/grainline/privacy.html",
+    "branch": "app/grainline"
   },
   {
     "slug": "volt-drop",
@@ -465,7 +484,11 @@
       "100% Offline & Instant Telemetry"
     ],
     "tag": "v1.1.0-volt-drop",
-    "updated_at": "2026-10-11T12:13:00.581482+00:00"
+    "updated_at": "2026-10-11T12:13:00.581482+00:00",
+    "landing_page": "https://apps.kimrosil.com/volt-drop/",
+    "icon": "assets/icons/volt-drop.svg",
+    "privacy_policy": "https://apps.kimrosil.com/volt-drop/privacy.html",
+    "branch": "app/volt-drop"
   },
   {
     "slug": "cadence-habit-ledger",
@@ -838,11 +861,11 @@
     "tagline": "Offline Push Pull Legs workout tracker with rest interval timer and progress bar.",
     "status": "BUILT",
     "branch": "app/ppl-workout",
-    "tag": "v2.2.1-ppl-workout",
-    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.2.1-ppl-workout/ppl-workout.apk",
+    "tag": "v2.3.0-ppl-workout",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.3.0-ppl-workout/ppl-workout.apk",
     "landing_page": "https://apps.kimrosil.com/ppl-workout/",
     "privacy_policy": "https://apps.kimrosil.com/ppl-workout/privacy.html",
     "icon": "assets/icons/ppl-workout.svg",
-    "updated_at": "2026-10-22T00:27:22.756979+00:00"
+    "updated_at": "2026-10-22T01:45:36.502101+00:00"
   }
 ]
