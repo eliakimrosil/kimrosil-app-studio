@@ -36,6 +36,8 @@ public class ReminderManager {
                 channel.setDescription("Daily reminders to complete your positive habits");
                 channel.enableVibration(true);
                 channel.setShowBadge(true);
+                channel.enableLights(true);
+                channel.setLightColor(android.graphics.Color.parseColor("#059669"));
                 nm.createNotificationChannel(channel);
             }
         }

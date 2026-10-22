@@ -233,7 +233,31 @@
             android:elevation="0dp"
             android:layout_marginBottom="22dp" />
 
-        <!-- Section 3: About KR Habits -->
+        <!-- Section 3: Reminders & Notifications -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REMINDERS &amp; NOTIFICATIONS"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_tertiary"
+            android:letterSpacing="0.08"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btnSettingsTestNotification"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="🔔 Test Reminder Notification"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:background="@drawable/btn_secondary"
+            android:stateListAnimator="@null"
+            android:elevation="0dp"
+            android:layout_marginBottom="22dp" />
+
+        <!-- Section 4: About KR Habits -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

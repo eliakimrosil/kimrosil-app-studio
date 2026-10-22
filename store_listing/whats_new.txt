@@ -1,2 +1,2 @@
-Release v1.2.34 - KR Habits
-Full rebrand app title to KR Habits
+Release v1.2.35 - KR Habits
+Bespoke habit momentum notification icon and interactive check-in action

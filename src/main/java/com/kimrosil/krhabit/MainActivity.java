@@ -822,6 +822,34 @@ public class MainActivity extends Activity {
             });
         }
 
+        Button btnTestNotification = dialogView.findViewById(R.id.btnSettingsTestNotification);
+        if (btnTestNotification != null) {
+            btnTestNotification.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                            requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
+                            return;
+                        }
+                    }
+                    List<DatabaseHelper.HabitItem> habits = dbHelper.getAllHabits(null);
+                    DatabaseHelper.HabitItem targetHabit = (habits != null && !habits.isEmpty()) ? habits.get(0) : null;
+                    if (targetHabit == null) {
+                        targetHabit = new DatabaseHelper.HabitItem();
+                        targetHabit.uuid = "demo-preview-uuid";
+                        targetHabit.title = "Daily Focus Ritual";
+                        targetHabit.description = "Time to complete your habit today! Keep your momentum going.";
+                        targetHabit.currentStreak = 7;
+                        targetHabit.reminderEnabled = true;
+                    }
+                    HabitReminderReceiver.showNotification(MainActivity.this, targetHabit);
+                    Toast.makeText(MainActivity.this, "🔔 Habit reminder notification sent!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
