@@ -368,6 +368,22 @@
                         android:textSize="10sp" />
                 </LinearLayout>
 
+                <!-- Quick Edit Button for Active Exercise -->
+                <ImageButton
+                    android:id="@+id/btnEditExercise"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/bg_topbar_button"
+                    android:contentDescription="Edit Current Exercise"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:stateListAnimator="@animator/btn_press_scale"
+                    android:src="@drawable/ic_edit" />
+
                 <ImageButton
                     android:id="@+id/btnNextExercise"
                     style="?android:attr/borderlessButtonStyle"
@@ -432,6 +448,24 @@
                     android:text="SET 1 OF 4"
                     android:textColor="@color/m3_on_surface"
                     android:textSize="14sp" />
+
+                <!-- Add Set Button: Quick on-the-fly set extension -->
+                <Button
+                    android:id="@+id/btnAddSet"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_topbar_button"
+                    android:fontFamily="sans-serif-black"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:stateListAnimator="@animator/btn_press_scale"
+                    android:text="+ Set"
+                    android:textColor="@color/m3_primary"
+                    android:textSize="11sp" />
 
                 <TextView
                     android:id="@+id/tvPreviousBest"
@@ -662,17 +696,60 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <!-- Routine List Section -->
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- Routine List Section Header with Manage & Add Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp"
-            android:fontFamily="sans-serif-black"
-            android:letterSpacing="0.04"
-            android:text="TODAY'S EXERCISE ROUTINE"
-            android:textColor="@color/m3_on_surface_variant"
-            android:textSize="12sp" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-black"
+                android:letterSpacing="0.04"
+                android:text="TODAY'S EXERCISE ROUTINE"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="12sp" />
+
+            <!-- Manage / Reorder Routine Button -->
+            <Button
+                android:id="@+id/btnManageRoutine"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/bg_topbar_button"
+                android:fontFamily="sans-serif-bold"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:stateListAnimator="@animator/btn_press_scale"
+                android:text="Manage"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="12sp" />
+
+            <!-- Quick Add Exercise Button -->
+            <Button
+                android:id="@+id/btnAddExercise"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:background="@drawable/chip_active"
+                android:fontFamily="sans-serif-black"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:stateListAnimator="@animator/btn_press_scale"
+                android:text="+ Add"
+                android:textColor="@color/m3_on_primary"
+                android:textSize="12sp" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/llRoutineList"

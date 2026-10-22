@@ -1,2 +1,2 @@
-Release v2.2.1 - PPL Workout
-Set dark mode as default out-of-the-box appearance
+Release v2.3.0 - PPL Workout
+Add custom exercise creation, editing, deletion, routine reordering, and on-the-fly set extensions

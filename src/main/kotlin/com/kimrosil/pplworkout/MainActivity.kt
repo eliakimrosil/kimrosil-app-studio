@@ -33,14 +33,6 @@ import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
 
-data class Exercise(
-    val name: String,
-    val targetMuscles: String,
-    val totalSets: Int,
-    val defaultWeight: Double,
-    val defaultReps: Int
-)
-
 class MainActivity : Activity() {
 
     private lateinit var prefs: SharedPreferences
@@ -80,8 +72,10 @@ class MainActivity : Activity() {
     private lateinit var btnPrevExercise: ImageButton
     private lateinit var tvExerciseName: TextView
     private lateinit var tvTargetMuscles: TextView
+    private lateinit var btnEditExercise: ImageButton
     private lateinit var btnNextExercise: ImageButton
     private lateinit var tvSetCounter: TextView
+    private lateinit var btnAddSet: Button
     private lateinit var tvPreviousBest: TextView
     private lateinit var tvWeightLabel: TextView
     private lateinit var btnWeightMinus: Button
@@ -96,6 +90,8 @@ class MainActivity : Activity() {
     private lateinit var btnLogSet: Button
 
     // Routine Overview
+    private lateinit var btnManageRoutine: Button
+    private lateinit var btnAddExercise: Button
     private lateinit var llRoutineList: LinearLayout
 
     // State Variables
@@ -110,30 +106,8 @@ class MainActivity : Activity() {
     private var isSoundEnabled: Boolean = true
     private var isWorkoutCompleteCelebrated: Boolean = false
 
-    // Routine definitions
-    private val routines = mapOf(
-        "PUSH" to listOf(
-            Exercise("Barbell Bench Press", "CHEST • SHOULDERS • TRICEPS", 4, 80.0, 8),
-            Exercise("Overhead Barbell Press", "FRONT DELTS • TRICEPS", 3, 50.0, 8),
-            Exercise("Incline Dumbbell Press", "UPPER CHEST • SHOULDERS", 3, 28.0, 10),
-            Exercise("Cable Lateral Raise", "SIDE DELTS", 4, 12.0, 15),
-            Exercise("Tricep Rope Pushdown", "TRICEPS LATERAL HEAD", 3, 30.0, 12)
-        ),
-        "PULL" to listOf(
-            Exercise("Barbell Bent-Over Row", "LATS • UPPER BACK", 4, 75.0, 8),
-            Exercise("Lat Pulldown", "LATS • TERES MAJOR", 3, 65.0, 10),
-            Exercise("Seated Cable Row", "RHOMBOIDS • MID TRAPS", 3, 60.0, 10),
-            Exercise("Face Pulls", "REAR DELTS • ROTATOR CUFF", 3, 25.0, 15),
-            Exercise("Incline Dumbbell Curl", "BICEPS BRACHII", 4, 14.0, 10)
-        ),
-        "LEGS" to listOf(
-            Exercise("Barbell Back Squat", "QUADS • GLUTES • CORE", 4, 100.0, 6),
-            Exercise("Romanian Deadlift", "HAMSTRINGS • POSTERIOR CHAIN", 3, 90.0, 8),
-            Exercise("Leg Press", "QUADS • ADDUCTORS", 3, 180.0, 10),
-            Exercise("Standing Calf Raise", "GASTROCNEMIUS", 4, 60.0, 15),
-            Exercise("Hanging Knee Raise", "ABDOMINALS • HIP FLEXORS", 3, 0.0, 15)
-        )
-    )
+    // Dynamic Routine Exercises loaded from SQLite
+    private var currentExercises = mutableListOf<Exercise>()
 
     // Completed sets counter per exercise index
     private val completedSets = mutableMapOf<Int, Int>()
@@ -216,8 +190,10 @@ class MainActivity : Activity() {
         btnPrevExercise = findViewById(R.id.btnPrevExercise)
         tvExerciseName = findViewById(R.id.tvExerciseName)
         tvTargetMuscles = findViewById(R.id.tvTargetMuscles)
+        btnEditExercise = findViewById(R.id.btnEditExercise)
         btnNextExercise = findViewById(R.id.btnNextExercise)
         tvSetCounter = findViewById(R.id.tvSetCounter)
+        btnAddSet = findViewById(R.id.btnAddSet)
         tvPreviousBest = findViewById(R.id.tvPreviousBest)
 
         tvWeightLabel = findViewById(R.id.tvWeightLabel)
@@ -234,6 +210,8 @@ class MainActivity : Activity() {
 
         btnLogSet = findViewById(R.id.btnLogSet)
 
+        btnManageRoutine = findViewById(R.id.btnManageRoutine)
+        btnAddExercise = findViewById(R.id.btnAddExercise)
         llRoutineList = findViewById(R.id.llRoutineList)
 
         tvWeightLabel.text = "WEIGHT ($currentUnit)"
@@ -279,7 +257,6 @@ class MainActivity : Activity() {
         // Exercise Navigation with smooth directional slide animations
         btnPrevExercise.setOnClickListener { v ->
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            val list = routines[currentDay] ?: return@setOnClickListener
             if (currentExerciseIndex > 0) {
                 currentExerciseIndex--
                 animateExerciseTransition(isForward = false)
@@ -288,11 +265,34 @@ class MainActivity : Activity() {
 
         btnNextExercise.setOnClickListener { v ->
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            val list = routines[currentDay] ?: return@setOnClickListener
-            if (currentExerciseIndex < list.size - 1) {
+            if (currentExerciseIndex < currentExercises.size - 1) {
                 currentExerciseIndex++
                 animateExerciseTransition(isForward = true)
             }
+        }
+
+        // Quick Edit Current Exercise
+        btnEditExercise.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            val ex = currentExercises.getOrNull(currentExerciseIndex) ?: return@setOnClickListener
+            showEditExerciseDialog(ex)
+        }
+
+        // Quick On-The-Fly Add Set (+ Set)
+        btnAddSet.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            handleAddSetToCurrentExercise()
+        }
+
+        // Routine Management & Add Exercise Launchers
+        btnManageRoutine.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            showManageRoutineDialog()
+        }
+
+        btnAddExercise.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            showAddExerciseDialog()
         }
 
         // Steppers with robust boundary defenses
@@ -720,11 +720,23 @@ class MainActivity : Activity() {
     }
 
     private fun refreshUiForCurrentExercise() {
-        val exerciseList = routines[currentDay] ?: return
-        if (currentExerciseIndex !in exerciseList.indices) {
+        currentExercises = dbHelper.getExercises(currentDay)
+        if (currentExercises.isEmpty()) {
+            tvExerciseName.text = "No Exercises"
+            tvTargetMuscles.text = "Tap '+ Add' to create an exercise"
+            tvSetCounter.text = "SET 0 OF 0"
+            tvPreviousBest.text = ""
+            etWeight.setText("0.0")
+            etReps.setText("0")
+            renderRoutineList()
+            updateProgressTelemetry()
+            return
+        }
+
+        if (currentExerciseIndex !in currentExercises.indices) {
             currentExerciseIndex = 0
         }
-        val ex = exerciseList[currentExerciseIndex]
+        val ex = currentExercises[currentExerciseIndex]
 
         tvExerciseName.text = ex.name
         tvTargetMuscles.text = ex.targetMuscles
@@ -760,8 +772,8 @@ class MainActivity : Activity() {
     }
 
     private fun handleLogSet() {
-        val exerciseList = routines[currentDay] ?: return
-        val ex = exerciseList[currentExerciseIndex]
+        if (currentExercises.isEmpty() || currentExerciseIndex !in currentExercises.indices) return
+        val ex = currentExercises[currentExerciseIndex]
 
         val rawWeight = etWeight.text.toString().trim()
         val rawReps = etReps.text.toString().trim()
@@ -801,7 +813,7 @@ class MainActivity : Activity() {
         // Check if exercise completed
         if (setNumber >= ex.totalSets) {
             Toast.makeText(this, "${ex.name} finished! Great work!", Toast.LENGTH_SHORT).show()
-            if (currentExerciseIndex < exerciseList.size - 1) {
+            if (currentExerciseIndex < currentExercises.size - 1) {
                 currentExerciseIndex++
             }
         }
@@ -860,7 +872,7 @@ class MainActivity : Activity() {
         isTimerRunning = true
         btnRestToggle.setImageResource(R.drawable.ic_pause)
         tvTimerCountdown.setTextColor(getColor(R.color.m3_primary))
-        val nextExName = routines[currentDay]?.getOrNull(currentExerciseIndex)?.name ?: "Next Set"
+        val nextExName = currentExercises.getOrNull(currentExerciseIndex)?.name ?: "Next Set"
         tvTimerStatus.text = "Resting • Next: $nextExName"
         updateTimerDisplay(seconds)
 
@@ -970,8 +982,7 @@ class MainActivity : Activity() {
     }
 
     private fun updateProgressTelemetry() {
-        val exerciseList = routines[currentDay] ?: return
-        val totalRoutineSets = exerciseList.sumOf { it.totalSets }
+        val totalRoutineSets = currentExercises.sumOf { it.totalSets }
         val totalCompleted = completedSets.values.sum()
 
         val pct = if (totalRoutineSets > 0) ((totalCompleted * 100) / totalRoutineSets).coerceIn(0, 100) else 0
@@ -1012,11 +1023,436 @@ class MainActivity : Activity() {
         dialog.show()
     }
 
+    private fun handleAddSetToCurrentExercise() {
+        val ex = currentExercises.getOrNull(currentExerciseIndex) ?: return
+        ex.totalSets += 1
+        dbHelper.updateExerciseTotalSets(ex.id, ex.totalSets)
+        refreshUiForCurrentExercise()
+        Toast.makeText(this, "Set added! Target is now ${ex.totalSets} sets", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showAddExerciseDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_edit_exercise)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val tvEditExTitle: TextView = dialog.findViewById(R.id.tvEditExTitle)
+        val tvEditExSubtitle: TextView = dialog.findViewById(R.id.tvEditExSubtitle)
+        val etExName: EditText = dialog.findViewById(R.id.etExName)
+        val etExMuscles: EditText = dialog.findViewById(R.id.etExMuscles)
+
+        val btnExSetsMinus: Button = dialog.findViewById(R.id.btnExSetsMinus)
+        val etExSets: EditText = dialog.findViewById(R.id.etExSets)
+        val btnExSetsPlus: Button = dialog.findViewById(R.id.btnExSetsPlus)
+
+        val tvExWeightLabel: TextView = dialog.findViewById(R.id.tvExWeightLabel)
+        val btnExWeightMinus: Button = dialog.findViewById(R.id.btnExWeightMinus)
+        val etExWeight: EditText = dialog.findViewById(R.id.etExWeight)
+        val btnExWeightPlus: Button = dialog.findViewById(R.id.btnExWeightPlus)
+
+        val btnExRepsMinus: Button = dialog.findViewById(R.id.btnExRepsMinus)
+        val etExReps: EditText = dialog.findViewById(R.id.etExReps)
+        val btnExRepsPlus: Button = dialog.findViewById(R.id.btnExRepsPlus)
+
+        val btnSaveExercise: Button = dialog.findViewById(R.id.btnSaveExercise)
+        val btnDeleteExerciseFromEdit: Button = dialog.findViewById(R.id.btnDeleteExerciseFromEdit)
+        val btnCancelEditExercise: Button = dialog.findViewById(R.id.btnCancelEditExercise)
+
+        tvEditExTitle.text = "ADD NEW EXERCISE"
+        tvEditExSubtitle.text = "Adding to $currentDay Workout"
+        tvExWeightLabel.text = "DEFAULT WEIGHT ($currentUnit)"
+        btnDeleteExerciseFromEdit.visibility = View.GONE
+        btnSaveExercise.text = "ADD TO $currentDay"
+
+        etExSets.setText("3")
+        etExWeight.setText(if (currentUnit == "LBS") "135.0" else "60.0")
+        etExReps.setText("10")
+
+        btnExSetsMinus.setOnClickListener {
+            val s = etExSets.text.toString().toIntOrNull() ?: 3
+            etExSets.setText(maxOf(1, s - 1).toString())
+        }
+        btnExSetsPlus.setOnClickListener {
+            val s = etExSets.text.toString().toIntOrNull() ?: 3
+            etExSets.setText(minOf(20, s + 1).toString())
+        }
+
+        btnExWeightMinus.setOnClickListener {
+            val w = etExWeight.text.toString().toDoubleOrNull() ?: 50.0
+            val step = if (currentUnit == "LBS") 5.0 else 2.5
+            etExWeight.setText(String.format(Locale.US, "%.1f", maxOf(0.0, w - step)))
+        }
+        btnExWeightPlus.setOnClickListener {
+            val w = etExWeight.text.toString().toDoubleOrNull() ?: 50.0
+            val step = if (currentUnit == "LBS") 5.0 else 2.5
+            etExWeight.setText(String.format(Locale.US, "%.1f", minOf(2000.0, w + step)))
+        }
+
+        btnExRepsMinus.setOnClickListener {
+            val r = etExReps.text.toString().toIntOrNull() ?: 10
+            etExReps.setText(maxOf(1, r - 1).toString())
+        }
+        btnExRepsPlus.setOnClickListener {
+            val r = etExReps.text.toString().toIntOrNull() ?: 10
+            etExReps.setText(minOf(100, r + 1).toString())
+        }
+
+        btnSaveExercise.setOnClickListener {
+            val name = etExName.text.toString().trim()
+            if (name.isEmpty()) {
+                etExName.error = "Please enter exercise name"
+                return@setOnClickListener
+            }
+            val muscles = etExMuscles.text.toString().trim().ifEmpty { "$currentDay MUSCLES" }
+            val sets = (etExSets.text.toString().toIntOrNull() ?: 3).coerceIn(1, 20)
+            val weight = (etExWeight.text.toString().toDoubleOrNull() ?: 50.0).coerceIn(0.0, 2000.0)
+            val reps = (etExReps.text.toString().toIntOrNull() ?: 10).coerceIn(1, 100)
+
+            dbHelper.addExercise(currentDay, name, muscles, sets, weight, reps)
+            refreshUiForCurrentExercise()
+            dialog.dismiss()
+            Toast.makeText(this, "Added '$name' to $currentDay", Toast.LENGTH_SHORT).show()
+        }
+
+        btnCancelEditExercise.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun showEditExerciseDialog(ex: Exercise, onUpdatedOrDeleted: (() -> Unit)? = null) {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_edit_exercise)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val tvEditExTitle: TextView = dialog.findViewById(R.id.tvEditExTitle)
+        val tvEditExSubtitle: TextView = dialog.findViewById(R.id.tvEditExSubtitle)
+        val etExName: EditText = dialog.findViewById(R.id.etExName)
+        val etExMuscles: EditText = dialog.findViewById(R.id.etExMuscles)
+
+        val btnExSetsMinus: Button = dialog.findViewById(R.id.btnExSetsMinus)
+        val etExSets: EditText = dialog.findViewById(R.id.etExSets)
+        val btnExSetsPlus: Button = dialog.findViewById(R.id.btnExSetsPlus)
+
+        val tvExWeightLabel: TextView = dialog.findViewById(R.id.tvExWeightLabel)
+        val btnExWeightMinus: Button = dialog.findViewById(R.id.btnExWeightMinus)
+        val etExWeight: EditText = dialog.findViewById(R.id.etExWeight)
+        val btnExWeightPlus: Button = dialog.findViewById(R.id.btnExWeightPlus)
+
+        val btnExRepsMinus: Button = dialog.findViewById(R.id.btnExRepsMinus)
+        val etExReps: EditText = dialog.findViewById(R.id.etExReps)
+        val btnExRepsPlus: Button = dialog.findViewById(R.id.btnExRepsPlus)
+
+        val btnSaveExercise: Button = dialog.findViewById(R.id.btnSaveExercise)
+        val btnDeleteExerciseFromEdit: Button = dialog.findViewById(R.id.btnDeleteExerciseFromEdit)
+        val btnCancelEditExercise: Button = dialog.findViewById(R.id.btnCancelEditExercise)
+
+        tvEditExTitle.text = "EDIT EXERCISE"
+        tvEditExSubtitle.text = "${ex.dayType} Split"
+        tvExWeightLabel.text = "DEFAULT WEIGHT ($currentUnit)"
+        btnDeleteExerciseFromEdit.visibility = View.VISIBLE
+        btnSaveExercise.text = "SAVE CHANGES"
+
+        etExName.setText(ex.name)
+        etExMuscles.setText(ex.targetMuscles)
+        etExSets.setText(ex.totalSets.toString())
+        etExWeight.setText(String.format(Locale.US, "%.1f", ex.defaultWeight))
+        etExReps.setText(ex.defaultReps.toString())
+
+        btnExSetsMinus.setOnClickListener {
+            val s = etExSets.text.toString().toIntOrNull() ?: ex.totalSets
+            etExSets.setText(maxOf(1, s - 1).toString())
+        }
+        btnExSetsPlus.setOnClickListener {
+            val s = etExSets.text.toString().toIntOrNull() ?: ex.totalSets
+            etExSets.setText(minOf(20, s + 1).toString())
+        }
+
+        btnExWeightMinus.setOnClickListener {
+            val w = etExWeight.text.toString().toDoubleOrNull() ?: ex.defaultWeight
+            val step = if (currentUnit == "LBS") 5.0 else 2.5
+            etExWeight.setText(String.format(Locale.US, "%.1f", maxOf(0.0, w - step)))
+        }
+        btnExWeightPlus.setOnClickListener {
+            val w = etExWeight.text.toString().toDoubleOrNull() ?: ex.defaultWeight
+            val step = if (currentUnit == "LBS") 5.0 else 2.5
+            etExWeight.setText(String.format(Locale.US, "%.1f", minOf(2000.0, w + step)))
+        }
+
+        btnExRepsMinus.setOnClickListener {
+            val r = etExReps.text.toString().toIntOrNull() ?: ex.defaultReps
+            etExReps.setText(maxOf(1, r - 1).toString())
+        }
+        btnExRepsPlus.setOnClickListener {
+            val r = etExReps.text.toString().toIntOrNull() ?: ex.defaultReps
+            etExReps.setText(minOf(100, r + 1).toString())
+        }
+
+        btnSaveExercise.setOnClickListener {
+            val name = etExName.text.toString().trim()
+            if (name.isEmpty()) {
+                etExName.error = "Please enter exercise name"
+                return@setOnClickListener
+            }
+            val muscles = etExMuscles.text.toString().trim().ifEmpty { "${ex.dayType} MUSCLES" }
+            val sets = (etExSets.text.toString().toIntOrNull() ?: ex.totalSets).coerceIn(1, 20)
+            val weight = (etExWeight.text.toString().toDoubleOrNull() ?: ex.defaultWeight).coerceIn(0.0, 2000.0)
+            val reps = (etExReps.text.toString().toIntOrNull() ?: ex.defaultReps).coerceIn(1, 100)
+
+            ex.name = name
+            ex.targetMuscles = muscles
+            ex.totalSets = sets
+            ex.defaultWeight = weight
+            ex.defaultReps = reps
+
+            dbHelper.updateExercise(ex.id, name, muscles, sets, weight, reps)
+            refreshUiForCurrentExercise()
+            onUpdatedOrDeleted?.invoke()
+            dialog.dismiss()
+            Toast.makeText(this, "Updated '$name'", Toast.LENGTH_SHORT).show()
+        }
+
+        btnDeleteExerciseFromEdit.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("Delete Exercise")
+                .setMessage("Are you sure you want to remove '${ex.name}' from your ${ex.dayType} routine?")
+                .setPositiveButton("Delete") { _, _ ->
+                    dbHelper.deleteExercise(ex.id)
+                    currentExercises.remove(ex)
+                    if (currentExerciseIndex >= currentExercises.size) {
+                        currentExerciseIndex = maxOf(0, currentExercises.size - 1)
+                    }
+                    refreshUiForCurrentExercise()
+                    onUpdatedOrDeleted?.invoke()
+                    dialog.dismiss()
+                    Toast.makeText(this, "Removed '${ex.name}'", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("Cancel", null)
+                .show()
+        }
+
+        btnCancelEditExercise.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun showManageRoutineDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_manage_routine)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val tvManageRoutineTitle: TextView = dialog.findViewById(R.id.tvManageRoutineTitle)
+        val llManageExerciseList: LinearLayout = dialog.findViewById(R.id.llManageExerciseList)
+        val btnAddExerciseFromManage: Button = dialog.findViewById(R.id.btnAddExerciseFromManage)
+        val btnResetSplitDefaults: Button = dialog.findViewById(R.id.btnResetSplitDefaults)
+        val btnCloseManageRoutine: Button = dialog.findViewById(R.id.btnCloseManageRoutine)
+
+        tvManageRoutineTitle.text = "MANAGE $currentDay ROUTINE"
+
+        fun loadList() {
+            llManageExerciseList.removeAllViews()
+            currentExercises = dbHelper.getExercises(currentDay)
+
+            for ((idx, ex) in currentExercises.withIndex()) {
+                val card = LinearLayout(this).apply {
+                    orientation = LinearLayout.VERTICAL
+                    layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    ).apply {
+                        setMargins(0, 4, 0, 8)
+                    }
+                    setPadding(14, 10, 14, 10)
+                    setBackgroundResource(R.drawable.card_m3)
+                }
+
+                // Header Row: Order Number + Exercise Name + Sets/Reps Summary
+                val rowHeader = LinearLayout(this).apply {
+                    orientation = LinearLayout.HORIZONTAL
+                    gravity = android.view.Gravity.CENTER_VERTICAL
+                    layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
+                }
+
+                val tvName = TextView(this).apply {
+                    layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+                    text = "${idx + 1}. ${ex.name}"
+                    textSize = 14f
+                    typeface = android.graphics.Typeface.DEFAULT_BOLD
+                    setTextColor(getColor(R.color.m3_on_surface))
+                }
+
+                val tvSpecs = TextView(this).apply {
+                    text = "${ex.totalSets} sets × ${ex.defaultReps} reps"
+                    textSize = 12f
+                    typeface = android.graphics.Typeface.DEFAULT_BOLD
+                    setTextColor(getColor(R.color.m3_primary))
+                }
+
+                rowHeader.addView(tvName)
+                rowHeader.addView(tvSpecs)
+                card.addView(rowHeader)
+
+                // Subtitle Row: Target Muscles on left, Action buttons on right
+                val rowActions = LinearLayout(this).apply {
+                    orientation = LinearLayout.HORIZONTAL
+                    gravity = android.view.Gravity.CENTER_VERTICAL
+                    layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    ).apply {
+                        setMargins(0, 6, 0, 0)
+                    }
+                }
+
+                val tvMuscles = TextView(this).apply {
+                    layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+                    text = ex.targetMuscles
+                    textSize = 10f
+                    setTextColor(getColor(R.color.m3_on_surface_variant))
+                }
+                rowActions.addView(tvMuscles)
+
+                val btnUp = ImageButton(this).apply {
+                    layoutParams = LinearLayout.LayoutParams(
+                        (resources.displayMetrics.density * 36).toInt(),
+                        (resources.displayMetrics.density * 36).toInt()
+                    ).apply {
+                        setMargins(2, 0, 2, 0)
+                    }
+                    setBackgroundResource(R.drawable.bg_topbar_button)
+                    setImageResource(R.drawable.ic_arrow_up)
+                    setPadding(8, 8, 8, 8)
+                    scaleType = ImageView.ScaleType.FIT_CENTER
+                    isEnabled = idx > 0
+                    alpha = if (idx > 0) 1.0f else 0.3f
+                    contentDescription = "Move Up"
+                    setOnClickListener {
+                        it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                        dbHelper.moveExercise(currentDay, ex.id, moveUp = true)
+                        loadList()
+                        refreshUiForCurrentExercise()
+                    }
+                }
+
+                val btnDown = ImageButton(this).apply {
+                    layoutParams = LinearLayout.LayoutParams(
+                        (resources.displayMetrics.density * 36).toInt(),
+                        (resources.displayMetrics.density * 36).toInt()
+                    ).apply {
+                        setMargins(2, 0, 2, 0)
+                    }
+                    setBackgroundResource(R.drawable.bg_topbar_button)
+                    setImageResource(R.drawable.ic_arrow_down)
+                    setPadding(8, 8, 8, 8)
+                    scaleType = ImageView.ScaleType.FIT_CENTER
+                    isEnabled = idx < currentExercises.size - 1
+                    alpha = if (idx < currentExercises.size - 1) 1.0f else 0.3f
+                    contentDescription = "Move Down"
+                    setOnClickListener {
+                        it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                        dbHelper.moveExercise(currentDay, ex.id, moveUp = false)
+                        loadList()
+                        refreshUiForCurrentExercise()
+                    }
+                }
+
+                val btnEdit = ImageButton(this).apply {
+                    layoutParams = LinearLayout.LayoutParams(
+                        (resources.displayMetrics.density * 36).toInt(),
+                        (resources.displayMetrics.density * 36).toInt()
+                    ).apply {
+                        setMargins(2, 0, 2, 0)
+                    }
+                    setBackgroundResource(R.drawable.bg_topbar_button)
+                    setImageResource(R.drawable.ic_edit)
+                    setPadding(8, 8, 8, 8)
+                    scaleType = ImageView.ScaleType.FIT_CENTER
+                    contentDescription = "Edit Exercise"
+                    setOnClickListener {
+                        it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                        showEditExerciseDialog(ex) {
+                            loadList()
+                        }
+                    }
+                }
+
+                val btnDelete = ImageButton(this).apply {
+                    layoutParams = LinearLayout.LayoutParams(
+                        (resources.displayMetrics.density * 36).toInt(),
+                        (resources.displayMetrics.density * 36).toInt()
+                    ).apply {
+                        setMargins(2, 0, 2, 0)
+                    }
+                    setBackgroundResource(R.drawable.bg_topbar_button)
+                    setImageResource(R.drawable.ic_delete)
+                    setPadding(8, 8, 8, 8)
+                    scaleType = ImageView.ScaleType.FIT_CENTER
+                    contentDescription = "Delete Exercise"
+                    setOnClickListener {
+                        it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                        AlertDialog.Builder(this@MainActivity)
+                            .setTitle("Delete Exercise")
+                            .setMessage("Remove '${ex.name}' from $currentDay routine?")
+                            .setPositiveButton("Delete") { _, _ ->
+                                dbHelper.deleteExercise(ex.id)
+                                loadList()
+                                refreshUiForCurrentExercise()
+                                Toast.makeText(this@MainActivity, "Removed '${ex.name}'", Toast.LENGTH_SHORT).show()
+                            }
+                            .setNegativeButton("Cancel", null)
+                            .show()
+                    }
+                }
+
+                rowActions.addView(btnUp)
+                rowActions.addView(btnDown)
+                rowActions.addView(btnEdit)
+                rowActions.addView(btnDelete)
+                card.addView(rowActions)
+
+                llManageExerciseList.addView(card)
+            }
+        }
+
+        loadList()
+
+        btnAddExerciseFromManage.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            showAddExerciseDialog()
+            dialog.dismiss()
+        }
+
+        btnResetSplitDefaults.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("Reset to Defaults")
+                .setMessage("Reset $currentDay routine back to the standard 5 exercises?")
+                .setPositiveButton("Reset") { _, _ ->
+                    dbHelper.resetRoutineToDefaults(currentDay)
+                    loadList()
+                    currentExerciseIndex = 0
+                    refreshUiForCurrentExercise()
+                    Toast.makeText(this, "Reset $currentDay routine", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("Cancel", null)
+                .show()
+        }
+
+        btnCloseManageRoutine.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
     private fun renderRoutineList() {
         llRoutineList.removeAllViews()
-        val exerciseList = routines[currentDay] ?: return
-
-        for ((idx, ex) in exerciseList.withIndex()) {
+        for ((idx, ex) in currentExercises.withIndex()) {
             val done = completedSets.getOrDefault(idx, 0)
             val isCurrent = (idx == currentExerciseIndex)
 

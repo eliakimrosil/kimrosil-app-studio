@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="false"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_background"
+        android:orientation="vertical">
+
+        <!-- Dialog Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_dumbbell" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvEditExTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:letterSpacing="0.04"
+                    android:text="EDIT EXERCISE"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tvEditExSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="PUSH Split"
+                    android:textColor="@color/m3_primary"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Exercise Name Input -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="sans-serif-bold"
+            android:text="EXERCISE NAME"
+            android:textColor="@color/m3_on_surface_variant"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/etExName"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/edittext_m3"
+            android:fontFamily="sans-serif-bold"
+            android:hint="e.g. Incline Dumbbell Press"
+            android:imeOptions="actionNext"
+            android:inputType="textCapWords"
+            android:maxLines="1"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:singleLine="true"
+            android:textColor="@color/m3_on_surface"
+            android:textColorHint="@color/m3_outline"
+            android:textSize="14sp" />
+
+        <!-- Target Muscles Input -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="sans-serif-bold"
+            android:text="TARGET MUSCLE GROUPS"
+            android:textColor="@color/m3_on_surface_variant"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/etExMuscles"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/edittext_m3"
+            android:fontFamily="sans-serif-bold"
+            android:hint="e.g. UPPER CHEST • DELTS"
+            android:imeOptions="actionDone"
+            android:inputType="textCapCharacters"
+            android:maxLines="1"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:singleLine="true"
+            android:textColor="@color/m3_on_surface"
+            android:textColorHint="@color/m3_outline"
+            android:textSize="14sp" />
+
+        <!-- Sets Config Stepper Row -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="sans-serif-bold"
+            android:text="TARGET SETS"
+            android:textColor="@color/m3_on_surface_variant"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnExSetsMinus"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/btn_stepper"
+                android:fontFamily="sans-serif-black"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:stateListAnimator="@animator/btn_press_scale"
+                android:text="-"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etExSets"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_m3"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="2"
+                android:text="3"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnExSetsPlus"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/btn_stepper"
+                android:fontFamily="sans-serif-black"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:stateListAnimator="@animator/btn_press_scale"
+                android:text="+"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <!-- Weight & Reps Dual Stepper Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <!-- Default Weight -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvExWeightLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="DEFAULT WEIGHT"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="11sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnExWeightMinus"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="40dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/btn_stepper"
+                        android:fontFamily="sans-serif-black"
+                        android:minWidth="40dp"
+                        android:minHeight="48dp"
+                        android:stateListAnimator="@animator/btn_press_scale"
+                        android:text="-"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/etExWeight"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_m3"
+                        android:fontFamily="sans-serif-black"
+                        android:gravity="center"
+                        android:inputType="numberDecimal"
+                        android:text="60.0"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/btnExWeightPlus"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="40dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/btn_stepper"
+                        android:fontFamily="sans-serif-black"
+                        android:minWidth="40dp"
+                        android:minHeight="48dp"
+                        android:stateListAnimator="@animator/btn_press_scale"
+                        android:text="+"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Default Reps -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="TARGET REPS"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="11sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnExRepsMinus"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="40dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/btn_stepper"
+                        android:fontFamily="sans-serif-black"
+                        android:minWidth="40dp"
+                        android:minHeight="48dp"
+                        android:stateListAnimator="@animator/btn_press_scale"
+                        android:text="-"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/etExReps"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_m3"
+                        android:fontFamily="sans-serif-black"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:text="10"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/btnExRepsPlus"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="40dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/btn_stepper"
+                        android:fontFamily="sans-serif-black"
+                        android:minWidth="40dp"
+                        android:minHeight="48dp"
+                        android:stateListAnimator="@animator/btn_press_scale"
+                        android:text="+"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/btnSaveExercise"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn_action"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="0.04"
+            android:minHeight="48dp"
+            android:stateListAnimator="@animator/btn_press_scale"
+            android:text="SAVE EXERCISE"
+            android:textColor="@color/m3_on_primary"
+            android:textSize="14sp" />
+
+        <!-- Secondary Action Row (Delete / Cancel) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnDeleteExerciseFromEdit"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_danger"
+                android:fontFamily="sans-serif-bold"
+                android:minHeight="48dp"
+                android:stateListAnimator="@animator/btn_press_scale"
+                android:text="DELETE"
+                android:textColor="@color/m3_on_error"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btnCancelEditExercise"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_topbar_button"
+                android:fontFamily="sans-serif-bold"
+                android:minHeight="48dp"
+                android:stateListAnimator="@animator/btn_press_scale"
+                android:text="CANCEL"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
