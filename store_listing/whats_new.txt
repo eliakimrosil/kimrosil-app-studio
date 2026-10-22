@@ -1,4 +1,2 @@
 Release v2.2.1 - PPL Workout
-- Set dark mode as the default out-of-the-box appearance
-- Refined dark theme status and navigation bar styling
-- Retained full user preference toggle for Dark, Light, and Auto modes in Settings
+Set dark mode as default out-of-the-box appearance
