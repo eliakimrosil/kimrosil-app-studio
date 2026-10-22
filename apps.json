@@ -875,11 +875,11 @@
     "tagline": "Fuel dipstick to volume calculator with empirical tank calibration curves.",
     "status": "BUILT",
     "branch": "app/dip-link",
-    "tag": "v1.0.0-dip-link",
-    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-dip-link/dip-link.apk",
+    "tag": "v1.2.0-dip-link",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.0-dip-link/dip-link.apk",
     "landing_page": "https://apps.kimrosil.com/dip-link/",
     "privacy_policy": "https://apps.kimrosil.com/dip-link/privacy.html",
     "icon": "assets/icons/dip-link.svg",
-    "updated_at": "2026-10-22T08:29:57.416115+00:00"
+    "updated_at": "2026-10-22T08:39:01.501850+00:00"
   }
 ]
