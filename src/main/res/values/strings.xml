@@ -7,7 +7,6 @@
     <string name="tank_prem91">PREMIUM 91</string>
     <string name="tank_prem95">PREMIUM 95</string>
     <string name="depth_input_label">DIPSTICK READING (CM)</string>
-    <string name="depth_input_hint">Enter depth in cm</string>
     <string name="volume_unit">L</string>
     <string name="ullage_label">ULLAGE (REMAINING)</string>
     <string name="capacity_percent_label">FULL</string>

@@ -1,2 +1,2 @@
-Release v1.2.0 - DipLink
-Streamline diesel label and remove +/- stepper buttons
+Release v1.2.1 - DipLink
+Remove placeholder hint text in depth input box

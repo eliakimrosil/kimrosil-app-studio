@@ -241,12 +241,10 @@
                 android:layout_height="52dp"
                 android:background="@drawable/bg_input_depth"
                 android:gravity="center"
-                android:hint="@string/depth_input_hint"
                 android:inputType="numberDecimal"
                 android:maxLength="7"
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/m3_on_surface"
-                android:textColorHint="@color/m3_text_muted"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
