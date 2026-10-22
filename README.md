@@ -263,6 +263,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Zero-friction offline laundry timer with Quick Settings 1-tap start, ongoing lock-screen chronometer, and mold-prevention reminders.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-laundry-cycle-sentinel/laundry-cycle-sentinel.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/laundry-cycle-sentinel/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/laundry-cycle-sentinel)
 
+#### [DipLink](https://apps.kimrosil.com/dip-link/) (`dip-link`) • `v1.0.0`
+> **Utility**: Fuel dipstick to volume calculator with empirical tank calibration curves.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-dip-link/dip-link.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/dip-link/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/dip-link)
+
 #### [DoseGuard](https://apps.kimrosil.com/offline-prescription-pill-refill-sentinel/) (`offline-prescription-pill-refill-sentinel`) • `v1.0.0`
 > **Utility**: Frictionless offline medication compliance and zero-panic refill countdowns powered by Quick Settings and Glance widgets.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-offline-prescription-pill-refill-sentinel/offline-prescription-pill-refill-sentinel.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/offline-prescription-pill-refill-sentinel/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/offline-prescription-pill-refill-sentinel)
