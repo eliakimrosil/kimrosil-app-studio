@@ -838,11 +838,11 @@
     "tagline": "Offline Push Pull Legs workout tracker with rest interval timer and progress bar.",
     "status": "BUILT",
     "branch": "app/ppl-workout",
-    "tag": "v2.2.0-ppl-workout",
-    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.2.0-ppl-workout/ppl-workout.apk",
+    "tag": "v2.2.1-ppl-workout",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.2.1-ppl-workout/ppl-workout.apk",
     "landing_page": "https://apps.kimrosil.com/ppl-workout/",
     "privacy_policy": "https://apps.kimrosil.com/ppl-workout/privacy.html",
     "icon": "assets/icons/ppl-workout.svg",
-    "updated_at": "2026-10-21T17:53:20.906262+00:00"
+    "updated_at": "2026-10-22T00:27:22.756979+00:00"
   }
 ]
