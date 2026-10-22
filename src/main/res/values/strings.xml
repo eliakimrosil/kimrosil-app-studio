@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DipLink</string>
+    <string name="app_subtitle">Industrial Petroleum Telemetry</string>
+    <string name="tank_selector_title">STORAGE TANK MODEL</string>
+    <string name="tank_diesel">DIESEL (PHOENIX)</string>
+    <string name="tank_prem91">PREMIUM 91</string>
+    <string name="tank_prem95">PREMIUM 95</string>
+    <string name="depth_input_label">DIPSTICK READING (CM)</string>
+    <string name="depth_input_hint">Enter depth in cm</string>
+    <string name="volume_unit">L</string>
+    <string name="ullage_label">ULLAGE (REMAINING)</string>
+    <string name="capacity_percent_label">FULL</string>
+    <string name="telemetry_title">TANK TELEMETRY &amp; SPECIFICATIONS</string>
+    <string name="spec_tank_model">Tank Model</string>
+    <string name="spec_liquid_volume">Liquid Volume</string>
+    <string name="spec_ullage_headroom">Headroom (Ullage)</string>
+    <string name="spec_total_capacity">Nominal Capacity</string>
+    <string name="spec_max_dip_depth">Maximum Dip Depth</string>
+    <string name="spec_tank_diameter">Tank Diameter</string>
+    <string name="spec_tank_length">Tank Shell Length</string>
+    <string name="spec_curve_table">Calibration Basis</string>
+    <string name="preset_quarter">25%</string>
+    <string name="preset_half">50%</string>
+    <string name="preset_three_quarter">75%</string>
+    <string name="preset_full">100%</string>
+    <string name="clear_action">CLEAR</string>
+    <string name="settings_title">App Settings</string>
+    <string name="theme_appearance">Appearance Theme</string>
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="haptics_label">Tactile Haptic Feedback</string>
+    <string name="about_studio_title">KimRosil App Studio</string>
+    <string name="about_studio_desc">100% Offline-First Pure Native Android Freeware. Zero ads, zero background telemetry tracking, zero bloatware.</string>
+    <string name="version_label">Version 1.0.0 (Pure Kotlin Native)</string>
+    <string name="privacy_policy_label">Privacy Policy</string>
+    <string name="close_button">Close</string>
+</resources>

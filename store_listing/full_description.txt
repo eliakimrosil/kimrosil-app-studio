@@ -1,0 +1,16 @@
+DipLink is a high-precision, 100% offline fuel storage tank calibration calculator designed for fuel station operators, transport depot managers, and petroleum logistics technicians.
+
+DipLink converts physical dipstick depth readings (centimeters) into exact liquid volume (liters) using calibrated empirical tank lookup tables and real-time piecewise linear interpolation.
+
+SUPPORTED STORAGE TANKS:
+• Phoenix Diesel Tank: Cylindrical horizontal shell, 2.42 m diameter, 4.86 m length, max depth 242 cm, 22,354 Liters nominal capacity.
+• Premium Tank (91 & 95 Unleaded): Cylindrical horizontal shell, 2.03 m diameter, 4.88 m length, max depth 203 cm, 16,000 Liters nominal capacity.
+
+KEY FEATURES:
+• Empirical Calibration Lookup: Real-time linear interpolation across 242-point Phoenix and 203-point Premium tank calibration charts.
+• Hero Volume HUD: Instant readout of current liquid volume, fill percentage, and remaining ullage headroom.
+• Visual Capacity Gauge: Real-time fluid meniscus level bar reflecting exact tank filling.
+• Tactile Micro-Steppers: Quick-adjust depth buttons (-10, -5, -1, +1, +5, +10 cm) and preset capacity chips (25%, 50%, 75%, 100%).
+• Tabular Telemetry Card: Comprehensive 2-column specifications display showing tank shell dimensions, nominal capacity, and calibration source.
+• 100% Offline & Private: Zero network permissions, zero tracking, zero advertising, and zero third-party telemetry.
+• Day / Night / Auto Theming: Carefully calibrated contrast modes for bright daylight forecourt inspections and nocturnal depot readings.

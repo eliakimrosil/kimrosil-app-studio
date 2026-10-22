@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand & Accent Colors (Night HUD) -->
+    <color name="m3_primary">#4DB6AC</color>
+    <color name="m3_on_primary">#00332C</color>
+    <color name="m3_primary_container">#004D40</color>
+    <color name="m3_on_primary_container">#80CBC4</color>
+
+    <color name="diesel_amber">#FFD54F</color>
+    <color name="diesel_amber_dark">#FFB300</color>
+    <color name="diesel_amber_light">#332600</color>
+
+    <color name="prem91_green">#26A69A</color>
+    <color name="prem91_green_dark">#00897B</color>
+    <color name="prem91_green_light">#00332A</color>
+
+    <color name="prem95_red">#EF5350</color>
+    <color name="prem95_red_dark">#E53935</color>
+    <color name="prem95_red_light">#380C0C</color>
+
+    <!-- Surfaces & Backgrounds -->
+    <color name="m3_surface">#0D131A</color>
+    <color name="m3_surface_card">#151E28</color>
+    <color name="m3_surface_elevated">#1D2937</color>
+    <color name="m3_outline">#2E3E50</color>
+    <color name="m3_outline_variant">#223040</color>
+
+    <!-- Typography -->
+    <color name="m3_on_surface">#F0F4F8</color>
+    <color name="m3_on_surface_variant">#9FB3C8</color>
+    <color name="m3_text_muted">#627D98</color>
+
+    <!-- Controls & Badges -->
+    <color name="input_background">#111822</color>
+    <color name="stepper_bg">#1A2533</color>
+    <color name="stepper_stroke">#2C3C4E</color>
+    <color name="stepper_text">#F0F4F8</color>
+    <color name="gauge_track">#16212D</color>
+    <color name="gauge_fill">#26A69A</color>
+    <color name="gauge_fill_end">#004D40</color>
+
+    <color name="ripple_light">#30FFFFFF</color>
+</resources>

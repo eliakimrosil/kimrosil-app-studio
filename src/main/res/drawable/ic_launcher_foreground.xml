@@ -1,0 +1,43 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Fuel Tank Fluid Level Base -->
+    <path
+        android:fillColor="#FFB300"
+        android:pathData="M26,62 C34,60 42,64 54,62 C66,60 74,64 82,62 L82,82 C82,85.3 79.3,88 76,88 L32,88 C28.7,88 26,85.3 26,82 Z" />
+    
+    <!-- Fuel Fluid Meniscus Glow -->
+    <path
+        android:fillColor="#FFD54F"
+        android:pathData="M26,62 C34,60 42,64 54,62 C66,60 74,64 82,62 L82,66 C74,68 66,64 54,66 C42,68 34,64 26,66 Z" />
+
+    <!-- Industrial Dipstick Brass / Steel Blade -->
+    <path
+        android:fillColor="#ECEFF1"
+        android:strokeColor="#78909C"
+        android:strokeWidth="1.5"
+        android:pathData="M48,22 L60,22 C61.1,22 62,22.9 62,24 L62,80 C62,82.2 60.2,84 58,84 L50,84 C47.8,84 46,82.2 46,80 L46,24 C46,22.9 46.9,22 48,22 Z" />
+
+    <!-- Dipstick T-Handle / Finger Ring at Top -->
+    <path
+        android:fillColor="#B0BEC5"
+        android:pathData="M42,20 C42,17.8 43.8,16 46,16 L62,16 C64.2,16 66,17.8 66,20 L66,23 L42,23 Z" />
+
+    <!-- Calibration Hash Marks on Dipstick -->
+    <path
+        android:strokeColor="#37474F"
+        android:strokeWidth="1.5"
+        android:pathData="M46,28h8 M46,34h12 M46,40h6 M46,46h12 M46,52h8 M46,58h14 M46,64h8 M46,70h12 M46,76h6" />
+
+    <!-- Precision Fluid Droplet on Dipstick Tip -->
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M54,74 C54,74 58,78 58,81 C58,83.2 56.2,85 54,85 C51.8,85 50,83.2 50,81 C50,78 54,74 54,74 Z" />
+
+    <!-- Highlight Accents / Sparkles -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M68,26 L69.5,29.5 L73,31 L69.5,32.5 L68,36 L66.5,32.5 L63,31 L66.5,29.5 Z" />
+</vector>
