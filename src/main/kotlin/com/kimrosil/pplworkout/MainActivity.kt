@@ -75,7 +75,6 @@ class MainActivity : Activity() {
     private lateinit var btnEditExercise: ImageButton
     private lateinit var btnNextExercise: ImageButton
     private lateinit var tvSetCounter: TextView
-    private lateinit var btnAddSet: Button
     private lateinit var tvPreviousBest: TextView
     private lateinit var tvWeightLabel: TextView
     private lateinit var btnWeightMinus: Button
@@ -193,7 +192,6 @@ class MainActivity : Activity() {
         btnEditExercise = findViewById(R.id.btnEditExercise)
         btnNextExercise = findViewById(R.id.btnNextExercise)
         tvSetCounter = findViewById(R.id.tvSetCounter)
-        btnAddSet = findViewById(R.id.btnAddSet)
         tvPreviousBest = findViewById(R.id.tvPreviousBest)
 
         tvWeightLabel = findViewById(R.id.tvWeightLabel)
@@ -276,12 +274,6 @@ class MainActivity : Activity() {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             val ex = currentExercises.getOrNull(currentExerciseIndex) ?: return@setOnClickListener
             showEditExerciseDialog(ex)
-        }
-
-        // Quick On-The-Fly Add Set (+ Set)
-        btnAddSet.setOnClickListener {
-            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            handleAddSetToCurrentExercise()
         }
 
         // Routine Management & Add Exercise Launchers
@@ -1021,14 +1013,6 @@ class MainActivity : Activity() {
         }
 
         dialog.show()
-    }
-
-    private fun handleAddSetToCurrentExercise() {
-        val ex = currentExercises.getOrNull(currentExerciseIndex) ?: return
-        ex.totalSets += 1
-        dbHelper.updateExerciseTotalSets(ex.id, ex.totalSets)
-        refreshUiForCurrentExercise()
-        Toast.makeText(this, "Set added! Target is now ${ex.totalSets} sets", Toast.LENGTH_SHORT).show()
     }
 
     private fun showAddExerciseDialog() {

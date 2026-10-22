@@ -449,24 +449,6 @@
                     android:textColor="@color/m3_on_surface"
                     android:textSize="14sp" />
 
-                <!-- Add Set Button: Quick on-the-fly set extension -->
-                <Button
-                    android:id="@+id/btnAddSet"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/bg_topbar_button"
-                    android:fontFamily="sans-serif-black"
-                    android:minWidth="48dp"
-                    android:minHeight="48dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:stateListAnimator="@animator/btn_press_scale"
-                    android:text="+ Set"
-                    android:textColor="@color/m3_primary"
-                    android:textSize="11sp" />
-
                 <TextView
                     android:id="@+id/tvPreviousBest"
                     android:layout_width="wrap_content"

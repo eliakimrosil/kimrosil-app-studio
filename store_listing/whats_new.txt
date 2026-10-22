@@ -1,2 +1,2 @@
-Release v2.3.0 - PPL Workout
-Add custom exercise creation, editing, deletion, routine reordering, and on-the-fly set extensions
+Release v2.3.1 - PPL Workout
+Streamline active exercise view by removing standalone set button in favor of comprehensive exercise editor
