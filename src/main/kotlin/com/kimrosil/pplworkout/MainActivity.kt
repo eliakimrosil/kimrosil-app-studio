@@ -103,7 +103,7 @@ class MainActivity : Activity() {
     private var currentExerciseIndex = 0
     private var sessionId: Long = -1
     private var currentUnit = "KG"
-    private var themeMode = 0 // 0=Auto, 1=Light, 2=Dark
+    private var themeMode = 2 // 0=Auto, 1=Light, 2=Dark (Default: 2=Dark)
     private var defaultRestSeconds: Long = 90L
     private var totalRestSeconds: Long = 90L
     private var restEndTimeMillis: Long = 0L
@@ -145,7 +145,7 @@ class MainActivity : Activity() {
 
     override fun attachBaseContext(newBase: Context) {
         val p = newBase.getSharedPreferences("ppl-workout_prefs", MODE_PRIVATE)
-        val mode = p.getInt("pref_theme_mode", 0)
+        val mode = p.getInt("pref_theme_mode", 2)
         val config = Configuration(newBase.resources.configuration)
         when (mode) {
             1 -> config.uiMode = (config.uiMode and Configuration.UI_MODE_NIGHT_MASK.inv()) or Configuration.UI_MODE_NIGHT_NO
@@ -160,7 +160,7 @@ class MainActivity : Activity() {
 
         prefs = getSharedPreferences("ppl-workout_prefs", MODE_PRIVATE)
         dbHelper = DatabaseHelper(this)
-        themeMode = prefs.getInt("pref_theme_mode", 0)
+        themeMode = prefs.getInt("pref_theme_mode", 2)
         currentUnit = prefs.getString("pref_unit", "KG") ?: "KG"
         currentDay = prefs.getString("pref_last_day", "PUSH") ?: "PUSH"
         defaultRestSeconds = prefs.getLong("pref_default_rest", 90L)

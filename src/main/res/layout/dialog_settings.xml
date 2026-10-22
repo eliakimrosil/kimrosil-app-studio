@@ -265,7 +265,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:fontFamily="sans-serif-black"
-                    android:text="PPL Workout v2.2.0"
+                    android:text="PPL Workout v2.2.1"
                     android:textColor="@color/m3_on_surface"
                     android:textSize="14sp" />
             </LinearLayout>

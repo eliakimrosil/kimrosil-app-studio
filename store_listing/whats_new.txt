@@ -1,2 +1,4 @@
-Release v2.2.0 - PPL Workout
-Tactile button scale physics, live rest timer progress bar with play/pause controls, and personal record celebrations
+Release v2.2.1 - PPL Workout
+- Set dark mode as the default out-of-the-box appearance
+- Refined dark theme status and navigation bar styling
+- Retained full user preference toggle for Dark, Light, and Auto modes in Settings
