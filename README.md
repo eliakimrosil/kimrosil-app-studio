@@ -207,9 +207,9 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Minimalist offline workout program tracker with progressive overload logging and auto rest timer.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-workout-program-tracker/workout-program-tracker.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/workout-program-tracker/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/workout-program-tracker)
 
-#### [PPL Workout](https://apps.kimrosil.com/ppl-workout/) (`ppl-workout`) • `v2.3.2`
+#### [PPL Workout](https://apps.kimrosil.com/ppl-workout/) (`ppl-workout`) • `v2.3.4`
 > **Utility**: Offline Push Pull Legs workout tracker with rest interval timer and progress bar.
-> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.3.2-ppl-workout/ppl-workout.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/ppl-workout/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/ppl-workout)
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.3.4-ppl-workout/ppl-workout.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/ppl-workout/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/ppl-workout)
 
 #### [SnoozeGuard Commute Vigil](https://apps.kimrosil.com/snooze-guard-microsleep-commute/) (`snooze-guard-microsleep-commute`) • `v1.0.0`
 > **Utility**: Offline motion & dead-man vigilance timer that stops public transit riders from sleeping past their stop.
