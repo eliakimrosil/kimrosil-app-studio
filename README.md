@@ -315,7 +315,7 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Instantly stash paper serial numbers, warranty barcodes, and appliance manuals directly from camera or share sheet with on-device text indexing.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-snip-shelf-receipt-ocr/snip-shelf-receipt-ocr.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/snip-shelf-receipt-ocr/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/snip-shelf-receipt-ocr)
 
-#### [SproutKnight](https://apps.kimrosil.com/sprout-knight-rpg/) (`sprout-knight-rpg`) • `v1.0.0`
+#### [SproutKnight](https://apps.kimrosil.com/sprout-knight-rpg/) (`sprout-knight-rpg`) • `v1.5.0`
 > **Utility**: Embark on a charming 2D action fighting RPG quest—upgrade acorn blades, walnut armor, and dewdrop magic at the cozy forge.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.5.0-sprout-knight-rpg/sprout-knight-rpg.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/sprout-knight-rpg/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/sprout-knight-rpg)
 
