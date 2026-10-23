@@ -6,220 +6,42 @@
     android:viewportHeight="108">
     <group>
         
-        <!-- Inactive Track Groove -->
+        <!-- Polished Olympic Barbell Shaft -->
         <path
-            android:pathData="M 54,21.5 a 32.5,32.5 0 1 0 0.001,65 a 32.5,32.5 0 1 0 -0.001,-65 Z"
-            android:fillColor="#00000000"
-            android:strokeColor="#18181C"
-            android:strokeWidth="4.5" />
-
-        <!-- Tri-Phase Athletic Progress Arcs (Push, Pull, Legs) -->
-        <!-- 1. PUSH (Hyper-Lime Arc - Explosive Force) -->
-        <path
-            android:pathData="M 29.89,32.26 A 32.50,32.50 0 0 1 78.11,32.26"
-            android:fillColor="#00000000"
-            android:strokeColor="#A3E635"
-            android:strokeWidth="4.5"
-            android:strokeLineCap="round" />
-
-        <!-- 2. PULL (Titanium White Arc - Grounded Traction) -->
-        <path
-            android:pathData="M 86.18,49.48 A 32.50,32.50 0 0 1 66.18,84.13"
-            android:fillColor="#00000000"
-            android:strokeColor="#F4F4F5"
-            android:strokeWidth="4.5"
-            android:strokeLineCap="round" />
-
-        <!-- 3. LEGS (Electric Orange Arc - Foundation Power) -->
-        <path
-            android:pathData="M 41.82,84.13 A 32.50,32.50 0 0 1 21.84,58.52"
-            android:fillColor="#00000000"
-            android:strokeColor="#FB923C"
-            android:strokeWidth="4.5"
-            android:strokeLineCap="round" />
-
-        <!-- Upward Push Apex Chevron in Hyper-Lime -->
-        <path
-            android:pathData="M51,31 L54,27.5 L57,31"
-            android:fillColor="#00000000"
-            android:strokeColor="#A3E635"
-            android:strokeWidth="2"
-            android:strokeLineCap="round"
-            android:strokeLineJoin="round" />
-
-        <!-- ==================== PRO OLYMPIC BARBELL ==================== -->
-        <!-- Polished Chrome Barbell Shaft -->
-        <path
-            android:pathData="M 26.5,51.5 h 55.0 a 2.5,2.5 0 0 1 2.5,2.5 v 0.0 a 2.5,2.5 0 0 1 -2.5,2.5 h -55.0 a 2.5,2.5 0 0 1 -2.5,-2.5 v -0.0 a 2.5,2.5 0 0 1 2.5,-2.5 Z"
+            android:pathData="M 21.00,51.50 h 66.00 a 2.50,2.50 0 0 1 2.50,2.50 v 0.00 a 2.50,2.50 0 0 1 -2.50,2.50 h -66.00 a 2.50,2.50 0 0 1 -2.50,-2.50 v 0.00 a 2.50,2.50 0 0 1 2.50,-2.50 Z"
             android:fillColor="#E4E4E7" />
 
-        <!-- Specular Highlight Streak -->
+        <!-- Gunmetal Inner Collars -->
         <path
-            android:pathData="M25,52.8 h58"
-            android:fillColor="#00000000"
-            android:strokeColor="#FFFFFF"
-            android:strokeWidth="1"
-            android:strokeLineCap="round" />
+            android:pathData="M 44.75,46.00 h 0.00 a 1.25,1.25 0 0 1 1.25,1.25 v 13.50 a 1.25,1.25 0 0 1 -1.25,1.25 h 0.00 a 1.25,1.25 0 0 1 -1.25,-1.25 v -13.50 a 1.25,1.25 0 0 1 1.25,-1.25 Z"
+            android:fillColor="#71717A" />
+        <path
+            android:pathData="M 63.25,46.00 h 0.00 a 1.25,1.25 0 0 1 1.25,1.25 v 13.50 a 1.25,1.25 0 0 1 -1.25,1.25 h 0.00 a 1.25,1.25 0 0 1 -1.25,-1.25 v -13.50 a 1.25,1.25 0 0 1 1.25,-1.25 Z"
+            android:fillColor="#71717A" />
 
-        <!-- Knurling Texture on Shaft -->
+        <!-- PUSH Plates (Athletic Hyper-Lime - Tallest Inner Plates) -->
         <path
-            android:pathData="M 45.5,51.5 h 17.0 a 1.5,1.5 0 0 1 1.5,1.5 v 2.0 a 1.5,1.5 0 0 1 -1.5,1.5 h -17.0 a 1.5,1.5 0 0 1 -1.5,-1.5 v -2.0 a 1.5,1.5 0 0 1 1.5,-1.5 Z"
-            android:fillColor="#27272A" />
+            android:pathData="M 39.00,30.00 h 0.50 a 2.50,2.50 0 0 1 2.50,2.50 v 43.00 a 2.50,2.50 0 0 1 -2.50,2.50 h -0.50 a 2.50,2.50 0 0 1 -2.50,-2.50 v -43.00 a 2.50,2.50 0 0 1 2.50,-2.50 Z"
+            android:fillColor="#A3E635" />
         <path
-            android:pathData="M47,52 v4"
-            android:fillColor="#00000000"
-            android:strokeColor="#A3E635"
-            android:strokeWidth="0.9"
-            android:strokeLineCap="round" />
-        <path
-            android:pathData="M50.5,52 v4"
-            android:fillColor="#00000000"
-            android:strokeColor="#71717A"
-            android:strokeWidth="0.8"
-            android:strokeLineCap="round" />
-        <path
-            android:pathData="M54,52 v4"
-            android:fillColor="#00000000"
-            android:strokeColor="#FFFFFF"
-            android:strokeWidth="1"
-            android:strokeLineCap="round" />
-        <path
-            android:pathData="M57.5,52 v4"
-            android:fillColor="#00000000"
-            android:strokeColor="#71717A"
-            android:strokeWidth="0.8"
-            android:strokeLineCap="round" />
-        <path
-            android:pathData="M61,52 v4"
-            android:fillColor="#00000000"
-            android:strokeColor="#A3E635"
-            android:strokeWidth="0.9"
-            android:strokeLineCap="round" />
+            android:pathData="M 68.50,30.00 h 0.50 a 2.50,2.50 0 0 1 2.50,2.50 v 43.00 a 2.50,2.50 0 0 1 -2.50,2.50 h -0.50 a 2.50,2.50 0 0 1 -2.50,-2.50 v -43.00 a 2.50,2.50 0 0 1 2.50,-2.50 Z"
+            android:fillColor="#A3E635" />
 
-        <!-- Inner Olympic Sleeve Bushings (Brushed Stainless Steel) -->
+        <!-- PULL Plates (Pure Titanium White - Medium Middle Plates) -->
         <path
-            android:pathData="M 38.7,47.5 h 1.1 a 1.2,1.2 0 0 1 1.2,1.2 v 10.6 a 1.2,1.2 0 0 1 -1.2,1.2 h -1.1 a 1.2,1.2 0 0 1 -1.2,-1.2 v -10.6 a 1.2,1.2 0 0 1 1.2,-1.2 Z"
-            android:fillColor="#71717A"
-            android:strokeColor="#52525B"
-            android:strokeWidth="0.6" />
+            android:pathData="M 31.50,35.00 h 0.50 a 2.50,2.50 0 0 1 2.50,2.50 v 33.00 a 2.50,2.50 0 0 1 -2.50,2.50 h -0.50 a 2.50,2.50 0 0 1 -2.50,-2.50 v -33.00 a 2.50,2.50 0 0 1 2.50,-2.50 Z"
+            android:fillColor="#FFFFFF" />
         <path
-            android:pathData="M39.2,48.5 v11"
-            android:fillColor="#00000000"
-            android:strokeColor="#A1A1AA"
-            android:strokeWidth="0.6" />
+            android:pathData="M 76.00,35.00 h 0.50 a 2.50,2.50 0 0 1 2.50,2.50 v 33.00 a 2.50,2.50 0 0 1 -2.50,2.50 h -0.50 a 2.50,2.50 0 0 1 -2.50,-2.50 v -33.00 a 2.50,2.50 0 0 1 2.50,-2.50 Z"
+            android:fillColor="#FFFFFF" />
 
+        <!-- LEGS Plates (Electric Warm Orange - Outer Foundation Plates) -->
         <path
-            android:pathData="M 68.2,47.5 h 1.1 a 1.2,1.2 0 0 1 1.2,1.2 v 10.6 a 1.2,1.2 0 0 1 -1.2,1.2 h -1.1 a 1.2,1.2 0 0 1 -1.2,-1.2 v -10.6 a 1.2,1.2 0 0 1 1.2,-1.2 Z"
-            android:fillColor="#71717A"
-            android:strokeColor="#52525B"
-            android:strokeWidth="0.6" />
+            android:pathData="M 24.00,40.00 h 0.50 a 2.50,2.50 0 0 1 2.50,2.50 v 23.00 a 2.50,2.50 0 0 1 -2.50,2.50 h -0.50 a 2.50,2.50 0 0 1 -2.50,-2.50 v -23.00 a 2.50,2.50 0 0 1 2.50,-2.50 Z"
+            android:fillColor="#FB923C" />
         <path
-            android:pathData="M68.8,48.5 v11"
-            android:fillColor="#00000000"
-            android:strokeColor="#A1A1AA"
-            android:strokeWidth="0.6" />
-
-        <!-- ========== LEFT PLATES ========== -->
-        <!-- Plate 1: Inner Heavy 45lb Competition Bumper (Obsidian Charcoal) -->
-        <path
-            android:pathData="M 35,37.5 h 0 a 2,2 0 0 1 2,2 v 29 a 2,2 0 0 1 -2,2 h -0 a 2,2 0 0 1 -2,-2 v -29 a 2,2 0 0 1 2,-2 Z"
-            android:fillColor="#18181C"
-            android:strokeColor="#3F3F46"
-            android:strokeWidth="0.9" />
-        <path
-            android:pathData="M35,40 v28"
-            android:fillColor="#00000000"
-            android:strokeColor="#27272A"
-            android:strokeWidth="1" />
-
-        <!-- Plate 2: Middle Heavy Iron Bumper (Steel Core + Lime Highlight) -->
-        <path
-            android:pathData="M 30.5,40 h 0 a 2,2 0 0 1 2,2 v 24 a 2,2 0 0 1 -2,2 h -0 a 2,2 0 0 1 -2,-2 v -24 a 2,2 0 0 1 2,-2 Z"
-            android:fillColor="#27272A"
-            android:strokeColor="#3F3F46"
-            android:strokeWidth="0.9" />
-        <path
-            android:pathData="M29.5,42 v24"
-            android:fillColor="#00000000"
-            android:strokeColor="#A3E635"
-            android:strokeWidth="1"
-            android:strokeLineCap="round" />
-
-        <!-- Plate 3: Outer High-Impact Bumper (Electric Orange) -->
-        <path
-            android:pathData="M 26,43 h 0 a 2,2 0 0 1 2,2 v 18 a 2,2 0 0 1 -2,2 h -0 a 2,2 0 0 1 -2,-2 v -18 a 2,2 0 0 1 2,-2 Z"
-            android:fillColor="#FB923C"
-            android:strokeColor="#EA580C"
-            android:strokeWidth="0.9" />
-        <path
-            android:pathData="M25.2,44.5 v15"
-            android:fillColor="#00000000"
-            android:strokeColor="#FFEDD5"
-            android:strokeWidth="0.8"
-            android:strokeLineCap="round" />
-
-        <!-- Left Olympic Precision Compression Clamp -->
-        <path
-            android:pathData="M 22.8,48.5 h 0.2 a 0.8,0.8 0 0 1 0.8,0.8 v 9.4 a 0.8,0.8 0 0 1 -0.8,0.8 h -0.2 a 0.8,0.8 0 0 1 -0.8,-0.8 v -9.4 a 0.8,0.8 0 0 1 0.8,-0.8 Z"
-            android:fillColor="#E4E4E7"
-            android:strokeColor="#A1A1AA"
-            android:strokeWidth="0.5" />
-        <path
-            android:pathData="M22.9,49.5 v9"
-            android:fillColor="#00000000"
-            android:strokeColor="#FFFFFF"
-            android:strokeWidth="0.5" />
-
-        <!-- ========== RIGHT PLATES ========== -->
-        <!-- Plate 1: Inner Heavy 45lb Competition Bumper (Obsidian Charcoal) -->
-        <path
-            android:pathData="M 73,37.5 h 0 a 2,2 0 0 1 2,2 v 29 a 2,2 0 0 1 -2,2 h -0 a 2,2 0 0 1 -2,-2 v -29 a 2,2 0 0 1 2,-2 Z"
-            android:fillColor="#18181C"
-            android:strokeColor="#3F3F46"
-            android:strokeWidth="0.9" />
-        <path
-            android:pathData="M73,40 v28"
-            android:fillColor="#00000000"
-            android:strokeColor="#27272A"
-            android:strokeWidth="1" />
-
-        <!-- Plate 2: Middle Heavy Iron Bumper (Steel Core + Lime Highlight) -->
-        <path
-            android:pathData="M 77.5,40 h 0 a 2,2 0 0 1 2,2 v 24 a 2,2 0 0 1 -2,2 h -0 a 2,2 0 0 1 -2,-2 v -24 a 2,2 0 0 1 2,-2 Z"
-            android:fillColor="#27272A"
-            android:strokeColor="#3F3F46"
-            android:strokeWidth="0.9" />
-        <path
-            android:pathData="M78.5,42 v24"
-            android:fillColor="#00000000"
-            android:strokeColor="#A3E635"
-            android:strokeWidth="1"
-            android:strokeLineCap="round" />
-
-        <!-- Plate 3: Outer High-Impact Bumper (Electric Orange) -->
-        <path
-            android:pathData="M 82,43 h 0 a 2,2 0 0 1 2,2 v 18 a 2,2 0 0 1 -2,2 h -0 a 2,2 0 0 1 -2,-2 v -18 a 2,2 0 0 1 2,-2 Z"
-            android:fillColor="#FB923C"
-            android:strokeColor="#EA580C"
-            android:strokeWidth="0.9" />
-        <path
-            android:pathData="M82.8,44.5 v15"
-            android:fillColor="#00000000"
-            android:strokeColor="#FFEDD5"
-            android:strokeWidth="0.8"
-            android:strokeLineCap="round" />
-
-        <!-- Right Olympic Precision Compression Clamp -->
-        <path
-            android:pathData="M 85.0,48.5 h 0.2 a 0.8,0.8 0 0 1 0.8,0.8 v 9.4 a 0.8,0.8 0 0 1 -0.8,0.8 h -0.2 a 0.8,0.8 0 0 1 -0.8,-0.8 v -9.4 a 0.8,0.8 0 0 1 0.8,-0.8 Z"
-            android:fillColor="#E4E4E7"
-            android:strokeColor="#A1A1AA"
-            android:strokeWidth="0.5" />
-        <path
-            android:pathData="M85.1,49.5 v9"
-            android:fillColor="#00000000"
-            android:strokeColor="#FFFFFF"
-            android:strokeWidth="0.5" />
+            android:pathData="M 83.50,40.00 h 0.50 a 2.50,2.50 0 0 1 2.50,2.50 v 23.00 a 2.50,2.50 0 0 1 -2.50,2.50 h -0.50 a 2.50,2.50 0 0 1 -2.50,-2.50 v -23.00 a 2.50,2.50 0 0 1 2.50,-2.50 Z"
+            android:fillColor="#FB923C" />
         
     </group>
 </vector>

@@ -416,7 +416,7 @@ class MainActivity : Activity() {
         }
 
         val tvAboutAppVersion: TextView? = dialog.findViewById(R.id.tvAboutAppVersion)
-        val vn = try { packageManager.getPackageInfo(packageName, 0).versionName } catch (e: Exception) { "2.3.1" }
+        val vn = try { packageManager.getPackageInfo(packageName, 0).versionName } catch (e: Exception) { "2.3.5" }
         tvAboutAppVersion?.text = "PPL Workout v$vn"
 
         val btnThemeLight: Button = dialog.findViewById(R.id.btnThemeLight)
