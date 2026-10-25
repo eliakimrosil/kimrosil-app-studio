@@ -485,7 +485,7 @@ public class MainActivity extends Activity {
         targetBitrateKbps = prefs.getInt("pref_bitrate_kbps", 2500);
         selectedAudioMode = prefs.getInt("pref_audio_mode", AUDIO_MODE_MIC);
         boolean micEnabled = prefs.getBoolean("pref_mic_enabled", true);
-        boolean facecamEnabled = prefs.getBoolean("pref_facecam_enabled", false);
+        boolean facecamEnabled = prefs.getBoolean("pref_facecam_enabled", true);
 
         selectPlatform(selectedPlatformIndex);
         if (selectedPlatformIndex == 5 && !customUrl.isEmpty()) {
@@ -1186,6 +1186,22 @@ public class MainActivity extends Activity {
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            boolean facecamPref = prefs.getBoolean("pref_facecam_enabled", true);
+            if (facecamPref) {
+                if (checkOverlayPermission()) {
+                    FloatingCamManager.getInstance(this).showOverlay();
+                    startFacecamService();
+                } else {
+                    requestOverlayPermission();
+                }
+            }
+        }
+    }
+
     private boolean checkOverlayPermission() {
         return Settings.canDrawOverlays(this);
     }
@@ -1463,6 +1479,11 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        boolean facecamPref = prefs.getBoolean("pref_facecam_enabled", true);
+        if (facecamPref && checkOverlayPermission() && !FloatingCamManager.getInstance(this).isShowing()) {
+            FloatingCamManager.getInstance(this).showOverlay();
+            startFacecamService();
+        }
         updateOverlayStatus();
         checkClipboardForStreamKey();
         uiHandler.post(telemetryRunnable);
@@ -1681,7 +1702,7 @@ public class MainActivity extends Activity {
             int fps = intent.getIntExtra("videoFps", 30);
             int bitrate = intent.getIntExtra("bitrateKbps", 2500);
             boolean enableMic = intent.getBooleanExtra("enableMic", true);
-            boolean enableFacecam = intent.getBooleanExtra("enableFacecam", false);
+            boolean enableFacecam = intent.getBooleanExtra("enableFacecam", true);
             int audioMode = intent.getIntExtra("audioMode", AUDIO_MODE_MIC);
 
             MediaProjectionManager mpm = (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);

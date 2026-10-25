@@ -1,2 +1,2 @@
-Release v1.7.14 - KR Live Studio
-Desktop site guidance and stream key instructions for Facebook Live
+Release v1.7.15 - KR Live Studio
+Enable floating camera by default and fix drag-to-close across devices

@@ -709,6 +709,8 @@ public class FloatingCamManager {
     private void snapToEdge() {
         if (overlayView == null || windowParams == null || windowManager == null || !isOverlayShowing) return;
 
+        overlayView.animate().scaleX(1.0f).scaleY(1.0f).alpha(1.0f).setDuration(120).start();
+
         DisplayMetrics metrics = getRealDisplayMetrics();
         int screenWidth = metrics.widthPixels;
         boolean isLandscape = screenWidth > metrics.heightPixels;
@@ -897,7 +899,7 @@ public class FloatingCamManager {
                             }
                             windowParams.x = initialX + dx;
                             windowParams.y = initialY + dy;
-                            clampPosition(windowParams);
+                            clampPositionWhileDragging(windowParams);
                             try {
                                 windowManager.updateViewLayout(overlayView, windowParams);
                             } catch (Exception ignored) {}
@@ -912,12 +914,17 @@ public class FloatingCamManager {
                         mainHandler.removeCallbacks(longPressRunnable);
                         long clickDuration = SystemClock.uptimeMillis() - downTime;
 
-                        if (isHoveringDismiss) {
+                        boolean shouldDismiss = isMoving && (isHoveringDismiss || isPointInDismissZone(event.getRawX(), event.getRawY()));
+
+                        if (shouldDismiss) {
                             triggerDismissAnimation();
                             return true;
                         }
 
                         hideDismissTarget();
+                        if (overlayView != null) {
+                            overlayView.animate().scaleX(1.0f).scaleY(1.0f).alpha(1.0f).setDuration(120).start();
+                        }
 
                         if (!isMoving && clickDuration < 320) {
                             v.performClick();
@@ -996,6 +1003,7 @@ public class FloatingCamManager {
 
         DisplayMetrics metrics = getRealDisplayMetrics();
         float density = metrics.density;
+        boolean isLandscape = metrics.widthPixels > metrics.heightPixels;
 
         int layoutType = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
                 ? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
@@ -1011,15 +1019,21 @@ public class FloatingCamManager {
                 PixelFormat.TRANSLUCENT
         );
         dismissParams.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
-        dismissParams.y = (int) (36 * density);
+        dismissParams.y = isLandscape ? (int) (18 * density) : (int) (36 * density);
     }
 
-    private void showDismissTarget() {
-        if (isDismissOverlayShowing || windowManager == null) return;
+    private synchronized void showDismissTarget() {
+        if (windowManager == null) return;
         initDismissOverlay();
         if (dismissOverlayView == null) return;
 
         try {
+            dismissOverlayView.animate().cancel();
+            if (!dismissOverlayView.isAttachedToWindow()) {
+                windowManager.addView(dismissOverlayView, dismissParams);
+            }
+            isDismissOverlayShowing = true;
+
             dismissOverlayView.setAlpha(0f);
             dismissOverlayView.setScaleX(0.7f);
             dismissOverlayView.setScaleY(0.7f);
@@ -1035,9 +1049,6 @@ public class FloatingCamManager {
             }
             isHoveringDismiss = false;
 
-            windowManager.addView(dismissOverlayView, dismissParams);
-            isDismissOverlayShowing = true;
-
             dismissOverlayView.animate()
                     .alpha(1f)
                     .scaleX(1f)
@@ -1051,8 +1062,8 @@ public class FloatingCamManager {
         }
     }
 
-    private void hideDismissTarget() {
-        if (!isDismissOverlayShowing || dismissOverlayView == null || windowManager == null) {
+    private synchronized void hideDismissTarget() {
+        if (dismissOverlayView == null || windowManager == null) {
             isDismissOverlayShowing = false;
             isHoveringDismiss = false;
             return;
@@ -1060,6 +1071,7 @@ public class FloatingCamManager {
         isHoveringDismiss = false;
         final View targetView = dismissOverlayView;
         isDismissOverlayShowing = false;
+        targetView.animate().cancel();
         targetView.animate()
                 .alpha(0f)
                 .scaleX(0.6f)
@@ -1068,28 +1080,29 @@ public class FloatingCamManager {
                 .setDuration(150)
                 .withEndAction(() -> {
                     try {
-                        windowManager.removeView(targetView);
+                        if (targetView.isAttachedToWindow()) {
+                            windowManager.removeView(targetView);
+                        }
                     } catch (Exception ignored) {}
-                    if (dismissOverlayView == targetView) {
-                        dismissOverlayView = null;
-                    }
                 })
                 .start();
     }
 
-    private void hideDismissTargetImmediate() {
+    private synchronized void hideDismissTargetImmediate() {
         isDismissOverlayShowing = false;
         isHoveringDismiss = false;
         if (dismissOverlayView != null && windowManager != null) {
+            dismissOverlayView.animate().cancel();
             try {
-                windowManager.removeView(dismissOverlayView);
+                if (dismissOverlayView.isAttachedToWindow()) {
+                    windowManager.removeView(dismissOverlayView);
+                }
             } catch (Exception ignored) {}
-            dismissOverlayView = null;
         }
     }
 
-    private void updateDismissHoverState(float rawTouchX, float rawTouchY) {
-        if (!isDismissOverlayShowing || overlayView == null || windowParams == null) return;
+    private boolean isPointInDismissZone(float rawTouchX, float rawTouchY) {
+        if (overlayView == null || windowParams == null) return false;
 
         DisplayMetrics metrics = getRealDisplayMetrics();
         float density = metrics.density;
@@ -1097,8 +1110,16 @@ public class FloatingCamManager {
         float screenHeight = metrics.heightPixels;
 
         float targetCenterX = screenWidth / 2.0f;
-        // Gravity BOTTOM with 36dp margin + 24dp label offset + 28dp half badge = 88dp
-        float targetCenterY = screenHeight - (88f * density);
+        float targetCenterY = screenHeight - (90f * density);
+
+        if (dismissBadge != null && dismissBadge.isAttachedToWindow()) {
+            int[] loc = new int[2];
+            dismissBadge.getLocationOnScreen(loc);
+            if (loc[0] > 0 || loc[1] > 0) {
+                targetCenterX = loc[0] + (dismissBadge.getWidth() / 2.0f);
+                targetCenterY = loc[1] + (dismissBadge.getHeight() / 2.0f);
+            }
+        }
 
         float camCenterX = windowParams.x + (windowParams.width / 2.0f);
         float camCenterY = windowParams.y + (windowParams.height / 2.0f);
@@ -1106,16 +1127,39 @@ public class FloatingCamManager {
         double camDist = Math.hypot(camCenterX - targetCenterX, camCenterY - targetCenterY);
         double touchDist = Math.hypot(rawTouchX - targetCenterX, rawTouchY - targetCenterY);
 
-        boolean shouldHover = (camDist < 115f * density) || (touchDist < 95f * density);
+        // 1. Proximity to target badge (camera center within 160dp or finger touch within 140dp)
+        boolean proximity = (camDist < 160f * density) || (touchDist < 140f * density);
+
+        // 2. Touch point in bottom center screen zone (bottom 140dp, center 70% width)
+        boolean touchInBottom = (rawTouchY > (screenHeight - 140f * density))
+                && (Math.abs(rawTouchX - (screenWidth / 2f)) < (screenWidth * 0.35f));
+
+        // 3. Camera bottom in bottom center screen zone (bottom 130dp, center 70% width)
+        boolean camInBottom = ((windowParams.y + windowParams.height) > (screenHeight - 130f * density))
+                && (Math.abs(camCenterX - (screenWidth / 2f)) < (screenWidth * 0.35f));
+
+        return proximity || touchInBottom || camInBottom;
+    }
+
+    private void updateDismissHoverState(float rawTouchX, float rawTouchY) {
+        if (overlayView == null || windowParams == null) return;
+
+        boolean shouldHover = isPointInDismissZone(rawTouchX, rawTouchY);
 
         if (shouldHover && !isHoveringDismiss) {
             isHoveringDismiss = true;
             if (overlayView != null) {
                 overlayView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+                overlayView.animate()
+                        .scaleX(0.88f)
+                        .scaleY(0.88f)
+                        .alpha(0.8f)
+                        .setDuration(120)
+                        .start();
             }
             if (dismissBadge != null) {
                 dismissBadge.setBackgroundResource(R.drawable.bg_pip_dismiss_target_hover);
-                dismissBadge.animate().scaleX(1.22f).scaleY(1.22f).setDuration(120).start();
+                dismissBadge.animate().scaleX(1.25f).scaleY(1.25f).setDuration(120).start();
             }
             if (tvDismissHint != null) {
                 tvDismissHint.setText("RELEASE TO CLOSE");
@@ -1123,6 +1167,14 @@ public class FloatingCamManager {
             }
         } else if (!shouldHover && isHoveringDismiss) {
             isHoveringDismiss = false;
+            if (overlayView != null) {
+                overlayView.animate()
+                        .scaleX(1.0f)
+                        .scaleY(1.0f)
+                        .alpha(1.0f)
+                        .setDuration(120)
+                        .start();
+            }
             if (dismissBadge != null) {
                 dismissBadge.setBackgroundResource(R.drawable.bg_pip_dismiss_target);
                 dismissBadge.animate().scaleX(1.0f).scaleY(1.0f).setDuration(120).start();
@@ -1135,6 +1187,7 @@ public class FloatingCamManager {
     }
 
     private void triggerDismissAnimation() {
+        hideDismissTarget();
         if (overlayView != null) {
             overlayView.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
             overlayView.animate()
@@ -1152,7 +1205,25 @@ public class FloatingCamManager {
             hideOverlay();
             Toast.makeText(appContext, "Facecam Closed", Toast.LENGTH_SHORT).show();
         }
-        hideDismissTarget();
+    }
+
+    private void clampPositionWhileDragging(WindowManager.LayoutParams params) {
+        DisplayMetrics metrics = getRealDisplayMetrics();
+        int screenWidth = metrics.widthPixels;
+        int screenHeight = metrics.heightPixels;
+        float density = metrics.density;
+        boolean isLandscape = screenWidth > screenHeight;
+
+        int minX = -(params.width / 4);
+        int maxX = screenWidth - (params.width * 3 / 4);
+        int minY = isLandscape ? (int) (4 * density) : (int) (12 * density);
+        // Generous bottom boundary allowing the camera to move completely onto the dismiss target
+        int maxY = screenHeight - (params.height / 3);
+
+        if (params.x < minX) params.x = minX;
+        if (params.x > maxX) params.x = maxX;
+        if (params.y < minY) params.y = minY;
+        if (params.y > maxY) params.y = maxY;
     }
 
     private void clampPosition(WindowManager.LayoutParams params) {
