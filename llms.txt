@@ -75,7 +75,7 @@ KimRosil App Studio (founded by Eliakim Rosil) is an independent Android softwar
 
 - [DropScribe](https://apps.kimrosil.com/offline-audio-drop-transcribe/): Offline WhatsApp & Telegram voice note transcription via local Whisper with zero cloud leakage. [Direct APK](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-offline-audio-drop-transcribe/offline-audio-drop-transcribe.apk)
 - [Gemini Power Bridge](https://apps.kimrosil.com/gemini-power-bridge/): Hardware key interceptor configuring Lenovo ZUI power button long-press to launch Google Gemini directly. [Direct APK](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-gemini-power-bridge/gemini-power-bridge.apk)
-- [KR Live Studio](https://apps.kimrosil.com/kim-live-studio/): Broadcast screen, camera & audio directly to RTMP live platforms [Direct APK](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.7.2-kim-live-studio/kr-live-studio.apk)
+- [KR Live Studio](https://apps.kimrosil.com/kim-live-studio/): Broadcast screen, camera & audio directly to RTMP live platforms [Direct APK](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.7.4-kim-live-studio/kr-live-studio.apk)
 - [ScreenStream RTSP](https://apps.kimrosil.com/screenstream-rtsp/): Low-latency local network RTSP live screen broadcasting server utilizing Android MediaProjection API. [Direct APK](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-screenstream-rtsp/screenstream-rtsp.apk)
 
 ## Offline Lifestyle, Finance, Organization & Games
