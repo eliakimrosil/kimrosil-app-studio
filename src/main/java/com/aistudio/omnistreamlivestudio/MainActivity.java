@@ -180,6 +180,8 @@ public class MainActivity extends Activity {
 
     // Action Controls
     private Button btnStartStopStream;
+    public static final String ACTION_REQUEST_START_STREAM = "com.aistudio.omnistreamlivestudio.REQUEST_START_STREAM";
+    private boolean wasStartedFromFloatingCam = false;
 
     // Internal State
     private static final String PREF_STREAM_KEY_PREFIX = "pref_stream_key_platform_";
@@ -256,6 +258,22 @@ public class MainActivity extends Activity {
         loadSavedPreferences();
         setupListeners();
         requestNecessaryPermissions();
+        handleIntent(getIntent());
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+        if (intent == null) return;
+        if (ACTION_REQUEST_START_STREAM.equals(intent.getAction())) {
+            wasStartedFromFloatingCam = true;
+            uiHandler.post(this::handleStartStreamRequest);
+        }
     }
 
     private void setupFacecamStateListener() {
@@ -270,6 +288,19 @@ public class MainActivity extends Activity {
             @Override
             public void onCameraFlipped(boolean isFront) {
                 btnFlipCamera.setText(isFront ? "FLIP: REAR" : "FLIP: FRONT");
+            }
+
+            @Override
+            public void onRequestStartBroadcast() {
+                runOnUiThread(() -> {
+                    wasStartedFromFloatingCam = true;
+                    handleStartStreamRequest();
+                });
+            }
+
+            @Override
+            public void onBroadcastToggled(boolean isLive) {
+                runOnUiThread(() -> updateUiStreamState(isLive));
             }
         });
     }
@@ -983,23 +1014,37 @@ public class MainActivity extends Activity {
             startService(stopIntent);
             updateUiStreamState(false);
         } else {
-            String serverUrl = etServerUrl.getText().toString().trim();
-            String streamKey = etStreamKey.getText().toString().trim();
+            wasStartedFromFloatingCam = false;
+            handleStartStreamRequest();
+        }
+    }
 
-            if (serverUrl.isEmpty()) {
-                Toast.makeText(this, "Enter RTMP Ingest URL", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (streamKey.isEmpty()) {
-                Toast.makeText(this, "Enter Stream Key", Toast.LENGTH_SHORT).show();
-                return;
-            }
+    private void handleStartStreamRequest() {
+        if (StreamService.isStreamingActive()) {
+            Toast.makeText(this, "Broadcast is already active", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-            saveCurrentPreferences();
+        String serverUrl = etServerUrl != null ? etServerUrl.getText().toString().trim() : "";
+        String streamKey = etStreamKey != null ? etStreamKey.getText().toString().trim() : "";
 
-            MediaProjectionManager mpm = (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
-            if (mpm != null) {
+        if (serverUrl.isEmpty()) {
+            Toast.makeText(this, "Enter RTMP Ingest URL", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (streamKey.isEmpty()) {
+            Toast.makeText(this, "Enter Stream Key", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        saveCurrentPreferences();
+
+        MediaProjectionManager mpm = (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
+        if (mpm != null) {
+            try {
                 startActivityForResult(mpm.createScreenCaptureIntent(), REQUEST_CODE_MEDIA_PROJECTION);
+            } catch (Exception e) {
+                Toast.makeText(this, "Unable to prompt screen capture: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -1041,7 +1086,12 @@ public class MainActivity extends Activity {
                     startService(serviceIntent);
                 }
                 updateUiStreamState(true);
+                if (wasStartedFromFloatingCam) {
+                    wasStartedFromFloatingCam = false;
+                    moveTaskToBack(true);
+                }
             } else {
+                wasStartedFromFloatingCam = false;
                 Toast.makeText(this, "Screen recording permission was denied.", Toast.LENGTH_SHORT).show();
             }
         }

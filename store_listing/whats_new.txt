@@ -1,2 +1,2 @@
-Release v1.7.8 - KR Live Studio
-Added magnetic drag-to-close bottom dismiss zone with tactile haptics; removed header close button to eliminate accidental closes during live mobile gaming
+Release v1.7.9 - KR Live Studio
+Added quick Start/Stop live broadcast button directly in floating camera overlay

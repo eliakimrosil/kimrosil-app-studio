@@ -32,7 +32,7 @@
 
             <LinearLayout
                 android:id="@+id/pipHeader"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -88,6 +88,22 @@
                     android:text="▯"
                     android:textColor="#00E5FF"
                     android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <!-- Start / Stop Broadcast (Go Live) -->
+                <TextView
+                    android:id="@+id/pipBtnBroadcast"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="3dp"
+                    android:background="@drawable/btn_pip_broadcast_standby"
+                    android:clickable="true"
+                    android:contentDescription="Start Broadcast"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="▶"
+                    android:textColor="#EF4444"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </HorizontalScrollView>

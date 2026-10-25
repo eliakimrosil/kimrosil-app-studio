@@ -3,6 +3,7 @@ package com.aistudio.omnistreamlivestudio;
 import android.Manifest;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -57,6 +58,8 @@ public class FloatingCamManager {
         default void onCameraDocked(boolean isDocked) {}
         default void onAspectRatioChanged(AspectRatio ratio) {}
         default void onRotationModeChanged(AutoRotateMode mode, int effectiveDegrees) {}
+        default void onRequestStartBroadcast() {}
+        default void onBroadcastToggled(boolean isLive) {}
     }
 
     public enum AutoRotateMode {
@@ -108,6 +111,7 @@ public class FloatingCamManager {
     private TextView tvPipBadge;
     private TextView btnPipFlip;
     private TextView btnPipShape;
+    private TextView btnPipBroadcast;
     private TextureView tvPipCamera;
 
     // Bottom Dismiss Target Overlay (Drag to Close)
@@ -209,6 +213,12 @@ public class FloatingCamManager {
                 if (tvPipBadge != null) {
                     tvPipBadge.setText(isLive ? "● LIVE" : "●");
                     tvPipBadge.setTextColor(isLive ? 0xFFEF4444 : 0xFF00E5FF);
+                }
+                if (btnPipBroadcast != null) {
+                    btnPipBroadcast.setText(isLive ? "■" : "▶");
+                    btnPipBroadcast.setTextColor(isLive ? 0xFFFFFFFF : 0xFFEF4444);
+                    btnPipBroadcast.setBackgroundResource(isLive ? R.drawable.btn_pip_broadcast_live : R.drawable.btn_pip_broadcast_standby);
+                    btnPipBroadcast.setContentDescription(isLive ? "Stop Broadcast" : "Start Broadcast");
                 }
             }
         });
@@ -535,6 +545,28 @@ public class FloatingCamManager {
         resetControlsTimer();
     }
 
+    public void toggleBroadcast() {
+        if (isLiveBroadcasting) {
+            Intent stopIntent = new Intent(appContext, MainActivity.StreamService.class);
+            stopIntent.setAction(MainActivity.StreamService.ACTION_STOP);
+            appContext.startService(stopIntent);
+            setLiveState(false);
+            Toast.makeText(appContext, "Broadcast Stopped", Toast.LENGTH_SHORT).show();
+            if (stateListener != null) {
+                stateListener.onBroadcastToggled(false);
+            }
+        } else {
+            if (stateListener != null) {
+                stateListener.onRequestStartBroadcast();
+            } else {
+                Intent startIntent = new Intent(appContext, MainActivity.class);
+                startIntent.setAction(MainActivity.ACTION_REQUEST_START_STREAM);
+                startIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                appContext.startActivity(startIntent);
+            }
+        }
+    }
+
     private void updateWindowDimensions() {
         if (!isOverlayShowing || overlayView == null || windowParams == null || windowManager == null) return;
 
@@ -610,6 +642,7 @@ public class FloatingCamManager {
         mainHandler.post(() -> {
             if (btnPipFlip != null) btnPipFlip.setVisibility(View.GONE);
             if (btnPipShape != null) btnPipShape.setVisibility(View.GONE);
+            if (btnPipBroadcast != null) btnPipBroadcast.setVisibility(View.GONE);
             if (pipHeaderScroll != null) {
                 pipHeaderScroll.setBackgroundColor(Color.TRANSPARENT);
             }
@@ -623,6 +656,7 @@ public class FloatingCamManager {
         mainHandler.post(() -> {
             if (btnPipFlip != null) btnPipFlip.setVisibility(View.VISIBLE);
             if (btnPipShape != null) btnPipShape.setVisibility(View.VISIBLE);
+            if (btnPipBroadcast != null) btnPipBroadcast.setVisibility(View.VISIBLE);
             if (pipHeaderScroll != null) {
                 pipHeaderScroll.setBackgroundResource(R.drawable.bg_floating_cam_header);
             }
@@ -684,10 +718,18 @@ public class FloatingCamManager {
         tvPipBadge = overlayView.findViewById(R.id.pipBadge);
         btnPipFlip = overlayView.findViewById(R.id.pipBtnFlip);
         btnPipShape = overlayView.findViewById(R.id.pipBtnShape);
+        btnPipBroadcast = overlayView.findViewById(R.id.pipBtnBroadcast);
         tvPipCamera = overlayView.findViewById(R.id.pipCameraView);
 
         if (btnPipShape != null) {
             btnPipShape.setText(currentAspectRatio.icon);
+        }
+
+        if (btnPipBroadcast != null) {
+            btnPipBroadcast.setText(isLiveBroadcasting ? "■" : "▶");
+            btnPipBroadcast.setTextColor(isLiveBroadcasting ? 0xFFFFFFFF : 0xFFEF4444);
+            btnPipBroadcast.setBackgroundResource(isLiveBroadcasting ? R.drawable.btn_pip_broadcast_live : R.drawable.btn_pip_broadcast_standby);
+            btnPipBroadcast.setContentDescription(isLiveBroadcasting ? "Stop Broadcast" : "Start Broadcast");
         }
 
         DisplayMetrics metrics = getRealDisplayMetrics();
@@ -728,6 +770,14 @@ public class FloatingCamManager {
             btnPipShape.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 cycleAspectRatio();
+            });
+        }
+
+        if (btnPipBroadcast != null) {
+            btnPipBroadcast.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                toggleBroadcast();
+                resetControlsTimer();
             });
         }
 
