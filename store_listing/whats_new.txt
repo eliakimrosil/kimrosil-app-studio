@@ -1,2 +1,2 @@
-Release v1.7.0 - KR Live Studio
-Smart Floating Cam Auto-Rotate for live mobile gaming
+Release v1.7.2 - KR Live Studio
+Smart Floating Cam auto-rotation angle compensation with landscape 4:3 framing and refined facecam controls

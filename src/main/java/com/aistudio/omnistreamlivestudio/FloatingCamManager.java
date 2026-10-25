@@ -286,6 +286,8 @@ public class FloatingCamManager {
 
     public void flipCamera() {
         isFrontCamera = !isFrontCamera;
+        currentRotationDegrees = getEffectiveRotationDegrees();
+        updateRotateButtonUi();
         if (isOverlayShowing && tvPipCamera != null && tvPipCamera.isAvailable()) {
             if (cameraHandler != null) {
                 cameraHandler.post(() -> {
@@ -352,12 +354,26 @@ public class FloatingCamManager {
             return computeAutoRotationDegrees();
         }
         switch (autoRotateMode) {
-            case LOCK_90: return 90;
-            case LOCK_180: return 180;
-            case LOCK_270: return 270;
+            case LOCK_90: return computeCompensationDegrees(90);
+            case LOCK_180: return computeCompensationDegrees(180);
+            case LOCK_270: return computeCompensationDegrees(270);
             case LOCK_0:
             default:
-                return 0;
+                return computeCompensationDegrees(0);
+        }
+    }
+
+    public int computeCompensationDegrees(int displayDegrees) {
+        if (isFrontCamera) {
+            // Front camera on Android with horizontal selfie mirror:
+            // display 0° -> 0°
+            // display 90° (Landscape Left) -> 270°
+            // display 180° (Inverted Portrait) -> 180°
+            // display 270° (Landscape Right) -> 90°
+            return (360 - (displayDegrees % 360)) % 360;
+        } else {
+            // Back camera (no horizontal mirror)
+            return displayDegrees % 360;
         }
     }
 
@@ -377,22 +393,7 @@ public class FloatingCamManager {
                 displayDegrees = 0; break;
         }
 
-        // If physical sensor detected an inverted landscape (e.g. gamer flipped phone 180° for charger clearance),
-        // physical quadrant takes precedence between 90° and 270°
-        if ((displayDegrees == 90 || displayDegrees == 270) &&
-            (currentPhysicalQuadrant == 90 || currentPhysicalQuadrant == 270)) {
-            return currentPhysicalQuadrant;
-        }
-
-        if (displayDegrees != 0) {
-            return displayDegrees;
-        }
-
-        if (currentPhysicalQuadrant == 180) {
-            return 180;
-        }
-
-        return displayDegrees;
+        return computeCompensationDegrees(displayDegrees);
     }
 
     private void startOrientationMonitoring() {
@@ -528,13 +529,15 @@ public class FloatingCamManager {
         lastScreenWidth = newScreenWidth;
         lastScreenHeight = newScreenHeight;
 
-        clampPosition(windowParams);
-
-        try {
-            windowManager.updateViewLayout(overlayView, windowParams);
-        } catch (Exception ignored) {}
-
-        applyShapeOutline();
+        if (!isDocked) {
+            updateWindowDimensions();
+        } else {
+            clampPosition(windowParams);
+            try {
+                windowManager.updateViewLayout(overlayView, windowParams);
+            } catch (Exception ignored) {}
+            applyShapeOutline();
+        }
     }
 
     private void updateRotateButtonUi() {
@@ -588,7 +591,10 @@ public class FloatingCamManager {
     private void updateWindowDimensions() {
         if (!isOverlayShowing || overlayView == null || windowParams == null || windowManager == null || isDocked) return;
 
-        float density = appContext.getResources().getDisplayMetrics().density;
+        DisplayMetrics metrics = getRealDisplayMetrics();
+        float density = metrics.density;
+        boolean isScreenLandscape = metrics.widthPixels > metrics.heightPixels;
+
         int widthPx = (int) (currentWidthDp * density);
         int heightPx;
 
@@ -602,7 +608,13 @@ public class FloatingCamManager {
                 break;
             case PORTRAIT_3_4:
             default:
-                heightPx = (int) (currentWidthDp * (4f / 3f) * density);
+                if (isScreenLandscape) {
+                    // Match landscape screen orientation: 4:3 widescreen card
+                    heightPx = (int) (currentWidthDp / (4f / 3f) * density);
+                } else {
+                    // Match portrait screen orientation: 3:4 portrait card
+                    heightPx = (int) (currentWidthDp * (4f / 3f) * density);
+                }
                 break;
         }
 
