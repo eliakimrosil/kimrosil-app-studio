@@ -1,2 +1,2 @@
-Release v1.10.2 - KR Live Studio
-Remove offline references and refine streaming studio branding
+Release v1.10.3 - KR Live Studio
+Upgrade targetSdkVersion to 36 (Android 16) for Google Play Store compliance
