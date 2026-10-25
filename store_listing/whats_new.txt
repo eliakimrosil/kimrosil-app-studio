@@ -1,2 +1,2 @@
-Release v1.7.5 - KR Live Studio
-Fix rear camera auto-rotation angle alignment across portrait and landscape gaming orientations
+Release v1.7.6 - KR Live Studio
+Removed floating camera dock/hide button to eliminate accidental minimizing during live mobile gaming

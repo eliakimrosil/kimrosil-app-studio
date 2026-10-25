@@ -90,23 +90,7 @@
                     android:textSize="11sp"
                     android:textStyle="bold" />
 
-                <!-- Dock / Minimize into Edge Bubble -->
-                <TextView
-                    android:id="@+id/pipBtnDock"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="3dp"
-                    android:background="@drawable/btn_pip_action"
-                    android:clickable="true"
-                    android:contentDescription="Dock to Edge Bubble"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:text="⇲"
-                    android:textColor="#38BDF8"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <!-- Close / Hide Overlay -->
+                <!-- Close / Dismiss Overlay -->
                 <TextView
                     android:id="@+id/pipBtnClose"
                     android:layout_width="24dp"
@@ -124,34 +108,4 @@
             </LinearLayout>
         </HorizontalScrollView>
     </FrameLayout>
-
-    <!-- Docked Bubble Container (Visible only when minimized into bubble) -->
-    <LinearLayout
-        android:id="@+id/pipBubbleContainer"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:background="@drawable/bg_floating_cam_bubble_standby"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/pipBubbleIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="📷"
-            android:textSize="17sp" />
-
-        <TextView
-            android:id="@+id/pipBubbleBadge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:letterSpacing="0.05"
-            android:text="CAM"
-            android:textColor="#00E5FF"
-            android:textSize="8.5sp"
-            android:textStyle="bold" />
-    </LinearLayout>
 </FrameLayout>
