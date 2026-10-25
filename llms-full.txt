@@ -698,7 +698,7 @@ Copyright © 2026 Eliakim Rosil. All Rights Reserved.
 - **Category**: Video & Broadcasting
 - **Tagline**: Broadcast screen, camera & audio directly to RTMP live platforms
 - **Landing Page**: https://apps.kimrosil.com/kim-live-studio/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.7.9-kim-live-studio/kr-live-studio.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.7.10-kim-live-studio/kr-live-studio.apk
 - **Privacy Policy**: https://apps.kimrosil.com/kim-live-studio/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
