@@ -981,7 +981,7 @@ public class MainActivity extends Activity {
                 if (tvPlatformHelperTitle != null) tvPlatformHelperTitle.setText("META • FACEBOOK LIVE PRODUCER");
                 if (btnOpenPlatformPortal != null) btnOpenPlatformPortal.setText("🌐 GET FB KEY");
                 if (tvPlatformHelperHint != null) {
-                    tvPlatformHelperHint.setText("1. Tap [GET FB KEY] to open Facebook Live Producer.\n2. In Stream Settings, toggle ON 'Persistent Stream Key'.\n3. Copy Key -> Return to KR Live Studio to auto-fill!");
+                    tvPlatformHelperHint.setText("1. Tap [GET FB KEY] (In Chrome: tap ⋮ -> check 'Desktop site').\n2. Tap 'Set up live video' -> select 'Streaming software'.\n3. Tap [Copy] key -> return to KR Live Studio to auto-fill!");
                 }
                 break;
             case 0: // YouTube
@@ -1087,7 +1087,7 @@ public class MainActivity extends Activity {
 
             startActivity(intent);
             if (selectedPlatformIndex == 1) {
-                Toast.makeText(this, "Opening Live Producer in Browser. Turn ON 'Persistent Stream Key', copy it, and return!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "In Chrome, tap ⋮ menu -> check 'Desktop site' to view your Stream Key!", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, "Opening " + platformName + "...", Toast.LENGTH_SHORT).show();
             }

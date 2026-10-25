@@ -628,7 +628,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:lineSpacingExtra="2dp"
-                    android:text="Tip: In Live Producer, turn ON 'Persistent Stream Key'. Once saved, your key is permanent and you can Go Live in 1 tap anytime."
+                    android:text="Tip: In Chrome, tap ⋮ -&gt; check 'Desktop site'. Select 'Streaming software' and tap [Copy]. Your key will auto-fill here."
                     android:textColor="@color/studio_text_muted"
                     android:textSize="10sp" />
             </LinearLayout>
