@@ -1,6 +1,2 @@
-Release v1.8.0 - KR Live Studio
-• Rebranded package to com.kimrosil.krlivestudio for official studio release
-• Google Play Store compliance update: removed debuggable flag and tightened queries
-• Android 14+ Foreground Service security hardening with dynamic permission-guarded FGS types
-• Enhanced user privacy: replaced passive clipboard polling with explicit one-tap stream key paste
-• Added multi-platform non-affiliation disclaimers and updated tailored Privacy Policy
+Release v1.9.0 - KR Live Studio
+Rebrand to KR Live Studio, fix Play Store policy & legal compliance, Android 14 FGS security hardening, and AAB bundle support
