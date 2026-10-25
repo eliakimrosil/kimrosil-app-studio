@@ -229,9 +229,9 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Hardware key interceptor configuring Lenovo ZUI power button long-press to launch Google Gemini directly.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-gemini-power-bridge/gemini-power-bridge.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/gemini-power-bridge/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/gemini-power-bridge)
 
-#### [KR Live Studio](https://apps.kimrosil.com/kim-live-studio/) (`kim-live-studio`) • `v1.9.0`
+#### [KR Live Studio](https://apps.kimrosil.com/kim-live-studio/) (`kim-live-studio`) • `v1.9.1`
 > **Utility**: Broadcast screen, camera & audio directly to RTMP live platforms
-> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.9.0-kim-live-studio/kr-live-studio.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/kim-live-studio/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/kim-live-studio)
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.9.1-kim-live-studio/kr-live-studio.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/kim-live-studio/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/kim-live-studio)
 
 #### [PitchGrid](https://apps.kimrosil.com/pitch-grid/) (`pitch-grid`) • `v1.0.0`
 > **Utility**: Studio tone generator, microtonal workbench & real-time audio oscilloscope.
