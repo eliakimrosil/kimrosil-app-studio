@@ -759,7 +759,6 @@ public class FloatingCamManager {
                         initialTouchY = event.getRawY();
                         isMoving = false;
                         downTime = SystemClock.uptimeMillis();
-                        showControls();
                         return true;
 
                     case MotionEvent.ACTION_MOVE:

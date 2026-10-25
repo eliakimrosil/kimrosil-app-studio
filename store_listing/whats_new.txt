@@ -1,2 +1,2 @@
-Release v1.7.6 - KR Live Studio
+Release v1.7.7 - KR Live Studio
 Removed floating camera dock/hide button to eliminate accidental minimizing during live mobile gaming
