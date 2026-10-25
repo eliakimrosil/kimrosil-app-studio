@@ -108,7 +108,6 @@ public class FloatingCamManager {
     private View pipHeaderScroll;
     private View pipHeader;
     private TextView tvPipBadge;
-    private TextView btnPipRotate;
     private TextView btnPipFlip;
     private TextView btnPipShape;
     private TextView btnPipDock;
@@ -287,7 +286,6 @@ public class FloatingCamManager {
     public void flipCamera() {
         isFrontCamera = !isFrontCamera;
         currentRotationDegrees = getEffectiveRotationDegrees();
-        updateRotateButtonUi();
         if (isOverlayShowing && tvPipCamera != null && tvPipCamera.isAvailable()) {
             if (cameraHandler != null) {
                 cameraHandler.post(() -> {
@@ -321,19 +319,10 @@ public class FloatingCamManager {
     public void setAutoRotateMode(AutoRotateMode mode) {
         this.autoRotateMode = mode;
         currentRotationDegrees = getEffectiveRotationDegrees();
-        updateRotateButtonUi();
 
         if (tvPipCamera != null && tvPipCamera.getWidth() > 0 && tvPipCamera.getHeight() > 0) {
             configureTransform(tvPipCamera.getWidth(), tvPipCamera.getHeight());
         }
-
-        String msg;
-        if (mode == AutoRotateMode.AUTO_GAME) {
-            msg = "Facecam: AUTO-ROTATE (Gaming Active)";
-        } else {
-            msg = "Facecam: " + mode.title + " (Locked)";
-        }
-        Toast.makeText(appContext, msg, Toast.LENGTH_SHORT).show();
 
         if (stateListener != null) {
             stateListener.onCameraRotated(currentRotationDegrees);
@@ -350,17 +339,7 @@ public class FloatingCamManager {
     }
 
     public int getEffectiveRotationDegrees() {
-        if (autoRotateMode == AutoRotateMode.AUTO_GAME) {
-            return computeAutoRotationDegrees();
-        }
-        switch (autoRotateMode) {
-            case LOCK_90: return computeCompensationDegrees(90);
-            case LOCK_180: return computeCompensationDegrees(180);
-            case LOCK_270: return computeCompensationDegrees(270);
-            case LOCK_0:
-            default:
-                return computeCompensationDegrees(0);
-        }
+        return computeAutoRotationDegrees();
     }
 
     public int computeCompensationDegrees(int displayDegrees) {
@@ -372,8 +351,12 @@ public class FloatingCamManager {
             // display 270° (Landscape Right) -> 90°
             return (360 - (displayDegrees % 360)) % 360;
         } else {
-            // Back camera (no horizontal mirror)
-            return displayDegrees % 360;
+            // Rear camera (no horizontal mirror):
+            // display 0° (Portrait) -> 270°
+            // display 90° (Landscape Left) -> 0°
+            // display 180° (Inverted Portrait) -> 90°
+            // display 270° (Reverse Landscape) -> 180°
+            return (displayDegrees + 270) % 360;
         }
     }
 
@@ -487,7 +470,6 @@ public class FloatingCamManager {
                 if (tvPipCamera != null && tvPipCamera.getWidth() > 0 && tvPipCamera.getHeight() > 0) {
                     configureTransform(tvPipCamera.getWidth(), tvPipCamera.getHeight());
                 }
-                updateRotateButtonUi();
                 if (stateListener != null) {
                     stateListener.onCameraRotated(currentRotationDegrees);
                     stateListener.onRotationModeChanged(autoRotateMode, currentRotationDegrees);
@@ -538,21 +520,6 @@ public class FloatingCamManager {
             } catch (Exception ignored) {}
             applyShapeOutline();
         }
-    }
-
-    private void updateRotateButtonUi() {
-        if (btnPipRotate == null) return;
-        mainHandler.post(() -> {
-            if (btnPipRotate != null) {
-                if (autoRotateMode == AutoRotateMode.AUTO_GAME) {
-                    btnPipRotate.setText("⟳A");
-                    btnPipRotate.setTextColor(0xFF00E5FF); // Studio Cyan
-                } else {
-                    btnPipRotate.setText(autoRotateMode.badge);
-                    btnPipRotate.setTextColor(0xFFFFFFFF);
-                }
-            }
-        });
     }
 
     private DisplayMetrics getRealDisplayMetrics() {
@@ -755,7 +722,6 @@ public class FloatingCamManager {
         if (!isOverlayShowing || overlayView == null || isDocked) return;
         areControlsVisible = false;
         mainHandler.post(() -> {
-            if (btnPipRotate != null) btnPipRotate.setVisibility(View.GONE);
             if (btnPipFlip != null) btnPipFlip.setVisibility(View.GONE);
             if (btnPipShape != null) btnPipShape.setVisibility(View.GONE);
             if (btnPipDock != null) btnPipDock.setVisibility(View.GONE);
@@ -771,7 +737,6 @@ public class FloatingCamManager {
         areControlsVisible = true;
         mainHandler.removeCallbacks(hideControlsRunnable);
         mainHandler.post(() -> {
-            if (btnPipRotate != null) btnPipRotate.setVisibility(View.VISIBLE);
             if (btnPipFlip != null) btnPipFlip.setVisibility(View.VISIBLE);
             if (btnPipShape != null) btnPipShape.setVisibility(View.VISIBLE);
             if (btnPipDock != null) btnPipDock.setVisibility(View.VISIBLE);
@@ -831,7 +796,6 @@ public class FloatingCamManager {
         pipHeaderScroll = overlayView.findViewById(R.id.pipHeaderScroll);
         pipHeader = overlayView.findViewById(R.id.pipHeader);
         tvPipBadge = overlayView.findViewById(R.id.pipBadge);
-        btnPipRotate = overlayView.findViewById(R.id.pipBtnRotate);
         btnPipFlip = overlayView.findViewById(R.id.pipBtnFlip);
         btnPipShape = overlayView.findViewById(R.id.pipBtnShape);
         btnPipDock = overlayView.findViewById(R.id.pipBtnDock);
@@ -841,7 +805,6 @@ public class FloatingCamManager {
         if (btnPipShape != null) {
             btnPipShape.setText(currentAspectRatio.icon);
         }
-        updateRotateButtonUi();
 
         DisplayMetrics metrics = getRealDisplayMetrics();
         lastScreenWidth = metrics.widthPixels;
@@ -869,14 +832,6 @@ public class FloatingCamManager {
     }
 
     private void setupOverlayListeners() {
-        if (btnPipRotate != null) {
-            btnPipRotate.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                rotateCamera();
-                resetControlsTimer();
-            });
-        }
-
         if (btnPipFlip != null) {
             btnPipFlip.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
@@ -1169,16 +1124,21 @@ public class FloatingCamManager {
 
                 int effectiveRotation = getEffectiveRotationDegrees();
                 currentRotationDegrees = effectiveRotation;
-                boolean isRotated90or270 = (effectiveRotation == 90 || effectiveRotation == 270);
-                float naturalBufW = previewSize.getHeight(); // e.g. 480
-                float naturalBufH = previewSize.getWidth();  // e.g. 640
 
+                boolean isScreenLandscape = viewWidth > viewHeight;
+                int bufMax = Math.max(previewSize.getWidth(), previewSize.getHeight()); // e.g. 640
+                int bufMin = Math.min(previewSize.getWidth(), previewSize.getHeight()); // e.g. 480
+
+                // Base buffer geometry centered in view
+                float naturalBufW = bufMin;
+                float naturalBufH = bufMax;
                 RectF bufferRect = new RectF(0, 0, naturalBufW, naturalBufH);
                 bufferRect.offset(centerX - bufferRect.centerX(), centerY - bufferRect.centerY());
                 matrix.setRectToRect(viewRect, bufferRect, Matrix.ScaleToFit.FILL);
 
-                float targetBufW = isRotated90or270 ? naturalBufH : naturalBufW;
-                float targetBufH = isRotated90or270 ? naturalBufW : naturalBufH;
+                // Target upright dimensions matching current screen framing
+                float targetBufW = isScreenLandscape ? bufMax : bufMin;
+                float targetBufH = isScreenLandscape ? bufMin : bufMax;
 
                 float scale = Math.max(
                         (float) viewWidth / targetBufW,

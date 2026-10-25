@@ -163,7 +163,6 @@ public class MainActivity extends Activity {
 
     private Switch switchFacecam;
     private Button btnFlipCamera;
-    private Button btnRotateCamera;
     private TextView tvOverlayStatus;
 
     // Telemetry Display, Hardware Health & VU Meter
@@ -270,33 +269,9 @@ public class MainActivity extends Activity {
 
             @Override
             public void onCameraFlipped(boolean isFront) {
-                btnFlipCamera.setText(isFront ? "FLIP: FRONT" : "FLIP: REAR");
-            }
-
-            @Override
-            public void onCameraRotated(int rotationDegrees) {
-                updateRotateButtonLabel();
-            }
-
-            @Override
-            public void onRotationModeChanged(FloatingCamManager.AutoRotateMode mode, int effectiveDegrees) {
-                updateRotateButtonLabel();
-                saveCurrentPreferences();
+                btnFlipCamera.setText(isFront ? "FLIP: REAR" : "FLIP: FRONT");
             }
         });
-    }
-
-    private void updateRotateButtonLabel() {
-        if (btnRotateCamera == null) return;
-        FloatingCamManager.AutoRotateMode mode = FloatingCamManager.getInstance(this).getAutoRotateMode();
-        if (mode == FloatingCamManager.AutoRotateMode.AUTO_GAME) {
-            int eff = FloatingCamManager.getInstance(this).getEffectiveRotationDegrees();
-            btnRotateCamera.setText("ROT: AUTO (" + eff + "°)");
-            btnRotateCamera.setTextColor(getColor(R.color.studio_cyan));
-        } else {
-            btnRotateCamera.setText("ROT: " + mode.badge);
-            btnRotateCamera.setTextColor(Color.WHITE);
-        }
     }
 
     private void startFacecamService() {
@@ -381,7 +356,6 @@ public class MainActivity extends Activity {
         tvMicStatusHint = findViewById(R.id.tvMicStatusHint);
         switchFacecam = findViewById(R.id.switchFacecam);
         btnFlipCamera = findViewById(R.id.btnFlipCamera);
-        btnRotateCamera = findViewById(R.id.btnRotateCamera);
         tvOverlayStatus = findViewById(R.id.tvOverlayStatus);
 
         ivLiveBeacon = findViewById(R.id.ivLiveBeacon);
@@ -480,13 +454,6 @@ public class MainActivity extends Activity {
         switchMicAudio.setChecked(micEnabled);
         switchFacecam.setChecked(facecamEnabled);
 
-        String savedRotateMode = prefs.getString("pref_facecam_rotate_mode", FloatingCamManager.AutoRotateMode.AUTO_GAME.name());
-        try {
-            FloatingCamManager.AutoRotateMode mode = FloatingCamManager.AutoRotateMode.valueOf(savedRotateMode);
-            FloatingCamManager.getInstance(this).setAutoRotateMode(mode);
-        } catch (Exception ignored) {}
-        updateRotateButtonLabel();
-
         if (facecamEnabled && checkOverlayPermission()) {
             FloatingCamManager.getInstance(this).showOverlay();
             startFacecamService();
@@ -513,7 +480,6 @@ public class MainActivity extends Activity {
         editor.putInt("pref_audio_mode", selectedAudioMode);
         editor.putBoolean("pref_mic_enabled", switchMicAudio.isChecked());
         editor.putBoolean("pref_facecam_enabled", switchFacecam.isChecked());
-        editor.putString("pref_facecam_rotate_mode", FloatingCamManager.getInstance(this).getAutoRotateMode().name());
         editor.apply();
     }
 
@@ -679,15 +645,6 @@ public class MainActivity extends Activity {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             FloatingCamManager.getInstance(this).flipCamera();
         });
-
-        if (btnRotateCamera != null) {
-            btnRotateCamera.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                FloatingCamManager.getInstance(this).cycleAutoRotateMode();
-                updateRotateButtonLabel();
-                saveCurrentPreferences();
-            });
-        }
 
         if (btnPrivacyShield != null) {
             btnPrivacyShield.setOnClickListener(v -> {
@@ -1262,14 +1219,12 @@ public class MainActivity extends Activity {
             updateOrientationButtons();
             updateBitrateHint();
         }
-        updateRotateButtonLabel();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         updateOverlayStatus();
-        updateRotateButtonLabel();
         uiHandler.post(telemetryRunnable);
     }
 

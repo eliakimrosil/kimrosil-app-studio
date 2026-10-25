@@ -1051,42 +1051,19 @@
                         android:checked="false" />
                 </LinearLayout>
 
-                <LinearLayout
+                <Button
+                    android:id="@+id/btnFlipCamera"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="36dp"
                     android:layout_marginTop="10dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btnFlipCamera"
-                        android:layout_width="0dp"
-                        android:layout_height="34dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/btn_stepper"
-                        android:minHeight="0dp"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="8dp"
-                        android:text="FLIP CAMERA"
-                        android:textColor="@color/studio_cyan"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/btnRotateCamera"
-                        android:layout_width="0dp"
-                        android:layout_height="34dp"
-                        android:layout_weight="1.6"
-                        android:background="@drawable/btn_stepper"
-                        android:minHeight="0dp"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="8dp"
-                        android:text="ROT: AUTO (0°)"
-                        android:textColor="@color/studio_cyan"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                    android:background="@drawable/btn_stepper"
+                    android:minHeight="0dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="FLIP CAMERA (REAR / FRONT)"
+                    android:textColor="@color/studio_cyan"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
 

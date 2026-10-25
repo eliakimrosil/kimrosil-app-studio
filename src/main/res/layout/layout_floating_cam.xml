@@ -59,27 +59,11 @@
                     android:layout_weight="1"
                     android:minWidth="6dp" />
 
-                <!-- Rotate Floating Camera (Auto-Game / 90° / 180° / 270° / 0°) -->
-                <TextView
-                    android:id="@+id/pipBtnRotate"
-                    android:layout_width="26dp"
-                    android:layout_height="24dp"
-                    android:background="@drawable/btn_pip_action"
-                    android:clickable="true"
-                    android:contentDescription="Rotate Camera Mode"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:text="⟳A"
-                    android:textColor="#00E5FF"
-                    android:textSize="11sp"
-                    android:textStyle="bold" />
-
                 <!-- Flip Front/Back Camera -->
                 <TextView
                     android:id="@+id/pipBtnFlip"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginStart="3dp"
                     android:background="@drawable/btn_pip_action"
                     android:clickable="true"
                     android:contentDescription="Flip Camera"
