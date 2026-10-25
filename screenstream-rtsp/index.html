@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    <title>ScreenStream RTSP Broadcaster – Offline Android App | KimRosil Studio</title>
-    <meta name="description" content="Stream your device screen in real time over local network via low-latency RTSP. Download the 100% offline, zero-tracking Android APK free from KimRosil App Studio.">
+    <title>ScreenStream RTSP Broadcaster – Direct RTMP Broadcast App | KimRosil Studio</title>
+    <meta name="description" content="Stream your device screen in real time over local network via low-latency RTSP. Direct live streaming encoder from KimRosil App Studio.">
     <meta name="keywords" content="ScreenStream RTSP Broadcaster, offline audio tool, android broadcast telemetry, system monitor apk, KimRosil App Studio">
     <meta name="author" content="KimRosil App Studio">
     <meta name="application-name" content="ScreenStream RTSP Broadcaster">
@@ -19,8 +19,8 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://apps.kimrosil.com/screenstream-rtsp/">
     <meta property="og:site_name" content="KimRosil App Studio">
-    <meta property="og:title" content="ScreenStream RTSP Broadcaster – Offline Android App | KimRosil Studio">
-    <meta property="og:description" content="Stream your device screen in real time over local network via low-latency RTSP. Download the 100% offline, zero-tracking Android APK free from KimRosil App Studio.">
+    <meta property="og:title" content="ScreenStream RTSP Broadcaster – Direct RTMP Broadcast App | KimRosil Studio">
+    <meta property="og:description" content="Stream your device screen in real time over local network via low-latency RTSP. Direct live streaming encoder from KimRosil App Studio.">
     <meta property="og:image" content="https://apps.kimrosil.com/assets/icons/screenstream-rtsp.png">
     <meta property="og:image:secure_url" content="https://apps.kimrosil.com/assets/icons/screenstream-rtsp.png">
     <meta property="og:image:type" content="image/png">
@@ -31,8 +31,8 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:url" content="https://apps.kimrosil.com/screenstream-rtsp/">
-    <meta name="twitter:title" content="ScreenStream RTSP Broadcaster – Offline Android App | KimRosil Studio">
-    <meta name="twitter:description" content="Stream your device screen in real time over local network via low-latency RTSP. Download the 100% offline, zero-tracking Android APK free from KimRosil App Studio.">
+    <meta name="twitter:title" content="ScreenStream RTSP Broadcaster – Direct RTMP Broadcast App | KimRosil Studio">
+    <meta name="twitter:description" content="Stream your device screen in real time over local network via low-latency RTSP. Direct live streaming encoder from KimRosil App Studio.">
     <meta name="twitter:image" content="https://apps.kimrosil.com/assets/icons/screenstream-rtsp.png">
     <meta name="twitter:image:alt" content="ScreenStream RTSP Broadcaster App Icon">
 
@@ -74,11 +74,11 @@
         "bestRating": "5",
         "worstRating": "1"
     },
-    "permissions": "android.permission.INTERNET (Not Requested - 100% Offline)",
+    "permissions": "android.permission.INTERNET, android.permission.RECORD_AUDIO, android.permission.CAMERA, android.permission.FOREGROUND_SERVICE",
     "featureList": [
-        "100% Offline Functionality (No Internet Required)",
-        "Zero Telemetry, No Analytics, No Advertising SDKs",
-        "No Account Registration or Cloud Tethering",
+        "Direct Hardware RTMP/RTMPS Live Streaming",
+        "Zero Intermediary Cloud Relays & Direct Ingest",
+        "No Account Registration Required",
         "Pure Native Android Framework UI (Java / Kotlin + XML)"
     ]
 }
@@ -117,18 +117,18 @@
     "mainEntity": [
         {
             "@type": "Question",
-            "name": "Is ScreenStream RTSP Broadcaster completely offline?",
+            "name": "How does ScreenStream RTSP Broadcaster handle live streaming?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Yes. ScreenStream RTSP Broadcaster operates entirely locally on your Android device without requiring internet connectivity, external servers, or cloud synchronization."
+                "text": "ScreenStream RTSP Broadcaster connects directly to your specified RTMP or RTMPS ingest server using hardware MediaCodec encoding. Streams transmit directly to your endpoint without passing through intermediary cloud relays."
             }
         },
         {
             "@type": "Question",
-            "name": "Does ScreenStream RTSP Broadcaster collect telemetry or display ads?",
+            "name": "Does ScreenStream RTSP Broadcaster track or harvest personal data?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "No. ScreenStream RTSP Broadcaster is built without tracking SDKs, advertising libraries, or telemetry frameworks. All calculation state and user logs stay strictly within on-device sandboxed storage."
+                "text": "No. ScreenStream RTSP Broadcaster does not harvest personal information, passwords, or stream keys. All stream profiles remain strictly on-device in sandboxed storage."
             }
         },
         {
@@ -435,7 +435,7 @@
 
         <header class="app-header">
             <div class="icon-frame">
-                <img src="../assets/icons/screenstream-rtsp.svg" width="76" height="76" alt="ScreenStream RTSP Broadcaster - 100% Offline Android App Icon" onerror="this.src='../assets/icon.svg'">
+                <img src="../assets/icons/screenstream-rtsp.svg" width="76" height="76" alt="ScreenStream RTSP Broadcaster - Live Broadcasting Android App Icon" onerror="this.src='../assets/icon.svg'">
             </div>
             <div class="app-titles">
                 <h1>ScreenStream RTSP Broadcaster</h1>
@@ -445,7 +445,7 @@
 
         <div class="badge-row">
             <span class="badge">✓ Google Play Data Safety Certified</span>
-            <span class="badge badge-domain">✓ 100% Offline Native</span>
+            <span class="badge badge-domain">✓ Direct RTMP Ingest</span>
             <span class="badge">✓ v1.0.0</span>
         </div>
 
@@ -468,8 +468,8 @@
             <div class="specs-grid">
                 <div class="spec-item"><span class="spec-label">Operating System</span><span class="spec-val">Android 7.0+ (API 24+)</span></div>
                 <div class="spec-item"><span class="spec-label">Architecture</span><span class="spec-val">Pure Native (Java/Kotlin + XML)</span></div>
-                <div class="spec-item"><span class="spec-label">Network Requirement</span><span class="spec-val">0 KB / 100% Offline</span></div>
-                <div class="spec-item"><span class="spec-label">Data Collection</span><span class="spec-val">Zero Telemetry / No SDKs</span></div>
+                <div class="spec-item"><span class="spec-label">Network Requirement</span><span class="spec-val">Direct RTMP / RTMPS Socket</span></div>
+                <div class="spec-item"><span class="spec-label">Data Privacy</span><span class="spec-val">Direct Socket / Zero Cloud Relay</span></div>
                 <div class="spec-item"><span class="spec-label">Binary Footprint</span><span class="spec-val">< 5 MB</span></div>
                 <div class="spec-item"><span class="spec-label">Distribution</span><span class="spec-val">100% Free &bull; Open CDN</span></div>
             </div>
@@ -478,12 +478,12 @@
         <section class="app-faq-card">
             <h2>Frequently Asked Questions</h2>
             <details class="faq-accordion" open>
-                <summary>Is ScreenStream RTSP Broadcaster completely offline?</summary>
-                <p>Yes. ScreenStream RTSP Broadcaster operates entirely locally on your Android device without requiring internet connectivity or external server calls.</p>
+                <summary>How does ScreenStream RTSP Broadcaster handle live streaming?</summary>
+                <p>ScreenStream RTSP Broadcaster connects directly to your specified RTMP or RTMPS ingest server using hardware MediaCodec encoding. Streams transmit directly to your endpoint without passing through intermediary cloud relays.</p>
             </details>
             <details class="faq-accordion">
-                <summary>Does this utility collect any telemetry or personal data?</summary>
-                <p>No. KimRosil App Studio adheres to a strict zero-telemetry standard. No analytics SDKs, advertising frameworks, or background trackers are included in the binary.</p>
+                <summary>Does this utility track or harvest personal stream data?</summary>
+                <p>No. Stream credentials, stream keys, and broadcast packets remain strictly between your device and your chosen destination server. No personal tracking or telemetry is harvested.</p>
             </details>
             <details class="faq-accordion">
                 <summary>How do I install the direct APK?</summary>
@@ -519,7 +519,7 @@
         </section>
 
         <footer class="footer">
-            <p>100% Offline Freeware &bull; Zero Trackers &bull; Pure Native Android</p>
+            <p>Direct Ingest Freeware &bull; Privacy-First &bull; Pure Native Android</p>
             <p><a href="../index.html">← View All Applications</a> &bull; <a href="../privacy.html">Developer Privacy Policy</a> &bull; <a href="https://github.com/eliakimrosil/kimrosil-app-studio">GitHub Repository</a></p>
         </footer>
     </div>
