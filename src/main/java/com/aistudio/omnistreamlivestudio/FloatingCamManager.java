@@ -10,6 +10,7 @@ import android.graphics.Outline;
 import android.graphics.PixelFormat;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
+import android.hardware.SensorManager;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
@@ -17,6 +18,7 @@ import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.params.StreamConfigurationMap;
+import android.hardware.display.DisplayManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -26,10 +28,12 @@ import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Size;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.OrientationEventListener;
 import android.view.ScaleGestureDetector;
 import android.view.Surface;
 import android.view.TextureView;
@@ -52,6 +56,23 @@ public class FloatingCamManager {
         default void onCameraRotated(int rotationDegrees) {}
         default void onCameraDocked(boolean isDocked) {}
         default void onAspectRatioChanged(AspectRatio ratio) {}
+        default void onRotationModeChanged(AutoRotateMode mode, int effectiveDegrees) {}
+    }
+
+    public enum AutoRotateMode {
+        AUTO_GAME("Auto (Gaming)", "⟳A"),
+        LOCK_0("0° Portrait", "0°"),
+        LOCK_90("90° Landscape", "90°"),
+        LOCK_180("180° Inverted", "180°"),
+        LOCK_270("270° Rev. Land", "270°");
+
+        public final String title;
+        public final String badge;
+
+        AutoRotateMode(String title, String badge) {
+            this.title = title;
+            this.badge = badge;
+        }
     }
 
     public enum AspectRatio {
@@ -122,8 +143,18 @@ public class FloatingCamManager {
     private boolean isOverlayShowing = false;
     private boolean isLiveBroadcasting = false;
 
-    // Camera Rotation: 0 = 0° (Portrait), 90 = 90° (Landscape), 180 = 180° (Inverted), 270 = 270° (Rev. Landscape)
+    // Camera Rotation & Auto-Rotate Engine for Live Gaming
+    private AutoRotateMode autoRotateMode = AutoRotateMode.AUTO_GAME;
     private int currentRotationDegrees = 0;
+    private DisplayManager displayManager;
+    private DisplayManager.DisplayListener displayListener;
+    private OrientationEventListener orientationEventListener;
+    private int currentPhysicalQuadrant = 0; // 0, 90, 180, 270
+    private int pendingPhysicalQuadrant = 0;
+    private long pendingQuadrantTimestamp = 0;
+    private static final long ORIENTATION_DEBOUNCE_MS = 350; // Stable anti-gyro recoil filter
+    private int lastScreenWidth = 0;
+    private int lastScreenHeight = 0;
 
     private ScaleGestureDetector scaleGestureDetector;
     private StateListener stateListener;
@@ -212,6 +243,7 @@ public class FloatingCamManager {
                 isDocked = false;
                 setLiveState(isLiveBroadcasting);
                 showControls();
+                startOrientationMonitoring();
 
                 startCameraThread();
                 if (tvPipCamera.isAvailable()) {
@@ -232,6 +264,7 @@ public class FloatingCamManager {
 
         mainHandler.post(() -> {
             mainHandler.removeCallbacks(hideControlsRunnable);
+            stopOrientationMonitoring();
             closeCamera();
             stopCameraThread();
 
@@ -274,19 +307,259 @@ public class FloatingCamManager {
     }
 
     public void rotateCamera() {
-        currentRotationDegrees = (currentRotationDegrees + 90) % 360;
+        cycleAutoRotateMode();
+    }
+
+    public void cycleAutoRotateMode() {
+        AutoRotateMode[] modes = AutoRotateMode.values();
+        int nextIndex = (autoRotateMode.ordinal() + 1) % modes.length;
+        setAutoRotateMode(modes[nextIndex]);
+    }
+
+    public void setAutoRotateMode(AutoRotateMode mode) {
+        this.autoRotateMode = mode;
+        currentRotationDegrees = getEffectiveRotationDegrees();
+        updateRotateButtonUi();
+
         if (tvPipCamera != null && tvPipCamera.getWidth() > 0 && tvPipCamera.getHeight() > 0) {
             configureTransform(tvPipCamera.getWidth(), tvPipCamera.getHeight());
         }
-        String rotLabel = currentRotationDegrees + "°";
-        Toast.makeText(appContext, "Floating Cam: " + rotLabel, Toast.LENGTH_SHORT).show();
+
+        String msg;
+        if (mode == AutoRotateMode.AUTO_GAME) {
+            msg = "Facecam: AUTO-ROTATE (Gaming Active)";
+        } else {
+            msg = "Facecam: " + mode.title + " (Locked)";
+        }
+        Toast.makeText(appContext, msg, Toast.LENGTH_SHORT).show();
+
         if (stateListener != null) {
-            mainHandler.post(() -> stateListener.onCameraRotated(currentRotationDegrees));
+            stateListener.onCameraRotated(currentRotationDegrees);
+            stateListener.onRotationModeChanged(autoRotateMode, currentRotationDegrees);
         }
     }
 
+    public AutoRotateMode getAutoRotateMode() {
+        return autoRotateMode;
+    }
+
     public int getCameraRotationDegrees() {
-        return currentRotationDegrees;
+        return getEffectiveRotationDegrees();
+    }
+
+    public int getEffectiveRotationDegrees() {
+        if (autoRotateMode == AutoRotateMode.AUTO_GAME) {
+            return computeAutoRotationDegrees();
+        }
+        switch (autoRotateMode) {
+            case LOCK_90: return 90;
+            case LOCK_180: return 180;
+            case LOCK_270: return 270;
+            case LOCK_0:
+            default:
+                return 0;
+        }
+    }
+
+    public int computeAutoRotationDegrees() {
+        int displayRotation = Surface.ROTATION_0;
+        if (windowManager != null && windowManager.getDefaultDisplay() != null) {
+            displayRotation = windowManager.getDefaultDisplay().getRotation();
+        }
+
+        int displayDegrees = 0;
+        switch (displayRotation) {
+            case Surface.ROTATION_90:  displayDegrees = 90; break;
+            case Surface.ROTATION_180: displayDegrees = 180; break;
+            case Surface.ROTATION_270: displayDegrees = 270; break;
+            case Surface.ROTATION_0:
+            default:
+                displayDegrees = 0; break;
+        }
+
+        // If physical sensor detected an inverted landscape (e.g. gamer flipped phone 180° for charger clearance),
+        // physical quadrant takes precedence between 90° and 270°
+        if ((displayDegrees == 90 || displayDegrees == 270) &&
+            (currentPhysicalQuadrant == 90 || currentPhysicalQuadrant == 270)) {
+            return currentPhysicalQuadrant;
+        }
+
+        if (displayDegrees != 0) {
+            return displayDegrees;
+        }
+
+        if (currentPhysicalQuadrant == 180) {
+            return 180;
+        }
+
+        return displayDegrees;
+    }
+
+    private void startOrientationMonitoring() {
+        if (displayManager == null) {
+            displayManager = (DisplayManager) appContext.getSystemService(Context.DISPLAY_SERVICE);
+        }
+        if (displayManager != null && displayListener == null) {
+            displayListener = new DisplayManager.DisplayListener() {
+                @Override
+                public void onDisplayAdded(int displayId) {}
+
+                @Override
+                public void onDisplayRemoved(int displayId) {}
+
+                @Override
+                public void onDisplayChanged(int displayId) {
+                    if (displayId == Display.DEFAULT_DISPLAY) {
+                        onOrientationOrDisplayChanged();
+                    }
+                }
+            };
+            displayManager.registerDisplayListener(displayListener, mainHandler);
+        }
+
+        if (orientationEventListener == null) {
+            orientationEventListener = new OrientationEventListener(appContext, SensorManager.SENSOR_DELAY_UI) {
+                @Override
+                public void onOrientationChanged(int orientation) {
+                    if (orientation == ORIENTATION_UNKNOWN) return;
+                    handlePhysicalOrientation(orientation);
+                }
+            };
+        }
+        if (orientationEventListener.canDetectOrientation()) {
+            orientationEventListener.enable();
+        }
+    }
+
+    private void stopOrientationMonitoring() {
+        if (displayManager != null && displayListener != null) {
+            try {
+                displayManager.unregisterDisplayListener(displayListener);
+            } catch (Exception ignored) {}
+            displayListener = null;
+        }
+        if (orientationEventListener != null) {
+            try {
+                orientationEventListener.disable();
+            } catch (Exception ignored) {}
+            orientationEventListener = null;
+        }
+    }
+
+    private void handlePhysicalOrientation(int rawDegrees) {
+        // Hysteresis deadband filter (±15° deadband) to eliminate gyro-aiming recoil jitter
+        int candidate = -1;
+        if (rawDegrees >= 345 || rawDegrees <= 15) {
+            candidate = 0;
+        } else if (rawDegrees >= 75 && rawDegrees <= 105) {
+            candidate = 270;
+        } else if (rawDegrees >= 165 && rawDegrees <= 195) {
+            candidate = 180;
+        } else if (rawDegrees >= 255 && rawDegrees <= 285) {
+            candidate = 90;
+        }
+
+        if (candidate == -1) return;
+
+        long now = SystemClock.uptimeMillis();
+        if (candidate != pendingPhysicalQuadrant) {
+            pendingPhysicalQuadrant = candidate;
+            pendingQuadrantTimestamp = now;
+        } else if (now - pendingQuadrantTimestamp >= ORIENTATION_DEBOUNCE_MS) {
+            if (currentPhysicalQuadrant != candidate) {
+                currentPhysicalQuadrant = candidate;
+                if (autoRotateMode == AutoRotateMode.AUTO_GAME) {
+                    onOrientationOrDisplayChanged();
+                }
+            }
+        }
+    }
+
+    private void onOrientationOrDisplayChanged() {
+        if (!isOverlayShowing || overlayView == null) return;
+
+        mainHandler.post(() -> {
+            realignWindowForOrientation();
+            int newEffective = getEffectiveRotationDegrees();
+            if (newEffective != currentRotationDegrees) {
+                currentRotationDegrees = newEffective;
+                if (tvPipCamera != null && tvPipCamera.getWidth() > 0 && tvPipCamera.getHeight() > 0) {
+                    configureTransform(tvPipCamera.getWidth(), tvPipCamera.getHeight());
+                }
+                updateRotateButtonUi();
+                if (stateListener != null) {
+                    stateListener.onCameraRotated(currentRotationDegrees);
+                    stateListener.onRotationModeChanged(autoRotateMode, currentRotationDegrees);
+                }
+            }
+        });
+    }
+
+    private void realignWindowForOrientation() {
+        if (overlayView == null || windowParams == null || windowManager == null || !isOverlayShowing) return;
+
+        DisplayMetrics metrics = getRealDisplayMetrics();
+        int newScreenWidth = metrics.widthPixels;
+        int newScreenHeight = metrics.heightPixels;
+
+        if (lastScreenWidth > 0 && lastScreenHeight > 0 &&
+            (lastScreenWidth != newScreenWidth || lastScreenHeight != newScreenHeight)) {
+
+            float density = metrics.density;
+            int marginPx = isDocked ? (int) (4 * density) : (int) (8 * density);
+
+            // Maintain relative corner anchor across rotation transition
+            boolean wasAnchoredRight = (windowParams.x + windowParams.width / 2) > (lastScreenWidth / 2);
+            boolean wasAnchoredBottom = (windowParams.y + windowParams.height / 2) > (lastScreenHeight / 2);
+
+            if (wasAnchoredRight) {
+                windowParams.x = newScreenWidth - windowParams.width - marginPx;
+            } else {
+                windowParams.x = marginPx;
+            }
+
+            if (wasAnchoredBottom) {
+                windowParams.y = newScreenHeight - windowParams.height - marginPx - (int) (30 * density);
+            } else {
+                windowParams.y = (int) (70 * density);
+            }
+        }
+
+        lastScreenWidth = newScreenWidth;
+        lastScreenHeight = newScreenHeight;
+
+        clampPosition(windowParams);
+
+        try {
+            windowManager.updateViewLayout(overlayView, windowParams);
+        } catch (Exception ignored) {}
+
+        applyShapeOutline();
+    }
+
+    private void updateRotateButtonUi() {
+        if (btnPipRotate == null) return;
+        mainHandler.post(() -> {
+            if (btnPipRotate != null) {
+                if (autoRotateMode == AutoRotateMode.AUTO_GAME) {
+                    btnPipRotate.setText("⟳A");
+                    btnPipRotate.setTextColor(0xFF00E5FF); // Studio Cyan
+                } else {
+                    btnPipRotate.setText(autoRotateMode.badge);
+                    btnPipRotate.setTextColor(0xFFFFFFFF);
+                }
+            }
+        });
+    }
+
+    private DisplayMetrics getRealDisplayMetrics() {
+        DisplayMetrics metrics = new DisplayMetrics();
+        if (windowManager != null && windowManager.getDefaultDisplay() != null) {
+            windowManager.getDefaultDisplay().getRealMetrics(metrics);
+        } else {
+            metrics = appContext.getResources().getDisplayMetrics();
+        }
+        return metrics;
     }
 
     public void toggleShape() {
@@ -355,7 +628,7 @@ public class FloatingCamManager {
         savedWidthPx = windowParams.width;
         savedHeightPx = windowParams.height;
 
-        DisplayMetrics metrics = appContext.getResources().getDisplayMetrics();
+        DisplayMetrics metrics = getRealDisplayMetrics();
         float density = metrics.density;
         int bubbleSizePx = (int) (52 * density);
 
@@ -389,7 +662,7 @@ public class FloatingCamManager {
         if (!isOverlayShowing || overlayView == null || !isDocked) return;
         isDocked = false;
 
-        DisplayMetrics metrics = appContext.getResources().getDisplayMetrics();
+        DisplayMetrics metrics = getRealDisplayMetrics();
         float density = metrics.density;
         int screenWidth = metrics.widthPixels;
 
@@ -506,7 +779,7 @@ public class FloatingCamManager {
     private void snapToEdge() {
         if (overlayView == null || windowParams == null || windowManager == null || !isOverlayShowing) return;
 
-        DisplayMetrics metrics = appContext.getResources().getDisplayMetrics();
+        DisplayMetrics metrics = getRealDisplayMetrics();
         int screenWidth = metrics.widthPixels;
         float density = metrics.density;
         int marginPx = isDocked ? (int) (4 * density) : (int) (8 * density);
@@ -556,8 +829,12 @@ public class FloatingCamManager {
         if (btnPipShape != null) {
             btnPipShape.setText(currentAspectRatio.icon);
         }
+        updateRotateButtonUi();
 
-        float density = appContext.getResources().getDisplayMetrics().density;
+        DisplayMetrics metrics = getRealDisplayMetrics();
+        lastScreenWidth = metrics.widthPixels;
+        lastScreenHeight = metrics.heightPixels;
+        float density = metrics.density;
         int widthPx = (int) (currentWidthDp * density);
         int heightPx = (int) (currentWidthDp * (4f / 3f) * density);
 
@@ -742,7 +1019,7 @@ public class FloatingCamManager {
     }
 
     private void clampPosition(WindowManager.LayoutParams params) {
-        DisplayMetrics metrics = appContext.getResources().getDisplayMetrics();
+        DisplayMetrics metrics = getRealDisplayMetrics();
         int screenWidth = metrics.widthPixels;
         int screenHeight = metrics.heightPixels;
 
@@ -878,7 +1155,9 @@ public class FloatingCamManager {
                 float centerX = viewRect.centerX();
                 float centerY = viewRect.centerY();
 
-                boolean isRotated90or270 = (currentRotationDegrees == 90 || currentRotationDegrees == 270);
+                int effectiveRotation = getEffectiveRotationDegrees();
+                currentRotationDegrees = effectiveRotation;
+                boolean isRotated90or270 = (effectiveRotation == 90 || effectiveRotation == 270);
                 float naturalBufW = previewSize.getHeight(); // e.g. 480
                 float naturalBufH = previewSize.getWidth();  // e.g. 640
 
@@ -895,8 +1174,8 @@ public class FloatingCamManager {
                 );
                 matrix.postScale(scale, scale, centerX, centerY);
 
-                if (currentRotationDegrees != 0) {
-                    matrix.postRotate(currentRotationDegrees, centerX, centerY);
+                if (effectiveRotation != 0) {
+                    matrix.postRotate(effectiveRotation, centerX, centerY);
                 }
 
                 if (isFrontCamera) {

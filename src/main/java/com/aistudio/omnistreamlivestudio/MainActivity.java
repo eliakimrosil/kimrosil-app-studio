@@ -275,11 +275,28 @@ public class MainActivity extends Activity {
 
             @Override
             public void onCameraRotated(int rotationDegrees) {
-                if (btnRotateCamera != null) {
-                    btnRotateCamera.setText("ROT: " + rotationDegrees + "°");
-                }
+                updateRotateButtonLabel();
+            }
+
+            @Override
+            public void onRotationModeChanged(FloatingCamManager.AutoRotateMode mode, int effectiveDegrees) {
+                updateRotateButtonLabel();
+                saveCurrentPreferences();
             }
         });
+    }
+
+    private void updateRotateButtonLabel() {
+        if (btnRotateCamera == null) return;
+        FloatingCamManager.AutoRotateMode mode = FloatingCamManager.getInstance(this).getAutoRotateMode();
+        if (mode == FloatingCamManager.AutoRotateMode.AUTO_GAME) {
+            int eff = FloatingCamManager.getInstance(this).getEffectiveRotationDegrees();
+            btnRotateCamera.setText("ROT: AUTO (" + eff + "°)");
+            btnRotateCamera.setTextColor(getColor(R.color.studio_cyan));
+        } else {
+            btnRotateCamera.setText("ROT: " + mode.badge);
+            btnRotateCamera.setTextColor(Color.WHITE);
+        }
     }
 
     private void startFacecamService() {
@@ -462,6 +479,14 @@ public class MainActivity extends Activity {
         updateAudioModeButtons();
         switchMicAudio.setChecked(micEnabled);
         switchFacecam.setChecked(facecamEnabled);
+
+        String savedRotateMode = prefs.getString("pref_facecam_rotate_mode", FloatingCamManager.AutoRotateMode.AUTO_GAME.name());
+        try {
+            FloatingCamManager.AutoRotateMode mode = FloatingCamManager.AutoRotateMode.valueOf(savedRotateMode);
+            FloatingCamManager.getInstance(this).setAutoRotateMode(mode);
+        } catch (Exception ignored) {}
+        updateRotateButtonLabel();
+
         if (facecamEnabled && checkOverlayPermission()) {
             FloatingCamManager.getInstance(this).showOverlay();
             startFacecamService();
@@ -488,6 +513,7 @@ public class MainActivity extends Activity {
         editor.putInt("pref_audio_mode", selectedAudioMode);
         editor.putBoolean("pref_mic_enabled", switchMicAudio.isChecked());
         editor.putBoolean("pref_facecam_enabled", switchFacecam.isChecked());
+        editor.putString("pref_facecam_rotate_mode", FloatingCamManager.getInstance(this).getAutoRotateMode().name());
         editor.apply();
     }
 
@@ -657,7 +683,9 @@ public class MainActivity extends Activity {
         if (btnRotateCamera != null) {
             btnRotateCamera.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                FloatingCamManager.getInstance(this).rotateCamera();
+                FloatingCamManager.getInstance(this).cycleAutoRotateMode();
+                updateRotateButtonLabel();
+                saveCurrentPreferences();
             });
         }
 
@@ -1234,12 +1262,14 @@ public class MainActivity extends Activity {
             updateOrientationButtons();
             updateBitrateHint();
         }
+        updateRotateButtonLabel();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         updateOverlayStatus();
+        updateRotateButtonLabel();
         uiHandler.post(telemetryRunnable);
     }
 
