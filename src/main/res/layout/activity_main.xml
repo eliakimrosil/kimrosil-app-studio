@@ -580,6 +580,58 @@
                     android:textSize="11sp"
                     android:textStyle="bold" />
             </LinearLayout>
+
+            <!-- Quick Platform Key Helper & Direct Portal -->
+            <LinearLayout
+                android:id="@+id/layoutPlatformKeyHelper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/card_studio_recessed"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvPlatformHelperTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:letterSpacing="0.04"
+                        android:text="META • FACEBOOK LIVE PRODUCER"
+                        android:textColor="@color/studio_cyan"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnOpenPlatformPortal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:background="@drawable/btn_m3_tonal"
+                        android:minHeight="0dp"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:text="🌐 GET FB KEY"
+                        android:textColor="@color/studio_cyan"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvPlatformHelperHint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:lineSpacingExtra="2dp"
+                    android:text="Tip: In Live Producer, turn ON 'Persistent Stream Key'. Once saved, your key is permanent and you can Go Live in 1 tap anytime."
+                    android:textColor="@color/studio_text_muted"
+                    android:textSize="10sp" />
+            </LinearLayout>
         </LinearLayout>
 
         <!-- Video & Bitrate Settings Card -->

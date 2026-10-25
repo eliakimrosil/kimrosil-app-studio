@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -117,6 +118,12 @@ public class MainActivity extends Activity {
     private EditText etStreamKey;
     private Button btnToggleKeyVisibility;
     private Button btnPasteKey;
+
+    // Platform Helper Portal & Quick Key
+    private View layoutPlatformKeyHelper;
+    private TextView tvPlatformHelperTitle;
+    private TextView tvPlatformHelperHint;
+    private Button btnOpenPlatformPortal;
 
     // Video Resolution Chips
     private Button btnRes1080p;
@@ -360,6 +367,17 @@ public class MainActivity extends Activity {
         etStreamKey = findViewById(R.id.etStreamKey);
         btnToggleKeyVisibility = findViewById(R.id.btnToggleKeyVisibility);
         btnPasteKey = findViewById(R.id.btnPasteKey);
+
+        layoutPlatformKeyHelper = findViewById(R.id.layoutPlatformKeyHelper);
+        tvPlatformHelperTitle = findViewById(R.id.tvPlatformHelperTitle);
+        tvPlatformHelperHint = findViewById(R.id.tvPlatformHelperHint);
+        btnOpenPlatformPortal = findViewById(R.id.btnOpenPlatformPortal);
+        if (btnOpenPlatformPortal != null) {
+            btnOpenPlatformPortal.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                openPlatformPortal();
+            });
+        }
 
         btnRes1080p = findViewById(R.id.btnRes1080p);
         btnRes720p = findViewById(R.id.btnRes720p);
@@ -937,7 +955,178 @@ public class MainActivity extends Activity {
             }
             etStreamKey.setText(key);
         }
+
+        if (index == 1) { // Facebook Live recommendation
+            if (targetBitrateKbps > 4500 || targetBitrateKbps < 3000) {
+                targetBitrateKbps = 4000;
+                if (seekBitrate != null) seekBitrate.setProgress(targetBitrateKbps);
+                if (tvBitrateValue != null) tvBitrateValue.setText(String.format(Locale.US, "%,d kbps", targetBitrateKbps));
+                updateBitrateHint();
+            }
+        }
+        updatePlatformHelperCard();
         saveCurrentPreferences();
+    }
+
+    private void updatePlatformHelperCard() {
+        if (layoutPlatformKeyHelper == null) return;
+        if (selectedPlatformIndex == 5) { // Custom RTMP
+            layoutPlatformKeyHelper.setVisibility(View.GONE);
+            return;
+        }
+
+        layoutPlatformKeyHelper.setVisibility(View.VISIBLE);
+        switch (selectedPlatformIndex) {
+            case 1: // Facebook
+                if (tvPlatformHelperTitle != null) tvPlatformHelperTitle.setText("META • FACEBOOK LIVE PRODUCER");
+                if (btnOpenPlatformPortal != null) btnOpenPlatformPortal.setText("🌐 GET FB KEY");
+                if (tvPlatformHelperHint != null) {
+                    tvPlatformHelperHint.setText("1. Tap [GET FB KEY] to open Facebook Live Producer.\n2. In Stream Settings, toggle ON 'Persistent Stream Key'.\n3. Copy Key -> Return to KR Live Studio to auto-fill!");
+                }
+                break;
+            case 0: // YouTube
+                if (tvPlatformHelperTitle != null) tvPlatformHelperTitle.setText("YOUTUBE LIVE CONTROL ROOM");
+                if (btnOpenPlatformPortal != null) btnOpenPlatformPortal.setText("🌐 GET YT KEY");
+                if (tvPlatformHelperHint != null) {
+                    tvPlatformHelperHint.setText("Copy your Stream Key from YouTube Studio Live dashboard, then return here to auto-fill.");
+                }
+                break;
+            case 2: // Twitch
+                if (tvPlatformHelperTitle != null) tvPlatformHelperTitle.setText("TWITCH CREATOR DASHBOARD");
+                if (btnOpenPlatformPortal != null) btnOpenPlatformPortal.setText("🌐 GET TWITCH KEY");
+                if (tvPlatformHelperHint != null) {
+                    tvPlatformHelperHint.setText("Copy your Primary Stream Key from Twitch Settings > Stream, then return here to auto-fill.");
+                }
+                break;
+            case 3: // TikTok
+                if (tvPlatformHelperTitle != null) tvPlatformHelperTitle.setText("TIKTOK LIVE STUDIO");
+                if (btnOpenPlatformPortal != null) btnOpenPlatformPortal.setText("🌐 TIKTOK PORTAL");
+                if (tvPlatformHelperHint != null) {
+                    tvPlatformHelperHint.setText("Requires TikTok Live Studio / RTMP key access from your TikTok creator account.");
+                }
+                break;
+            case 4: // Kick
+                if (tvPlatformHelperTitle != null) tvPlatformHelperTitle.setText("KICK CREATOR DASHBOARD");
+                if (btnOpenPlatformPortal != null) btnOpenPlatformPortal.setText("🌐 GET KICK KEY");
+                if (tvPlatformHelperHint != null) {
+                    tvPlatformHelperHint.setText("Copy your Stream Key from Kick Creator Dashboard > Settings > Stream Key.");
+                }
+                break;
+        }
+    }
+
+    private void openPlatformPortal() {
+        String url;
+        String platformName;
+        switch (selectedPlatformIndex) {
+            case 1: // Facebook
+                url = "https://www.facebook.com/live/producer";
+                platformName = "Facebook Live Producer";
+                break;
+            case 0: // YouTube
+                url = "https://studio.youtube.com/channel/UC/livestreaming";
+                platformName = "YouTube Live Control Room";
+                break;
+            case 2: // Twitch
+                url = "https://dashboard.twitch.tv/settings/stream";
+                platformName = "Twitch Dashboard";
+                break;
+            case 3: // TikTok
+                url = "https://www.tiktok.com/live/creators/en-us/";
+                platformName = "TikTok Creator Portal";
+                break;
+            case 4: // Kick
+                url = "https://kick.com/dashboard/settings/stream";
+                platformName = "Kick Stream Settings";
+                break;
+            default:
+                return;
+        }
+
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            // Explicitly resolve web browsers so native social media apps don't intercept
+            PackageManager pm = getPackageManager();
+            String[] knownBrowsers = new String[]{
+                "com.android.chrome",
+                "com.brave.browser",
+                "org.mozilla.firefox",
+                "com.opera.browser",
+                "com.microsoft.emmx",
+                "com.zui.browser"
+            };
+            for (String bPkg : knownBrowsers) {
+                try {
+                    pm.getPackageInfo(bPkg, 0);
+                    intent.setPackage(bPkg);
+                    break;
+                } catch (Exception ignored) {}
+            }
+
+            if (intent.getPackage() == null) {
+                Intent browserProbe = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com"));
+                browserProbe.addCategory(Intent.CATEGORY_BROWSABLE);
+                List<ResolveInfo> browsers = pm.queryIntentActivities(browserProbe, PackageManager.MATCH_DEFAULT_ONLY);
+                if (browsers.isEmpty()) {
+                    browsers = pm.queryIntentActivities(browserProbe, 0);
+                }
+
+                for (ResolveInfo info : browsers) {
+                    if (info.activityInfo != null && info.activityInfo.packageName != null) {
+                        String pkg = info.activityInfo.packageName.toLowerCase();
+                        if (pkg.contains("chrome") || pkg.contains("browser") || pkg.contains("firefox") || pkg.contains("opera") || pkg.contains("brave")) {
+                            intent.setPackage(info.activityInfo.packageName);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            startActivity(intent);
+            if (selectedPlatformIndex == 1) {
+                Toast.makeText(this, "Opening Live Producer in Browser. Turn ON 'Persistent Stream Key', copy it, and return!", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Opening " + platformName + "...", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Cannot open web browser: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void checkClipboardForStreamKey() {
+        try {
+            ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            if (cm == null || !cm.hasPrimaryClip() || cm.getPrimaryClip().getItemCount() == 0) return;
+
+            CharSequence clipText = cm.getPrimaryClip().getItemAt(0).getText();
+            if (clipText == null) return;
+            String text = clipText.toString().trim();
+
+            // Stream key heuristics: 12-128 chars, no spaces/newlines, no URL prefix
+            if (text.length() >= 12 && text.length() <= 128 &&
+                !text.contains(" ") && !text.contains("\n") &&
+                !text.startsWith("http://") && !text.startsWith("https://") &&
+                !text.startsWith("rtmp://") && !text.startsWith("rtmps://")) {
+
+                String currentKey = etStreamKey != null ? etStreamKey.getText().toString().trim() : "";
+                if (!text.equals(currentKey)) {
+                    if (etStreamKey != null) {
+                        etStreamKey.setText(text);
+                    }
+                    prefs.edit().putString(PREF_STREAM_KEY_PREFIX + selectedPlatformIndex, text).apply();
+                    saveCurrentPreferences();
+
+                    if (selectedPlatformIndex == 1) {
+                        Toast.makeText(this, "🎉 Facebook Stream Key detected & auto-filled!", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(this, "🔑 Stream key detected from clipboard & auto-filled!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        } catch (Exception ignored) {}
     }
 
     private void updateResolutionButtons() {
@@ -1275,7 +1464,16 @@ public class MainActivity extends Activity {
     protected void onResume() {
         super.onResume();
         updateOverlayStatus();
+        checkClipboardForStreamKey();
         uiHandler.post(telemetryRunnable);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            checkClipboardForStreamKey();
+        }
     }
 
     @Override
