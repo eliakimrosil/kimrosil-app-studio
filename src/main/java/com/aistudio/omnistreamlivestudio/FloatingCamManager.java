@@ -108,7 +108,6 @@ public class FloatingCamManager {
     // Camera Header Controls
     private View pipHeaderScroll;
     private View pipHeader;
-    private TextView tvPipBadge;
     private TextView btnPipFlip;
     private TextView btnPipShape;
     private TextView btnPipBroadcast;
@@ -209,10 +208,6 @@ public class FloatingCamManager {
             if (overlayView != null) {
                 if (pipCameraContainer != null) {
                     pipCameraContainer.setBackgroundResource(isLive ? R.drawable.bg_floating_cam_live : R.drawable.bg_floating_cam_standby);
-                }
-                if (tvPipBadge != null) {
-                    tvPipBadge.setText(isLive ? "● LIVE" : "●");
-                    tvPipBadge.setTextColor(isLive ? 0xFFEF4444 : 0xFF00E5FF);
                 }
                 if (btnPipBroadcast != null) {
                     btnPipBroadcast.setText(isLive ? "■" : "▶");
@@ -715,7 +710,6 @@ public class FloatingCamManager {
 
         pipHeaderScroll = overlayView.findViewById(R.id.pipHeaderScroll);
         pipHeader = overlayView.findViewById(R.id.pipHeader);
-        tvPipBadge = overlayView.findViewById(R.id.pipBadge);
         btnPipFlip = overlayView.findViewById(R.id.pipBtnFlip);
         btnPipShape = overlayView.findViewById(R.id.pipBtnShape);
         btnPipBroadcast = overlayView.findViewById(R.id.pipBtnBroadcast);
@@ -882,9 +876,6 @@ public class FloatingCamManager {
 
         if (tvPipCamera != null) {
             tvPipCamera.setOnTouchListener(dragListener);
-        }
-        if (tvPipBadge != null) {
-            tvPipBadge.setOnTouchListener(dragListener);
         }
         View spacer = overlayView.findViewById(R.id.pipHeaderSpacer);
         if (spacer != null) {

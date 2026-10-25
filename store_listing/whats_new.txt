@@ -1,2 +1,2 @@
-Release v1.7.9 - KR Live Studio
-Added quick Start/Stop live broadcast button directly in floating camera overlay
+Release v1.7.10 - KR Live Studio
+Removed blue dot badge from floating camera overlay for a clean, unobstructed preview

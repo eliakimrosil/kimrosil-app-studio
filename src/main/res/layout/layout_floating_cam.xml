@@ -39,19 +39,6 @@
                 android:paddingStart="6dp"
                 android:paddingEnd="6dp">
 
-                <TextView
-                    android:id="@+id/pipBadge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:letterSpacing="0.04"
-                    android:paddingStart="2dp"
-                    android:paddingEnd="4dp"
-                    android:text="●"
-                    android:textColor="#00E5FF"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
                 <View
                     android:id="@+id/pipHeaderSpacer"
                     android:layout_width="0dp"
