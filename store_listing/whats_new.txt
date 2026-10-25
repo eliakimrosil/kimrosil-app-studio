@@ -1,2 +1,2 @@
-Release v1.10.1 - KR Live Studio
-Remove No Ads claims to allow future AdMob integration
+Release v1.10.2 - KR Live Studio
+Remove offline references and refine streaming studio branding

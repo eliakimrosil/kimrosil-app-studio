@@ -472,7 +472,7 @@ public class MainActivity extends Activity {
         if (tvVersion != null) {
             try {
                 String ver = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-                tvVersion.setText("v" + ver + " • Offline-First Native Freeware");
+                tvVersion.setText("v" + ver + " • Native Live Streaming Studio");
             } catch (Exception ignored) {}
         }
 
