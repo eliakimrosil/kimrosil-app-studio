@@ -2,6 +2,7 @@ package com.kimrosil.krlivestudio;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -19,6 +20,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.SurfaceTexture;
+import android.graphics.drawable.ColorDrawable;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
@@ -63,6 +65,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -102,7 +105,7 @@ public class MainActivity extends Activity {
     private static final String LEGACY_PREFS_NAME = "omnistream-live-studio_prefs";
 
     // Header & Theming
-    private Button btnThemeToggle;
+    private ImageButton btnSettings;
 
     // Platform Presets
     private Button btnPlatformYoutube;
@@ -224,10 +227,12 @@ public class MainActivity extends Activity {
         if (!sp.contains("pref_theme_mode")) {
             SharedPreferences legacy = newBase.getSharedPreferences(LEGACY_PREFS_NAME, MODE_PRIVATE);
             if (legacy.contains("pref_theme_mode")) {
-                sp.edit().putInt("pref_theme_mode", legacy.getInt("pref_theme_mode", 0)).apply();
+                sp.edit().putInt("pref_theme_mode", legacy.getInt("pref_theme_mode", 2)).apply();
+            } else {
+                sp.edit().putInt("pref_theme_mode", 2).apply(); // Dark Mode Default
             }
         }
-        int mode = sp.getInt("pref_theme_mode", 0);
+        int mode = sp.getInt("pref_theme_mode", 2);
         Configuration config = new Configuration(newBase.getResources().getConfiguration());
         if (mode == 0) {
             int sysNight = Settings.Secure.getInt(newBase.getContentResolver(), "ui_night_mode", 0);
@@ -354,7 +359,7 @@ public class MainActivity extends Activity {
     }
 
     private void initViews() {
-        btnThemeToggle = findViewById(R.id.btnThemeToggle);
+        btnSettings = findViewById(R.id.btnSettings);
         btnPlatformYoutube = findViewById(R.id.btnPlatformYoutube);
         btnPlatformFacebook = findViewById(R.id.btnPlatformFacebook);
         btnPlatformTwitch = findViewById(R.id.btnPlatformTwitch);
@@ -439,15 +444,6 @@ public class MainActivity extends Activity {
     }
 
     private void setupTheming() {
-        int themeMode = prefs.getInt("pref_theme_mode", 0);
-        if (themeMode == 0) {
-            btnThemeToggle.setText("MODE: AUTO");
-        } else if (themeMode == 1) {
-            btnThemeToggle.setText("MODE: DAY");
-        } else {
-            btnThemeToggle.setText("MODE: DARK");
-        }
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             WindowInsetsController controller = getWindow().getInsetsController();
             if (controller != null) {
@@ -462,11 +458,109 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void cycleThemeMode() {
-        int current = prefs.getInt("pref_theme_mode", 0);
-        int next = (current + 1) % 3;
-        prefs.edit().putInt("pref_theme_mode", next).apply();
+    private void showSettingsDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_settings, null);
+        builder.setView(dialogView);
+        final AlertDialog dialog = builder.create();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+
+        // Version Label
+        TextView tvVersion = dialogView.findViewById(R.id.tvSettingsVersion);
+        if (tvVersion != null) {
+            try {
+                String ver = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+                tvVersion.setText("v" + ver + " • Offline-First Native Freeware");
+            } catch (Exception ignored) {}
+        }
+
+        // Theme Mode Buttons
+        Button btnThemeDark = dialogView.findViewById(R.id.btnThemeDark);
+        Button btnThemeLight = dialogView.findViewById(R.id.btnThemeLight);
+        Button btnThemeAuto = dialogView.findViewById(R.id.btnThemeAuto);
+
+        int currentTheme = prefs.getInt("pref_theme_mode", 2); // 2: Dark, 1: Light, 0: Auto
+
+        updateThemeDialogButtons(btnThemeDark, btnThemeLight, btnThemeAuto, currentTheme);
+
+        btnThemeDark.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            dialog.dismiss();
+            setThemeMode(2);
+        });
+
+        btnThemeLight.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            dialog.dismiss();
+            setThemeMode(1);
+        });
+
+        btnThemeAuto.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            dialog.dismiss();
+            setThemeMode(0);
+        });
+
+        // Close Button
+        Button btnClose = dialogView.findViewById(R.id.btnCloseSettings);
+        if (btnClose != null) {
+            btnClose.setOnClickListener(v -> dialog.dismiss());
+        }
+
+        // Privacy Policy Link
+        Button btnPrivacy = dialogView.findViewById(R.id.btnSettingsPrivacy);
+        if (btnPrivacy != null) {
+            btnPrivacy.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                openWebUrl("https://apps.kimrosil.com/kim-live-studio/privacy.html");
+            });
+        }
+
+        // Studio Portal Link
+        Button btnShowcase = dialogView.findViewById(R.id.btnSettingsShowcase);
+        if (btnShowcase != null) {
+            btnShowcase.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                openWebUrl("https://apps.kimrosil.com/kim-live-studio/");
+            });
+        }
+
+        dialog.show();
+    }
+
+    private void updateThemeDialogButtons(Button btnDark, Button btnLight, Button btnAuto, int currentTheme) {
+        if (btnDark == null || btnLight == null || btnAuto == null) return;
+
+        boolean isDark = (currentTheme == 2);
+        boolean isLight = (currentTheme == 1);
+        boolean isAuto = (currentTheme == 0);
+
+        btnDark.setBackgroundResource(isDark ? R.drawable.chip_active : R.drawable.chip_inactive);
+        btnDark.setTextColor(getColor(isDark ? R.color.studio_chip_active_text : R.color.studio_chip_text));
+
+        btnLight.setBackgroundResource(isLight ? R.drawable.chip_active : R.drawable.chip_inactive);
+        btnLight.setTextColor(getColor(isLight ? R.color.studio_chip_active_text : R.color.studio_chip_text));
+
+        btnAuto.setBackgroundResource(isAuto ? R.drawable.chip_active : R.drawable.chip_inactive);
+        btnAuto.setTextColor(getColor(isAuto ? R.color.studio_chip_active_text : R.color.studio_chip_text));
+    }
+
+    private void setThemeMode(int newMode) {
+        prefs.edit().putInt("pref_theme_mode", newMode).apply();
         recreate();
+    }
+
+    private void openWebUrl(String url) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(this, "Cannot open browser: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void loadSavedPreferences() {
@@ -532,9 +626,9 @@ public class MainActivity extends Activity {
     }
 
     private void setupListeners() {
-        btnThemeToggle.setOnClickListener(v -> {
+        btnSettings.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-            cycleThemeMode();
+            showSettingsDialog();
         });
 
         btnPlatformYoutube.setOnClickListener(v -> selectPlatform(0));
