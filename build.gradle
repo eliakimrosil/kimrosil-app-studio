@@ -141,7 +141,13 @@ with zipfile.ZipFile(base_zip, 'w', zipfile.ZIP_DEFLATED) as bz:
 aab_out = f'{outputs}/${rootProject.name}-release.aab'
 cmd2 = f'bundletool build-bundle --modules={base_zip} --output={aab_out} --overwrite'
 subprocess.check_call(cmd2, shell=True)
-print(f'>>> Play Store AAB generated at: {aab_out}')
+ks = os.path.expanduser('~/.android/kimrosil_release.keystore')
+if os.path.exists(ks):
+    sign_cmd = f'jarsigner -keystore {ks} -storepass kimrosil2026 -keypass kimrosil2026 {aab_out} kimrosil'
+    subprocess.check_call(sign_cmd, shell=True)
+    print(f'>>> Play Store AAB Signed with production release keystore: {aab_out}')
+else:
+    print(f'>>> Play Store AAB generated at: {aab_out}')
 """
 }
 
