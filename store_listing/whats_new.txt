@@ -1,2 +1,2 @@
-Release v1.7.4 - KR Live Studio
-Seamless rear and front camera auto-rotation matching live mobile gaming orientation; streamlined uncluttered facecam controls.
+Release v1.7.5 - KR Live Studio
+Fix rear camera auto-rotation angle alignment across portrait and landscape gaming orientations

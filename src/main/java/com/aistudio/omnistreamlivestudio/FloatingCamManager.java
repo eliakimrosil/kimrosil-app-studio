@@ -343,21 +343,13 @@ public class FloatingCamManager {
     }
 
     public int computeCompensationDegrees(int displayDegrees) {
-        if (isFrontCamera) {
-            // Front camera on Android with horizontal selfie mirror:
-            // display 0° -> 0°
-            // display 90° (Landscape Left) -> 270°
-            // display 180° (Inverted Portrait) -> 180°
-            // display 270° (Landscape Right) -> 90°
-            return (360 - (displayDegrees % 360)) % 360;
-        } else {
-            // Rear camera (no horizontal mirror):
-            // display 0° (Portrait) -> 270°
-            // display 90° (Landscape Left) -> 0°
-            // display 180° (Inverted Portrait) -> 90°
-            // display 270° (Reverse Landscape) -> 180°
-            return (displayDegrees + 270) % 360;
-        }
+        // Both front and rear cameras follow standard Android Camera2 display compensation:
+        // display 0° (Portrait) -> 0°
+        // display 90° (Landscape Left) -> 270° (-90°)
+        // display 180° (Inverted Portrait) -> 180°
+        // display 270° (Landscape Right / Reverse Landscape) -> 90°
+        // (Front camera additionally receives horizontal mirror postScale(-1, 1) in configureTransform)
+        return (360 - (displayDegrees % 360)) % 360;
     }
 
     public int computeAutoRotationDegrees() {
