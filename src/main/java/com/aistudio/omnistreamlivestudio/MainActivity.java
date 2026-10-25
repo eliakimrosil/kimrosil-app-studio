@@ -762,7 +762,7 @@ public class MainActivity extends Activity {
             boolean isShowing = FloatingCamManager.getInstance(this).isShowing();
             if (hasPermission) {
                 if (isShowing) {
-                    tvOverlayStatus.setText("Facecam: ACTIVE ON SCREEN (Tap ✕ to hide)");
+                    tvOverlayStatus.setText("Facecam: ACTIVE ON SCREEN (Drag to bottom to close)");
                     tvOverlayStatus.setTextColor(getColor(R.color.studio_cyan));
                 } else {
                     tvOverlayStatus.setText("Overlay Permission: Ready & Granted");

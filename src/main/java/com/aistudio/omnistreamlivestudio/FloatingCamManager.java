@@ -108,8 +108,16 @@ public class FloatingCamManager {
     private TextView tvPipBadge;
     private TextView btnPipFlip;
     private TextView btnPipShape;
-    private TextView btnPipClose;
     private TextureView tvPipCamera;
+
+    // Bottom Dismiss Target Overlay (Drag to Close)
+    private View dismissOverlayView;
+    private WindowManager.LayoutParams dismissParams;
+    private View dismissBadge;
+    private TextView tvDismissHint;
+    private boolean isDismissOverlayShowing = false;
+    private boolean isHoveringDismiss = false;
+    private final Runnable longPressRunnable = this::onLongPressDetected;
 
     // Auto-Hiding Controls
     private static final long AUTO_HIDE_DELAY_MS = 3500;
@@ -247,9 +255,12 @@ public class FloatingCamManager {
 
         mainHandler.post(() -> {
             mainHandler.removeCallbacks(hideControlsRunnable);
+            mainHandler.removeCallbacks(longPressRunnable);
             stopOrientationMonitoring();
             closeCamera();
             stopCameraThread();
+
+            hideDismissTargetImmediate();
 
             if (overlayView != null && windowManager != null) {
                 try {
@@ -438,6 +449,9 @@ public class FloatingCamManager {
         if (!isOverlayShowing || overlayView == null) return;
 
         mainHandler.post(() -> {
+            if (isDismissOverlayShowing) {
+                hideDismissTargetImmediate();
+            }
             realignWindowForOrientation();
             int newEffective = getEffectiveRotationDegrees();
             if (newEffective != currentRotationDegrees) {
@@ -596,7 +610,6 @@ public class FloatingCamManager {
         mainHandler.post(() -> {
             if (btnPipFlip != null) btnPipFlip.setVisibility(View.GONE);
             if (btnPipShape != null) btnPipShape.setVisibility(View.GONE);
-            if (btnPipClose != null) btnPipClose.setVisibility(View.GONE);
             if (pipHeaderScroll != null) {
                 pipHeaderScroll.setBackgroundColor(Color.TRANSPARENT);
             }
@@ -610,7 +623,6 @@ public class FloatingCamManager {
         mainHandler.post(() -> {
             if (btnPipFlip != null) btnPipFlip.setVisibility(View.VISIBLE);
             if (btnPipShape != null) btnPipShape.setVisibility(View.VISIBLE);
-            if (btnPipClose != null) btnPipClose.setVisibility(View.VISIBLE);
             if (pipHeaderScroll != null) {
                 pipHeaderScroll.setBackgroundResource(R.drawable.bg_floating_cam_header);
             }
@@ -658,6 +670,12 @@ public class FloatingCamManager {
     private void initOverlayView() {
         LayoutInflater inflater = LayoutInflater.from(appContext);
         overlayView = inflater.inflate(R.layout.layout_floating_cam, null);
+        overlayView.setHapticFeedbackEnabled(true);
+        overlayView.setScaleX(1.0f);
+        overlayView.setScaleY(1.0f);
+        overlayView.setAlpha(1.0f);
+        overlayView.setTranslationX(0f);
+        overlayView.setTranslationY(0f);
 
         pipCameraContainer = overlayView.findViewById(R.id.pipCameraContainer);
 
@@ -666,7 +684,6 @@ public class FloatingCamManager {
         tvPipBadge = overlayView.findViewById(R.id.pipBadge);
         btnPipFlip = overlayView.findViewById(R.id.pipBtnFlip);
         btnPipShape = overlayView.findViewById(R.id.pipBtnShape);
-        btnPipClose = overlayView.findViewById(R.id.pipBtnClose);
         tvPipCamera = overlayView.findViewById(R.id.pipCameraView);
 
         if (btnPipShape != null) {
@@ -714,13 +731,6 @@ public class FloatingCamManager {
             });
         }
 
-        if (btnPipClose != null) {
-            btnPipClose.setOnClickListener(v -> {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                hideOverlay();
-            });
-        }
-
         scaleGestureDetector = new ScaleGestureDetector(appContext, new ScaleGestureDetector.SimpleOnScaleGestureListener() {
             @Override
             public boolean onScale(ScaleGestureDetector detector) {
@@ -745,7 +755,11 @@ public class FloatingCamManager {
                 if (scaleGestureDetector != null) {
                     scaleGestureDetector.onTouchEvent(event);
                     if (scaleGestureDetector.isInProgress() || event.getPointerCount() > 1) {
-                        isMoving = false;
+                        mainHandler.removeCallbacks(longPressRunnable);
+                        if (isMoving) {
+                            isMoving = false;
+                            hideDismissTarget();
+                        }
                         mainHandler.removeCallbacks(hideControlsRunnable);
                         return true;
                     }
@@ -758,26 +772,45 @@ public class FloatingCamManager {
                         initialTouchX = event.getRawX();
                         initialTouchY = event.getRawY();
                         isMoving = false;
+                        isHoveringDismiss = false;
                         downTime = SystemClock.uptimeMillis();
+                        mainHandler.removeCallbacks(longPressRunnable);
+                        mainHandler.postDelayed(longPressRunnable, 350);
                         return true;
 
                     case MotionEvent.ACTION_MOVE:
                         int dx = (int) (event.getRawX() - initialTouchX);
                         int dy = (int) (event.getRawY() - initialTouchY);
                         if (Math.abs(dx) > 6 || Math.abs(dy) > 6 || isMoving) {
-                            isMoving = true;
+                            if (!isMoving) {
+                                isMoving = true;
+                                mainHandler.removeCallbacks(longPressRunnable);
+                                showDismissTarget();
+                            }
                             windowParams.x = initialX + dx;
                             windowParams.y = initialY + dy;
                             clampPosition(windowParams);
                             try {
                                 windowManager.updateViewLayout(overlayView, windowParams);
                             } catch (Exception ignored) {}
+
+                            updateDismissHoverState(event.getRawX(), event.getRawY());
                         }
                         mainHandler.removeCallbacks(hideControlsRunnable);
                         return true;
 
                     case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+                        mainHandler.removeCallbacks(longPressRunnable);
                         long clickDuration = SystemClock.uptimeMillis() - downTime;
+
+                        if (isHoveringDismiss) {
+                            triggerDismissAnimation();
+                            return true;
+                        }
+
+                        hideDismissTarget();
+
                         if (!isMoving && clickDuration < 320) {
                             v.performClick();
                             if (!areControlsVisible) {
@@ -829,6 +862,186 @@ public class FloatingCamManager {
             public void onSurfaceTextureUpdated(SurfaceTexture surface) {
             }
         });
+    }
+
+    // =========================================================================
+    // Bottom Dismiss Target Overlay (Drag to Close)
+    // =========================================================================
+
+    private void onLongPressDetected() {
+        if (!isOverlayShowing || isDismissOverlayShowing) return;
+        if (overlayView != null) {
+            overlayView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+        }
+        showDismissTarget();
+    }
+
+    private void initDismissOverlay() {
+        if (dismissOverlayView != null) return;
+        LayoutInflater inflater = LayoutInflater.from(appContext);
+        dismissOverlayView = inflater.inflate(R.layout.layout_pip_dismiss_target, null);
+        dismissBadge = dismissOverlayView.findViewById(R.id.pipDismissBadge);
+        tvDismissHint = dismissOverlayView.findViewById(R.id.pipDismissHint);
+
+        DisplayMetrics metrics = getRealDisplayMetrics();
+        float density = metrics.density;
+
+        int layoutType = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
+                ? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
+                : WindowManager.LayoutParams.TYPE_PHONE;
+
+        dismissParams = new WindowManager.LayoutParams(
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                layoutType,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                        | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                        | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                PixelFormat.TRANSLUCENT
+        );
+        dismissParams.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
+        dismissParams.y = (int) (36 * density);
+    }
+
+    private void showDismissTarget() {
+        if (isDismissOverlayShowing || windowManager == null) return;
+        initDismissOverlay();
+        if (dismissOverlayView == null) return;
+
+        try {
+            dismissOverlayView.setAlpha(0f);
+            dismissOverlayView.setScaleX(0.7f);
+            dismissOverlayView.setScaleY(0.7f);
+            dismissOverlayView.setTranslationY(50f);
+            if (dismissBadge != null) {
+                dismissBadge.setBackgroundResource(R.drawable.bg_pip_dismiss_target);
+                dismissBadge.setScaleX(1.0f);
+                dismissBadge.setScaleY(1.0f);
+            }
+            if (tvDismissHint != null) {
+                tvDismissHint.setText("DRAG HERE TO CLOSE");
+                tvDismissHint.setTextColor(0xFFA1A1AA);
+            }
+            isHoveringDismiss = false;
+
+            windowManager.addView(dismissOverlayView, dismissParams);
+            isDismissOverlayShowing = true;
+
+            dismissOverlayView.animate()
+                    .alpha(1f)
+                    .scaleX(1f)
+                    .scaleY(1f)
+                    .translationY(0f)
+                    .setDuration(180)
+                    .setInterpolator(new DecelerateInterpolator())
+                    .start();
+        } catch (Exception e) {
+            Log.e(TAG, "Error displaying dismiss overlay target", e);
+        }
+    }
+
+    private void hideDismissTarget() {
+        if (!isDismissOverlayShowing || dismissOverlayView == null || windowManager == null) {
+            isDismissOverlayShowing = false;
+            isHoveringDismiss = false;
+            return;
+        }
+        isHoveringDismiss = false;
+        final View targetView = dismissOverlayView;
+        isDismissOverlayShowing = false;
+        targetView.animate()
+                .alpha(0f)
+                .scaleX(0.6f)
+                .scaleY(0.6f)
+                .translationY(50f)
+                .setDuration(150)
+                .withEndAction(() -> {
+                    try {
+                        windowManager.removeView(targetView);
+                    } catch (Exception ignored) {}
+                    if (dismissOverlayView == targetView) {
+                        dismissOverlayView = null;
+                    }
+                })
+                .start();
+    }
+
+    private void hideDismissTargetImmediate() {
+        isDismissOverlayShowing = false;
+        isHoveringDismiss = false;
+        if (dismissOverlayView != null && windowManager != null) {
+            try {
+                windowManager.removeView(dismissOverlayView);
+            } catch (Exception ignored) {}
+            dismissOverlayView = null;
+        }
+    }
+
+    private void updateDismissHoverState(float rawTouchX, float rawTouchY) {
+        if (!isDismissOverlayShowing || overlayView == null || windowParams == null) return;
+
+        DisplayMetrics metrics = getRealDisplayMetrics();
+        float density = metrics.density;
+        float screenWidth = metrics.widthPixels;
+        float screenHeight = metrics.heightPixels;
+
+        float targetCenterX = screenWidth / 2.0f;
+        // Gravity BOTTOM with 36dp margin + 24dp label offset + 28dp half badge = 88dp
+        float targetCenterY = screenHeight - (88f * density);
+
+        float camCenterX = windowParams.x + (windowParams.width / 2.0f);
+        float camCenterY = windowParams.y + (windowParams.height / 2.0f);
+
+        double camDist = Math.hypot(camCenterX - targetCenterX, camCenterY - targetCenterY);
+        double touchDist = Math.hypot(rawTouchX - targetCenterX, rawTouchY - targetCenterY);
+
+        boolean shouldHover = (camDist < 115f * density) || (touchDist < 95f * density);
+
+        if (shouldHover && !isHoveringDismiss) {
+            isHoveringDismiss = true;
+            if (overlayView != null) {
+                overlayView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+            }
+            if (dismissBadge != null) {
+                dismissBadge.setBackgroundResource(R.drawable.bg_pip_dismiss_target_hover);
+                dismissBadge.animate().scaleX(1.22f).scaleY(1.22f).setDuration(120).start();
+            }
+            if (tvDismissHint != null) {
+                tvDismissHint.setText("RELEASE TO CLOSE");
+                tvDismissHint.setTextColor(0xFFEF4444);
+            }
+        } else if (!shouldHover && isHoveringDismiss) {
+            isHoveringDismiss = false;
+            if (dismissBadge != null) {
+                dismissBadge.setBackgroundResource(R.drawable.bg_pip_dismiss_target);
+                dismissBadge.animate().scaleX(1.0f).scaleY(1.0f).setDuration(120).start();
+            }
+            if (tvDismissHint != null) {
+                tvDismissHint.setText("DRAG HERE TO CLOSE");
+                tvDismissHint.setTextColor(0xFFA1A1AA);
+            }
+        }
+    }
+
+    private void triggerDismissAnimation() {
+        if (overlayView != null) {
+            overlayView.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+            overlayView.animate()
+                    .scaleX(0.1f)
+                    .scaleY(0.1f)
+                    .alpha(0f)
+                    .setDuration(180)
+                    .setInterpolator(new DecelerateInterpolator())
+                    .withEndAction(() -> {
+                        hideOverlay();
+                        Toast.makeText(appContext, "Facecam Closed", Toast.LENGTH_SHORT).show();
+                    })
+                    .start();
+        } else {
+            hideOverlay();
+            Toast.makeText(appContext, "Facecam Closed", Toast.LENGTH_SHORT).show();
+        }
+        hideDismissTarget();
     }
 
     private void clampPosition(WindowManager.LayoutParams params) {

@@ -89,22 +89,6 @@
                     android:textColor="#00E5FF"
                     android:textSize="11sp"
                     android:textStyle="bold" />
-
-                <!-- Close / Dismiss Overlay -->
-                <TextView
-                    android:id="@+id/pipBtnClose"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="3dp"
-                    android:background="@drawable/btn_pip_action"
-                    android:clickable="true"
-                    android:contentDescription="Close Facecam"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:text="✕"
-                    android:textColor="#FF6B6B"
-                    android:textSize="11sp"
-                    android:textStyle="bold" />
             </LinearLayout>
         </HorizontalScrollView>
     </FrameLayout>
