@@ -1,9 +1,12 @@
 package com.aistudio.omnistreamlivestudio;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -126,6 +129,13 @@ public class FloatingCamManager {
     private static final long AUTO_HIDE_DELAY_MS = 3500;
     private final Runnable hideControlsRunnable = this::hideControls;
     private boolean areControlsVisible = true;
+
+    // Dual Position Memory (Landscape & Portrait)
+    private static final String PREFS_NAME = "kim_live_studio_prefs";
+    private static final String PREF_PIP_PORTRAIT_X = "pip_portrait_x";
+    private static final String PREF_PIP_PORTRAIT_Y = "pip_portrait_y";
+    private static final String PREF_PIP_LANDSCAPE_X = "pip_landscape_x";
+    private static final String PREF_PIP_LANDSCAPE_Y = "pip_landscape_y";
 
     // Aspect Ratio & Compact Gaming Sizing
     private AspectRatio currentAspectRatio = AspectRatio.PORTRAIT_3_4;
@@ -482,30 +492,62 @@ public class FloatingCamManager {
         if (lastScreenWidth > 0 && lastScreenHeight > 0 &&
             (lastScreenWidth != newScreenWidth || lastScreenHeight != newScreenHeight)) {
 
-            float density = metrics.density;
-            int marginPx = (int) (8 * density);
+            boolean wasLandscape = lastScreenWidth > lastScreenHeight;
+            boolean isLandscape = newScreenWidth > newScreenHeight;
 
-            // Maintain relative corner anchor across rotation transition
-            boolean wasAnchoredRight = (windowParams.x + windowParams.width / 2) > (lastScreenWidth / 2);
-            boolean wasAnchoredBottom = (windowParams.y + windowParams.height / 2) > (lastScreenHeight / 2);
+            // Save the position of the orientation we are leaving
+            savePositionForOrientation(wasLandscape);
 
-            if (wasAnchoredRight) {
-                windowParams.x = newScreenWidth - windowParams.width - marginPx;
-            } else {
-                windowParams.x = marginPx;
-            }
-
-            if (wasAnchoredBottom) {
-                windowParams.y = newScreenHeight - windowParams.height - marginPx - (int) (30 * density);
-            } else {
-                windowParams.y = (int) (70 * density);
-            }
+            // Restore the saved position of the newly rotated orientation
+            restorePositionForOrientation(isLandscape, newScreenWidth, newScreenHeight);
         }
 
         lastScreenWidth = newScreenWidth;
         lastScreenHeight = newScreenHeight;
 
         updateWindowDimensions();
+    }
+
+    private void savePositionForOrientation(boolean isLandscape) {
+        if (windowParams == null || appContext == null) return;
+        try {
+            SharedPreferences sp = appContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+            sp.edit()
+                .putInt(isLandscape ? PREF_PIP_LANDSCAPE_X : PREF_PIP_PORTRAIT_X, windowParams.x)
+                .putInt(isLandscape ? PREF_PIP_LANDSCAPE_Y : PREF_PIP_PORTRAIT_Y, windowParams.y)
+                .apply();
+        } catch (Exception ignored) {}
+    }
+
+    private void restorePositionForOrientation(boolean isLandscape, int screenWidth, int screenHeight) {
+        if (windowParams == null || appContext == null) return;
+        DisplayMetrics metrics = getRealDisplayMetrics();
+        float density = metrics.density;
+
+        try {
+            SharedPreferences sp = appContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+            if (isLandscape) {
+                int defaultX = Math.max(0, screenWidth - windowParams.width - (int) (16 * density));
+                int defaultY = (int) (12 * density);
+                windowParams.x = sp.getInt(PREF_PIP_LANDSCAPE_X, defaultX);
+                windowParams.y = sp.getInt(PREF_PIP_LANDSCAPE_Y, defaultY);
+            } else {
+                int defaultX = (int) (8 * density);
+                int defaultY = (int) (70 * density);
+                windowParams.x = sp.getInt(PREF_PIP_PORTRAIT_X, defaultX);
+                windowParams.y = sp.getInt(PREF_PIP_PORTRAIT_Y, defaultY);
+            }
+        } catch (Exception e) {
+            if (isLandscape) {
+                windowParams.x = Math.max(0, screenWidth - windowParams.width - (int) (16 * density));
+                windowParams.y = (int) (12 * density);
+            } else {
+                windowParams.x = (int) (8 * density);
+                windowParams.y = (int) (70 * density);
+            }
+        }
+
+        clampPosition(windowParams);
     }
 
     private DisplayMetrics getRealDisplayMetrics() {
@@ -669,6 +711,18 @@ public class FloatingCamManager {
 
         DisplayMetrics metrics = getRealDisplayMetrics();
         int screenWidth = metrics.widthPixels;
+        boolean isLandscape = screenWidth > metrics.heightPixels;
+
+        if (isLandscape) {
+            // Freeform in landscape: clamp and save position with zero edge snapping
+            clampPosition(windowParams);
+            try {
+                windowManager.updateViewLayout(overlayView, windowParams);
+            } catch (Exception ignored) {}
+            savePositionForOrientation(true);
+            return;
+        }
+
         float density = metrics.density;
         int marginPx = (int) (8 * density);
 
@@ -688,9 +742,16 @@ public class FloatingCamManager {
         animator.addUpdateListener(animation -> {
             if (overlayView != null && isOverlayShowing) {
                 windowParams.x = (int) animation.getAnimatedValue();
+                clampPosition(windowParams);
                 try {
                     windowManager.updateViewLayout(overlayView, windowParams);
                 } catch (Exception ignored) {}
+            }
+        });
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                savePositionForOrientation(false);
             }
         });
         animator.start();
@@ -744,8 +805,9 @@ public class FloatingCamManager {
                 PixelFormat.TRANSLUCENT
         );
         windowParams.gravity = Gravity.TOP | Gravity.START;
-        windowParams.x = (int) (8 * density);
-        windowParams.y = (int) (70 * density);
+
+        boolean isLandscape = lastScreenWidth > lastScreenHeight;
+        restorePositionForOrientation(isLandscape, lastScreenWidth, lastScreenHeight);
 
         setupOverlayListeners();
         applyShapeOutline();
@@ -783,6 +845,8 @@ public class FloatingCamManager {
                 if (Math.abs(newWidth - currentWidthDp) > 0.5f) {
                     currentWidthDp = newWidth;
                     updateWindowDimensions();
+                    DisplayMetrics m = getRealDisplayMetrics();
+                    savePositionForOrientation(m.widthPixels > m.heightPixels);
                 }
                 return true;
             }
@@ -876,6 +940,12 @@ public class FloatingCamManager {
 
         if (tvPipCamera != null) {
             tvPipCamera.setOnTouchListener(dragListener);
+        }
+        if (pipCameraContainer != null) {
+            pipCameraContainer.setOnTouchListener(dragListener);
+        }
+        if (overlayView != null) {
+            overlayView.setOnTouchListener(dragListener);
         }
         View spacer = overlayView.findViewById(R.id.pipHeaderSpacer);
         if (spacer != null) {
@@ -1089,11 +1159,20 @@ public class FloatingCamManager {
         DisplayMetrics metrics = getRealDisplayMetrics();
         int screenWidth = metrics.widthPixels;
         int screenHeight = metrics.heightPixels;
+        float density = metrics.density;
+        boolean isLandscape = screenWidth > screenHeight;
 
-        if (params.x < 0) params.x = 0;
-        if (params.y < 30) params.y = 30; // Keep below notification status bar
-        if (params.x + params.width > screenWidth) params.x = screenWidth - params.width;
-        if (params.y + params.height > screenHeight - 40) params.y = screenHeight - params.height - 40;
+        int minX = 0;
+        int maxX = Math.max(0, screenWidth - params.width);
+        int minY = isLandscape ? (int) (4 * density) : (int) (24 * density);
+        int maxY = isLandscape
+                ? Math.max(minY, screenHeight - params.height - (int) (4 * density))
+                : Math.max(minY, screenHeight - params.height - (int) (32 * density));
+
+        if (params.x < minX) params.x = minX;
+        if (params.x > maxX) params.x = maxX;
+        if (params.y < minY) params.y = minY;
+        if (params.y > maxY) params.y = maxY;
     }
 
     // =========================================================================

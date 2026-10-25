@@ -1,2 +1,2 @@
-Release v1.7.10 - KR Live Studio
-Removed blue dot badge from floating camera overlay for a clean, unobstructed preview
+Release v1.7.11 - KR Live Studio
+Freeform landscape camera placement and dual-orientation memory
