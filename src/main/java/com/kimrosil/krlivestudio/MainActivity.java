@@ -504,7 +504,6 @@ public class MainActivity extends Activity {
         switchFacecam.setChecked(facecamEnabled);
 
         if (facecamEnabled && checkOverlayPermission()) {
-            FloatingCamManager.getInstance(this).showOverlay();
             startFacecamService();
         }
         updateOverlayStatus();
@@ -682,7 +681,6 @@ public class MainActivity extends Activity {
             buttonView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             if (isChecked) {
                 if (checkOverlayPermission()) {
-                    FloatingCamManager.getInstance(MainActivity.this).showOverlay();
                     startFacecamService();
                     updateOverlayStatus();
                 } else {
@@ -690,7 +688,6 @@ public class MainActivity extends Activity {
                     requestOverlayPermission();
                 }
             } else {
-                FloatingCamManager.getInstance(MainActivity.this).hideOverlay();
                 stopFacecamService();
                 updateOverlayStatus();
             }
@@ -1130,7 +1127,6 @@ public class MainActivity extends Activity {
             boolean facecamPref = prefs.getBoolean("pref_facecam_enabled", true);
             if (facecamPref) {
                 if (checkOverlayPermission()) {
-                    FloatingCamManager.getInstance(this).showOverlay();
                     startFacecamService();
                 } else {
                     requestOverlayPermission();
@@ -1211,7 +1207,6 @@ public class MainActivity extends Activity {
             updateOverlayStatus();
             if (checkOverlayPermission()) {
                 switchFacecam.setChecked(true);
-                FloatingCamManager.getInstance(this).showOverlay();
                 startFacecamService();
                 Toast.makeText(this, "Facecam overlay enabled!", Toast.LENGTH_SHORT).show();
             } else {
@@ -1431,7 +1426,6 @@ public class MainActivity extends Activity {
         super.onResume();
         boolean facecamPref = prefs.getBoolean("pref_facecam_enabled", true);
         if (facecamPref && checkOverlayPermission() && !FloatingCamManager.getInstance(this).isShowing()) {
-            FloatingCamManager.getInstance(this).showOverlay();
             startFacecamService();
         }
         updateOverlayStatus();

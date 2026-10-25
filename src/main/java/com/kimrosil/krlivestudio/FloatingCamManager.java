@@ -242,17 +242,27 @@ public class FloatingCamManager {
             return;
         }
 
+        // Immediately mark as showing to reject race-condition invocations from onResume/service
+        isOverlayShowing = true;
+
         mainHandler.post(() -> {
             try {
+                // Defensive cleanup of any existing attached overlayView before adding new one
+                if (overlayView != null && windowManager != null) {
+                    try {
+                        windowManager.removeView(overlayView);
+                    } catch (Exception ignored) {}
+                    overlayView = null;
+                }
+
                 initOverlayView();
                 windowManager.addView(overlayView, windowParams);
-                isOverlayShowing = true;
                 setLiveState(isLiveBroadcasting);
                 showControls();
                 startOrientationMonitoring();
 
                 startCameraThread();
-                if (tvPipCamera.isAvailable()) {
+                if (tvPipCamera != null && tvPipCamera.isAvailable()) {
                     openCamera(tvPipCamera.getSurfaceTexture(), tvPipCamera.getWidth(), tvPipCamera.getHeight());
                 }
 
@@ -261,12 +271,20 @@ public class FloatingCamManager {
                 }
             } catch (Exception e) {
                 Log.e(TAG, "Error displaying floating camera overlay", e);
+                isOverlayShowing = false;
+                if (overlayView != null && windowManager != null) {
+                    try {
+                        windowManager.removeView(overlayView);
+                    } catch (Exception ignored) {}
+                    overlayView = null;
+                }
             }
         });
     }
 
     public synchronized void hideOverlay() {
-        if (!isOverlayShowing) return;
+        if (!isOverlayShowing && overlayView == null) return;
+        isOverlayShowing = false;
 
         mainHandler.post(() -> {
             mainHandler.removeCallbacks(hideControlsRunnable);
@@ -283,7 +301,6 @@ public class FloatingCamManager {
                 } catch (Exception ignored) {}
                 overlayView = null;
             }
-            isOverlayShowing = false;
             areControlsVisible = true;
 
             if (stateListener != null) {
