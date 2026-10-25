@@ -1,2 +1,2 @@
-Release v1.9.1 - KR Live Studio
-Fix duplicate floating overlay race condition and defensive WindowManager cleanup
+Release v1.10.0 - KR Live Studio
+Add unified Settings and About modal, move theme switcher inside, and set Dark Mode as default
