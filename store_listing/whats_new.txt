@@ -1,2 +1,6 @@
-Release v1.7.15 - KR Live Studio
-Enable floating camera by default and fix drag-to-close across devices
+Release v1.8.0 - KR Live Studio
+• Rebranded package to com.kimrosil.krlivestudio for official studio release
+• Google Play Store compliance update: removed debuggable flag and tightened queries
+• Android 14+ Foreground Service security hardening with dynamic permission-guarded FGS types
+• Enhanced user privacy: replaced passive clipboard polling with explicit one-tap stream key paste
+• Added multi-platform non-affiliation disclaimers and updated tailored Privacy Policy

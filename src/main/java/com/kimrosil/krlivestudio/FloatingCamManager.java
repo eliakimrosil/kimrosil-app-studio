@@ -1,4 +1,4 @@
-package com.aistudio.omnistreamlivestudio;
+package com.kimrosil.krlivestudio;
 
 import android.Manifest;
 import android.animation.Animator;

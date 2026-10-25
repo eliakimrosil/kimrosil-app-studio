@@ -9,19 +9,24 @@ Core Features:
 • Internal Game Audio & Dual-Mixer: Android 10+ AudioPlaybackCapture for pristine game sound, mixed in real-time with linear PCM mic commentary.
 • One-Tap Privacy Shield: Instantly detach screen projection and mute audio without severing the RTMP socket or resetting stream uptime.
 • Dynamic Keyframe Recovery: Automatically requests IDR sync frames from MediaCodec upon congestion packet drops to eliminate visual artifacting.
-• Multi-Platform Stream Key Vault: Save and recall distinct stream keys for YouTube, Twitch, TikTok, Kick, Facebook, and Custom servers.
+• Multi-Platform Stream Key Vault: Save and recall distinct stream keys for compatible services including YouTube Live, Twitch, TikTok, Kick, Facebook, and Custom RTMP servers.
 • Clean Floating Facecam: Draggable PiP camera overlay with Squircle/Circle shape masking and auto-hiding controls.
 • Hardware Telemetry HUD: Real-time SoC thermal state monitoring, network health gauge, live bitrate, FPS, and dropped frame telemetry.
 • Tactile Controls: Clear bitrate adjustments, resolution selection (1080p, 720p, 480p), and visual audio VU indicators.
+• Explicit Privacy Controls: Secure on-device stream key storage with explicit one-tap paste action and zero passive clipboard reading.
 
 Permissions & Usage:
 • Screen Capture (MediaProjection): Required to capture display content during active broadcasts.
 • Microphone (RECORD_AUDIO): Required to record microphone commentary for your stream.
 • Camera (CAMERA): Optional permission used only when you enable the picture-in-picture facecam overlay.
-• Display Over Other Apps: Optional permission used to show the floating camera preview while navigating other apps.
+• Display Over Other Apps (SYSTEM_ALERT_WINDOW): Optional permission used to show the floating camera preview while navigating other apps.
+• Foreground Service: Required to maintain continuous, uninterrupted stream transmission while navigating games or applications.
 
 Privacy & Data Safety:
-• Direct Connection Only: Video and audio packets flow directly to your designated RTMP server. No third-party proxy or intermediary server is used.
+• Direct Connection Only: Video and audio packets flow directly to your designated RTMP server. No third-party proxy or intermediary developer server is used.
 • Zero Data Harvesting: No personal identifiable information (PII), stream keys, or device identifiers are collected or tracked.
 • No Account Required: Full functionality without accounts, sign-ups, or subscriptions.
 • Sandboxed Local Storage: All preferences and stream settings are saved securely on your local device.
+
+Compatibility & Non-Affiliation Disclaimer:
+KR Live Studio is an independent live streaming encoder utility developed by KimRosil App Studio. KR Live Studio is not affiliated with, endorsed by, sponsored by, or associated with YouTube, Google LLC, Meta Platforms, Facebook, Twitch Interactive, TikTok, or Kick. All product names, trademarks, and registered trademarks belong to their respective owners and are referenced solely for compatibility identification.

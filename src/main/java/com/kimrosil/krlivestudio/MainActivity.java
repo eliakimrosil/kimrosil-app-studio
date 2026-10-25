@@ -1,4 +1,4 @@
-package com.aistudio.omnistreamlivestudio;
+package com.kimrosil.krlivestudio;
 
 import android.Manifest;
 import android.app.Activity;
@@ -187,7 +187,7 @@ public class MainActivity extends Activity {
 
     // Action Controls
     private Button btnStartStopStream;
-    public static final String ACTION_REQUEST_START_STREAM = "com.aistudio.omnistreamlivestudio.REQUEST_START_STREAM";
+    public static final String ACTION_REQUEST_START_STREAM = "com.kimrosil.krlivestudio.REQUEST_START_STREAM";
     private boolean wasStartedFromFloatingCam = false;
 
     // Internal State
@@ -563,10 +563,17 @@ public class MainActivity extends Activity {
             ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
             if (cm != null && cm.hasPrimaryClip() && cm.getPrimaryClip().getItemCount() > 0) {
                 CharSequence text = cm.getPrimaryClip().getItemAt(0).getText();
-                if (text != null) {
-                    etStreamKey.setText(text.toString().trim());
+                if (text != null && text.length() > 0) {
+                    String cleanKey = text.toString().trim();
+                    etStreamKey.setText(cleanKey);
+                    prefs.edit().putString(PREF_STREAM_KEY_PREFIX + selectedPlatformIndex, cleanKey).apply();
                     saveCurrentPreferences();
+                    Toast.makeText(this, "🔑 Stream key pasted from clipboard!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Clipboard is empty", Toast.LENGTH_SHORT).show();
                 }
+            } else {
+                Toast.makeText(this, "Clipboard is empty", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -978,38 +985,38 @@ public class MainActivity extends Activity {
         layoutPlatformKeyHelper.setVisibility(View.VISIBLE);
         switch (selectedPlatformIndex) {
             case 1: // Facebook
-                if (tvPlatformHelperTitle != null) tvPlatformHelperTitle.setText("META • FACEBOOK LIVE PRODUCER");
+                if (tvPlatformHelperTitle != null) tvPlatformHelperTitle.setText("FACEBOOK LIVE PRODUCER (COMPATIBLE)");
                 if (btnOpenPlatformPortal != null) btnOpenPlatformPortal.setText("🌐 GET FB KEY");
                 if (tvPlatformHelperHint != null) {
-                    tvPlatformHelperHint.setText("1. Tap [GET FB KEY] (In Chrome: tap ⋮ -> check 'Desktop site').\n2. Tap 'Set up live video' -> select 'Streaming software'.\n3. Tap [Copy] key -> return to KR Live Studio to auto-fill!");
+                    tvPlatformHelperHint.setText("1. Tap [GET FB KEY] (In browser: request desktop site).\n2. Tap 'Set up live video' -> select 'Streaming software'.\n3. Copy key -> tap [PASTE] in KR Live Studio.");
                 }
                 break;
             case 0: // YouTube
-                if (tvPlatformHelperTitle != null) tvPlatformHelperTitle.setText("YOUTUBE LIVE CONTROL ROOM");
+                if (tvPlatformHelperTitle != null) tvPlatformHelperTitle.setText("YOUTUBE LIVE CONTROL ROOM (COMPATIBLE)");
                 if (btnOpenPlatformPortal != null) btnOpenPlatformPortal.setText("🌐 GET YT KEY");
                 if (tvPlatformHelperHint != null) {
-                    tvPlatformHelperHint.setText("Copy your Stream Key from YouTube Studio Live dashboard, then return here to auto-fill.");
+                    tvPlatformHelperHint.setText("Copy your Stream Key from YouTube Studio Live dashboard, then tap [PASTE] here.");
                 }
                 break;
             case 2: // Twitch
-                if (tvPlatformHelperTitle != null) tvPlatformHelperTitle.setText("TWITCH CREATOR DASHBOARD");
+                if (tvPlatformHelperTitle != null) tvPlatformHelperTitle.setText("TWITCH CREATOR DASHBOARD (COMPATIBLE)");
                 if (btnOpenPlatformPortal != null) btnOpenPlatformPortal.setText("🌐 GET TWITCH KEY");
                 if (tvPlatformHelperHint != null) {
-                    tvPlatformHelperHint.setText("Copy your Primary Stream Key from Twitch Settings > Stream, then return here to auto-fill.");
+                    tvPlatformHelperHint.setText("Copy your Primary Stream Key from Twitch Settings > Stream, then tap [PASTE] here.");
                 }
                 break;
             case 3: // TikTok
-                if (tvPlatformHelperTitle != null) tvPlatformHelperTitle.setText("TIKTOK LIVE STUDIO");
+                if (tvPlatformHelperTitle != null) tvPlatformHelperTitle.setText("TIKTOK LIVE CREATOR (COMPATIBLE)");
                 if (btnOpenPlatformPortal != null) btnOpenPlatformPortal.setText("🌐 TIKTOK PORTAL");
                 if (tvPlatformHelperHint != null) {
                     tvPlatformHelperHint.setText("Requires TikTok Live Studio / RTMP key access from your TikTok creator account.");
                 }
                 break;
             case 4: // Kick
-                if (tvPlatformHelperTitle != null) tvPlatformHelperTitle.setText("KICK CREATOR DASHBOARD");
+                if (tvPlatformHelperTitle != null) tvPlatformHelperTitle.setText("KICK CREATOR DASHBOARD (COMPATIBLE)");
                 if (btnOpenPlatformPortal != null) btnOpenPlatformPortal.setText("🌐 GET KICK KEY");
                 if (tvPlatformHelperHint != null) {
-                    tvPlatformHelperHint.setText("Copy your Stream Key from Kick Creator Dashboard > Settings > Stream Key.");
+                    tvPlatformHelperHint.setText("Copy your Stream Key from Kick Creator Dashboard > Settings, then tap [PASTE] here.");
                 }
                 break;
         }
@@ -1047,47 +1054,9 @@ public class MainActivity extends Activity {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             intent.addCategory(Intent.CATEGORY_BROWSABLE);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-            // Explicitly resolve web browsers so native social media apps don't intercept
-            PackageManager pm = getPackageManager();
-            String[] knownBrowsers = new String[]{
-                "com.android.chrome",
-                "com.brave.browser",
-                "org.mozilla.firefox",
-                "com.opera.browser",
-                "com.microsoft.emmx",
-                "com.zui.browser"
-            };
-            for (String bPkg : knownBrowsers) {
-                try {
-                    pm.getPackageInfo(bPkg, 0);
-                    intent.setPackage(bPkg);
-                    break;
-                } catch (Exception ignored) {}
-            }
-
-            if (intent.getPackage() == null) {
-                Intent browserProbe = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com"));
-                browserProbe.addCategory(Intent.CATEGORY_BROWSABLE);
-                List<ResolveInfo> browsers = pm.queryIntentActivities(browserProbe, PackageManager.MATCH_DEFAULT_ONLY);
-                if (browsers.isEmpty()) {
-                    browsers = pm.queryIntentActivities(browserProbe, 0);
-                }
-
-                for (ResolveInfo info : browsers) {
-                    if (info.activityInfo != null && info.activityInfo.packageName != null) {
-                        String pkg = info.activityInfo.packageName.toLowerCase();
-                        if (pkg.contains("chrome") || pkg.contains("browser") || pkg.contains("firefox") || pkg.contains("opera") || pkg.contains("brave")) {
-                            intent.setPackage(info.activityInfo.packageName);
-                            break;
-                        }
-                    }
-                }
-            }
-
             startActivity(intent);
             if (selectedPlatformIndex == 1) {
-                Toast.makeText(this, "In Chrome, tap ⋮ menu -> check 'Desktop site' to view your Stream Key!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "In browser, request 'Desktop site' to view your Stream Key!", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, "Opening " + platformName + "...", Toast.LENGTH_SHORT).show();
             }
@@ -1096,38 +1065,6 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void checkClipboardForStreamKey() {
-        try {
-            ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-            if (cm == null || !cm.hasPrimaryClip() || cm.getPrimaryClip().getItemCount() == 0) return;
-
-            CharSequence clipText = cm.getPrimaryClip().getItemAt(0).getText();
-            if (clipText == null) return;
-            String text = clipText.toString().trim();
-
-            // Stream key heuristics: 12-128 chars, no spaces/newlines, no URL prefix
-            if (text.length() >= 12 && text.length() <= 128 &&
-                !text.contains(" ") && !text.contains("\n") &&
-                !text.startsWith("http://") && !text.startsWith("https://") &&
-                !text.startsWith("rtmp://") && !text.startsWith("rtmps://")) {
-
-                String currentKey = etStreamKey != null ? etStreamKey.getText().toString().trim() : "";
-                if (!text.equals(currentKey)) {
-                    if (etStreamKey != null) {
-                        etStreamKey.setText(text);
-                    }
-                    prefs.edit().putString(PREF_STREAM_KEY_PREFIX + selectedPlatformIndex, text).apply();
-                    saveCurrentPreferences();
-
-                    if (selectedPlatformIndex == 1) {
-                        Toast.makeText(this, "🎉 Facebook Stream Key detected & auto-filled!", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(this, "🔑 Stream key detected from clipboard & auto-filled!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        } catch (Exception ignored) {}
-    }
 
     private void updateResolutionButtons() {
         boolean is1080 = (selectedResPreset == 1080);
@@ -1239,6 +1176,19 @@ public class MainActivity extends Activity {
         }
         if (streamKey.isEmpty()) {
             Toast.makeText(this, "Enter Stream Key", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (switchMicAudio != null && switchMicAudio.isChecked() &&
+                checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_CODE_PERMISSIONS);
+            Toast.makeText(this, "Microphone permission required for audio streaming", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (switchFacecam != null && switchFacecam.isChecked() &&
+                checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CODE_PERMISSIONS);
+            Toast.makeText(this, "Camera permission required for facecam overlay", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -1485,16 +1435,7 @@ public class MainActivity extends Activity {
             startFacecamService();
         }
         updateOverlayStatus();
-        checkClipboardForStreamKey();
         uiHandler.post(telemetryRunnable);
-    }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            checkClipboardForStreamKey();
-        }
     }
 
     @Override
@@ -1508,11 +1449,11 @@ public class MainActivity extends Activity {
     // =========================================================================
     public static class StreamService extends Service {
 
-        public static final String ACTION_START = "com.aistudio.omnistreamlivestudio.START";
-        public static final String ACTION_STOP = "com.aistudio.omnistreamlivestudio.STOP";
-        public static final String ACTION_START_FACECAM = "com.aistudio.omnistreamlivestudio.START_FACECAM";
-        public static final String ACTION_STOP_FACECAM = "com.aistudio.omnistreamlivestudio.STOP_FACECAM";
-        public static final String ACTION_TOGGLE_PRIVACY = "com.aistudio.omnistreamlivestudio.TOGGLE_PRIVACY";
+        public static final String ACTION_START = "com.kimrosil.krlivestudio.START";
+        public static final String ACTION_STOP = "com.kimrosil.krlivestudio.STOP";
+        public static final String ACTION_START_FACECAM = "com.kimrosil.krlivestudio.START_FACECAM";
+        public static final String ACTION_STOP_FACECAM = "com.kimrosil.krlivestudio.STOP_FACECAM";
+        public static final String ACTION_TOGGLE_PRIVACY = "com.kimrosil.krlivestudio.TOGGLE_PRIVACY";
         private static final String CHANNEL_ID = "kim_live_studio_channel_live";
 
         private static volatile boolean isStreaming = false;
@@ -1588,10 +1529,16 @@ public class MainActivity extends Activity {
 
             if (ACTION_START.equals(action)) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    startForeground(101, buildNotification("KR Live Studio is ON AIR..."),
-                            ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION |
-                            ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA |
-                            ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE);
+                    int fgsType = ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION;
+                    boolean enableMic = intent.getBooleanExtra("enableMic", true);
+                    boolean enableFacecam = intent.getBooleanExtra("enableFacecam", true);
+                    if (enableMic && checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+                        fgsType |= ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE;
+                    }
+                    if (enableFacecam && checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                        fgsType |= ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA;
+                    }
+                    startForeground(101, buildNotification("KR Live Studio is ON AIR..."), fgsType);
                 } else {
                     startForeground(101, buildNotification("KR Live Studio is ON AIR..."));
                 }
@@ -1603,15 +1550,31 @@ public class MainActivity extends Activity {
                     stopSelf();
                 } else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                        startForeground(101, buildNotification("KR Live Studio Facecam Active"),
-                                ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA);
+                        int fgsType = 0;
+                        if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                            fgsType = ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA;
+                        }
+                        if (fgsType != 0) {
+                            startForeground(101, buildNotification("KR Live Studio Facecam Active"), fgsType);
+                        } else {
+                            startForeground(101, buildNotification("KR Live Studio Facecam Active"));
+                        }
+                    } else {
+                        startForeground(101, buildNotification("KR Live Studio Facecam Active"));
                     }
                 }
             } else if (ACTION_START_FACECAM.equals(action)) {
                 if (!isStreaming) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                        startForeground(101, buildNotification("KR Live Studio Facecam Active"),
-                                ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA);
+                        int fgsType = 0;
+                        if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                            fgsType = ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA;
+                        }
+                        if (fgsType != 0) {
+                            startForeground(101, buildNotification("KR Live Studio Facecam Active"), fgsType);
+                        } else {
+                            startForeground(101, buildNotification("KR Live Studio Facecam Active"));
+                        }
                     } else {
                         startForeground(101, buildNotification("KR Live Studio Facecam Active"));
                     }

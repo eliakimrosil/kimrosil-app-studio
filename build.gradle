@@ -97,6 +97,53 @@ task assembleRelease {
     dependsOn assembleDebug
 }
 
+task assembleAab(type: Exec) {
+    description = 'Builds official Android App Bundle (.aab) for Google Play Console'
+    group = 'build'
+    dependsOn dex
+
+    commandLine 'python3', '-c', """
+import os, subprocess, zipfile, shutil
+
+intermediates = '${intermediatesDir}'
+outputs = '${outputsDir}'
+android_jar = '${androidJar}'
+
+cmd = f'aapt2 link --proto-format --manifest src/main/AndroidManifest.xml -I {android_jar} {intermediates}/compiled_res.zip -o {intermediates}/proto_res.apk'
+subprocess.check_call(cmd, shell=True)
+
+base_dir = f'{intermediates}/base_module'
+if os.path.exists(base_dir): shutil.rmtree(base_dir)
+os.makedirs(f'{base_dir}/manifest', exist_ok=True)
+os.makedirs(f'{base_dir}/dex', exist_ok=True)
+
+with zipfile.ZipFile(f'{intermediates}/proto_res.apk', 'r') as z:
+    for item in z.namelist():
+        if item == 'AndroidManifest.xml':
+            z.extract(item, f'{base_dir}/manifest')
+        elif item == 'resources.pb':
+            z.extract(item, base_dir)
+        elif item.startswith('res/'):
+            z.extract(item, base_dir)
+
+shutil.copyfile(f'{intermediates}/classes.dex', f'{base_dir}/dex/classes.dex')
+
+base_zip = f'{intermediates}/base.zip'
+if os.path.exists(base_zip): os.remove(base_zip)
+with zipfile.ZipFile(base_zip, 'w', zipfile.ZIP_DEFLATED) as bz:
+    for root, dirs, files in os.walk(base_dir):
+        for f in files:
+            full = os.path.join(root, f)
+            rel = os.path.relpath(full, base_dir)
+            bz.write(full, rel)
+
+aab_out = f'{outputs}/${rootProject.name}-release.aab'
+cmd2 = f'bundletool build-bundle --modules={base_zip} --output={aab_out} --overwrite'
+subprocess.check_call(cmd2, shell=True)
+print(f'>>> Play Store AAB generated at: {aab_out}')
+"""
+}
+
 task installDebug(type: Exec) {
     description = 'Installs the debug APK onto the connected Android device'
     group = 'install'
