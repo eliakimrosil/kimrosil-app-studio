@@ -85,6 +85,7 @@ task assembleDebug {
     description = 'Builds and packages the debug APK'
     group = 'build'
     dependsOn signApk
+    finalizedBy 'assembleAab'
 
     doLast {
         println ">>> Build Successful! APK generated at: ${outputsDir}/${rootProject.name}-debug.apk"
