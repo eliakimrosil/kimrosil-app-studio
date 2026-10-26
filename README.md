@@ -347,6 +347,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Instantly record fuel fill-ups and compute real-world mileage and cost-per-mile without accounts, ads, or internet connection.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-offline-fuel-log-tracker/offline-fuel-log-tracker.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/offline-fuel-log-tracker/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/offline-fuel-log-tracker)
 
+#### [TiltLevel](https://apps.kimrosil.com/tilt-level/) (`tilt-level`) • `v1.0.0`
+> **Utility**: 2-axis machinist clinometer, spirit bubble level, grade (%) & roof pitch meter.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-tilt-level/tilt-level.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/tilt-level/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/tilt-level)
+
 #### [VatCal PH](https://apps.kimrosil.com/ph-vat-calculator/) (`ph-vat-calculator`) • `v1.2.4`
 > **Utility**: Fast offline 12% VAT (inclusive/exclusive), Expanded Withholding Tax (EWT), and invoice net/gross calculation tool.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.4-ph-vat-calculator/ph-vat-calculator.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/ph-vat-calculator/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/ph-vat-calculator)
