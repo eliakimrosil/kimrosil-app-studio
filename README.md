@@ -287,6 +287,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Calculate gear backlash, carrier shim changes, and cold valve lash targets.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-lash-gage/lash-gage.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/lash-gage/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/lash-gage)
 
+#### [LuxScale](https://apps.kimrosil.com/lux-scale/) (`lux-scale`) • `v1.0.0`
+> **Utility**: Hardware ambient Lux, Foot-Candles, Plant PAR (PPFD/DLI) & EV100 light meter.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-lux-scale/lux-scale.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/lux-scale/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/lux-scale)
+
 #### [MeterPulse](https://apps.kimrosil.com/tap-meter-parking-sentinel/) (`tap-meter-parking-sentinel`) • `v1.0.0`
 > **Utility**: One-tap Quick Settings parking timer with interactive Glance countdown and GPS breadcrumb, completely offline.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-tap-meter-parking-sentinel/tap-meter-parking-sentinel.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/tap-meter-parking-sentinel/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/tap-meter-parking-sentinel)

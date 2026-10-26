@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070B10"/>
+      <stop offset="50%" stop-color="#0C131C"/>
+      <stop offset="100%" stop-color="#091820"/>
+    </linearGradient>
+    <radialGradient id="glowGrad" cx="50%" cy="46%" r="48%">
+      <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.24"/>
+      <stop offset="55%" stop-color="#10B981" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#070B10" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="domeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="70%" stop-color="#E0F2FE"/>
+      <stop offset="100%" stop-color="#7DD3FC"/>
+    </linearGradient>
+    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#152232"/>
+      <stop offset="100%" stop-color="#0B121B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded App Icon Base -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+  <rect width="512" height="512" rx="112" fill="url(#glowGrad)"/>
+
+  <!-- Optical Telemetry Grid -->
+  <g stroke="#38BDF8" stroke-opacity="0.09" stroke-width="2.5">
+    <line x1="0" y1="128" x2="512" y2="128"/>
+    <line x1="0" y1="256" x2="512" y2="256"/>
+    <line x1="0" y1="384" x2="512" y2="384"/>
+    <line x1="128" y1="0" x2="128" y2="512"/>
+    <line x1="256" y1="0" x2="256" y2="512"/>
+    <line x1="384" y1="0" x2="384" y2="512"/>
+  </g>
+  <circle cx="256" cy="256" r="184" fill="none" stroke="#00E5FF" stroke-opacity="0.12" stroke-width="3.5"/>
+
+  <!-- Incident Photon Light Rays -->
+  <g stroke="#FBBF24" stroke-width="11" stroke-linecap="round">
+    <line x1="118" y1="96" x2="174" y2="136"/>
+    <line x1="148" y1="78" x2="196" y2="120"/>
+    <line x1="256" y1="68" x2="256" y2="100"/>
+    <line x1="364" y1="78" x2="316" y2="120"/>
+    <line x1="394" y1="96" x2="338" y2="136"/>
+  </g>
+
+  <!-- Drop Shadow -->
+  <rect x="148" y="160" width="216" height="268" rx="34" fill="#000000" fill-opacity="0.42"/>
+
+  <!-- Cosine-Corrector Optical Sensor Dome -->
+  <path d="M190,152 A66,54 0 0,1 322,152 Z" fill="url(#domeGrad)"/>
+  <polygon points="180,146 332,146 342,166 170,166" fill="#334155"/>
+
+  <!-- Main Photometer Chassis -->
+  <rect x="144" y="156" width="224" height="256" rx="32" fill="url(#bodyGrad)" stroke="#38BDF8" stroke-width="7"/>
+
+  <!-- Recessed Gauge Display Window -->
+  <rect x="166" y="178" width="180" height="138" rx="18" fill="#080D14" stroke="#1E293B" stroke-width="5"/>
+
+  <!-- 180-Degree Lux & PAR Spectrum Arc -->
+  <path d="M190,282 A66,66 0 0,1 226,222" fill="none" stroke="#00E5FF" stroke-width="16" stroke-linecap="round"/>
+  <path d="M234,218 A66,66 0 0,1 288,222" fill="none" stroke="#10B981" stroke-width="16" stroke-linecap="round"/>
+  <path d="M296,226 A66,66 0 0,1 322,282" fill="none" stroke="#F59E0B" stroke-width="16" stroke-linecap="round"/>
+
+  <!-- Precision Photometer Needle & Hub -->
+  <line x1="256" y1="282" x2="294" y2="226" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+  <circle cx="256" cy="282" r="14" fill="#00E5FF"/>
+
+  <!-- Lower Digital Readout Bar -->
+  <rect x="166" y="334" width="128" height="54" rx="12" fill="#0D1F2D"/>
+  <line x1="184" y1="352" x2="246" y2="352" stroke="#00E5FF" stroke-width="10" stroke-linecap="round"/>
+  <line x1="184" y1="370" x2="274" y2="370" stroke="#38BDF8" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- Botanical PAR Leaf Emblem -->
+  <path d="M308,386 C308,350 332,330 358,330 C358,360 338,386 308,386 Z" fill="#10B981"/>
+  <line x1="312" y1="382" x2="344" y2="350" stroke="#A7F3D0" stroke-width="6" stroke-linecap="round"/>
+</svg>
