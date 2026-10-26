@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BrixScale</string>
+    <string name="app_subtitle">EXTRACTION &amp; BREW RATIO LAB</string>
+    <string name="tab_ratio">Ratio &amp; Pour</string>
+    <string name="tab_lab">TDS &amp; Brix</string>
+    <string name="tab_log">Brew Log</string>
+</resources>

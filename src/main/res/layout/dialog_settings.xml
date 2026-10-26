@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_card"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BrixScale Settings &amp; Lab Setup"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/m3_on_surface"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Appearance, Units &amp; Studio Manifesto"
+        android:textSize="12sp"
+        android:textColor="@color/m3_on_surface_variant"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Theme Mode Selector -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="APPEARANCE THEME"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.06"
+        android:textColor="@color/m3_primary"
+        android:layout_marginBottom="6dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp">
+
+        <Button
+            android:id="@+id/btnThemeLight"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="Light"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:background="@drawable/bg_chip_unselected"
+            android:textColor="@color/m3_on_surface"
+            android:layout_marginEnd="6dp" />
+
+        <Button
+            android:id="@+id/btnThemeDark"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="Dark"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:background="@drawable/bg_chip_unselected"
+            android:textColor="@color/m3_on_surface"
+            android:layout_marginEnd="6dp" />
+
+        <Button
+            android:id="@+id/btnThemeAuto"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="Auto"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:background="@drawable/bg_chip_selected"
+            android:textColor="@color/m3_on_primary" />
+    </LinearLayout>
+
+    <!-- Mass & Liquid Unit Preference -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SCALE DISPLAY UNITS"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.06"
+        android:textColor="@color/m3_primary"
+        android:layout_marginBottom="6dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp">
+
+        <Button
+            android:id="@+id/btnUnitGrams"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="Metric (g / mL)"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:background="@drawable/bg_chip_selected"
+            android:textColor="@color/m3_on_primary"
+            android:layout_marginEnd="6dp" />
+
+        <Button
+            android:id="@+id/btnUnitOunces"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="US Ounces (oz)"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:background="@drawable/bg_chip_unselected"
+            android:textColor="@color/m3_on_surface" />
+    </LinearLayout>
+
+    <!-- Tactile Haptics Toggle -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Haptic Stage &amp; Stepper Pulses"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface" />
+
+        <Switch
+            android:id="@+id/switchHaptics"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:checked="true" />
+    </LinearLayout>
+
+    <!-- KimRosil App Studio About Manifesto Card -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_card_elevated"
+        android:padding="12dp"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="KIMROSIL APP STUDIO • v1.0.0"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_primary"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="100% Offline-First Specialty Coffee &amp; Culinary Lab Utility. Zero trackers, zero ads, zero cloud accounts."
+            android:textSize="11sp"
+            android:textColor="@color/m3_on_surface_variant"
+            android:layout_marginBottom="6dp" />
+
+        <Button
+            android:id="@+id/btnPrivacyPolicy"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="View Privacy Policy (apps.kimrosil.com)"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:background="@drawable/bg_btn_secondary"
+            android:textColor="@color/m3_primary" />
+    </LinearLayout>
+
+    <!-- Reset & Close Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnResetDefaults"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="Reset Defaults"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:background="@drawable/bg_btn_secondary"
+            android:textColor="@color/brix_ruby"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btnCloseSettings"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="Done"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:background="@drawable/bg_btn_primary"
+            android:textColor="@color/m3_on_primary" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Deep Roasted Espresso Obsidian Canvas -->
+    <path
+        android:fillColor="#140E0B"
+        android:pathData="M0,0h108v108h-108z" />
+    <!-- Elevated Warm Mahogany Inner Frame -->
+    <path
+        android:fillColor="#1E1510"
+        android:pathData="M8,8h92v92h-92z" />
+    <!-- Subtle Refractometer Optical Concentric Rings -->
+    <path
+        android:fillColor="#271B14"
+        android:pathData="M54,54m-40,0a40,40 0,1 1,80 0a40,40 0,1 1,-80 0" />
+    <path
+        android:fillColor="#312219"
+        android:pathData="M54,54m-31,0a31,31 0,1 1,62 0a31,31 0,1 1,-62 0" />
+    <!-- Extraction Yield Grid Hairlines -->
+    <path
+        android:strokeColor="#3D2B20"
+        android:strokeWidth="0.8"
+        android:pathData="M14,36L94,36M14,54L94,54M14,72L94,72M36,14L36,94M54,14L54,94M72,14L72,94" />
+    <!-- Gold Cup Extraction Window Corner Accents -->
+    <path
+        android:strokeColor="#5C3E2B"
+        android:strokeWidth="1.2"
+        android:pathData="M18,26L18,18L26,18M82,18L90,18L90,26M18,82L18,90L26,90M82,90L90,90L90,82" />
+</vector>

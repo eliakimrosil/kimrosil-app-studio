@@ -1,0 +1,1247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/m3_surface">
+
+    <!-- Unified Top Action Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="8dp"
+        android:background="@color/m3_surface_card">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_dripper"
+            android:contentDescription="BrixScale Icon"
+            android:layout_marginEnd="10dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvAppTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BrixScale"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface" />
+
+            <TextView
+                android:id="@+id/tvAppSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="POUR-OVER RATIO &amp; TDS LAB"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.08"
+                android:textColor="@color/m3_primary" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnThemeToggle"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_theme"
+            android:background="@drawable/bg_header_icon_btn"
+            android:contentDescription="Toggle Theme Mode"
+            android:scaleType="centerInside"
+            android:layout_marginEnd="8dp" />
+
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_settings"
+            android:background="@drawable/bg_header_icon_btn"
+            android:contentDescription="Settings and About"
+            android:scaleType="centerInside" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/m3_outline_variant" />
+
+    <ScrollView
+        android:id="@+id/mainScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="10dp">
+
+            <!-- HERO EXTRACTION & GRAVIMETRIC HUD CARD -->
+            <LinearLayout
+                android:id="@+id/cardHeroHud"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_hero_card"
+                android:padding="10dp"
+                android:layout_marginBottom="8dp">
+
+                <!-- Top Badge & Extraction Zone Status -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="6dp">
+
+                    <TextView
+                        android:id="@+id/tvActiveMethodBadge"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="V60 CONE • 1:16.0"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.06"
+                        android:textColor="@color/m3_primary" />
+
+                    <TextView
+                        android:id="@+id/tvExtractionZoneBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_emerald"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:text="SCA GOLD CUP (20.1%)"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/brix_emerald" />
+                </LinearLayout>
+
+                <!-- 2-Column Stacked Primary Telemetry + Live SCA Chart -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <!-- Left Column: Stacked Tabular Metrics -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.25"
+                        android:orientation="vertical"
+                        android:paddingEnd="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TARGET BREW WATER"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_text_muted" />
+
+                        <TextView
+                            android:id="@+id/tvHeroWaterWeight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="288.0 g"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"
+                            android:textColor="@color/m3_on_surface" />
+
+                        <TextView
+                            android:id="@+id/tvHeroBeverageSub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Yield: 252.0 g • Dose: 18.0 g"
+                            android:textSize="11sp"
+                            android:singleLine="true"
+                            android:textColor="@color/m3_on_surface_variant"
+                            android:layout_marginBottom="5dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/m3_outline_variant"
+                            android:layout_marginBottom="5dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.85"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="EXT YIELD"
+                                    android:textSize="9sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/m3_text_muted" />
+
+                                <TextView
+                                    android:id="@+id/tvHeroEyValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="20.1%"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"
+                                    android:singleLine="true"
+                                    android:fontFamily="monospace"
+                                    android:textColor="@color/brix_emerald" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.15"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="TDS / BRIX"
+                                    android:textSize="9sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/m3_text_muted" />
+
+                                <TextView
+                                    android:id="@+id/tvHeroTdsValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="1.38% / 1.6°"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold"
+                                    android:singleLine="true"
+                                    android:fontFamily="monospace"
+                                    android:textColor="@color/m3_primary" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Right Column: Custom Native SCA Extraction Control Chart Canvas -->
+                    <com.kimrosil.brixscale.ExtractionChartView
+                        android:id="@+id/chartExtraction"
+                        android:layout_width="0dp"
+                        android:layout_height="96dp"
+                        android:layout_weight="0.85" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 3-TAB SEGMENTED WORKBENCH BAR -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btnTabRatio"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:text="@string/tab_ratio"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:background="@drawable/bg_chip_selected"
+                    android:textColor="@color/m3_on_primary"
+                    android:layout_marginEnd="6dp" />
+
+                <Button
+                    android:id="@+id/btnTabLab"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:text="@string/tab_lab"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:background="@drawable/bg_chip_unselected"
+                    android:textColor="@color/m3_on_surface"
+                    android:layout_marginEnd="6dp" />
+
+                <Button
+                    android:id="@+id/btnTabLog"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:text="@string/tab_log"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:background="@drawable/bg_chip_unselected"
+                    android:textColor="@color/m3_on_surface" />
+            </LinearLayout>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 1: RATIO & MULTI-POUR STAGE WORKBENCH                -->
+            <!-- ============================================================ -->
+            <LinearLayout
+                android:id="@+id/sectionRatio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Brew Method Quick Presets -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <Button
+                        android:id="@+id/btnPresetV60"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:text="V60 1:16"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="false"
+                        android:background="@drawable/bg_chip_selected"
+                        android:textColor="@color/m3_on_primary"
+                        android:layout_marginEnd="5dp" />
+
+                    <Button
+                        android:id="@+id/btnPresetChemex"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:text="Chemex 1:17"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="false"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginEnd="5dp" />
+
+                    <Button
+                        android:id="@+id/btnPresetAero"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:text="Aero 1:13"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="false"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginEnd="5dp" />
+
+                    <Button
+                        android:id="@+id/btnPresetEspresso"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:text="Esp 1:2.0"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="false"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:textColor="@color/m3_on_surface" />
+                </LinearLayout>
+
+                <!-- Dose & Ratio Parameters Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card"
+                    android:padding="10dp"
+                    android:layout_marginBottom="8dp">
+
+                    <!-- Row 1: Coffee Dose (g) with Compact Tactile Steppers -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="6dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvLabelDose"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="COFFEE DOSE (g)"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dry ground weight"
+                                android:textSize="10sp"
+                                android:textColor="@color/m3_text_muted" />
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/btnDoseMinus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="−"
+                            android:contentDescription="Decrease coffee dose by 0.5g"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_stepper"
+                            android:textColor="@color/stepper_text" />
+
+                        <EditText
+                            android:id="@+id/etCoffeeDose"
+                            android:layout_width="76dp"
+                            android:layout_height="48dp"
+                            android:minHeight="48dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/bg_input_box"
+                            android:gravity="center"
+                            android:hint="18.0"
+                            android:maxLength="6"
+                            android:contentDescription="Coffee dose in grams"
+                            android:inputType="numberDecimal"
+                            android:imeOptions="actionDone"
+                            android:singleLine="true"
+                            android:text="18.0"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"
+                            android:textColor="@color/m3_on_surface"
+                            android:textColorHint="@color/m3_text_muted" />
+
+                        <Button
+                            android:id="@+id/btnDosePlus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="+"
+                            android:contentDescription="Increase coffee dose by 0.5g"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_stepper"
+                            android:textColor="@color/stepper_text" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/m3_outline_variant"
+                        android:layout_marginBottom="6dp" />
+
+                    <!-- Row 2: Target Brew Ratio (1 : X) -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="BREW RATIO (1 : X)"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Water per gram of coffee"
+                                android:textSize="10sp"
+                                android:textColor="@color/m3_text_muted" />
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/btnRatioMinus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="−"
+                            android:contentDescription="Decrease brew ratio by 0.5"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_stepper"
+                            android:textColor="@color/stepper_text" />
+
+                        <EditText
+                            android:id="@+id/etBrewRatio"
+                            android:layout_width="76dp"
+                            android:layout_height="48dp"
+                            android:minHeight="48dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/bg_input_box"
+                            android:gravity="center"
+                            android:hint="16.0"
+                            android:maxLength="6"
+                            android:contentDescription="Target water to coffee ratio"
+                            android:inputType="numberDecimal"
+                            android:imeOptions="actionDone"
+                            android:singleLine="true"
+                            android:text="16.0"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"
+                            android:textColor="@color/m3_on_surface"
+                            android:textColorHint="@color/m3_text_muted" />
+
+                        <Button
+                            android:id="@+id/btnRatioPlus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="+"
+                            android:contentDescription="Increase brew ratio by 0.5"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_stepper"
+                            android:textColor="@color/stepper_text" />
+                    </LinearLayout>
+
+                    <!-- Primary Action Row (Positioned high in viewport to prevent soft keyboard occlusion) -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnCalcRecipe"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="TARE &amp; SYNC"
+                            android:contentDescription="Calculate and sync pour recipe"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_btn_primary"
+                            android:textColor="@color/m3_on_primary"
+                            android:layout_marginEnd="8dp" />
+
+                        <Button
+                            android:id="@+id/btnQuickSaveLog"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="SAVE TO LOG"
+                            android:contentDescription="Save current brew recipe to SQLite log"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_btn_secondary"
+                            android:textColor="@color/m3_on_surface" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 4-STAGE POUR SCHEDULE & CHRONOMETER CARD -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="6dp">
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/ic_timer"
+                            android:contentDescription="Timer"
+                            android:layout_marginEnd="6dp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="4-STAGE POUR PACER &amp; SCHEDULE"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.05"
+                            android:textColor="@color/m3_primary" />
+
+                        <TextView
+                            android:id="@+id/tvChronoReadout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00:00"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"
+                            android:textColor="@color/brix_emerald" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvActiveStageCue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_card_elevated"
+                        android:padding="6dp"
+                        android:text="STAGE 1 (BLOOM): Pour to 45.0 g &amp; swirl gently"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:singleLine="true"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginBottom="6dp" />
+
+                    <!-- Tabular 2-Column Pour Schedule Rows -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp">
+                        <TextView
+                            android:id="@+id/tvStage1Label"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="1. Degas Bloom (0:00–0:45)"
+                            android:textSize="11sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+                        <TextView
+                            android:id="@+id/tvStage1Target"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="45.0 g (16%)"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"
+                            android:textColor="@color/m3_on_surface" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/m3_outline_variant" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp">
+                        <TextView
+                            android:id="@+id/tvStage2Label"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="2. Sweet Acidity Pour (0:45–1:15)"
+                            android:textSize="11sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+                        <TextView
+                            android:id="@+id/tvStage2Target"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="115.2 g (40%)"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"
+                            android:textColor="@color/m3_on_surface" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/m3_outline_variant" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp">
+                        <TextView
+                            android:id="@+id/tvStage3Label"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="3. Spiral Body Pour (1:15–1:55)"
+                            android:textSize="11sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+                        <TextView
+                            android:id="@+id/tvStage3Target"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="201.6 g (70%)"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"
+                            android:textColor="@color/m3_on_surface" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/m3_outline_variant" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="6dp">
+                        <TextView
+                            android:id="@+id/tvStage4Label"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="4. Final Drawdown (1:55–3:00)"
+                            android:textSize="11sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+                        <TextView
+                            android:id="@+id/tvStage4Target"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="288.0 g (100%)"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"
+                            android:textColor="@color/m3_primary" />
+                    </LinearLayout>
+
+                    <!-- Timer Controls (48dp touch targets) -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnTimerToggle"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1.2"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="START POUR TIMER"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_btn_primary"
+                            android:textColor="@color/m3_on_primary"
+                            android:layout_marginEnd="6dp" />
+
+                        <Button
+                            android:id="@+id/btnTimerNextStage"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="0.9"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="NEXT STAGE"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_btn_secondary"
+                            android:textColor="@color/m3_on_surface"
+                            android:layout_marginEnd="6dp" />
+
+                        <Button
+                            android:id="@+id/btnTimerReset"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="0.7"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="RESET"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_btn_secondary"
+                            android:textColor="@color/m3_on_surface" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 2: TDS & BRIX REFRACTOMETER LAB                      -->
+            <!-- ============================================================ -->
+            <LinearLayout
+                android:id="@+id/sectionLab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card"
+                    android:padding="12dp"
+                    android:layout_marginBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/ic_prism"
+                            android:contentDescription="Prism"
+                            android:layout_marginEnd="6dp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="OPTICAL REFRACTOMETER &amp; YIELD SOLVER"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_primary" />
+                    </LinearLayout>
+
+                    <!-- Row 1: TDS (%) Stepper & Input -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MEASURED TDS (%)"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Total Dissolved Solids (0.85 × °Bx)"
+                                android:textSize="10sp"
+                                android:textColor="@color/m3_text_muted" />
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/btnTdsMinus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="−"
+                            android:contentDescription="Decrease TDS percentage"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_stepper"
+                            android:textColor="@color/stepper_text" />
+
+                        <EditText
+                            android:id="@+id/etMeasuredTds"
+                            android:layout_width="76dp"
+                            android:layout_height="48dp"
+                            android:minHeight="48dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/bg_input_box"
+                            android:gravity="center"
+                            android:hint="1.38"
+                            android:maxLength="6"
+                            android:contentDescription="Measured refractometer TDS percentage"
+                            android:inputType="numberDecimal"
+                            android:imeOptions="actionDone"
+                            android:singleLine="true"
+                            android:text="1.38"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"
+                            android:textColor="@color/m3_on_surface"
+                            android:textColorHint="@color/m3_text_muted" />
+
+                        <Button
+                            android:id="@+id/btnTdsPlus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="+"
+                            android:contentDescription="Increase TDS percentage"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_stepper"
+                            android:textColor="@color/stepper_text" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/m3_outline_variant"
+                        android:layout_marginBottom="8dp" />
+
+                    <!-- Row 2: Liquid Absorption / Retention Ratio (g/g) -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="RETENTION RATIO (mL/g)"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Water retained in spent grounds"
+                                android:textSize="10sp"
+                                android:textColor="@color/m3_text_muted" />
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/btnRetMinus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="−"
+                            android:contentDescription="Decrease liquid retention ratio"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_stepper"
+                            android:textColor="@color/stepper_text" />
+
+                        <EditText
+                            android:id="@+id/etRetentionRatio"
+                            android:layout_width="76dp"
+                            android:layout_height="48dp"
+                            android:minHeight="48dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/bg_input_box"
+                            android:gravity="center"
+                            android:hint="2.0"
+                            android:maxLength="6"
+                            android:contentDescription="Liquid retention ratio in milliliters per gram"
+                            android:inputType="numberDecimal"
+                            android:imeOptions="actionDone"
+                            android:singleLine="true"
+                            android:text="2.0"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace"
+                            android:textColor="@color/m3_on_surface"
+                            android:textColorHint="@color/m3_text_muted" />
+
+                        <Button
+                            android:id="@+id/btnRetPlus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="+"
+                            android:contentDescription="Increase liquid retention ratio"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_stepper"
+                            android:textColor="@color/stepper_text" />
+                    </LinearLayout>
+
+                    <!-- Tabular 2-Column Lab Telemetry -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/bg_card_elevated"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingBottom="4dp">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Refractometer Brix (°Bx)"
+                                android:textSize="12sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+                            <TextView
+                                android:id="@+id/tvLabBrixOut"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1.62 °Bx"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:fontFamily="monospace"
+                                android:textColor="@color/m3_on_surface" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/m3_outline_variant" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Dissolved Solubles Mass"
+                                android:textSize="12sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+                            <TextView
+                                android:id="@+id/tvLabSolublesMass"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="3.48 g"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:fontFamily="monospace"
+                                android:textColor="@color/m3_on_surface" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/m3_outline_variant" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Bypass Dilution to 1.25% TDS"
+                                android:textSize="12sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+                            <TextView
+                                android:id="@+id/tvLabBypassWater"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="+26.2 g water"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:fontFamily="monospace"
+                                android:textColor="@color/brix_emerald" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/m3_outline_variant" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="4dp">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Grind &amp; Dial-In Guidance"
+                                android:textSize="12sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+                            <TextView
+                                android:id="@+id/tvLabDialAdvice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sweet Spot Locked"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_primary" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnCopyLabReport"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:layout_marginTop="10dp"
+                        android:text="COPY REFRACTOMETER REPORT"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_btn_primary"
+                        android:textColor="@color/m3_on_primary" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ============================================================ -->
+            <!-- SECTION 3: ROAST & BREW SQLITE LOG                           -->
+            <!-- ============================================================ -->
+            <LinearLayout
+                android:id="@+id/sectionLog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_card"
+                    android:padding="12dp"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ARCHIVE CURRENT BREW SESSION"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary"
+                        android:layout_marginBottom="6dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/etRoastBeanName"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:background="@drawable/bg_input_box"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:hint="Bean / Origin note"
+                            android:inputType="textCapWords"
+                            android:imeOptions="actionDone"
+                            android:singleLine="true"
+                            android:text="Ethiopia Washed V60"
+                            android:textSize="13sp"
+                            android:textColor="@color/m3_on_surface"
+                            android:textColorHint="@color/m3_text_muted"
+                            android:layout_marginEnd="8dp" />
+
+                        <Button
+                            android:id="@+id/btnSaveBeanLog"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:minWidth="88dp"
+                            android:minHeight="48dp"
+                            android:paddingStart="14dp"
+                            android:paddingEnd="14dp"
+                            android:text="SAVE LOG"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_btn_primary"
+                            android:textColor="@color/m3_on_primary" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvSavedLogsHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SAVED SPECIALTY BREW PROFILES (TAP TO LOAD)"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.06"
+                    android:textColor="@color/m3_text_muted"
+                    android:layout_marginBottom="6dp" />
+
+                <LinearLayout
+                    android:id="@+id/llSavedLogsContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

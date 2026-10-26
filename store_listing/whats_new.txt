@@ -1,0 +1,2 @@
+Release v1.0.0 - BrixScale
+v1.0.0: Initial release of BrixScale Pour-Over Brew Ratio Calculator, Refractometer TDS/Brix Extraction Yield Solver, and 4-Stage Pour Pacer

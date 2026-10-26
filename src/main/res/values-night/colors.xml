@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- BrixScale Dark Palette: Roasted Espresso Obsidian & Crema Gold -->
+    <color name="m3_primary">#F59E0B</color>
+    <color name="m3_on_primary">#1C1006</color>
+    <color name="m3_primary_container">#45270B</color>
+    <color name="m3_on_primary_container">#FDE68A</color>
+
+    <color name="brix_emerald">#2DD4BF</color>
+    <color name="brix_emerald_bg">#113835</color>
+    <color name="brix_amber">#FBBF24</color>
+    <color name="brix_amber_bg">#3D280A</color>
+    <color name="brix_ruby">#F87171</color>
+    <color name="brix_ruby_bg">#421616</color>
+
+    <!-- Surfaces & Backgrounds -->
+    <color name="m3_surface">#120D0A</color>
+    <color name="m3_surface_card">#1C1511</color>
+    <color name="m3_surface_elevated">#271D17</color>
+    <color name="m3_outline">#4A372B</color>
+    <color name="m3_outline_variant">#33261E</color>
+
+    <!-- Typography -->
+    <color name="m3_on_surface">#F7EFE6</color>
+    <color name="m3_on_surface_variant">#C9B6A5</color>
+    <color name="m3_text_muted">#9C8573</color>
+
+    <!-- Controls & Inputs -->
+    <color name="input_background">#16100D</color>
+    <color name="stepper_bg">#2A1F18</color>
+    <color name="stepper_stroke">#453328</color>
+    <color name="stepper_text">#F7EFE6</color>
+    <color name="ripple_color">#33F59E0B</color>
+</resources>
