@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GaussMeter</string>
+    <string name="header_subtitle">3-AXIS EMF &amp; STUD MAGNETOMETER</string>
+    <string name="tab_meter">Flux &amp; Tare</string>
+    <string name="tab_stud">Stud &amp; Alarm</string>
+    <string name="tab_log">Scan Log</string>
+    <string name="hint_ref_flux">115.0</string>
+    <string name="hint_tare_flux">48.0</string>
+    <string name="hint_alarm_ut">85.0</string>
+    <string name="hint_zone_name">North Wall Stud</string>
+    <string name="btn_apply_gauss">Compute &amp; Tare</string>
+    <string name="btn_hold_flux">Hold Flux</string>
+    <string name="btn_zero_baseline">Tare Earth</string>
+    <string name="btn_save_scan">Save Scan</string>
+</resources>

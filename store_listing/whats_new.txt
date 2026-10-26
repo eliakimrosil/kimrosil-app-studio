@@ -1,0 +1,2 @@
+Release v1.0.0 - GaussMeter
+v1.0.0: Initial release of GaussMeter in Pure Native Kotlin with 3-Axis Magnetometer, Earth Tare, and Ferrous Stud Locator

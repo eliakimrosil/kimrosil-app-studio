@@ -1,0 +1,12 @@
+GaussMeter is an offline 3-axis magnetometer, Microtesla (µT) and Milligauss (mG) flux meter, and ferrous metal / wall stud proximity locator built in pure native Kotlin and powered by your phone's hardware Hall-effect geomagnetic sensor (Sensor.TYPE_MAGNETIC_FIELD).
+
+Designed for electricians, remodelers, drywall installers, audio technicians, and electronics engineers, GaussMeter isolates net ferrous magnetic anomalies above the local Earth geomagnetic field without ads, subscriptions, or network permissions.
+
+KEY FEATURES:
+• Live 3-Axis Hardware Magnetometer: Real-time Bx, By, Bz vector components and net 3D magnitude in Microtesla (µT) and Milligauss (mG).
+• Earth Baseline Tare Zeroing: One-tap Earth Tare subtracts local geomagnetic background (25–65 µT) to isolate net ferrous perturbations (+∆ µT).
+• Ferrous Stud & Conduit Proximity Bar: Visual 180-degree flux gauge paired with a color-coded proximity bar and inverse-cube dipole depth estimator (~cm).
+• Vector Coupling Modes: Switch between 3D Composite Vector, Z-Depth Axis (perpendicular to wall surface), and XY In-Plane sensing.
+• Field & Hardware Benchmarks: Instant presets for Earth Background (48 µT), Drywall Screw & Steel Stud (115 µT), Steel Conduit & Transformer (190 µT), and Neodymium Speaker Magnet (420 µT).
+• Offline SQLite Scan Log: Save, inspect, and reload multi-wall and equipment magnetic scans completely offline.
+• Magnetite Obsidian & Laboratory Quartz Themes: Switch seamlessly between Dark and Light modes.

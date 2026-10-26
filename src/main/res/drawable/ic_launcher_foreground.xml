@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Drop Shadow Behind Magnetometer Chassis (Centered in 26..82 Safe Zone) -->
+    <path
+        android:pathData="M29,33 C29,29.7 31.7,27 35,27 L73,27 C76.3,27 79,29.7 79,33 L79,75 C79,78.3 76.3,81 73,81 L35,81 C31.7,81 29,78.3 29,75 Z"
+        android:fillColor="#55000000" />
+
+    <!-- Main Magnetometer Instrument Chassis -->
+    <path
+        android:pathData="M29,32 C29,28.7 31.7,26 35,26 L73,26 C76.3,26 79,28.7 79,32 L79,74 C79,77.3 76.3,80 73,80 L35,80 C31.7,80 29,77.3 29,74 Z"
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="1.6">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="29"
+                android:startY="26"
+                android:endX="79"
+                android:endY="80"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#162336" />
+                <item android:offset="1.0" android:color="#0B121C" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Arched Magnetic Flux Waves Above Dipole Tips -->
+    <path
+        android:pathData="M43,35 C47,30 61,30 65,35 M46,38 C49,34.5 59,34.5 62,38"
+        android:strokeColor="#F59E0B"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+
+    <!-- U-Shaped Magnetic Dipole Arch (Left North Pole Red, Right South Pole Cyan) -->
+    <path
+        android:pathData="M41,40 L41,50 A13,13 0 0,0 67,50 L67,40"
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="5.2"
+        android:strokeLineCap="butt"
+        android:fillColor="#00000000" />
+    <!-- Left North Pole Crimson Overlay -->
+    <path
+        android:pathData="M41,40 L41,50 A13,13 0 0,0 54,63"
+        android:strokeColor="#EF4444"
+        android:strokeWidth="5.2"
+        android:strokeLineCap="butt"
+        android:fillColor="#00000000" />
+    <!-- Metallic Pole Tips -->
+    <path
+        android:pathData="M38.4,38 L43.6,38 L43.6,42 L38.4,42 Z M64.4,38 L69.6,38 L69.6,42 L64.4,42 Z"
+        android:fillColor="#F1F5F9" />
+
+    <!-- Lower Oscilloscope EMF Pulse Window -->
+    <path
+        android:pathData="M34,66 L74,66 L74,76 L34,76 Z"
+        android:fillColor="#070D14"
+        android:strokeColor="#1E293B"
+        android:strokeWidth="1.0" />
+
+    <!-- Live EMF Waveform Trace -->
+    <path
+        android:pathData="M36,71 L43,71 L46,67.5 L50,74.5 L54,66.8 L58,74.2 L61,69 L65,71 L72,71"
+        android:strokeColor="#10B981"
+        android:strokeWidth="2.0"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000" />
+</vector>

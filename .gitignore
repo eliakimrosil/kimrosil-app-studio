@@ -1,0 +1,14 @@
+.gradle/
+build/
+local.properties
+*.iml
+.idea/
+*.apk
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+out/
+brutal_audit.png
+dark_mode_preview.png
