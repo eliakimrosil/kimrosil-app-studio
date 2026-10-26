@@ -25,6 +25,22 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://apps.kimrosil.com/gauss-meter/</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://apps.kimrosil.com/assets/icons/gauss-meter.svg</image:loc>
+      <image:title>GaussMeter</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://apps.kimrosil.com/gauss-meter/privacy.html</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://apps.kimrosil.com/tilt-level/</loc>
     <lastmod>2026-10-26</lastmod>
     <changefreq>weekly</changefreq>
