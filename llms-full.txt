@@ -56,6 +56,26 @@ Data Safety & Offline Privacy Guarantee:
 
 ---
 
+## BrixScale (`brix-scale`)
+- **Category**: Food & Drink / Utilities
+- **Tagline**: Pour-over brew ratio calculator, TDS extraction yield solver, and multi-pour stage timer.
+- **Landing Page**: https://apps.kimrosil.com/brix-scale/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-brix-scale/brix-scale.apk
+- **Privacy Policy**: https://apps.kimrosil.com/brix-scale/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+BrixScale is an offline specialty coffee brew ratio calculator, optical refractometer TDS extraction yield solver, and 4-stage pour-over pacer engineered for baristas, roasters, and home brewers.
+
+KEY FEATURES:
+• Live SCA Extraction Control Chart: Real-time 2D coordinate plotting of Extraction Yield (% EY) versus Strength (% TDS) with visual Gold Cup window (18.0%–22.0% EY) and brew ratio trajectory ray.
+• Gravimetric Ratio & 4-Stage Pour Schedule: Instant water mass targets for V60 1:16, Chemex 1:17, AeroPress 1:13, and 9-Bar Espresso 1:2.0 with automatic Degas Bloom, Sweet Acidity, Spiral Body, and Final Drawdown gram milestones.
+• Refractometer TDS & Brix Lab: Convert between % Total Dissolved Solids and °Brix, account for spent coffee grounds liquid retention (mL/g), calculate dissolved solubles mass, and compute exact bypass dilution water.
+• Local SQLite Roast & Brew Log: Save, reload, and export your best specialty coffee dial-in recipes completely offline with zero cloud accounts, zero ads, and zero telemetry trackers.
+
+---
+
 ## Cadence (`cadence-habit-ledger`)
 - **Category**: Lifestyle & Productivity
 - **Tagline**: Minimalist, 100% offline daily ritual ledger with haptic streaks and local SQLite privacy.
