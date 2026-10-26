@@ -923,5 +923,19 @@
     "privacy_policy": "https://apps.kimrosil.com/tilt-level/privacy.html",
     "icon": "assets/icons/tilt-level.svg",
     "updated_at": "2026-10-26T12:22:42.807217+00:00"
+  },
+  {
+    "slug": "gauss-meter",
+    "title": "GaussMeter",
+    "category": "UTILITIES",
+    "tagline": "3-axis magnetometer (\u00b5T / mG), EMF & ferrous wall stud locator with tare.",
+    "status": "BUILT",
+    "branch": "app/gauss-meter",
+    "tag": "v1.0.0-gauss-meter",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-gauss-meter/gauss-meter.apk",
+    "landing_page": "https://apps.kimrosil.com/gauss-meter/",
+    "privacy_policy": "https://apps.kimrosil.com/gauss-meter/privacy.html",
+    "icon": "assets/icons/gauss-meter.svg",
+    "updated_at": "2026-10-26T12:53:14.888686+00:00"
   }
 ]
