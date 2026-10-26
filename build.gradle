@@ -47,12 +47,15 @@ task compileJava(type: Exec) {
 }
 
 task dex(type: Exec) {
-    description = 'Converts compiled bytecode into DEX format using D8'
+    description = 'Optimizes and converts bytecode into DEX format using R8 with ProGuard mapping'
     group = 'build'
     dependsOn compileJava
 
     commandLine 'bash', '-c', """
-        d8 --lib ${androidJar} --output ${intermediatesDir}/ \$(find ${classesDir} -name "*.class")
+        java -cp /data/data/com.termux/files/usr/share/java/d8.jar com.android.tools.r8.R8 \\
+            --release --min-api 26 --lib ${androidJar} --output ${intermediatesDir}/ \\
+            --pg-conf proguard-rules.pro --pg-map-output ${outputsDir}/mapping.txt \\
+            \$(find ${classesDir} -name "*.class")
     """
 }
 
@@ -139,7 +142,9 @@ with zipfile.ZipFile(base_zip, 'w', zipfile.ZIP_DEFLATED) as bz:
             bz.write(full, rel)
 
 aab_out = f'{outputs}/${rootProject.name}-release.aab'
-cmd2 = f'bundletool build-bundle --modules={base_zip} --output={aab_out} --overwrite'
+map_file = f'{outputs}/mapping.txt'
+meta_arg = f'--metadata-file=com.android.tools.build.obfuscation/proguard.map:{map_file}' if os.path.exists(map_file) else ''
+cmd2 = f'bundletool build-bundle --modules={base_zip} --output={aab_out} {meta_arg} --overwrite'
 subprocess.check_call(cmd2, shell=True)
 ks = os.path.expanduser('~/.android/kimrosil_release.keystore')
 if os.path.exists(ks):
