@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brushed Aluminum & Spirit Vial Green (Light Mode) -->
+    <color name="bg_canvas">#F4F7FA</color>
+    <color name="bg_surface">#FFFFFF</color>
+    <color name="bg_elevated">#EAF0F6</color>
+    <color name="bg_hero">#ECFCCB</color>
+    <color name="bg_input">#F8FAFC</color>
+
+    <color name="text_primary">#0F172A</color>
+    <color name="text_secondary">#334155</color>
+    <color name="text_muted">#64748B</color>
+    <color name="text_on_accent">#FFFFFF</color>
+
+    <color name="accent_primary">#4D7C0F</color>
+    <color name="accent_primary_pressed">#3F6212</color>
+    <color name="accent_secondary">#0284C7</color>
+    <color name="accent_amber">#D97706</color>
+    <color name="accent_danger">#DC2626</color>
+
+    <color name="border_subtle">#CBD5E1</color>
+    <color name="border_focus">#4D7C0F</color>
+    <color name="divider_line">#D9E2EC</color>
+    <color name="ripple_color">#224D7C0F</color>
+
+    <!-- Clinometer & Spirit Vial Colors -->
+    <color name="dial_track">#CBD5E1</color>
+    <color name="dial_lime">#4D7C0F</color>
+    <color name="dial_cyan">#0284C7</color>
+    <color name="dial_amber">#D97706</color>
+    <color name="dial_needle">#0F172A</color>
+    <color name="vial_fill">#D9F99D</color>
+</resources>

@@ -1,0 +1,2 @@
+Release v1.0.0 - TiltLevel
+v1.0.0: Initial release of TiltLevel 2-Axis Machinist Clinometer, Spirit Bubble Level, Grade (%) & Roof Pitch (X:12) Meter

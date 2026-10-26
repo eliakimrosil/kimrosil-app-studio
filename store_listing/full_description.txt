@@ -1,0 +1,12 @@
+TiltLevel is an offline 2-axis machinist clinometer, illuminated spirit bubble level, percent grade (%) meter, and roof pitch (X:12) solver powered by your phone's hardware MEMS accelerometer sensor.
+
+Engineered for machinists, carpenters, roofers, plumbers, civil contractors, and workshop builders, TiltLevel delivers instantaneous angular and rise-over-run calculations with zero network permissions, zero ads, and zero subscription paywalls.
+
+KEY FEATURES:
+• Live 2-Axis Hardware Clinometer: Real-time Pitch, Roll, and 2D Composite Bullseye tilt readings in degrees (°), percent grade (%), roof pitch (X:12), mm/m, and in/ft.
+• Relative Tare Zeroing: Apply a custom Tare offset (0.00° to 45.0°) to measure relative bevel angles on miter saws, drill presses, and sloped worktables.
+• Dual Protractor & Spirit Vial HUD: Custom 180-degree protractor dial with ±0.25° True Level lock zone and a responsive horizontal spirit vial tube.
+• Span Elevation Rise / Drop Solver: Enter any span run in meters to calculate exact vertical rise or drainage drop in millimeters (mm) and inches (in).
+• Engineering, ADA & Roof Benchmarks: One-tap presets for Machinist True Level (0.00°), Patio & Pipe Drainage (1.15° / 2.0% / 1/4 in/ft), ADA Wheelchair Ramp Max (4.76° / 8.33% / 1:12), and Standard Gable Roof 4:12 (18.43°).
+• Offline SQLite Slope Log: Save, inspect, and reload multi-surface and site inspection records locally on your device.
+• Anodized Machinist & Brushed Aluminum Themes: Switch seamlessly between Dark Machinist Slate and High-Contrast Daylight modes.

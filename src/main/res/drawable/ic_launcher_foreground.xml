@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Drop Shadow Behind Clinometer Frame (Centered inside 26..82 Safe Zone) -->
+    <path
+        android:pathData="M28,33 C28,29.7 30.7,27 34,27 L74,27 C77.3,27 80,29.7 80,33 L80,75 C80,78.3 77.3,81 74,81 L34,81 C30.7,81 28,78.3 28,75 Z"
+        android:fillColor="#55000000" />
+
+    <!-- Main Machinist Clinometer Housing -->
+    <path
+        android:pathData="M28,32 C28,28.7 30.7,26 34,26 L74,26 C77.3,26 80,28.7 80,32 L80,74 C80,77.3 77.3,80 74,80 L34,80 C30.7,80 28,77.3 28,74 Z"
+        android:strokeColor="#84CC16"
+        android:strokeWidth="1.6">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="28"
+                android:startY="26"
+                android:endX="80"
+                android:endY="80"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#1E293B" />
+                <item android:offset="1.0" android:color="#0F172A" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Upper Protractor Dial Window -->
+    <path
+        android:pathData="M33,31 L75,31 L75,55 L33,55 Z"
+        android:fillColor="#090D14"
+        android:strokeColor="#334155"
+        android:strokeWidth="1.0" />
+
+    <!-- 180-Degree Clinometer Protractor Arc -->
+    <path
+        android:pathData="M39,51 A15,15 0 0,1 69,51"
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="2.8"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+
+    <!-- Top Zero-Degree True Plumb Segment -->
+    <path
+        android:pathData="M49,36.8 A15,15 0 0,1 59,36.8"
+        android:strokeColor="#A3E635"
+        android:strokeWidth="3.2"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+
+    <!-- Protractor Tick Marks & Plumb Needle -->
+    <path
+        android:pathData="M54,32 L54,35 M42,39 L44,41 M66,39 L64,41"
+        android:strokeColor="#94A3B8"
+        android:strokeWidth="1.4"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M54,51 L54,38"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.2"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M54,51 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0"
+        android:fillColor="#A3E635" />
+
+    <!-- Lower Illuminated Spirit Level Vial Tube -->
+    <path
+        android:pathData="M33,61 C33,58.8 34.8,57 37,57 L71,57 C73.2,57 75,58.8 75,61 L75,67 C75,69.2 73.2,71 71,71 L37,71 C34.8,71 33,69.2 33,67 Z"
+        android:strokeColor="#ECFCCB"
+        android:strokeWidth="1.0">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="33"
+                android:startY="57"
+                android:endX="75"
+                android:endY="71"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#65A30D" />
+                <item android:offset="0.5" android:color="#A3E635" />
+                <item android:offset="1.0" android:color="#4D7C0F" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Vial Center Calibration Hairlines & Centered Spirit Bubble -->
+    <path
+        android:pathData="M48,57 L48,71 M60,57 L60,71"
+        android:strokeColor="#1A2E05"
+        android:strokeWidth="1.5" />
+    <path
+        android:pathData="M50,62 C50,60.3 51.8,59 54,59 C56.2,59 58,60.3 58,62 C58,63.7 56.2,65 54,65 C51.8,65 50,63.7 50,62 Z"
+        android:fillColor="#FFFFFF" />
+
+    <!-- Bottom Roof Pitch X:12 Slope Indicator Bar -->
+    <path
+        android:pathData="M36,75 L56,75 M62,76 L72,76 L72,72 Z"
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="1.8"
+        android:fillColor="#00E5FF"
+        android:strokeLineCap="round" />
+</vector>
