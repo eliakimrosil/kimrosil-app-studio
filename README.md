@@ -247,6 +247,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 
 *Private receipt vaults, BIR tax calculators, ephemeral secret scratchpads, and tracking-parameter sanitizers that protect user sovereignty.*
 
+#### [BrixScale](https://apps.kimrosil.com/brix-scale/) (`brix-scale`) • `v1.0.0`
+> **Utility**: Pour-over brew ratio calculator, TDS extraction yield solver, and stage timer.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-brix-scale/brix-scale.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/brix-scale/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/brix-scale)
+
 #### [Cadence](https://apps.kimrosil.com/cadence-habit-ledger/) (`cadence-habit-ledger`) • `v1.0.0`
 > **Utility**: Minimalist, 100% offline daily ritual ledger with haptic streaks and local SQLite privacy.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-cadence-habit-ledger/cadence-habit-ledger.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/cadence-habit-ledger/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/cadence-habit-ledger)
