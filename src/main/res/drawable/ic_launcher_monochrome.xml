@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Incident Light Rays -->
+    <path
+        android:pathData="M34,29 L41,35 M54,25 L54,30 M74,29 L67,35"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round" />
+
+    <!-- Optical Sensor Dome -->
+    <path
+        android:pathData="M43,39 A11,9.5 0 0,1 65,39 Z"
+        android:fillColor="#FFFFFF" />
+
+    <!-- Photometer Body Outline -->
+    <path
+        android:pathData="M34,44 C34,41 36.5,39 39.5,39 L68.5,39 C71.5,39 74,41 74,44 L74,74.5 C74,77.5 71.5,80 68.5,80 L39.5,80 C36.5,80 34,77.5 34,74.5 Z"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3.0"
+        android:fillColor="#00000000" />
+
+    <!-- Gauge Arc & Indicator Needle -->
+    <path
+        android:pathData="M42.5,60 A11.5,11.5 0 0,1 65.5,60"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3.0"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+    <path
+        android:pathData="M54,60 L60.5,50.5"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.4"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M54,60 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0"
+        android:fillColor="#FFFFFF" />
+
+    <!-- Digital Readout Lines & PAR Leaf -->
+    <path
+        android:pathData="M40,70 L52,70 M40,74.5 L57,74.5"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.4"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M62,75.5 C62,70.5 66,67.5 70,67.5 C70,72 67,75.5 62,75.5 Z"
+        android:fillColor="#FFFFFF" />
+</vector>

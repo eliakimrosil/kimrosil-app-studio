@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Soft Drop Shadow Behind Photometer Chassis (Centered in 26..82 Safe Zone) -->
+    <path
+        android:pathData="M35,41 C35,37 38,34 42,34 L66,34 C70,34 73,37 73,41 L73,75 C73,79 70,82 66,82 L42,82 C38,82 35,79 35,75 Z"
+        android:fillColor="#55000000" />
+
+    <!-- Incident Photon Light Rays (Safe Zone Top y=26..33) -->
+    <path
+        android:pathData="M32,29 L40,35 M38,26 L44,32 M54,25 L54,30 M70,26 L64,32 M76,29 L68,35"
+        android:strokeColor="#FBBF24"
+        android:strokeWidth="2.2"
+        android:strokeLineCap="round" />
+
+    <!-- Cosine-Corrector Optical White Diffuser Dome -->
+    <path
+        android:pathData="M43,39 A11,9.5 0 0,1 65,39 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="54"
+                android:startY="29"
+                android:endX="54"
+                android:endY="39"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#FFFFFF" />
+                <item android:offset="0.7" android:color="#E0F2FE" />
+                <item android:offset="1.0" android:color="#7DD3FC" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- Sensor Metallic Collar Ring -->
+    <path
+        android:pathData="M41,38 L67,38 L69,41 L39,41 Z"
+        android:fillColor="#334155" />
+
+    <!-- Main Photometer Instrument Chassis -->
+    <path
+        android:pathData="M34,44 C34,41 36.5,39 39.5,39 L68.5,39 C71.5,39 74,41 74,44 L74,74.5 C74,77.5 71.5,80 68.5,80 L39.5,80 C36.5,80 34,77.5 34,74.5 Z"
+        android:strokeWidth="1.5"
+        android:strokeColor="#38BDF8">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="34"
+                android:startY="39"
+                android:endX="74"
+                android:endY="80"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#152232" />
+                <item android:offset="1.0" android:color="#0B121B" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Gauge Dial Recessed Window -->
+    <path
+        android:pathData="M38,45 C38,43.5 39.2,42.5 40.5,42.5 L67.5,42.5 C68.8,42.5 70,43.5 70,45 L70,63 C70,64.5 68.8,65.5 67.5,65.5 L40.5,65.5 C39.2,65.5 38,64.5 38,63 Z"
+        android:fillColor="#080D14"
+        android:strokeColor="#1E293B"
+        android:strokeWidth="1.0" />
+
+    <!-- 180-Degree Lux & PAR Spectrum Arc Track -->
+    <path
+        android:pathData="M42.5,60 A11.5,11.5 0 0,1 48.5,50"
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="3.0"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+    <path
+        android:pathData="M50,49.2 A11.5,11.5 0 0,1 59.5,50"
+        android:strokeColor="#10B981"
+        android:strokeWidth="3.0"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+    <path
+        android:pathData="M61,51 A11.5,11.5 0 0,1 65.5,60"
+        android:strokeColor="#F59E0B"
+        android:strokeWidth="3.0"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+
+    <!-- Precision Photometer Needle & Pivot -->
+    <path
+        android:pathData="M54,60 L60.5,50.5"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.1"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M54,60 m-2.4,0 a2.4,2.4 0 1,0 4.8,0 a2.4,2.4 0 1,0 -4.8,0"
+        android:fillColor="#00E5FF" />
+
+    <!-- Lower Telemetry Display Bar & Botanical PAR Leaf Badge -->
+    <path
+        android:pathData="M38,68 L59,68 C60,68 61,68.8 61,69.8 L61,75 C61,76 60,76.8 59,76.8 L38,76.8 Z"
+        android:fillColor="#0D1F2D" />
+    <path
+        android:pathData="M41,71 L51,71 M41,74 L56,74"
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round" />
+
+    <!-- Botanical PAR Leaf Accent -->
+    <path
+        android:pathData="M63,76 C63,70.5 67,67.5 71,67.5 C71,72 68,76 63,76 Z"
+        android:fillColor="#10B981" />
+    <path
+        android:pathData="M63.5,75.5 L68.8,70.2"
+        android:strokeColor="#A7F3D0"
+        android:strokeWidth="1.0"
+        android:strokeLineCap="round" />
+</vector>

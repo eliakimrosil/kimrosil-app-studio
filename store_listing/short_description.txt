@@ -1,0 +1,1 @@
+Hardware ambient Lux, Foot-Candles, Plant PAR (PPFD/DLI) & EV100 light meter.

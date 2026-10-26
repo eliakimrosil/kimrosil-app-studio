@@ -1,0 +1,2 @@
+Release v1.0.0 - LuxScale
+v1.0.0: Initial release of LuxScale Ambient Light Sensor, Plant PPFD/DLI Photometer, and Room Audit Log
