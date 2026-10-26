@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>Privacy Policy - LuxScale | KimRosil App Studio</title>
+    <meta name="description" content="Privacy policy and zero-telemetry data safety declaration for LuxScale. 100% offline, zero data collection.">
+    <!-- Exclude duplicate app-level privacy policy from search index while allowing link crawling -->
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://apps.kimrosil.com/lux-scale/privacy.html">
+    <link rel="icon" type="image/svg+xml" href="https://apps.kimrosil.com/favicon.svg">
+    <link rel="alternate icon" href="https://apps.kimrosil.com/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://apps.kimrosil.com/apple-touch-icon.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://apps.kimrosil.com/lux-scale/privacy.html">
+    <meta property="og:site_name" content="KimRosil App Studio">
+    <meta property="og:title" content="Privacy Policy - LuxScale">
+    <meta property="og:description" content="100% offline, zero data collection privacy policy for LuxScale.">
+    <meta property="og:image" content="https://apps.kimrosil.com/assets/icons/lux-scale.png">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #090D16;
+            color: #E0E2EC;
+            margin: 0;
+            padding: 32px 16px;
+            line-height: 1.65;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            background: #111827;
+            padding: 36px 32px;
+            border-radius: 20px;
+            border: 1px solid #1F2937;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+            word-break: break-word;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            color: #34D399;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        h1, h2, h3 { color: #00E5FF; line-height: 1.3; }
+        h1 { font-size: clamp(22px, 5.5vw, 28px); margin-bottom: 8px; }
+        h2 { font-size: 18px; margin: 24px 0 10px 0; }
+        h3 { font-size: 15px; margin: 18px 0 8px 0; }
+        p, li { color: #94A3B8; font-size: 14px; line-height: 1.65; }
+        p { margin-bottom: 12px; }
+        ul, ol { margin: 0 0 16px 20px; }
+        li { margin-bottom: 6px; }
+        a { color: #00E5FF; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        hr { border: 0; border-top: 1px solid #1F2937; margin: 20px 0; }
+        .nav-back {
+            margin-top: 32px;
+            padding-top: 18px;
+            border-top: 1px solid #1F2937;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 13.5px;
+        }
+        @media (max-width: 640px) {
+            body { padding: 12px 8px; }
+            .container { padding: 20px 14px; border-radius: 14px; }
+            h1 { font-size: 20px; }
+            h2 { font-size: 16px; }
+            h3 { font-size: 14.5px; }
+            p, li { font-size: 13.5px; }
+            .nav-back { flex-direction: column; text-align: center; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="badge">✓ Google Play Data Safety Certified</span>
+        <h1>Privacy Policy</h1>
+        <p><strong>LuxScale</strong></p>
+        <p><em>Effective Date: October 2, 2026 &bull; Developer: Eliakim Rosil</em></p>
+        <hr>
+        <h1>Privacy Policy for LuxScale</h1>
+<p><strong>Effective Date:</strong> October 26, 2026</p>
+<p><strong>Developer:</strong> KimRosil App Studio</p>
+<h2>1. 100% Offline Architecture</h2>
+<p>LuxScale operates exclusively offline on your Android device. The application requests zero network permissions (`INTERNET` is not declared in the manifest) and transmits zero data to external servers.</p>
+<h2>2. Hardware Sensor Data</h2>
+<p>LuxScale reads your device's ambient light sensor (`android.hardware.sensor.light`) solely in real time while the application is active in the foreground to calculate Lux, Foot-Candles, PPFD, DLI, and EV100 metrics. Sensor readings are never transmitted off your device.</p>
+<h2>3. Local Storage</h2>
+<p>Calibration settings and saved room light audits are stored strictly inside your device's local application sandbox (`SharedPreferences` and local SQLite database `lux_scale_audits.db`). Uninstalling the application or clearing app data permanently removes all stored records.</p>
+<h2>4. Zero Third-Party SDKs or Trackers</h2>
+<p>LuxScale contains zero advertising SDKs, zero analytics frameworks, and zero telemetry trackers.</p>
+        <div class="nav-back">
+            <a href="./">← Return to LuxScale App Overview</a>
+            <a href="../privacy.html">Master Developer Privacy Policy →</a>
+        </div>
+    </div>
+</body>
+</html>

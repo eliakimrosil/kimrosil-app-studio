@@ -794,6 +794,31 @@ DIFFERENTIAL RUNOUT & MULTI-POINT RECORDING
 
 ---
 
+## LuxScale (`lux-scale`)
+- **Category**: Hardware & Photometry
+- **Tagline**: Hardware ambient Lux, Foot-Candles, Plant PAR (PPFD/DLI) & EV100 light meter.
+- **Landing Page**: https://apps.kimrosil.com/lux-scale/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-lux-scale/lux-scale.apk
+- **Privacy Policy**: https://apps.kimrosil.com/lux-scale/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+LuxScale is an offline optical light meter, Plant PAR (PPFD & DLI) converter, and architectural workspace photometer powered by your phone's hardware ambient light sensor (Sensor.TYPE_LIGHT).
+
+Designed for indoor growers, horticulturalists, photographers, cinematographers, and ergonomic workspace auditors, LuxScale eliminates paywalls and cloud subscriptions by delivering calibrated photometric telemetry in a fast, zero-permission native package.
+
+KEY FEATURES:
+• Live Hardware Photodiode Telemetry: Real-time SI Lux (lx) and Foot-Candles (fc) readouts with session Minimum, Peak, and Average tracking plus instant Hold lock.
+• Sensor Calibration Multiplier: Apply a custom calibration factor (0.05× to 50.0×) to align your phone's front photodiode against a dedicated reference photometer or cosine diffuser.
+• Horticultural PAR (PPFD & DLI) Engine: Convert calibrated Lux into Photosynthetic Photon Flux Density (µmol/m²/s) and Daily Light Integral (mol/m²/d) across selectable spectrum profiles (6500K Daylight, 3500K Warm White LED, and Full-Spectrum Horticultural Grow LED).
+• Botanical & IES Target Benchmarks: Compare live canopy or desk light levels against IES office workspace standards (500 lx), shade foliage (2,000 lx), vegetative herb canopies (8,000 lx), and high-intensity fruiting arrays (20,000 lx).
+• Cine & Photo Exposure Readout: Real-time EV100 exposure value calculation for incident scene lighting checks.
+• Local SQLite Room Audit Log: Save, inspect, and reload multi-room or grow-shelf light audits completely offline.
+• Daylight & Graphite Optical Lab Themes: Switch seamlessly between high-contrast Daylight Alabaster and Dark Graphite Optical Lab modes.
+
+---
+
 ## MeterPulse (`tap-meter-parking-sentinel`)
 - **Category**: Auto & Vehicles / Productivity
 - **Tagline**: One-tap Quick Settings parking timer with interactive Glance countdown and GPS breadcrumb, completely offline.
