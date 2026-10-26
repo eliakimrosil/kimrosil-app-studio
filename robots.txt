@@ -7,7 +7,6 @@
 # Default rule for all web crawlers & search engines
 User-agent: *
 Allow: /
-Allow: /index.html
 Allow: /organization.html
 Allow: /testers.html
 Allow: /privacy.html
