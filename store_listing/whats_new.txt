@@ -1,2 +1,2 @@
-Release v1.10.3 - KR Live Studio
-Upgrade targetSdkVersion to 36 (Android 16) for Google Play Store compliance
+Release v1.10.5 - KR Live Studio
+Closed testing release targeting Android 16 (API 36) with embedded R8 deobfuscation mapping.

@@ -160,7 +160,7 @@
                         android:id="@+id/tvSettingsVersion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="v1.10.2 • Native Live Streaming Studio"
+                        android:text="v1.10.5 • Native Live Streaming Studio"
                         android:textColor="@color/studio_cyan"
                         android:textSize="11sp"
                         android:textStyle="bold" />
