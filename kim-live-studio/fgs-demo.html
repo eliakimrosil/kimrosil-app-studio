@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KR Live Studio — Foreground Service Demonstration (Camera, Media Projection & Microphone)</title>
+<style>
+  body { background: #0B0E14; color: #F1F5F9; font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 24px; line-height: 1.6; }
+  .container { max-width: 960px; margin: 0 auto; }
+  h1 { color: #FF2E54; margin-bottom: 4px; }
+  .badge { display: inline-block; background: #1E293B; color: #38BDF8; padding: 4px 10px; border-radius: 6px; font-size: 13px; font-family: monospace; margin-right: 6px; }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
+  .card { background: #131822; border: 1px solid #263042; border-radius: 12px; padding: 14px; }
+  .card img { width: 100%; border-radius: 8px; border: 1px solid #1E293B; }
+  .card h3 { font-size: 15px; margin: 10px 0 6px; color: #38BDF8; }
+  .card p { font-size: 13px; color: #94A3B8; margin: 0; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>KR Live Studio (com.kimrosil.krlivestudio)</h1>
+  <p>Foreground Service Permissions Demonstration for Google Play Review</p>
+  <div>
+    <span class="badge">FOREGROUND_SERVICE_CAMERA</span>
+    <span class="badge">FOREGROUND_SERVICE_MEDIA_PROJECTION</span>
+    <span class="badge">FOREGROUND_SERVICE_MICROPHONE</span>
+  </div>
+  <div class="steps">
+    <div class="card">
+      <img src="screenshot_1.png" alt="Step 1: User Initiates Live Stream">
+      <h3>1. User Starts Broadcast</h3>
+      <p>The user taps GO LIVE in the studio deck and grants Android MediaProjection, Camera, and Microphone permissions.</p>
+    </div>
+    <div class="card">
+      <img src="screenshot_2.png" alt="Step 2: Real-Time Video & Audio Encoding">
+      <h3>2. Active Encoding & Notification</h3>
+      <p>StreamService runs an active Foreground Service notification while encoding screen capture (MediaProjection) and AAC microphone audio.</p>
+    </div>
+    <div class="card">
+      <img src="screenshot_3.png" alt="Step 3: Floating Camera & PiP Overlay">
+      <h3>3. Background & PiP Streaming</h3>
+      <p>While the user switches to gameplay or external apps, background camera streaming, screen capture, and microphone audio continue uninterrupted with on-screen tally controls.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
