@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="arcGlow" cx="50%" cy="56%" r="45%">
+      <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.8"/>
+      <stop offset="40%" stop-color="#FF9500" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0C0F17" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="torchGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <linearGradient id="beadGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="40%" stop-color="#FF9500"/>
+      <stop offset="100%" stop-color="#E65100"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Deep Obsidian Background -->
+  <rect width="512" height="512" rx="112" fill="#0C0F17"/>
+  
+  <!-- Subtle Telemetry Grid -->
+  <rect x="64" y="64" width="384" height="384" rx="32" fill="none" stroke="#1E283A" stroke-width="4"/>
+  <line x1="64" y1="256" x2="448" y2="256" stroke="#1E283A" stroke-width="2.5" stroke-dasharray="8,8"/>
+  <line x1="256" y1="64" x2="256" y2="448" stroke="#1E283A" stroke-width="2.5" stroke-dasharray="8,8"/>
+  <circle cx="256" cy="256" r="160" fill="none" stroke="#FF9500" stroke-width="3" stroke-opacity="0.25"/>
+
+  <!-- Radial Arc Backlight Glow -->
+  <circle cx="256" cy="290" r="140" fill="url(#arcGlow)"/>
+
+  <!-- Steel Joint Plates (V-Groove) -->
+  <path d="M 80,360 L 190,360 L 235,310 L 277,310 L 322,360 L 432,360" fill="none" stroke="#475569" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Molten Weld Bead -->
+  <path d="M 190,350 C 205,280 307,280 322,350 Z" fill="url(#beadGrad)" stroke="#FFA726" stroke-width="6"/>
+
+  <!-- Bead Ripples -->
+  <path d="M 205,335 C 225,315 287,315 307,335" fill="none" stroke="#FFF9C4" stroke-width="5" stroke-linecap="round"/>
+  <path d="M 215,320 C 235,305 277,305 297,320" fill="none" stroke="#FFF9C4" stroke-width="4.5" stroke-linecap="round"/>
+
+  <!-- Welding Torch Assembly -->
+  <rect x="238" y="80" width="36" height="40" rx="6" fill="#64748B"/>
+  <polygon points="232,120 280,120 270,225 242,225" fill="url(#torchGrad)" stroke="#0369A1" stroke-width="4"/>
+  
+  <!-- Tungsten Electrode -->
+  <line x1="256" y1="225" x2="256" y2="265" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- Electric Plasma Arc Core -->
+  <polygon points="256,265 240,305 256,315 272,305" fill="#00E5FF"/>
+  <polygon points="256,275 246,300 256,308 266,300" fill="#FFFFFF"/>
+
+  <!-- High-Energy Sparks -->
+  <line x1="205" y1="270" x2="185" y2="255" stroke="#FFE082" stroke-width="6" stroke-linecap="round"/>
+  <line x1="307" y1="270" x2="327" y2="255" stroke="#FFE082" stroke-width="6" stroke-linecap="round"/>
+  <line x1="175" y1="315" x2="150" y2="320" stroke="#FFD54F" stroke-width="6" stroke-linecap="round"/>
+  <line x1="337" y1="315" x2="362" y2="320" stroke="#FFD54F" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- ASME Telemetry Star Spark -->
+  <polygon points="380,120 388,100 396,120 416,128 396,136 388,156 380,136 360,128" fill="#FF9500"/>
+</svg>
