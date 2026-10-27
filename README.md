@@ -267,6 +267,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Instantly strip tracking parameters, UTMs, referral bloat, and metadata from copied links and images before sharing.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-clip-scrub-sanitize-share/clip-scrub-sanitize-share.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/clip-scrub-sanitize-share/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/clip-scrub-sanitize-share)
 
+#### [ConduitFill](https://apps.kimrosil.com/conduit-fill/) (`conduit-fill`) • `v2.0.0`
+> **Utility**: NEC conduit fill capacity, conductor jam ratio, and pull box sizing solver.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-conduit-fill/conduit-fill.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/conduit-fill/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/conduit-fill)
+
 #### [CycleGuard](https://apps.kimrosil.com/laundry-cycle-sentinel/) (`laundry-cycle-sentinel`) • `v1.0.0`
 > **Utility**: Zero-friction offline laundry timer with Quick Settings 1-tap start, ongoing lock-screen chronometer, and mold-prevention reminders.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-laundry-cycle-sentinel/laundry-cycle-sentinel.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/laundry-cycle-sentinel/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/laundry-cycle-sentinel)
