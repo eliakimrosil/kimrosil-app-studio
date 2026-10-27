@@ -591,6 +591,30 @@ Notice of Non-Affiliation: All product and company names, logos, and brands ment
 
 ---
 
+## DuctFlow (`duct-flow`)
+- **Category**: ENGINEERING
+- **Tagline**: HVAC Equal Friction Sizer
+- **Landing Page**: https://apps.kimrosil.com/duct-flow/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-duct-flow/duct-flow.apk
+- **Privacy Policy**: https://apps.kimrosil.com/duct-flow/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+DuctFlow is a dedicated, 100% offline HVAC engineering utility engineered for mechanical engineers, sheet metal fabricators, air balancing technicians, and duct installers. It solves round duct diameter, equivalent rectangular duct dimensions, air velocity, and friction loss rates using SMACNA and ASHRAE equal friction methodology.
+
+KEY CAPABILITIES:
+• ASHRAE Equal Friction Duct Sizing: Computes exact equivalent round diameter and friction loss rate (in. wg / 100 ft) for any airflow volume (CFM) and velocity limit.
+• Rectangular Equivalent Solver: Uses Huebscher's formula to determine rectangular duct width and height dimensions matching the airflow capacity and static pressure drop of round spiral duct.
+• Aspect Ratio Telemetry: Alerts when rectangular duct aspect ratio (W:H) exceeds recommended 4:1 sheet metal fabrication standards.
+• Dynamic Airflow Canvas: Interactive 2D duct cross-section rendering shows rectangular aspect ratio, spiral round overlay, velocity vector arrows, and friction telemetry.
+• Quick Application Presets: One-tap presets for Supply Main (0.10 in. wg), Supply Branch (0.08 in. wg), Return Air (0.06 in. wg), and Low-Noise Residential (0.05 in. wg).
+• Offline Feeder History: Save duct branch schedules to local SQLite storage and restore configurations instantly.
+• Quick Settings Tile: Launch DuctFlow directly from Android Quick Settings without leaving jobsite blueprints.
+• Pure Native Performance: Under 100 KB binary footprint, sub-150ms cold launch, Day/Night/Auto themes, zero telemetry, and zero network permissions.
+
+---
+
 ## FastArc (`fast-arc`)
 - **Category**: Health & Fitness
 - **Tagline**: Zero-Bloat 16:8 Fasting Timer & Lock-Screen Widget
@@ -1920,7 +1944,7 @@ Data Safety & Offline Privacy Guarantee:
 - **Category**: UTILITY
 - **Tagline**: NEC Ampacity & Derating
 - **Landing Page**: https://apps.kimrosil.com/wire-amp/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-wire-amp/wire-amp.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-wire-amp/wire-amp.apk
 - **Privacy Policy**: https://apps.kimrosil.com/wire-amp/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
