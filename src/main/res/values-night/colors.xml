@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Deep Obsidian Trench Dark Mode -->
+    <color name="bg_canvas">#0A0E17</color>
+    <color name="bg_surface">#111A29</color>
+    <color name="bg_elevated">#182438</color>
+    <color name="bg_hero">#0C233D</color>
+    <color name="bg_input">#0D1522</color>
+
+    <color name="text_primary">#F8FAFC</color>
+    <color name="text_secondary">#94A3B8</color>
+    <color name="text_muted">#64748B</color>
+    <color name="text_on_accent">#050B14</color>
+
+    <color name="accent_primary">#38BDF8</color>
+    <color name="accent_primary_pressed">#0284C7</color>
+    <color name="accent_amber">#F59E0B</color>
+    <color name="accent_copper">#F97316</color>
+    <color name="accent_emerald">#10B981</color>
+    <color name="accent_danger">#EF4444</color>
+
+    <color name="border_subtle">#1E293B</color>
+    <color name="border_focus">#38BDF8</color>
+    <color name="divider_line">#1E293B</color>
+    <color name="ripple_color">#3338BDF8</color>
+
+    <!-- Pipe Graphic Tokens -->
+    <color name="pipe_wall">#38BDF8</color>
+    <color name="pipe_fill">#0F355A</color>
+    <color name="pipe_liquid">#00E5FF</color>
+    <color name="ground_line">#475569</color>
+    <color name="datum_line">#1E293B</color>
+    <color name="badge_bg_pass">#064E3B</color>
+    <color name="badge_text_pass">#34D399</color>
+    <color name="badge_bg_warn">#78350F</color>
+    <color name="badge_text_warn">#FCD34D</color>
+    <color name="badge_bg_alert">#7F1D1D</color>
+    <color name="badge_text_alert">#FCA5A5</color>
+
+    <!-- Compatibility aliases -->
+    <color name="m3_primary">#38BDF8</color>
+    <color name="m3_on_primary">#050B14</color>
+    <color name="m3_on_surface">#F8FAFC</color>
+    <color name="m3_surface_container">#111A29</color>
+    <color name="m3_surface_container_high">#182438</color>
+    <color name="m3_surface_container_highest">#0D1522</color>
+    <color name="m3_outline">#1E293B</color>
+    <color name="m3_outline_variant">#1E293B</color>
+
+    <color name="colorPrimary">#38BDF8</color>
+    <color name="colorPrimaryDark">#0A0E17</color>
+    <color name="colorAccent">#00E5FF</color>
+    <color name="windowBackground">#0A0E17</color>
+    <color name="cardBackground">#111A29</color>
+    <color name="cardStroke">#1E293B</color>
+    <color name="textPrimary">#F8FAFC</color>
+    <color name="textSecondary">#94A3B8</color>
+    <color name="btnColor">#38BDF8</color>
+    <color name="btnTextColor">#050B14</color>
+</resources>

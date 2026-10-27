@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Jobsite Blueprint Light Mode -->
+    <color name="bg_canvas">#F1F5F9</color>
+    <color name="bg_surface">#FFFFFF</color>
+    <color name="bg_elevated">#E2E8F0</color>
+    <color name="bg_hero">#E0F2FE</color>
+    <color name="bg_input">#F8FAFC</color>
+
+    <color name="text_primary">#0F172A</color>
+    <color name="text_secondary">#475569</color>
+    <color name="text_muted">#64748B</color>
+    <color name="text_on_accent">#FFFFFF</color>
+
+    <color name="accent_primary">#0284C7</color>
+    <color name="accent_primary_pressed">#0369A1</color>
+    <color name="accent_amber">#D97706</color>
+    <color name="accent_copper">#B45309</color>
+    <color name="accent_emerald">#059669</color>
+    <color name="accent_danger">#DC2626</color>
+
+    <color name="border_subtle">#CBD5E1</color>
+    <color name="border_focus">#0284C7</color>
+    <color name="divider_line">#E2E8F0</color>
+    <color name="ripple_color">#220284C7</color>
+
+    <!-- Pipe Graphic Tokens -->
+    <color name="pipe_wall">#0284C7</color>
+    <color name="pipe_fill">#BAE6FD</color>
+    <color name="pipe_liquid">#0EA5E9</color>
+    <color name="ground_line">#94A3B8</color>
+    <color name="datum_line">#CBD5E1</color>
+    <color name="badge_bg_pass">#DCFCE7</color>
+    <color name="badge_text_pass">#15803D</color>
+    <color name="badge_bg_warn">#FEF3C7</color>
+    <color name="badge_text_warn">#B45309</color>
+    <color name="badge_bg_alert">#FEE2E2</color>
+    <color name="badge_text_alert">#B91C1C</color>
+
+    <!-- Compatibility aliases -->
+    <color name="m3_primary">#0284C7</color>
+    <color name="m3_on_primary">#FFFFFF</color>
+    <color name="m3_on_surface">#0F172A</color>
+    <color name="m3_surface_container">#FFFFFF</color>
+    <color name="m3_surface_container_high">#E2E8F0</color>
+    <color name="m3_surface_container_highest">#F8FAFC</color>
+    <color name="m3_outline">#CBD5E1</color>
+    <color name="m3_outline_variant">#CBD5E1</color>
+
+    <color name="colorPrimary">#0284C7</color>
+    <color name="colorPrimaryDark">#F1F5F9</color>
+    <color name="colorAccent">#0EA5E9</color>
+    <color name="windowBackground">#F1F5F9</color>
+    <color name="cardBackground">#FFFFFF</color>
+    <color name="cardStroke">#CBD5E1</color>
+    <color name="textPrimary">#0F172A</color>
+    <color name="textSecondary">#475569</color>
+    <color name="btnColor">#0284C7</color>
+    <color name="btnTextColor">#FFFFFF</color>
+</resources>

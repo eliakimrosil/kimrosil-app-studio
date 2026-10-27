@@ -1,0 +1,926 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_canvas"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/rootContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- Top Header Action Bar with Direct Theme Switcher & Settings -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvBrandTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="@string/app_name"
+                    android:textColor="@color/text_primary"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvBrandSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:text="PIPE SLOPE &amp; INVERT ENGINE"
+                    android:textColor="@color/accent_primary"
+                    android:textSize="10.5sp" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btnThemeToggle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="6dp"
+                android:background="@drawable/bg_header_icon_btn"
+                android:contentDescription="Toggle Light and Dark Display Theme"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_theme" />
+
+            <ImageButton
+                android:id="@+id/btnSettings"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_header_icon_btn"
+                android:contentDescription="PlumbBob Preferences &amp; Settings"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_settings" />
+        </LinearLayout>
+
+        <!-- Calculation Mode Selector Chips -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnModeFall"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_chip_selected"
+                android:contentDescription="Calculate Total Fall from Run and Pitch"
+                android:minHeight="48dp"
+                android:text="Run &amp; Pitch"
+                android:textAllCaps="false"
+                android:textColor="@color/text_on_accent"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnModeSlope"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_chip_unselected"
+                android:contentDescription="Calculate Slope from Inverts and Run Length"
+                android:minHeight="48dp"
+                android:text="Inverts &amp; Run"
+                android:textAllCaps="false"
+                android:textColor="@color/text_primary"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnModeRun"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_chip_unselected"
+                android:contentDescription="Calculate Run Length from Drop and Pitch"
+                android:minHeight="48dp"
+                android:text="Drop &amp; Pitch"
+                android:textAllCaps="false"
+                android:textColor="@color/text_primary"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Telemetry Hero HUD Card -->
+        <LinearLayout
+            android:id="@+id/cardTelemetryHero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_hero_card"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <!-- Primary Fall Output -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="TOTAL DRAINAGE FALL / DROP"
+                android:textColor="@color/text_secondary"
+                android:textSize="10.5sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvHeroFall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="sans-serif-black"
+                android:text="6 1/4 in"
+                android:textColor="@color/accent_primary"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvHeroFallSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="6.25 in • 158.8 mm"
+                android:textColor="@color/text_secondary"
+                android:textSize="11.5sp" />
+
+            <!-- Hairline Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/divider_line" />
+
+            <!-- 2-Column Metrics Grid -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Column 1: Pitch & Grade -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="monospace"
+                        android:text="PITCH &amp; GRADE"
+                        android:textColor="@color/text_muted"
+                        android:textSize="9.5sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvHeroPitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="1/4 in / ft"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvHeroGrade"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="monospace"
+                        android:text="2.08% • 1:48"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="10.5sp" />
+                </LinearLayout>
+
+                <!-- Vertical Hairline Divider -->
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="6dp"
+                    android:background="@color/divider_line" />
+
+                <!-- Column 2: Invert Elevation Depths -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="monospace"
+                        android:text="INVERT ELEVATION"
+                        android:textColor="@color/text_muted"
+                        android:textSize="9.5sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvHeroInverts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="24.0 in → 30.3 in"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvHeroInvertSub"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="monospace"
+                        android:text="Start → End Depth"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="10.5sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Compliance Status Banner -->
+            <LinearLayout
+                android:id="@+id/layoutComplianceBadge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_badge_pass"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="8dp"
+                android:paddingTop="5dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="5dp">
+
+                <ImageView
+                    android:id="@+id/ivComplianceIcon"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginRight="6dp"
+                    android:src="@drawable/ic_check" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvComplianceStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:text="CODE COMPLIANT (PASS)"
+                        android:textColor="@color/badge_text_pass"
+                        android:textSize="10.5sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvComplianceReason"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Meets minimum drainage velocity per IPC code standards."
+                        android:textColor="@color/badge_text_pass"
+                        android:textSize="9.5sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Live Trench & Invert Profile Canvas Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="LIVE TRENCH &amp; INVERT PROFILE"
+                android:textColor="@color/text_secondary"
+                android:textSize="10.5sp"
+                android:textStyle="bold" />
+
+            <com.kimrosil.plumbbob.PipeSlopeDiagramView
+                android:id="@+id/pipeDiagramView"
+                android:layout_width="match_parent"
+                android:layout_height="125dp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- Trench Parameters Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="PIPE DIAMETER SPEC"
+                android:textColor="@color/text_secondary"
+                android:textSize="10.5sp"
+                android:textStyle="bold" />
+
+            <!-- Pipe Diameter Chips -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnPipe2"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_chip_unselected"
+                    android:contentDescription="Select 2 inch or less fixture drain pipe"
+                    android:minHeight="48dp"
+                    android:text="≤ 2 in"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_primary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnPipe3"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_chip_selected"
+                    android:contentDescription="Select 3 to 4 inch building sewer drain pipe"
+                    android:minHeight="48dp"
+                    android:text="3 - 4 in"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_on_accent"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnPipe6"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_chip_unselected"
+                    android:contentDescription="Select 6 inch lateral sewer pipe"
+                    android:minHeight="48dp"
+                    android:text="6 in"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_primary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnPipe8"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_chip_unselected"
+                    android:contentDescription="Select 8 inch or larger main trunk sewer pipe"
+                    android:minHeight="48dp"
+                    android:text="≥ 8 in"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_primary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Standard Pitch Presets -->
+            <TextView
+                android:id="@+id/tvPitchPresetsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="monospace"
+                android:text="CODE PITCH PRESETS"
+                android:textColor="@color/text_secondary"
+                android:textSize="10.5sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/layoutPitchPresets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnPitch1_16"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_chip_unselected"
+                    android:contentDescription="Set pitch to 1/16 inch per foot"
+                    android:minHeight="48dp"
+                    android:text="1/16 in"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_primary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnPitch1_8"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_chip_unselected"
+                    android:contentDescription="Set pitch to 1/8 inch per foot"
+                    android:minHeight="48dp"
+                    android:text="1/8 in"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_primary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnPitch1_4"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_chip_selected"
+                    android:contentDescription="Set pitch to 1/4 inch per foot"
+                    android:minHeight="48dp"
+                    android:text="1/4 in"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_on_accent"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnPitch1_2"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_chip_unselected"
+                    android:contentDescription="Set pitch to 1/2 inch per foot"
+                    android:minHeight="48dp"
+                    android:text="1/2 in"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text_primary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Input Row 1: Trench Run Length -->
+            <TextView
+                android:id="@+id/tvLabelRunLength"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="monospace"
+                android:text="TRENCH RUN LENGTH (FT)"
+                android:textColor="@color/text_secondary"
+                android:textSize="10.5sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnRunDec"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_stepper"
+                    android:contentDescription="Decrease run length"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:text="-"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etRunLength"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_input_box"
+                    android:contentDescription="Run length numeric input"
+                    android:gravity="center"
+                    android:hint="25.0"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnRunInc"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_stepper"
+                    android:contentDescription="Increase run length"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:text="+"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Input Row 2: Pitch Rate -->
+            <LinearLayout
+                android:id="@+id/layoutPitchInputGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvLabelPitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:text="PIPE PITCH / SLOPE (IN/FT)"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="10.5sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnPitchDec"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_stepper"
+                        android:contentDescription="Decrease pitch rate"
+                        android:minHeight="48dp"
+                        android:minWidth="48dp"
+                        android:text="-"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/etPitch"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_input_box"
+                        android:contentDescription="Pitch numeric input in inches per foot"
+                        android:gravity="center"
+                        android:hint="0.25"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnPitchInc"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_stepper"
+                        android:contentDescription="Increase pitch rate"
+                        android:minHeight="48dp"
+                        android:minWidth="48dp"
+                        android:text="+"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Input Row 3: Start Invert Depth -->
+            <TextView
+                android:id="@+id/tvLabelStartInvert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="monospace"
+                android:text="START INVERT DEPTH (IN)"
+                android:textColor="@color/text_secondary"
+                android:textSize="10.5sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnStartInvDec"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_stepper"
+                    android:contentDescription="Decrease start invert depth"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:text="-"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etStartInvert"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_input_box"
+                    android:contentDescription="Start invert depth numeric input"
+                    android:gravity="center"
+                    android:hint="24.0"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnStartInvInc"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_stepper"
+                    android:contentDescription="Increase start invert depth"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:text="+"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Input Row 4 (Mode 2 only): End Invert Depth -->
+            <LinearLayout
+                android:id="@+id/layoutEndInvertGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvLabelEndInvert"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:text="END INVERT DEPTH (IN)"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="10.5sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnEndInvDec"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_stepper"
+                        android:contentDescription="Decrease end invert depth"
+                        android:minHeight="48dp"
+                        android:minWidth="48dp"
+                        android:text="-"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/etEndInvert"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_input_box"
+                        android:contentDescription="End invert depth numeric input"
+                        android:gravity="center"
+                        android:hint="30.25"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnEndInvInc"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_stepper"
+                        android:contentDescription="Increase end invert depth"
+                        android:minHeight="48dp"
+                        android:minWidth="48dp"
+                        android:text="+"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Input Row 5 (Mode 3 only): Target Invert Drop -->
+            <LinearLayout
+                android:id="@+id/layoutDropInputGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvLabelTargetDrop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:text="TARGET TOTAL DROP (IN)"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="10.5sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnDropDec"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_stepper"
+                        android:contentDescription="Decrease target drop"
+                        android:minHeight="48dp"
+                        android:minWidth="48dp"
+                        android:text="-"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/etTargetDrop"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_input_box"
+                        android:contentDescription="Target invert drop numeric input"
+                        android:gravity="center"
+                        android:hint="6.25"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnDropInc"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_stepper"
+                        android:contentDescription="Increase target drop"
+                        android:minHeight="48dp"
+                        android:minWidth="48dp"
+                        android:text="+"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Action Buttons: Save Run, Copy Plumber Note, Reset -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSaveRun"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight="1.4"
+                android:background="@drawable/bg_btn_primary"
+                android:contentDescription="Save calculation to job trench log"
+                android:minHeight="48dp"
+                android:text="Save Trench Run"
+                android:textAllCaps="false"
+                android:textColor="@color/text_on_accent"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnCopyNote"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1.1"
+                android:background="@drawable/bg_btn_secondary"
+                android:contentDescription="Copy full field calculation note to clipboard"
+                android:minHeight="48dp"
+                android:text="Copy Note"
+                android:textAllCaps="false"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnReset"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="0.8"
+                android:background="@drawable/bg_btn_secondary"
+                android:contentDescription="Reset inputs to default specifications"
+                android:minHeight="48dp"
+                android:text="Reset"
+                android:textAllCaps="false"
+                android:textColor="@color/accent_danger"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Saved Trench Runs Log Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="JOB TRENCH RUNS LOG"
+                android:textColor="@color/text_secondary"
+                android:textSize="10.5sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvEmptyLog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="4dp"
+                android:text="No trench runs logged yet. Calculate parameters and tap 'Save Trench Run' to record field depth data."
+                android:textColor="@color/text_muted"
+                android:textSize="11.5sp" />
+
+            <LinearLayout
+                android:id="@+id/llSavedRunsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

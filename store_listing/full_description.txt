@@ -1,0 +1,28 @@
+PlumbBob is a 100% offline pipe slope, trench fall, and invert depth elevation calculator built for drain plumbers, pipefitters, and excavators.
+
+Designed for deep trenches, crawlspaces, and basements where cellular connectivity drops, PlumbBob delivers instant, reliable hydraulic slope math without monthly subscriptions, account logins, or video advertisements.
+
+KEY WORKBENCH CAPABILITIES:
+• 3 Flexible Calculation Solvers:
+  - Solve Total Fall & End Invert from Run Length and Slope Pitch.
+  - Solve Required Pitch & Grade Percentage from Invert Depths and Run Length.
+  - Solve Required Trench Run Length from Target Drop and Pitch.
+• IPC & UPC Drainage Code Presets:
+  - 1/16" per foot (0.52% grade) for large trunk mains (≥ 8").
+  - 1/8" per foot (1.04% grade) for standard building sewer lines (3"–6").
+  - 1/4" per foot (2.08% grade) for fixture drain branches (≤ 2").
+  - 1/2" per foot (4.16% grade) for short branch runs.
+• Live 2D Architectural Profile Diagram:
+  - Real-time trench diagram showing surface grade datum, start invert depth, end invert depth, flow direction arrow, and fall drop triangle.
+• Jobsite Trench Runs Log:
+  - Save multi-station trenching passes locally in an offline SQLite database.
+  - Tap to copy formatted field notes directly to SMS or job management logs.
+• Dual Measurement Systems:
+  - Instant conversion between Imperial (feet, inches, 1/16" fractional readings) and Metric (meters, millimeters, % grade).
+• Instant Contrast & Field Theming:
+  - Dedicated one-tap Dark Mode (Obsidian Trench) and Light Mode (Blueprint Daylight) for direct outdoor sun or dark crawlspaces.
+• Android Platform Moat:
+  - Quick Settings Tile lets you launch the slope solver directly from the notification shade with zero launcher navigation.
+
+100% Free & Open Performance:
+Zero ads. Zero analytics tracking. Pure native Android performance (< 1 MB APK size, 140ms launch).

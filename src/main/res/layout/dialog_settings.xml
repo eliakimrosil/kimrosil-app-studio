@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="PlumbBob Settings &amp; Studio"
+            android:textColor="@color/text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="monospace"
+            android:text="PIPE SLOPE &amp; INVERT ENGINE v1.0.0"
+            android:textColor="@color/accent_primary"
+            android:textSize="11sp" />
+
+        <!-- Appearance / Theme Switcher -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="monospace"
+            android:text="DISPLAY THEME MODE"
+            android:textColor="@color/text_secondary"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnThemeLight"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_chip_unselected"
+                android:text="Light"
+                android:textAllCaps="false"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnThemeDark"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_chip_unselected"
+                android:text="Dark"
+                android:textAllCaps="false"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnThemeAuto"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_chip_unselected"
+                android:text="Auto"
+                android:textAllCaps="false"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Unit System Preference -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="monospace"
+            android:text="MEASUREMENT SYSTEM"
+            android:textColor="@color/text_secondary"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnUnitImperial"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_chip_selected"
+                android:text="Imperial (ft, in)"
+                android:textAllCaps="false"
+                android:textColor="@color/text_on_accent"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnUnitMetric"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_chip_unselected"
+                android:text="Metric (m, mm)"
+                android:textAllCaps="false"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Plumbing Code Standard Preference -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="monospace"
+            android:text="DRAINAGE CODE COMPLIANCE"
+            android:textColor="@color/text_secondary"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnCodeIPC"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_chip_selected"
+                android:text="IPC (Intl Code)"
+                android:textAllCaps="false"
+                android:textColor="@color/text_on_accent"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnCodeUPC"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_chip_unselected"
+                android:text="UPC (Uniform Code)"
+                android:textAllCaps="false"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Haptics Toggle -->
+        <Switch
+            android:id="@+id/swHaptics"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:checked="true"
+            android:text="Tactile Haptic Feedback on Controls"
+            android:textColor="@color/text_primary"
+            android:textSize="13sp" />
+
+        <!-- About Studio Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_card_elevated"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="KimRosil App Studio"
+                android:textColor="@color/text_primary"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="100% Free &amp; Offline Pipe Slope Workbench. Zero ads, zero subscriptions, zero tracking, and zero internet required. Engineered for crawlspaces, basements, and jobsite trenches."
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Action Buttons: Privacy Policy, Clear Log, Done -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnPrivacyPolicy"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_secondary"
+                android:text="Privacy"
+                android:textAllCaps="false"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnClearLog"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_secondary"
+                android:text="Clear Log"
+                android:textAllCaps="false"
+                android:textColor="@color/accent_danger"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnCloseSettings"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_primary"
+                android:text="Done"
+                android:textAllCaps="false"
+                android:textColor="@color/text_on_accent"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
