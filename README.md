@@ -271,6 +271,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Zero-friction offline laundry timer with Quick Settings 1-tap start, ongoing lock-screen chronometer, and mold-prevention reminders.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-laundry-cycle-sentinel/laundry-cycle-sentinel.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/laundry-cycle-sentinel/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/laundry-cycle-sentinel)
 
+#### [DeciGauge](https://apps.kimrosil.com/deci-gauge/) (`deci-gauge`) • `v2.0.0`
+> **Utility**: Precision sound level meter with A/C weighting and NIOSH noise dose tracking.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-deci-gauge/deci-gauge.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/deci-gauge/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/deci-gauge)
+
 #### [DipLink](https://apps.kimrosil.com/dip-link/) (`dip-link`) • `v1.4.0`
 > **Utility**: Fuel dipstick to volume calculator with empirical tank calibration curves.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.4.0-dip-link/dip-link.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/dip-link/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/dip-link)

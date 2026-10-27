@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="labBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#141C24"/>
+      <stop offset="100%" stop-color="#0B0F14"/>
+    </radialGradient>
+    <linearGradient id="meterArc" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00F2FE"/>
+      <stop offset="65%" stop-color="#FFB300"/>
+      <stop offset="100%" stop-color="#FF3B30"/>
+    </linearGradient>
+    <filter id="cyanGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="512" height="512" rx="112" fill="url(#labBg)"/>
+
+  <!-- Telemetry Grid Rings -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#1E293B" stroke-width="4"/>
+  <circle cx="256" cy="256" r="140" fill="none" stroke="#1E293B" stroke-width="3"/>
+  <circle cx="256" cy="256" r="80" fill="none" stroke="#1E293B" stroke-width="2"/>
+
+  <!-- Radial Tick Marks -->
+  <line x1="256" y1="56" x2="256" y2="76" stroke="#486581" stroke-width="4" stroke-linecap="round"/>
+  <line x1="256" y1="436" x2="256" y2="456" stroke="#486581" stroke-width="4" stroke-linecap="round"/>
+  <line x1="56" y1="256" x2="76" y2="256" stroke="#486581" stroke-width="4" stroke-linecap="round"/>
+  <line x1="436" y1="256" x2="456" y2="256" stroke="#486581" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Sound Level Dial Arc (135 deg to 405 deg) -->
+  <path d="M 145 325 A 140 140 0 1 1 367 325" fill="none" stroke="url(#meterArc)" stroke-width="18" stroke-linecap="round" filter="url(#cyanGlow)"/>
+
+  <!-- Radiating Sound Waves -->
+  <path d="M 216 380 A 45 45 0 0 1 296 380" fill="none" stroke="#00F2FE" stroke-width="8" stroke-linecap="round"/>
+  <path d="M 190 410 A 75 75 0 0 1 322 410" fill="none" stroke="#4DD0E1" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Center Gauge Needle (Pointing to ~85 dB) -->
+  <line x1="256" y1="300" x2="310" y2="180" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- Pivot Knob -->
+  <circle cx="256" cy="300" r="22" fill="#00F2FE"/>
+  <circle cx="256" cy="300" r="10" fill="#0B0F14"/>
+
+  <!-- Peak Warning Diamond -->
+  <polygon points="360,190 375,205 360,220 345,205" fill="#FF3B30" filter="url(#cyanGlow)"/>
+</svg>
