@@ -1,0 +1,7 @@
+Welcome to SnipShelf version 1.0.0.
+
+- Local offline storage for manuals, receipts, and warranties
+- Quick Settings tile support for instant receipt and serial capture
+- Direct PDF manual import via system share menu
+- On-device warranty expiration reminders
+- Fast offline search by model, brand, or category

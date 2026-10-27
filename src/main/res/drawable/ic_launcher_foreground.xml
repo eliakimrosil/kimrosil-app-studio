@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group>
+        
+        <!-- Warranty Document / Receipt with Jagged Tear Edge -->
+        <path
+            android:fillColor="#F1F5F9"
+            android:pathData="M30,22h48v56l-4,-3 -4,3 -4,-3 -4,3 -4,-3 -4,3 -4,-3 -4,3 -4,-3 -4,3 -4,-3 -4,3 -4,-3 -4,3z" />
+        <!-- Certificate Header Bar -->
+        <path
+            android:fillColor="#2563EB"
+            android:pathData="M36,28h22v4h-22z" />
+        <!-- OCR Scanned Text Skeletons -->
+        <path
+            android:fillColor="#94A3B8"
+            android:pathData="M36,36h34v2.5h-34z M36,42h28v2.5h-28z M36,48h30v2.5h-30z M36,54h22v2.5h-22z" />
+        <!-- Optical OCR Scanner Horizontal Beam -->
+        <path
+            android:fillColor="#EF4444"
+            android:pathData="M24,51h60v2.5h-60z" />
+        <!-- Corner Viewfinder Scanner Brackets -->
+        <path
+            android:strokeColor="#0284C7"
+            android:strokeWidth="2.5"
+            android:strokeLineCap="round"
+            android:pathData="M24,32v-8h8 M84,32v-8h-8 M24,66v8h8 M84,66v-8h-8" />
+        <!-- Golden Warranty Guarantee Rosette Seal -->
+        <path
+            android:fillColor="#F59E0B"
+            android:pathData="M66,54a10,10 0 1 1 0,20a10,10 0 1 1 0,-20" />
+        <path
+            android:fillColor="#D97706"
+            android:pathData="M62,71l2,8 3,-3 3,3 2,-8z" />
+        <path
+            android:fillColor="#FEF3C7"
+            android:pathData="M66,60l1.5,3 3.5,0.5 -2.5,2.5 0.5,3.5 -3,-1.5 -3,1.5 0.5,-3.5 -2.5,-2.5 3.5,-0.5z" />
+        
+    </group>
+</vector>

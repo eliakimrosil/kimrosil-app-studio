@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/m3_surface"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Top Header & App Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAppTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SnipShelf Vault"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvVaultSummary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Offline Warranty &amp; Manual Safe"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnThemeToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_m3_outlined"
+                android:minHeight="48dp"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
+                android:text="Theme: Auto"
+                android:textColor="@color/m3_primary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- KPI Status Metric Cards (Active, Expiring Soon, Expired) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <!-- Active Card -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/card_m3"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/tvActiveCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/m3_primary"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Active"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Expiring Soon Card -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/card_m3"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/tvExpiringCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="#E65100"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&lt; 30 Days"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Expired Card -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/card_m3"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/tvExpiredCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="#BA1A1A"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expired"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- New Item Entry Hero Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/card_m3"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Protect New Purchase"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnSimulateOcrReceipt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_m3_tonal"
+                    android:minHeight="48dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:text="Scan Receipt (OCR)"
+                    android:textColor="@color/m3_primary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Product Name *"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/etItemName"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/edittext_m3"
+                android:hint="e.g. Sony WH-1000XM5 Headset"
+                android:inputType="textCapWords"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Brand &amp; Model Number"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/etBrandModel"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/edittext_m3"
+                android:hint="e.g. Sony / WH1000XM5-BLK"
+                android:inputType="textCapWords"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="14sp" />
+
+            <!-- Purchase Date with Quick Calendar helper -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Purchase Date (YYYY-MM-DD)"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:textSize="12sp" />
+
+                    <EditText
+                        android:id="@+id/etPurchaseDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/edittext_m3"
+                        android:hint="2026-10-02"
+                        android:inputType="date"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnQuickCalcDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/btn_m3_tonal"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="14dp"
+                    android:text="Today"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <!-- Warranty Slider & Input -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Warranty Duration"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvWarrantyDurationDisplay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12 Months (1 Year)"
+                    android:textColor="@color/m3_primary"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <SeekBar
+                    android:id="@+id/sbWarrantyDuration"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:max="60"
+                    android:progress="12" />
+
+                <EditText
+                    android:id="@+id/etWarrantyMonths"
+                    android:layout_width="64dp"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edittext_m3"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="12"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Serial & Notes -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Serial Number, Retailer &amp; Invoice No."
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/etSerialNotes"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/edittext_m3"
+                android:hint="S/N: 90218, Retailer: Best Buy, Invoice #71294"
+                android:inputType="text"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="14sp" />
+
+            <!-- Manual & Troubleshooting Summary -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="User Manual Key Notes / Offline Guide"
+                android:textColor="@color/m3_on_surface_variant"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/etManualSummary"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/edittext_m3"
+                android:gravity="top|start"
+                android:hint="e.g. Factory reset: Hold Power for 10s. Service phone: 1-800-555-0199."
+                android:inputType="textMultiLine"
+                android:padding="10dp"
+                android:textColor="@color/m3_on_surface"
+                android:textSize="13sp" />
+
+            <!-- Notification Reminder Toggle -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Keep 30-Day Expiry Reminder Active"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="14sp" />
+
+                <Switch
+                    android:id="@+id/swNotificationReminder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true" />
+            </LinearLayout>
+
+            <!-- Buttons: Save & Reset -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnClearForm"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_m3_outlined"
+                    android:text="Clear"
+                    android:textColor="@color/m3_primary"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btnSaveItem"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/btn_m3_primary"
+                    android:text="Save To Safe Vault"
+                    android:textColor="@color/m3_on_primary"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Search Bar and Segmented Filter Chips -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Vault Catalog"
+            android:textColor="@color/m3_on_surface"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etSearchVault"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/edittext_m3"
+            android:drawablePadding="10dp"
+            android:hint="Search by name, brand, model, or notes..."
+            android:inputType="text"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
+            android:textColor="@color/m3_on_surface"
+            android:textSize="14sp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/chipFilterAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/chip_active"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="14dp"
+                    android:text="All Items"
+                    android:textColor="@color/m3_on_primary"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/chipFilterActive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/chip_inactive"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="14dp"
+                    android:text="Active"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/chipFilterExpiring"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/chip_inactive"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="14dp"
+                    android:text="Expiring &lt;30d"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/chipFilterExpired"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:background="@drawable/chip_inactive"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="14dp"
+                    android:text="Expired"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Empty State Placeholder -->
+        <TextView
+            android:id="@+id/tvEmptyVaultMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:gravity="center"
+            android:text="No warranty records found matching your filters."
+            android:textColor="@color/m3_on_surface_variant"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <!-- Dynamic Vault Items List Container -->
+        <LinearLayout
+            android:id="@+id/llVaultItemsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:orientation="vertical" />
+
+        <!-- Vault Backup and Clear Actions -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnExportVaultData"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_m3_tonal"
+                android:text="Export Vault Backup"
+                android:textColor="@color/m3_primary"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnClearAllVault"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_m3_outlined"
+                android:text="Clear All"
+                android:textColor="#BA1A1A"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
