@@ -951,5 +951,19 @@
     "privacy_policy": "https://apps.kimrosil.com/braze-ring/privacy.html",
     "icon": "assets/icons/braze-ring.svg",
     "updated_at": "2026-10-27T12:16:52.573729+00:00"
+  },
+  {
+    "slug": "deci-gauge",
+    "title": "DeciGauge",
+    "category": "UTILITIES",
+    "tagline": "Precision sound level meter with A/C weighting and NIOSH noise dose tracking.",
+    "status": "BUILT",
+    "branch": "app/deci-gauge",
+    "tag": "v2.0.0-deci-gauge",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-deci-gauge/deci-gauge.apk",
+    "landing_page": "https://apps.kimrosil.com/deci-gauge/",
+    "privacy_policy": "https://apps.kimrosil.com/deci-gauge/privacy.html",
+    "icon": "assets/icons/deci-gauge.svg",
+    "updated_at": "2026-10-27T13:10:47.116270+00:00"
   }
 ]
