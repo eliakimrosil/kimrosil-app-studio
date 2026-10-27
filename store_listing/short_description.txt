@@ -1,0 +1,1 @@
+Offline copper braze preform ring sizing, alloy volume & nitrogen purge solver.

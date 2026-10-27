@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Forge Daylight Light Mode -->
+    <color name="bg_canvas">#F8FAFC</color>
+    <color name="bg_surface">#FFFFFF</color>
+    <color name="bg_elevated">#F1F5F9</color>
+    <color name="bg_hero">#FFF7ED</color>
+    <color name="bg_input">#FFFFFF</color>
+
+    <color name="text_primary">#0F172A</color>
+    <color name="text_secondary">#475569</color>
+    <color name="text_muted">#64748B</color>
+    <color name="text_on_accent">#FFFFFF</color>
+
+    <color name="accent_primary">#C2410C</color>
+    <color name="accent_primary_pressed">#9A3412</color>
+    <color name="accent_copper">#C2410C</color>
+    <color name="accent_cyan">#0284C7</color>
+    <color name="accent_silver">#475569</color>
+    <color name="accent_gold">#B45309</color>
+    <color name="accent_danger">#DC2626</color>
+
+    <color name="border_subtle">#E2E8F0</color>
+    <color name="border_focus">#C2410C</color>
+    <color name="divider_line">#E2E8F0</color>
+    <color name="ripple_color">#22C2410C</color>
+
+    <!-- Graphic Tokens -->
+    <color name="badge_bg_pass">#DCFCE7</color>
+    <color name="badge_text_pass">#15803D</color>
+    <color name="badge_bg_warn">#FEF3C7</color>
+    <color name="badge_text_warn">#B45309</color>
+    <color name="badge_bg_alert">#FEE2E2</color>
+    <color name="badge_text_alert">#B91C1C</color>
+
+    <!-- Compatibility aliases -->
+    <color name="colorPrimary">#C2410C</color>
+    <color name="colorPrimaryDark">#F8FAFC</color>
+    <color name="colorAccent">#0284C7</color>
+    <color name="windowBackground">#F8FAFC</color>
+</resources>
