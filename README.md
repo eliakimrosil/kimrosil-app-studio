@@ -359,9 +359,9 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Offline pool filter cycle countdowns, media doser, and Quick Settings backwash timer designed for wet, chlorine-slick hands.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-skim-skim/skim-skim.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/skim-skim/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/skim-skim)
 
-#### [SnipShelf](https://apps.kimrosil.com/snip-shelf-receipt-ocr/) (`snip-shelf-receipt-ocr`) • `v1.0.0`
+#### [SnipShelf](https://apps.kimrosil.com/snip-shelf-receipt-ocr/) (`snip-shelf-receipt-ocr`) • `v1.0.1`
 > **Utility**: Instantly stash paper serial numbers, warranty barcodes, and appliance manuals directly from camera or share sheet with on-device text indexing.
-> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-snip-shelf-receipt-ocr/snip-shelf-receipt-ocr.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/snip-shelf-receipt-ocr/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/snip-shelf-receipt-ocr)
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-snip-shelf-receipt-ocr/snip-shelf-receipt-ocr.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/snip-shelf-receipt-ocr/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/snip-shelf-receipt-ocr)
 
 #### [SproutKnight](https://apps.kimrosil.com/sprout-knight-rpg/) (`sprout-knight-rpg`) • `v1.5.0`
 > **Utility**: Embark on a charming 2D action fighting RPG quest—upgrade acorn blades, walnut armor, and dewdrop magic at the cozy forge.
