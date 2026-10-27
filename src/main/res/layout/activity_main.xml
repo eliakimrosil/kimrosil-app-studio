@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBackground">
+
+    <!-- Top Action Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:background="@color/colorSurface">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_duct"
+            android:contentDescription="@string/app_name" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvHeaderSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_tagline"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Unit Toggle Button -->
+        <Button
+            android:id="@+id/btnUnitToggle"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
+            android:minWidth="48dp"
+            android:background="@drawable/bg_icon_btn"
+            android:text="IP"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:contentDescription="Switch between Imperial and Metric units" />
+
+        <Space
+            android:layout_width="6dp"
+            android:layout_height="match_parent" />
+
+        <!-- Theme Toggle Button -->
+        <ImageButton
+            android:id="@+id/btnTheme"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
+            android:minWidth="48dp"
+            android:background="@drawable/bg_icon_btn"
+            android:src="@drawable/ic_theme"
+            android:contentDescription="Switch Theme" />
+
+        <Space
+            android:layout_width="6dp"
+            android:layout_height="match_parent" />
+
+        <!-- Settings Button -->
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
+            android:minWidth="48dp"
+            android:background="@drawable/bg_icon_btn"
+            android:src="@drawable/ic_settings"
+            android:contentDescription="@string/settings" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="false"
+        android:clipToPadding="false"
+        android:paddingBottom="24dp"
+        android:scrollbars="none"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <!-- Primary Hero Result Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_hero_card"
+                android:padding="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/round_dia_label"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvAspectBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_safe"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="3dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="3dp"
+                        android:text="AR 1.6:1 Safe"
+                        android:textColor="#FFFFFF"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Large Primary Readout -->
+                <TextView
+                    android:id="@+id/tvRoundDia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Ø 13.5 in."
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+
+                <!-- Tabular 2-Column Telemetry Grid -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <!-- Col 1: Rectangular Equivalent -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingRight="6dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rect_size_label"
+                            android:textColor="@color/colorTextSecondary"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/tvRectSize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="16 in. W x 10 in. H"
+                            android:textColor="@color/colorTextPrimary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvRectSecondary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="406 x 254 mm"
+                            android:textColor="@color/colorTextMuted"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorBorder" />
+
+                    <!-- Col 2: Velocity -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingLeft="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/velocity_label"
+                            android:textColor="@color/colorTextSecondary"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/tvVelocity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="920 FPM"
+                            android:textColor="@color/colorTextPrimary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvVelocitySecondary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4.67 m/s (Rect)"
+                            android:textColor="@color/colorTextMuted"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Sub-Row: Friction and Nominal details -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvFrictionRate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Friction: 0.080 in. wg/100'"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tvNominalRound"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nominal: 14 in. Spiral"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- Dynamic 2D Duct Visualizer Canvas -->
+                <com.kimrosil.ductflow.DuctCrossSectionView
+                    android:id="@+id/ductView"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:layout_marginTop="8dp" />
+
+            </LinearLayout>
+
+            <!-- Quick Action Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnCopySchedule"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:minHeight="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_btn_primary"
+                    android:text="@string/copy_summary"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:contentDescription="Copy duct schedule specification to clipboard" />
+
+                <Space
+                    android:layout_width="6dp"
+                    android:layout_height="match_parent" />
+
+                <Button
+                    android:id="@+id/btnSaveDuct"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:minHeight="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_btn_secondary"
+                    android:text="@string/save_setup"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:contentDescription="Save duct schedule to offline records" />
+
+                <Space
+                    android:layout_width="6dp"
+                    android:layout_height="match_parent" />
+
+                <Button
+                    android:id="@+id/btnExportCsv"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:minHeight="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_btn_secondary"
+                    android:text="@string/export_csv"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:contentDescription="Export schedule as CSV file" />
+            </LinearLayout>
+
+            <!-- Engineering Sizing Modes & Material Selector Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HVAC Sizing Methodology"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnModeFriction"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_selected"
+                        android:text="@string/mode_friction"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        android:contentDescription="Select Equal Friction sizing mode" />
+
+                    <Space
+                        android:layout_width="6dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/btnModeVelocity"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:text="@string/mode_velocity"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="11sp"
+                        android:contentDescription="Select Maximum Velocity sizing mode" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Duct Material &amp; Roughness"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnMatGalvanized"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_selected"
+                        android:text="Sheet Metal (1.0x)"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        android:contentDescription="Select standard galvanized sheet metal roughness" />
+
+                    <Space
+                        android:layout_width="6dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/btnMatFlex"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:text="Flex Duct (1.8x)"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="11sp"
+                        android:contentDescription="Select flexible duct wire helix roughness" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Application Friction Rate Presets (2x2 Grid) -->
+            <LinearLayout
+                android:id="@+id/layoutPresetsSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Equal Friction Presets (in. wg/100\')"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <!-- Grid Row 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnPresetSupplyMain"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:text="Supply Main (0.10)"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="11sp"
+                        android:contentDescription="Select supply main preset friction 0.10" />
+
+                    <Space
+                        android:layout_width="6dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/btnPresetSupplyBranch"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_selected"
+                        android:text="Supply Branch (0.08)"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        android:contentDescription="Select supply branch preset friction 0.08" />
+                </LinearLayout>
+
+                <!-- Grid Row 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnPresetReturn"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:text="Return Main (0.06)"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="11sp"
+                        android:contentDescription="Select return air main preset friction 0.06" />
+
+                    <Space
+                        android:layout_width="6dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/btnPresetQuiet"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:text="Low Noise (0.05)"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="11sp"
+                        android:contentDescription="Select low noise preset friction 0.05" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Airflow & Geometric Parameters Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card"
+                android:padding="12dp">
+
+                <!-- Airflow Volume (CFM) Input & Steppers Row -->
+                <TextView
+                    android:id="@+id/tvCfmLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Airflow Volume: 800 CFM"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/etCfm"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_input"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:hint="800 CFM"
+                        android:inputType="number"
+                        android:imeOptions="actionDone"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:contentDescription="Exact airflow volume in CFM" />
+
+                    <Space
+                        android:layout_width="4dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/btnCfmMinus100"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:minWidth="48dp"
+                        android:background="@drawable/bg_stepper_btn"
+                        android:text="-100"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="10sp"
+                        android:contentDescription="Decrease airflow by 100 CFM" />
+
+                    <Space
+                        android:layout_width="4dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/btnCfmMinus10"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:minWidth="48dp"
+                        android:background="@drawable/bg_stepper_btn"
+                        android:text="-10"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="11sp"
+                        android:contentDescription="Decrease airflow by 10 CFM" />
+
+                    <Space
+                        android:layout_width="4dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/btnCfmPlus10"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:minWidth="48dp"
+                        android:background="@drawable/bg_stepper_btn"
+                        android:text="+10"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="11sp"
+                        android:contentDescription="Increase airflow by 10 CFM" />
+
+                    <Space
+                        android:layout_width="4dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/btnCfmPlus100"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:minWidth="48dp"
+                        android:background="@drawable/bg_stepper_btn"
+                        android:text="+100"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="10sp"
+                        android:contentDescription="Increase airflow by 100 CFM" />
+                </LinearLayout>
+
+                <!-- Design Parameter (Friction Rate or Velocity) Input Row -->
+                <TextView
+                    android:id="@+id/tvParamLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Friction Rate: 0.080 in. wg"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/etParam"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_input"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:hint="0.080 in. wg"
+                        android:inputType="numberDecimal"
+                        android:imeOptions="actionDone"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:contentDescription="Exact design friction rate or velocity limit" />
+
+                    <Space
+                        android:layout_width="4dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/btnParamMinus"
+                        android:layout_width="52dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:minWidth="52dp"
+                        android:background="@drawable/bg_stepper_btn"
+                        android:text="-.01"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="11sp"
+                        android:contentDescription="Decrease design parameter" />
+
+                    <Space
+                        android:layout_width="4dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/btnParamPlus"
+                        android:layout_width="52dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:minWidth="52dp"
+                        android:background="@drawable/bg_stepper_btn"
+                        android:text="+.01"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="11sp"
+                        android:contentDescription="Increase design parameter" />
+                </LinearLayout>
+
+                <!-- Known Trunk Height Row -->
+                <TextView
+                    android:id="@+id/tvHeightTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Known Duct Height (H in.)"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:scrollbars="none"
+                    android:overScrollMode="never">
+
+                    <LinearLayout
+                        android:id="@+id/layoutHeightChips"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <!-- Saved Ducts Card -->
+            <LinearLayout
+                android:id="@+id/layoutSavedCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card"
+                android:padding="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Duct Run Schedule"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvRecordCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 ducts"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutRecentList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

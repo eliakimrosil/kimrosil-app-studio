@@ -1,0 +1,11 @@
+DuctFlow is a dedicated, 100% offline HVAC engineering utility engineered for mechanical engineers, sheet metal fabricators, air balancing technicians, and duct installers. It solves round duct diameter, equivalent rectangular duct dimensions, air velocity, and friction loss rates using SMACNA and ASHRAE equal friction methodology.
+
+KEY CAPABILITIES:
+• ASHRAE Equal Friction Duct Sizing: Computes exact equivalent round diameter and friction loss rate (in. wg / 100 ft) for any airflow volume (CFM) and velocity limit.
+• Rectangular Equivalent Solver: Uses Huebscher's formula to determine rectangular duct width and height dimensions matching the airflow capacity and static pressure drop of round spiral duct.
+• Aspect Ratio Telemetry: Alerts when rectangular duct aspect ratio (W:H) exceeds recommended 4:1 sheet metal fabrication standards.
+• Dynamic Airflow Canvas: Interactive 2D duct cross-section rendering shows rectangular aspect ratio, spiral round overlay, velocity vector arrows, and friction telemetry.
+• Quick Application Presets: One-tap presets for Supply Main (0.10 in. wg), Supply Branch (0.08 in. wg), Return Air (0.06 in. wg), and Low-Noise Residential (0.05 in. wg).
+• Offline Feeder History: Save duct branch schedules to local SQLite storage and restore configurations instantly.
+• Quick Settings Tile: Launch DuctFlow directly from Android Quick Settings without leaving jobsite blueprints.
+• Pure Native Performance: Under 100 KB binary footprint, sub-150ms cold launch, Day/Night/Auto themes, zero telemetry, and zero network permissions.

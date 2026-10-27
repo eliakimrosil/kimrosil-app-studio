@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Outer Rectangular Duct Profile (Isometric Sheet Metal 3D Flange) -->
+    <path
+        android:pathData="M26,30 L66,30 L66,78 L26,78 Z"
+        android:strokeColor="#38BDF8"
+        android:strokeWidth="3.2"
+        android:fillColor="#1538BDF8" />
+    <path
+        android:pathData="M66,30 L82,42 L82,66 L66,78"
+        android:strokeColor="#0EA5E9"
+        android:strokeWidth="2.5"
+        android:fillColor="#220284C7" />
+    <path
+        android:pathData="M26,30 L42,42 L82,42"
+        android:strokeColor="#0EA5E9"
+        android:strokeWidth="2.5" />
+
+    <!-- Spiral Round Duct Inset Ring -->
+    <path
+        android:pathData="M46,54 m-16,0 a16,16 0 1,0 32,0 a16,16 0 1,0 -32,0"
+        android:strokeColor="#67E8F9"
+        android:strokeWidth="2.2" />
+
+    <!-- High Velocity Airflow Streamlines (Cyan & Electric Teal) -->
+    <path
+        android:pathData="M35,54 L55,54 M49,48 L55,54 L49,60"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M38,44 L52,44 M48,40 L52,44 L48,48"
+        android:strokeColor="#38BDF8"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M38,64 L52,64 M48,60 L52,64 L48,68"
+        android:strokeColor="#38BDF8"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- Aerodynamic Spark Accent -->
+    <path
+        android:pathData="M74,36 L76,33 L78,36 L81,38 L78,40 L76,43 L74,40 L71,38 Z"
+        android:fillColor="#FBBF24" />
+</vector>
