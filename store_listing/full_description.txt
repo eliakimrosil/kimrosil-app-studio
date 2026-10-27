@@ -1,0 +1,10 @@
+RebarLap is a dedicated structural engineering and reinforced concrete construction calculation utility built for field engineers, civil technicians, ironworkers, and site superintendents. It computes code-compliant tension lap splices, compression development lengths, and standard hook details according to ACI 318-19 and Eurocode 2 specifications.
+
+KEY CAPABILITIES:
+• ACI 318-19 Lap Splice Solver: Computes Class A ($1.0 \times L_d$) and Class B ($1.3 \times L_d$) tension lap splice lengths, compression development lengths, and minimum clear covers.
+• Full Bar Schedule Range: Comprehensive library of US Imperial bar sizes (#3, #4, #5, #6, #7, #8, #9, #10, #11, #14, #18) and Metric equivalents (8M to 36M).
+• Material Flexibility: Supports concrete compressive strengths from 2,500 psi to 6,000 psi (17 to 42 MPa) and steel yield grades 60 ksi and 80 ksi (420 to 550 MPa).
+• Standard Hook Geometry: Calculates exact 90° and 180° hook tail extensions, pin bend diameters, and development lengths for seismic and non-seismic details.
+• 2D Visual Splice Diagram: Dynamic custom Canvas rendering shows overlapping deformed reinforcing bars with rib markings, wire ties, and concrete cover boundaries.
+• Quick Settings Tile: One-tap jobsite access to verification calculations directly from your notification drawer.
+• Pure Native Offline Performance: Operates 100% offline with zero cloud logins, analytics, or internet permissions. Features Day/Night/Auto themes and sandboxed local SQLite storage.

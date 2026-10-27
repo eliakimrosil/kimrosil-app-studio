@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Top Deformed Rebar with 90° Hook on Right -->
+    <path
+        android:strokeColor="#60A5FA"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"
+        android:pathData="M24,42 L78,42 Q84,42 84,48 L84,66" />
+
+    <!-- Top Rebar Deformation Ribs -->
+    <path
+        android:strokeColor="#93C5FD"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M30,38 L34,46 M40,38 L44,46 M50,38 L54,46 M60,38 L64,46 M70,38 L74,46" />
+
+    <!-- Bottom Deformed Rebar with 90° Hook on Left -->
+    <path
+        android:strokeColor="#3B82F6"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"
+        android:pathData="M84,56 L30,56 Q24,56 24,50 L24,32" />
+
+    <!-- Bottom Rebar Deformation Ribs -->
+    <path
+        android:strokeColor="#93C5FD"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:pathData="M76,52 L72,60 M66,52 L62,60 M56,52 L52,60 M46,52 L42,60 M36,52 L32,60" />
+
+    <!-- Tie Wire Wraps in Lap Splice Zone -->
+    <path
+        android:strokeColor="#F59E0B"
+        android:strokeWidth="2.2"
+        android:fillColor="#00000000"
+        android:pathData="M42,37 L46,61 M62,37 L66,61" />
+
+    <!-- Lap Length Dimension Bracket (Ls) -->
+    <path
+        android:strokeColor="#FBBF24"
+        android:strokeWidth="1.5"
+        android:pathData="M30,72 H78 M30,68 V76 M78,68 V76" />
+
+</vector>

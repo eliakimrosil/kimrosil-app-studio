@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Light Mode Structural Concrete Blueprint Palette -->
+    <color name="colorBackground">#F1F5F9</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorSurfaceElevated">#E2E8F0</color>
+    <color name="colorBorder">#CBD5E1</color>
+    <color name="colorPrimary">#2563EB</color>
+    <color name="colorPrimaryDark">#1D4ED8</color>
+    <color name="colorAccent">#3B82F6</color>
+    <color name="colorTextPrimary">#0F172A</color>
+    <color name="colorTextSecondary">#475569</color>
+    <color name="colorTextMuted">#64748B</color>
+    <color name="colorSafe">#2563EB</color>
+    <color name="colorWarning">#D97706</color>
+    <color name="colorHighlight">#F59E0B</color>
+    <color name="colorSteel">#64748B</color>
+    <color name="colorConcrete">#E2E8F0</color>
+    <color name="colorRipple">#202563EB</color>
+</resources>
