@@ -1,6 +1,2 @@
-Initial release of RebarLap:
-• ACI 318-19 tension lap splice (Class A & B) and compression development solver.
-• Support for US bar sizes #3 through #18 and metric bars.
-• Standard 90° and 180° hook extension and pin diameter calculator.
-• 2D custom Canvas deformed rebar splice visualizer.
-• Full offline Day/Night/Auto theme support and Quick Settings tile.
+Release v2.0.0 - RebarLap
+Initial release of RebarLap: Concrete rebar lap splice, development length and hook geometry solver
