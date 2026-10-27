@@ -1007,5 +1007,19 @@
     "privacy_policy": "https://apps.kimrosil.com/dose-cal/privacy.html",
     "icon": "assets/icons/dose-cal.svg",
     "updated_at": "2026-10-27T13:48:11.169916+00:00"
+  },
+  {
+    "slug": "taper-gauge",
+    "title": "TaperGauge",
+    "category": "UTILITIES",
+    "tagline": "Machine shop taper turning angle, TPF, TPI and tailstock offset solver.",
+    "status": "BUILT",
+    "branch": "app/taper-gauge",
+    "tag": "v2.0.0-taper-gauge",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-taper-gauge/taper-gauge.apk",
+    "landing_page": "https://apps.kimrosil.com/taper-gauge/",
+    "privacy_policy": "https://apps.kimrosil.com/taper-gauge/privacy.html",
+    "icon": "assets/icons/taper-gauge.svg",
+    "updated_at": "2026-10-27T14:47:14.339903+00:00"
   }
 ]

@@ -371,6 +371,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Instantly record fuel fill-ups and compute real-world mileage and cost-per-mile without accounts, ads, or internet connection.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-offline-fuel-log-tracker/offline-fuel-log-tracker.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/offline-fuel-log-tracker/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/offline-fuel-log-tracker)
 
+#### [TaperGauge](https://apps.kimrosil.com/taper-gauge/) (`taper-gauge`) • `v2.0.0`
+> **Utility**: Machine shop taper turning angle, TPF, TPI and tailstock offset solver.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-taper-gauge/taper-gauge.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/taper-gauge/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/taper-gauge)
+
 #### [TiltLevel](https://apps.kimrosil.com/tilt-level/) (`tilt-level`) • `v1.0.0`
 > **Utility**: 2-axis machinist clinometer, spirit bubble level, grade (%) & roof pitch meter.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-tilt-level/tilt-level.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/tilt-level/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/tilt-level)
