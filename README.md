@@ -139,6 +139,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Offline wire gauge sizing, continuous ampacity lookup, and voltage loss calculator for solar, RV, marine, and DIY wiring.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-volt-drop/volt-drop.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/volt-drop/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/volt-drop)
 
+#### [WeldBead](https://apps.kimrosil.com/weld-bead/) (`weld-bead`) • `v1.1.0`
+> **Utility**: Instant welding heat input and electrode deposition rate calculator.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-weld-bead/weld-bead.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/weld-bead/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/weld-bead)
+
 #### [WeldCool](https://apps.kimrosil.com/weld-cool/) (`weld-cool`) • `v1.0.0`
 > **Utility**: Single-tap Quick Settings interpass cooling timer and preheat soak calculator for welders wearing heavy gloves.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-weld-cool/weld-cool.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/weld-cool/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/weld-cool)

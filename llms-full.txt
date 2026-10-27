@@ -60,7 +60,7 @@ Data Safety & Offline Privacy Guarantee:
 - **Category**: TOOLS & UTILITIES / HVAC
 - **Tagline**: Preform ring sizing and silver alloy volume calculator for copper HVAC and refrigeration brazing.
 - **Landing Page**: https://apps.kimrosil.com/braze-ring/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-braze-ring/braze-ring.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.1-braze-ring/braze-ring.apk
 - **Privacy Policy**: https://apps.kimrosil.com/braze-ring/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
@@ -1892,6 +1892,45 @@ Data Safety & Offline Privacy Guarantee:
 - Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
 - No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
 - Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## Weld Bead (`weld-bead`)
+- **Category**: UTILITIES
+- **Tagline**: Offline Android utility.
+- **Landing Page**: https://apps.kimrosil.com/weld-bead/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-weld-bead/weld-bead.apk
+- **Privacy Policy**: https://apps.kimrosil.com/weld-bead/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+WeldBead is a dedicated offline welding telemetry and heat input calculator built for pipe welders, steel fabricators, inspectors (CWI), and metallurgical engineers.
+
+Accurately compute Arc Heat Input in accordance with ASME Section IX (QW-409.1) and AWS D1.1 structural welding specifications. Instantaneously calculate electrode deposition rates and evaluate HAZ (heat affected zone) thermal risks directly on the shop floor or inside fabrication shops without internet connectivity.
+
+KEY FEATURES:
+
+• ACCURATE ARC HEAT INPUT:
+  Calculates instant heat input in kJ/in and kJ/mm based on Arc Voltage, Current (Amps), Travel Speed, and thermal arc efficiency factors (SMAW, GMAW/MIG, GTAW/TIG, FCAW, SAW).
+
+• METALLURGICAL HEAT ZONE TELEMETRY:
+  Dynamic HAZ thermal indicator identifies rapid cooling risk (martensite embrittlement below 15 kJ/in), optimum toughness windows (15 to 50 kJ/in), and high heat input grain coarsening risks (> 50 kJ/in).
+
+• FILLER DEPOSITION ESTIMATION:
+  Real-time electrode metal deposition rate calculator in lb/hr and kg/hr for solid wire, flux-core, stick electrodes, and TIG filler rods.
+
+• INTERACTIVE BEAD GEOMETRY VIEWER:
+  Interactive cross-section diagram visually renders estimated weld bead volume, profile, and penetration depth based on operating parameters.
+
+• RAPID STEPPERS & DUAL UNIT CONVERSION:
+  48x48dp tactile steppers for heavy gloved operation. One-tap toggle between Imperial (in/min, kJ/in, lb/hr) and Metric (mm/min, kJ/mm, kg/hr).
+
+• LOCAL PASS RUN LOG:
+  Save passes to local SQLite storage, review telemetry records, and copy full weld run schedules to clipboard in one tap.
+
+• 100% OFFLINE & PRIVATE:
+  Zero analytics, zero tracking, zero ads, zero background telemetry. Fully functional in field environments with no cellular network.
 
 ---
 
