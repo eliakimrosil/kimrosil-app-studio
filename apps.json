@@ -1035,5 +1035,19 @@
     "privacy_policy": "https://apps.kimrosil.com/rebar-lap/privacy.html",
     "icon": "assets/icons/rebar-lap.svg",
     "updated_at": "2026-10-27T14:56:40.358324+00:00"
+  },
+  {
+    "slug": "wire-amp",
+    "title": "WireAmp",
+    "category": "UTILITIES",
+    "tagline": "NEC wire gauge ampacity rating, temperature and bundling derating solver.",
+    "status": "BUILT",
+    "branch": "app/wire-amp",
+    "tag": "v2.0.0-wire-amp",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-wire-amp/wire-amp.apk",
+    "landing_page": "https://apps.kimrosil.com/wire-amp/",
+    "privacy_policy": "https://apps.kimrosil.com/wire-amp/privacy.html",
+    "icon": "assets/icons/wire-amp.svg",
+    "updated_at": "2026-10-27T15:10:34.186558+00:00"
   }
 ]
