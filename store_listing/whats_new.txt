@@ -1,9 +1,2 @@
-Initial release of BrazeRing:
-- Capillary annular volume and silver alloy allocation solver
-- BCuP-2, BCuP-5 (Sil-Fos 15), BAg-36, and BAg-50 alloy density models
-- Equivalent 1/16" and 1/8" wire rod length and preform ring gauge solver
-- Low-pressure nitrogen purge sweep flow calculator
-- Live 2D architectural joint cross-section diagram
-- Local SQLite braze job log with clipboard export
-- One-tap daylight and obsidian forge theme switcher
-- Quick Settings tile integration for rapid notification shade launch
+Release v2.0.0 - BrazeRing
+Initial release of BrazeRing: Offline copper braze preform ring sizing, alloy volume and nitrogen purge solver
