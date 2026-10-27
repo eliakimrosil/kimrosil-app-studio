@@ -307,6 +307,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: One-tap Quick Settings parking timer with interactive Glance countdown and GPS breadcrumb, completely offline.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-tap-meter-parking-sentinel/tap-meter-parking-sentinel.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/tap-meter-parking-sentinel/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/tap-meter-parking-sentinel)
 
+#### [OhmBand](https://apps.kimrosil.com/ohm-band/) (`ohm-band`) • `v2.0.0`
+> **Utility**: Resistor color code decoder, reverse band synthesizer, and SMD code solver.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-ohm-band/ohm-band.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/ohm-band/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/ohm-band)
+
 #### [ParkPin](https://apps.kimrosil.com/park-pin-offline-spot-finder/) (`park-pin-offline-spot-finder`) • `v1.0.0`
 > **Utility**: Instantly record parking spot level, pillar number, and photos with zero network connectivity or latency.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-park-pin-offline-spot-finder/park-pin-offline-spot-finder.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/park-pin-offline-spot-finder/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/park-pin-offline-spot-finder)
