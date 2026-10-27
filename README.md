@@ -191,6 +191,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Offline distraction-free timer with embedded ambient white noise & AMOLED dark theme.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-aurafocus-minimalist-pomodoro-ambient-sound/aurafocus-minimalist-pomodoro-ambient-sound.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/aurafocus-minimalist-pomodoro-ambient-sound/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/aurafocus-minimalist-pomodoro-ambient-sound)
 
+#### [DoseCal](https://apps.kimrosil.com/dose-cal/) (`dose-cal`) • `v2.0.0`
+> **Utility**: Pediatric and veterinary liquid medication dosage and suspension solver.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-dose-cal/dose-cal.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/dose-cal/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/dose-cal)
+
 #### [FastArc](https://apps.kimrosil.com/fast-arc/) (`fast-arc`) • `v1.0.3`
 > **Utility**: Offline 16:8 fasting timer with metabolic stages and lock-screen widget.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.3-fast-arc/fast-arc.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/fast-arc/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/fast-arc)
