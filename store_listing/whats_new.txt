@@ -1,0 +1,1 @@
+Initial release of CrumbWatch v1.0.0. Features offline bulk fermentation tracking, stretch-and-fold interval timers, baker math hydration calculator, starter feeding log, and lock screen chronometer support.
