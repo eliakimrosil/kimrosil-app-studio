@@ -375,7 +375,7 @@ Data Safety & Offline Privacy Guarantee:
 - **Category**: TOOLS & UTILITIES / ACOUSTICS
 - **Tagline**: Precision acoustic sound pressure level and NIOSH/OSHA noise dose meter.
 - **Landing Page**: https://apps.kimrosil.com/deci-gauge/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-deci-gauge/deci-gauge.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-deci-gauge/deci-gauge.apk
 - **Privacy Policy**: https://apps.kimrosil.com/deci-gauge/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
@@ -975,6 +975,50 @@ Data Safety & Offline Privacy Guarantee:
 
 
 Notice of Non-Affiliation: All product and company names, logos, and brands mentioned are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
+
+---
+
+## OhmBand (`ohm-band`)
+- **Category**: TOOLS & UTILITIES / ELECTRONICS
+- **Tagline**: Resistor color code decoder, reverse band synthesizer, and SMD code solver.
+- **Landing Page**: https://apps.kimrosil.com/ohm-band/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-ohm-band/ohm-band.apk
+- **Privacy Policy**: https://apps.kimrosil.com/ohm-band/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+OhmBand is a precision electronic resistor color code decoder, reverse band synthesizer, and surface-mount device (SMD) marking calculator designed for electrical engineers, electronics technicians, hobbyists, and circuit board assembly technicians.
+
+INTERACTIVE COLOR BAND DECODER
+• 4-Band Resistors: Decodes 2 significant digits, decimal multiplier, and tolerance band (+/- 1% to +/- 10%).
+• 5-Band Resistors: Decodes 3 high-precision significant digits, multiplier, and tight tolerance (+/- 0.05% to +/- 5%).
+• 6-Band Resistors: Decodes 3 significant digits, multiplier, tolerance, and Temperature Coefficient of Resistance (TCR from 5 ppm/K to 100 ppm/K).
+• Visual Resistor Canvas: High-contrast 2D schematic rendering of axial ceramic resistor body, metallic leads, and color-coded bands.
+
+REVERSE BAND SYNTHESIZER (OHMS TO COLORS)
+• Type any nominal resistance value (e.g., 4.7k, 220, 10M, 0.47) and select desired tolerance.
+• Instantly generates the exact standardized color band sequence and nearest standard EIA decade value.
+• Calculates minimum and maximum resistance limits based on specified tolerance boundaries.
+
+EIA PREFERRED VALUES (E12, E24, E96, E192)
+• Automatically cross-references any entered resistance against international standard EIA series.
+• Identifies whether a given value is a standard manufactured off-the-shelf part or requires series/parallel combinations.
+
+SMD RESISTOR MARKING SOLVER
+• 3-Digit Standard: Solves common 5% surface-mount markings (e.g., 472 = 4.7 kΩ, 0R5 = 0.5 Ω).
+• 4-Digit Precision: Solves 1% surface-mount markings (e.g., 1002 = 10 kΩ, 4R70 = 4.70 Ω).
+• EIA-96 Code Solver: Decodes 2-digit number lookup + letter multiplier (e.g., 01A = 100 Ω, 68C = 49.9 kΩ).
+
+WORKBENCH PARTS LOG & REPOSITORY
+• Save frequently used resistor configurations to a local offline SQLite database.
+• Quick-copy formatted component specifications directly to your clipboard for bill-of-materials (BOM) documentation.
+• Quick Settings Tile: Instant workbench resistor lookup directly from your notification panel.
+
+OFFLINE & PURE NATIVE PERFORMANCE
+• Zero tracking, analytics, or network permissions required.
+• Instantaneous calculations with sub-100 ms cold-start response.
+• Complete Dark, Light, and Automatic theme support for dimly lit workbench environments.
 
 ---
 
