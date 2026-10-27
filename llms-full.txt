@@ -1737,6 +1737,29 @@ Data Safety & Offline Privacy Guarantee:
 
 ---
 
+## TaperGauge (`taper-gauge`)
+- **Category**: Machining & Mechanical
+- **Tagline**: Lathe Taper & Offset Solver
+- **Landing Page**: https://apps.kimrosil.com/taper-gauge/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-taper-gauge/taper-gauge.apk
+- **Privacy Policy**: https://apps.kimrosil.com/taper-gauge/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+TaperGauge is a dedicated, offline machine shop calculation utility engineered for machinists, lathe operators, toolmakers, and mechanical engineers. It eliminates trigonometry guesswork when turning precise internal and external tapers on manual and CNC engine lathes.
+
+KEY CAPABILITIES:
+• Comprehensive Taper Geometry Solver: Computes included angle (2α), half angle / compound rest angle (α), Taper Per Foot (TPF), and Taper Per Inch (TPI) from major diameter, minor diameter, and taper length.
+• Lathe Tailstock Set-Over Offset: Calculates exact tailstock lateral displacement required to turn a taper between centers over total workpiece length.
+• Standard Machine Taper Library: Instant built-in dimensional specifications for Morse Tapers (MT0 through MT7), Brown & Sharpe (B&S 1 to 12), Jacobs Tapers (JT0 to JT6), and R8 collet taper.
+• 2D Visual Turned Workpiece Canvas: Real-time dynamic vector rendering illustrates workpiece geometry, center axis line, taper slope, dimension indicators, and compound slide swivel vector.
+• Unit Flexibility: Seamless switching between Imperial inches and Metric millimeters with instant live recalculation.
+• Quick Settings Tile: Access taper references instantly from your Android notification panel without interrupting machine operation.
+• Pure Native Offline Performance: Zero cloud logins, zero trackers, and zero network permissions. Operates entirely offline with responsive Day/Night/Auto theme modes.
+
+---
+
 ## ThawGuard (`frost-thaw-prep-timer`)
 - **Category**: Tools & Food Safety
 - **Tagline**: Safe, USDA-calibrated kitchen thaw timer with Quick Settings instant-log and lock screen live countdown.
