@@ -1,6 +1,2 @@
-Initial release of WireAmp:
-• NEC Table 310.16 conductor ampacity matrix (14 AWG to 500 kcmil, Cu & Al).
-• Ambient temperature (NEC 310.15(B)(1)) and bundling (NEC 310.15(C)(1)) derating.
-• 80% continuous load rule and OCPD breaker size determination.
-• 2D custom Canvas conductor thermal dissipation visualizer.
-• Full offline Day/Night/Auto theme support and Quick Settings tile.
+Release v2.0.0 - WireAmp
+Initial release of WireAmp: NEC wire gauge ampacity rating, temperature and bundling derating solver
