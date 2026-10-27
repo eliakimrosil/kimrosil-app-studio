@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Oral Syringe Body & Plunger -->
+    <path
+        android:fillColor="@color/colorPrimary"
+        android:pathData="M19.07,4.93l-1.41,-1.41L16.24,4.93l1.41,1.41L19.07,4.93z M14.83,6.34l-1.41,-1.41L12,6.34l1.41,1.41L14.83,6.34z M17.66,7.76l-1.41,-1.41l-8.49,8.49l1.41,1.41L17.66,7.76z M9.17,16.24l-1.41,-1.41l-1.41,1.41l-2.12,-2.12l-1.41,1.41l2.12,2.12L2.8,19.78l1.41,1.41l2.13,-2.13l2.12,2.12l1.41,-1.41l-2.12,-2.12L9.17,16.24z M13.41,10.59l-1.41,-1.41l-1.41,1.41l1.41,1.41L13.41,10.59z M10.59,13.41l-1.41,-1.41l-1.41,1.41l1.41,1.41L10.59,13.41z"/>
+</vector>

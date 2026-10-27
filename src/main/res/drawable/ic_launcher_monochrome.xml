@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Fluid Drop -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,20 C52.5,22.5 50.5,24.5 50.5,26.5 A3.5,3.5 0 0,0 57.5,26.5 C57.5,24.5 55.5,22.5 54,20 Z" />
+    <!-- Tip -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M52,28 h4 v4 h-4 z" />
+    <!-- Barrel -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:pathData="M43,32 h22 v40 h-22 z" />
+    <!-- Liquid -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M45,48 h18 v23 h-18 z" />
+    <!-- Flanges -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M35,72 h38 v3.5 h-38 z" />
+    <!-- Shaft & Thumb rest -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M51,75.5 h6 v10 h-6 z M42,85.5 h24 v3 h-24 z" />
+</vector>

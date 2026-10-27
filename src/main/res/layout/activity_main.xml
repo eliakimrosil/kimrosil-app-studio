@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBackground">
+
+    <!-- Top Action Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:background="@color/colorSurface">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_syringe"
+            android:contentDescription="@string/app_name" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_tagline"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnTheme"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_icon_btn"
+            android:src="@drawable/ic_theme"
+            android:contentDescription="Switch Theme" />
+
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="match_parent" />
+
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_icon_btn"
+            android:src="@drawable/ic_settings"
+            android:contentDescription="@string/settings" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <!-- Primary Hero Result Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_hero_card"
+                android:padding="14dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/dose_volume"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvSafetyBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_safe"
+                        android:paddingLeft="8dp"
+                        android:paddingTop="3dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="3dp"
+                        android:text="@string/status_safe"
+                        android:textColor="#FFFFFF"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Large Primary Readout -->
+                <TextView
+                    android:id="@+id/tvVolumeDisplay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="0.0 mL"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
+
+                <!-- Tabular 2-Column Telemetry Grid -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <!-- Col 1: Single Dose (mg) -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingRight="6dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/single_dose"
+                            android:textColor="@color/colorTextSecondary"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/tvSingleDoseMg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.0 mg"
+                            android:textColor="@color/colorTextPrimary"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorBorder" />
+
+                    <!-- Col 2: Daily Total & Frequency -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingLeft="8dp">
+
+                        <TextView
+                            android:id="@+id/tvFrequencyTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Daily Total (q6h)"
+                            android:textColor="@color/colorTextSecondary"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/tvDailyTotalMg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.0 mg/day"
+                            android:textColor="@color/colorTextPrimary"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Syringe Graphic Canvas -->
+                <com.kimrosil.dosecal.SyringeGaugeView
+                    android:id="@+id/syringeView"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    android:layout_marginTop="10dp" />
+
+            </LinearLayout>
+
+            <!-- Quick Action Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnCopyReport"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/bg_btn_primary"
+                    android:text="@string/copy_summary"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:contentDescription="Copy full dosage summary report to clipboard" />
+
+                <Button
+                    android:id="@+id/btnSaveRecord"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/bg_btn_secondary"
+                    android:text="@string/save_calculation"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:contentDescription="Save current calculation to offline records" />
+            </LinearLayout>
+
+            <!-- Clinical Preset Chips Scroll -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="4dp"
+                android:text="Clinical Presets"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:overScrollMode="never">
+
+                <LinearLayout
+                    android:id="@+id/layoutPresetChips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp" />
+            </HorizontalScrollView>
+
+            <!-- Patient Parameters Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card"
+                android:padding="14dp">
+
+                <!-- Patient Weight Header with Unit Switcher -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/patient_weight"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnWeightUnit"
+                        android:layout_width="64dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_stepper_btn"
+                        android:text="kg"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:contentDescription="Toggle weight unit between kilograms and pounds" />
+                </LinearLayout>
+
+                <!-- Weight Input & Steppers -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/etWeight"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_input"
+                        android:hint="@string/hint_weight"
+                        android:textColorHint="@color/colorTextMuted"
+                        android:inputType="numberDecimal"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="16sp"
+                        android:contentDescription="Patient body weight input" />
+
+                    <Button
+                        android:id="@+id/btnWeightMinus5"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="4dp"
+                        android:background="@drawable/bg_stepper_btn"
+                        android:text="-5"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="12sp"
+                        android:contentDescription="Decrease weight by 5" />
+
+                    <Button
+                        android:id="@+id/btnWeightMinus1"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="4dp"
+                        android:background="@drawable/bg_stepper_btn"
+                        android:text="-1"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="12sp"
+                        android:contentDescription="Decrease weight by 1" />
+
+                    <Button
+                        android:id="@+id/btnWeightPlus1"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="4dp"
+                        android:background="@drawable/bg_stepper_btn"
+                        android:text="+1"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="12sp"
+                        android:contentDescription="Increase weight by 1" />
+
+                    <Button
+                        android:id="@+id/btnWeightPlus5"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="4dp"
+                        android:background="@drawable/bg_stepper_btn"
+                        android:text="+5"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="12sp"
+                        android:contentDescription="Increase weight by 5" />
+                </LinearLayout>
+
+                <!-- Liquid Suspension Concentration -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Medication Concentration"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/etConcMg"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_input"
+                        android:hint="@string/hint_conc"
+                        android:textColorHint="@color/colorTextMuted"
+                        android:inputType="numberDecimal"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="15sp"
+                        android:contentDescription="Active ingredient mass in milligrams" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="mg  in"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/etConcMl"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_input"
+                        android:hint="@string/hint_per_ml"
+                        android:textColorHint="@color/colorTextMuted"
+                        android:inputType="numberDecimal"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="15sp"
+                        android:contentDescription="Liquid vehicle volume in milliliters" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:text="mL"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <!-- Dose Rate Row -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Target Dose Rate (mg/kg)"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etDoseRate"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="@string/hint_dose_rate"
+                    android:textColorHint="@color/colorTextMuted"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="15sp"
+                    android:contentDescription="Target medication dose rate in milligrams per kilogram" />
+
+                <!-- Interval Selector -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Dosing Interval Frequency"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnInterval4h"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:text="q4h"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="12sp"
+                        android:contentDescription="Dosing interval every 4 hours" />
+
+                    <Button
+                        android:id="@+id/btnInterval6h"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="4dp"
+                        android:background="@drawable/bg_chip_selected"
+                        android:text="q6h"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:contentDescription="Dosing interval every 6 hours" />
+
+                    <Button
+                        android:id="@+id/btnInterval8h"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="4dp"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:text="q8h"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="12sp"
+                        android:contentDescription="Dosing interval every 8 hours" />
+
+                    <Button
+                        android:id="@+id/btnInterval12h"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="4dp"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:text="q12h"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="12sp"
+                        android:contentDescription="Dosing interval every 12 hours" />
+
+                    <Button
+                        android:id="@+id/btnInterval24h"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="4dp"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:text="q24h"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="12sp"
+                        android:contentDescription="Dosing interval every 24 hours" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Saved Records Card -->
+            <LinearLayout
+                android:id="@+id/layoutSavedCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card"
+                android:padding="14dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Recent Saved Doses"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvRecordCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 records"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutRecentList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

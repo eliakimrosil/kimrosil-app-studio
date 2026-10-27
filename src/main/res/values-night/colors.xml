@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark Mode Obsidian Clinical Palette -->
+    <color name="colorBackground">#0A0F0D</color>
+    <color name="colorSurface">#131F1A</color>
+    <color name="colorSurfaceElevated">#1A2C24</color>
+    <color name="colorBorder">#234234</color>
+    <color name="colorPrimary">#10B981</color>
+    <color name="colorPrimaryDark">#059669</color>
+    <color name="colorAccent">#34D399</color>
+    <color name="colorTextPrimary">#F0FDF4</color>
+    <color name="colorTextSecondary">#8BAAA0</color>
+    <color name="colorTextMuted">#5C7E72</color>
+    <color name="colorWarning">#F59E0B</color>
+    <color name="colorDanger">#F43F5E</color>
+    <color name="colorSafe">#10B981</color>
+    <color name="colorFluid">#10B981</color>
+    <color name="colorFluidTranslucent">#4410B981</color>
+    <color name="colorSyringeBarrel">#182B22</color>
+    <color name="colorSyringeGraduation">#6B9483</color>
+    <color name="colorRipple">#3010B981</color>
+</resources>

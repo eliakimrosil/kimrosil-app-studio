@@ -1,0 +1,10 @@
+DoseCal is a precision, offline clinical calculation utility engineered for parents, pediatric caregivers, veterinary technicians, and clinicians. It calculates weight-based liquid suspension dosages, dilution ratios, and administration schedules with zero guesswork.
+
+KEY CAPABILITIES:
+• Weight-Based Dose Solver: Computes exact single dose volumes in milliliters (mL) and milligrams (mg) from patient body weight in kilograms (kg) or pounds (lbs).
+• Visual Oral Syringe Gauge: Custom 2D graduated syringe rendering displays real-time meniscus fill levels (0.1 mL to 10 mL) to eliminate measurement confusion.
+• Suspension & Reconstitution Calculator: Easily converts active concentrations (mg/mL or mg/5 mL) and solves dry-powder bottle reconstitution volumes.
+• Clinical Formulations Library: Instant presets for common pediatric suspensions (Acetaminophen, Ibuprofen, Amoxicillin, Diphenhydramine, Cephalexin) and veterinary regimens (Meloxicam, Gabapentin, Prednisolone, Metronidazole).
+• Interval Scheduling & Safety Guardrails: Configurable dosing intervals (every 4, 6, 8, 12, or 24 hours) with daily maximum dose boundary validation.
+• Quick Settings Tile: Instant access from your Android notification shade for rapid bedside verification.
+• Pure Native Offline Performance: Operates 100% offline without accounts, cloud dependencies, internet permissions, or third-party analytical trackers. Light, Dark, and Automatic system theming.
