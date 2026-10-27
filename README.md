@@ -307,9 +307,9 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Tactile water ripples, floating petals, stone stacking, and harmonic pentatonic chimes in an offline oasis.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-pebble-drift/pebble-drift.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/pebble-drift/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/pebble-drift)
 
-#### [Plumb Bob](https://apps.kimrosil.com/plumb-bob/) (`plumb-bob`) • `v1.0.0`
+#### [PlumbBob](https://apps.kimrosil.com/plumb-bob/) (`plumb-bob`) • `v2.0.0`
 > **Utility**: Offline native Android utility for plumb bob.
-> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-plumb-bob/plumb-bob.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/plumb-bob/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/plumb-bob)
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-plumb-bob/plumb-bob.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/plumb-bob/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/plumb-bob)
 
 #### [ReturnGuard](https://apps.kimrosil.com/return-guard-receipt-countdown/) (`return-guard-receipt-countdown`) • `v1.0.0`
 > **Utility**: Stop losing money on clothes and purchases you meant to return with visual deadline countdowns and cashier-ready receipt displays.
