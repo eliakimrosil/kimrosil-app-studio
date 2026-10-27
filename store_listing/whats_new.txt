@@ -1,8 +1,2 @@
-Initial release of DeciGauge v1.0.0:
-• Real-time sound pressure level (SPL) meter with 44.1 kHz PCM audio sampling.
-• IEC 61672-1 A-weighting, C-weighting, and Z-flat frequency filters.
-• Fast (125ms), Slow (1s), and Impulse response ballistics.
-• NIOSH and OSHA daily noise dose tracking with remaining safe exposure time.
-• Laboratory HUD canvas with analog needle gauge, peak hold, and 8-band audio spectrum visualizer.
-• Offline SQLite session logging and Quick Settings tile integration.
-• Dark, Light, and Automatic theme support.
+Release v2.0.0 - DeciGauge
+Initial release of DeciGauge: Precision acoustic sound pressure level meter, A/C weighting and NIOSH/OSHA noise dose tracker
