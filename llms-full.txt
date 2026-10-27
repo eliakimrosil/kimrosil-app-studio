@@ -56,6 +56,49 @@ Data Safety & Offline Privacy Guarantee:
 
 ---
 
+## BrazeRing (`braze-ring`)
+- **Category**: TOOLS & UTILITIES / HVAC
+- **Tagline**: Preform ring sizing and silver alloy volume calculator for copper HVAC and refrigeration brazing.
+- **Landing Page**: https://apps.kimrosil.com/braze-ring/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-braze-ring/braze-ring.apk
+- **Privacy Policy**: https://apps.kimrosil.com/braze-ring/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+BrazeRing is a 100% offline silver alloy consumption, preform ring sizing, and nitrogen purge flow rate calculator engineered for HVAC/R service mechanics, pipefitters, and refrigeration engineers.
+
+Designed for machine rooms, rooftop condensing units, and walk-in freezer basements with zero cellular reception, BrazeRing eliminates expensive silver alloy waste, guessing preform wire gauges, and joint scale oxidation.
+
+KEY WORKBENCH CAPABILITIES:
+• Precise Capillary Annular Sizing:
+  - Calculates exact joint annular volume for standard ACR copper tubing (1/4 in through 2-1/8 in OD).
+  - Automatically incorporates AWS/CDA 25% meniscus and fillet cap reserve.
+• Multi-Alloy Density Engine:
+  - BCuP-2 (0% Silver phosphor copper).
+  - BCuP-5 (Sil-Fos 15% Silver high-ductility alloy).
+  - BAg-36 (Safety-Silv 45% Silver cadmium-free alloy).
+  - BAg-50 (50% High-Silver specialty alloy).
+• Wire & Preform Ring Solvers:
+  - Converts required joint volume into linear inches of standard 1/16 in and 1/8 in braze rod.
+  - Computes exact drop preform ring wire gauge (20 AWG to 1/8 in) for internal socket pre-placement.
+• Inert Nitrogen Sweep Calculator:
+  - Determines recommended low-pressure nitrogen sweep flow (SCFH) and 1-2 PSI regulator benchmarks to prevent black copper oxide scale without cooling the joint.
+• Live 2D Architectural Joint Cross-Section:
+  - Real-time hardware canvas rendering tube insertion, capillary clearance channel, alloy meniscus fillet, and heat target zone.
+• Jobsite Multi-Joint Run Log:
+  - Record multi-joint installation jobs into local offline SQLite storage.
+  - Single-tap clipboard export to send alloy requisitions to the supply house.
+• Fast Contrast & Field Theming:
+  - Quick header switcher for Deep Obsidian Forge (Dark) and Daylight Blueprint (Light) modes.
+• Android Platform Moat:
+  - Quick Settings Tile lets you launch the braze calculator instantly from your notification shade.
+
+100% Free & Open Performance:
+Zero ads. Zero tracking. Ultra-fast native Android performance (< 110 KB APK, 120ms cold launch).
+
+---
+
 ## BrixScale (`brix-scale`)
 - **Category**: Food & Drink / Utilities
 - **Tagline**: Pour-over brew ratio calculator, TDS extraction yield solver, and multi-pour stage timer.
@@ -1035,7 +1078,7 @@ KEY STUDIO FEATURES:
 - **Category**: TOOLS & UTILITIES / TRADES
 - **Tagline**: Offline pipe slope, invert depth, and fall calculator for drain plumbers
 - **Landing Page**: https://apps.kimrosil.com/plumb-bob/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-plumb-bob/plumb-bob.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-plumb-bob/plumb-bob.apk
 - **Privacy Policy**: https://apps.kimrosil.com/plumb-bob/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)

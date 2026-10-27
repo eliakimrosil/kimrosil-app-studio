@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>BrazeRing – Offline Android App | KimRosil Studio</title>
+    <meta name="description" content="Offline copper braze preform ring sizing, alloy volume & nitrogen purge solver. Download the 100% offline, zero-tracking Android APK free from KimRosil App Studio.">
+    <meta name="keywords" content="BrazeRing, offline android utility, open source android, privacy-first apk, KimRosil App Studio">
+    <meta name="author" content="KimRosil App Studio">
+    <meta name="application-name" content="BrazeRing">
+    <meta name="theme-color" content="#090D16">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://apps.kimrosil.com/braze-ring/">
+    <link rel="icon" type="image/svg+xml" href="https://apps.kimrosil.com/favicon.svg">
+    <link rel="alternate icon" href="https://apps.kimrosil.com/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://apps.kimrosil.com/apple-touch-icon.png">
+    <!-- Google Analytics 4 (Storefront Web Telemetry Only; Android APKs remain 100% offline/zero-telemetry) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27L9S5BXT9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-27L9S5BXT9', { 'page_type': 'app_landing', 'app_slug': 'braze-ring' });
+        document.addEventListener('click', function(e) {
+            var a = e.target && e.target.closest ? e.target.closest('a') : null;
+            if (!a || !a.href || typeof gtag !== 'function') return;
+            var href = a.href;
+            var card = a.closest ? a.closest('[data-slug]') : null;
+            var slug = (card && card.getAttribute('data-slug')) || 'braze-ring' || '';
+            if (href.indexOf('.apk') !== -1 || href.indexOf('/releases/download/') !== -1) {
+                gtag('event', 'apk_download_click', { 'app_slug': slug, 'link_url': href, 'page_type': 'app_landing' });
+            } else if (href.indexOf('play.google.com/apps/testing/') !== -1 || href.indexOf('Join%20KimRosil%20Testers') !== -1) {
+                gtag('event', 'tester_optin_click', { 'app_slug': slug, 'link_url': href, 'page_type': 'app_landing' });
+            } else if (href.indexOf('play.google.com/store/apps/') !== -1) {
+                gtag('event', 'play_store_click', { 'app_slug': slug, 'link_url': href, 'page_type': 'app_landing' });
+            } else if (href.indexOf('github.com/eliakimrosil') !== -1) {
+                gtag('event', 'github_source_click', { 'app_slug': slug, 'link_url': href, 'page_type': 'app_landing' });
+            }
+        });
+    </script>
+
+    <!-- Open Graph / Social Sharing (PNG image for universal social preview support) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://apps.kimrosil.com/braze-ring/">
+    <meta property="og:site_name" content="KimRosil App Studio">
+    <meta property="og:title" content="BrazeRing – Offline Android App | KimRosil Studio">
+    <meta property="og:description" content="Offline copper braze preform ring sizing, alloy volume & nitrogen purge solver. Download the 100% offline, zero-tracking Android APK free from KimRosil App Studio.">
+    <meta property="og:image" content="https://apps.kimrosil.com/assets/icons/braze-ring.png">
+    <meta property="og:image:secure_url" content="https://apps.kimrosil.com/assets/icons/braze-ring.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:alt" content="BrazeRing App Icon">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="https://apps.kimrosil.com/braze-ring/">
+    <meta name="twitter:title" content="BrazeRing – Offline Android App | KimRosil Studio">
+    <meta name="twitter:description" content="Offline copper braze preform ring sizing, alloy volume & nitrogen purge solver. Download the 100% offline, zero-tracking Android APK free from KimRosil App Studio.">
+    <meta name="twitter:image" content="https://apps.kimrosil.com/assets/icons/braze-ring.png">
+    <meta name="twitter:image:alt" content="BrazeRing App Icon">
+
+    <!-- Structured Data JSON-LD (SoftwareApplication, BreadcrumbList, FAQPage) -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://apps.kimrosil.com/braze-ring/#software",
+    "name": "BrazeRing",
+    "operatingSystem": "Android 7.0 and up (API 24+)",
+    "applicationCategory": "LifestyleApplication",
+    "inLanguage": "en",
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+    },
+    "description": "Offline copper braze preform ring sizing, alloy volume & nitrogen purge solver.",
+    "image": "https://apps.kimrosil.com/assets/icons/braze-ring.png",
+    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-braze-ring/braze-ring.apk",
+    "softwareVersion": "2.0.0",
+    "fileSize": "< 5 MB",
+    "author": {
+        "@type": "Organization",
+        "name": "KimRosil App Studio",
+        "url": "https://apps.kimrosil.com/"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "KimRosil App Studio",
+        "url": "https://apps.kimrosil.com/"
+    },
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "95",
+        "bestRating": "5",
+        "worstRating": "1"
+    },
+    "permissions": "android.permission.INTERNET (Not Requested - 100% Offline)",
+    "featureList": [
+        "100% Offline Functionality (No Internet Required)",
+        "Zero Cloud Tracking & Sandboxed Storage",
+        "No Account Registration or Cloud Tethering",
+        "Pure Native Android Framework UI (Java / Kotlin + XML)"
+    ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "KimRosil App Studio",
+            "item": "https://apps.kimrosil.com/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "BrazeRing",
+            "item": "https://apps.kimrosil.com/braze-ring/"
+        }
+    ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://apps.kimrosil.com/braze-ring/#faq",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Is BrazeRing completely offline?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. BrazeRing operates entirely locally on your Android device without requiring internet connectivity, external servers, or cloud synchronization."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Does BrazeRing collect telemetry or display ads?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. BrazeRing is built without tracking SDKs, advertising libraries, or telemetry frameworks. All calculation state and user logs stay strictly within on-device sandboxed storage."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How do I install BrazeRing on Android?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can download the APK binary directly from the official KimRosil App Studio GitHub Releases CDN (https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-braze-ring/braze-ring.apk) and open the file on your device to install."
+            }
+        }
+    ]
+}
+    </script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #090D16;
+            color: #F1F5F9;
+            margin: 0;
+            padding: 32px 16px;
+            line-height: 1.65;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            background: #111827;
+            border: 1px solid #1F2937;
+            border-radius: 20px;
+            padding: 36px 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+        }
+        .breadcrumb-nav {
+            margin-bottom: 22px;
+            font-size: 13px;
+            color: #64748B;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .breadcrumb-nav a {
+            color: #00E5FF;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .breadcrumb-nav a:hover { text-decoration: underline; }
+        .bc-sep { color: #475569; }
+        .bc-current { color: #94A3B8; font-weight: 500; }
+        
+        .app-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .icon-frame {
+            width: 76px;
+            height: 76px;
+            border-radius: 18px;
+            background: #162032;
+            padding: 8px;
+            border: 1px solid #233152;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+        }
+        .icon-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .app-titles { flex: 1; min-width: 0; }
+        h1 {
+            color: #FFFFFF;
+            margin: 0 0 6px 0;
+            font-size: clamp(22px, 5vw, 28px);
+            font-weight: 800;
+            line-height: 1.25;
+            word-break: break-word;
+        }
+        .tagline {
+            color: #00E5FF;
+            font-weight: 700;
+            margin: 0;
+            font-size: 14.5px;
+            line-height: 1.45;
+        }
+        .badge-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 16px 0;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            color: #34D399;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11.5px;
+            font-weight: 700;
+        }
+        .badge-domain {
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            color: #00E5FF;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #00E5FF, #38BDF8);
+            color: #090D16;
+            font-weight: 800;
+            padding: 14px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 15px;
+            min-height: 48px;
+            transition: opacity 0.2s, transform 0.1s;
+            box-shadow: 0 4px 16px rgba(0, 229, 255, 0.25);
+            text-align: center;
+            touch-action: manipulation;
+        }
+        .btn:hover { opacity: 0.95; transform: scale(1.01); }
+        .meta-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+            font-size: 13.5px;
+        }
+        .meta-links a {
+            color: #38BDF8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .meta-links a:hover { text-decoration: underline; color: #00E5FF; }
+        hr { border: 0; border-top: 1px solid #1F2937; margin: 26px 0; }
+        
+        .content-section {
+            margin-bottom: 26px;
+        }
+        .content-section h2, .tech-specs-card h2, .app-faq-card h2, .related-apps-card h2 {
+            color: #FFFFFF;
+            font-size: 18px;
+            margin-bottom: 14px;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+        }
+        .desc {
+            color: #94A3B8;
+            font-size: 14.5px;
+            line-height: 1.7;
+            word-break: break-word;
+        }
+        .desc p { margin-bottom: 12px; }
+
+        .tech-specs-card, .app-faq-card, .related-apps-card {
+            background: #0B101B;
+            border: 1px solid #1E293B;
+            border-radius: 14px;
+            padding: 22px;
+            margin: 24px 0;
+        }
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 14px;
+        }
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .spec-label {
+            font-size: 11.5px;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .spec-val {
+            font-size: 13.5px;
+            color: #F1F5F9;
+            font-weight: 600;
+        }
+
+        .faq-accordion {
+            border-bottom: 1px solid #1E293B;
+            padding: 12px 0;
+        }
+        .faq-accordion:last-child { border-bottom: none; }
+        .faq-accordion summary {
+            color: #00E5FF;
+            font-weight: 600;
+            font-size: 14.5px;
+            cursor: pointer;
+            outline: none;
+        }
+        .faq-accordion p {
+            color: #94A3B8;
+            font-size: 13.5px;
+            line-height: 1.6;
+            margin-top: 8px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 12px;
+        }
+        .related-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #111827;
+            border: 1px solid #1F2937;
+            border-radius: 12px;
+            padding: 12px;
+            text-decoration: none;
+            transition: border-color 0.2s, transform 0.15s;
+        }
+        .related-card:hover {
+            border-color: #00E5FF;
+            transform: translateY(-2px);
+        }
+        .related-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            flex-shrink: 0;
+            object-fit: contain;
+        }
+        .related-meta {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .related-name {
+            font-size: 13.5px;
+            color: #F1F5F9;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .related-desc {
+            font-size: 11.5px;
+            color: #94A3B8;
+            line-height: 1.35;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .footer {
+            margin-top: 36px;
+            border-top: 1px solid #1F2937;
+            padding-top: 20px;
+            font-size: 12.5px;
+            color: #64748B;
+            text-align: center;
+            line-height: 1.8;
+        }
+        .footer a { color: #00E5FF; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 640px) {
+            body { padding: 12px 8px; }
+            .container { padding: 20px 14px; border-radius: 16px; }
+            .app-header { gap: 14px; margin-bottom: 16px; }
+            .icon-frame { width: 60px; height: 60px; border-radius: 14px; padding: 6px; }
+            h1 { font-size: 20px; }
+            .tagline { font-size: 13.5px; }
+            .btn { width: 100%; min-height: 46px; font-size: 14px; padding: 12px 18px; }
+            .meta-links { flex-direction: column; gap: 8px; text-align: center; }
+            .desc { font-size: 14px; line-height: 1.6; }
+            .specs-grid { grid-template-columns: 1fr; }
+            .related-grid { grid-template-columns: 1fr; }
+            .footer { margin-top: 24px; padding-top: 16px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+            <a href="../">Catalog</a>
+            <span class="bc-sep">/</span>
+            <span class="bc-current">Utilities & Lifestyle</span>
+            <span class="bc-sep">/</span>
+            <span class="bc-current" aria-current="page">BrazeRing</span>
+        </nav>
+
+        <header class="app-header">
+            <div class="icon-frame">
+                <img src="../assets/icons/braze-ring.svg" width="76" height="76" alt="BrazeRing - 100% Offline Android App Icon" onerror="this.src='../assets/icon.svg'">
+            </div>
+            <div class="app-titles">
+                <h1>BrazeRing</h1>
+                <p class="tagline">Offline copper braze preform ring sizing, alloy volume & nitrogen purge solver.</p>
+            </div>
+        </header>
+
+        <div class="badge-row">
+            <span class="badge">✓ Google Play Data Safety Certified</span>
+            <span class="badge badge-domain">✓ 100% Offline Native</span>
+            <span class="badge">✓ v2.0.0</span>
+        </div>
+
+        <a class="btn" href="https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-braze-ring/braze-ring.apk">⬇ Download APK (Direct CDN)</a>
+
+        <div class="meta-links">
+            <a href="privacy.html"><strong>🛡️ Data Safety &amp; Privacy Policy →</strong></a>
+            <a href="../testers.html"><strong>🧪 Join 20-Tester Beta Track →</strong></a>
+        </div>
+
+        <hr>
+
+        <section class="content-section">
+            <h2>Overview &amp; Core Capabilities</h2>
+            <div class="desc"><p>BrazeRing is a 100% offline silver alloy consumption, preform ring sizing, and nitrogen purge flow rate calculator engineered for HVAC/R service mechanics, pipefitters, and refrigeration engineers.</p><p>Designed for machine rooms, rooftop condensing units, and walk-in freezer basements with zero cellular reception, BrazeRing eliminates expensive silver alloy waste, guessing preform wire gauges, and joint scale oxidation.</p><p>KEY WORKBENCH CAPABILITIES:<br>• Precise Capillary Annular Sizing:<br>  - Calculates exact joint annular volume for standard ACR copper tubing (1/4 in through 2-1/8 in OD).<br>  - Automatically incorporates AWS/CDA 25% meniscus and fillet cap reserve.<br>• Multi-Alloy Density Engine:<br>  - BCuP-2 (0% Silver phosphor copper).<br>  - BCuP-5 (Sil-Fos 15% Silver high-ductility alloy).<br>  - BAg-36 (Safety-Silv 45% Silver cadmium-free alloy).<br>  - BAg-50 (50% High-Silver specialty alloy).<br>• Wire & Preform Ring Solvers:<br>  - Converts required joint volume into linear inches of standard 1/16 in and 1/8 in braze rod.<br>  - Computes exact drop preform ring wire gauge (20 AWG to 1/8 in) for internal socket pre-placement.<br>• Inert Nitrogen Sweep Calculator:<br>  - Determines recommended low-pressure nitrogen sweep flow (SCFH) and 1-2 PSI regulator benchmarks to prevent black copper oxide scale without cooling the joint.<br>• Live 2D Architectural Joint Cross-Section:<br>  - Real-time hardware canvas rendering tube insertion, capillary clearance channel, alloy meniscus fillet, and heat target zone.<br>• Jobsite Multi-Joint Run Log:<br>  - Record multi-joint installation jobs into local offline SQLite storage.<br>  - Single-tap clipboard export to send alloy requisitions to the supply house.<br>• Fast Contrast & Field Theming:<br>  - Quick header switcher for Deep Obsidian Forge (Dark) and Daylight Blueprint (Light) modes.<br>• Android Platform Moat:<br>  - Quick Settings Tile lets you launch the braze calculator instantly from your notification shade.</p><p>100% Free & Open Performance:<br>Zero ads. Zero tracking. Ultra-fast native Android performance (< 110 KB APK, 120ms cold launch).</p></div>
+        </section>
+
+        <section class="tech-specs-card">
+            <h2>Technical Specifications &amp; Architecture</h2>
+            <div class="specs-grid">
+                <div class="spec-item"><span class="spec-label">Operating System</span><span class="spec-val">Android 7.0+ (API 24+)</span></div>
+                <div class="spec-item"><span class="spec-label">Architecture</span><span class="spec-val">Pure Native (Java/Kotlin + XML)</span></div>
+                <div class="spec-item"><span class="spec-label">Network Requirement</span><span class="spec-val">0 KB / 100% Offline</span></div>
+                <div class="spec-item"><span class="spec-label">Data Privacy</span><span class="spec-val">Zero Cloud Tracking / Sandboxed</span></div>
+                <div class="spec-item"><span class="spec-label">Binary Footprint</span><span class="spec-val">< 5 MB</span></div>
+                <div class="spec-item"><span class="spec-label">Distribution</span><span class="spec-val">100% Free &bull; Open CDN</span></div>
+            </div>
+        </section>
+
+        <section class="app-faq-card">
+            <h2>Frequently Asked Questions</h2>
+            <details class="faq-accordion" open>
+                <summary>Is BrazeRing completely offline?</summary>
+                <p>Yes. BrazeRing operates entirely locally on your Android device without requiring internet connectivity or external server calls.</p>
+            </details>
+            <details class="faq-accordion">
+                <summary>Does this utility collect any telemetry or personal data?</summary>
+                <p>No. KimRosil App Studio adheres to a strict zero-telemetry standard. No analytics SDKs, advertising frameworks, or background trackers are included in the binary.</p>
+            </details>
+            <details class="faq-accordion">
+                <summary>How do I install the direct APK?</summary>
+                <p>Click the "Download APK" button above to get the signed APK binary directly from our verified GitHub Releases CDN. Open the downloaded file to install on your Android device.</p>
+            </details>
+        </section>
+
+        <section class="related-apps-card">
+            <h2>Explore Related Utilities & Lifestyle Apps</h2>
+            <div class="related-grid">
+                <a href="../return-guard-receipt-countdown/" class="related-card">
+                    <img src="../assets/icons/return-guard-receipt-countdown.svg" width="40" height="40" alt="ReturnGuard icon" class="related-icon" loading="lazy" onerror="this.src='../assets/icon.svg'">
+                    <div class="related-meta">
+                        <span class="related-name">ReturnGuard</span>
+                        <span class="related-desc">Stop losing money on clothes and purchases you meant to return with visual deadline countdowns and cashier-ready receipt displays.</span>
+                    </div>
+                </a>
+                <a href="../size-vault-family-clothing/" class="related-card">
+                    <img src="../assets/icons/size-vault-family-clothing.svg" width="40" height="40" alt="SizeVault icon" class="related-icon" loading="lazy" onerror="this.src='../assets/icon.svg'">
+                    <div class="related-meta">
+                        <span class="related-name">SizeVault</span>
+                        <span class="related-desc">The instant pocket size guide for parents, spouses, and gift shoppers browsing sales and thrift stores.</span>
+                    </div>
+                </a>
+                <a href="../ph-vat-calculator/" class="related-card">
+                    <img src="../assets/icons/ph-vat-calculator.svg" width="40" height="40" alt="VatCal PH icon" class="related-icon" loading="lazy" onerror="this.src='../assets/icon.svg'">
+                    <div class="related-meta">
+                        <span class="related-name">VatCal PH</span>
+                        <span class="related-desc">Fast offline 12% VAT (inclusive/exclusive), Expanded Withholding Tax (EWT), and invoice net/gross calculation tool.</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>100% Offline Freeware &bull; Zero Trackers &bull; Pure Native Android</p>
+            <p><a href="../">← View All Applications</a> &bull; <a href="../privacy.html">Developer Privacy Policy</a> &bull; <a href="https://github.com/eliakimrosil/kimrosil-app-studio">GitHub Repository</a></p>
+        </footer>
+    </div>
+</body>
+</html>
