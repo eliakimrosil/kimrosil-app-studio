@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_main"
+    android:padding="12dp">
+
+    <!-- Top Unified Action Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="8dp">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_mic"
+            android:contentDescription="DeciGauge Logo" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/text_primary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Precision Acoustic HUD"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnTheme"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_header_icon_btn"
+            android:src="@drawable/ic_theme"
+            android:contentDescription="Switch Theme" />
+
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="match_parent" />
+
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_header_icon_btn"
+            android:src="@drawable/ic_settings"
+            android:contentDescription="Settings and About" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Mic Permission Alert Banner (Shown if permission denied) -->
+            <LinearLayout
+                android:id="@+id/layoutMicNotice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_badge_action"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_warning"
+                    android:contentDescription="Warning" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text="Synthetic Test Mode. Tap to allow microphone."
+                    android:textColor="@color/badge_action_text"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnGrantMic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_btn_primary"
+                    android:text="Allow"
+                    android:textColor="@color/text_inverse"
+                    android:textSize="12sp"
+                    android:minWidth="64dp" />
+            </LinearLayout>
+
+            <!-- Hero Acoustic Visualizer Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_hero_card"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_marginBottom="8dp">
+
+                <!-- Custom Analog Gauge & Spectrum View -->
+                <com.kimrosil.decigauge.DeciMeterView
+                    android:id="@+id/deciMeterView"
+                    android:layout_width="match_parent"
+                    android:layout_height="135dp" />
+
+                <!-- 4-Column Secondary Telemetry Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="6dp">
+
+                    <!-- LEQ -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="LEQ"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvLeqValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="40.0"
+                            android:textColor="@color/accent_cyan"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- MAX -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MAX"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvMaxValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="40.0"
+                            android:textColor="@color/accent_amber"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- MIN -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MIN"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvMinValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="40.0"
+                            android:textColor="@color/text_primary"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- PEAK -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PEAK"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvPeakValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="40.0"
+                            android:textColor="@color/accent_red"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Mode Selector Rows (Weighting & Ballistics) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="8dp">
+
+                <!-- Weighting Buttons (48dp height) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="6dp">
+
+                    <Button
+                        android:id="@+id/btnWeightA"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="dBA (Human)"
+                        android:textColor="@color/chip_text_selected"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:contentDescription="Select A-weighting frequency filter"
+                        android:background="@drawable/bg_chip_selected" />
+
+                    <Space
+                        android:layout_width="6dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/btnWeightC"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="dBC (Machine)"
+                        android:textColor="@color/chip_text_unselected"
+                        android:textSize="12sp"
+                        android:contentDescription="Select C-weighting frequency filter"
+                        android:background="@drawable/bg_chip_unselected" />
+
+                    <Space
+                        android:layout_width="6dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/btnWeightZ"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="dBZ (Flat)"
+                        android:textColor="@color/chip_text_unselected"
+                        android:textSize="12sp"
+                        android:contentDescription="Select Z-flat unweighted frequency filter"
+                        android:background="@drawable/bg_chip_unselected" />
+                </LinearLayout>
+
+                <!-- Response Speed Buttons (48dp height) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnRespFast"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="Fast (125ms)"
+                        android:textColor="@color/chip_text_selected"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:contentDescription="Select Fast 125 millisecond response time"
+                        android:background="@drawable/bg_chip_selected" />
+
+                    <Space
+                        android:layout_width="6dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/btnRespSlow"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="Slow (1.0s)"
+                        android:textColor="@color/chip_text_unselected"
+                        android:textSize="11sp"
+                        android:contentDescription="Select Slow 1 second response time"
+                        android:background="@drawable/bg_chip_unselected" />
+
+                    <Space
+                        android:layout_width="6dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/btnRespImpulse"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="Impulse (35ms)"
+                        android:textColor="@color/chip_text_unselected"
+                        android:textSize="11sp"
+                        android:contentDescription="Select Impulse response time"
+                        android:background="@drawable/bg_chip_unselected" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Occupational Noise Dose Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:layout_marginBottom="8dp">
+
+                <!-- Header with Standard Selector -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Occupational Noise Dose"
+                        android:textColor="@color/text_primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnStdNiosh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:text="NIOSH"
+                        android:textColor="@color/chip_text_selected"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:contentDescription="Select NIOSH standard criterion 85 dB"
+                        android:background="@drawable/bg_chip_selected"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp" />
+
+                    <Space
+                        android:layout_width="6dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/btnStdOsha"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:text="OSHA"
+                        android:textColor="@color/chip_text_unselected"
+                        android:textSize="11sp"
+                        android:contentDescription="Select OSHA standard criterion 90 dB"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp" />
+                </LinearLayout>
+
+                <!-- Telemetry 2-Column Grid -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <!-- Left: Dose & Risk Status -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ACCUMULATED DOSE"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvDosePercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.0%"
+                            android:textColor="@color/text_primary"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvRiskStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_badge_safe"
+                            android:text="SAFE"
+                            android:textColor="@color/badge_safe_text"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingTop="3dp"
+                            android:paddingBottom="3dp"
+                            android:layout_marginTop="4dp" />
+                    </LinearLayout>
+
+                    <!-- Right: Remaining Safe Time & Protocol -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SAFE TIME REMAINING"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvSafeTimeRemaining"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="&gt; 8 Hours"
+                            android:textColor="@color/accent_cyan"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvStandardRule"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Criterion: 85 dB / 3 dB Exchange"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="10sp"
+                            android:layout_marginTop="6dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Primary Control Buttons (48dp height) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btnPlayPause"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1.2"
+                    android:background="@drawable/bg_btn_primary"
+                    android:text="Start Meter"
+                    android:textColor="@color/text_inverse"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:contentDescription="Pause or resume acoustic measurements" />
+
+                <Space
+                    android:layout_width="6dp"
+                    android:layout_height="match_parent" />
+
+                <Button
+                    android:id="@+id/btnReset"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_btn_secondary"
+                    android:text="Reset Peak"
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp"
+                    android:contentDescription="Reset peak hold and baseline" />
+
+                <Space
+                    android:layout_width="6dp"
+                    android:layout_height="match_parent" />
+
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="0.9"
+                    android:background="@drawable/bg_btn_secondary"
+                    android:text="Save Run"
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp"
+                    android:contentDescription="Save current exposure run to local database" />
+
+                <Space
+                    android:layout_width="6dp"
+                    android:layout_height="match_parent" />
+
+                <Button
+                    android:id="@+id/btnCopy"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="0.9"
+                    android:background="@drawable/bg_btn_secondary"
+                    android:text="Copy"
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp"
+                    android:contentDescription="Copy measurement report to clipboard" />
+            </LinearLayout>
+
+            <!-- Saved Sessions Log Container -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="6dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Acoustic Session Runs"
+                        android:textColor="@color/text_primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnClearSessions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_btn_secondary"
+                        android:text="Clear All"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp"
+                        android:contentDescription="Clear all saved session logs"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutSessionsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <TextView
+                    android:id="@+id/tvEmptySessions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No session runs recorded yet. Tap 'Save Run' to log exposure data."
+                    android:textColor="@color/text_hint"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:padding="12dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

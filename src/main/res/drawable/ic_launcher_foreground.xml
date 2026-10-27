@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Sound Level Arc Zone (Cyan to Amber to Red) -->
+    <path
+        android:strokeColor="#00F2FE"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:pathData="M32,66 A26,26 0 0,1 54,34"/>
+    <path
+        android:strokeColor="#FFB300"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:pathData="M54,34 A26,26 0 0,1 70,44"/>
+    <path
+        android:strokeColor="#FF3B30"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:pathData="M70,44 A26,26 0 0,1 76,66"/>
+
+    <!-- Sound Wave Radiations -->
+    <path
+        android:strokeColor="#00F2FE"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:pathData="M44,78 A12,12 0 0,1 64,78"/>
+    <path
+        android:strokeColor="#4DD0E1"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="M38,84 A18,18 0 0,1 70,84"/>
+
+    <!-- Central Precision Needle Gauge pointing to ~85dB -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:pathData="M54,64 L66,42"/>
+
+    <!-- Pivot Point -->
+    <path
+        android:fillColor="#00F2FE"
+        android:pathData="M54,64m-4.5,0a4.5,4.5 0 1,0 9,0a4.5,4.5 0 1,0 -9,0"/>
+    <path
+        android:fillColor="#0B0F14"
+        android:pathData="M54,64m-2,0a2,2 0 1,0 4,0a2,2 0 1,0 -4,0"/>
+
+    <!-- Peak Alert Diamond -->
+    <path
+        android:fillColor="#FF3B30"
+        android:pathData="M74,38 L77,41 L74,44 L71,41 Z"/>
+</vector>

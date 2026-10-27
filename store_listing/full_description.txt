@@ -1,0 +1,33 @@
+DeciGauge is a precision acoustic sound pressure level (SPL) meter and occupational noise dose analyzer designed for acoustic engineers, industrial safety officers, audio technicians, and workplace safety compliance.
+
+REAL-TIME DECIBEL MEASUREMENT & TELEMETRY
+• High-performance 44.1 kHz PCM microphone sampling engine with minimal latency.
+• Real-time digital readouts for instantaneous Sound Pressure Level (SPL), equivalent continuous sound level (Leq), maximum peak (Lmax), and minimum baseline (Lmin).
+• High-precision laboratory HUD canvas featuring an analog needle gauge, dynamic peak hold tick, and real-time 8-band audio frequency spectrum visualizer.
+
+FREQUENCY WEIGHTING FILTERS (IEC 61672-1)
+• dBA (A-Weighting): Simulates the human ear response curve (40-phon Fletcher-Munson contour). Recommended for occupational noise regulation, workplace surveys, and environmental nuisance complaints.
+• dBC (C-Weighting): Flat low-frequency response with sharp roll-off. Ideal for assessing low-end rumble, heavy machinery vibration, engine exhaust, and concert audio systems.
+• dBZ (Z-Weighting): Flat, unweighted spectral measurement across the audible spectrum (20 Hz to 20,000 Hz).
+
+STANDARDS-COMPLIANT TIME BALLISTICS
+• Fast Response (125 ms): Standard for monitoring fluctuating, speech, and environmental noise levels.
+• Slow Response (1,000 ms): Damped response for measuring steady-state background or factory noise.
+• Impulse Response (35 ms rise / 1,500 ms decay): Captures rapid transient impacts, jackhammers, firearms, and machinery stamping.
+
+OCCUPATIONAL NOSE DOSE MONITORING (NIOSH & OSHA)
+• NIOSH REL Standard: 85 dBA criterion baseline with a 3 dB exchange rate.
+• OSHA PEL Standard: 90 dBA criterion baseline with a 5 dB exchange rate.
+• Computes real-time accumulated noise dose percentage, 8-hour projected Time-Weighted Average (TWA), and remaining permissible exposure time before reaching hazardous thresholds.
+• Dynamic color-coded risk status badges: Safe, Caution, Action Required, and Immediate Hazard.
+
+SESSION LOGGING & REPOSITORY
+• Save noise exposure monitoring runs directly to an offline SQLite database.
+• Review historical sessions with duration, Leq, Lmax, dose percentage, and weighting configuration.
+• One-tap export to clipboard for safety compliance reporting and site audits.
+
+HARDWARE & OPERATIONAL INTEGRATION
+• Quick Settings Tile: Launch the sound meter immediately from your Android notification shade.
+• Microphone calibration offset adjustment (+/- 10 dB) to calibrate against known 94 dB / 114 dB reference sound calibrators.
+• Full Dark, Light, and Automatic system theming with high-contrast laboratory styling.
+• 100% offline: Operates strictly on-device without internet access, third-party libraries, advertising, or telemetry tracking.

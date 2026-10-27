@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_main">#F0F4F8</color>
+    <color name="bg_card">#FFFFFF</color>
+    <color name="bg_card_elevated">#F8FAFC</color>
+    <color name="border_hairline">#D0DBE5</color>
+    <color name="border_focus">#008B94</color>
+    
+    <color name="text_primary">#0D1B2A</color>
+    <color name="text_secondary">#50667F</color>
+    <color name="text_hint">#8A9BA8</color>
+    <color name="text_inverse">#FFFFFF</color>
+    
+    <color name="accent_cyan">#008B94</color>
+    <color name="accent_primary">#008B94</color>
+    <color name="accent_cyan_glow">#4DD0E1</color>
+    <color name="accent_amber">#E65100</color>
+    <color name="accent_red">#D32F2F</color>
+    <color name="accent_green">#00897B</color>
+    
+    <color name="badge_text_pass">#1B5E20</color>
+    <color name="badge_text_alert">#E65100</color>
+    
+    <color name="chip_bg_unselected">#FFFFFF</color>
+    <color name="chip_bg_selected">#E0F7FA</color>
+    <color name="chip_border_selected">#008B94</color>
+    <color name="chip_text_selected">#005B60</color>
+    <color name="chip_text_unselected">#50667F</color>
+    
+    <color name="gauge_arc_bg">#E2E8F0</color>
+    <color name="gauge_needle">#008B94</color>
+    <color name="gauge_peak_marker">#D32F2F</color>
+    
+    <color name="badge_safe_bg">#E8F5E9</color>
+    <color name="badge_safe_text">#1B5E20</color>
+    <color name="badge_caution_bg">#FFF8E1</color>
+    <color name="badge_caution_text">#F57F17</color>
+    <color name="badge_action_bg">#FFF3E0</color>
+    <color name="badge_action_text">#E65100</color>
+    <color name="badge_hazard_bg">#FFEBEE</color>
+    <color name="badge_hazard_text">#B71C1C</color>
+</resources>
