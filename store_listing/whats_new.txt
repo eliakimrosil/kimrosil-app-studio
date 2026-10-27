@@ -1,8 +1,2 @@
-Initial release of OhmBand v1.0.0:
-• 4-Band, 5-Band, and 6-Band resistor color code decoding.
-• Reverse band synthesizer (convert ohms to color bands).
-• SMD marking calculator for 3-digit, 4-digit, and EIA-96 codes.
-• EIA preferred standard value matching (E12, E24, E96).
-• Real-time 2D rendered axial resistor view with tolerance limits.
-• Offline SQLite workbench parts repository and Quick Settings tile.
-• Complete Dark, Light, and Automatic theme support.
+Release v2.0.0 - OhmBand
+Initial release of OhmBand: Resistor color code decoder, reverse band synthesizer, and SMD marking solver
