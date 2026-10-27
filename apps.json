@@ -993,5 +993,19 @@
     "privacy_policy": "https://apps.kimrosil.com/conduit-fill/privacy.html",
     "icon": "assets/icons/conduit-fill.svg",
     "updated_at": "2026-10-27T13:34:09.182891+00:00"
+  },
+  {
+    "slug": "dose-cal",
+    "title": "DoseCal",
+    "category": "UTILITIES",
+    "tagline": "Pediatric and veterinary liquid medication dosage and suspension solver.",
+    "status": "BUILT",
+    "branch": "app/dose-cal",
+    "tag": "v2.0.0-dose-cal",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-dose-cal/dose-cal.apk",
+    "landing_page": "https://apps.kimrosil.com/dose-cal/",
+    "privacy_policy": "https://apps.kimrosil.com/dose-cal/privacy.html",
+    "icon": "assets/icons/dose-cal.svg",
+    "updated_at": "2026-10-27T13:48:11.169916+00:00"
   }
 ]
