@@ -10,6 +10,30 @@
     <link rel="icon" type="image/svg+xml" href="https://apps.kimrosil.com/favicon.svg">
     <link rel="alternate icon" href="https://apps.kimrosil.com/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="https://apps.kimrosil.com/apple-touch-icon.png">
+    <!-- Google Analytics 4 (Storefront Web Telemetry Only; Android APKs remain 100% offline/zero-telemetry) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27L9S5BXT9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-27L9S5BXT9', { 'page_type': 'app_privacy', 'app_slug': 'turf-notch' });
+        document.addEventListener('click', function(e) {
+            var a = e.target && e.target.closest ? e.target.closest('a') : null;
+            if (!a || !a.href || typeof gtag !== 'function') return;
+            var href = a.href;
+            var card = a.closest ? a.closest('[data-slug]') : null;
+            var slug = (card && card.getAttribute('data-slug')) || 'turf-notch' || '';
+            if (href.indexOf('.apk') !== -1 || href.indexOf('/releases/download/') !== -1) {
+                gtag('event', 'apk_download_click', { 'app_slug': slug, 'link_url': href, 'page_type': 'app_privacy' });
+            } else if (href.indexOf('play.google.com/apps/testing/') !== -1 || href.indexOf('Join%20KimRosil%20Testers') !== -1) {
+                gtag('event', 'tester_optin_click', { 'app_slug': slug, 'link_url': href, 'page_type': 'app_privacy' });
+            } else if (href.indexOf('play.google.com/store/apps/') !== -1) {
+                gtag('event', 'play_store_click', { 'app_slug': slug, 'link_url': href, 'page_type': 'app_privacy' });
+            } else if (href.indexOf('github.com/eliakimrosil') !== -1) {
+                gtag('event', 'github_source_click', { 'app_slug': slug, 'link_url': href, 'page_type': 'app_privacy' });
+            }
+        });
+    </script>
 
     <!-- Open Graph -->
     <meta property="og:type" content="article">
