@@ -816,7 +816,7 @@
     "slug": "plumb-bob",
     "title": "PlumbBob",
     "category": "UTILITIES",
-    "tagline": "Offline native Android utility for plumb bob.",
+    "tagline": "Offline pipe slope, invert depth elevation & trench fall calculator for plumbers.",
     "status": "BUILT",
     "branch": "app/plumb-bob",
     "tag": "v2.0.0-plumb-bob",
