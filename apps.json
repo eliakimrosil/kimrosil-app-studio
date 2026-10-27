@@ -945,12 +945,12 @@
     "tagline": "Offline copper braze preform ring sizing, alloy volume & nitrogen purge solver.",
     "status": "BUILT",
     "branch": "app/braze-ring",
-    "tag": "v2.0.0-braze-ring",
-    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-braze-ring/braze-ring.apk",
+    "tag": "v2.0.1-braze-ring",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.1-braze-ring/braze-ring.apk",
     "landing_page": "https://apps.kimrosil.com/braze-ring/",
     "privacy_policy": "https://apps.kimrosil.com/braze-ring/privacy.html",
     "icon": "assets/icons/braze-ring.svg",
-    "updated_at": "2026-10-27T12:16:52.573729+00:00"
+    "updated_at": "2026-10-27T16:09:58.978590+00:00"
   },
   {
     "slug": "deci-gauge",
