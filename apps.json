@@ -1049,5 +1049,19 @@
     "privacy_policy": "https://apps.kimrosil.com/wire-amp/privacy.html",
     "icon": "assets/icons/wire-amp.svg",
     "updated_at": "2026-10-27T15:10:34.186558+00:00"
+  },
+  {
+    "slug": "duct-flow",
+    "title": "DuctFlow",
+    "category": "UTILITIES",
+    "tagline": "HVAC equal friction duct sizing, airflow velocity, and CFM solver.",
+    "status": "BUILT",
+    "branch": "app/duct-flow",
+    "tag": "v1.1.0-duct-flow",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-duct-flow/duct-flow.apk",
+    "landing_page": "https://apps.kimrosil.com/duct-flow/",
+    "privacy_policy": "https://apps.kimrosil.com/duct-flow/privacy.html",
+    "icon": "assets/icons/duct-flow.svg",
+    "updated_at": "2026-10-27T15:50:37.114544+00:00"
   }
 ]
