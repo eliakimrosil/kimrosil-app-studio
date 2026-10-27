@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark Mode Obsidian Carbide Palette -->
+    <color name="colorBackground">#0B0F17</color>
+    <color name="colorSurface">#131B26</color>
+    <color name="colorSurfaceElevated">#1A2433</color>
+    <color name="colorBorder">#253447</color>
+    <color name="colorPrimary">#38BDF8</color>
+    <color name="colorPrimaryDark">#0284C7</color>
+    <color name="colorAccent">#06B6D4</color>
+    <color name="colorTextPrimary">#F8FAFC</color>
+    <color name="colorTextSecondary">#94A3B8</color>
+    <color name="colorTextMuted">#64748B</color>
+    <color name="colorSafe">#38BDF8</color>
+    <color name="colorWarning">#FBBF24</color>
+    <color name="colorHighlight">#FBBF24</color>
+    <color name="colorCarbide">#1E293B</color>
+    <color name="colorMetal">#475569</color>
+    <color name="colorRipple">#3038BDF8</color>
+</resources>

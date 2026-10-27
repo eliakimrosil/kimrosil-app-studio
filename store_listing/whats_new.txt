@@ -1,0 +1,6 @@
+Initial release of TaperGauge:
+• Machine lathe taper angle (compound rest swivel) and TPF/TPI solver.
+• Tailstock set-over offset calculation for turning between centers.
+• Morse Taper (MT0-MT7), Brown & Sharpe, Jacobs, and R8 presets.
+• 2D dynamic workpiece taper profile visualizer.
+• Full offline operation with Day/Night/Auto themes and Quick Settings tile.

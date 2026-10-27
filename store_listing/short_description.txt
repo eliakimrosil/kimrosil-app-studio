@@ -1,0 +1,1 @@
+Machine shop taper turning angle, TPF, TPI and tailstock offset solver.

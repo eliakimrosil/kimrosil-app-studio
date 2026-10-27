@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="50%" stop-color="#0B1320" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+    <linearGradient id="metalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="50%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="steelGleam" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0EA5E9" stop-opacity="0.1" />
+      <stop offset="50%" stop-color="#38BDF8" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#0EA5E9" stop-opacity="0.1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+
+  <!-- Precision Machining Grid & Pitch Rings -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#1E293B" stroke-width="2" stroke-opacity="0.5" />
+  <circle cx="256" cy="256" r="140" fill="none" stroke="#0284C7" stroke-width="1.5" stroke-opacity="0.3" />
+  <line x1="48" y1="256" x2="464" y2="256" stroke="#475569" stroke-width="2" stroke-dasharray="12 6 3 6" />
+  <line x1="256" y1="48" x2="256" y2="464" stroke="#1E293B" stroke-width="1.5" stroke-dasharray="8 8" />
+
+  <!-- Morse Taper Driving Tang -->
+  <rect x="340" y="216" width="60" height="80" rx="4" fill="#334155" stroke="#64748B" stroke-width="4" />
+
+  <!-- Tapered Workpiece Profile (D=200 to d=110, L=220) -->
+  <polygon points="120,156 340,201 340,311 120,356" fill="url(#metalGrad)" stroke="#38BDF8" stroke-width="7" stroke-linejoin="round" />
+
+  <!-- Ground Steel Surface Reflection -->
+  <polygon points="120,180 340,215 340,245 120,230" fill="url(#steelGleam)" />
+
+  <!-- Precision Center Drilled Cone Indent -->
+  <polygon points="120,230 150,256 120,282" fill="#020617" stroke="#94A3B8" stroke-width="4" />
+
+  <!-- Major Diameter Gauge Caliper Lines -->
+  <g stroke="#F59E0B" stroke-width="5" stroke-linecap="round">
+    <line x1="100" y1="156" x2="84" y2="156" />
+    <line x1="100" y1="356" x2="84" y2="356" />
+    <line x1="92" y1="156" x2="92" y2="356" />
+  </g>
+
+  <!-- Minor Diameter Gauge Caliper Lines -->
+  <g stroke="#F59E0B" stroke-width="5" stroke-linecap="round">
+    <line x1="412" y1="201" x2="428" y2="201" />
+    <line x1="412" y1="311" x2="428" y2="311" />
+    <line x1="420" y1="201" x2="420" y2="311" />
+  </g>
+
+  <!-- Swivel Angle Arc Callout -->
+  <path d="M230,178 A80,80 0 0,0 265,256" fill="none" stroke="#38BDF8" stroke-width="6" stroke-linecap="round" />
+</svg>
