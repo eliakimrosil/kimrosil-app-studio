@@ -1063,5 +1063,19 @@
     "privacy_policy": "https://apps.kimrosil.com/duct-flow/privacy.html",
     "icon": "assets/icons/duct-flow.svg",
     "updated_at": "2026-10-27T15:50:37.114544+00:00"
+  },
+  {
+    "slug": "weld-bead",
+    "title": "WeldBead",
+    "category": "UTILITIES",
+    "tagline": "Instant welding heat input and electrode deposition rate calculator.",
+    "status": "BUILT",
+    "branch": "app/weld-bead",
+    "tag": "v1.1.0-weld-bead",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-weld-bead/weld-bead.apk",
+    "landing_page": "https://apps.kimrosil.com/weld-bead/",
+    "privacy_policy": "https://apps.kimrosil.com/weld-bead/privacy.html",
+    "icon": "assets/icons/weld-bead.svg",
+    "updated_at": "2026-10-27T18:13:33.831741+00:00"
   }
 ]
