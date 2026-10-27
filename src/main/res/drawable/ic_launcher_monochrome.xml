@@ -4,7 +4,39 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
+
     <group>
-        <path android:fillColor="#FFFFFF" android:pathData="M53,22 h2 v12 h-2 Z M50,32 h8 v4 h-8 Z M38,36 H70 L64,56 L54,82 L44,56 Z"/><path android:pathData="M54.0,84.5 a1.5,1.5 0 1,0 0,3.0 a1.5,1.5 0 1,0 0,-3.0 Z" android:fillColor="#FFFFFF" />
+        <!-- 4-Axis Precision Ticks -->
+        <path
+            android:pathData="M54,20 L54,25 M54,83 L54,88 M20,54 L25,54 M83,54 L88,54"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="1.8"
+            android:strokeLineCap="round" />
+
+        <!-- Outer Copper Fitting Collar -->
+        <path
+            android:pathData="M54,29 A25,25 0 1,0 54,79 A25,25 0 1,0 54,29 Z"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="5.0"
+            android:fillColor="#00000000" />
+
+        <!-- Silver Braze Ring Guide Circle -->
+        <path
+            android:pathData="M54,34.5 A19.5,19.5 0 1,0 54,73.5 A19.5,19.5 0 1,0 54,34.5 Z"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="2.0"
+            android:fillColor="#00000000" />
+
+        <!-- Inner Pipe Core Cavity -->
+        <path
+            android:pathData="M54,38 A16,16 0 1,0 54,70 A16,16 0 1,0 54,38 Z"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="3.0"
+            android:fillColor="#00000000" />
+
+        <!-- Central Torch Flame Emblem -->
+        <path
+            android:pathData="M54,41 C57.2,47 60,51.5 60,55.5 C60,58.8 57.3,61.5 54,61.5 C50.7,61.5 48,58.8 48,55.5 C48,51.5 50.8,47 54,41 Z"
+            android:fillColor="#FFFFFF" />
     </group>
 </vector>

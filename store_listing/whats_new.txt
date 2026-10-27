@@ -1,2 +1,2 @@
-Release v2.0.0 - BrazeRing
-Initial release of BrazeRing: Offline copper braze preform ring sizing, alloy volume and nitrogen purge solver
+Release v2.0.1 - BrazeRing
+Bespoke Adaptive Icon Refresh: Concentric copper piping, glowing silver braze preform ring, and torch flame
