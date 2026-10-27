@@ -331,6 +331,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Offline pipe slope, invert depth elevation & trench fall calculator for plumbers.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-plumb-bob/plumb-bob.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/plumb-bob/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/plumb-bob)
 
+#### [RebarLap](https://apps.kimrosil.com/rebar-lap/) (`rebar-lap`) • `v2.0.0`
+> **Utility**: Concrete rebar lap splice, development length and hook geometry solver.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-rebar-lap/rebar-lap.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/rebar-lap/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/rebar-lap)
+
 #### [ReturnGuard](https://apps.kimrosil.com/return-guard-receipt-countdown/) (`return-guard-receipt-countdown`) • `v1.0.0`
 > **Utility**: Stop losing money on clothes and purchases you meant to return with visual deadline countdowns and cashier-ready receipt displays.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/actions) • [🌐 Web Documentation](https://apps.kimrosil.com/return-guard-receipt-countdown/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/return-guard-receipt-countdown)
