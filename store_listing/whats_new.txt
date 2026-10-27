@@ -1,6 +1,2 @@
-Initial release of DoseCal:
-• Precision weight-based liquid dosage calculations (mg/kg to mL).
-• Interactive graduated oral syringe visual fill gauge.
-• Common pediatric and veterinary suspension presets.
-• Dosing interval frequency solver and daily limit safety checks.
-• Quick Settings tile and full offline Day/Night/Auto theme support.
+Release v2.0.0 - DoseCal
+Initial release of DoseCal: Pediatric and veterinary liquid medication dosage and suspension solver
