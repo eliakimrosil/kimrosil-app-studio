@@ -1348,7 +1348,7 @@ Built with high-visibility athletic typography and neon lime accents that are ea
 - **Category**: Civil & Structural Engineering
 - **Tagline**: Concrete Lap & Hook Solver
 - **Landing Page**: https://apps.kimrosil.com/rebar-lap/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-rebar-lap/rebar-lap.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-rebar-lap/rebar-lap.apk
 - **Privacy Policy**: https://apps.kimrosil.com/rebar-lap/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
@@ -1913,6 +1913,29 @@ Data Safety & Offline Privacy Guarantee:
 - Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
 - No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
 - Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
+## WireAmp (`wire-amp`)
+- **Category**: UTILITY
+- **Tagline**: NEC Ampacity & Derating
+- **Landing Page**: https://apps.kimrosil.com/wire-amp/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-wire-amp/wire-amp.apk
+- **Privacy Policy**: https://apps.kimrosil.com/wire-amp/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+WireAmp is an offline electrical calculation utility engineered for licensed master electricians, electrical engineers, electrical inspectors, and solar PV installers. It computes National Electrical Code (NEC Table 310.16) conductor allowable ampacity with ambient temperature correction and conduit bundling adjustment derating factors.
+
+KEY CAPABILITIES:
+• NEC Table 310.16 Ampacity Matrix: Instant base and derated ampacity ratings for Copper (Cu) and Aluminum (Al) conductors across 60°C, 75°C, and 90°C insulation temperature ratings (TW, THHN, THWN-2, XHHW-2).
+• Ambient Temperature Correction: Computes NEC Table 310.15(B)(1) thermal adjustment factors from 70°F to 160°F (21°C to 71°C) with instant Celsius/Fahrenheit conversion.
+• Raceway Bundling Derating: Automatic NEC Table 310.15(C)(1) adjustment factors for 1 to 40+ current-carrying conductors sharing a single conduit raceway.
+• Continuous Load & Breaker Sizing: Solves 80% continuous duty circuit threshold and standard OCPD breaker sizing with NEC 240.4(D) small conductor limitation safeguards.
+• 2D Thermal Dissipation Canvas: Dynamic cross-section visualizer shows conduit fill, insulated conductor heat radiating rings, and percentage thermal safety margin.
+• Quick Settings Tile: Instant bedside and field access directly from your Android notification drawer.
+• Pure Native Offline Performance: Operates 100% offline with zero cloud logins, tracking, or network permissions. Includes Day/Night/Auto themes and private local SQLite storage.
 
 ---
 
