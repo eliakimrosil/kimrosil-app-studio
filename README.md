@@ -291,6 +291,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Frictionless offline medication compliance and zero-panic refill countdowns powered by Quick Settings and Glance widgets.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-offline-prescription-pill-refill-sentinel/offline-prescription-pill-refill-sentinel.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/offline-prescription-pill-refill-sentinel/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/offline-prescription-pill-refill-sentinel)
 
+#### [DuctFlow](https://apps.kimrosil.com/duct-flow/) (`duct-flow`) • `v1.1.0`
+> **Utility**: HVAC equal friction duct sizing, airflow velocity, and CFM solver.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-duct-flow/duct-flow.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/duct-flow/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/duct-flow)
+
 #### [GaussMeter](https://apps.kimrosil.com/gauss-meter/) (`gauss-meter`) • `v1.0.0`
 > **Utility**: 3-axis magnetometer (µT / mG), EMF & ferrous wall stud locator with tare.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-gauss-meter/gauss-meter.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/gauss-meter/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/gauss-meter)
