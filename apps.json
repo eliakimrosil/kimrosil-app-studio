@@ -937,5 +937,19 @@
     "privacy_policy": "https://apps.kimrosil.com/gauss-meter/privacy.html",
     "icon": "assets/icons/gauss-meter.svg",
     "updated_at": "2026-10-26T12:53:14.888686+00:00"
+  },
+  {
+    "slug": "braze-ring",
+    "title": "BrazeRing",
+    "category": "UTILITIES",
+    "tagline": "Offline copper braze preform ring sizing, alloy volume & nitrogen purge solver.",
+    "status": "BUILT",
+    "branch": "app/braze-ring",
+    "tag": "v2.0.0-braze-ring",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-braze-ring/braze-ring.apk",
+    "landing_page": "https://apps.kimrosil.com/braze-ring/",
+    "privacy_policy": "https://apps.kimrosil.com/braze-ring/privacy.html",
+    "icon": "assets/icons/braze-ring.svg",
+    "updated_at": "2026-10-27T12:16:52.573729+00:00"
   }
 ]

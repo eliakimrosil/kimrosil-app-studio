@@ -247,6 +247,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 
 *Private receipt vaults, BIR tax calculators, ephemeral secret scratchpads, and tracking-parameter sanitizers that protect user sovereignty.*
 
+#### [BrazeRing](https://apps.kimrosil.com/braze-ring/) (`braze-ring`) • `v2.0.0`
+> **Utility**: Offline copper braze preform ring sizing, alloy volume & nitrogen purge solver.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-braze-ring/braze-ring.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/braze-ring/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/braze-ring)
+
 #### [BrixScale](https://apps.kimrosil.com/brix-scale/) (`brix-scale`) • `v1.0.0`
 > **Utility**: Pour-over brew ratio calculator, TDS extraction yield solver, and stage timer.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-brix-scale/brix-scale.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/brix-scale/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/brix-scale)
@@ -308,7 +312,7 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-pebble-drift/pebble-drift.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/pebble-drift/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/pebble-drift)
 
 #### [PlumbBob](https://apps.kimrosil.com/plumb-bob/) (`plumb-bob`) • `v2.0.0`
-> **Utility**: Offline native Android utility for plumb bob.
+> **Utility**: Offline pipe slope, invert depth elevation & trench fall calculator for plumbers.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-plumb-bob/plumb-bob.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/plumb-bob/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/plumb-bob)
 
 #### [ReturnGuard](https://apps.kimrosil.com/return-guard-receipt-countdown/) (`return-guard-receipt-countdown`) • `v1.0.0`
