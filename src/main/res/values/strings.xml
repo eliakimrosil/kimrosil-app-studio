@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ConduitFill</string>
+    <string name="app_tagline">NEC Chapter 9 Conduit &amp; Cable Fill Solver</string>
+    <string name="tile_label">ConduitFill</string>
+</resources>

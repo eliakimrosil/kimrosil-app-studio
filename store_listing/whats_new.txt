@@ -1,0 +1,9 @@
+Initial release of ConduitFill v1.0.0:
+• NEC Chapter 9 Table 1 conduit fill capacity solver (40%, 31%, 53%, and 60% nipple rules).
+• NEC Table 4 raceways: EMT, PVC Sch 40/80, RMC, FMC (1/2" to 4").
+• NEC Table 5 conductors: THHN, XHHW, RHW (14 AWG to 500 kcmil).
+• Conductor jam ratio (D/d) safety analysis.
+• NEC Article 314 pull box dimensions solver (straight and angle pulls).
+• Real-time 2D circular cross-section conduit canvas with phase color coding.
+• Offline SQLite job run repository and Quick Settings tile.
+• Complete Dark, Light, and Automatic theme support.

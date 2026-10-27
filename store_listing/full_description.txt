@@ -1,0 +1,43 @@
+ConduitFill is a precision electrical conduit capacity, conductor jam ratio, and pull box sizing calculator built strictly to National Electrical Code (NEC) Chapter 9 standards for electricians, electrical engineers, inspectors, and contractors.
+
+NEC CHAPTER 9 TABLE 1 FILL CAPACITIES
+• Automatically enforces standard allowable percentage fill limits:
+  - 1 Conductor: 53% allowable fill area.
+  - 2 Conductors: 31% allowable fill area.
+  - 3 or More Conductors: 40% allowable fill area.
+  - 60% Nipple Fill Exception: Toggle for short raceways not exceeding 24 inches (600 mm).
+
+OFFICIAL NEC TABLE 4 RACEWAY TYPES & SIZES
+• Electrical Metallic Tubing (EMT)
+• PVC Schedule 40 & PVC Schedule 80
+• Rigid Metal Conduit (RMC)
+• Flexible Metal Conduit (FMC)
+• Trade sizes supported: 1/2", 3/4", 1", 1-1/4", 1-1/2", 2", 2-1/2", 3", 3-1/2", and 4".
+
+OFFICIAL NEC TABLE 5 CONDUCTOR TYPES & GAUGES
+• Insulation types: THHN / THWN / THWN-2, XHHW / XHHW-2, and RHW / USE.
+• Wire gauges: 14 AWG, 12 AWG, 10 AWG, 8 AWG, 6 AWG, 4 AWG, 3 AWG, 2 AWG, 1 AWG, 1/0, 2/0, 3/0, 4/0, 250 kcmil, 300 kcmil, 350 kcmil, 400 kcmil, and 500 kcmil.
+• Mix and match multiple different conductor gauges and quantities within the same conduit run.
+
+CONDUCTOR JAM RATIO SAFETY ENGINE
+• Evaluates the ratio between conduit internal diameter and conductor outside diameter (D/d).
+• Flags the critical jam danger zone between 2.8 and 3.2, where three conductors can wedge side-by-side during wire pulls and cause catastrophic cable insulation shearing.
+
+NEC ARTICLE 314 PULL BOX SIZING
+• Computes minimum required pull box dimensions:
+  - Straight Pulls: 8 × largest conduit trade diameter.
+  - Angle & U-Pulls: 6 × largest conduit diameter plus sum of remaining conduit diameters on the same wall.
+
+2D CIRCULAR CROSS-SECTION SCHEMATIC
+• High-contrast visual cross-section canvas depicting the true conduit boundary pipe and nested bundled conductors.
+• Color-coded conductors following standard electrical phase conventions (Black, Red, Blue, Neutral White, Ground Green).
+• Real-time fill percentage indicator and status badge (Compliant, Caution, Code Violation).
+
+JOB REPOSITORY & COMPLIANCE EXPORT
+• Save engineered conduit runs to a local offline SQLite database.
+• One-tap export to clipboard for electrical submittals, permit drawings, and site inspection reports.
+• Quick Settings Tile: Instant conduit fill calculation directly from the notification shade.
+
+OFFLINE & PURE NATIVE PERFORMANCE
+• Zero internet or network permissions required.
+• Complete Dark, Light, and Automatic theme support for high-contrast visibility on active construction job sites.

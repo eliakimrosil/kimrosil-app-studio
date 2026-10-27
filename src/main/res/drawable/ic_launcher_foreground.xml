@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Galvanized Conduit Outer Pipe Wall -->
+    <path
+        android:strokeColor="#94A3B8"
+        android:strokeWidth="5"
+        android:pathData="M54,26 A28,28 0 1,1 53.99,26"/>
+
+    <!-- 40% NEC Permissible Fill Arc Zone (Amber Glow) -->
+    <path
+        android:strokeColor="#F59E0B"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:pathData="M32,36 A28,28 0 0,1 76,36"/>
+
+    <!-- Bundled Conductors Inside Conduit -->
+    <!-- Phase A: Black -->
+    <path
+        android:fillColor="#1E293B"
+        android:strokeColor="#64748B"
+        android:strokeWidth="1"
+        android:pathData="M46,45m-7,0a7,7 0 1,0 14,0a7,7 0 1,0 -14,0"/>
+    <path
+        android:fillColor="#F97316"
+        android:pathData="M46,45m-3,0a3,3 0 1,0 6,0a3,3 0 1,0 -6,0"/>
+
+    <!-- Phase B: Red -->
+    <path
+        android:fillColor="#EF4444"
+        android:strokeColor="#B91C1C"
+        android:strokeWidth="1"
+        android:pathData="M62,45m-7,0a7,7 0 1,0 14,0a7,7 0 1,0 -14,0"/>
+    <path
+        android:fillColor="#F97316"
+        android:pathData="M62,45m-3,0a3,3 0 1,0 6,0a3,3 0 1,0 -6,0"/>
+
+    <!-- Phase C: Blue -->
+    <path
+        android:fillColor="#3B82F6"
+        android:strokeColor="#1D4ED8"
+        android:strokeWidth="1"
+        android:pathData="M54,59m-7,0a7,7 0 1,0 14,0a7,7 0 1,0 -14,0"/>
+    <path
+        android:fillColor="#F97316"
+        android:pathData="M54,59m-3,0a3,3 0 1,0 6,0a3,3 0 1,0 -6,0"/>
+
+    <!-- Ground: Green -->
+    <path
+        android:fillColor="#10B981"
+        android:strokeColor="#047857"
+        android:strokeWidth="1"
+        android:pathData="M67,61m-5,0a5,5 0 1,0 10,0a5,5 0 1,0 -10,0"/>
+
+    <!-- Neutral: White -->
+    <path
+        android:fillColor="#F8FAFC"
+        android:strokeColor="#94A3B8"
+        android:strokeWidth="1"
+        android:pathData="M41,61m-5,0a5,5 0 1,0 10,0a5,5 0 1,0 -10,0"/>
+
+    <!-- High-Voltage Lightning Spark Accent -->
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M55,75 L52,80 L55,80 L53,85 L57,79 L54,79 Z"/>
+</vector>
