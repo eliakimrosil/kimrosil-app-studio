@@ -1,4 +1,12 @@
+# Built binaries & intermediate artifacts
 build/
 .gradle/
-*.png
-AUDIT_BRUTAL.md
+local.properties
+*.apk
+*.aab
+*.idsig
+*.dex
+*.class
+.idea/
+*.iml
+.DS_Store
