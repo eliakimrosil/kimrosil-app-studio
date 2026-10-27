@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Steel Joint Bevel Base (V-Groove cross section) -->
+    <path
+        android:pathData="M24,76 L44,76 L52,66 L56,66 L64,76 L84,76"
+        android:strokeColor="#64748B"
+        android:strokeWidth="2.8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- Molten Weld Bead Cap (Molten Gold / Amber) -->
+    <path
+        android:pathData="M44,74 C47,62 61,62 64,74 Z"
+        android:fillColor="#FF9500"
+        android:strokeColor="#FFB74D"
+        android:strokeWidth="1.5" />
+
+    <!-- Solidified Ripple Creases on Bead -->
+    <path
+        android:pathData="M47,70 C51,66 57,66 61,70 M49,67 C52,64 56,64 59,67"
+        android:strokeColor="#FFE082"
+        android:strokeWidth="1.2"
+        android:strokeLineCap="round" />
+
+    <!-- Welding Torch Nozzle / Cup angled into groove -->
+    <path
+        android:pathData="M50,26 L58,26 L56,46 L52,46 Z"
+        android:fillColor="#38BDF8"
+        android:strokeColor="#0284C7"
+        android:strokeWidth="1.6" />
+    <path
+        android:pathData="M51,20 L57,20 L57,26 L51,26 Z"
+        android:fillColor="#64748B" />
+
+    <!-- Tungsten / Wire Electrode sticking out -->
+    <path
+        android:pathData="M54,46 L54,54"
+        android:strokeColor="#F8FAFC"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round" />
+
+    <!-- Electric Plasma Arc Glow (Electric Cyan / White core) -->
+    <path
+        android:pathData="M54,54 L51,62 L54,64 L57,62 Z"
+        android:fillColor="#00E5FF" />
+    <path
+        android:pathData="M54,56 L53,60 L54,62 L55,60 Z"
+        android:fillColor="#FFFFFF" />
+
+    <!-- Dynamic Arc Sparks -->
+    <path
+        android:pathData="M44,56 L41,53 M64,56 L67,53 M38,64 L34,65 M70,64 L74,65"
+        android:strokeColor="#FFD54F"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round" />
+
+    <!-- Heat Input Telemetry Symbol (ASME Delta/Flame spark top right) -->
+    <path
+        android:pathData="M78,28 L80,24 L82,28 L86,30 L82,32 L80,36 L78,32 L74,30 Z"
+        android:fillColor="#FF9500" />
+</vector>

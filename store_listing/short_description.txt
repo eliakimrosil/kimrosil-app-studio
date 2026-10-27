@@ -1,0 +1,1 @@
+Instant welding heat input and electrode deposition rate calculator.

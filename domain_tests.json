@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Standard GMAW Structural Pass",
+    "setup_id": "btnProcGmaw",
+    "inputs": {
+      "etAmps": "180",
+      "etVolts": "24.0",
+      "etSpeed": "12.0"
+    },
+    "action_id": "btnCalculate",
+    "assert_outputs": {
+      "tvHeatInput": "17.28",
+      "tvUnit": "kJ/in"
+    }
+  },
+  {
+    "name": "Thin Gauge Rapid Pass",
+    "setup_id": "btnProcGmaw",
+    "inputs": {
+      "etAmps": "150",
+      "etVolts": "20.0",
+      "etSpeed": "10.0"
+    },
+    "action_id": "btnCalculate",
+    "assert_outputs": {
+      "tvHeatInput": "14.40",
+      "tvStatus": "RAPID COOLING"
+    }
+  }
+]

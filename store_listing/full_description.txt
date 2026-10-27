@@ -1,0 +1,26 @@
+WeldBead is a dedicated offline welding telemetry and heat input calculator built for pipe welders, steel fabricators, inspectors (CWI), and metallurgical engineers.
+
+Accurately compute Arc Heat Input in accordance with ASME Section IX (QW-409.1) and AWS D1.1 structural welding specifications. Instantaneously calculate electrode deposition rates and evaluate HAZ (heat affected zone) thermal risks directly on the shop floor or inside fabrication shops without internet connectivity.
+
+KEY FEATURES:
+
+• ACCURATE ARC HEAT INPUT:
+  Calculates instant heat input in kJ/in and kJ/mm based on Arc Voltage, Current (Amps), Travel Speed, and thermal arc efficiency factors (SMAW, GMAW/MIG, GTAW/TIG, FCAW, SAW).
+
+• METALLURGICAL HEAT ZONE TELEMETRY:
+  Dynamic HAZ thermal indicator identifies rapid cooling risk (martensite embrittlement below 15 kJ/in), optimum toughness windows (15 to 50 kJ/in), and high heat input grain coarsening risks (> 50 kJ/in).
+
+• FILLER DEPOSITION ESTIMATION:
+  Real-time electrode metal deposition rate calculator in lb/hr and kg/hr for solid wire, flux-core, stick electrodes, and TIG filler rods.
+
+• INTERACTIVE BEAD GEOMETRY VIEWER:
+  Interactive cross-section diagram visually renders estimated weld bead volume, profile, and penetration depth based on operating parameters.
+
+• RAPID STEPPERS & DUAL UNIT CONVERSION:
+  48x48dp tactile steppers for heavy gloved operation. One-tap toggle between Imperial (in/min, kJ/in, lb/hr) and Metric (mm/min, kJ/mm, kg/hr).
+
+• LOCAL PASS RUN LOG:
+  Save passes to local SQLite storage, review telemetry records, and copy full weld run schedules to clipboard in one tap.
+
+• 100% OFFLINE & PRIVATE:
+  Zero analytics, zero tracking, zero ads, zero background telemetry. Fully functional in field environments with no cellular network.

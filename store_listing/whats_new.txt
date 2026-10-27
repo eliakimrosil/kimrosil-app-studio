@@ -1,0 +1,2 @@
+Release v1.1.0 - WeldBead
+Initial release of WeldBead: ASME Section IX and AWS D1.1 welding heat input & electrode deposition calculator

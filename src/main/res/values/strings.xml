@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WeldBead</string>
+    <string name="app_tagline">ASME IX / AWS D1.1 Welding Telemetry</string>
+    <string name="title_settings">Settings &amp; Standards</string>
+    <string name="btn_unit_imperial">US (kJ/in)</string>
+    <string name="btn_unit_metric">SI (kJ/mm)</string>
+    <string name="process_smaw">SMAW</string>
+    <string name="process_gmaw">GMAW</string>
+    <string name="process_gtaw">GTAW</string>
+    <string name="process_fcaw">FCAW</string>
+    <string name="process_saw">SAW</string>
+    <string name="label_current">ARC CURRENT (A)</string>
+    <string name="label_voltage">ARC VOLTAGE (V)</string>
+    <string name="label_speed">TRAVEL SPEED (in/min)</string>
+    <string name="label_speed_metric">TRAVEL SPEED (mm/min)</string>
+    <string name="btn_compute">COMPUTE HEAT INPUT</string>
+    <string name="btn_save_pass">LOG WELD PASS</string>
+    <string name="btn_copy_log">COPY PASS LOG</string>
+    <string name="btn_clear_log">CLEAR HISTORY</string>
+    <string name="hint_amps">140</string>
+    <string name="hint_volts">22.0</string>
+    <string name="hint_speed">10.0</string>
+    <string name="theme_auto">Auto (System)</string>
+    <string name="theme_light">Light Day</string>
+    <string name="theme_dark">Dark Studio</string>
+</resources>
