@@ -1,5 +1,5 @@
 # 👹 Brutal User & Adversarial ADB Audit: snip-shelf-receipt-ocr
-*Generated on 2026-10-28 07:48:27 on 127.0.0.1:5555*
+*Generated on 2026-10-28 07:53:26 on 127.0.0.1:5555*
 
 ---
 
@@ -10,8 +10,8 @@
 
 ## 📊 Live ADB Diagnostic Telemetry
 - **Target Package**: `com.aistudio.snipshelfreceiptocr`
-- **Cold Boot Latency**: `211 ms`
-- **Memory Footprint (PSS)**: `26 MB` (`27150 KB`)
+- **Cold Boot Latency**: `135 ms`
+- **Memory Footprint (PSS)**: `23 MB` (`23632 KB`)
 - **Interactive UI Nodes Audited**: `9`
 - **Navigation Tabs Explored**: `1`
 - **Adversarial Fuzz Tests Passed**: `18 / 18`

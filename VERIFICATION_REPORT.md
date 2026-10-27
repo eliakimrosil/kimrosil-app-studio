@@ -1,16 +1,16 @@
 # 🧪 Functional Logic & Verification Report: Snip Shelf Receipt Ocr
-*Executed on 2026-10-28 07:51:04 on Device: 127.0.0.1:5555*
+*Executed on 2026-10-28 07:55:56 on Device: 127.0.0.1:5555*
 
 ## 📊 Logic Stability Verdict: **PASSED** (10.0/10.0)
-- **Target Package**: `com.aistudio.snipshelfreceiptocr` (PID: `2826`)
-- **Cold-Start Launch Latency**: `143 ms`
+- **Target Package**: `com.aistudio.snipshelfreceiptocr` (PID: `15301`)
+- **Cold-Start Launch Latency**: `132 ms`
 - **Total Interactive Viewport Nodes**: `45`
 
 ## 🛡️ Test Suite Results
 | Test Category | Verdict | Description |
 | :--- | :--- | :--- |
 | **Input Fuzzing & Boundary Matrix** | `PASSED` | 144 edge-case strings, SQL/FTS operators & unicode injected |
-| **Theme Switcher Dynamic Recreate** | `PASSED` | Theme: Dark |
+| **Theme Switcher Dynamic Recreate** | `PASSED` | Theme: Auto |
 | **Hardware Keyboard Shortcuts** | `PASSED` | All 7 hardware key shortcuts handled safely |
 | **Orientation & Configuration** | `PASSED` | Landscape (18 nodes) and portrait preserved |
 | **Domain Semantic & Calculation** | `PASSED` | Dynamic heuristic calculation passed: verified clean numeric readout generation |
