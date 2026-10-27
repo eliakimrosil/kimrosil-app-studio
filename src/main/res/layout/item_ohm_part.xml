@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:background="@drawable/bg_card_elevated">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/itemTvValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4.70 kΩ ± 5%"
+                android:textColor="@color/accent_primary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/itemTvType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_badge_pass"
+                android:text="4-Band"
+                android:textColor="@color/badge_text_pass"
+                android:textSize="9sp"
+                android:textStyle="bold"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/itemTvBands"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yellow, Violet, Red, Gold"
+            android:textColor="@color/text_primary"
+            android:textSize="11sp"
+            android:layout_marginTop="2dp" />
+
+        <TextView
+            android:id="@+id/itemTvSeries"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E24 Standard Series"
+            android:textColor="@color/text_secondary"
+            android:textSize="10sp"
+            android:layout_marginTop="1dp" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/itemBtnDelete"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_header_icon_btn"
+        android:src="@drawable/ic_delete"
+        android:contentDescription="Delete saved part" />
+</LinearLayout>

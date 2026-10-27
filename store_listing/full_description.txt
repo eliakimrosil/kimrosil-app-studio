@@ -1,0 +1,31 @@
+OhmBand is a precision electronic resistor color code decoder, reverse band synthesizer, and surface-mount device (SMD) marking calculator designed for electrical engineers, electronics technicians, hobbyists, and circuit board assembly technicians.
+
+INTERACTIVE COLOR BAND DECODER
+• 4-Band Resistors: Decodes 2 significant digits, decimal multiplier, and tolerance band (+/- 1% to +/- 10%).
+• 5-Band Resistors: Decodes 3 high-precision significant digits, multiplier, and tight tolerance (+/- 0.05% to +/- 5%).
+• 6-Band Resistors: Decodes 3 significant digits, multiplier, tolerance, and Temperature Coefficient of Resistance (TCR from 5 ppm/K to 100 ppm/K).
+• Visual Resistor Canvas: High-contrast 2D schematic rendering of axial ceramic resistor body, metallic leads, and color-coded bands.
+
+REVERSE BAND SYNTHESIZER (OHMS TO COLORS)
+• Type any nominal resistance value (e.g., 4.7k, 220, 10M, 0.47) and select desired tolerance.
+• Instantly generates the exact standardized color band sequence and nearest standard EIA decade value.
+• Calculates minimum and maximum resistance limits based on specified tolerance boundaries.
+
+EIA PREFERRED VALUES (E12, E24, E96, E192)
+• Automatically cross-references any entered resistance against international standard EIA series.
+• Identifies whether a given value is a standard manufactured off-the-shelf part or requires series/parallel combinations.
+
+SMD RESISTOR MARKING SOLVER
+• 3-Digit Standard: Solves common 5% surface-mount markings (e.g., 472 = 4.7 kΩ, 0R5 = 0.5 Ω).
+• 4-Digit Precision: Solves 1% surface-mount markings (e.g., 1002 = 10 kΩ, 4R70 = 4.70 Ω).
+• EIA-96 Code Solver: Decodes 2-digit number lookup + letter multiplier (e.g., 01A = 100 Ω, 68C = 49.9 kΩ).
+
+WORKBENCH PARTS LOG & REPOSITORY
+• Save frequently used resistor configurations to a local offline SQLite database.
+• Quick-copy formatted component specifications directly to your clipboard for bill-of-materials (BOM) documentation.
+• Quick Settings Tile: Instant workbench resistor lookup directly from your notification panel.
+
+OFFLINE & PURE NATIVE PERFORMANCE
+• Zero tracking, analytics, or network permissions required.
+• Instantaneous calculations with sub-100 ms cold-start response.
+• Complete Dark, Light, and Automatic theme support for dimly lit workbench environments.

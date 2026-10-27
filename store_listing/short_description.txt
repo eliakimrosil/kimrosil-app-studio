@@ -1,0 +1,1 @@
+Resistor color code decoder, reverse band synthesizer, and SMD code solver.

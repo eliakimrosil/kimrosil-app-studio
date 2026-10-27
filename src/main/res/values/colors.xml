@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_main">#F6F8FA</color>
+    <color name="bg_card">#FFFFFF</color>
+    <color name="bg_card_elevated">#F0F2F5</color>
+    <color name="border_hairline">#D0D7DE</color>
+    <color name="border_focus">#D97706</color>
+    
+    <color name="text_primary">#1F2328</color>
+    <color name="text_secondary">#656D76</color>
+    <color name="text_hint">#8C959F</color>
+    <color name="text_inverse">#FFFFFF</color>
+    
+    <color name="accent_primary">#D97706</color>
+    <color name="accent_emerald">#059669</color>
+    <color name="accent_cyan">#0284C7</color>
+    <color name="accent_red">#DC2626</color>
+    
+    <color name="chip_bg_unselected">#FFFFFF</color>
+    <color name="chip_bg_selected">#FEF3C7</color>
+    <color name="chip_border_selected">#D97706</color>
+    <color name="chip_text_selected">#92400E</color>
+    <color name="chip_text_unselected">#656D76</color>
+    
+    <color name="resistor_body">#E2D4B7</color>
+    <color name="resistor_lead">#94A3B8</color>
+    <color name="resistor_highlight">#FFFDF5</color>
+    
+    <color name="badge_text_pass">#15803D</color>
+    <color name="badge_text_alert">#B45309</color>
+    <color name="badge_pass_bg">#DCFCE7</color>
+    <color name="badge_alert_bg">#FEF3C7</color>
+</resources>

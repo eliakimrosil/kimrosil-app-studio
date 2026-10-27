@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_main"
+    android:padding="12dp">
+
+    <!-- Top Unified Action Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="8dp">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_launcher"
+            android:contentDescription="OhmBand Logo" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/text_primary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resistor Color &amp; SMD Workbench"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnTheme"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_header_icon_btn"
+            android:src="@drawable/ic_theme"
+            android:contentDescription="Switch Theme" />
+
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="match_parent" />
+
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_header_icon_btn"
+            android:src="@drawable/ic_settings"
+            android:contentDescription="Settings and About" />
+    </LinearLayout>
+
+    <!-- Mode Selector Tabs (48dp height) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+
+        <Button
+            android:id="@+id/btnMode4Band"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="4-Band"
+            android:textColor="@color/chip_text_selected"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:contentDescription="Select 4 band resistor mode"
+            android:background="@drawable/bg_chip_selected" />
+
+        <Space
+            android:layout_width="4dp"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/btnMode5Band"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="5-Band"
+            android:textColor="@color/chip_text_unselected"
+            android:textSize="12sp"
+            android:contentDescription="Select 5 band resistor mode"
+            android:background="@drawable/bg_chip_unselected" />
+
+        <Space
+            android:layout_width="4dp"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/btnMode6Band"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="6-Band"
+            android:textColor="@color/chip_text_unselected"
+            android:textSize="12sp"
+            android:contentDescription="Select 6 band resistor mode"
+            android:background="@drawable/bg_chip_unselected" />
+
+        <Space
+            android:layout_width="4dp"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/btnModeSmd"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="SMD"
+            android:textColor="@color/chip_text_unselected"
+            android:textSize="12sp"
+            android:contentDescription="Select SMD resistor code mode"
+            android:background="@drawable/bg_chip_unselected" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Hero Resistor Canvas & Telemetry Card -->
+            <LinearLayout
+                android:id="@+id/layoutHeroCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_hero_card"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_marginBottom="8dp">
+
+                <!-- 2D Schematic Resistor Canvas -->
+                <com.kimrosil.ohmband.ResistorCanvasView
+                    android:id="@+id/resistorCanvas"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp" />
+
+                <!-- Telemetry Readout -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingTop="6dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvNominalOhms"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1.00 kΩ ± 5%"
+                            android:textColor="@color/accent_primary"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvToleranceRange"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Range: 950.0 Ω — 1.050 kΩ"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="11sp"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvEiaSeries"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_pass"
+                        android:text="E24 Standard (5%)"
+                        android:textColor="@color/badge_text_pass"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvTcrValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TCR: 50 ppm/K (Red)"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="10sp"
+                    android:visibility="gone"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <!-- Band Selection Work Area (Visible in Color Band Modes) -->
+            <LinearLayout
+                android:id="@+id/layoutBandWorkArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_marginBottom="8dp">
+
+                <!-- Band Position Tabs -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:layout_marginBottom="8dp">
+
+                    <LinearLayout
+                        android:id="@+id/layoutBandTabs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/tabBand1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:text="1st Digit"
+                            android:textColor="@color/chip_text_selected"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_chip_selected"
+                            android:contentDescription="Select 1st digit band"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp" />
+
+                        <Space
+                            android:layout_width="4dp"
+                            android:layout_height="match_parent" />
+
+                        <Button
+                            android:id="@+id/tabBand2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:text="2nd Digit"
+                            android:textColor="@color/chip_text_unselected"
+                            android:textSize="11sp"
+                            android:background="@drawable/bg_chip_unselected"
+                            android:contentDescription="Select 2nd digit band"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp" />
+
+                        <Space
+                            android:layout_width="4dp"
+                            android:layout_height="match_parent" />
+
+                        <Button
+                            android:id="@+id/tabBand3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:text="3rd Digit"
+                            android:textColor="@color/chip_text_unselected"
+                            android:textSize="11sp"
+                            android:background="@drawable/bg_chip_unselected"
+                            android:contentDescription="Select 3rd digit band"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:visibility="gone" />
+
+                        <Space
+                            android:id="@+id/spaceBand3"
+                            android:layout_width="4dp"
+                            android:layout_height="match_parent"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/tabBandMult"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:text="Multiplier"
+                            android:textColor="@color/chip_text_unselected"
+                            android:textSize="11sp"
+                            android:background="@drawable/bg_chip_unselected"
+                            android:contentDescription="Select multiplier band"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp" />
+
+                        <Space
+                            android:layout_width="4dp"
+                            android:layout_height="match_parent" />
+
+                        <Button
+                            android:id="@+id/tabBandTol"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:text="Tolerance"
+                            android:textColor="@color/chip_text_unselected"
+                            android:textSize="11sp"
+                            android:background="@drawable/bg_chip_unselected"
+                            android:contentDescription="Select tolerance band"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp" />
+
+                        <Space
+                            android:id="@+id/spaceBandTcr"
+                            android:layout_width="4dp"
+                            android:layout_height="match_parent"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/tabBandTcr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:text="TCR ppm"
+                            android:textColor="@color/chip_text_unselected"
+                            android:textSize="11sp"
+                            android:background="@drawable/bg_chip_unselected"
+                            android:contentDescription="Select temperature coefficient band"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <!-- Color Palette Buttons Container -->
+                <LinearLayout
+                    android:id="@+id/layoutColorPalette"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- Action Buttons (48dp height) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btnSavePart"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_btn_primary"
+                    android:text="Save Part"
+                    android:textColor="@color/text_inverse"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:contentDescription="Save part to workbench inventory" />
+
+                <Space
+                    android:layout_width="6dp"
+                    android:layout_height="match_parent" />
+
+                <Button
+                    android:id="@+id/btnCopySpec"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_btn_secondary"
+                    android:text="Copy Specs"
+                    android:textColor="@color/text_primary"
+                    android:textSize="13sp"
+                    android:contentDescription="Copy resistor specifications to clipboard" />
+            </LinearLayout>
+
+            <!-- Reverse Band Synthesizer (Ohms to Bands) -->
+            <LinearLayout
+                android:id="@+id/layoutReverseSynth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_card"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reverse Synthesizer (Ohms → Bands)"
+                    android:textColor="@color/text_primary"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="6dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/etDirectOhms"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_card_elevated"
+                        android:hint="e.g. 4.7k or 220"
+                        android:textColorHint="@color/text_hint"
+                        android:textColor="@color/text_primary"
+                        android:textSize="14sp"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:singleLine="true"
+                        android:inputType="text" />
+
+                    <Space
+                        android:layout_width="6dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/btnSynthesize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_btn_primary"
+                        android:text="Synthesize"
+                        android:textColor="@color/text_inverse"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:contentDescription="Synthesize color bands from value"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- SMD Decoder Card (Visible in SMD mode) -->
+            <LinearLayout
+                android:id="@+id/layoutSmdArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Surface Mount (SMD) Code Decoder"
+                    android:textColor="@color/text_primary"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="6dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+
+                    <EditText
+                        android:id="@+id/etSmdCode"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_card_elevated"
+                        android:hint="e.g. 472 or 01A"
+                        android:textColorHint="@color/text_hint"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:singleLine="true"
+                        android:inputType="textCapCharacters" />
+
+                    <Space
+                        android:layout_width="6dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:id="@+id/btnDecodeSmd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_btn_primary"
+                        android:text="Decode"
+                        android:textColor="@color/text_inverse"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:contentDescription="Decode SMD resistor code"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp" />
+                </LinearLayout>
+
+                <!-- SMD Readout -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_card_elevated"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:id="@+id/tvSmdResultOhms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4.70 kΩ (5%)"
+                        android:textColor="@color/accent_primary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvSmdResultType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Standard 3-Digit SMD Marking"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Saved Parts Inventory Log -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="6dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Workbench Parts Log"
+                        android:textColor="@color/text_primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnClearParts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_btn_secondary"
+                        android:text="Clear All"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp"
+                        android:contentDescription="Clear all saved resistor parts"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutPartsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <TextView
+                    android:id="@+id/tvEmptyParts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No parts saved yet. Tap 'Save Part' to log components."
+                    android:textColor="@color/text_hint"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:padding="12dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
