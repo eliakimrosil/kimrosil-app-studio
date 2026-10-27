@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark Mode Obsidian High-Voltage Palette -->
+    <color name="colorBackground">#0B0F19</color>
+    <color name="colorSurface">#131B2B</color>
+    <color name="colorSurfaceElevated">#1A253A</color>
+    <color name="colorBorder">#25344F</color>
+    <color name="colorPrimary">#FB923C</color>
+    <color name="colorPrimaryDark">#EA580C</color>
+    <color name="colorAccent">#FBBF24</color>
+    <color name="colorTextPrimary">#F8FAFC</color>
+    <color name="colorTextSecondary">#94A3B8</color>
+    <color name="colorTextMuted">#64748B</color>
+    <color name="colorSafe">#10B981</color>
+    <color name="colorWarning">#F59E0B</color>
+    <color name="colorDanger">#F43F5E</color>
+    <color name="colorCopper">#F97316</color>
+    <color name="colorConduit">#1E293B</color>
+    <color name="colorRipple">#30FB923C</color>
+</resources>

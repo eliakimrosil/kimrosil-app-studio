@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Outer Raceway / Conduit Wall -->
+    <path
+        android:strokeColor="#64748B"
+        android:strokeWidth="3.5"
+        android:fillColor="#1E293B"
+        android:pathData="M54,54m-30,0a30,30 0 1,0 60,0a30,30 0 1,0 -60,0" />
+
+    <!-- Conductor 1: Top Phase (Black/Blue Jacket with Bright Copper Core) -->
+    <path
+        android:fillColor="#0284C7"
+        android:strokeColor="#38BDF8"
+        android:strokeWidth="1.2"
+        android:pathData="M54,39m-11,0a11,11 0 1,0 22,0a11,11 0 1,0 -22,0" />
+    <path
+        android:fillColor="#F97316"
+        android:pathData="M54,39m-5.5,0a5.5,5.5 0 1,0 11,0a5.5,5.5 0 1,0 -11,0" />
+
+    <!-- Conductor 2: Bottom-Left Phase (Red Jacket with Bright Copper Core) -->
+    <path
+        android:fillColor="#DC2626"
+        android:strokeColor="#F87171"
+        android:strokeWidth="1.2"
+        android:pathData="M42,63m-11,0a11,11 0 1,0 22,0a11,11 0 1,0 -22,0" />
+    <path
+        android:fillColor="#F97316"
+        android:pathData="M42,63m-5.5,0a5.5,5.5 0 1,0 11,0a5.5,5.5 0 1,0 -11,0" />
+
+    <!-- Conductor 3: Bottom-Right Phase (Charcoal Jacket with Bright Copper Core) -->
+    <path
+        android:fillColor="#334155"
+        android:strokeColor="#94A3B8"
+        android:strokeWidth="1.2"
+        android:pathData="M66,63m-11,0a11,11 0 1,0 22,0a11,11 0 1,0 -22,0" />
+    <path
+        android:fillColor="#F97316"
+        android:pathData="M66,63m-5.5,0a5.5,5.5 0 1,0 11,0a5.5,5.5 0 1,0 -11,0" />
+
+    <!-- Central High-Voltage Ampere Lightning Bolt -->
+    <path
+        android:fillColor="#FBBF24"
+        android:strokeColor="#D97706"
+        android:strokeWidth="1"
+        android:pathData="M55,42 L47,54 L53,54 L51,66 L61,52 L55,52 Z" />
+
+</vector>

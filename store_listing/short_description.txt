@@ -1,0 +1,1 @@
+NEC wire gauge ampacity rating, temperature and bundling derating solver.

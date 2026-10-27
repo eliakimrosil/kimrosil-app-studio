@@ -1,0 +1,10 @@
+WireAmp is an offline electrical calculation utility engineered for licensed master electricians, electrical engineers, electrical inspectors, and solar PV installers. It computes National Electrical Code (NEC Table 310.16) conductor allowable ampacity with ambient temperature correction and conduit bundling adjustment derating factors.
+
+KEY CAPABILITIES:
+• NEC Table 310.16 Ampacity Matrix: Instant base and derated ampacity ratings for Copper (Cu) and Aluminum (Al) conductors across 60°C, 75°C, and 90°C insulation temperature ratings (TW, THHN, THWN-2, XHHW-2).
+• Ambient Temperature Correction: Computes NEC Table 310.15(B)(1) thermal adjustment factors from 70°F to 160°F (21°C to 71°C) with instant Celsius/Fahrenheit conversion.
+• Raceway Bundling Derating: Automatic NEC Table 310.15(C)(1) adjustment factors for 1 to 40+ current-carrying conductors sharing a single conduit raceway.
+• Continuous Load & Breaker Sizing: Solves 80% continuous duty circuit threshold and standard OCPD breaker sizing with NEC 240.4(D) small conductor limitation safeguards.
+• 2D Thermal Dissipation Canvas: Dynamic cross-section visualizer shows conduit fill, insulated conductor heat radiating rings, and percentage thermal safety margin.
+• Quick Settings Tile: Instant bedside and field access directly from your Android notification drawer.
+• Pure Native Offline Performance: Operates 100% offline with zero cloud logins, tracking, or network permissions. Includes Day/Night/Auto themes and private local SQLite storage.

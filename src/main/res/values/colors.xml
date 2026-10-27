@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Light Mode Electrical Copper & Blueprint Palette -->
+    <color name="colorBackground">#F8FAFC</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorSurfaceElevated">#F1F5F9</color>
+    <color name="colorBorder">#CBD5E1</color>
+    <color name="colorPrimary">#EA580C</color>
+    <color name="colorPrimaryDark">#C2410C</color>
+    <color name="colorAccent">#F59E0B</color>
+    <color name="colorTextPrimary">#0F172A</color>
+    <color name="colorTextSecondary">#475569</color>
+    <color name="colorTextMuted">#64748B</color>
+    <color name="colorSafe">#059669</color>
+    <color name="colorWarning">#D97706</color>
+    <color name="colorDanger">#E11D48</color>
+    <color name="colorCopper">#B45309</color>
+    <color name="colorConduit">#CBD5E1</color>
+    <color name="colorRipple">#20EA580C</color>
+</resources>
