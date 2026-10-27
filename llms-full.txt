@@ -312,7 +312,7 @@ Data Safety & Offline Privacy Guarantee:
 - **Category**: TOOLS & UTILITIES / ELECTRICAL
 - **Tagline**: NEC Chapter 9 conduit fill capacity, jam ratio, and pull box sizing solver.
 - **Landing Page**: https://apps.kimrosil.com/conduit-fill/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-conduit-fill/conduit-fill.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-conduit-fill/conduit-fill.apk
 - **Privacy Policy**: https://apps.kimrosil.com/conduit-fill/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
@@ -520,6 +520,29 @@ KEY FEATURES:
 • Tabular Telemetry Card: Comprehensive 2-column specifications display showing tank shell dimensions, nominal capacity, and calibration source.
 • 100% Offline & Private: Zero network permissions, zero tracking, zero advertising, and zero third-party telemetry.
 • Day / Night / Auto Theming: Carefully calibrated contrast modes for bright daylight forecourt inspections and nocturnal depot readings.
+
+---
+
+## DoseCal (`dose-cal`)
+- **Category**: Medical
+- **Tagline**: Liquid Dosage Solver
+- **Landing Page**: https://apps.kimrosil.com/dose-cal/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-dose-cal/dose-cal.apk
+- **Privacy Policy**: https://apps.kimrosil.com/dose-cal/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+DoseCal is a precision, offline clinical calculation utility engineered for parents, pediatric caregivers, veterinary technicians, and clinicians. It calculates weight-based liquid suspension dosages, dilution ratios, and administration schedules with zero guesswork.
+
+KEY CAPABILITIES:
+• Weight-Based Dose Solver: Computes exact single dose volumes in milliliters (mL) and milligrams (mg) from patient body weight in kilograms (kg) or pounds (lbs).
+• Visual Oral Syringe Gauge: Custom 2D graduated syringe rendering displays real-time meniscus fill levels (0.1 mL to 10 mL) to eliminate measurement confusion.
+• Suspension & Reconstitution Calculator: Easily converts active concentrations (mg/mL or mg/5 mL) and solves dry-powder bottle reconstitution volumes.
+• Clinical Formulations Library: Instant presets for common pediatric suspensions (Acetaminophen, Ibuprofen, Amoxicillin, Diphenhydramine, Cephalexin) and veterinary regimens (Meloxicam, Gabapentin, Prednisolone, Metronidazole).
+• Interval Scheduling & Safety Guardrails: Configurable dosing intervals (every 4, 6, 8, 12, or 24 hours) with daily maximum dose boundary validation.
+• Quick Settings Tile: Instant access from your Android notification shade for rapid bedside verification.
+• Pure Native Offline Performance: Operates 100% offline without accounts, cloud dependencies, internet permissions, or third-party analytical trackers. Light, Dark, and Automatic system theming.
 
 ---
 
