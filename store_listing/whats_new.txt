@@ -1,7 +1,2 @@
-Initial release of PlumbBob:
-- Dual-mode pipe slope, invert elevation, and trench fall solvers
-- Live 2D trench profile diagram with flow direction
-- IPC and UPC plumbing code compliance validation
-- Local SQLite job trench runs log with single-tap clipboard copy
-- One-tap daylight and trench dark theme toggle
-- Quick Settings tile integration for rapid notification shade launch
+Release v2.0.0 - PlumbBob
+Initial release of PlumbBob: Offline pipe slope, invert depth, and trench fall calculator
