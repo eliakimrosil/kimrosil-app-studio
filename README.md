@@ -147,9 +147,9 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Single-tap Quick Settings interpass cooling timer and preheat soak calculator for welders wearing heavy gloves.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-weld-cool/weld-cool.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/weld-cool/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/weld-cool)
 
-#### [WhoHasMy](https://apps.kimrosil.com/who-has-my-tool-lending/) (`who-has-my-tool-lending`) • `v1.0.0`
+#### [WhoHasMy](https://apps.kimrosil.com/who-has-my-tool-lending/) (`who-has-my-tool-lending`) • `v1.0.1`
 > **Utility**: Stop losing your tools, camping gear, books, and board games to neighbors and friends with friendly photo records and polite WhatsApp reminders.
-> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/actions) • [🌐 Web Documentation](https://apps.kimrosil.com/who-has-my-tool-lending/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/who-has-my-tool-lending)
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-who-has-my-tool-lending/who-has-my-tool-lending.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/who-has-my-tool-lending/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/who-has-my-tool-lending)
 
 ---
 
