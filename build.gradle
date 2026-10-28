@@ -148,7 +148,7 @@ cmd2 = f'bundletool build-bundle --modules={base_zip} --output={aab_out} {meta_a
 subprocess.check_call(cmd2, shell=True)
 ks = os.path.expanduser('~/.android/kimrosil_release.keystore')
 if os.path.exists(ks):
-    sign_cmd = f'jarsigner -keystore {ks} -storepass kimrosil2026 -keypass kimrosil2026 {aab_out} kimrosil'
+    sign_cmd = f'jarsigner -keystore {ks} PASS="\${RELEASE_KEYSTORE_PASS:-\${RELEASE_KEYSTORE_PASSWORD}}"; ALIAS="\${RELEASE_KEYSTORE_ALIAS:-kimrosil}"; -storepass "\$PASS" -keypass "\$PASS" {aab_out} kimrosil'
     subprocess.check_call(sign_cmd, shell=True)
     print(f'>>> Play Store AAB Signed with production release keystore: {aab_out}')
 else:
