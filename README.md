@@ -311,6 +311,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Offline textile yardage calculator and pattern layout optimizer for fabric counters and sewing tables.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-grainline/grainline.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/grainline/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/grainline)
 
+#### [HydraFlow](https://apps.kimrosil.com/hydraflow/) (`hydraflow`) • `v1.0.0`
+> **Utility**: Hydraulic cylinder force, pump flow, cycle speed & line velocity calculator.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-hydraflow/hydraflow.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/hydraflow/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/hydraflow)
+
 #### [KR Habits](https://apps.kimrosil.com/kr-habit/) (`kr-habit`) • `v1.2.35`
 > **Utility**: Daily habit routine with habit strength scoring, heatmap grid, and cloud sync.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.35-kr-habit/kr-habit.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/kr-habit/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/kr-habit)
