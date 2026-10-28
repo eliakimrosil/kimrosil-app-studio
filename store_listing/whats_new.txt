@@ -1,0 +1,2 @@
+Release v1.0.0 - TorquePitch
+Initial release of TorquePitch offline bolt torque & thread spec matrix

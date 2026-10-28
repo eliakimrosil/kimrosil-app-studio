@@ -1,0 +1,1 @@
+Offline bolt torque calculator, thread pitch specs & lube friction multiplier.

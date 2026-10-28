@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bespoke Automotive & Mechanical Trades Dark Theme Color Tokens -->
+    <color name="colorPrimary">#F59E0B</color>
+    <color name="colorPrimaryDark">#0F1318</color>
+    <color name="colorAccent">#06B6D4</color>
+    <color name="windowBackground">#0F1318</color>
+
+    <color name="m3_primary">#F59E0B</color>
+    <color name="m3_on_primary">#0F1318</color>
+    <color name="m3_primary_container">#2E1E05</color>
+    <color name="m3_on_primary_container">#FDE68A</color>
+
+    <color name="m3_secondary">#94A3B8</color>
+    <color name="m3_on_secondary">#0F1318</color>
+    <color name="m3_secondary_container">#1E2631</color>
+    <color name="m3_on_secondary_container">#E2E8F0</color>
+
+    <color name="m3_tertiary">#06B6D4</color>
+    <color name="m3_on_tertiary">#082F49</color>
+    <color name="m3_tertiary_container">#083344</color>
+    <color name="m3_on_tertiary_container">#67E8F9</color>
+
+    <color name="m3_surface">#0F1318</color>
+    <color name="m3_surface_container">#171C23</color>
+    <color name="m3_surface_container_high">#1F2630</color>
+    <color name="m3_surface_container_highest">#2A3340</color>
+
+    <color name="m3_on_surface">#F8FAFC</color>
+    <color name="m3_on_surface_variant">#94A3B8</color>
+    <color name="m3_outline">#2A3340</color>
+    <color name="m3_outline_variant">#1E2631</color>
+
+    <color name="m3_success">#22C55E</color>
+    <color name="m3_on_success">#052E16</color>
+    <color name="m3_error">#EF4444</color>
+    <color name="m3_on_error">#450A0A</color>
+
+    <!-- Workshop Badges -->
+    <color name="badge_safe">#10B981</color>
+    <color name="badge_warning">#F59E0B</color>
+    <color name="badge_critical">#EF4444</color>
+
+    <!-- Legacy compatibility aliases -->
+    <color name="cardBackground">#171C23</color>
+    <color name="cardStroke">#2A3340</color>
+    <color name="textPrimary">#F8FAFC</color>
+    <color name="textSecondary">#94A3B8</color>
+    <color name="btnColor">#F59E0B</color>
+    <color name="btnTextColor">#0F1318</color>
+</resources>
