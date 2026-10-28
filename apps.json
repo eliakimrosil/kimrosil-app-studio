@@ -32,13 +32,14 @@
     "title": "WhoHasMy",
     "category": "Home & Community",
     "tagline": "Stop losing your tools, camping gear, books, and board games to neighbors and friends with friendly photo records and polite WhatsApp reminders.",
-    "status": "FAILED",
+    "status": "BUILT",
     "branch": "app/who-has-my-tool-lending",
-    "tag": "v1.0.0-who-has-my-tool-lending",
-    "apk_url": "https://github.com/eliakimrosil/kim-android-apps/actions",
+    "tag": "v1.0.1-who-has-my-tool-lending",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-who-has-my-tool-lending/who-has-my-tool-lending.apk",
     "landing_page": "https://apps.kimrosil.com/who-has-my-tool-lending/",
     "privacy_policy": "https://apps.kimrosil.com/who-has-my-tool-lending/privacy.html",
-    "icon": "assets/icons/who-has-my-tool-lending.svg"
+    "icon": "assets/icons/who-has-my-tool-lending.svg",
+    "updated_at": "2026-10-28T01:00:56.746726+00:00"
   },
   {
     "slug": "workout-program-tracker",
