@@ -161,9 +161,9 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Safe food-prep countdowns and USDA defrost window alerts right from your Quick Settings and Lock Screen.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-defrost-safe-meat-prep-sentinel/defrost-safe-meat-prep-sentinel.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/defrost-safe-meat-prep-sentinel/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/defrost-safe-meat-prep-sentinel)
 
-#### [CrumbWatch](https://apps.kimrosil.com/sourdough-rise-ferment-sentinel/) (`sourdough-rise-ferment-sentinel`) • `v1.0.0`
+#### [CrumbWatch](https://apps.kimrosil.com/sourdough-rise-ferment-sentinel/) (`sourdough-rise-ferment-sentinel`) • `v1.0.1`
 > **Utility**: Offline sourdough proofing timer, stretch calculator, and fermentation tracker.
-> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-sourdough-rise-ferment-sentinel/sourdough-rise-ferment-sentinel.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/sourdough-rise-ferment-sentinel/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/sourdough-rise-ferment-sentinel)
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-sourdough-rise-ferment-sentinel/sourdough-rise-ferment-sentinel.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/sourdough-rise-ferment-sentinel/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/sourdough-rise-ferment-sentinel)
 
 #### [CryoPulse](https://apps.kimrosil.com/steep-chill-ice-bath-timer/) (`steep-chill-ice-bath-timer`) • `v1.0.0`
 > **Utility**: Frictionless offline cold plunge timer with Quick Settings 1-tap start, ongoing lock screen chronometer, and haptic breath pacing.
