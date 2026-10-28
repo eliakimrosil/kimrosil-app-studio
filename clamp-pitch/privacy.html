@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>Privacy Policy - ClampPitch | KimRosil App Studio</title>
+    <meta name="description" content="Privacy policy and zero-telemetry data safety declaration for ClampPitch. 100% offline, zero data collection.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://apps.kimrosil.com/clamp-pitch/privacy.html">
+    <link rel="icon" type="image/svg+xml" href="https://apps.kimrosil.com/favicon.svg">
+    <link rel="alternate icon" href="https://apps.kimrosil.com/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://apps.kimrosil.com/apple-touch-icon.png">
+    <!-- Google Analytics 4 (Storefront Web Telemetry Only; Android APKs remain 100% offline/zero-telemetry) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27L9S5BXT9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-27L9S5BXT9', { 'page_type': 'app_privacy', 'app_slug': 'clamp-pitch' });
+        document.addEventListener('click', function(e) {
+            var a = e.target && e.target.closest ? e.target.closest('a') : null;
+            if (!a || !a.href || typeof gtag !== 'function') return;
+            var href = a.href;
+            var card = a.closest ? a.closest('[data-slug]') : null;
+            var slug = (card && card.getAttribute('data-slug')) || 'clamp-pitch' || '';
+            if (href.indexOf('.apk') !== -1 || href.indexOf('/releases/download/') !== -1) {
+                gtag('event', 'apk_download_click', { 'app_slug': slug, 'link_url': href, 'page_type': 'app_privacy' });
+            } else if (href.indexOf('play.google.com/apps/testing/') !== -1 || href.indexOf('Join%20KimRosil%20Testers') !== -1) {
+                gtag('event', 'tester_optin_click', { 'app_slug': slug, 'link_url': href, 'page_type': 'app_privacy' });
+            } else if (href.indexOf('play.google.com/store/apps/') !== -1) {
+                gtag('event', 'play_store_click', { 'app_slug': slug, 'link_url': href, 'page_type': 'app_privacy' });
+            } else if (href.indexOf('github.com/eliakimrosil') !== -1) {
+                gtag('event', 'github_source_click', { 'app_slug': slug, 'link_url': href, 'page_type': 'app_privacy' });
+            }
+        });
+    </script>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://apps.kimrosil.com/clamp-pitch/privacy.html">
+    <meta property="og:site_name" content="KimRosil App Studio">
+    <meta property="og:title" content="Privacy Policy - ClampPitch">
+    <meta property="og:description" content="100% offline, zero data collection privacy policy for ClampPitch.">
+    <meta property="og:image" content="https://apps.kimrosil.com/assets/icons/clamp-pitch.png">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #090D16;
+            color: #E0E2EC;
+            margin: 0;
+            padding: 32px 16px;
+            line-height: 1.65;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            background: #111827;
+            padding: 36px 32px;
+            border-radius: 20px;
+            border: 1px solid #1F2937;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+            word-break: break-word;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            color: #34D399;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        h1, h2, h3 { color: #00E5FF; line-height: 1.3; }
+        h1 { font-size: clamp(22px, 5.5vw, 28px); margin-bottom: 8px; }
+        h2 { font-size: 18px; margin: 24px 0 10px 0; }
+        h3 { font-size: 15px; margin: 18px 0 8px 0; }
+        p, li { color: #94A3B8; font-size: 14px; line-height: 1.65; }
+        p { margin-bottom: 12px; }
+        ul, ol { margin: 0 0 16px 20px; }
+        li { margin-bottom: 6px; }
+        a { color: #00E5FF; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        hr { border: 0; border-top: 1px solid #1F2937; margin: 20px 0; }
+        .nav-back {
+            margin-top: 32px;
+            padding-top: 18px;
+            border-top: 1px solid #1F2937;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 13.5px;
+        }
+        @media (max-width: 640px) {
+            body { padding: 12px 8px; }
+            .container { padding: 20px 14px; border-radius: 14px; }
+            h1 { font-size: 20px; }
+            h2 { font-size: 16px; }
+            h3 { font-size: 14.5px; }
+            p, li { font-size: 13.5px; }
+            .nav-back { flex-direction: column; text-align: center; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="badge">✓ Google Play Data Safety Certified</span>
+        <h1>Privacy Policy</h1>
+        <p><strong>ClampPitch</strong></p>
+        <p><em>Effective Date: October 2, 2026 &bull; Developer: Eliakim Rosil</em></p>
+        <hr>
+        <h1>Privacy Policy for ClampPitch</h1>
+<p><strong>Last updated:</strong> October 28, 2026</p>
+<p>ClampPitch is built and maintained by KimRosil App Studio Company as an offline-first freeware utility.</p>
+<h2>1. Zero Data Collection</h2>
+<p>ClampPitch does not collect, transmit, store, or sell any personal data, device identifiers, or analytics.</p>
+<h2>2. 100% Offline Architecture</h2>
+<p>All calculations, timer states, and user preferences are executed and stored entirely locally on your device via Android SharedPreferences and SQLite. No internet connection is requested or required.</p>
+<h2>3. Permissions</h2>
+<ul>
+<li>`android.permission.VIBRATE`: Used exclusively to provide tactile haptic feedback when countdown timers expire or adjustment steppers are pressed.</li>
+<li>`android.permission.POST_NOTIFICATIONS`: Used exclusively to alert you when an adhesive open-time countdown finishes while the application is in the background.</li>
+</ul>
+<h2>4. Contact</h2>
+<p>For questions or feedback:</p>
+<p>KimRosil App Studio Company</p>
+<p>Website: https://apps.kimrosil.com/clamp-pitch/</p>
+<p>Email: studio@kimrosil.com</p>
+        <div class="nav-back">
+            <a href="./">← Return to ClampPitch App Overview</a>
+            <a href="../privacy.html">Master Developer Privacy Policy →</a>
+        </div>
+    </div>
+</body>
+</html>

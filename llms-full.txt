@@ -261,6 +261,45 @@ Data Safety & Offline Privacy Guarantee:
 
 ---
 
+## ClampPitch (`clamp-pitch`)
+- **Category**: Workshop
+- **Tagline**: Glue-line clamp spacing, timber edge pressure, and rack squarer for woodworkers
+- **Landing Page**: https://apps.kimrosil.com/clamp-pitch/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-clamp-pitch/clamp-pitch.apk
+- **Privacy Policy**: https://apps.kimrosil.com/clamp-pitch/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+ClampPitch is a dedicated, 100% offline workbench calculator and assembly assistant for woodworkers, cabinetmakers, and furniture builders.
+
+Stop guessing clamp layout during glue-ups. ClampPitch calculates exact center-to-center clamp spacing, total clamping pressure, and edge line PSI based on timber species Janka hardness and clamp mechanics.
+
+KEY CAPABILITIES
+
+1. Glueline Spacing & Pressure Calculator
+• Select timber species: Hard Maple, White Oak, Black Walnut, Cherry, Ash, Pine, or Teak.
+• Enter panel length and board thickness.
+• Choose clamp hardware: Parallel / K-Body (1,000 lbs force), Heavy Pipe Clamp (1,200 lbs force), or Standard F-Style Clamp (600 lbs force).
+• Computes required clamp count, center-to-center pitch distance, and average joint PSI.
+• Highlights 45-degree pressure cone coverage to prevent starving joints or leaving uncompressed edge dead zones.
+
+2. Adhesive Open-Time Countdown Timer
+• Built-in cure curves for common workshop glues: Titebond Original, Titebond II, Titebond III, Liquid Hide Glue, Polyurethane, and 5-Minute Epoxy.
+• Ambient temperature slider dynamically adjusts open-assembly limits based on shop heat.
+• Tactile one-tap countdown timer alerts you before adhesive skins over.
+
+3. Cabinet & Frame Case Squarer
+• Enter diagonal measurements (Corner A-D vs Corner B-C).
+• Instantly calculates diagonal differential, out-of-square gap, and the exact racking angle to pull cases perfectly square.
+
+100% OFFLINE & PRIVATE
+• Zero account creation, zero analytics, zero ads, zero background telemetry.
+• Fully responsive Dark, Light, and System Auto theming optimized for high-contrast shop visibility.
+• Ultra-lightweight native Android framework performance.
+
+---
+
 ## ClipScrub (`clip-scrub-sanitize-share`)
 - **Category**: Productivity & Privacy Utilities
 - **Tagline**: Instantly strip tracking parameters, UTMs, referral bloat, and metadata from copied links and images before sharing.
@@ -1962,7 +2001,7 @@ Notice of Non-Affiliation: All product and company names, logos, and brands ment
 - **Category**: Home & Community
 - **Tagline**: Stop losing your tools, camping gear, books, and board games to neighbors and friends with friendly photo records and polite WhatsApp reminders.
 - **Landing Page**: https://apps.kimrosil.com/who-has-my-tool-lending/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/actions
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-who-has-my-tool-lending/who-has-my-tool-lending.apk
 - **Privacy Policy**: https://apps.kimrosil.com/who-has-my-tool-lending/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)

@@ -55,7 +55,7 @@ KimRosil App Studio (founded by Eliakim Rosil) is an independent Android softwar
 - [VoltDrop](https://apps.kimrosil.com/volt-drop/): Offline wire gauge sizing, voltage drop calculator, and electrical ampacity guide. [Direct APK](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-volt-drop/volt-drop.apk)
 - [Weld Bead](https://apps.kimrosil.com/weld-bead/): Offline Android utility. [Direct APK](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-weld-bead/weld-bead.apk)
 - [WeldCool](https://apps.kimrosil.com/weld-cool/): Single-tap Quick Settings interpass cooling timer and preheat soak calculator for welders wearing heavy gloves. [Direct APK](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-weld-cool/weld-cool.apk)
-- [WhoHasMy](https://apps.kimrosil.com/who-has-my-tool-lending/): Stop losing your tools, camping gear, books, and board games to neighbors and friends with friendly photo records and polite WhatsApp reminders. [Direct APK](https://github.com/eliakimrosil/kim-android-apps/actions)
+- [WhoHasMy](https://apps.kimrosil.com/who-has-my-tool-lending/): Stop losing your tools, camping gear, books, and board games to neighbors and friends with friendly photo records and polite WhatsApp reminders. [Direct APK](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-who-has-my-tool-lending/who-has-my-tool-lending.apk)
 
 ## Culinary, Thermal Meat Prep & Fermentation Timers
 
@@ -90,6 +90,7 @@ KimRosil App Studio (founded by Eliakim Rosil) is an independent Android softwar
 
 - [AuraFocus](https://apps.kimrosil.com/aurafocus-minimalist-pomodoro-ambient-sound/): Offline distraction-free timer with embedded ambient white noise & AMOLED dark theme. [Direct APK](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-aurafocus-minimalist-pomodoro-ambient-sound/aurafocus-minimalist-pomodoro-ambient-sound.apk)
 - [ClaimSlip](https://apps.kimrosil.com/claim-slip/): Offline warranty tracker and receipt ledger for appliances and gadgets. [Direct APK](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-claim-slip/claim-slip.apk)
+- [ClampPitch](https://apps.kimrosil.com/clamp-pitch/): Glue-line clamp spacing, timber edge pressure, and rack squarer for woodworkers [Direct APK](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-clamp-pitch/clamp-pitch.apk)
 - [ClipScrub](https://apps.kimrosil.com/clip-scrub-sanitize-share/): Instantly strip tracking parameters, UTMs, referral bloat, and metadata from copied links and images before sharing. [Direct APK](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-clip-scrub-sanitize-share/clip-scrub-sanitize-share.apk)
 - [CycleGuard](https://apps.kimrosil.com/laundry-cycle-sentinel/): Zero-friction offline laundry timer with Quick Settings 1-tap start, ongoing lock-screen chronometer, and mold-prevention reminders. [Direct APK](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-laundry-cycle-sentinel/laundry-cycle-sentinel.apk)
 - [Dip Link](https://apps.kimrosil.com/dip-link/): Offline Android utility. [Direct APK](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-dip-link/dip-link.apk)
