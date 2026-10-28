@@ -1096,5 +1096,19 @@
     "privacy_policy": "https://apps.kimrosil.com/clamp-pitch/privacy.html",
     "icon": "assets/icons/clamp-pitch.svg",
     "updated_at": "2026-10-28T01:40:01.020651+00:00"
+  },
+  {
+    "slug": "torquepitch",
+    "title": "TorquePitch",
+    "category": "UTILITIES",
+    "tagline": "Offline bolt torque calculator, thread pitch specs & lube friction multiplier.",
+    "status": "BUILT",
+    "branch": "app/torquepitch",
+    "tag": "v1.0.0-torquepitch",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-torquepitch/torquepitch.apk",
+    "landing_page": "https://apps.kimrosil.com/torquepitch/",
+    "privacy_policy": "https://apps.kimrosil.com/torquepitch/privacy.html",
+    "icon": "assets/icons/torquepitch.svg",
+    "updated_at": "2026-10-28T04:09:25.308724+00:00"
   }
 ]
