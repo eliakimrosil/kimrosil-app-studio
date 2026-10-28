@@ -134,8 +134,10 @@ task signReleaseApk(type: Exec) {
     dependsOn packageApk
 
     commandLine 'bash', '-c', """
-        apksigner sign --ks ${releaseKeystore} --ks-pass pass:kimrosil2026 \\
-            --ks-key-alias kimrosil --key-pass pass:kimrosil2026 \\
+        PASS="\${RELEASE_KEYSTORE_PASS:-\${RELEASE_KEYSTORE_PASSWORD}}"
+        ALIAS="\${RELEASE_KEYSTORE_ALIAS:-kimrosil}"
+        apksigner sign --ks ${releaseKeystore} --ks-pass pass:"\$PASS" \
+            --ks-key-alias "\$ALIAS" --key-pass pass:"\$PASS" \\
             --out ${outputsDir}/${rootProject.name}-release.apk ${intermediatesDir}/unaligned.apk
     """
 }
@@ -202,7 +204,7 @@ task signBundle(type: Exec) {
     commandLine 'bash', '-c', """
         cp ${outputsDir}/${rootProject.name}-unsigned.aab ${outputsDir}/${rootProject.name}-release.aab && \\
         jarsigner -keystore ${releaseKeystore} \\
-            -storepass "kimrosil2026" -keypass "kimrosil2026" \\
+            PASS="\${RELEASE_KEYSTORE_PASS:-\${RELEASE_KEYSTORE_PASSWORD}}"; ALIAS="\${RELEASE_KEYSTORE_ALIAS:-kimrosil}"; -storepass "\$PASS" -keypass "\$PASS" \\
             ${outputsDir}/${rootProject.name}-release.aab kimrosil && \\
         bundletool validate --bundle=${outputsDir}/${rootProject.name}-release.aab
     """
