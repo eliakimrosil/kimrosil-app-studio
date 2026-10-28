@@ -573,6 +573,7 @@ public class MainActivity extends Activity {
         SharedPreferences sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         SharedPreferences.Editor ed = sp.edit();
         ed.putString(KEY_INITIAL_HEIGHT, etInitialHeight.getText().toString());
+        ed.putString("crumb_current_height", etCurrentHeight.getText().toString());
         ed.putInt(KEY_TARGET_RISE, sbTargetRise.getProgress());
         ed.putInt(KEY_AMBIENT_TEMP, sbTemp.getProgress());
         ed.putInt(KEY_HYDRATION, sbHydration.getProgress());
@@ -581,14 +582,14 @@ public class MainActivity extends Activity {
         ed.putLong(KEY_TIMER_START_TIME, timerStartTime);
         ed.putLong(KEY_TIMER_ELAPSED_OFFSET, elapsedMillisBeforePause);
         ed.putBoolean(KEY_ALARM_ENABLED, swAlarmAlert.isChecked());
-        ed.apply();
+        ed.commit();
     }
 
     private void restoreState() {
         SharedPreferences sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         themeMode = sp.getInt(KEY_THEME_MODE, 0);
         etInitialHeight.setText(sp.getString(KEY_INITIAL_HEIGHT, "50"));
-        etCurrentHeight.setText(sp.getString(KEY_INITIAL_HEIGHT, "50"));
+        etCurrentHeight.setText(sp.getString("crumb_current_height", sp.getString(KEY_INITIAL_HEIGHT, "50")));
 
         int targetProgress = sp.getInt(KEY_TARGET_RISE, 80); // Default 100% (80 + 20)
         sbTargetRise.setProgress(targetProgress);
