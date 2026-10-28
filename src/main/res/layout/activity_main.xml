@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/m3_surface"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Top Header & App Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAppTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ReturnGuard"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Receipt &amp; Return Countdown"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnThemeToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:background="@drawable/btn_m3_outlined"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="Theme: Auto"
+                android:textColor="@color/m3_primary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btnSettings"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/btn_m3_outlined"
+                android:contentDescription="Settings &amp; About"
+                android:src="@drawable/ic_settings" />
+        </LinearLayout>
+
+        <!-- HERO TELEMETRY CARD: Capital Protected & Urgency -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_m3_high"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CAPITAL AT RISK"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_primary" />
+
+            <TextView
+                android:id="@+id/tvTotalMoneyAtRisk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$0.00"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Active purchases with open return windows"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Tabular 2-Column Telemetry Grid -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvActiveCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Active Items"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/m3_outline_variant" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingStart="16dp">
+
+                    <TextView
+                        android:id="@+id/tvUrgentCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_error" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Urgent (≤ 7 Days)"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ADD PURCHASE CARD -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_m3"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Protect New Purchase"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Item Description"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant" />
+
+            <EditText
+                android:id="@+id/etItemName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:hint="e.g. Winter Coat"
+                android:inputType="textCapWords"
+                android:textColor="@color/m3_on_surface"
+                android:textColorHint="@color/m3_outline"
+                android:background="@drawable/edittext_m3"
+                android:padding="12dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Store & Price Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Retailer / Store"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <EditText
+                        android:id="@+id/etStoreName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:hint="Target, Amazon, etc."
+                        android:inputType="textCapWords"
+                        android:textColor="@color/m3_on_surface"
+                        android:textColorHint="@color/m3_outline"
+                        android:background="@drawable/edittext_m3"
+                        android:padding="12dp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Price ($)"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <EditText
+                        android:id="@+id/etPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:hint="49.99"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/m3_on_surface"
+                        android:textColorHint="@color/m3_outline"
+                        android:background="@drawable/edittext_m3"
+                        android:padding="12dp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Return Window Days Stepper -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Return Window (Days)"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="12dp">
+
+                <Button
+                    android:id="@+id/btnDaysMinus"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:text="-"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_surface"
+                    android:background="@drawable/btn_stepper" />
+
+                <EditText
+                    android:id="@+id/etReturnDays"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:gravity="center"
+                    android:text="30"
+                    android:inputType="number"
+                    android:textColor="@color/m3_on_surface"
+                    android:background="@drawable/edittext_m3"
+                    android:padding="12dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/btnDaysPlus"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:text="+"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_surface"
+                    android:background="@drawable/btn_stepper" />
+            </LinearLayout>
+
+            <!-- Order / Receipt Note -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Receipt / Order # / Notes"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant" />
+
+            <EditText
+                android:id="@+id/etNotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:hint="Order ID or receipt note"
+                android:inputType="text"
+                android:textColor="@color/m3_on_surface"
+                android:textColorHint="@color/m3_outline"
+                android:background="@drawable/edittext_m3"
+                android:padding="12dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:id="@+id/btnSaveReturn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="Save &amp; Track Return"
+                android:textColor="@color/m3_on_primary"
+                android:textStyle="bold"
+                android:background="@drawable/btn_m3_primary" />
+        </LinearLayout>
+
+        <!-- FILTER CHIPS ROW -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <Button
+                android:id="@+id/chipFilterActive"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:text="Active"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_primary"
+                android:background="@drawable/chip_active"
+                android:layout_marginEnd="4dp" />
+
+            <Button
+                android:id="@+id/chipFilterUrgent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:text="Urgent (≤7d)"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface"
+                android:background="@drawable/chip_inactive"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp" />
+
+            <Button
+                android:id="@+id/chipFilterReturned"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:text="Returned"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface"
+                android:background="@drawable/chip_inactive"
+                android:layout_marginStart="4dp" />
+        </LinearLayout>
+
+        <!-- RETURNS LIST CONTAINER -->
+        <LinearLayout
+            android:id="@+id/llReturnsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <TextView
+            android:id="@+id/tvEmptyState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="No return items yet. Add a purchase above to start tracking!"
+            android:textColor="@color/m3_on_surface_variant"
+            android:textSize="13sp"
+            android:padding="24dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bespoke Domain Dark Theme Color Tokens: ReturnGuard Obsidian Emerald -->
+    <color name="colorPrimary">#4DB6AC</color>
+    <color name="colorPrimaryDark">#004D40</color>
+    <color name="colorAccent">#80CBC4</color>
+    <color name="windowBackground">#101513</color>
+
+    <color name="m3_primary">#4DB6AC</color>
+    <color name="m3_on_primary">#003730</color>
+    <color name="m3_primary_container">#004D40</color>
+    <color name="m3_on_primary_container">#B2DFDB</color>
+
+    <color name="m3_secondary">#B0BEC5</color>
+    <color name="m3_on_secondary">#1C313A</color>
+    <color name="m3_secondary_container">#263238</color>
+    <color name="m3_on_secondary_container">#ECEFF1</color>
+
+    <color name="m3_surface">#101513</color>
+    <color name="m3_surface_container">#181F1C</color>
+    <color name="m3_surface_container_high">#202A26</color>
+    <color name="m3_surface_container_highest">#293530</color>
+
+    <color name="m3_on_surface">#E2E8E4</color>
+    <color name="m3_on_surface_variant">#A1ADA6</color>
+    <color name="m3_outline">#6D7B74</color>
+    <color name="m3_outline_variant">#39443E</color>
+
+    <color name="m3_success">#81C784</color>
+    <color name="m3_on_success">#0A3912</color>
+    <color name="m3_warning">#FFB74D</color>
+    <color name="m3_error">#E57373</color>
+    <color name="m3_on_error">#490E0E</color>
+
+    <color name="cardBackground">#181F1C</color>
+    <color name="cardStroke">#39443E</color>
+    <color name="textPrimary">#E2E8E4</color>
+    <color name="textSecondary">#A1ADA6</color>
+    <color name="btnColor">#4DB6AC</color>
+    <color name="btnTextColor">#003730</color>
+</resources>
