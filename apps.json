@@ -18,13 +18,14 @@
     "title": "SizeVault",
     "category": "Lifestyle & Family",
     "tagline": "The instant pocket size guide for parents, spouses, and gift shoppers browsing sales and thrift stores.",
-    "status": "FAILED",
+    "status": "BUILT",
     "branch": "app/size-vault-family-clothing",
-    "tag": "v1.0.0-size-vault-family-clothing",
-    "apk_url": "https://github.com/eliakimrosil/kim-android-apps/actions",
+    "tag": "v1.0.1-size-vault-family-clothing",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-size-vault-family-clothing/size-vault-family-clothing.apk",
     "landing_page": "https://apps.kimrosil.com/size-vault-family-clothing/",
     "privacy_policy": "https://apps.kimrosil.com/size-vault-family-clothing/privacy.html",
-    "icon": "assets/icons/size-vault-family-clothing.svg"
+    "icon": "assets/icons/size-vault-family-clothing.svg",
+    "updated_at": "2026-10-28T00:32:45.394738+00:00"
   },
   {
     "slug": "who-has-my-tool-lending",
