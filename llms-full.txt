@@ -897,6 +897,51 @@ Notice of Non-Affiliation: All product and company names, logos, and brands ment
 
 ---
 
+## HydraFlow (`hydraflow`)
+- **Category**: Heavy Equipment & Fluid Power
+- **Tagline**: Offline hydraulic cylinder tonnage, pump flow GPM, and fluid line velocity calculator.
+- **Landing Page**: https://apps.kimrosil.com/hydraflow/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-hydraflow/hydraflow.apk
+- **Privacy Policy**: https://apps.kimrosil.com/hydraflow/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+HydraFlow is a dedicated, 100% offline fluid power calculation suite and cylinder telemetry assistant for heavy equipment mechanics, hydraulic technicians, machine builders, and agricultural engineers.
+
+Calculate hydraulic cylinder push and pull force tonnage, extension and retraction speeds, total cycle times, hydraulic horsepower, and hose line velocities across industrial systems.
+
+KEY CAPABILITIES
+
+1. Cylinder Force & Tonnage Calculator
+• Dual Units: US Customary (Inches, PSI, US Tons, GPM) and Metric (Millimeters, Bar, Metric Tonnes / kN, L/min).
+• Full cylinder telemetry: Bore diameter, rod diameter, and system operating pressure.
+• Extension (Push) Force: Computes full piston face area, push force in Tons, pounds force, and kilonewtons.
+• Retraction (Pull) Force: Computes net annular area (bore area minus rod area) and true retract pull force.
+• Rod displacement ratio and differential area percentage.
+
+2. Stroke Cycle Speed & Hydraulic Power
+• Enter cylinder stroke length and pump flow rate (GPM or L/min).
+• Extension Speed: Inches per second (or mm/s) and extension time in seconds.
+• Retraction Speed: Faster return speed accounting for reduced annular fluid volume.
+• Total cycle duration (extend + retract time).
+• Hydraulic Horsepower: Calculates required fluid horsepower (HP / kW) at target operating pressure.
+
+3. SAE J517 Hose Line Velocity Auditor
+• Hose inside diameter (1/4" to 2" / -04 to -32 dash sizes) vs pump flow rate.
+• Line Type Compliance:
+  - Pressure Lines (Recommended 10–15 ft/s or 3–4.5 m/s)
+  - Return Lines (Recommended 5–10 ft/s or 1.5–3 m/s)
+  - Pump Suction Lines (Recommended 2–4 ft/s or 0.6–1.2 m/s to prevent pump cavitation)
+• Instant visual compliance status badge: Optimal, Warning, or High Cavitation Risk.
+
+100% OFFLINE & PRIVATE
+• Zero account creation, zero analytics, zero ads, zero background telemetry.
+• Fully functional Dark, Light, and System Auto theming for high-contrast field service visibility.
+• Pure native Android framework performance with instant cold starts.
+
+---
+
 ## IronPulse (`workout-program-tracker`)
 - **Category**: Health & Fitness
 - **Tagline**: Minimalist offline workout program tracker with progressive overload logging and auto rest timer.
