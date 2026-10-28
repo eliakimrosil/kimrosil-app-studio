@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bespoke Domain Dark Theme Color Tokens: SizeVault Midnight Indigo -->
+    <color name="colorPrimary">#7986CB</color>
+    <color name="colorPrimaryDark">#1A237E</color>
+    <color name="colorAccent">#9FA8DA</color>
+    <color name="windowBackground">#12131C</color>
+
+    <color name="m3_primary">#7986CB</color>
+    <color name="m3_on_primary">#1A237E</color>
+    <color name="m3_primary_container">#283593</color>
+    <color name="m3_on_primary_container">#C5CAE9</color>
+
+    <color name="m3_secondary">#B0BEC5</color>
+    <color name="m3_on_secondary">#1C313A</color>
+    <color name="m3_secondary_container">#263238</color>
+    <color name="m3_on_secondary_container">#ECEFF1</color>
+
+    <color name="m3_surface">#12131C</color>
+    <color name="m3_surface_container">#1A1C28</color>
+    <color name="m3_surface_container_high">#222534</color>
+    <color name="m3_surface_container_highest">#2B2F42</color>
+
+    <color name="m3_on_surface">#E5E6F2</color>
+    <color name="m3_on_surface_variant">#A5A7BC</color>
+    <color name="m3_outline">#727488</color>
+    <color name="m3_outline_variant">#3C3F54</color>
+
+    <color name="m3_success">#81C784</color>
+    <color name="m3_on_success">#0A3912</color>
+    <color name="m3_warning">#FFB74D</color>
+    <color name="m3_error">#E57373</color>
+    <color name="m3_on_error">#490E0E</color>
+
+    <color name="cardBackground">#1A1C28</color>
+    <color name="cardStroke">#3C3F54</color>
+    <color name="textPrimary">#E5E6F2</color>
+    <color name="textSecondary">#A5A7BC</color>
+    <color name="btnColor">#7986CB</color>
+    <color name="btnTextColor">#1A237E</color>
+</resources>

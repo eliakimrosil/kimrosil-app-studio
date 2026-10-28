@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/m3_surface"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Top Header & App Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAppTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SizeVault"
+                    android:textColor="@color/m3_on_surface"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Family &amp; Personal Sizing Safe"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnThemeToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:background="@drawable/btn_m3_outlined"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="Theme: Auto"
+                android:textColor="@color/m3_primary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btnSettings"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/btn_m3_outlined"
+                android:contentDescription="Settings &amp; About"
+                android:src="@drawable/ic_settings" />
+        </LinearLayout>
+
+        <!-- HERO TELEMETRY CARD: Overview -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_m3_high"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WARDROBE TELEMETRY"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_primary" />
+
+            <TextView
+                android:id="@+id/tvActiveProfileName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Family Sizing Vault"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Offline quick reference for gifts &amp; shopping"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Tabular 2-Column Telemetry Grid -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvTotalProfilesCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Saved Profiles"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/m3_outline_variant" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingStart="16dp">
+
+                    <TextView
+                        android:id="@+id/tvTotalSizesCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Specs"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ADD / EDIT PROFILE CARD -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_m3"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvFormTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add / Update Family Member"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Name & Relation Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Member Name"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <EditText
+                        android:id="@+id/etProfileName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:hint="e.g. Leo / Spouse"
+                        android:inputType="textCapWords"
+                        android:textColor="@color/m3_on_surface"
+                        android:textColorHint="@color/m3_outline"
+                        android:background="@drawable/edittext_m3"
+                        android:padding="12dp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Relationship"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <EditText
+                        android:id="@+id/etRelationship"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:hint="Self, Child, Partner"
+                        android:inputType="textCapWords"
+                        android:textColor="@color/m3_on_surface"
+                        android:textColorHint="@color/m3_outline"
+                        android:background="@drawable/edittext_m3"
+                        android:padding="12dp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Shoe Sizes (US & EU) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Shoe Size (US)"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <EditText
+                        android:id="@+id/etShoeUs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:hint="10.5"
+                        android:inputType="text"
+                        android:textColor="@color/m3_on_surface"
+                        android:textColorHint="@color/m3_outline"
+                        android:background="@drawable/edittext_m3"
+                        android:padding="12dp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Shoe Size (EU)"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <EditText
+                        android:id="@+id/etShoeEu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:hint="44"
+                        android:inputType="text"
+                        android:textColor="@color/m3_on_surface"
+                        android:textColorHint="@color/m3_outline"
+                        android:background="@drawable/edittext_m3"
+                        android:padding="12dp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Shirt & Pants Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Shirt / Top Size"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <EditText
+                        android:id="@+id/etShirtSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:hint="M / L / 15.5"
+                        android:inputType="textCapCharacters"
+                        android:textColor="@color/m3_on_surface"
+                        android:textColorHint="@color/m3_outline"
+                        android:background="@drawable/edittext_m3"
+                        android:padding="12dp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pants (Waist x Inseam)"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <EditText
+                        android:id="@+id/etPantsSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:hint="32x30"
+                        android:inputType="text"
+                        android:textColor="@color/m3_on_surface"
+                        android:textColorHint="@color/m3_outline"
+                        android:background="@drawable/edittext_m3"
+                        android:padding="12dp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Jacket & Ring Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jacket / Dress Size"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <EditText
+                        android:id="@+id/etJacketSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:hint="40R / Size 6"
+                        android:inputType="text"
+                        android:textColor="@color/m3_on_surface"
+                        android:textColorHint="@color/m3_outline"
+                        android:background="@drawable/edittext_m3"
+                        android:padding="12dp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ring Size"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <EditText
+                        android:id="@+id/etRingSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:hint="7.5"
+                        android:inputType="text"
+                        android:textColor="@color/m3_on_surface"
+                        android:textColorHint="@color/m3_outline"
+                        android:background="@drawable/edittext_m3"
+                        android:padding="12dp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Brand Fit Quirks / Notes -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Brand Fit Notes"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant" />
+
+            <EditText
+                android:id="@+id/etBrandNotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:hint="e.g. Nike: +0.5, Zara: slim"
+                android:inputType="text"
+                android:textColor="@color/m3_on_surface"
+                android:textColorHint="@color/m3_outline"
+                android:background="@drawable/edittext_m3"
+                android:padding="12dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:id="@+id/btnSaveProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="Save Sizing Profile"
+                android:textColor="@color/m3_on_primary"
+                android:textStyle="bold"
+                android:background="@drawable/btn_m3_primary" />
+        </LinearLayout>
+
+        <!-- PROFILES LIST HEADER -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Family Sizing Profiles"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface"
+            android:layout_marginBottom="12dp" />
+
+        <!-- PROFILES CARDS CONTAINER -->
+        <LinearLayout
+            android:id="@+id/llProfilesContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <TextView
+            android:id="@+id/tvEmptyState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="No profiles saved yet. Add a family member above!"
+            android:textColor="@color/m3_on_surface_variant"
+            android:textSize="13sp"
+            android:padding="24dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</ScrollView>
