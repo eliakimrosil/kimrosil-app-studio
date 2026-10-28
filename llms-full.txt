@@ -1892,6 +1892,49 @@ KEY FEATURES:
 
 ---
 
+## TorquePitch (`torquepitch`)
+- **Category**: Automotive & Mechanical Trades
+- **Tagline**: Offline bolt torque calculator, thread pitch identifier, and lube friction multiplier.
+- **Landing Page**: https://apps.kimrosil.com/torquepitch/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-torquepitch/torquepitch.apk
+- **Privacy Policy**: https://apps.kimrosil.com/torquepitch/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+TorquePitch is a dedicated, 100% offline fastener torque calculator and thread specification assistant for mechanics, engine builders, machinists, and fabricators.
+
+Calculate exact target bolt torque in ft-lb, Nm, and in-lb based on fastener diameter, thread pitch, material strength grade, and thread lubricant K-factor.
+
+KEY CAPABILITIES
+
+1. Fastener Torque & Clamp Preload Calculator
+• Metric (ISO 898-1): M3 through M36 diameter across Class 4.8, 8.8, 10.9, 12.9, and Stainless A2-70.
+• Imperial (SAE J429): #4 through 1-1/2" diameter across Grade 2, Grade 5, Grade 8, and Stainless 18-8.
+• Coarse (UNC / standard) and Fine (UNF) thread pitch selection.
+• Thread Lubricant K-Factor adjustment: Dry / Zinc Plated (K=0.20), Light Engine Oil (K=0.15), Anti-Seize (K=0.12), Moly Assembly Lube (K=0.10), and Threadlocker (K=0.16).
+• Dynamic proof yield safety preload percentage adjustment (default 75% proof load).
+• Instant stacked readout: Primary target torque, secondary unit conversions, clamping force in kN and lbs, and tensile stress area.
+
+2. Tap Drill & Clearance Hole Spec Sheet
+• Steel and cast iron tap drill size for standard 75% thread engagement.
+• Aluminum and soft alloy tap drill size for 65% thread engagement to eliminate tap seizure.
+• Fractional inch and decimal drill bit equivalents.
+• Normal fit (free) and close fit (precision) through-hole clearance diameters.
+• Tabular thread geometry: Major diameter, pitch, pitch diameter, and minor diameter.
+
+3. Multi-Stage TTY & Tightening Sequence Tracker
+• Torque-to-Yield (TTY) multi-stage angle torque setup: Snug torque plus Stage 2 and Stage 3 angular turns.
+• Cylinder Head Spiral and Star/Cross pattern tightening guides.
+• Interactive 1-to-10 fastener completion tracker with tactile haptic feedback.
+
+100% OFFLINE & PRIVATE
+• Zero account creation, zero analytics, zero ads, zero background telemetry.
+• Fully functional Dark, Light, and System Auto theming for high-contrast garage drop light visibility.
+• Pure native Android framework performance with instant cold starts.
+
+---
+
 ## TurfNotch (`turf-notch`)
 - **Category**: Home & Garden Tools
 - **Tagline**: Offline lawn seed and spreader gate notch calibrator
