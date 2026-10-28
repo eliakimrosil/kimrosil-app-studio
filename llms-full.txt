@@ -368,7 +368,7 @@ OFFLINE & PURE NATIVE PERFORMANCE
 - **Category**: Food & Drink / Utilities
 - **Tagline**: Offline-first artisan dough fermentation tracker with temperature-compensated proofing timers, flour-safe Quick Settings tap, and ongoing lock screen chronometer.
 - **Landing Page**: https://apps.kimrosil.com/sourdough-rise-ferment-sentinel/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-sourdough-rise-ferment-sentinel/sourdough-rise-ferment-sentinel.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-sourdough-rise-ferment-sentinel/sourdough-rise-ferment-sentinel.apk
 - **Privacy Policy**: https://apps.kimrosil.com/sourdough-rise-ferment-sentinel/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
