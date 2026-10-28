@@ -1082,5 +1082,19 @@
     "privacy_policy": "https://apps.kimrosil.com/weld-bead/privacy.html",
     "icon": "assets/icons/weld-bead.svg",
     "updated_at": "2026-10-27T18:13:33.831741+00:00"
+  },
+  {
+    "slug": "clamp-pitch",
+    "title": "ClampPitch",
+    "category": "UTILITIES",
+    "tagline": "Woodworking glue line clamp spacing, edge pressure, and case squarer.",
+    "status": "BUILT",
+    "branch": "app/clamp-pitch",
+    "tag": "v1.0.0-clamp-pitch",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-clamp-pitch/clamp-pitch.apk",
+    "landing_page": "https://apps.kimrosil.com/clamp-pitch/",
+    "privacy_policy": "https://apps.kimrosil.com/clamp-pitch/privacy.html",
+    "icon": "assets/icons/clamp-pitch.svg",
+    "updated_at": "2026-10-28T01:40:01.020651+00:00"
   }
 ]

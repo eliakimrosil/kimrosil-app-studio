@@ -87,6 +87,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Track exact clamp-time and full-cure windows for wood glues and epoxies with one-tap Quick Settings, lock-screen chronometers, and ambient cure temperature compensation.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-glue-set-clamp-sentinel/glue-set-clamp-sentinel.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/glue-set-clamp-sentinel/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/glue-set-clamp-sentinel)
 
+#### [ClampPitch](https://apps.kimrosil.com/clamp-pitch/) (`clamp-pitch`) • `v1.0.0`
+> **Utility**: Woodworking glue line clamp spacing, edge pressure, and case squarer.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-clamp-pitch/clamp-pitch.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/clamp-pitch/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/clamp-pitch)
+
 #### [CombGauge](https://apps.kimrosil.com/comb-gauge/) (`comb-gauge`) • `v1.0.1`
 > **Utility**: Calculate dry film thickness, wet film target, and thinner dilution offline.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-comb-gauge/comb-gauge.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/comb-gauge/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/comb-gauge)
