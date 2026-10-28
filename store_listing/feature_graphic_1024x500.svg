@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 500" width="1024" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1520" />
+      <stop offset="60%" stop-color="#080D14" />
+      <stop offset="100%" stop-color="#020408" />
+    </linearGradient>
+    <radialGradient id="glowGrad" cx="25%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#00E5FF" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FFFFFF" stroke-width="0.5" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+
+  <rect width="1024" height="500" fill="url(#bgGrad)" />
+  <rect width="1024" height="500" fill="url(#glowGrad)" />
+  <rect width="1024" height="500" fill="url(#grid)" />
+
+  <g transform="translate(80, 130)">
+    <rect x="-10" y="-10" width="260" height="260" rx="54" fill="#00E5FF" fill-opacity="0.12" />
+    <rect x="0" y="0" width="240" height="240" rx="48" fill="#0B1520" stroke="#00E5FF" stroke-width="2" stroke-opacity="0.4" />
+    <g transform="translate(20, 20) scale(1.85185)">
+      <path fill="#132338" d="M0,0h108v108h-108z" /><path fill="#1A334E" fill-opacity="0.6" d="M16,54A38,38 0 1,0 92,54A38,38 0 1,0 16,54Z" /><path stroke="#244B74" stroke-width="1.5" stroke-opacity="0.4" d="M24,54h60M54,24v60" /><circle cx="54" cy="54" r="42" stroke="#FF7A00" stroke-width="1" stroke-opacity="0.2" />
+      <path fill="#1B2E42" d="M25,38 L73,38 A3,3 0 0 1 76,41 L76,67 A3,3 0 0 1 73,70 L25,70 A3,3 0 0 1 22,67 L22,41 A3,3 0 0 1 25,38 Z" /><path fill="#2B4868" d="M22,42 L76,42 L76,48 L22,48 Z" /><path fill="#0E1C2B" d="M26,45 L72,45 L72,63 L26,63 Z" /><path fill="#78909C" d="M48,48 L83,48 L83,60 L48,60 Z" /><path fill="#B0BEC5" d="M48,49 L83,49 L83,52 L48,52 Z" /><path fill="#CFD8DC" d="M83,45 L87,45 L87,63 L83,63 Z" /><circle cx="85" cy="54" r="2.5" fill="#0E1C2B" /><path fill="#37474F" d="M42,43 L48,43 L48,65 L42,65 Z" /><path fill="#FF9100" d="M26,45 L42,45 L42,63 L26,63 Z" /><path fill="#FFAB40" d="M26,45 L42,45 L42,50 L26,50 Z" /><path stroke="#00E5FF" stroke-width="2" stroke-linecap="round" d="M30,31 L30,38 M68,31 L68,38" /><path fill="#00E5FF" d="M27,27 L33,27 L33,31 L27,31 Z M65,27 L71,27 L71,31 L65,31 Z" /><path stroke="#00E5FF" stroke-width="2.5" stroke-linecap="round" d="M28,78 C35,74 42,82 50,78 C58,74 65,82 72,78" /><path stroke="#FF9100" stroke-width="1.8" stroke-linecap="round" d="M34,83 C40,80 46,86 52,83 C58,80 64,86 70,83" /><path fill="#FFD600" d="M25,54 L27.5,49 L32.5,49 L29,53 L33,53 L26,61 L27.5,56 L24,56 Z" />
+    </g>
+  </g>
+
+  <g transform="translate(390, 150)">
+    <rect x="0" y="0" width="210" height="28" rx="6" fill="#00E5FF" fill-opacity="0.15" />
+    <text x="12" y="19" font-family="sans-serif" font-size="12" font-weight="bold" fill="#00E5FF" letter-spacing="2">KIMROSIL APP STUDIO</text>
+    <text x="0" y="85" font-family="sans-serif" font-size="44" font-weight="900" fill="#FFFFFF" letter-spacing="-0.5">HydraFlow</text>
+    <text x="0" y="125" font-family="sans-serif" font-size="19" fill="#94A3B8">Offline hydraulic cylinder tonnage, pump flow GPM,...</text>
+
+    <g transform="translate(0, 165)">
+      <rect x="0" y="0" width="135" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="16" y="22" font-family="sans-serif" font-size="12" font-weight="bold" fill="#38BDF8">⚡ 100% OFFLINE</text>
+      <rect x="145" y="0" width="160" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="160" y="22" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34D399">🛡️ NO SUBSCRIPTION</text>
+      <rect x="315" y="0" width="165" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="330" y="22" font-family="sans-serif" font-size="12" font-weight="bold" fill="#F472B6">🔒 PRIVATE &amp; LOCAL</text>
+    </g>
+  </g>
+</svg>

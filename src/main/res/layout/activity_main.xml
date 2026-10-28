@@ -1,0 +1,1200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/m3_surface">
+
+    <!-- Top Action Bar Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:background="@color/m3_surface">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvAppTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HydraFlow"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:textColor="@color/m3_on_surface" />
+
+            <TextView
+                android:id="@+id/tvAppSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hydraulic Cylinder &amp; Fluid Power Aide"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant" />
+        </LinearLayout>
+
+        <!-- Theme Toggle Button -->
+        <Button
+            android:id="@+id/btnThemeToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="Theme: Auto"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface"
+            android:background="@drawable/bg_topbar_button"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Settings Modal Button -->
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_settings"
+            android:contentDescription="Settings and info"
+            android:background="@drawable/bg_topbar_button"
+            android:padding="12dp" />
+    </LinearLayout>
+
+    <!-- Navigation Chips (Cylinder Force, Cycle & Speed, Line Velocity) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/chipTabCylinder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:text="CYLINDER"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_primary"
+            android:background="@drawable/chip_active"
+            android:layout_marginEnd="4dp" />
+
+        <Button
+            android:id="@+id/chipTabSpeed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:text="CYCLE &amp; HP"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface"
+            android:background="@drawable/chip_inactive"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp" />
+
+        <Button
+            android:id="@+id/chipTabVelocity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:text="HOSE LINE"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface"
+            android:background="@drawable/chip_inactive"
+            android:layout_marginStart="4dp" />
+    </LinearLayout>
+
+    <!-- Scrollable Body Content -->
+    <ScrollView
+        android:id="@+id/mainScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="false"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="24dp">
+
+            <!-- ============================================================= -->
+            <!-- SECTION 1: CYLINDER FORCE & TONNAGE                           -->
+            <!-- ============================================================= -->
+            <LinearLayout
+                android:id="@+id/layoutSectionCylinder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <!-- Cylinder Configuration Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CYLINDER &amp; PRESSURE SPECIFICATIONS"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Unit Switcher (Imperial vs Metric) -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        android:layout_marginBottom="12dp">
+
+                        <Button
+                            android:id="@+id/chipUnitImperial"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:text="US (Inches / PSI)"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_primary"
+                            android:background="@drawable/chip_active"
+                            android:layout_marginEnd="4dp" />
+
+                        <Button
+                            android:id="@+id/chipUnitMetric"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:text="Metric (mm / Bar)"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/chip_inactive"
+                            android:layout_marginStart="4dp" />
+                    </LinearLayout>
+
+                    <!-- Bore Diameter Row -->
+                    <TextView
+                        android:id="@+id/tvBoreLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cylinder Bore Diameter (in)"
+                        android:textSize="13sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <Button
+                            android:id="@+id/btnBoreMinus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="-0.25"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper" />
+
+                        <EditText
+                            android:id="@+id/etBoreDia"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:text="4.00"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:gravity="center"
+                            android:inputType="numberDecimal"
+                            android:background="@drawable/edittext_m3"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:hint="4.00" />
+
+                        <Button
+                            android:id="@+id/btnBorePlus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="+0.25"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper" />
+                    </LinearLayout>
+
+                    <!-- Rod Diameter Row -->
+                    <TextView
+                        android:id="@+id/tvRodLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cylinder Piston Rod Diameter (in)"
+                        android:textSize="13sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <Button
+                            android:id="@+id/btnRodMinus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="-0.25"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper" />
+
+                        <EditText
+                            android:id="@+id/etRodDia"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:text="2.00"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:gravity="center"
+                            android:inputType="numberDecimal"
+                            android:background="@drawable/edittext_m3"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:hint="2.00" />
+
+                        <Button
+                            android:id="@+id/btnRodPlus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="+0.25"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper" />
+                    </LinearLayout>
+
+                    <!-- Working Pressure Row -->
+                    <TextView
+                        android:id="@+id/tvPressureLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="System Operating Pressure (PSI)"
+                        android:textSize="13sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <Button
+                            android:id="@+id/btnPressureMinus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="-250"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper" />
+
+                        <EditText
+                            android:id="@+id/etPressure"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:text="3000"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:background="@drawable/edittext_m3"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:hint="3000" />
+
+                        <Button
+                            android:id="@+id/btnPressurePlus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="+250"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper" />
+                    </LinearLayout>
+
+                    <!-- Standard Preset Chips -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="3"
+                        android:layout_marginBottom="16dp">
+
+                        <Button
+                            android:id="@+id/btnPresetLow"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:text="2,000 PSI"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper"
+                            android:layout_marginEnd="4dp" />
+
+                        <Button
+                            android:id="@+id/btnPresetMid"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:text="3,000 PSI"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginEnd="2dp" />
+
+                        <Button
+                            android:id="@+id/btnPresetHigh"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:text="5,000 PSI"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper"
+                            android:layout_marginStart="4dp" />
+                    </LinearLayout>
+
+                    <!-- Calculate Button -->
+                    <Button
+                        android:id="@+id/btnCalculateCylinder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:text="CALCULATE CYLINDER FORCE"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_primary"
+                        android:background="@drawable/btn_m3_primary" />
+                </LinearLayout>
+
+                <!-- Hero Force HUD Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="12dp"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:id="@+id/tvForceStatusBadge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CYLINDER FORCE @ 3000 PSI"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/badge_safe"
+                            android:background="@drawable/bg_badge_safe"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/tvCylinderSummaryTag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4.0-in x 2.0-in Rod"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface_variant" />
+                    </LinearLayout>
+
+                    <!-- Huge Primary Push Force -->
+                    <TextView
+                        android:id="@+id/tvPrimaryPushForce"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="18.8 US Tons"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="2dp" />
+
+                    <!-- Secondary Push Details -->
+                    <TextView
+                        android:id="@+id/tvSecondaryPushForce"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="37,699 lbs force  •  167.7 kN"
+                        android:textSize="14sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:gravity="center_horizontal"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Hairline Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/m3_outline"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- 2-Column Telemetry: Pull Force & Areas -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        android:layout_marginBottom="12dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Retraction (Pull) Force"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvPullForce"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="14.1 US Tons"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <TextView
+                                android:id="@+id/tvPullForceAlt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="28,274 lbs  •  125.8 kN"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Effective Piston Areas"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvAreaPush"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Push: 12.57 sq in"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <TextView
+                                android:id="@+id/tvAreaPull"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Pull: 9.42 sq in (75%)"
+                                android:textSize="12sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Differential Callout -->
+                    <TextView
+                        android:id="@+id/tvDifferentialNote"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2.0-in rod consumes 25% of bore area, generating 25% less pull force but 1.33x faster retraction speed."
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:lineSpacingExtra="2dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ============================================================= -->
+            <!-- SECTION 2: CYCLE SPEED & HYDRAULIC POWER                      -->
+            <!-- ============================================================= -->
+            <LinearLayout
+                android:id="@+id/layoutSectionSpeed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Stroke & Flow Inputs Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="STROKE LENGTH &amp; PUMP DISPLACEMENT"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Stroke Length Row -->
+                    <TextView
+                        android:id="@+id/tvStrokeLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cylinder Stroke Length (in)"
+                        android:textSize="13sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <Button
+                            android:id="@+id/btnStrokeMinus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="-2"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper" />
+
+                        <EditText
+                            android:id="@+id/etStrokeLength"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:text="24.0"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:gravity="center"
+                            android:inputType="numberDecimal"
+                            android:background="@drawable/edittext_m3"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:hint="24.0" />
+
+                        <Button
+                            android:id="@+id/btnStrokePlus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="+2"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper" />
+                    </LinearLayout>
+
+                    <!-- Pump Flow Rate Row -->
+                    <TextView
+                        android:id="@+id/tvFlowLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pump Flow Rate (GPM)"
+                        android:textSize="13sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="16dp">
+
+                        <Button
+                            android:id="@+id/btnFlowMinus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="-1"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper" />
+
+                        <EditText
+                            android:id="@+id/etPumpFlow"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:text="10.0"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:gravity="center"
+                            android:inputType="numberDecimal"
+                            android:background="@drawable/edittext_m3"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:hint="10.0" />
+
+                        <Button
+                            android:id="@+id/btnFlowPlus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="+1"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper" />
+                    </LinearLayout>
+
+                    <!-- Calculate Button -->
+                    <Button
+                        android:id="@+id/btnCalculateSpeed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:text="CALCULATE CYCLE TIME &amp; POWER"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_primary"
+                        android:background="@drawable/btn_m3_primary" />
+                </LinearLayout>
+
+                <!-- Speed & Power Hero HUD Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="12dp"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/tvCycleStatusBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TOTAL STROKE CYCLE DURATION"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/badge_safe"
+                        android:background="@drawable/bg_badge_safe"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:layout_marginBottom="8dp" />
+
+                    <!-- Primary Total Cycle Time -->
+                    <TextView
+                        android:id="@+id/tvTotalCycleTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="4.6 Seconds"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="2dp" />
+
+                    <!-- Secondary Speed Breakdown -->
+                    <TextView
+                        android:id="@+id/tvSpeedBreakdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Extend: 2.6s (9.2 in/s)  •  Retract: 2.0s (12.2 in/s)"
+                        android:textSize="14sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:gravity="center_horizontal"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Hairline Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/m3_outline"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- 2-Column Telemetry: Power & Volumes -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        android:layout_marginBottom="12dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Required Hydraulic Power"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvFluidHp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="17.5 HP"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <TextView
+                                android:id="@+id/tvFluidKw"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="13.1 kW fluid power"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Full Stroke Oil Volume"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvVolumeExtend"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Extend: 1.31 gal"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <TextView
+                                android:id="@+id/tvVolumeRetract"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Retract: 0.98 gal"
+                                android:textSize="12sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Engine Recommendation Callout -->
+                    <TextView
+                        android:id="@+id/tvPowerGuidance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Recommend >= 20 HP internal combustion engine (or 15 HP electric motor) to account for 85% hydraulic pump mechanical efficiency at 3000 PSI."
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:lineSpacingExtra="2dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ============================================================= -->
+            <!-- SECTION 3: SAE J517 HOSE LINE VELOCITY                        -->
+            <!-- ============================================================= -->
+            <LinearLayout
+                android:id="@+id/layoutSectionVelocity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Hose Selection Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HYDRAULIC LINE SIZING AUDIT"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Line Service Type Selector -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hydraulic Circuit Line Service"
+                        android:textSize="13sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="3"
+                        android:layout_marginBottom="12dp">
+
+                        <Button
+                            android:id="@+id/chipLinePressure"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:text="Pressure"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_primary"
+                            android:background="@drawable/chip_active"
+                            android:layout_marginEnd="4dp" />
+
+                        <Button
+                            android:id="@+id/chipLineReturn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:text="Return"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/chip_inactive"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginEnd="2dp" />
+
+                        <Button
+                            android:id="@+id/chipLineSuction"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:text="Suction"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/chip_inactive"
+                            android:layout_marginStart="4dp" />
+                    </LinearLayout>
+
+                    <!-- Hose ID Spinner -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hose Inside Diameter (SAE Dash Size)"
+                        android:textSize="13sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="4dp" />
+
+                    <Spinner
+                        android:id="@+id/spnHoseSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:background="@drawable/edittext_m3"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Calculate Velocity Button -->
+                    <Button
+                        android:id="@+id/btnCalculateVelocity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:text="AUDIT LINE VELOCITY &amp; CAVITATION"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_primary"
+                        android:background="@drawable/btn_m3_primary" />
+                </LinearLayout>
+
+                <!-- Velocity Hero HUD Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="12dp"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:id="@+id/tvVelocityStatusBadge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="OPTIMAL VELOCITY"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/badge_safe"
+                            android:background="@drawable/bg_badge_safe"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/tvVelocityFlowTag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10.0 GPM • 1/2-in Hose"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface_variant" />
+                    </LinearLayout>
+
+                    <!-- Huge Primary Velocity Readout -->
+                    <TextView
+                        android:id="@+id/tvPrimaryVelocity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="11.2 ft/s"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="2dp" />
+
+                    <!-- Secondary Metric Velocity -->
+                    <TextView
+                        android:id="@+id/tvSecondaryVelocity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="3.41 m/s fluid speed"
+                        android:textSize="14sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:gravity="center_horizontal"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Hairline Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/m3_outline"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- 2-Column Telemetry: Limits & Risk -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        android:layout_marginBottom="12dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="SAE J517 Recommended Limit"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvRecommendedLimit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10 – 15 ft/s"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <TextView
+                                android:id="@+id/tvServiceLimitLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="High pressure circuit"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Flow Condition &amp; Risk"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvComplianceStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="COMPLIANT"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/badge_safe" />
+
+                            <TextView
+                                android:id="@+id/tvCavitationRisk"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Zero cavitation risk"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Technical Guidance Callout -->
+                    <TextView
+                        android:id="@+id/tvVelocityGuidance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Velocity is within the SAE recommended 10–15 ft/s window for working pressure lines. Pressure drop and heat generation are minimized."
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:lineSpacingExtra="2dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

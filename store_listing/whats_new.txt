@@ -1,0 +1,2 @@
+Release v1.0.0 - HydraFlow
+Initial release of HydraFlow offline fluid power & cylinder calculator
