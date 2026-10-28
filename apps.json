@@ -11,7 +11,8 @@
     "landing_page": "https://apps.kimrosil.com/return-guard-receipt-countdown/",
     "privacy_policy": "https://apps.kimrosil.com/return-guard-receipt-countdown/privacy.html",
     "icon": "assets/icons/return-guard-receipt-countdown.svg",
-    "updated_at": "2026-10-28T00:23:09.417213+00:00"
+    "updated_at": "2026-10-28T00:23:09.417213+00:00",
+    "sha256": "ec0ac6658adae34c61bcd92bad712f2997141d8bae3b9d0d9972e797f90b048f"
   },
   {
     "slug": "size-vault-family-clothing",
@@ -25,7 +26,8 @@
     "landing_page": "https://apps.kimrosil.com/size-vault-family-clothing/",
     "privacy_policy": "https://apps.kimrosil.com/size-vault-family-clothing/privacy.html",
     "icon": "assets/icons/size-vault-family-clothing.svg",
-    "updated_at": "2026-10-28T00:32:45.394738+00:00"
+    "updated_at": "2026-10-28T00:32:45.394738+00:00",
+    "sha256": "cfd284bc8b6efde32f3fa47000c3f898b794181daaea98164b273708bb6c34f5"
   },
   {
     "slug": "who-has-my-tool-lending",
@@ -39,7 +41,8 @@
     "landing_page": "https://apps.kimrosil.com/who-has-my-tool-lending/",
     "privacy_policy": "https://apps.kimrosil.com/who-has-my-tool-lending/privacy.html",
     "icon": "assets/icons/who-has-my-tool-lending.svg",
-    "updated_at": "2026-10-28T01:00:56.746726+00:00"
+    "updated_at": "2026-10-28T01:00:56.746726+00:00",
+    "sha256": "fd3f02a5a9c7714086be966a7f2c09e11b1ff44b8fc76fcf351befdf3637762c"
   },
   {
     "slug": "workout-program-tracker",
@@ -52,7 +55,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-workout-program-tracker/workout-program-tracker.apk",
     "landing_page": "https://apps.kimrosil.com/workout-program-tracker/",
     "privacy_policy": "https://apps.kimrosil.com/workout-program-tracker/privacy.html",
-    "icon": "assets/icons/workout-program-tracker.svg"
+    "icon": "assets/icons/workout-program-tracker.svg",
+    "sha256": "125f78ddca10a2c2e2eaf5bf386ddb2ed4d6ca9c2406b38d5390fa425215163d"
   },
   {
     "slug": "devsys-monitor",
@@ -65,7 +69,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-devsys-monitor/devsys-monitor.apk",
     "landing_page": "https://apps.kimrosil.com/devsys-monitor/",
     "privacy_policy": "https://apps.kimrosil.com/devsys-monitor/privacy.html",
-    "icon": "assets/icons/devsys-monitor.svg"
+    "icon": "assets/icons/devsys-monitor.svg",
+    "sha256": "34161aa8d2ff4a0071491e8dc99513bc37494c4b81b067f398ba6720102b6807"
   },
   {
     "slug": "ph-vat-calculator",
@@ -79,7 +84,8 @@
     "landing_page": "https://apps.kimrosil.com/ph-vat-calculator/",
     "privacy_policy": "https://apps.kimrosil.com/ph-vat-calculator/privacy.html",
     "icon": "assets/icons/ph-vat-calculator.svg",
-    "updated_at": "2026-10-11T10:26:05.161009+00:00"
+    "updated_at": "2026-10-11T10:26:05.161009+00:00",
+    "sha256": "1a777bb4dd63f8e689a5ebdc589ca87e229cc13adfb7db1171d1b5a33fdd7eb6"
   },
   {
     "slug": "screenstream-rtsp",
@@ -92,7 +98,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-screenstream-rtsp/screenstream-rtsp.apk",
     "landing_page": "https://apps.kimrosil.com/screenstream-rtsp/",
     "privacy_policy": "https://apps.kimrosil.com/screenstream-rtsp/privacy.html",
-    "icon": "assets/icons/screenstream-rtsp.svg"
+    "icon": "assets/icons/screenstream-rtsp.svg",
+    "sha256": "285bfac4dcd01b828fabb497d2a0959c422f4dc1050500e42ac95367bdf565fa"
   },
   {
     "slug": "gemini-power-bridge",
@@ -105,7 +112,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-gemini-power-bridge/gemini-power-bridge.apk",
     "landing_page": "https://apps.kimrosil.com/gemini-power-bridge/",
     "privacy_policy": "https://apps.kimrosil.com/gemini-power-bridge/privacy.html",
-    "icon": "assets/icons/gemini-power-bridge.svg"
+    "icon": "assets/icons/gemini-power-bridge.svg",
+    "sha256": "4f14a0b4b5f673cb6cdadca93a5c76022ae306c10430085a60c6d0015d8dbe96"
   },
   {
     "slug": "clip-scrub-sanitize-share",
@@ -118,7 +126,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-clip-scrub-sanitize-share/clip-scrub-sanitize-share.apk",
     "landing_page": "https://apps.kimrosil.com/clip-scrub-sanitize-share/",
     "privacy_policy": "https://apps.kimrosil.com/clip-scrub-sanitize-share/privacy.html",
-    "icon": "assets/icons/clip-scrub-sanitize-share.svg"
+    "icon": "assets/icons/clip-scrub-sanitize-share.svg",
+    "sha256": "4dfbd47237d3df720ffb4e8e89801fa6eb49f0a54bd6f2203678738a18d69e66"
   },
   {
     "slug": "snip-shelf-receipt-ocr",
@@ -132,7 +141,8 @@
     "landing_page": "https://apps.kimrosil.com/snip-shelf-receipt-ocr/",
     "privacy_policy": "https://apps.kimrosil.com/snip-shelf-receipt-ocr/privacy.html",
     "icon": "assets/icons/snip-shelf-receipt-ocr.svg",
-    "updated_at": "2026-10-27T23:56:24.812536+00:00"
+    "updated_at": "2026-10-27T23:56:24.812536+00:00",
+    "sha256": "163aa30bed0374e7310f9e058c5306fbac4c47022a5a101fd95ee5af14212207"
   },
   {
     "slug": "offline-audio-drop-transcribe",
@@ -145,7 +155,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-offline-audio-drop-transcribe/offline-audio-drop-transcribe.apk",
     "landing_page": "https://apps.kimrosil.com/offline-audio-drop-transcribe/",
     "privacy_policy": "https://apps.kimrosil.com/offline-audio-drop-transcribe/privacy.html",
-    "icon": "assets/icons/offline-audio-drop-transcribe.svg"
+    "icon": "assets/icons/offline-audio-drop-transcribe.svg",
+    "sha256": "5e66d8036207c881d330f741bb119607f975d37866614405752648eb75b03e35"
   },
   {
     "slug": "offline-fuel-log-tracker",
@@ -158,7 +169,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-offline-fuel-log-tracker/offline-fuel-log-tracker.apk",
     "landing_page": "https://apps.kimrosil.com/offline-fuel-log-tracker/",
     "privacy_policy": "https://apps.kimrosil.com/offline-fuel-log-tracker/privacy.html",
-    "icon": "assets/icons/offline-fuel-log-tracker.svg"
+    "icon": "assets/icons/offline-fuel-log-tracker.svg",
+    "sha256": "018118b8490902d8e6a31dfde847a99cfdec3bec46a56f0a0677885816535259"
   },
   {
     "slug": "offline-prescription-pill-refill-sentinel",
@@ -171,7 +183,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-offline-prescription-pill-refill-sentinel/offline-prescription-pill-refill-sentinel.apk",
     "landing_page": "https://apps.kimrosil.com/offline-prescription-pill-refill-sentinel/",
     "privacy_policy": "https://apps.kimrosil.com/offline-prescription-pill-refill-sentinel/privacy.html",
-    "icon": "assets/icons/offline-prescription-pill-refill-sentinel.svg"
+    "icon": "assets/icons/offline-prescription-pill-refill-sentinel.svg",
+    "sha256": "d9b1b5dad3ab589b72f402e135a4947ad7a266151e884d992bf40f55951b37d1"
   },
   {
     "slug": "tap-meter-parking-sentinel",
@@ -184,7 +197,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-tap-meter-parking-sentinel/tap-meter-parking-sentinel.apk",
     "landing_page": "https://apps.kimrosil.com/tap-meter-parking-sentinel/",
     "privacy_policy": "https://apps.kimrosil.com/tap-meter-parking-sentinel/privacy.html",
-    "icon": "assets/icons/tap-meter-parking-sentinel.svg"
+    "icon": "assets/icons/tap-meter-parking-sentinel.svg",
+    "sha256": "547236bc309bc99494d5d0d98edfb4064b64135a2178a2bc99b5456edd8f85fd"
   },
   {
     "slug": "stealth-drop-secret-pad",
@@ -197,7 +211,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-stealth-drop-secret-pad/stealth-drop-secret-pad.apk",
     "landing_page": "https://apps.kimrosil.com/stealth-drop-secret-pad/",
     "privacy_policy": "https://apps.kimrosil.com/stealth-drop-secret-pad/privacy.html",
-    "icon": "assets/icons/stealth-drop-secret-pad.svg"
+    "icon": "assets/icons/stealth-drop-secret-pad.svg",
+    "sha256": "74fd4d0018203ff4613c48fd801659660bbe0b32705e485725264101411e874b"
   },
   {
     "slug": "kim-live-studio",
@@ -211,7 +226,8 @@
     "landing_page": "https://apps.kimrosil.com/kim-live-studio/",
     "privacy_policy": "https://apps.kimrosil.com/kim-live-studio/privacy.html",
     "icon": "assets/icons/kr-live-studio.svg",
-    "updated_at": "2026-10-25T15:53:03.947196+00:00"
+    "updated_at": "2026-10-25T15:53:03.947196+00:00",
+    "sha256": "e6f8148b99560f4a729c9899dfc178a8bc407a33e0f977c731c1d81dab2cdcce"
   },
   {
     "slug": "park-pin-offline-spot-finder",
@@ -224,7 +240,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-park-pin-offline-spot-finder/park-pin-offline-spot-finder.apk",
     "landing_page": "https://apps.kimrosil.com/park-pin-offline-spot-finder/",
     "privacy_policy": "https://apps.kimrosil.com/park-pin-offline-spot-finder/privacy.html",
-    "icon": "assets/icons/park-pin-offline-spot-finder.svg"
+    "icon": "assets/icons/park-pin-offline-spot-finder.svg",
+    "sha256": "1b69acae705276307bc8617e05fe40fb30e7bffaa535b639798508eb3e444c3e"
   },
   {
     "slug": "frost-thaw-prep-timer",
@@ -237,7 +254,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-frost-thaw-prep-timer/frost-thaw-prep-timer.apk",
     "landing_page": "https://apps.kimrosil.com/frost-thaw-prep-timer/",
     "privacy_policy": "https://apps.kimrosil.com/frost-thaw-prep-timer/privacy.html",
-    "icon": "assets/icons/frost-thaw-prep-timer.svg"
+    "icon": "assets/icons/frost-thaw-prep-timer.svg",
+    "sha256": "e2231e3f369190ab0eb7360b0609f0e26ca0fa42698d4fd8f0a9cc5ee8ef9d59"
   },
   {
     "slug": "steep-brew-tea-timer",
@@ -250,7 +268,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-steep-brew-tea-timer/steep-brew-tea-timer.apk",
     "landing_page": "https://apps.kimrosil.com/steep-brew-tea-timer/",
     "privacy_policy": "https://apps.kimrosil.com/steep-brew-tea-timer/privacy.html",
-    "icon": "assets/icons/steep-brew-tea-timer.svg"
+    "icon": "assets/icons/steep-brew-tea-timer.svg",
+    "sha256": "5feccafacdce483201e0c279f7817da2928f6d04f9cec0ddb8d452630c351dff"
   },
   {
     "slug": "laundry-cycle-sentinel",
@@ -263,7 +282,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-laundry-cycle-sentinel/laundry-cycle-sentinel.apk",
     "landing_page": "https://apps.kimrosil.com/laundry-cycle-sentinel/",
     "privacy_policy": "https://apps.kimrosil.com/laundry-cycle-sentinel/privacy.html",
-    "icon": "assets/icons/laundry-cycle-sentinel.svg"
+    "icon": "assets/icons/laundry-cycle-sentinel.svg",
+    "sha256": "97c4fd67bf87f4b5b722e1e7a533102a72dd733d36360008f2311471aab05d90"
   },
   {
     "slug": "aurafocus-minimalist-pomodoro-ambient-sound",
@@ -276,7 +296,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-aurafocus-minimalist-pomodoro-ambient-sound/aurafocus-minimalist-pomodoro-ambient-sound.apk",
     "landing_page": "https://apps.kimrosil.com/aurafocus-minimalist-pomodoro-ambient-sound/",
     "privacy_policy": "https://apps.kimrosil.com/aurafocus-minimalist-pomodoro-ambient-sound/privacy.html",
-    "icon": "assets/icons/aurafocus-minimalist-pomodoro-ambient-sound.svg"
+    "icon": "assets/icons/aurafocus-minimalist-pomodoro-ambient-sound.svg",
+    "sha256": "8a823170fbb60f6552d2daf4785b8efa8fa9c2bdb555b0f821a21358d7082558"
   },
   {
     "slug": "steep-chill-ice-bath-timer",
@@ -289,7 +310,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-steep-chill-ice-bath-timer/steep-chill-ice-bath-timer.apk",
     "landing_page": "https://apps.kimrosil.com/steep-chill-ice-bath-timer/",
     "privacy_policy": "https://apps.kimrosil.com/steep-chill-ice-bath-timer/privacy.html",
-    "icon": "assets/icons/steep-chill-ice-bath-timer.svg"
+    "icon": "assets/icons/steep-chill-ice-bath-timer.svg",
+    "sha256": "cce81ee771f397264f54797d4c835d0804d8032e4f3df9c3b9c320f2f59f45f0"
   },
   {
     "slug": "snooze-guard-microsleep-commute",
@@ -302,7 +324,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-snooze-guard-microsleep-commute/snooze-guard-microsleep-commute.apk",
     "landing_page": "https://apps.kimrosil.com/snooze-guard-microsleep-commute/",
     "privacy_policy": "https://apps.kimrosil.com/snooze-guard-microsleep-commute/privacy.html",
-    "icon": "assets/icons/snooze-guard-microsleep-commute.svg"
+    "icon": "assets/icons/snooze-guard-microsleep-commute.svg",
+    "sha256": "43f251597a65d059c5322e0537afe3a2e4b16922eb99cc7f04e3a9b1389d9ba8"
   },
   {
     "slug": "fast-track-intermittent-fasting-sentinel",
@@ -315,7 +338,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-fast-track-intermittent-fasting-sentinel/fast-track-intermittent-fasting-sentinel.apk",
     "landing_page": "https://apps.kimrosil.com/fast-track-intermittent-fasting-sentinel/",
     "privacy_policy": "https://apps.kimrosil.com/fast-track-intermittent-fasting-sentinel/privacy.html",
-    "icon": "assets/icons/fast-track-intermittent-fasting-sentinel.svg"
+    "icon": "assets/icons/fast-track-intermittent-fasting-sentinel.svg",
+    "sha256": "3e31be06609b6ec456f92fabe9ba8e83b6a15a9fc1aff29599c2b29e2a7b3c27"
   },
   {
     "slug": "pan-flip-sear-timer",
@@ -328,7 +352,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-pan-flip-sear-timer/pan-flip-sear-timer.apk",
     "landing_page": "https://apps.kimrosil.com/pan-flip-sear-timer/",
     "privacy_policy": "https://apps.kimrosil.com/pan-flip-sear-timer/privacy.html",
-    "icon": "assets/icons/pan-flip-sear-timer.svg"
+    "icon": "assets/icons/pan-flip-sear-timer.svg",
+    "sha256": "a9a1295d94749fc7087c94515347d9b13cb26eaba92022832bedbd26e56ff0e1"
   },
   {
     "slug": "sourdough-rise-ferment-sentinel",
@@ -342,7 +367,8 @@
     "landing_page": "https://apps.kimrosil.com/sourdough-rise-ferment-sentinel/",
     "privacy_policy": "https://apps.kimrosil.com/sourdough-rise-ferment-sentinel/privacy.html",
     "icon": "assets/icons/sourdough-rise-ferment-sentinel.svg",
-    "updated_at": "2026-10-28T00:06:35.741021+00:00"
+    "updated_at": "2026-10-28T00:06:35.741021+00:00",
+    "sha256": "e2ce13058e5797186c9e03703d3f82b594379fab011727ad65b5bc4d3b5fbbc0"
   },
   {
     "slug": "defrost-safe-meat-prep-sentinel",
@@ -355,7 +381,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-defrost-safe-meat-prep-sentinel/defrost-safe-meat-prep-sentinel.apk",
     "landing_page": "https://apps.kimrosil.com/defrost-safe-meat-prep-sentinel/",
     "privacy_policy": "https://apps.kimrosil.com/defrost-safe-meat-prep-sentinel/privacy.html",
-    "icon": "assets/icons/defrost-safe-meat-prep-sentinel.svg"
+    "icon": "assets/icons/defrost-safe-meat-prep-sentinel.svg",
+    "sha256": "49faaa52c82c679a9b323230e1e0b8bbe894a2788d2a1e4cc86bb805b8bb160d"
   },
   {
     "slug": "roast-rest-meat-thermo-sentinel",
@@ -368,7 +395,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-roast-rest-meat-thermo-sentinel/roast-rest-meat-thermo-sentinel.apk",
     "landing_page": "https://apps.kimrosil.com/roast-rest-meat-thermo-sentinel/",
     "privacy_policy": "https://apps.kimrosil.com/roast-rest-meat-thermo-sentinel/privacy.html",
-    "icon": "assets/icons/roast-rest-meat-thermo-sentinel.svg"
+    "icon": "assets/icons/roast-rest-meat-thermo-sentinel.svg",
+    "sha256": "078e8c39b6d113ce9c759497b9476114de9f4ccad70ffdc355a063f7085bf959"
   },
   {
     "slug": "glue-set-clamp-sentinel",
@@ -381,7 +409,8 @@
     "apk_url": "https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-glue-set-clamp-sentinel/glue-set-clamp-sentinel.apk",
     "landing_page": "https://apps.kimrosil.com/glue-set-clamp-sentinel/",
     "privacy_policy": "https://apps.kimrosil.com/glue-set-clamp-sentinel/privacy.html",
-    "icon": "assets/icons/glue-set-clamp-sentinel.svg"
+    "icon": "assets/icons/glue-set-clamp-sentinel.svg",
+    "sha256": "c1db506eec21b4ae114e7bb69f3790f234d9597e4ac24c49cf6916a1d48aba4d"
   },
   {
     "slug": "epoxy-cure-pot-life-sentinel",
@@ -402,7 +431,8 @@
     "icon": "assets/icons/epoxy-cure-pot-life-sentinel.svg",
     "privacy_policy": "https://apps.kimrosil.com/epoxy-cure-pot-life-sentinel/privacy.html",
     "branch": "app/epoxy-cure-pot-life-sentinel",
-    "tag": "v1.0.0-epoxy-cure-pot-life-sentinel"
+    "tag": "v1.0.0-epoxy-cure-pot-life-sentinel",
+    "sha256": "9be3405084ba38f390b44d3617cbff143e45e8cd0a7c9d5d3da780e483bf859b"
   },
   {
     "slug": "caulk-bead-skin-sentinel",
@@ -423,13 +453,14 @@
     "icon": "assets/icons/caulk-bead-skin-sentinel.svg",
     "privacy_policy": "https://apps.kimrosil.com/caulk-bead-skin-sentinel/privacy.html",
     "branch": "app/caulk-bead-skin-sentinel",
-    "tag": "v1.0.0-caulk-bead-skin-sentinel"
+    "tag": "v1.0.0-caulk-bead-skin-sentinel",
+    "sha256": "18fc87843059db6f3dbc3d44839d44ae6277f407ed4a3b0ac32ce737d25df8cb"
   },
   {
     "slug": "sprout-knight-rpg",
     "title": "SproutKnight",
     "category": "Games / RPG / Adventure",
-    "tagline": "Embark on a charming 2D action fighting RPG quest\u2014upgrade acorn blades, walnut armor, and dewdrop magic at the cozy forge.",
+    "tagline": "Embark on a charming 2D action fighting RPG quest—upgrade acorn blades, walnut armor, and dewdrop magic at the cozy forge.",
     "version": "v1.5.0",
     "status": "BUILT",
     "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.5.0-sprout-knight-rpg/sprout-knight-rpg.apk",
@@ -447,7 +478,8 @@
     "icon": "assets/icons/sprout-knight-rpg.svg",
     "privacy_policy": "https://apps.kimrosil.com/sprout-knight-rpg/privacy.html",
     "branch": "app/sprout-knight-rpg",
-    "tag": "v1.5.0-sprout-knight-rpg"
+    "tag": "v1.5.0-sprout-knight-rpg",
+    "sha256": "7f53e9910f3a809166856fde912608aefc4dd6ebe2ab989cd01a7e9755c30e7f"
   },
   {
     "slug": "grainline",
@@ -470,7 +502,8 @@
     "landing_page": "https://apps.kimrosil.com/grainline/",
     "icon": "assets/icons/grainline.svg",
     "privacy_policy": "https://apps.kimrosil.com/grainline/privacy.html",
-    "branch": "app/grainline"
+    "branch": "app/grainline",
+    "sha256": "53e0a6ed83f3012852c38692f91b05adb47bcf9b1a0cfa8605a594548dcc4960"
   },
   {
     "slug": "volt-drop",
@@ -493,7 +526,8 @@
     "landing_page": "https://apps.kimrosil.com/volt-drop/",
     "icon": "assets/icons/volt-drop.svg",
     "privacy_policy": "https://apps.kimrosil.com/volt-drop/privacy.html",
-    "branch": "app/volt-drop"
+    "branch": "app/volt-drop",
+    "sha256": "621287f38c98d30af1c29c9ed384063b0e68f7a54a8c64492f25a1c70089ebdf"
   },
   {
     "slug": "cadence-habit-ledger",
@@ -507,7 +541,8 @@
     "landing_page": "https://apps.kimrosil.com/cadence-habit-ledger/",
     "privacy_policy": "https://apps.kimrosil.com/cadence-habit-ledger/privacy.html",
     "icon": "assets/icons/cadence-habit-ledger.svg",
-    "updated_at": "2026-10-11T04:27:09.005108+00:00"
+    "updated_at": "2026-10-11T04:27:09.005108+00:00",
+    "sha256": "8c89be8587d014bba5be0643a541bc375ec22449fff7d45e62223290f75d0eb7"
   },
   {
     "slug": "grain-run",
@@ -521,7 +556,8 @@
     "landing_page": "https://apps.kimrosil.com/grain-run/",
     "privacy_policy": "https://apps.kimrosil.com/grain-run/privacy.html",
     "icon": "assets/icons/grain-run.svg",
-    "updated_at": "2026-10-11T12:04:23.418787+00:00"
+    "updated_at": "2026-10-11T12:04:23.418787+00:00",
+    "sha256": "0954f1314c312c5830fa9cfb62e1b8ad5e229f0adaabdf086b57f982b166fa14"
   },
   {
     "slug": "muck-cure",
@@ -535,7 +571,8 @@
     "landing_page": "https://apps.kimrosil.com/muck-cure/",
     "privacy_policy": "https://apps.kimrosil.com/muck-cure/privacy.html",
     "icon": "assets/icons/muck-cure.svg",
-    "updated_at": "2026-10-11T04:27:09.005108+00:00"
+    "updated_at": "2026-10-11T04:27:09.005108+00:00",
+    "sha256": "7d52d147d798e748e2d9fa9994c4c9a823fa65eee72877cda9417813cf1f6988"
   },
   {
     "slug": "pebble-drift",
@@ -549,7 +586,8 @@
     "landing_page": "https://apps.kimrosil.com/pebble-drift/",
     "privacy_policy": "https://apps.kimrosil.com/pebble-drift/privacy.html",
     "icon": "assets/icons/pebble-drift.svg",
-    "updated_at": "2026-10-11T12:17:20.026848+00:00"
+    "updated_at": "2026-10-11T12:17:20.026848+00:00",
+    "sha256": "c262ab82300b028d1179fec3082fcb122d9fe657b79fd01abb2f7afa4a89cd74"
   },
   {
     "slug": "run-sheet-workflow",
@@ -563,7 +601,8 @@
     "landing_page": "https://apps.kimrosil.com/run-sheet-workflow/",
     "privacy_policy": "https://apps.kimrosil.com/run-sheet-workflow/privacy.html",
     "icon": "assets/icons/run-sheet-workflow.svg",
-    "updated_at": "2026-10-11T04:27:09.005108+00:00"
+    "updated_at": "2026-10-11T04:27:09.005108+00:00",
+    "sha256": "1a3016f58f6c0dad053288c0051bb9788950e54d1d39eefe903d6ebea78518ba"
   },
   {
     "slug": "skim-skim",
@@ -577,7 +616,8 @@
     "landing_page": "https://apps.kimrosil.com/skim-skim/",
     "privacy_policy": "https://apps.kimrosil.com/skim-skim/privacy.html",
     "icon": "assets/icons/skim-skim.svg",
-    "updated_at": "2026-10-11T12:19:09.936250+00:00"
+    "updated_at": "2026-10-11T12:19:09.936250+00:00",
+    "sha256": "e21f4a7a9e3b3a98a6c4e4e7d3b3738435783eb8617316ccc6530ac0b1c9cfc6"
   },
   {
     "slug": "weld-cool",
@@ -591,7 +631,8 @@
     "landing_page": "https://apps.kimrosil.com/weld-cool/",
     "privacy_policy": "https://apps.kimrosil.com/weld-cool/privacy.html",
     "icon": "assets/icons/weld-cool.svg",
-    "updated_at": "2026-10-11T04:27:09.005108+00:00"
+    "updated_at": "2026-10-11T04:27:09.005108+00:00",
+    "sha256": "4bc11bcc357574076bf1272bce24903825444cc8e19cee4afff6ff687515b2e7"
   },
   {
     "slug": "turf-notch",
@@ -605,7 +646,8 @@
     "landing_page": "https://apps.kimrosil.com/turf-notch/",
     "privacy_policy": "https://apps.kimrosil.com/turf-notch/privacy.html",
     "icon": "assets/icons/turf-notch.svg",
-    "updated_at": "2026-10-11T17:45:05.566439+00:00"
+    "updated_at": "2026-10-11T17:45:05.566439+00:00",
+    "sha256": "1e19ea73210b024167f05924d599daa4dbe5cc41e4af0946ef6d37f515ddec23"
   },
   {
     "slug": "pitch-grid",
@@ -619,7 +661,8 @@
     "landing_page": "https://apps.kimrosil.com/pitch-grid/",
     "privacy_policy": "https://apps.kimrosil.com/pitch-grid/privacy.html",
     "icon": "assets/icons/pitch-grid.svg",
-    "updated_at": "2026-10-12T01:34:21.974290+00:00"
+    "updated_at": "2026-10-12T01:34:21.974290+00:00",
+    "sha256": "19bf2904392e6925fa0421c90bb08470ab56feb08ee2b223d7fa27eb1e4baa09"
   },
   {
     "slug": "flow-step",
@@ -633,7 +676,8 @@
     "landing_page": "https://apps.kimrosil.com/flow-step/",
     "privacy_policy": "https://apps.kimrosil.com/flow-step/privacy.html",
     "icon": "assets/icons/flow-step.svg",
-    "updated_at": "2026-10-12T11:03:32.064081+00:00"
+    "updated_at": "2026-10-12T11:03:32.064081+00:00",
+    "sha256": "83a9e9fe94f25d4e8cd0a970579444a2223ea865aad6622538a4cb80b2e7301c"
   },
   {
     "slug": "flangematch",
@@ -647,7 +691,8 @@
     "landing_page": "https://apps.kimrosil.com/flangematch/",
     "privacy_policy": "https://apps.kimrosil.com/flangematch/privacy.html",
     "icon": "assets/icons/flangematch.svg",
-    "updated_at": "2026-10-12T18:49:34.520560+00:00"
+    "updated_at": "2026-10-12T18:49:34.520560+00:00",
+    "sha256": "21fb1e485e533038b017a1e11a3d15882e7f5e5ce9880f9f16dc2ff1bffce83b"
   },
   {
     "slug": "camber-shim",
@@ -661,7 +706,8 @@
     "landing_page": "https://apps.kimrosil.com/camber-shim/",
     "privacy_policy": "https://apps.kimrosil.com/camber-shim/privacy.html",
     "icon": "assets/icons/camber-shim.svg",
-    "updated_at": "2026-10-12T15:46:57.924173+00:00"
+    "updated_at": "2026-10-12T15:46:57.924173+00:00",
+    "sha256": "032974dc2cd8d8f5ffe0f7c00938c7433347782e4728a6b3e589970d492613fb"
   },
   {
     "slug": "tap-drill",
@@ -675,7 +721,8 @@
     "landing_page": "https://apps.kimrosil.com/tap-drill/",
     "privacy_policy": "https://apps.kimrosil.com/tap-drill/privacy.html",
     "icon": "assets/icons/tap-drill.svg",
-    "updated_at": "2026-10-12T18:05:21.469081+00:00"
+    "updated_at": "2026-10-12T18:05:21.469081+00:00",
+    "sha256": "3607f5d55671b6e2b8c77af44e367e487719fefc06a4bbe6e65630d7faade077"
   },
   {
     "slug": "solder-wick",
@@ -689,7 +736,8 @@
     "landing_page": "https://apps.kimrosil.com/solder-wick/",
     "privacy_policy": "https://apps.kimrosil.com/solder-wick/privacy.html",
     "icon": "assets/icons/solder-wick.svg",
-    "updated_at": "2026-10-12T19:29:26.590184+00:00"
+    "updated_at": "2026-10-12T19:29:26.590184+00:00",
+    "sha256": "4fc5d5f5d4f6cc6d2cd74d0e2bbaaaa00781a556a52bc3bac9f6f5c12f832e4c"
   },
   {
     "slug": "belt-deflect",
@@ -703,7 +751,8 @@
     "landing_page": "https://apps.kimrosil.com/belt-deflect/",
     "privacy_policy": "https://apps.kimrosil.com/belt-deflect/privacy.html",
     "icon": "assets/icons/belt-deflect.svg",
-    "updated_at": "2026-10-12T19:54:09.060522+00:00"
+    "updated_at": "2026-10-12T19:54:09.060522+00:00",
+    "sha256": "c28acd4f16acc910d26ec92a1dace46209f8df8988696def027d9fcf0709d40e"
   },
   {
     "slug": "comb-gauge",
@@ -717,7 +766,8 @@
     "landing_page": "https://apps.kimrosil.com/comb-gauge/",
     "privacy_policy": "https://apps.kimrosil.com/comb-gauge/privacy.html",
     "icon": "assets/icons/comb-gauge.svg",
-    "updated_at": "2026-10-15T13:44:29.507268+00:00"
+    "updated_at": "2026-10-15T13:44:29.507268+00:00",
+    "sha256": "e7001f9fd5bb5115f113faf8a79fd5f9fafd8e878559502c4305f8787786529c"
   },
   {
     "slug": "shim-pack",
@@ -731,7 +781,8 @@
     "landing_page": "https://apps.kimrosil.com/shim-pack/",
     "privacy_policy": "https://apps.kimrosil.com/shim-pack/privacy.html",
     "icon": "assets/icons/shim-pack.svg",
-    "updated_at": "2026-10-15T18:34:18.464380+00:00"
+    "updated_at": "2026-10-15T18:34:18.464380+00:00",
+    "sha256": "0d63374f8be32ac398e923cb450d971e3f9ef4b2cb888d2c728917adc9781131"
   },
   {
     "slug": "kerf-notch",
@@ -745,7 +796,8 @@
     "landing_page": "https://apps.kimrosil.com/kerf-notch/",
     "privacy_policy": "https://apps.kimrosil.com/kerf-notch/privacy.html",
     "icon": "assets/icons/kerf-notch.svg",
-    "updated_at": "2026-10-16T16:22:59.247505+00:00"
+    "updated_at": "2026-10-16T16:22:59.247505+00:00",
+    "sha256": "61d1c8bd1915711d6948c4c0c4b1bc293b37fadbf37e87709920f6ae51cce50e"
   },
   {
     "slug": "fast-arc",
@@ -759,7 +811,8 @@
     "landing_page": "https://apps.kimrosil.com/fast-arc/",
     "privacy_policy": "https://apps.kimrosil.com/fast-arc/privacy.html",
     "icon": "assets/icons/fast-arc.svg",
-    "updated_at": "2026-10-16T05:03:50.045190+00:00"
+    "updated_at": "2026-10-16T05:03:50.045190+00:00",
+    "sha256": "b1d9699867ecd83749d7c02e14fe55e429facfcf518bf89217283b12ef881903"
   },
   {
     "slug": "claim-slip",
@@ -773,7 +826,8 @@
     "landing_page": "https://apps.kimrosil.com/claim-slip/",
     "privacy_policy": "https://apps.kimrosil.com/claim-slip/privacy.html",
     "icon": "assets/icons/claim-slip.svg",
-    "updated_at": "2026-10-16T06:10:29.173216+00:00"
+    "updated_at": "2026-10-16T06:10:29.173216+00:00",
+    "sha256": "2113fea7d7cede8fc8fa74dc2d3682d90fe7b7875fc88512fa6481a20d4ecfd7"
   },
   {
     "slug": "flare-gage",
@@ -787,7 +841,8 @@
     "landing_page": "https://apps.kimrosil.com/flare-gage/",
     "privacy_policy": "https://apps.kimrosil.com/flare-gage/privacy.html",
     "icon": "assets/icons/flare-gage.svg",
-    "updated_at": "2026-10-16T06:57:55.235335+00:00"
+    "updated_at": "2026-10-16T06:57:55.235335+00:00",
+    "sha256": "6cd23ec61e2b479ad4ffba5a09db7e66a8861f5b4b8a13bf755ce8eff6cf908e"
   },
   {
     "slug": "lash-gage",
@@ -801,7 +856,8 @@
     "landing_page": "https://apps.kimrosil.com/lash-gage/",
     "privacy_policy": "https://apps.kimrosil.com/lash-gage/privacy.html",
     "icon": "assets/icons/lash-gage.svg",
-    "updated_at": "2026-10-16T10:21:05.761559+00:00"
+    "updated_at": "2026-10-16T10:21:05.761559+00:00",
+    "sha256": "5e3cb1389f9e8ac3dee87d24e3a7eb8fc6d35b8048a5eb319376f7e868f0541f"
   },
   {
     "slug": "kr-habit",
@@ -815,7 +871,8 @@
     "landing_page": "https://apps.kimrosil.com/kr-habit/",
     "privacy_policy": "https://apps.kimrosil.com/kr-habit/privacy.html",
     "icon": "assets/icons/kr-habit.svg",
-    "updated_at": "2026-10-22T01:02:45.819301+00:00"
+    "updated_at": "2026-10-22T01:02:45.819301+00:00",
+    "sha256": "c6005e24df3ec768ea79e94898d8c640330867c3dbfe81d6754f995e57cd5418"
   },
   {
     "slug": "plumb-bob",
@@ -829,7 +886,8 @@
     "landing_page": "https://apps.kimrosil.com/plumb-bob/",
     "privacy_policy": "https://apps.kimrosil.com/plumb-bob/privacy.html",
     "icon": "assets/icons/plumb-bob.svg",
-    "updated_at": "2026-10-27T10:01:51.473921+00:00"
+    "updated_at": "2026-10-27T10:01:51.473921+00:00",
+    "sha256": "dd059cf86d0f14e00711930286099ddeeb955110ed2f820d1b5b924378c76dbb"
   },
   {
     "slug": "spur-mesh",
@@ -843,7 +901,8 @@
     "landing_page": "https://apps.kimrosil.com/spur-mesh/",
     "privacy_policy": "https://apps.kimrosil.com/spur-mesh/privacy.html",
     "icon": "assets/icons/spur-mesh.svg",
-    "updated_at": "2026-10-20T17:03:06.570297+00:00"
+    "updated_at": "2026-10-20T17:03:06.570297+00:00",
+    "sha256": "85a59a16523fbbb604187c60212735e3d68fc8bdcb397a2a489352c5dbc14a64"
   },
   {
     "slug": "swage-die",
@@ -857,7 +916,8 @@
     "landing_page": "https://apps.kimrosil.com/swage-die/",
     "privacy_policy": "https://apps.kimrosil.com/swage-die/privacy.html",
     "icon": "assets/icons/swage-die.svg",
-    "updated_at": "2026-10-21T00:41:44.294769+00:00"
+    "updated_at": "2026-10-21T00:41:44.294769+00:00",
+    "sha256": "18f715ba2508aabade9964e73b596f69868bacf4a96f28bd4a5d2083983e9296"
   },
   {
     "slug": "ppl-workout",
@@ -871,7 +931,8 @@
     "landing_page": "https://apps.kimrosil.com/ppl-workout/",
     "privacy_policy": "https://apps.kimrosil.com/ppl-workout/privacy.html",
     "icon": "assets/icons/ppl-workout.svg",
-    "updated_at": "2026-10-23T17:19:56.764391+00:00"
+    "updated_at": "2026-10-23T17:19:56.764391+00:00",
+    "sha256": "99e277114eb4546703b6b22cd8464ff904be2ffd3afe4d6fd2c4765745f5e654"
   },
   {
     "slug": "dip-link",
@@ -885,7 +946,8 @@
     "landing_page": "https://apps.kimrosil.com/dip-link/",
     "privacy_policy": "https://apps.kimrosil.com/dip-link/privacy.html",
     "icon": "assets/icons/dip-link.svg",
-    "updated_at": "2026-10-22T09:36:50.623383+00:00"
+    "updated_at": "2026-10-22T09:36:50.623383+00:00",
+    "sha256": "42ca525ff3e72b1bb108dd16019a6c39b75e8dd43a8a743ac67135674b8938de"
   },
   {
     "slug": "brix-scale",
@@ -899,7 +961,8 @@
     "landing_page": "https://apps.kimrosil.com/brix-scale/",
     "privacy_policy": "https://apps.kimrosil.com/brix-scale/privacy.html",
     "icon": "assets/icons/brix-scale.svg",
-    "updated_at": "2026-10-26T05:24:30.069667+00:00"
+    "updated_at": "2026-10-26T05:24:30.069667+00:00",
+    "sha256": "abf77168afb881bae1c805b3cc8d90368e30e876fb8c5e4ef6d58e6033136d13"
   },
   {
     "slug": "lux-scale",
@@ -913,7 +976,8 @@
     "landing_page": "https://apps.kimrosil.com/lux-scale/",
     "privacy_policy": "https://apps.kimrosil.com/lux-scale/privacy.html",
     "icon": "assets/icons/lux-scale.svg",
-    "updated_at": "2026-10-26T09:59:44.668875+00:00"
+    "updated_at": "2026-10-26T09:59:44.668875+00:00",
+    "sha256": "58410e3c73bdf6f7af757ddb594409ba486333bc0387977aed04d86ccd013f19"
   },
   {
     "slug": "tilt-level",
@@ -927,13 +991,14 @@
     "landing_page": "https://apps.kimrosil.com/tilt-level/",
     "privacy_policy": "https://apps.kimrosil.com/tilt-level/privacy.html",
     "icon": "assets/icons/tilt-level.svg",
-    "updated_at": "2026-10-26T12:22:42.807217+00:00"
+    "updated_at": "2026-10-26T12:22:42.807217+00:00",
+    "sha256": "8840c0134aa3b67cbbeba47e1cbe041e0a168171d110daa3660efecbd0f326e8"
   },
   {
     "slug": "gauss-meter",
     "title": "GaussMeter",
     "category": "UTILITIES",
-    "tagline": "3-axis magnetometer (\u00b5T / mG), EMF & ferrous wall stud locator with tare.",
+    "tagline": "3-axis magnetometer (µT / mG), EMF & ferrous wall stud locator with tare.",
     "status": "BUILT",
     "branch": "app/gauss-meter",
     "tag": "v1.0.0-gauss-meter",
@@ -941,7 +1006,8 @@
     "landing_page": "https://apps.kimrosil.com/gauss-meter/",
     "privacy_policy": "https://apps.kimrosil.com/gauss-meter/privacy.html",
     "icon": "assets/icons/gauss-meter.svg",
-    "updated_at": "2026-10-26T12:53:14.888686+00:00"
+    "updated_at": "2026-10-26T12:53:14.888686+00:00",
+    "sha256": "4a085ff43fc09e82720ac86514d6f862460fe94a580a4d88f79324af0e8ae015"
   },
   {
     "slug": "braze-ring",
@@ -955,7 +1021,8 @@
     "landing_page": "https://apps.kimrosil.com/braze-ring/",
     "privacy_policy": "https://apps.kimrosil.com/braze-ring/privacy.html",
     "icon": "assets/icons/braze-ring.svg",
-    "updated_at": "2026-10-27T16:09:58.978590+00:00"
+    "updated_at": "2026-10-27T16:09:58.978590+00:00",
+    "sha256": "baa4bb25081ec4ef0b95b7bb5b1a569dd7c13c68d548cf4851433fa058123d3e"
   },
   {
     "slug": "deci-gauge",
@@ -969,7 +1036,8 @@
     "landing_page": "https://apps.kimrosil.com/deci-gauge/",
     "privacy_policy": "https://apps.kimrosil.com/deci-gauge/privacy.html",
     "icon": "assets/icons/deci-gauge.svg",
-    "updated_at": "2026-10-27T13:10:47.116270+00:00"
+    "updated_at": "2026-10-27T13:10:47.116270+00:00",
+    "sha256": "9d9582e2d2bb16a18a53517064c03b659a7433a19152022b63d2d211ebd68ce3"
   },
   {
     "slug": "ohm-band",
@@ -983,7 +1051,8 @@
     "landing_page": "https://apps.kimrosil.com/ohm-band/",
     "privacy_policy": "https://apps.kimrosil.com/ohm-band/privacy.html",
     "icon": "assets/icons/ohm-band.svg",
-    "updated_at": "2026-10-27T13:22:23.747502+00:00"
+    "updated_at": "2026-10-27T13:22:23.747502+00:00",
+    "sha256": "95b4411ee6030f3626c2157754077e9f11c739c2e1e7e0591be8378b5f90d711"
   },
   {
     "slug": "conduit-fill",
@@ -997,7 +1066,8 @@
     "landing_page": "https://apps.kimrosil.com/conduit-fill/",
     "privacy_policy": "https://apps.kimrosil.com/conduit-fill/privacy.html",
     "icon": "assets/icons/conduit-fill.svg",
-    "updated_at": "2026-10-27T13:34:09.182891+00:00"
+    "updated_at": "2026-10-27T13:34:09.182891+00:00",
+    "sha256": "79a8cbad118037570b254c417c582486e1e729ffe6e00382011478169d534efe"
   },
   {
     "slug": "dose-cal",
@@ -1011,7 +1081,8 @@
     "landing_page": "https://apps.kimrosil.com/dose-cal/",
     "privacy_policy": "https://apps.kimrosil.com/dose-cal/privacy.html",
     "icon": "assets/icons/dose-cal.svg",
-    "updated_at": "2026-10-27T13:48:11.169916+00:00"
+    "updated_at": "2026-10-27T13:48:11.169916+00:00",
+    "sha256": "763244ce8604dea71281886d8e26b398bdb7b0c300d57eb75d7a4a35a7efc977"
   },
   {
     "slug": "taper-gauge",
@@ -1025,7 +1096,8 @@
     "landing_page": "https://apps.kimrosil.com/taper-gauge/",
     "privacy_policy": "https://apps.kimrosil.com/taper-gauge/privacy.html",
     "icon": "assets/icons/taper-gauge.svg",
-    "updated_at": "2026-10-27T14:47:14.339903+00:00"
+    "updated_at": "2026-10-27T14:47:14.339903+00:00",
+    "sha256": "201063ac292002cc27cf4a2a20cb27d693b002c565a0fdae560cb2d5e67a3d9f"
   },
   {
     "slug": "rebar-lap",
@@ -1039,7 +1111,8 @@
     "landing_page": "https://apps.kimrosil.com/rebar-lap/",
     "privacy_policy": "https://apps.kimrosil.com/rebar-lap/privacy.html",
     "icon": "assets/icons/rebar-lap.svg",
-    "updated_at": "2026-10-27T14:56:40.358324+00:00"
+    "updated_at": "2026-10-27T14:56:40.358324+00:00",
+    "sha256": "bb745b3009dcd867d3b858071721a971d3bfc2897e33335c250ab65f137ab518"
   },
   {
     "slug": "wire-amp",
@@ -1053,7 +1126,8 @@
     "landing_page": "https://apps.kimrosil.com/wire-amp/",
     "privacy_policy": "https://apps.kimrosil.com/wire-amp/privacy.html",
     "icon": "assets/icons/wire-amp.svg",
-    "updated_at": "2026-10-27T15:10:34.186558+00:00"
+    "updated_at": "2026-10-27T15:10:34.186558+00:00",
+    "sha256": "ad3acdb6d6f572643d74683a9aea715931a4760219ba2fc559747447219e1db7"
   },
   {
     "slug": "duct-flow",
@@ -1067,7 +1141,8 @@
     "landing_page": "https://apps.kimrosil.com/duct-flow/",
     "privacy_policy": "https://apps.kimrosil.com/duct-flow/privacy.html",
     "icon": "assets/icons/duct-flow.svg",
-    "updated_at": "2026-10-27T15:50:37.114544+00:00"
+    "updated_at": "2026-10-27T15:50:37.114544+00:00",
+    "sha256": "fcd1a996a21ce5bcb3e2f14026062c8e33d84c995042832275ddb106950da7e9"
   },
   {
     "slug": "weld-bead",
@@ -1081,7 +1156,8 @@
     "landing_page": "https://apps.kimrosil.com/weld-bead/",
     "privacy_policy": "https://apps.kimrosil.com/weld-bead/privacy.html",
     "icon": "assets/icons/weld-bead.svg",
-    "updated_at": "2026-10-27T18:13:33.831741+00:00"
+    "updated_at": "2026-10-27T18:13:33.831741+00:00",
+    "sha256": "cd96e6dea3b252e9f53e491687fc962a372ce395e7ef9c6d7b59c2e99353c7d0"
   },
   {
     "slug": "clamp-pitch",
@@ -1095,7 +1171,8 @@
     "landing_page": "https://apps.kimrosil.com/clamp-pitch/",
     "privacy_policy": "https://apps.kimrosil.com/clamp-pitch/privacy.html",
     "icon": "assets/icons/clamp-pitch.svg",
-    "updated_at": "2026-10-28T01:40:01.020651+00:00"
+    "updated_at": "2026-10-28T01:40:01.020651+00:00",
+    "sha256": "c9d7e2f53f687749f5bdd834aade5bcc7cc9feab20533b8c9b403416d6d9364d"
   },
   {
     "slug": "torquepitch",
@@ -1109,7 +1186,8 @@
     "landing_page": "https://apps.kimrosil.com/torquepitch/",
     "privacy_policy": "https://apps.kimrosil.com/torquepitch/privacy.html",
     "icon": "assets/icons/torquepitch.svg",
-    "updated_at": "2026-10-28T04:09:25.308724+00:00"
+    "updated_at": "2026-10-28T04:09:25.308724+00:00",
+    "sha256": "5a4b95dd4a419d0b654764497f9f5ce5f65a8701110f356bb7617f74c6413055"
   },
   {
     "slug": "hydraflow",
@@ -1123,7 +1201,8 @@
     "landing_page": "https://apps.kimrosil.com/hydraflow/",
     "privacy_policy": "https://apps.kimrosil.com/hydraflow/privacy.html",
     "icon": "assets/icons/hydraflow.svg",
-    "updated_at": "2026-10-28T10:53:50.035943+00:00"
+    "updated_at": "2026-10-28T10:53:50.035943+00:00",
+    "sha256": "df52f18fe7d11ba6bd0bdd90324d2043bd6c43a31fc467af2cf6909e90985657"
   },
   {
     "slug": "cue-scroll",
@@ -1137,6 +1216,7 @@
     "landing_page": "https://apps.kimrosil.com/cue-scroll/",
     "privacy_policy": "https://apps.kimrosil.com/cue-scroll/privacy.html",
     "icon": "assets/icons/cue-scroll.svg",
-    "updated_at": "2026-10-28T15:13:32.018203+00:00"
+    "updated_at": "2026-10-28T15:13:32.018203+00:00",
+    "sha256": "7305fa8e100f2ec825119433c813a12457a192b2c78557d092654f24099ce391"
   }
 ]

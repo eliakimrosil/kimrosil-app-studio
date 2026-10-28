@@ -1,4 +1,11 @@
 build/
 .gradle/
 *.apk
+*.aab
 *.idsig
+.env*
+*.keystore
+*.jks
+*.key
+*.pem
+google-services.json
