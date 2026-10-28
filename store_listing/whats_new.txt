@@ -1,1 +1,2 @@
-Initial release of ReturnGuard. Track store return windows with visual countdown meters, capture receipt photos, and use cashier-ready display mode for smooth returns.
+Release v1.0.1 - ReturnGuard Return Tracker
+v1.0.0: Initial release of ReturnGuard receipt countdown and deadline tracker
