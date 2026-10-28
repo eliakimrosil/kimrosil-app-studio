@@ -1,5 +1,5 @@
 # 👹 Brutal User & Adversarial ADB Audit: size-vault-family-clothing
-*Generated on 2026-10-28 08:27:06 on 127.0.0.1:5555*
+*Generated on 2026-10-28 08:29:08 on 127.0.0.1:5555*
 
 ---
 
@@ -10,8 +10,8 @@
 
 ## 📊 Live ADB Diagnostic Telemetry
 - **Target Package**: `com.kimrosil.sizevault`
-- **Cold Boot Latency**: `123 ms`
-- **Memory Footprint (PSS)**: `19 MB` (`19645 KB`)
+- **Cold Boot Latency**: `129 ms`
+- **Memory Footprint (PSS)**: `19 MB` (`19545 KB`)
 - **Interactive UI Nodes Audited**: `11`
 - **Navigation Tabs Explored**: `0`
 - **Adversarial Fuzz Tests Passed**: `18 / 18`

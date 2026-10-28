@@ -1,1 +1,2 @@
-Welcome to SizeVault version 1.0.0. Initial release featuring family profiles, comprehensive clothing and shoe size tracking, custom brand fit notes, text card sharing, and secure offline storage.
+Release v1.0.1 - SizeVault
+v1.0.0: Initial release of SizeVault family and personal clothing sizing safe
