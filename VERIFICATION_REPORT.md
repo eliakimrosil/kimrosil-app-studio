@@ -1,16 +1,16 @@
 # 🧪 Functional Logic & Verification Report: Who Has My Tool Lending
-*Executed on 2026-10-28 08:54:09 on Device: 127.0.0.1:5555*
+*Executed on 2026-10-28 09:00:36 on Device: 127.0.0.1:5555*
 
 ## 📊 Logic Stability Verdict: **PASSED** (10.0/10.0)
-- **Target Package**: `com.kimrosil.whohasmy` (PID: `6810`)
-- **Cold-Start Launch Latency**: `122 ms`
+- **Target Package**: `com.kimrosil.whohasmy` (PID: `25747`)
+- **Cold-Start Launch Latency**: `118 ms`
 - **Total Interactive Viewport Nodes**: `48`
 
 ## 🛡️ Test Suite Results
 | Test Category | Verdict | Description |
 | :--- | :--- | :--- |
 | **Input Fuzzing & Boundary Matrix** | `PASSED` | 120 edge-case strings, SQL/FTS operators & unicode injected |
-| **Theme Switcher Dynamic Recreate** | `PASSED` | Theme: Light |
+| **Theme Switcher Dynamic Recreate** | `PASSED` | Theme: Auto |
 | **Hardware Keyboard Shortcuts** | `PASSED` | All 7 hardware key shortcuts handled safely |
 | **Orientation & Configuration** | `PASSED` | Landscape (16 nodes) and portrait preserved |
 | **Domain Semantic & Calculation** | `PASSED` | Dynamic domain calculation skipped (view has no input-calculate pair) |
