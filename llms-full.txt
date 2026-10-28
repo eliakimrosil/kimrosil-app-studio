@@ -1503,7 +1503,7 @@ Data Safety & Offline Privacy Guarantee:
 - **Category**: Lifestyle & Family
 - **Tagline**: The instant pocket size guide for parents, spouses, and gift shoppers browsing sales and thrift stores.
 - **Landing Page**: https://apps.kimrosil.com/size-vault-family-clothing/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kim-android-apps/actions
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-size-vault-family-clothing/size-vault-family-clothing.apk
 - **Privacy Policy**: https://apps.kimrosil.com/size-vault-family-clothing/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
