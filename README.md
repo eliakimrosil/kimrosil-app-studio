@@ -351,9 +351,9 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Professional offline stage-gate workflow engine and sequential production runner with local SQLite telemetry.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-run-sheet-workflow/run-sheet-workflow.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/run-sheet-workflow/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/run-sheet-workflow)
 
-#### [SizeVault](https://apps.kimrosil.com/size-vault-family-clothing/) (`size-vault-family-clothing`) • `v1.0.0`
+#### [SizeVault](https://apps.kimrosil.com/size-vault-family-clothing/) (`size-vault-family-clothing`) • `v1.0.1`
 > **Utility**: The instant pocket size guide for parents, spouses, and gift shoppers browsing sales and thrift stores.
-> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/actions) • [🌐 Web Documentation](https://apps.kimrosil.com/size-vault-family-clothing/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/size-vault-family-clothing)
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-size-vault-family-clothing/size-vault-family-clothing.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/size-vault-family-clothing/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/size-vault-family-clothing)
 
 #### [SkimSkim](https://apps.kimrosil.com/skim-skim/) (`skim-skim`) • `v1.1.0`
 > **Utility**: Offline pool filter cycle countdowns, media doser, and Quick Settings backwash timer designed for wet, chlorine-slick hands.
