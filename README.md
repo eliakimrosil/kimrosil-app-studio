@@ -395,6 +395,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: 2-axis machinist clinometer, spirit bubble level, grade (%) & roof pitch meter.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-tilt-level/tilt-level.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/tilt-level/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/tilt-level)
 
+#### [TorquePitch](https://apps.kimrosil.com/torquepitch/) (`torquepitch`) • `v1.0.0`
+> **Utility**: Offline bolt torque calculator, thread pitch specs & lube friction multiplier.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-torquepitch/torquepitch.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/torquepitch/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/torquepitch)
+
 #### [VatCal PH](https://apps.kimrosil.com/ph-vat-calculator/) (`ph-vat-calculator`) • `v1.2.4`
 > **Utility**: Fast offline 12% VAT (inclusive/exclusive), Expanded Withholding Tax (EWT), and invoice net/gross calculation tool.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.4-ph-vat-calculator/ph-vat-calculator.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/ph-vat-calculator/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/ph-vat-calculator)
