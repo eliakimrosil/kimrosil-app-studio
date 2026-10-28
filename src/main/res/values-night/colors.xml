@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bespoke Domain Dark Theme Color Tokens: WhoHasMy Tactical Obsidian Amber -->
+    <color name="colorPrimary">#FF8A65</color>
+    <color name="colorPrimaryDark">#3E0A00</color>
+    <color name="colorAccent">#FFAB91</color>
+    <color name="windowBackground">#14110E</color>
+
+    <color name="m3_primary">#FF8A65</color>
+    <color name="m3_on_primary">#5C1A00</color>
+    <color name="m3_primary_container">#8C2600</color>
+    <color name="m3_on_primary_container">#FFCCBC</color>
+
+    <color name="m3_secondary">#D7CCC8</color>
+    <color name="m3_on_secondary">#271B16</color>
+    <color name="m3_secondary_container">#3E2723</color>
+    <color name="m3_on_secondary_container">#EFEBE9</color>
+
+    <color name="m3_surface">#14110E</color>
+    <color name="m3_surface_container">#1E1A15</color>
+    <color name="m3_surface_container_high">#28221C</color>
+    <color name="m3_surface_container_highest">#332B24</color>
+
+    <color name="m3_on_surface">#ECE4DC</color>
+    <color name="m3_on_surface_variant">#ABA196</color>
+    <color name="m3_outline">#756C62</color>
+    <color name="m3_outline_variant">#40382F</color>
+
+    <color name="m3_success">#81C784</color>
+    <color name="m3_on_success">#0A3912</color>
+    <color name="m3_warning">#FFB74D</color>
+    <color name="m3_error">#E57373</color>
+    <color name="m3_on_error">#490E0E</color>
+
+    <color name="cardBackground">#1E1A15</color>
+    <color name="cardStroke">#40382F</color>
+    <color name="textPrimary">#ECE4DC</color>
+    <color name="textSecondary">#ABA196</color>
+    <color name="btnColor">#FF8A65</color>
+    <color name="btnTextColor">#5C1A00</color>
+</resources>

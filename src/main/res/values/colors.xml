@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bespoke Domain Light Theme Color Tokens: WhoHasMy Workshop Amber -->
+    <color name="colorPrimary">#D84315</color>
+    <color name="colorPrimaryDark">#BF360C</color>
+    <color name="colorAccent">#E65100</color>
+    <color name="windowBackground">#FDFBF7</color>
+
+    <color name="m3_primary">#D84315</color>
+    <color name="m3_on_primary">#FFFFFF</color>
+    <color name="m3_primary_container">#FFCCBC</color>
+    <color name="m3_on_primary_container">#3E0A00</color>
+
+    <color name="m3_secondary">#4E342E</color>
+    <color name="m3_on_secondary">#FFFFFF</color>
+    <color name="m3_secondary_container">#D7CCC8</color>
+    <color name="m3_on_secondary_container">#271B16</color>
+
+    <color name="m3_surface">#FDFBF7</color>
+    <color name="m3_surface_container">#F3ECE3</color>
+    <color name="m3_surface_container_high">#E9DFD3</color>
+    <color name="m3_surface_container_highest">#DED2C4</color>
+
+    <color name="m3_on_surface">#221B14</color>
+    <color name="m3_on_surface_variant">#4D433A</color>
+    <color name="m3_outline">#7D7166</color>
+    <color name="m3_outline_variant">#CBC0B4</color>
+
+    <color name="m3_success">#2E7D32</color>
+    <color name="m3_on_success">#FFFFFF</color>
+    <color name="m3_warning">#EF6C00</color>
+    <color name="m3_error">#C62828</color>
+    <color name="m3_on_error">#FFFFFF</color>
+
+    <color name="cardBackground">#FFFFFF</color>
+    <color name="cardStroke">#CBC0B4</color>
+    <color name="textPrimary">#221B14</color>
+    <color name="textSecondary">#4D433A</color>
+    <color name="btnColor">#D84315</color>
+    <color name="btnTextColor">#FFFFFF</color>
+</resources>

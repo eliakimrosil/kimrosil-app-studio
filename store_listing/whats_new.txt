@@ -1,0 +1,1 @@
+Welcome to the initial release of WhoHasMy. You can now log lent tools and gear with photos, set return target dates, generate gentle follow-up messages, and archive returned items.
