@@ -283,6 +283,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: NEC conduit fill capacity, conductor jam ratio, and pull box sizing solver.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-conduit-fill/conduit-fill.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/conduit-fill/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/conduit-fill)
 
+#### [CueScroll](https://apps.kimrosil.com/cue-scroll/) (`cue-scroll`) • `v1.1.0`
+> **Utility**: Offline teleprompter with mirror mode, count-in, live pace and volume-key speed.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-cue-scroll/cue-scroll.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/cue-scroll/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/cue-scroll)
+
 #### [CycleGuard](https://apps.kimrosil.com/laundry-cycle-sentinel/) (`laundry-cycle-sentinel`) • `v1.0.0`
 > **Utility**: Zero-friction offline laundry timer with Quick Settings 1-tap start, ongoing lock-screen chronometer, and mold-prevention reminders.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-laundry-cycle-sentinel/laundry-cycle-sentinel.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/laundry-cycle-sentinel/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/laundry-cycle-sentinel)
