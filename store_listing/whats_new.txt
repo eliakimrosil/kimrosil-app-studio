@@ -1,0 +1,4 @@
+v1.0.0: Initial release of ClampPitch woodworking clamp and squarer aide.
+- Glueline clamp spacing & PSI calculator
+- Ambient heat adhesive open-time timer
+- Cabinet case diagonal squarer

@@ -1,0 +1,900 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/m3_surface">
+
+    <!-- Top Action Bar Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:background="@color/m3_surface">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvAppTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ClampPitch"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface" />
+
+            <TextView
+                android:id="@+id/tvAppSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Workshop Glue &amp; Assembly Aide"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant" />
+        </LinearLayout>
+
+        <!-- Theme Toggle Button -->
+        <Button
+            android:id="@+id/btnThemeToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="Theme: Auto"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface"
+            android:background="@drawable/bg_topbar_button"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Settings Modal Button -->
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_settings"
+            android:contentDescription="Settings and info"
+            android:background="@drawable/bg_topbar_button"
+            android:padding="12dp" />
+    </LinearLayout>
+
+    <!-- Navigation Chips (Pitch, Timer, Squarer) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/chipTabPitch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:text="Glueline Pitch"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_primary"
+            android:background="@drawable/chip_active"
+            android:layout_marginEnd="4dp" />
+
+        <Button
+            android:id="@+id/chipTabTimer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:text="Open Time"
+            android:textSize="12sp"
+            android:textColor="@color/m3_on_surface_variant"
+            android:background="@drawable/chip_inactive"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp" />
+
+        <Button
+            android:id="@+id/chipTabSquarer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:text="Case Squarer"
+            android:textSize="12sp"
+            android:textColor="@color/m3_on_surface_variant"
+            android:background="@drawable/chip_inactive"
+            android:layout_marginStart="4dp" />
+    </LinearLayout>
+
+    <!-- Main Content Scroll Area -->
+    <ScrollView
+        android:id="@+id/mainScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="32dp">
+
+            <!-- ============================================================= -->
+            <!-- SECTION 1: GLUELINE PITCH & PRESSURE CALCULATOR               -->
+            <!-- ============================================================= -->
+            <LinearLayout
+                android:id="@+id/layoutSectionPitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <!-- Primary Telemetry HUD Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3_high"
+                    android:padding="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="CLAMP LAYOUT TELEMETRY"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.08"
+                            android:textColor="@color/m3_primary" />
+
+                        <TextView
+                            android:id="@+id/tvPressureStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="OPTIMAL PRESSURE"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/badge_safe"
+                            android:background="@drawable/bg_badge_safe" />
+                    </LinearLayout>
+
+                    <!-- 2-Column Telemetry Grid -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Clamps Required"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvClampCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="5 Clamps"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <TextView
+                                android:id="@+id/tvClampArrangement"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="3 Top / 2 Bottom alternate"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_primary" />
+                        </LinearLayout>
+
+                        <!-- Hairline Divider -->
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/m3_outline_variant"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Center-to-Center Pitch"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvClampPitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="8.5 in"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <TextView
+                                android:id="@+id/tvClampPitchMetric"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="21.6 cm center distance"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_primary" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Pressure Bar Row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/card_m3"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Edge Joint Pressure"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvGluelinePsi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="188 PSI"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvTargetPsiBadge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Target: 150-250 PSI"
+                            android:textSize="11sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvDistributionNote"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="45° Pressure Cone Coverage: Complete overlap along entire glue line with zero starvation dead zones."
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginTop="8dp" />
+                </LinearLayout>
+
+                <!-- Input Parameters Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3"
+                    android:padding="16dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="WORKPIECE &amp; TIMBER SPECIES"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08"
+                        android:textColor="@color/m3_primary"
+                        android:layout_marginBottom="8dp" />
+
+                    <!-- Wood Species Spinner -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Timber Species"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <Spinner
+                        android:id="@+id/spnWoodSpecies"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:background="@drawable/edittext_m3"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Panel Length (Inches) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Panel Glueline Length (Inches)"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp">
+
+                        <Button
+                            android:id="@+id/btnLengthMinus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="-"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper" />
+
+                        <EditText
+                            android:id="@+id/etPanelLength"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:gravity="center"
+                            android:text="36.0"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/edittext_m3"
+                            android:padding="12dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp" />
+
+                        <Button
+                            android:id="@+id/btnLengthPlus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="+"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper" />
+                    </LinearLayout>
+
+                    <!-- Board Thickness (Inches) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Board Thickness (Inches)"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp">
+
+                        <Button
+                            android:id="@+id/btnThickMinus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="-"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper" />
+
+                        <EditText
+                            android:id="@+id/etBoardThickness"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:gravity="center"
+                            android:text="0.75"
+                            android:inputType="numberDecimal"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/edittext_m3"
+                            android:padding="12dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp" />
+
+                        <Button
+                            android:id="@+id/btnThickPlus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="+"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper" />
+                    </LinearLayout>
+
+                    <!-- Clamp Hardware Type Spinner -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Clamp Hardware Model"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <Spinner
+                        android:id="@+id/spnClampType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:background="@drawable/edittext_m3"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Calculate Button -->
+                    <Button
+                        android:id="@+id/btnCalculatePitch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:text="Compute Clamp Spacing"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_primary"
+                        android:background="@drawable/btn_m3_primary" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ============================================================= -->
+            <!-- SECTION 2: ADHESIVE OPEN-TIME COUNTDOWN TIMER                 -->
+            <!-- ============================================================= -->
+            <LinearLayout
+                android:id="@+id/layoutSectionTimer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Countdown HUD Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3_high"
+                    android:padding="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="OPEN-ASSEMBLY WINDOW"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.08"
+                            android:textColor="@color/m3_primary" />
+
+                        <TextView
+                            android:id="@+id/tvTimerStatusBadge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="READY TO APPLY"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/badge_safe"
+                            android:background="@drawable/bg_badge_safe" />
+                    </LinearLayout>
+
+                    <!-- Giant Countdown Timer Display -->
+                    <TextView
+                        android:id="@+id/tvTimerCountdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="08:00"
+                        android:textSize="48sp"
+                        android:textStyle="bold"
+                        android:fontFamily="monospace"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/tvTimerCompensationNote"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Standard Titebond II Open Limit: 8m at 75°F"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <!-- Timer Action Buttons -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+
+                        <Button
+                            android:id="@+id/btnTimerStart"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:text="Start Glue Timer"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_primary"
+                            android:background="@drawable/btn_m3_primary"
+                            android:layout_marginEnd="6dp" />
+
+                        <Button
+                            android:id="@+id/btnTimerReset"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:text="Reset Timer"
+                            android:textSize="14sp"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_m3_outlined"
+                            android:layout_marginStart="6dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Adhesive Chemistry & Heat Adjustment Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3"
+                    android:padding="16dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ADHESIVE FORMULATION &amp; SHOP HEAT"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08"
+                        android:textColor="@color/m3_primary"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adhesive Chemistry"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <Spinner
+                        android:id="@+id/spnGlueType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:background="@drawable/edittext_m3"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Ambient Temperature (°F) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ambient Shop Temperature (°F)"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp">
+
+                        <Button
+                            android:id="@+id/btnTempMinus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="-"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper" />
+
+                        <EditText
+                            android:id="@+id/etShopTemp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:gravity="center"
+                            android:text="75"
+                            android:inputType="number"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/edittext_m3"
+                            android:padding="12dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp" />
+
+                        <Button
+                            android:id="@+id/btnTempPlus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="+"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ============================================================= -->
+            <!-- SECTION 3: CABINET & CASE SQUARER                            -->
+            <!-- ============================================================= -->
+            <LinearLayout
+                android:id="@+id/layoutSectionSquarer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Squaring Result HUD Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3_high"
+                    android:padding="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="CASE GEOMETRY &amp; SQUARE"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.08"
+                            android:textColor="@color/m3_primary" />
+
+                        <TextView
+                            android:id="@+id/tvSquareStatusBadge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PERFECTLY SQUARE"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/badge_safe"
+                            android:background="@drawable/bg_badge_safe" />
+                    </LinearLayout>
+
+                    <!-- Diagonal Differential Figures -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Diagonal Differential"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvSquareDiff"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.000 in"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <TextView
+                                android:id="@+id/tvSquareDiffMetric"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.0 mm deviation"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_primary" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/m3_outline_variant"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Correction Shift"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvCorrectionMagnitude"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.00 in"
+                                android:textSize="22sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <TextView
+                                android:id="@+id/tvCorrectionDirection"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Assembly is square"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_primary" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvSquareInstruction"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Equal diagonals indicate square corners. No diagonal racking clamp needed."
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginTop="12dp" />
+                </LinearLayout>
+
+                <!-- Diagonal Measurements Input Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3"
+                    android:padding="16dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DIAGONAL TAPE MEASUREMENTS"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08"
+                        android:textColor="@color/m3_primary"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Diagonal 1: Corner A to Corner D (Inches)"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <EditText
+                        android:id="@+id/etDiagonalA"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:gravity="center_vertical"
+                        android:text="48.25"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/edittext_m3"
+                        android:padding="12dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Diagonal 2: Corner B to Corner C (Inches)"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <EditText
+                        android:id="@+id/etDiagonalB"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:gravity="center_vertical"
+                        android:text="48.00"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/m3_on_surface"
+                        android:background="@drawable/edittext_m3"
+                        android:padding="12dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="16dp" />
+
+                    <Button
+                        android:id="@+id/btnCalculateSquare"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:text="Check Assembly Square"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_primary"
+                        android:background="@drawable/btn_m3_primary" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
