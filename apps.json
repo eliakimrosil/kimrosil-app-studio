@@ -1,16 +1,17 @@
 [
   {
     "slug": "return-guard-receipt-countdown",
-    "title": "ReturnGuard",
+    "title": "ReturnGuard Return Tracker",
     "category": "Shopping & Lifestyle",
     "tagline": "Stop losing money on clothes and purchases you meant to return with visual deadline countdowns and cashier-ready receipt displays.",
-    "status": "FAILED",
+    "status": "BUILT",
     "branch": "app/return-guard-receipt-countdown",
-    "tag": "v1.0.0-return-guard-receipt-countdown",
-    "apk_url": "https://github.com/eliakimrosil/kim-android-apps/actions",
+    "tag": "v1.0.1-return-guard-receipt-countdown",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-return-guard-receipt-countdown/return-guard-receipt-countdown.apk",
     "landing_page": "https://apps.kimrosil.com/return-guard-receipt-countdown/",
     "privacy_policy": "https://apps.kimrosil.com/return-guard-receipt-countdown/privacy.html",
-    "icon": "assets/icons/return-guard-receipt-countdown.svg"
+    "icon": "assets/icons/return-guard-receipt-countdown.svg",
+    "updated_at": "2026-10-28T00:23:09.417213+00:00"
   },
   {
     "slug": "size-vault-family-clothing",

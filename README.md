@@ -343,9 +343,9 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Concrete rebar lap splice, development length and hook geometry solver.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-rebar-lap/rebar-lap.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/rebar-lap/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/rebar-lap)
 
-#### [ReturnGuard](https://apps.kimrosil.com/return-guard-receipt-countdown/) (`return-guard-receipt-countdown`) • `v1.0.0`
+#### [ReturnGuard Return Tracker](https://apps.kimrosil.com/return-guard-receipt-countdown/) (`return-guard-receipt-countdown`) • `v1.0.1`
 > **Utility**: Stop losing money on clothes and purchases you meant to return with visual deadline countdowns and cashier-ready receipt displays.
-> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/actions) • [🌐 Web Documentation](https://apps.kimrosil.com/return-guard-receipt-countdown/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/return-guard-receipt-countdown)
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-return-guard-receipt-countdown/return-guard-receipt-countdown.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/return-guard-receipt-countdown/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/return-guard-receipt-countdown)
 
 #### [RunSheet](https://apps.kimrosil.com/run-sheet-workflow/) (`run-sheet-workflow`) • `v1.0.0`
 > **Utility**: Professional offline stage-gate workflow engine and sequential production runner with local SQLite telemetry.
