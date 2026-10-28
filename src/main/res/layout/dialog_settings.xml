@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="18dp">
+
+        <TextView
+            style="@style/CueLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SETTINGS"
+            android:textColor="@color/text_primary"
+            android:textSize="14sp" />
+
+        <TextView
+            style="@style/CueLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="APPEARANCE" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btnThemeLight"
+                style="@style/CueButtonText"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="Light" />
+
+            <TextView
+                android:id="@+id/btnThemeDark"
+                style="@style/CueButtonText"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="Dark" />
+
+            <TextView
+                android:id="@+id/btnThemeAuto"
+                style="@style/CueButtonText"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="Auto" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/CueLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="COUNT-IN BEFORE SCROLL" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/segCountOff"
+                style="@style/CueButtonText"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="OFF" />
+
+            <TextView
+                android:id="@+id/segCount3"
+                style="@style/CueButtonText"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="3 SEC" />
+
+            <TextView
+                android:id="@+id/segCount5"
+                style="@style/CueButtonText"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="5 SEC" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/CueLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="MIRROR TEXT BY DEFAULT" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/segMirrorOff"
+                style="@style/CueButtonText"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="NORMAL" />
+
+            <TextView
+                android:id="@+id/segMirrorOn"
+                style="@style/CueButtonText"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="MIRRORED" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/card_recessed"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <TextView
+                style="@style/CueLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ABOUT" />
+
+            <TextView
+                android:id="@+id/tvAboutName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="@color/text_primary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvAboutVersion"
+                style="@style/CueLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/amber" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:lineSpacingMultiplier="1.15"
+                android:text="KimRosil App Studio freeware. Works fully offline with no ads, no trackers and no account. Your scripts never leave this device."
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tvPrivacy"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:text="apps.kimrosil.com"
+                android:textColor="@color/amber"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnReset"
+            style="@style/CueButtonText"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/btn_danger"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="ERASE ALL DATA"
+            android:textColor="@color/tally_ruby" />
+
+        <TextView
+            android:id="@+id/btnClose"
+            style="@style/CueButtonText"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn_secondary"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="DONE"
+            android:textColor="@color/text_primary" />
+    </LinearLayout>
+</ScrollView>

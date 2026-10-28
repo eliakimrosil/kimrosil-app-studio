@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Day: light graphite console -->
+    <color name="bg_main">#E4E6EA</color>
+    <color name="panel">#F3F4F6</color>
+    <color name="panel_raised">#FAFAFB</color>
+    <color name="panel_recessed">#D8DBE0</color>
+    <color name="outline">#B4B9C2</color>
+    <color name="text_primary">#14171C</color>
+    <color name="text_secondary">#566070</color>
+    <color name="tally_ruby">#BA1A1A</color>
+    <color name="on_ruby">#FFF4F3</color>
+    <color name="amber">#A86200</color>
+    <color name="signal_green">#127A3F</color>
+
+    <!-- Prompter stage: always obsidian regardless of theme -->
+    <color name="stage_bg">#050506</color>
+    <color name="stage_text">#F1F1EC</color>
+    <color name="stage_amber">#FFB300</color>
+    <color name="stage_green">#6BF29A</color>
+    <color name="stage_panel">#F5101216</color>
+    <color name="stage_outline">#33383F</color>
+    <color name="stage_label">#9AA0AB</color>
+    <color name="stage_ruby">#FF4343</color>
+    <color name="stage_band">#22FFB300</color>
+</resources>

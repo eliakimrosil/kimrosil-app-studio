@@ -1,0 +1,2 @@
+Release v1.1.0 - CueScroll
+Initial release: offline teleprompter with mirror mode, pace telemetry and hands-free control

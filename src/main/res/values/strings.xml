@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CueScroll</string>
+    <string name="app_tagline">TELEPROMPTER</string>
+    <string name="new_script">NEW SCRIPT</string>
+    <string name="empty_title">NO SCRIPTS ON THE RUNDOWN</string>
+    <string name="empty_body">Tap NEW SCRIPT to write or paste your first one.</string>
+    <string name="untitled">Untitled script</string>
+    <string name="hint_title">Script title</string>
+    <string name="hint_body">Type or paste script</string>
+    <string name="save">SAVE</string>
+    <string name="go_on_air">ON AIR</string>
+    <string name="paste">PASTE</string>
+    <string name="delete">DELETE</string>
+    <string name="settings">Settings</string>
+    <string name="back">Back</string>
+    <string name="edit">Edit script</string>
+    <string name="play">PLAY</string>
+    <string name="pause">PAUSE</string>
+    <string name="restart">RESTART</string>
+    <string name="mirror">Mirror</string>
+    <string name="ready">STANDBY</string>
+    <string name="live">LIVE</string>
+    <string name="paused">PAUSED</string>
+    <string name="cue">CUE</string>
+    <string name="resume">RESUME</string>
+    <string name="stop">STOP</string>
+    <string name="end_of_script">END</string>
+    <string name="confirm_delete_title">Delete this script?</string>
+    <string name="confirm_delete_body">This removes it from your device. It cannot be undone.</string>
+    <string name="confirm_reset_title">Erase all data?</string>
+    <string name="confirm_reset_body">All scripts and settings are removed and the sample script returns.</string>
+    <string name="cancel">CANCEL</string>
+    <string name="confirm">CONFIRM</string>
+    <string name="nothing_to_paste">Clipboard has no text</string>
+    <string name="empty_script">Script is empty</string>
+    <string name="sample_title">Welcome to CueScroll</string>
+    <string name="sample_body">Welcome to CueScroll. Tap anywhere on the prompter to start or pause the scroll.\n\nDrag with a finger to scrub to any spot. The amber line marks where you should be reading.\n\nUse the speed and size controls at the bottom to match your pace. Volume up and volume down also change the speed, and most Bluetooth clickers will play or pause.\n\nTurn on MIRROR when you shoot through a beam splitter glass so the reflection reads correctly.\n\nWrite your own scripts from the main list. They stay on your device, with no account and no internet.\n\nThat is the whole show. Good luck out there.</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Night: obsidian control room -->
+    <color name="bg_main">#0B0C0F</color>
+    <color name="panel">#14161B</color>
+    <color name="panel_raised">#1C1F26</color>
+    <color name="panel_recessed">#08090B</color>
+    <color name="outline">#2D323B</color>
+    <color name="text_primary">#E9EAEE</color>
+    <color name="text_secondary">#8E95A3</color>
+    <color name="tally_ruby">#E5393B</color>
+    <color name="on_ruby">#FFF1F0</color>
+    <color name="amber">#FFB300</color>
+    <color name="signal_green">#3DDC84</color>
+
+    <color name="stage_bg">#050506</color>
+    <color name="stage_text">#F1F1EC</color>
+    <color name="stage_amber">#FFB300</color>
+    <color name="stage_green">#6BF29A</color>
+    <color name="stage_panel">#F5101216</color>
+    <color name="stage_outline">#33383F</color>
+    <color name="stage_label">#9AA0AB</color>
+    <color name="stage_ruby">#FF4343</color>
+    <color name="stage_band">#22FFB300</color>
+</resources>

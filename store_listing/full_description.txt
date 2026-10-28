@@ -1,0 +1,28 @@
+CueScroll is an offline teleprompter for creators, presenters and streamers who read from a script on camera.
+
+Write or paste your script, press ON AIR, and the text scrolls at the pace you set. An amber reading line marks where your eyes should be, so you can keep eye contact with the lens.
+
+PROMPTER
+- Smooth auto-scroll, sub-pixel steady even at slow speeds
+- Count-in of 3 or 5 seconds before the scroll starts
+- Mirror mode for beam-splitter prompter glass
+- Adjustable text size (20 to 96) and speed, with hold-to-repeat steppers
+- Text colour presets: white, amber, green
+- Drag to scrub to any line, tap to play or pause
+- Portrait and landscape, screen stays awake
+
+TELEMETRY
+- Live pace in words per minute
+- Time remaining and elapsed clock
+- Progress line across the top edge
+
+HANDS-FREE CONTROL
+- Volume up and down change the speed
+- Bluetooth clickers and keyboards: play/pause, space, enter, page up/down
+
+SCRIPTS
+- Private on-device script library with word count and read-time estimate
+- Paste from the clipboard in one tap
+- Day, Night and Auto themes
+
+No account, no ads, no trackers, and no internet permission. Your scripts never leave your device.
