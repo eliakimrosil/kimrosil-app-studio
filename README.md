@@ -259,9 +259,9 @@ Browse the complete portfolio categorized across five core operational domains. 
 
 *Private receipt vaults, BIR tax calculators, ephemeral secret scratchpads, and tracking-parameter sanitizers that protect user sovereignty.*
 
-#### [BendSpec](https://apps.kimrosil.com/bendspec/) (`bendspec`) • `v1.0.0`
+#### [BendSpec](https://apps.kimrosil.com/bendspec/) (`bendspec`) • `v1.0.1`
 > **Utility**: Offline sheet metal bend allowance, deduction, K-factor & tonnage calculator.
-> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-bendspec/bendspec.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/bendspec/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/bendspec)
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-bendspec/bendspec.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/bendspec/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/bendspec)
 
 #### [BrazeRing](https://apps.kimrosil.com/braze-ring/) (`braze-ring`) • `v2.0.1`
 > **Utility**: Offline copper braze preform ring sizing, alloy volume & nitrogen purge solver.

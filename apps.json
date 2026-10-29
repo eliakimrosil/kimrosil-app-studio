@@ -1256,11 +1256,12 @@
     "tagline": "Offline sheet metal bend allowance, deduction, K-factor & tonnage calculator.",
     "status": "BUILT",
     "branch": "app/bendspec",
-    "tag": "v1.0.0-bendspec",
-    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-bendspec/bendspec.apk",
+    "tag": "v1.0.1-bendspec",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-bendspec/bendspec.apk",
     "landing_page": "https://apps.kimrosil.com/bendspec/",
     "privacy_policy": "https://apps.kimrosil.com/bendspec/privacy.html",
     "icon": "assets/icons/bendspec.svg",
-    "updated_at": "2026-10-29T11:31:07.605149+00:00"
+    "updated_at": "2026-10-29T12:38:10.338588+00:00",
+    "sha256": "45da4874edd55b28f6aa24ee3aa6cbc2f98ae0f004a6f10e6386235ea3a7b5f2"
   }
 ]
