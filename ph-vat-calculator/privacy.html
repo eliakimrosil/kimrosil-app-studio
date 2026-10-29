@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-    <title>Privacy Policy - VatCal PH | KimRosil App Studio</title>
-    <meta name="description" content="Privacy policy and zero-telemetry data safety declaration for VatCal PH. 100% offline, zero data collection.">
+    <title>Privacy Policy - PH VAT Calculator | KimRosil App Studio</title>
+    <meta name="description" content="Privacy policy and zero-telemetry data safety declaration for PH VAT Calculator. 100% offline, zero data collection.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://apps.kimrosil.com/ph-vat-calculator/privacy.html">
     <link rel="icon" type="image/svg+xml" href="https://apps.kimrosil.com/favicon.svg">
@@ -39,8 +39,8 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://apps.kimrosil.com/ph-vat-calculator/privacy.html">
     <meta property="og:site_name" content="KimRosil App Studio">
-    <meta property="og:title" content="Privacy Policy - VatCal PH">
-    <meta property="og:description" content="100% offline, zero data collection privacy policy for VatCal PH.">
+    <meta property="og:title" content="Privacy Policy - PH VAT Calculator">
+    <meta property="og:description" content="100% offline, zero data collection privacy policy for PH VAT Calculator.">
     <meta property="og:image" content="https://apps.kimrosil.com/assets/icons/ph-vat-calculator.png">
 
     <style>
@@ -112,40 +112,54 @@
     <div class="container">
         <span class="badge">✓ Google Play Data Safety Certified</span>
         <h1>Privacy Policy</h1>
-        <p><strong>VatCal PH</strong></p>
+        <p><strong>PH VAT Calculator</strong></p>
         <p><em>Effective Date: October 2, 2026 &bull; Developer: Eliakim Rosil</em></p>
         <hr>
-        <h1>Privacy Policy for VatCal PH</h1>
+        <h1>Privacy Policy for PH VAT Calculator</h1>
 <p><em>Last Updated: October 2026</em></p>
-<p>This privacy policy applies to the Android mobile application <strong>VatCal PH</strong> (the "Application"), developed and published as a standalone, offline-first mobile utility.</p>
+<p>This privacy policy applies to the Android mobile application <strong>PH VAT Calculator</strong> (the "Application"), developed and published by Eliakim Rosil ("we", "us", or "our") under the KimRosil App Studio developer portfolio (https://apps.kimrosil.com).</p>
+<p>The Application is distributed via the Google Play Store, official APK releases, and https://apps.kimrosil.com/ph-vat-calculator/.</p>
 <hr>
-<h3>1. Zero Data Collection & Transmission</h3>
-<p>The Application operates <strong>100% offline</strong> and does not require internet connectivity to perform its core functions.</p>
+<h3>1. 100% Offline-First Architecture & Sandboxed Local Storage</h3>
+<p>The Application is engineered strictly as an offline-first mobile utility.</p>
 <ul>
-<li><strong>Personal Information:</strong> We do NOT collect, harvest, store, or transmit personal details (such as names, email addresses, phone numbers, or physical locations).</li>
-<li><strong>Device Identifiers:</strong> We do NOT collect Android Advertising IDs (AAID), IMEI numbers, IP addresses, or hardware fingerprints.</li>
-<li><strong>Usage Diagnostics:</strong> The Application contains NO third-party analytics SDKs (e.g. Firebase Analytics, Google Analytics, Adjust, AppsFlyer) and transmits zero telemetry.</li>
+<li><strong>Zero Personal Information:</strong> We do NOT collect, harvest, store, or transmit personal identity details (such as names, email addresses, phone numbers, contacts, device identifiers, or location data) to any proprietary developer servers or external third parties.</li>
+<li><strong>Sandboxed Local Storage:</strong> Any user preferences, search parameters, or custom inputs are stored strictly on your local device within Android's sandboxed storage (`SharedPreferences`, Room, or local SQLite database). Your personal application records never leave your physical device.</li>
+<li><strong>Zero Internet Requirement:</strong> The Application operates entirely on-device and makes zero outbound network requests.</li>
+<li><strong>Data Deletion:</strong> Uninstalling the Application or clearing its storage via Android Settings (`Settings > Apps > PH VAT Calculator > Storage > Clear Data`) permanently and irreversibly deletes all locally saved records.</li>
 </ul>
-<h3>2. Local Device Storage</h3>
-<p>Any user inputs, item records, history entries, or application preferences are stored strictly on your local device within Android's sandboxed storage (`SharedPreferences` / local SQLite database).</p>
+<h3>2. Zero Advertising & Zero Third-Party SDKs</h3>
+<p>The Application is 100% freeware:</p>
 <ul>
-<li>Your stored data never leaves your device.</li>
-<li>Uninstalling the Application or clearing its app storage via Android Settings permanently deletes all local records.</li>
+<li><strong>Zero Ads:</strong> We do not display advertisements.</li>
+<li><strong>Zero Trackers / Analytics:</strong> We do not embed analytics SDKs, user behavior trackers, or third-party telemetry tools.</li>
+<li><strong>Zero Monetization Tracking:</strong> Complete functionality is available immediately without accounts, subscriptions, paywalls, or logins.</li>
 </ul>
 <h3>3. Permissions & Device Access</h3>
-<p>The Application requests only minimal, standard Android platform permissions strictly required to perform local utility operations (such as haptic feedback or local notification reminders). It does not access sensitive runtime permissions (such as Contacts, SMS, Microphone, or Background Location) without your explicit interaction.</p>
-<h3>4. Third-Party Services & Advertisements</h3>
-<p>The Application contains <strong>zero third-party advertisements</strong>, zero ad tracking libraries, and zero data-broker integrations. No data is shared with or sold to third parties under any circumstances.</p>
-<h3>5. Children's Privacy (COPPA Compliance)</h3>
-<p>The Application does not target or knowingly collect data from children under the age of 13. Because no personal data is collected or transmitted, the Application complies with global child privacy standards.</p>
-<h3>6. Contact Information</h3>
-<p>If you have any questions, inquiries, or support requests regarding this Privacy Policy, please reach out via our GitHub repository:</p>
+<p>The Application requests only minimal, standard Android platform permissions strictly required to perform local utility operations:</p>
 <ul>
-<li><strong>Repository:</strong> https://github.com/eliakimrosil/android-ai-apps</li>
-<li><strong>Project:</strong> ph-vat-calculator</li>
+<li><strong>Haptic Vibration (`VIBRATE`):</strong> Used strictly to provide tactile haptic confirmation when interacting with controls or stepping through sequences.</li>
+<li><strong>Notifications (`POST_NOTIFICATIONS`):</strong> Used solely to alert you when on-device timers or background monitors finish. Notification content is never transmitted across any network.</li>
+<li>Any requested permissions are executed strictly on-device to power the requested utility features. The Application never sells, brokers, or exfiltrates permission-derived data.</li>
+</ul>
+<h3>4. Children's Privacy (COPPA & Families Compliance)</h3>
+<p>The Application is designed as a general-audience utility and is not directed at children under the age of 13. We do not collect or process personal data from any user, including children.</p>
+<h3>5. Master Privacy Policy & Developer Profile</h3>
+<p>This privacy policy is part of the unified KimRosil App Studio developer portfolio. For our developer-wide data safety commitments, please visit:</p>
+<ul>
+<li><strong>Master Developer Privacy Policy:</strong> https://apps.kimrosil.com/privacy.html</li>
+<li><strong>Official Showcase:</strong> https://apps.kimrosil.com/ph-vat-calculator/</li>
+</ul>
+<h3>6. Contact Information</h3>
+<p>If you have any questions, inquiries, or support requests regarding this Privacy Policy, please contact:</p>
+<ul>
+<li><strong>Developer:</strong> Eliakim Rosil</li>
+<li><strong>Email:</strong> eliakimrosil@gmail.com</li>
+<li><strong>Website:</strong> https://apps.kimrosil.com</li>
+<li><strong>Project Repository:</strong> https://github.com/eliakimrosil/kimrosil-app-studio</li>
 </ul>
         <div class="nav-back">
-            <a href="./">← Return to VatCal PH App Overview</a>
+            <a href="./">← Return to PH VAT Calculator App Overview</a>
             <a href="../privacy.html">Master Developer Privacy Policy →</a>
         </div>
     </div>
