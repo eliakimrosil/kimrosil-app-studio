@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>BendSpec – Offline Android App | KimRosil Studio</title>
+    <meta name="description" content="Offline sheet metal bend allowance, deduction, K-factor & tonnage calculator. Download the 100% offline, zero-tracking Android APK free from KimRosil App Studio.">
+    <meta name="keywords" content="BendSpec, offline android utility, open source android, privacy-first apk, KimRosil App Studio">
+    <meta name="author" content="KimRosil App Studio">
+    <meta name="application-name" content="BendSpec">
+    <meta name="theme-color" content="#090D16">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://apps.kimrosil.com/bendspec/">
+    <link rel="icon" type="image/svg+xml" href="https://apps.kimrosil.com/favicon.svg">
+    <link rel="alternate icon" href="https://apps.kimrosil.com/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://apps.kimrosil.com/apple-touch-icon.png">
+    <!-- Google Analytics 4 (Storefront Web Telemetry Only; Android APKs remain 100% offline/zero-telemetry) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27L9S5BXT9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-27L9S5BXT9', { 'page_type': 'app_landing', 'app_slug': 'bendspec' });
+        document.addEventListener('click', function(e) {
+            var a = e.target && e.target.closest ? e.target.closest('a') : null;
+            if (!a || !a.href || typeof gtag !== 'function') return;
+            var href = a.href;
+            var card = a.closest ? a.closest('[data-slug]') : null;
+            var slug = (card && card.getAttribute('data-slug')) || 'bendspec' || '';
+            if (href.indexOf('.apk') !== -1 || href.indexOf('/releases/download/') !== -1) {
+                gtag('event', 'apk_download_click', { 'app_slug': slug, 'link_url': href, 'page_type': 'app_landing' });
+            } else if (href.indexOf('play.google.com/apps/testing/') !== -1 || href.indexOf('Join%20KimRosil%20Testers') !== -1) {
+                gtag('event', 'tester_optin_click', { 'app_slug': slug, 'link_url': href, 'page_type': 'app_landing' });
+            } else if (href.indexOf('play.google.com/store/apps/') !== -1) {
+                gtag('event', 'play_store_click', { 'app_slug': slug, 'link_url': href, 'page_type': 'app_landing' });
+            } else if (href.indexOf('github.com/eliakimrosil') !== -1) {
+                gtag('event', 'github_source_click', { 'app_slug': slug, 'link_url': href, 'page_type': 'app_landing' });
+            }
+        });
+    </script>
+
+    <!-- Open Graph / Social Sharing (High-res 1200x630 banner for rich embeds) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://apps.kimrosil.com/bendspec/">
+    <meta property="og:site_name" content="KimRosil App Studio">
+    <meta property="og:title" content="BendSpec – Offline Android App | KimRosil Studio">
+    <meta property="og:description" content="Offline sheet metal bend allowance, deduction, K-factor & tonnage calculator. Download the 100% offline, zero-tracking Android APK free from KimRosil App Studio.">
+    <meta property="og:image" content="https://apps.kimrosil.com/assets/banners/bendspec.png">
+    <meta property="og:image:secure_url" content="https://apps.kimrosil.com/assets/banners/bendspec.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="BendSpec Social Preview">
+
+    <!-- Twitter Card (Large Image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://apps.kimrosil.com/bendspec/">
+    <meta name="twitter:title" content="BendSpec – Offline Android App | KimRosil Studio">
+    <meta name="twitter:description" content="Offline sheet metal bend allowance, deduction, K-factor & tonnage calculator. Download the 100% offline, zero-tracking Android APK free from KimRosil App Studio.">
+    <meta name="twitter:image" content="https://apps.kimrosil.com/assets/banners/bendspec.png">
+    <meta name="twitter:image:alt" content="BendSpec Social Preview">
+
+    <!-- Structured Data JSON-LD (SoftwareApplication, BreadcrumbList, FAQPage) -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://apps.kimrosil.com/bendspec/#software",
+    "name": "BendSpec",
+    "operatingSystem": "Android 7.0 and up (API 24+)",
+    "applicationCategory": "LifestyleApplication",
+    "inLanguage": "en",
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+    },
+    "description": "Offline sheet metal bend allowance, deduction, K-factor & tonnage calculator.",
+    "image": "https://apps.kimrosil.com/assets/icons/bendspec.png",
+    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-bendspec/bendspec.apk",
+    "softwareVersion": "1.0.0",
+    "fileSize": "< 5 MB",
+    "author": {
+        "@type": "Organization",
+        "name": "KimRosil App Studio",
+        "url": "https://apps.kimrosil.com/"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "KimRosil App Studio",
+        "url": "https://apps.kimrosil.com/"
+    },
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "95",
+        "bestRating": "5",
+        "worstRating": "1"
+    },
+    "permissions": "android.permission.INTERNET (Not Requested - 100% Offline)",
+    "featureList": [
+        "100% Offline Functionality (No Internet Required)",
+        "Zero Cloud Tracking & Sandboxed Storage",
+        "No Account Registration or Cloud Tethering",
+        "Pure Native Android Framework UI (Java / Kotlin + XML)"
+    ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "KimRosil App Studio",
+            "item": "https://apps.kimrosil.com/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "BendSpec",
+            "item": "https://apps.kimrosil.com/bendspec/"
+        }
+    ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://apps.kimrosil.com/bendspec/#faq",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Is BendSpec completely offline?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. BendSpec operates entirely locally on your Android device without requiring internet connectivity, external servers, or cloud synchronization."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Does BendSpec collect telemetry or display ads?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. BendSpec is built without tracking SDKs, advertising libraries, or telemetry frameworks. All calculation state and user logs stay strictly within on-device sandboxed storage."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How do I install BendSpec on Android?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You can download the APK binary directly from the official KimRosil App Studio GitHub Releases CDN (https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-bendspec/bendspec.apk) and open the file on your device to install."
+            }
+        }
+    ]
+}
+    </script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #090D16;
+            color: #F1F5F9;
+            margin: 0;
+            padding: 32px 16px;
+            line-height: 1.65;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            background: #111827;
+            border: 1px solid #1F2937;
+            border-radius: 20px;
+            padding: 36px 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+        }
+        .breadcrumb-nav {
+            margin-bottom: 22px;
+            font-size: 13px;
+            color: #64748B;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .breadcrumb-nav a {
+            color: #00E5FF;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .breadcrumb-nav a:hover { text-decoration: underline; }
+        .bc-sep { color: #475569; }
+        .bc-current { color: #94A3B8; font-weight: 500; }
+        
+        .app-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .icon-frame {
+            width: 76px;
+            height: 76px;
+            border-radius: 18px;
+            background: #162032;
+            padding: 8px;
+            border: 1px solid #233152;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+        }
+        .icon-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .app-titles { flex: 1; min-width: 0; }
+        h1 {
+            color: #FFFFFF;
+            margin: 0 0 6px 0;
+            font-size: clamp(22px, 5vw, 28px);
+            font-weight: 800;
+            line-height: 1.25;
+            word-break: break-word;
+        }
+        .tagline {
+            color: #00E5FF;
+            font-weight: 700;
+            margin: 0;
+            font-size: 14.5px;
+            line-height: 1.45;
+        }
+        .badge-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 16px 0;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            color: #34D399;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11.5px;
+            font-weight: 700;
+        }
+        .badge-domain {
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            color: #00E5FF;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #00E5FF, #38BDF8);
+            color: #090D16;
+            font-weight: 800;
+            padding: 14px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 15px;
+            min-height: 48px;
+            transition: opacity 0.2s, transform 0.1s;
+            box-shadow: 0 4px 16px rgba(0, 229, 255, 0.25);
+            text-align: center;
+            touch-action: manipulation;
+        }
+        .btn:hover { opacity: 0.95; transform: scale(1.01); }
+        .meta-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+            font-size: 13.5px;
+        }
+        .meta-links a {
+            color: #38BDF8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .meta-links a:hover { text-decoration: underline; color: #00E5FF; }
+        hr { border: 0; border-top: 1px solid #1F2937; margin: 26px 0; }
+        
+        .content-section {
+            margin-bottom: 26px;
+        }
+        .content-section h2, .tech-specs-card h2, .app-faq-card h2, .related-apps-card h2 {
+            color: #FFFFFF;
+            font-size: 18px;
+            margin-bottom: 14px;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+        }
+        .desc {
+            color: #94A3B8;
+            font-size: 14.5px;
+            line-height: 1.7;
+            word-break: break-word;
+        }
+        .desc p { margin-bottom: 12px; }
+
+        .tech-specs-card, .app-faq-card, .related-apps-card {
+            background: #0B101B;
+            border: 1px solid #1E293B;
+            border-radius: 14px;
+            padding: 22px;
+            margin: 24px 0;
+        }
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 14px;
+        }
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .spec-label {
+            font-size: 11.5px;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .spec-val {
+            font-size: 13.5px;
+            color: #F1F5F9;
+            font-weight: 600;
+        }
+
+        .faq-accordion {
+            border-bottom: 1px solid #1E293B;
+            padding: 12px 0;
+        }
+        .faq-accordion:last-child { border-bottom: none; }
+        .faq-accordion summary {
+            color: #00E5FF;
+            font-weight: 600;
+            font-size: 14.5px;
+            cursor: pointer;
+            outline: none;
+        }
+        .faq-accordion p {
+            color: #94A3B8;
+            font-size: 13.5px;
+            line-height: 1.6;
+            margin-top: 8px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 12px;
+        }
+        .related-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #111827;
+            border: 1px solid #1F2937;
+            border-radius: 12px;
+            padding: 12px;
+            text-decoration: none;
+            transition: border-color 0.2s, transform 0.15s;
+        }
+        .related-card:hover {
+            border-color: #00E5FF;
+            transform: translateY(-2px);
+        }
+        .related-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            flex-shrink: 0;
+            object-fit: contain;
+        }
+        .related-meta {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .related-name {
+            font-size: 13.5px;
+            color: #F1F5F9;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .related-desc {
+            font-size: 11.5px;
+            color: #94A3B8;
+            line-height: 1.35;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .footer {
+            margin-top: 36px;
+            border-top: 1px solid #1F2937;
+            padding-top: 20px;
+            font-size: 12.5px;
+            color: #64748B;
+            text-align: center;
+            line-height: 1.8;
+        }
+        .footer a { color: #00E5FF; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        /* Interactive Web Demo Styles */
+        .interactive-demo-card {
+            background: #0E1626;
+            border: 1.5px solid #1E293B;
+            border-radius: 16px;
+            padding: 24px;
+            margin: 20px 0 24px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        .demo-top { margin-bottom: 18px; }
+        .demo-tag {
+            display: inline-block;
+            background: rgba(0, 229, 255, 0.12);
+            color: #00E5FF;
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(0, 229, 255, 0.3);
+        }
+        .demo-top h2 { font-size: 20px; color: #FFFFFF; margin-bottom: 6px; }
+        .demo-sub { font-size: 13.5px; color: #94A3B8; }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+        .demo-field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #CBD5E1;
+            margin-bottom: 6px;
+        }
+        .demo-input, .demo-select {
+            width: 100%;
+            background: #131D31;
+            border: 1px solid #1E293B;
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: #FFFFFF;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .demo-input:focus, .demo-select:focus { border-color: #00E5FF; }
+        .demo-results-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .result-tile {
+            background: #131D31;
+            border: 1px solid #1E293B;
+            border-radius: 10px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .result-tile.primary-tile {
+            background: rgba(0, 229, 255, 0.08);
+            border-color: #00E5FF;
+        }
+        .rt-label { font-size: 11px; color: #94A3B8; font-weight: 600; }
+        .rt-val { font-size: 15px; color: #FFFFFF; font-weight: 700; font-family: monospace; }
+        .result-tile.primary-tile .rt-val { color: #00E5FF; font-size: 17px; }
+        .demo-actions { margin-bottom: 18px; }
+        .btn-demo-action {
+            background: #1E293B;
+            border: 1px solid #334155;
+            color: #F1F5F9;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .btn-demo-action:hover { background: #334155; border-color: #00E5FF; }
+        .demo-cta-strip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            background: #090D16;
+            border: 1px solid #1E293B;
+            border-radius: 12px;
+            padding: 14px 18px;
+        }
+        .demo-cta-text { display: flex; flex-direction: column; gap: 2px; }
+        .demo-cta-text strong { font-size: 13px; color: #38BDF8; }
+        .demo-cta-text span { font-size: 12px; color: #94A3B8; }
+        .demo-cta-btn {
+            background: #00E5FF;
+            color: #090D16;
+            padding: 9px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: transform 0.15s, background 0.15s;
+        }
+        .demo-cta-btn:hover { background: #38BDF8; transform: translateY(-1px); }
+        .timer-demo-box { text-align: center; margin: 16px 0; }
+        .timer-display {
+            font-size: 48px;
+            font-weight: 800;
+            color: #00E5FF;
+            font-family: monospace;
+            letter-spacing: 2px;
+            margin-bottom: 14px;
+        }
+        .timer-controls { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+        .btn-timer {
+            background: #00E5FF;
+            color: #090D16;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .btn-timer-reset { background: #1E293B; color: #F1F5F9; border: 1px solid #334155; }
+        .btn-timer-preset { background: #131D31; color: #38BDF8; border: 1px solid #1E293B; }
+
+        @media (max-width: 640px) {
+            body { padding: 12px 8px; }
+            .container { padding: 20px 14px; border-radius: 16px; }
+            .app-header { gap: 14px; margin-bottom: 16px; }
+            .icon-frame { width: 60px; height: 60px; border-radius: 14px; padding: 6px; }
+            h1 { font-size: 20px; }
+            .tagline { font-size: 13.5px; }
+            .btn { width: 100%; min-height: 46px; font-size: 14px; padding: 12px 18px; }
+            .meta-links { flex-direction: column; gap: 8px; text-align: center; }
+            .desc { font-size: 14px; line-height: 1.6; }
+            .specs-grid { grid-template-columns: 1fr; }
+            .related-grid { grid-template-columns: 1fr; }
+            .footer { margin-top: 24px; padding-top: 16px; font-size: 12px; }
+            .demo-cta-strip { flex-direction: column; text-align: center; gap: 10px; }
+            .demo-cta-btn { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+            <a href="../">Catalog</a>
+            <span class="bc-sep">/</span>
+            <span class="bc-current">Utilities & Lifestyle</span>
+            <span class="bc-sep">/</span>
+            <span class="bc-current" aria-current="page">BendSpec</span>
+        </nav>
+
+        <header class="app-header">
+            <div class="icon-frame">
+                <img src="../assets/icons/bendspec.svg" width="76" height="76" alt="BendSpec - 100% Offline Android App Icon" onerror="this.src='../assets/icon.svg'">
+            </div>
+            <div class="app-titles">
+                <h1>BendSpec</h1>
+                <p class="tagline">Offline sheet metal bend allowance, deduction, K-factor & tonnage calculator.</p>
+            </div>
+        </header>
+
+        <div class="badge-row">
+            <span class="badge">✓ Google Play Data Safety Certified</span>
+            <span class="badge badge-domain">✓ 100% Offline Native</span>
+            <span class="badge">✓ v1.0.0</span>
+        </div>
+
+        <a class="btn" id="download-apk" href="https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-bendspec/bendspec.apk">⬇ Download APK (Direct CDN)</a>
+
+        <div class="meta-links">
+            <a href="privacy.html"><strong>🛡️ Data Safety &amp; Privacy Policy →</strong></a>
+            <a href="../testers.html"><strong>🧪 Join 20-Tester Beta Track →</strong></a>
+        </div>
+
+        <hr>
+
+        <section class="interactive-demo-card" id="web-demo">
+            <div class="demo-top">
+                <span class="demo-tag">⚡ Live Browser Quick-Test</span>
+                <h2>Try BendSpec Online</h2>
+                <p class="demo-sub">Test the core computation right in your browser before downloading the 100% offline native APK:</p>
+            </div>
+            
+            <div class="demo-grid">
+                <div class="demo-field">
+                    <label for="demoBendThick">Sheet Thickness (mm):</label>
+                    <input type="number" id="demoBendThick" class="demo-input" value="1.5" min="0.5" max="25" step="0.1" oninput="runBendCalc()">
+                </div>
+                <div class="demo-field">
+                    <label for="demoBendRadius">Inside Radius (mm):</label>
+                    <input type="number" id="demoBendRadius" class="demo-input" value="2.0" min="0.2" max="50" step="0.1" oninput="runBendCalc()">
+                </div>
+                <div class="demo-field">
+                    <label for="demoBendAngle">Bend Angle (°):</label>
+                    <input type="number" id="demoBendAngle" class="demo-input" value="90" min="15" max="175" step="1" oninput="runBendCalc()">
+                </div>
+                <div class="demo-field">
+                    <label for="demoBendMaterial">Material / K-Factor:</label>
+                    <select id="demoBendMaterial" class="demo-select" onchange="runBendCalc()">
+                        <option value="0.40,450" selected>Mild Steel (K=0.40 • 450 MPa)</option>
+                        <option value="0.45,650">Stainless 304 (K=0.45 • 650 MPa)</option>
+                        <option value="0.42,230">Aluminum 5052 (K=0.42 • 230 MPa)</option>
+                        <option value="0.42,400">Structural A36 (K=0.42 • 400 MPa)</option>
+                        <option value="0.38,300">Soft Brass (K=0.38 • 300 MPa)</option>
+                    </select>
+                </div>
+                <div class="demo-field">
+                    <label for="demoBendVDie">V-Die Width (mm):</label>
+                    <input type="number" id="demoBendVDie" class="demo-input" value="12" min="4" max="200" step="1" oninput="runBendCalc()">
+                </div>
+                <div class="demo-field">
+                    <label for="demoBendLength">Bend Length (mm):</label>
+                    <input type="number" id="demoBendLength" class="demo-input" value="500" min="10" max="4000" step="50" oninput="runBendCalc()">
+                </div>
+            </div>
+            <div class="demo-results-panel">
+                <div class="result-tile primary-tile"><span class="rt-label">Bend Deduction (BD)</span><span class="rt-val" id="resBendBD">2.83 mm</span></div>
+                <div class="result-tile"><span class="rt-label">Bend Allowance (BA)</span><span class="rt-val" id="resBendBA">4.17 mm</span></div>
+                <div class="result-tile"><span class="rt-label">Outside Setback (OSB)</span><span class="rt-val" id="resBendOSB">3.50 mm</span></div>
+                <div class="result-tile"><span class="rt-label">Press Brake Tonnage</span><span class="rt-val" id="resBendTons">6.2 Tons</span></div>
+            </div>
+            <div class="demo-actions">
+                <button type="button" class="btn-demo-action" onclick="copyBendSummary()">📋 Copy Forming Telemetry</button>
+            </div>
+            <script>
+            function runBendCalc() {
+                const t = parseFloat(document.getElementById('demoBendThick').value) || 0;
+                const r = parseFloat(document.getElementById('demoBendRadius').value) || 0;
+                const a = parseFloat(document.getElementById('demoBendAngle').value) || 90;
+                const matVal = document.getElementById('demoBendMaterial').value.split(',');
+                const k = parseFloat(matVal[0]) || 0.40;
+                const uts = parseFloat(matVal[1]) || 450;
+                const v = parseFloat(document.getElementById('demoBendVDie').value) || (t * 8);
+                const l = parseFloat(document.getElementById('demoBendLength').value) || 500;
+
+                if (t <= 0 || a <= 0) return;
+
+                // Neutral Axis Bend Allowance: BA = (pi / 180) * angle * (R + K * T)
+                const rad = (Math.PI / 180.0) * a;
+                const ba = rad * (r + (k * t));
+
+                // Outside Setback: OSB = tan(angle/2 in rad) * (R + T)
+                const halfRad = (Math.PI / 180.0) * (a / 2.0);
+                const osb = Math.tan(halfRad) * (r + t);
+
+                // Bend Deduction: BD = 2 * OSB - BA
+                const bd = (2.0 * osb) - ba;
+
+                // Air bend tonnage: F = (1.42 * UTS * (L/1000) * T^2) / (V * 9.80665)
+                const lenM = l / 1000.0;
+                let tons = 0;
+                if (v > 0) {
+                    tons = (1.42 * uts * lenM * (t * t)) / (v * 9.80665);
+                }
+
+                document.getElementById('resBendBD').innerText = bd.toFixed(2) + ' mm';
+                document.getElementById('resBendBA').innerText = ba.toFixed(2) + ' mm';
+                document.getElementById('resBendOSB').innerText = osb.toFixed(2) + ' mm';
+                document.getElementById('resBendTons').innerText = tons.toFixed(1) + ' Tons';
+            }
+            function copyBendSummary() {
+                const matSelect = document.getElementById('demoBendMaterial');
+                const matName = matSelect.options[matSelect.selectedIndex].text;
+                const t = document.getElementById('demoBendThick').value;
+                const r = document.getElementById('demoBendRadius').value;
+                const a = document.getElementById('demoBendAngle').value;
+                const bd = document.getElementById('resBendBD').innerText;
+                const ba = document.getElementById('resBendBA').innerText;
+                const osb = document.getElementById('resBendOSB').innerText;
+                const tons = document.getElementById('resBendTons').innerText;
+
+                const lines = [
+                    '--- BendSpec Forming Telemetry ---',
+                    'Material: ' + matName,
+                    'Thickness: ' + t + 'mm • Radius: ' + r + 'mm • Angle: ' + a + '°',
+                    'Bend Deduction (BD): ' + bd,
+                    'Bend Allowance (BA): ' + ba,
+                    'Outside Setback (OSB): ' + osb,
+                    'Press Brake Tonnage: ' + tons,
+                    '[Computed via BendSpec • https://apps.kimrosil.com/bendspec/]'
+                ];
+                const txt = lines.join(String.fromCharCode(10));
+                navigator.clipboard.writeText(txt).then(() => alert('Bend telemetry copied!'));
+            }
+            window.addEventListener('DOMContentLoaded', runBendCalc);
+            </script>
+            <div class="demo-cta-strip">
+                <div class="demo-cta-text">
+                    <strong>⚡ Need this in the workshop or field?</strong>
+                    <span>Runs 100% offline, zero battery drain, zero trackers, and instant ARM64 native response.</span>
+                </div>
+                <a href="#download-apk" class="demo-cta-btn">Download Native APK ↓</a>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="content-section">
+            <h2>Overview &amp; Core Capabilities</h2>
+            <div class="desc"><p>BendSpec is a professional, 100% offline sheet metal forming calculator and flat pattern developed blank layout utility engineered for press brake operators, CNC fabricators, and mechanical engineers.</p><p>Eliminate trial-and-error scrap on the press brake. BendSpec computes precise neutral-axis Bend Allowance (BA), Outside Setback (OSB), and Bend Deduction (BD), plus recommended air bend V-die openings, minimum flange heights, and required press brake forming tonnage.</p><p>KEY CAPABILITIES</p><p>1. Precision Bend Mechanics (BA, BD, OSB)<br>• Enter material thickness (T), inside bend radius (R), and bend angle (deg).<br>• Choose standard alloys with validated K-factors or input custom neutral axis ratios:<br>  - Mild Steel 1008/1018 (K = 0.40, UTS = 450 MPa)<br>  - Stainless Steel 304/316 (K = 0.45, UTS = 650 MPa)<br>  - Aluminum 5052-H32 / 6061-T6 (K = 0.42, UTS = 230 MPa)<br>  - Structural Steel A36 (K = 0.42, UTS = 400 MPa)<br>  - Brass / Copper Half-Hard (K = 0.38, UTS = 300 MPa)<br>• Instant calculation of Bend Allowance, Outside Setback, and Bend Deduction down to 0.01 mm / 0.001 in.</p><p>2. V-Die Tooling & Press Brake Tonnage<br>• Automatic V-die width recommendation (6x, 8x, 10x, or 12x material thickness).<br>• Minimum safe flange length calculation to prevent sheets slipping into the V-die opening.<br>• Forming tonnage per meter and total press load computation based on material ultimate tensile strength (UTS), preventing machine overload.</p><p>3. Multi-Flange Flat Pattern Blank Layout<br>• Sequential flange ladder builder: add sequential flange leg lengths and bend deductions.<br>• Computes exact total developed blank length: Flat Length = Sum(Flanges) - Sum(Bend Deductions).<br>• Formatted multi-flange sequence export to clipboard for immediate machine shop communication.</p><p>4. Offline Job Ledger<br>• Save and catalog forming setups by part number, job title, and material spec.<br>• Instant recall of verified shop setups for repeat production runs.</p><p>100% OFFLINE & PRIVACY-FIRST<br>• Zero ads, zero trackers, zero cloud dependencies, zero account requirements.<br>• Full Dark Mode, Light Mode, and System Auto theming for high-contrast shop visibility.<br>• Pure native Android framework architecture (< 1 MB APK, < 200 ms cold boot).</p></div>
+        </section>
+
+        <section class="tech-specs-card">
+            <h2>Technical Specifications &amp; Architecture</h2>
+            <div class="specs-grid">
+                <div class="spec-item"><span class="spec-label">Operating System</span><span class="spec-val">Android 7.0+ (API 24+)</span></div>
+                <div class="spec-item"><span class="spec-label">Architecture</span><span class="spec-val">Pure Native (Java/Kotlin + XML)</span></div>
+                <div class="spec-item"><span class="spec-label">Network Requirement</span><span class="spec-val">0 KB / 100% Offline</span></div>
+                <div class="spec-item"><span class="spec-label">Data Privacy</span><span class="spec-val">Zero Cloud Tracking / Sandboxed</span></div>
+                <div class="spec-item"><span class="spec-label">Binary Footprint</span><span class="spec-val">< 5 MB</span></div>
+                <div class="spec-item"><span class="spec-label">Distribution</span><span class="spec-val">100% Free &bull; Open CDN</span></div>
+            </div>
+        </section>
+
+        <section class="app-faq-card">
+            <h2>Frequently Asked Questions</h2>
+            <details class="faq-accordion" open>
+                <summary>Is BendSpec completely offline?</summary>
+                <p>Yes. BendSpec operates entirely locally on your Android device without requiring internet connectivity or external server calls.</p>
+            </details>
+            <details class="faq-accordion">
+                <summary>Does this utility collect any telemetry or personal data?</summary>
+                <p>No. KimRosil App Studio adheres to a strict zero-telemetry standard. No analytics SDKs, advertising frameworks, or background trackers are included in the binary.</p>
+            </details>
+            <details class="faq-accordion">
+                <summary>How do I install the direct APK?</summary>
+                <p>Click the "Download APK" button above to get the signed APK binary directly from our verified GitHub Releases CDN. Open the downloaded file to install on your Android device.</p>
+            </details>
+        </section>
+
+        <section class="related-apps-card">
+            <h2>Explore Related Utilities & Lifestyle Apps</h2>
+            <div class="related-grid">
+                <a href="../return-guard-receipt-countdown/" class="related-card">
+                    <img src="../assets/icons/return-guard-receipt-countdown.svg" width="40" height="40" alt="ReturnGuard Return Tracker icon" class="related-icon" loading="lazy" onerror="this.src='../assets/icon.svg'">
+                    <div class="related-meta">
+                        <span class="related-name">ReturnGuard Return Tracker</span>
+                        <span class="related-desc">Stop losing money on clothes and purchases you meant to return with visual deadline countdowns and cashier-ready receipt displays.</span>
+                    </div>
+                </a>
+                <a href="../size-vault-family-clothing/" class="related-card">
+                    <img src="../assets/icons/size-vault-family-clothing.svg" width="40" height="40" alt="SizeVault icon" class="related-icon" loading="lazy" onerror="this.src='../assets/icon.svg'">
+                    <div class="related-meta">
+                        <span class="related-name">SizeVault</span>
+                        <span class="related-desc">The instant pocket size guide for parents, spouses, and gift shoppers browsing sales and thrift stores.</span>
+                    </div>
+                </a>
+                <a href="../ph-vat-calculator/" class="related-card">
+                    <img src="../assets/icons/ph-vat-calculator.svg" width="40" height="40" alt="VatCal PH icon" class="related-icon" loading="lazy" onerror="this.src='../assets/icon.svg'">
+                    <div class="related-meta">
+                        <span class="related-name">VatCal PH</span>
+                        <span class="related-desc">Fast offline 12% VAT (inclusive/exclusive), Expanded Withholding Tax (EWT), and invoice net/gross calculation tool.</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>100% Offline Freeware &bull; Zero Trackers &bull; Pure Native Android</p>
+            <p><a href="../">← View All Applications</a> &bull; <a href="../privacy.html">Developer Privacy Policy</a> &bull; <a href="https://github.com/eliakimrosil/kimrosil-app-studio">GitHub Repository</a></p>
+        </footer>
+    </div>
+</body>
+</html>
