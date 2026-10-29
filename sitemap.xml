@@ -25,6 +25,22 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://apps.kimrosil.com/gluewedge/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://apps.kimrosil.com/assets/icons/gluewedge.svg</image:loc>
+      <image:title>GlueWedge</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://apps.kimrosil.com/gluewedge/privacy.html</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://apps.kimrosil.com/hydraflow/</loc>
     <lastmod>2026-10-29</lastmod>
     <changefreq>weekly</changefreq>

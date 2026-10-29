@@ -893,6 +893,27 @@ Notice of Non-Affiliation: All product and company names, logos, and brands ment
 
 ---
 
+## GlueWedge (`gluewedge`)
+- **Category**: Workshop
+- **Tagline**: Offline edge-gluing clamp layout and PSI pressure calculator for woodworking panels.
+- **Landing Page**: https://apps.kimrosil.com/gluewedge/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-gluewedge/gluewedge.apk
+- **Privacy Policy**: https://apps.kimrosil.com/gluewedge/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+Gluewedge delivers precise mechanical calculations and visual clamp layout planning for woodworkers, cabinetmakers, and furniture builders. Achieving consistent edge joints requires balancing timber species density, clamping force, and glue line pressure. Gluewedge eliminates guesswork by converting panel dimensions and timber properties into exact clamp spacing, force requirements, and assembly countdowns. ENGINEERING-GRADE CALCULATIONS - Species-Specific Target Pressure: Reference recommended clamping pressures (PSI) across softwoods, medium hardwoods, and dense hardwoods to prevent glue starvation or dry joints. - Clamping Force Requirements: Input board length, width, and thickness to calculate total required clamping force (lbf) and load distribution per clamp. - 45-Degree Pressure Cone Visualization: Inspect dynamic visual cone overlays to ensure pressure zones overlap across the entire glue line, highlighting unpressured gaps before applying adhesive. - Clamp Spacing & Stagger Guidance: Determine optimal edge-to-edge spacing and alternate top/bottom clamp placement to prevent panel bowing. OPEN TIME & CURE TIMER - Countdown Timer: Track open assembly time and closed clamp duration based on adhesive type and ambient workshop conditions. - Audible & Haptic Alerts: Receive clear workshop-friendly alerts when assembly time is expiring or cure threshold is reached. SESSION ARCHIVE & LOGGING - Local History Log: Store panel dimensions, species, clamp count, and force metrics directly on device for production repeatability. - One-Tap Metric & Imperial Conversion: Seamlessly switch between inches, millimeters, pounds-force, and bar. ZERO TRACKING & COMPLETE PRIVACY - 100% Offline Utility: Works in basements, remote workshops, and job sites with no active internet connection required. - No Accounts, No Subscriptions: Direct access to every calculation tool with zero recurring fees. - Complete Data Privacy: No background trackers, third-party analytics, or data collection.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
 ## GrainLine (`grainline`)
 - **Category**: Tools / Productivity
 - **Tagline**: Offline textile yardage calculator and pattern layout optimizer with Quick Settings bolt yardage scanner.
