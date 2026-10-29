@@ -78,7 +78,7 @@
     },
     "description": "Offline sheet metal bend allowance, deduction, K-factor & tonnage calculator.",
     "image": "https://apps.kimrosil.com/assets/icons/bendspec.png",
-    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-bendspec/bendspec.apk",
+    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.3-bendspec/bendspec.apk",
     "softwareVersion": "1.0.3",
     "fileSize": "< 5 MB",
     "author": {
@@ -154,7 +154,7 @@
             "name": "How do I install BendSpec on Android?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "You can download the APK binary directly from the official KimRosil App Studio GitHub Releases CDN (https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-bendspec/bendspec.apk) and open the file on your device to install."
+                "text": "You can download the APK binary directly from the official KimRosil App Studio GitHub Releases CDN (https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.3-bendspec/bendspec.apk) and open the file on your device to install."
             }
         }
     ]
@@ -425,139 +425,6 @@
         .footer a { color: #00E5FF; text-decoration: none; }
         .footer a:hover { text-decoration: underline; }
 
-        /* Interactive Web Demo Styles */
-        .interactive-demo-card {
-            background: #0E1626;
-            border: 1.5px solid #1E293B;
-            border-radius: 16px;
-            padding: 24px;
-            margin: 20px 0 24px 0;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
-        .demo-top { margin-bottom: 18px; }
-        .demo-tag {
-            display: inline-block;
-            background: rgba(0, 229, 255, 0.12);
-            color: #00E5FF;
-            font-size: 11.5px;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 6px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            border: 1px solid rgba(0, 229, 255, 0.3);
-        }
-        .demo-top h2 { font-size: 20px; color: #FFFFFF; margin-bottom: 6px; }
-        .demo-sub { font-size: 13.5px; color: #94A3B8; }
-        .demo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 14px;
-            margin-bottom: 16px;
-        }
-        .demo-field label {
-            display: block;
-            font-size: 12px;
-            font-weight: 600;
-            color: #CBD5E1;
-            margin-bottom: 6px;
-        }
-        .demo-input, .demo-select {
-            width: 100%;
-            background: #131D31;
-            border: 1px solid #1E293B;
-            border-radius: 8px;
-            padding: 10px 12px;
-            color: #FFFFFF;
-            font-size: 14px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        .demo-input:focus, .demo-select:focus { border-color: #00E5FF; }
-        .demo-results-panel {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-        .result-tile {
-            background: #131D31;
-            border: 1px solid #1E293B;
-            border-radius: 10px;
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        .result-tile.primary-tile {
-            background: rgba(0, 229, 255, 0.08);
-            border-color: #00E5FF;
-        }
-        .rt-label { font-size: 11px; color: #94A3B8; font-weight: 600; }
-        .rt-val { font-size: 15px; color: #FFFFFF; font-weight: 700; font-family: monospace; }
-        .result-tile.primary-tile .rt-val { color: #00E5FF; font-size: 17px; }
-        .demo-actions { margin-bottom: 18px; }
-        .btn-demo-action {
-            background: #1E293B;
-            border: 1px solid #334155;
-            color: #F1F5F9;
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s, border-color 0.2s;
-        }
-        .btn-demo-action:hover { background: #334155; border-color: #00E5FF; }
-        .demo-cta-strip {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 14px;
-            background: #090D16;
-            border: 1px solid #1E293B;
-            border-radius: 12px;
-            padding: 14px 18px;
-        }
-        .demo-cta-text { display: flex; flex-direction: column; gap: 2px; }
-        .demo-cta-text strong { font-size: 13px; color: #38BDF8; }
-        .demo-cta-text span { font-size: 12px; color: #94A3B8; }
-        .demo-cta-btn {
-            background: #00E5FF;
-            color: #090D16;
-            padding: 9px 16px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 700;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: transform 0.15s, background 0.15s;
-        }
-        .demo-cta-btn:hover { background: #38BDF8; transform: translateY(-1px); }
-        .timer-demo-box { text-align: center; margin: 16px 0; }
-        .timer-display {
-            font-size: 48px;
-            font-weight: 800;
-            color: #00E5FF;
-            font-family: monospace;
-            letter-spacing: 2px;
-            margin-bottom: 14px;
-        }
-        .timer-controls { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
-        .btn-timer {
-            background: #00E5FF;
-            color: #090D16;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-        .btn-timer-reset { background: #1E293B; color: #F1F5F9; border: 1px solid #334155; }
-        .btn-timer-preset { background: #131D31; color: #38BDF8; border: 1px solid #1E293B; }
-
         @media (max-width: 640px) {
             body { padding: 12px 8px; }
             .container { padding: 20px 14px; border-radius: 16px; }
@@ -571,8 +438,6 @@
             .specs-grid { grid-template-columns: 1fr; }
             .related-grid { grid-template-columns: 1fr; }
             .footer { margin-top: 24px; padding-top: 16px; font-size: 12px; }
-            .demo-cta-strip { flex-direction: column; text-align: center; gap: 10px; }
-            .demo-cta-btn { width: 100%; text-align: center; }
         }
     </style>
 </head>
@@ -602,133 +467,12 @@
             <span class="badge">✓ v1.0.3</span>
         </div>
 
-        <a class="btn" id="download-apk" href="https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-bendspec/bendspec.apk">⬇ Download APK (Direct CDN)</a>
+        <a class="btn" id="download-apk" href="https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.3-bendspec/bendspec.apk">⬇ Download APK (Direct CDN)</a>
 
         <div class="meta-links">
             <a href="privacy.html"><strong>🛡️ Data Safety &amp; Privacy Policy →</strong></a>
             <a href="../testers.html"><strong>🧪 Join 20-Tester Beta Track →</strong></a>
         </div>
-
-        <hr>
-
-        <section class="interactive-demo-card" id="web-demo">
-            <div class="demo-top">
-                <span class="demo-tag">⚡ Live Browser Quick-Test</span>
-                <h2>Try BendSpec Online</h2>
-                <p class="demo-sub">Test the core computation right in your browser before downloading the 100% offline native APK:</p>
-            </div>
-            
-            <div class="demo-grid">
-                <div class="demo-field">
-                    <label for="demoBendThick">Sheet Thickness (mm):</label>
-                    <input type="number" id="demoBendThick" class="demo-input" value="1.5" min="0.5" max="25" step="0.1" oninput="runBendCalc()">
-                </div>
-                <div class="demo-field">
-                    <label for="demoBendRadius">Inside Radius (mm):</label>
-                    <input type="number" id="demoBendRadius" class="demo-input" value="2.0" min="0.2" max="50" step="0.1" oninput="runBendCalc()">
-                </div>
-                <div class="demo-field">
-                    <label for="demoBendAngle">Bend Angle (°):</label>
-                    <input type="number" id="demoBendAngle" class="demo-input" value="90" min="15" max="175" step="1" oninput="runBendCalc()">
-                </div>
-                <div class="demo-field">
-                    <label for="demoBendMaterial">Material / K-Factor:</label>
-                    <select id="demoBendMaterial" class="demo-select" onchange="runBendCalc()">
-                        <option value="0.40,450" selected>Mild Steel (K=0.40 • 450 MPa)</option>
-                        <option value="0.45,650">Stainless 304 (K=0.45 • 650 MPa)</option>
-                        <option value="0.42,230">Aluminum 5052 (K=0.42 • 230 MPa)</option>
-                        <option value="0.42,400">Structural A36 (K=0.42 • 400 MPa)</option>
-                        <option value="0.38,300">Soft Brass (K=0.38 • 300 MPa)</option>
-                    </select>
-                </div>
-                <div class="demo-field">
-                    <label for="demoBendVDie">V-Die Width (mm):</label>
-                    <input type="number" id="demoBendVDie" class="demo-input" value="12" min="4" max="200" step="1" oninput="runBendCalc()">
-                </div>
-                <div class="demo-field">
-                    <label for="demoBendLength">Bend Length (mm):</label>
-                    <input type="number" id="demoBendLength" class="demo-input" value="500" min="10" max="4000" step="50" oninput="runBendCalc()">
-                </div>
-            </div>
-            <div class="demo-results-panel">
-                <div class="result-tile primary-tile"><span class="rt-label">Bend Deduction (BD)</span><span class="rt-val" id="resBendBD">2.83 mm</span></div>
-                <div class="result-tile"><span class="rt-label">Bend Allowance (BA)</span><span class="rt-val" id="resBendBA">4.17 mm</span></div>
-                <div class="result-tile"><span class="rt-label">Outside Setback (OSB)</span><span class="rt-val" id="resBendOSB">3.50 mm</span></div>
-                <div class="result-tile"><span class="rt-label">Press Brake Tonnage</span><span class="rt-val" id="resBendTons">6.2 Tons</span></div>
-            </div>
-            <div class="demo-actions">
-                <button type="button" class="btn-demo-action" onclick="copyBendSummary()">📋 Copy Forming Telemetry</button>
-            </div>
-            <script>
-            function runBendCalc() {
-                const t = parseFloat(document.getElementById('demoBendThick').value) || 0;
-                const r = parseFloat(document.getElementById('demoBendRadius').value) || 0;
-                const a = parseFloat(document.getElementById('demoBendAngle').value) || 90;
-                const matVal = document.getElementById('demoBendMaterial').value.split(',');
-                const k = parseFloat(matVal[0]) || 0.40;
-                const uts = parseFloat(matVal[1]) || 450;
-                const v = parseFloat(document.getElementById('demoBendVDie').value) || (t * 8);
-                const l = parseFloat(document.getElementById('demoBendLength').value) || 500;
-
-                if (t <= 0 || a <= 0) return;
-
-                // Neutral Axis Bend Allowance: BA = (pi / 180) * angle * (R + K * T)
-                const rad = (Math.PI / 180.0) * a;
-                const ba = rad * (r + (k * t));
-
-                // Outside Setback: OSB = tan(angle/2 in rad) * (R + T)
-                const halfRad = (Math.PI / 180.0) * (a / 2.0);
-                const osb = Math.tan(halfRad) * (r + t);
-
-                // Bend Deduction: BD = 2 * OSB - BA
-                const bd = (2.0 * osb) - ba;
-
-                // Air bend tonnage: F = (1.42 * UTS * (L/1000) * T^2) / (V * 9.80665)
-                const lenM = l / 1000.0;
-                let tons = 0;
-                if (v > 0) {
-                    tons = (1.42 * uts * lenM * (t * t)) / (v * 9.80665);
-                }
-
-                document.getElementById('resBendBD').innerText = bd.toFixed(2) + ' mm';
-                document.getElementById('resBendBA').innerText = ba.toFixed(2) + ' mm';
-                document.getElementById('resBendOSB').innerText = osb.toFixed(2) + ' mm';
-                document.getElementById('resBendTons').innerText = tons.toFixed(1) + ' Tons';
-            }
-            function copyBendSummary() {
-                const matSelect = document.getElementById('demoBendMaterial');
-                const matName = matSelect.options[matSelect.selectedIndex].text;
-                const t = document.getElementById('demoBendThick').value;
-                const r = document.getElementById('demoBendRadius').value;
-                const a = document.getElementById('demoBendAngle').value;
-                const bd = document.getElementById('resBendBD').innerText;
-                const ba = document.getElementById('resBendBA').innerText;
-                const osb = document.getElementById('resBendOSB').innerText;
-                const tons = document.getElementById('resBendTons').innerText;
-
-                const lines = [
-                    '--- BendSpec Forming Telemetry ---',
-                    'Material: ' + matName,
-                    'Thickness: ' + t + 'mm • Radius: ' + r + 'mm • Angle: ' + a + '°',
-                    'Bend Deduction (BD): ' + bd,
-                    'Bend Allowance (BA): ' + ba,
-                    'Outside Setback (OSB): ' + osb,
-                    'Press Brake Tonnage: ' + tons,
-                    '[Computed via BendSpec • https://apps.kimrosil.com/bendspec/]'
-                ];
-                const txt = lines.join(String.fromCharCode(10));
-                navigator.clipboard.writeText(txt).then(() => alert('Bend telemetry copied!'));
-            }
-            window.addEventListener('DOMContentLoaded', runBendCalc);
-            </script>
-            <div class="demo-cta-strip">
-                <div class="demo-cta-text">
-                    <strong>⚡ Need this in the workshop or field?</strong>
-                    <span>Runs 100% offline, zero battery drain, zero trackers, and instant ARM64 native response.</span>
-                </div>
-                <a href="#download-apk" class="demo-cta-btn">Download Native APK ↓</a>
-            </div>
-        </section>
 
         <hr>
 
