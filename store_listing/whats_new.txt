@@ -1,0 +1,2 @@
+Release v1.1.0 - TorqueSpec
+Initial release of TorqueSpec: precision fastener torque calculator and thread pitch ledger

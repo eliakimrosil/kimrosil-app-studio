@@ -1,0 +1,308 @@
+plugins {
+    id 'base'
+}
+
+ext {
+    sdkDir = file("${System.getProperty('user.home')}/.android-sdk/platforms/android-33")
+    androidJar = file("${sdkDir}/android.jar")
+    debugKeystore = file("${System.getProperty('user.home')}/.android/debug.keystore")
+    releaseKeystore = file("${System.getProperty('user.home')}/.android/kimrosil_release.keystore")
+    kotlinStdlib = file("/data/data/com.termux/files/usr/opt/kotlin/lib/kotlin-stdlib.jar")
+    preDexDir = file("${System.getProperty('user.home')}/.android-sdk/pre-dexed/kotlin-stdlib")
+    buildDir = file("build")
+    genDir = file("${buildDir}/gen")
+    intermediatesDir = file("${buildDir}/intermediates")
+    classesDir = file("${intermediatesDir}/classes")
+    outputsDir = file("${buildDir}/outputs")
+    targetSerial = System.getenv('ANDROID_SERIAL') ?: '127.0.0.1:5555'
+}
+
+task compileResources(type: Exec) {
+    description = 'Compiles Android resources using AAPT2'
+    group = 'build'
+
+    doFirst {
+        genDir.mkdirs()
+        intermediatesDir.mkdirs()
+        outputsDir.mkdirs()
+    }
+
+    commandLine 'bash', '-c', """
+        aapt2 compile --dir src/main/res -o ${intermediatesDir}/compiled_res.zip && \\
+        aapt2 link --manifest src/main/AndroidManifest.xml -I ${androidJar} \\
+            ${intermediatesDir}/compiled_res.zip -o ${intermediatesDir}/resources.apk \\
+            --java ${genDir}
+    """
+}
+
+task compileJava(type: Exec) {
+    description = 'Compiles Java and Kotlin source code against android.jar'
+    group = 'build'
+    dependsOn compileResources
+
+    doFirst {
+        classesDir.mkdirs()
+    }
+
+    commandLine 'bash', '-c', """
+        set -e
+        has_kt=0
+        if [ -d "src/main/kotlin" ] && [ -n "\$(find src/main/kotlin -name "*.kt" -print -quit 2>/dev/null)" ]; then
+            has_kt=1
+        fi
+
+        java_dirs=()
+        [ -d "src/main/java" ] && java_dirs+=("src/main/java")
+        [ -d "${genDir}" ] && java_dirs+=("${genDir}")
+        java_files=""
+        if [ \${#java_dirs[@]} -gt 0 ]; then
+            java_files=\$(find "\${java_dirs[@]}" -name "*.java" 2>/dev/null || true)
+        fi
+
+        kt_files=""
+        if [ -d "src/main/kotlin" ]; then
+            kt_files=\$(find src/main/kotlin -name "*.kt" 2>/dev/null || true)
+        fi
+
+        if [ "\$has_kt" -eq 1 ]; then
+            # If there are Java files (like R.java or src/main/java), compile them first so Kotlin can reference R classes
+            if [ -n "\$java_files" ]; then
+                javac -cp ${androidJar}:${genDir} -d ${classesDir} \$java_files
+            fi
+
+            # Polyglot/Kotlin mode: Compile Kotlin with jansi suppression and fast options
+            kotlinc -J-Djansi.passthrough=true -J-Dkotlin.colors.enabled=false \
+                -jvm-target 1.8 -cp ${androidJar}:${genDir}:${classesDir} -d ${classesDir} \
+                \$kt_files 2> >(grep -v "Failed to load native library:jansi" >&2)
+        else
+            # Pure Java mode: Instant zero-bloat compilation
+            javac --release 8 -cp ${androidJar} -d ${classesDir} \$java_files
+        fi
+    """
+}
+
+task compileDebugSources {
+    description = 'Alias to compileJava for compiling Java and Kotlin sources'
+    group = 'build'
+    dependsOn compileJava
+}
+
+task dex(type: Exec) {
+    description = 'Converts compiled bytecode into DEX format using D8 with pre-dex caching'
+    group = 'build'
+    dependsOn compileJava
+
+    commandLine 'bash', '-c', """
+        set -e
+        has_kt=0
+        if [ -d "src/main/kotlin" ] && [ -n "\$(find src/main/kotlin -name "*.kt" -print -quit 2>/dev/null)" ]; then
+            has_kt=1
+        fi
+
+        class_files=\$(find ${classesDir} -name "*.class")
+        if [ "\$has_kt" -eq 1 ]; then
+            # Ensure pre-dexed kotlin-stdlib cache exists
+            if [ ! -f "${preDexDir}/classes.dex" ]; then
+                mkdir -p "${preDexDir}"
+                d8 --lib ${androidJar} --min-api 26 --output "${preDexDir}/" ${kotlinStdlib}
+            fi
+
+            # Ultra-fast app-only dexing against kotlin-stdlib classpath
+            d8 --lib ${androidJar} --classpath ${kotlinStdlib} --min-api 26 --output ${intermediatesDir}/ \$class_files
+            cp "${preDexDir}/classes.dex" "${intermediatesDir}/classes2.dex"
+        else
+            d8 --lib ${androidJar} --output ${intermediatesDir}/ \$class_files
+        fi
+    """
+}
+
+task packageApk(type: Exec) {
+    description = 'Packages DEX and resources into an unaligned APK'
+    group = 'build'
+    dependsOn dex
+
+    commandLine 'python3', '-c', """
+import shutil, zipfile, os, glob
+shutil.copyfile("${intermediatesDir}/resources.apk", "${intermediatesDir}/unaligned.apk")
+with zipfile.ZipFile("${intermediatesDir}/unaligned.apk", "a") as z:
+    for dex_path in glob.glob("${intermediatesDir}/classes*.dex"):
+        z.write(dex_path, os.path.basename(dex_path))
+"""
+}
+
+task signApk(type: Exec) {
+    description = 'Signs the APK using apksigner with debug keystore'
+    group = 'build'
+    dependsOn packageApk
+
+    commandLine 'bash', '-c', """
+        apksigner sign --ks ${debugKeystore} --ks-pass pass:android \\
+            --ks-key-alias androiddebugkey --key-pass pass:android \\
+            --out ${outputsDir}/${rootProject.name}-debug.apk ${intermediatesDir}/unaligned.apk
+    """
+}
+
+task assembleDebug {
+    description = 'Builds and packages the debug APK'
+    group = 'build'
+    dependsOn signApk
+
+    doLast {
+        println ">>> Build Successful! APK generated at: ${outputsDir}/${rootProject.name}-debug.apk"
+    }
+}
+
+task signReleaseApk(type: Exec) {
+    description = 'Signs the APK using apksigner with production release keystore'
+    group = 'build'
+    dependsOn packageApk
+
+    commandLine 'bash', '-c', """
+        PASS="\${RELEASE_KEYSTORE_PASS:-\${RELEASE_KEYSTORE_PASSWORD}}"
+        if [ -z "\$PASS" ]; then
+            echo "Error: RELEASE_KEYSTORE_PASS environment variable is required to sign release APK"
+            exit 1
+        fi
+        ALIAS="\${RELEASE_KEYSTORE_ALIAS:-kimrosil}"
+        apksigner sign --ks ${releaseKeystore} --ks-pass pass:"\$PASS" \\
+            --ks-key-alias "\$ALIAS" --key-pass pass:"\$PASS" \\
+            --out ${outputsDir}/${rootProject.name}-release.apk ${intermediatesDir}/unaligned.apk
+    """
+}
+
+task assembleRelease {
+    description = 'Builds and packages the signed release APK'
+    group = 'build'
+    dependsOn signReleaseApk
+
+    doLast {
+        println ">>> Release Build Successful! APK generated at: ${outputsDir}/${rootProject.name}-release.apk"
+    }
+}
+
+task compileProtoResources(type: Exec) {
+    description = 'Compiles Android resources in Protocol Buffer format for AAB bundle'
+    group = 'build'
+    dependsOn dex
+
+    commandLine 'bash', '-c', """
+        aapt2 link --manifest src/main/AndroidManifest.xml -I ${androidJar} \\
+            --proto-format -o ${intermediatesDir}/proto_base.apk \\
+            ${intermediatesDir}/compiled_res.zip --auto-add-overlay
+    """
+}
+
+task packageBundle(type: Exec) {
+    description = 'Packages module into Android App Bundle (.aab) using bundletool'
+    group = 'build'
+    dependsOn compileProtoResources
+
+    commandLine 'python3', '-c', """
+import zipfile, subprocess, os, glob
+proto_apk = "${intermediatesDir}/proto_base.apk"
+base_zip = "${intermediatesDir}/base.zip"
+out_aab = "${outputsDir}/${rootProject.name}-unsigned.aab"
+
+with zipfile.ZipFile(proto_apk, 'r') as zin, zipfile.ZipFile(base_zip, 'w') as zout:
+    for item in zin.infolist():
+        data = zin.read(item.filename)
+        if item.filename == "AndroidManifest.xml":
+            zout.writestr("manifest/AndroidManifest.xml", data)
+        else:
+            zout.writestr(item.filename, data)
+    for dex_path in glob.glob("${intermediatesDir}/classes*.dex"):
+        dex_name = os.path.basename(dex_path)
+        with open(dex_path, 'rb') as f:
+            zout.writestr(f"dex/{dex_name}", f.read())
+
+subprocess.run([
+    "bundletool", "build-bundle",
+    f"--modules={base_zip}",
+    f"--output={out_aab}",
+    "--overwrite"
+], check=True)
+"""
+}
+
+task signBundle(type: Exec) {
+    description = 'Signs the Android App Bundle using jarsigner with release keystore'
+    group = 'build'
+    dependsOn packageBundle
+
+    commandLine 'bash', '-c', """
+        PASS="\${RELEASE_KEYSTORE_PASS:-\${RELEASE_KEYSTORE_PASSWORD}}"
+        if [ -z "\$PASS" ]; then
+            echo "Error: RELEASE_KEYSTORE_PASS environment variable is required to sign release AAB"
+            exit 1
+        fi
+        ALIAS="\${RELEASE_KEYSTORE_ALIAS:-kimrosil}"
+        cp ${outputsDir}/${rootProject.name}-unsigned.aab ${outputsDir}/${rootProject.name}-release.aab && \\
+        jarsigner -keystore ${releaseKeystore} \\
+            -storepass "\$PASS" -keypass "\$PASS" \\
+            ${outputsDir}/${rootProject.name}-release.aab "\$ALIAS" && \\
+        bundletool validate --bundle=${outputsDir}/${rootProject.name}-release.aab
+    """
+}
+
+task bundleRelease {
+    description = 'Builds and signs the production Android App Bundle (.aab) for Google Play'
+    group = 'build'
+    dependsOn signBundle
+
+    doLast {
+        println ">>> Production Bundle Ready! Signed AAB generated at: ${outputsDir}/${rootProject.name}-release.aab"
+    }
+}
+
+task buildAll {
+    description = 'Builds all variants: Debug APK, Release APK, and Signed Google Play AAB Bundle'
+    group = 'build'
+    dependsOn assembleDebug, assembleRelease, bundleRelease
+
+    doLast {
+        println "=========================================================="
+        println ">>> KimRosil App Studio Build Complete!"
+        println " • Debug APK:   ${outputsDir}/${rootProject.name}-debug.apk"
+        println " • Release APK: ${outputsDir}/${rootProject.name}-release.apk"
+        println " • Play AAB:    ${outputsDir}/${rootProject.name}-release.aab"
+        println "=========================================================="
+    }
+}
+
+task installDebug(type: Exec) {
+    description = 'Installs the debug APK onto the connected Android device'
+    group = 'install'
+    dependsOn assembleDebug
+
+    commandLine 'bash', '-c', """
+        adb -s ${targetSerial} install -r -g ${outputsDir}/${rootProject.name}-debug.apk
+    """
+}
+
+task launchApp(type: Exec) {
+    description = 'Launches the main activity on the device'
+    group = 'install'
+    dependsOn installDebug
+
+    commandLine 'bash', '-c', """
+        PKG=\$(sed -n 's/.*package="\\([^"]*\\)".*/\\1/p' src/main/AndroidManifest.xml | head -n1)
+        adb -s ${targetSerial} shell am start -n "\${PKG}/.MainActivity"
+    """
+}
+
+gradle.projectsEvaluated {
+    try {
+        if (new File("/data/data/com.termux/files/usr/bin/termux-wake-lock").exists()) {
+            "/data/data/com.termux/files/usr/bin/termux-wake-lock".execute()
+        }
+    } catch (Exception ignored) {}
+}
+
+gradle.buildFinished {
+    try {
+        if (new File("/data/data/com.termux/files/usr/bin/termux-wake-unlock").exists()) {
+            "/data/data/com.termux/files/usr/bin/termux-wake-unlock".execute()
+        }
+    } catch (Exception ignored) {}
+}
+

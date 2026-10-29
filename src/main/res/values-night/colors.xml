@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bespoke Domain Dark Theme Color Tokens -->
+    <color name="colorPrimary">#38BDF8</color>
+    <color name="colorPrimaryDark">#090D16</color>
+    <color name="colorAccent">#00E5FF</color>
+    <color name="windowBackground">#090D16</color>
+
+    <color name="m3_primary">#38BDF8</color>
+    <color name="m3_on_primary">#1A1000</color>
+    <color name="m3_primary_container">#111827</color>
+    <color name="m3_on_primary_container">#38BDF8</color>
+
+    <color name="m3_secondary">#00E5FF</color>
+    <color name="m3_on_secondary">#0F172A</color>
+    <color name="m3_secondary_container">#111827</color>
+    <color name="m3_on_secondary_container">#F1F5F9</color>
+
+    <color name="m3_tertiary">#00E5FF</color>
+    <color name="m3_on_tertiary">#000000</color>
+    <color name="m3_tertiary_container">#111827</color>
+    <color name="m3_on_tertiary_container">#F1F5F9</color>
+
+    <color name="m3_surface">#090D16</color>
+    <color name="m3_surface_container">#111827</color>
+    <color name="m3_surface_container_high">#111827</color>
+    <color name="m3_surface_container_highest">#2E3744</color>
+
+    <color name="m3_on_surface">#F1F5F9</color>
+    <color name="m3_on_surface_variant">#94A3B8</color>
+    <color name="m3_outline">#1E293B</color>
+    <color name="m3_outline_variant">#1E293B</color>
+
+    <color name="m3_success">#22C55E</color>
+    <color name="m3_on_success">#00391A</color>
+    <color name="m3_error">#EF4444</color>
+    <color name="m3_on_error">#690005</color>
+
+    <!-- Legacy compatibility aliases -->
+    <color name="cardBackground">#111827</color>
+    <color name="cardStroke">#1E293B</color>
+    <color name="textPrimary">#F1F5F9</color>
+    <color name="textSecondary">#94A3B8</color>
+    <color name="btnColor">#38BDF8</color>
+    <color name="btnTextColor">#1A1000</color>
+
+    <!-- Status Badges -->
+    <color name="badge_safe">#10B981</color>
+    <color name="badge_warning">#F59E0B</color>
+    <color name="badge_critical">#EF4444</color>
+</resources>

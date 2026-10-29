@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 500" width="1024" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#12151B" />
+      <stop offset="60%" stop-color="#080D14" />
+      <stop offset="100%" stop-color="#020408" />
+    </linearGradient>
+    <radialGradient id="glowGrad" cx="25%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#00E5FF" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FFFFFF" stroke-width="0.5" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+
+  <rect width="1024" height="500" fill="url(#bgGrad)" />
+  <rect width="1024" height="500" fill="url(#glowGrad)" />
+  <rect width="1024" height="500" fill="url(#grid)" />
+
+  <g transform="translate(80, 130)">
+    <rect x="-10" y="-10" width="260" height="260" rx="54" fill="#00E5FF" fill-opacity="0.12" />
+    <rect x="0" y="0" width="240" height="240" rx="48" fill="#12151B" stroke="#00E5FF" stroke-width="2" stroke-opacity="0.4" />
+    <g transform="translate(20, 20) scale(1.85185)">
+      <path fill="#1A202C" d="M54,22 C71.67,22 86,36.33 86,54 C86,71.67 71.67,86 54,86 C36.33,86 22,71.67 22,54 C22,36.33 36.33,22 54,22 Z" /><path fill="#242D3D" d="M54,25 A29,29 0 0,0 25,54 L27,54 A27,27 0 0,1 54,27 Z M83,54 A29,29 0 0,0 54,25 L54,27 A27,27 0 0,1 81,54 Z" /><path stroke="#FF9800" stroke-opacity="0.2" stroke-width="1" d="M54,16 L54,20 M54,88 L54,92 M16,54 L20,54 M88,54 L92,54 M27.1,27.1 L29.9,29.9 M78.1,78.1 L80.9,80.9 M27.1,80.9 L29.9,78.1 M78.1,29.9 L80.9,27.1" />
+      <path fill="#37474F" d="M54,34 L66.12,41 L66.12,55 L54,62 L41.88,55 L41.88,41 Z" /><path fill="#263238" d="M54,36 L64.39,42 L64.39,54 L54,60 L43.61,54 L43.61,42 Z" /><path fill="#10151B" d="M54,43 C57.87,43 61,46.13 61,50 C61,53.87 57.87,57 54,57 C50.13,57 47,53.87 47,50 C47,46.13 50.13,43 54,43 Z" /><path fill="#78909C" d="M54,37 L54,44 M63,42.5 L57,46 M63,53.5 L57,50 M54,59 L54,52 M45,53.5 L51,50 M45,42.5 L51,46" stroke="#455A64" stroke-width="1" /><path stroke="#FFB300" stroke-width="4" stroke-linecap="round" d="M35,69 A22,22 0 1,1 73,69" /><path fill="#FFB300" d="M76,64 L80,72 L71,72 Z" /><path stroke="#E65100" stroke-width="3" stroke-linecap="round" d="M65,39 A22,22 0 0,1 73,69" /><path fill="#00E5FF" d="M53,49 L55,49 L55,51 L53,51 Z" /><path stroke="#00E5FF" stroke-width="2" stroke-linecap="round" d="M54,50 L64,43" />
+    </g>
+  </g>
+
+  <g transform="translate(390, 150)">
+    <rect x="0" y="0" width="210" height="28" rx="6" fill="#00E5FF" fill-opacity="0.15" />
+    <text x="12" y="19" font-family="sans-serif" font-size="12" font-weight="bold" fill="#00E5FF" letter-spacing="2">KIMROSIL APP STUDIO</text>
+    <text x="0" y="85" font-family="sans-serif" font-size="44" font-weight="900" fill="#FFFFFF" letter-spacing="-0.5">TorqueSpec</text>
+    <text x="0" y="125" font-family="sans-serif" font-size="19" fill="#94A3B8">Offline fastener torque calculator, thread pitch v...</text>
+
+    <g transform="translate(0, 165)">
+      <rect x="0" y="0" width="135" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="16" y="22" font-family="sans-serif" font-size="12" font-weight="bold" fill="#38BDF8">⚡ 100% OFFLINE</text>
+      <rect x="145" y="0" width="160" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="160" y="22" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34D399">🛡️ NO SUBSCRIPTION</text>
+      <rect x="315" y="0" width="165" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="330" y="22" font-family="sans-serif" font-size="12" font-weight="bold" fill="#F472B6">🔒 PRIVATE &amp; LOCAL</text>
+    </g>
+  </g>
+</svg>

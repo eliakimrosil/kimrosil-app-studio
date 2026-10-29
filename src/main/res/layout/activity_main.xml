@@ -1,0 +1,1157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/m3_surface">
+
+    <!-- Persistent Top Action Bar Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:background="@color/m3_surface">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvAppTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:textColor="@color/m3_on_surface" />
+
+            <TextView
+                android:id="@+id/tvAppSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fastener Torque &amp; Pitch Ledger"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant" />
+        </LinearLayout>
+
+        <!-- Theme Toggle Button -->
+        <Button
+            android:id="@+id/btnThemeToggle"
+            style="@style/CleanButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="Theme: Auto"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface"
+            android:background="@drawable/bg_topbar_button"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Settings Modal Button -->
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_settings"
+            android:contentDescription="Settings and info"
+            android:background="@drawable/bg_topbar_button"
+            android:padding="12dp" />
+    </LinearLayout>
+
+    <!-- Navigation Chips (Torque, Pitch, Ladder, Specs) evenly weighted across full width -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp">
+
+        <Button
+            android:id="@+id/chipTabTorque"
+            style="@style/CleanButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:text="Torque"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:background="@drawable/chip_active"
+            android:textColor="@color/m3_on_primary"
+            android:layout_marginEnd="4dp" />
+
+        <Button
+            android:id="@+id/chipTabPitch"
+            style="@style/CleanButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:text="Pitch"
+            android:textSize="12sp"
+            android:background="@drawable/chip_inactive"
+            android:textColor="@color/m3_on_surface"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp" />
+
+        <Button
+            android:id="@+id/chipTabLadder"
+            style="@style/CleanButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:text="Ladder"
+            android:textSize="12sp"
+            android:background="@drawable/chip_inactive"
+            android:textColor="@color/m3_on_surface"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp" />
+
+        <Button
+            android:id="@+id/chipTabLedger"
+            style="@style/CleanButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:text="Specs"
+            android:textSize="12sp"
+            android:background="@drawable/chip_inactive"
+            android:textColor="@color/m3_on_surface"
+            android:layout_marginStart="4dp" />
+    </LinearLayout>
+
+    <!-- Main Scrollable Container -->
+    <ScrollView
+        android:id="@+id/mainScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="false"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="24dp">
+
+            <!-- ============================================================= -->
+            <!-- SECTION 1: TORQUE CALCULATOR                                  -->
+            <!-- ============================================================= -->
+            <LinearLayout
+                android:id="@+id/layoutSectionTorque"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <!-- Fastener System Selector (Metric vs Imperial) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="12dp">
+
+                    <Button
+                        android:id="@+id/chipStdMetric"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:minHeight="48dp"
+                        android:text="ISO Metric (mm / N·m)"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/chip_active"
+                        android:textColor="@color/m3_on_primary"
+                        android:layout_marginEnd="6dp" />
+
+                    <Button
+                        android:id="@+id/chipStdImperial"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:minHeight="48dp"
+                        android:text="Imperial SAE (in / ft-lb)"
+                        android:textSize="12sp"
+                        android:background="@drawable/chip_inactive"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginStart="6dp" />
+                </LinearLayout>
+
+                <!-- Fastener Configuration Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3"
+                    android:padding="16dp"
+                    android:layout_marginBottom="12dp">
+
+                    <!-- Fastener Size Row -->
+                    <TextView
+                        android:id="@+id/tvSizeLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fastener Size &amp; Pitch"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="6dp" />
+
+                    <Spinner
+                        android:id="@+id/spnBoltSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:background="@drawable/edittext_m3"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Fastener Strength Grade Row -->
+                    <TextView
+                        android:id="@+id/tvGradeLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bolt Strength Grade"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="6dp" />
+
+                    <Spinner
+                        android:id="@+id/spnBoltGrade"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:background="@drawable/edittext_m3"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Lubrication / Surface Condition -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thread Lubrication / Surface State"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="6dp" />
+
+                    <Spinner
+                        android:id="@+id/spnLubricant"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:background="@drawable/edittext_m3"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Custom Friction Factor (K) Stepper & Preload Slider -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Friction Coeff (K-Factor):"
+                            android:textSize="12sp"
+                            android:textColor="@color/m3_on_surface" />
+
+                        <Button
+                            android:id="@+id/btnKMinus"
+                            style="@style/CleanButton"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="-"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/btn_stepper"
+                            android:textColor="@color/m3_on_surface" />
+
+                        <EditText
+                            android:id="@+id/etKFactor"
+                            android:layout_width="72dp"
+                            android:layout_height="48dp"
+                            android:minHeight="48dp"
+                            android:gravity="center"
+                            android:text="0.15"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:inputType="numberDecimal"
+                            android:background="@drawable/edittext_m3"
+                            android:textColor="@color/m3_on_surface"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp" />
+
+                        <Button
+                            android:id="@+id/btnKPlus"
+                            style="@style/CleanButton"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="+"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/btn_stepper"
+                            android:textColor="@color/m3_on_surface" />
+                    </LinearLayout>
+
+                    <!-- Preload Target Percentage Chips -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Proof Load Tension Target"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="6dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/chipPreload65"
+                            style="@style/CleanButton"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:text="65% Low"
+                            android:textSize="12sp"
+                            android:background="@drawable/chip_inactive"
+                            android:textColor="@color/m3_on_surface"
+                            android:layout_marginEnd="4dp" />
+
+                        <Button
+                            android:id="@+id/chipPreload75"
+                            style="@style/CleanButton"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:text="75% Standard"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/chip_active"
+                            android:textColor="@color/m3_on_primary"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginEnd="2dp" />
+
+                        <Button
+                            android:id="@+id/chipPreload90"
+                            style="@style/CleanButton"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:minHeight="48dp"
+                            android:text="90% Max"
+                            android:textSize="12sp"
+                            android:background="@drawable/chip_inactive"
+                            android:textColor="@color/m3_on_surface"
+                            android:layout_marginStart="4dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- HERO TELEMETRY READOUT HUD CARD -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3"
+                    android:padding="16dp"
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="RECOMMENDED TIGHTENING TORQUE"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_primary" />
+
+                        <TextView
+                            android:id="@+id/tvStatusBadge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Optimal Preload"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:background="@drawable/bg_badge_safe"
+                            android:textColor="@color/badge_safe" />
+                    </LinearLayout>
+
+                    <!-- Large Stacked Primary Telemetry -->
+                    <TextView
+                        android:id="@+id/tvTorquePrimary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="85.4 N·m"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginTop="6dp" />
+
+                    <!-- Secondary Metric Equivalents Subtitle -->
+                    <TextView
+                        android:id="@+id/tvTorqueSecondary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="63.0 ft-lb • 756.0 in-lb"
+                        android:textSize="14sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Hairline Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/m3_outline"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- 2-Column Tabular Telemetry Grid -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- Left Column: Clamp Preload -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Clamp Preload Force"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvClampForce"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="26.1 kN"
+                                android:textSize="17sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface"
+                                android:layout_marginTop="2dp" />
+
+                            <TextView
+                                android:id="@+id/tvClampForceSub"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="5,867 lbf"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+                        </LinearLayout>
+
+                        <!-- Vertical Hairline Divider -->
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/m3_outline"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp" />
+
+                        <!-- Right Column: Stress Area & Yield -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tensile Stress Area (At)"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvStressArea"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="58.0 mm²"
+                                android:textSize="17sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface"
+                                android:layout_marginTop="2dp" />
+
+                            <TextView
+                                android:id="@+id/tvProofStress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Proof: 600 MPa (Gr 8.8)"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Additional 2-Column Row for Wrench / Tap Specs -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Standard Tap Drill"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvTapDrill"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="8.5 mm"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface"
+                                android:layout_marginTop="2dp" />
+
+                            <TextView
+                                android:id="@+id/tvTapDrillSub"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.3346 in (Q drill)"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/m3_outline"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hex Socket / Wrench"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvSocketHex"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="17 mm Hex"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface"
+                                android:layout_marginTop="2dp" />
+
+                            <TextView
+                                android:id="@+id/tvSocketHexSub"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Standard DIN/ISO"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Actions: Save Spec & Copy -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnSaveSpec"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:minHeight="48dp"
+                        android:text="Save to Spec Ledger"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/btn_m3_primary"
+                        android:textColor="@color/m3_on_primary"
+                        android:layout_marginEnd="6dp" />
+
+                    <Button
+                        android:id="@+id/btnSendToLadder"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:minHeight="48dp"
+                        android:text="Send to Ladder"
+                        android:textSize="13sp"
+                        android:background="@drawable/btn_m3_outlined"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginStart="6dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ============================================================= -->
+            <!-- SECTION 2: THREAD & TAP PITCH REFERENCE                      -->
+            <!-- ============================================================= -->
+            <LinearLayout
+                android:id="@+id/layoutSectionPitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thread Engagement &amp; Clearance Reference"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_surface"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Card for Tap Details -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3"
+                    android:padding="16dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:id="@+id/tvPitchCardTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="M10 x 1.50 Coarse Pitch"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary" />
+
+                    <TextView
+                        android:id="@+id/tvPitchCardSubtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ISO 261 Standard Metric External/Internal Thread"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginBottom="12dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/m3_outline"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Two-Column Row 1: Pitches -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Standard Coarse Pitch"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvCoarsePitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1.50 mm"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/m3_outline"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Fine Thread Pitch"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvFinePitch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1.25 mm / 1.00 mm"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Two-Column Row 2: Engagement Drill Holes -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="75% Engagement (Steel/Iron)"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvEngage75"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="8.50 mm (0.334 in)"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/m3_outline"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="50% Engagement (Aluminum)"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvEngage50"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="8.80 mm (0.346 in)"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Two-Column Row 3: Clearance Holes -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Close Fit Clearance"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvClearanceClose"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10.5 mm"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/m3_outline"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Free Fit Clearance"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvClearanceFree"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="11.0 mm"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/m3_on_surface" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ============================================================= -->
+            <!-- SECTION 3: MULTI-PASS TIGHTENING LADDER                      -->
+            <!-- ============================================================= -->
+            <LinearLayout
+                android:id="@+id/layoutSectionLadder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3-Stage Multi-Pass Sequence"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_surface"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gradual multi-stage torquing prevents gasket pinch, bore distortion, and flange cocking."
+                    android:textSize="12sp"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Stage 1 Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/card_m3"
+                    android:padding="16dp"
+                    android:layout_marginBottom="8dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PASS 1: INITIAL SNUG (30%)"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_primary" />
+
+                        <TextView
+                            android:id="@+id/tvLadderPass1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="25.6 N·m (18.9 ft-lb)"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:layout_marginTop="2dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Flange seating &amp; alignment"
+                            android:textSize="11sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnCheckPass1"
+                        style="@style/CleanButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:text="Complete"
+                        android:textSize="12sp"
+                        android:background="@drawable/btn_m3_outlined"
+                        android:textColor="@color/m3_on_surface"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp" />
+                </LinearLayout>
+
+                <!-- Stage 2 Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/card_m3"
+                    android:padding="16dp"
+                    android:layout_marginBottom="8dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PASS 2: INTERMEDIATE (70%)"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_primary" />
+
+                        <TextView
+                            android:id="@+id/tvLadderPass2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="59.8 N·m (44.1 ft-lb)"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:layout_marginTop="2dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Equalizing clamp distribution"
+                            android:textSize="11sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnCheckPass2"
+                        style="@style/CleanButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:text="Complete"
+                        android:textSize="12sp"
+                        android:background="@drawable/btn_m3_outlined"
+                        android:textColor="@color/m3_on_surface"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp" />
+                </LinearLayout>
+
+                <!-- Stage 3 Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/card_m3"
+                    android:padding="16dp"
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PASS 3: FINAL TORQUE (100%)"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_primary" />
+
+                        <TextView
+                            android:id="@+id/tvLadderPass3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="85.4 N·m (63.0 ft-lb)"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:layout_marginTop="2dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Final engineered fastener clamp"
+                            android:textSize="11sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnCheckPass3"
+                        style="@style/CleanButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:text="Complete"
+                        android:textSize="12sp"
+                        android:background="@drawable/btn_m3_outlined"
+                        android:textColor="@color/m3_on_surface"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnResetLadder"
+                    style="@style/CleanButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:text="Reset Ladder Progress"
+                    android:textSize="13sp"
+                    android:background="@drawable/btn_m3_tonal"
+                    android:textColor="@color/m3_on_surface" />
+            </LinearLayout>
+
+            <!-- ============================================================= -->
+            <!-- SECTION 4: SAVED SPECS LEDGER                                -->
+            <!-- ============================================================= -->
+            <LinearLayout
+                android:id="@+id/layoutSectionLedger"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Offline Tightening Spec Ledger"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface" />
+
+                    <Button
+                        android:id="@+id/btnClearLedger"
+                        style="@style/CleanButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:text="Clear All"
+                        android:textSize="12sp"
+                        android:background="@drawable/btn_m3_outlined"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp" />
+                </LinearLayout>
+
+                <!-- Empty State Message -->
+                <TextView
+                    android:id="@+id/tvEmptyLedger"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No specifications saved yet. Calculate a torque spec and tap 'Save to Spec Ledger'."
+                    android:textSize="13sp"
+                    android:gravity="center"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:padding="24dp"
+                    android:visibility="visible" />
+
+                <!-- Dynamic Container for Saved Specs -->
+                <LinearLayout
+                    android:id="@+id/layoutLedgerItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

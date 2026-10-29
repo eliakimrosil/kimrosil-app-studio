@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/card_m3"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TorqueSpec Settings"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/m3_on_surface" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Precision fastener telemetry for mechanics &amp; machinists."
+        android:textSize="12sp"
+        android:textColor="@color/m3_on_surface_variant"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Theme Switcher -->
+    <Button
+        android:id="@+id/btnDialogTheme"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:minHeight="48dp"
+        android:text="Theme: System Auto"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:background="@drawable/btn_m3_outlined"
+        android:textColor="@color/m3_on_surface"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="Cycle App Theme" />
+
+    <!-- Reset Defaults -->
+    <Button
+        android:id="@+id/btnResetDefaults"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:minHeight="48dp"
+        android:text="Reset to Standard Defaults"
+        android:textSize="13sp"
+        android:background="@drawable/btn_m3_outlined"
+        android:textColor="@color/m3_on_surface"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="Reset inputs to defaults" />
+
+    <!-- KimRosil App Studio Card -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_topbar_button"
+        android:padding="14dp"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="KimRosil App Studio"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_primary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="80+ 100% Offline Utilities • Zero Ads • No Subscription"
+            android:textSize="11sp"
+            android:textColor="@color/m3_on_surface"
+            android:layout_marginTop="2dp" />
+
+        <Button
+            android:id="@+id/btnExploreTools"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
+            android:text="Explore Tools"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_primary"
+            android:background="@drawable/btn_m3_primary"
+            android:layout_marginTop="8dp"
+            android:contentDescription="Visit KimRosil App Studio online directory" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCloseSettings"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:minHeight="48dp"
+        android:text="Close"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:background="@drawable/btn_m3_tonal"
+        android:textColor="@color/m3_on_surface"
+        android:contentDescription="Close dialog" />
+</LinearLayout>
