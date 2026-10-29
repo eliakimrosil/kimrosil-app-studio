@@ -1,0 +1,23 @@
+{
+  "slug": "gluewedge",
+  "title": "Gluewedge Clamp & Wood Glue",
+  "package_name": "com.kimrosil.gluewedge",
+  "short_description": "Calculate clamping pressure, spacing, and glue open time for edge glue-ups.",
+  "full_description": "Gluewedge delivers precise mechanical calculations and visual clamp layout planning for woodworkers, cabinetmakers, and furniture builders. Achieving consistent edge joints requires balancing timber species density, clamping force, and glue line pressure. Gluewedge eliminates guesswork by converting panel dimensions and timber properties into exact clamp spacing, force requirements, and assembly countdowns. ENGINEERING-GRADE CALCULATIONS - Species-Specific Target Pressure: Reference recommended clamping pressures (PSI) across softwoods, medium hardwoods, and dense hardwoods to prevent glue starvation or dry joints. - Clamping Force Requirements: Input board length, width, and thickness to calculate total required clamping force (lbf) and load distribution per clamp. - 45-Degree Pressure Cone Visualization: Inspect dynamic visual cone overlays to ensure pressure zones overlap across the entire glue line, highlighting unpressured gaps before applying adhesive. - Clamp Spacing & Stagger Guidance: Determine optimal edge-to-edge spacing and alternate top/bottom clamp placement to prevent panel bowing. OPEN TIME & CURE TIMER - Countdown Timer: Track open assembly time and closed clamp duration based on adhesive type and ambient workshop conditions. - Audible & Haptic Alerts: Receive clear workshop-friendly alerts when assembly time is expiring or cure threshold is reached. SESSION ARCHIVE & LOGGING - Local History Log: Store panel dimensions, species, clamp count, and force metrics directly on device for production repeatability. - One-Tap Metric & Imperial Conversion: Seamlessly switch between inches, millimeters, pounds-force, and bar. ZERO TRACKING & COMPLETE PRIVACY - 100% Offline Utility: Works in basements, remote workshops, and job sites with no active internet connection required. - No Accounts, No Subscriptions: Direct access to every calculation tool with zero recurring fees. - Complete Data Privacy: No background trackers, third-party analytics, or data collection.\n\n\nData Safety & Offline Privacy Guarantee:\n- 100% Offline: This application operates entirely on your device without requiring an active internet connection.\n- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.\n- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.\n- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.",
+  "keywords": "woodworking clamp calculator, clamping pressure, edge glue up, panel glue up, wood glue timer, wood clamp spacing, cabinetmaker calculator, woodworking joinery, clamping force psi",
+  "whats_new": "Version 1.0.0:\n- Core clamp force and target PSI calculator for softwoods and hardwoods.\n- Interactive 45-degree pressure cone visualizer for glue line coverage.\n- Open assembly time and cure countdown timer with alert tones.\n- Local session history for logging panel glue-up dimensions.\n- Fully offline architecture with zero ads or tracking.",
+  "category": "Productivity",
+  "google_play_checks": {
+    "title_length": 27,
+    "title_valid": true,
+    "short_desc_length": 75,
+    "short_desc_valid": true,
+    "full_desc_length": 2558,
+    "full_desc_valid": true,
+    "zero_banned_buzzwords": true,
+    "has_512_icon": true,
+    "has_feature_graphic": true,
+    "has_privacy_policy": true,
+    "has_data_safety": true
+  }
+}

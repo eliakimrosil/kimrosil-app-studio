@@ -1,0 +1,1 @@
+Calculate clamping pressure, spacing, and glue open time for edge glue-ups.

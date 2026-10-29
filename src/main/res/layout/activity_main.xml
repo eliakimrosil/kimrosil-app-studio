@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/m3_surface">
+
+    <!-- Pinned TopBar Outside ScrollView -->
+    <LinearLayout
+        android:id="@+id/llHeaderBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
+        android:background="@color/m3_surface_container">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvAppTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GlueWedge"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_on_surface" />
+
+            <TextView
+                android:id="@+id/tvAppSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edge-Glued Panel Clamping HUD • 100% Offline"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnThemeToggle"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minWidth="96dp"
+            android:text="Auto Theme"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_primary"
+            android:background="@drawable/bg_topbar_button"
+            android:contentDescription="Cycle day night auto theme"
+            android:layout_marginEnd="8dp"
+            android:paddingHorizontal="12dp" />
+
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_settings"
+            android:background="@drawable/bg_topbar_button"
+            android:contentDescription="Open Settings, Theme and About Dialog"
+            android:scaleType="centerInside" />
+    </LinearLayout>
+
+    <!-- Scrollable Control and Telemetry Deck -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Real-time Clamping Output Hero Card -->
+            <LinearLayout
+                android:id="@+id/cardTelemetryHero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_m3"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CLAMPING LOAD &amp; SPACING TELEMETRY"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.08"
+                    android:textColor="@color/m3_primary"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- 2-Column Grid for Metrics -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Metric 1: Total Force -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Required Force"
+                            android:textSize="12sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvTotalForce"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4,725 lbf"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface" />
+
+                        <TextView
+                            android:id="@+id/tvTotalForceUnit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="21.0 kN • 175 PSI"
+                            android:textSize="12sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+                    </LinearLayout>
+
+                    <!-- Metric 2: Clamps Count -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Clamp Quantity"
+                            android:textSize="12sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvClampCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="7 Clamps"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_primary" />
+
+                        <TextView
+                            android:id="@+id/tvClampCountSub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4 Top / 3 Underneath"
+                            android:textSize="12sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/m3_outline"
+                    android:layout_marginVertical="12dp" />
+
+                <!-- 2-Column Grid Secondary Metrics -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Metric 3: Max Spacing -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Max Spacing (45° Cone)"
+                            android:textSize="12sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvClampSpacing"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="6.0 in"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface" />
+
+                        <TextView
+                            android:id="@+id/tvClampSpacingSub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="15.2 cm on-center"
+                            android:textSize="12sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+                    </LinearLayout>
+
+                    <!-- Metric 4: Glueline Area -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Glueline Area"
+                            android:textSize="12sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvJointArea"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="27.0 sq in"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface" />
+
+                        <TextView
+                            android:id="@+id/tvJointAreaSub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="174.2 cm² edge"
+                            android:textSize="12sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 2D Pressure Cone Visualizer Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_m3"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="45° PRESSURE CONE &amp; ALTERNATION MAP"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08"
+                        android:textColor="@color/m3_primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Top (Cyan) / Bot (Amber)"
+                        android:textSize="11sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+                </LinearLayout>
+
+                <view
+                    class="com.kimrosil.gluewedge.PressureConeVisualizerView"
+                    android:id="@+id/visualizerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp" />
+            </LinearLayout>
+
+            <!-- Panel Dimension and Material Inputs Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_m3"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="PANEL SPECIFICATIONS"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08"
+                        android:textColor="@color/m3_primary" />
+
+                    <!-- Unit Selector Chips -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnUnitImperial"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:minHeight="48dp"
+                            android:text="Imperial"
+                            android:textSize="13sp"
+                            android:background="@drawable/chip_active"
+                            android:textColor="@color/m3_on_primary"
+                            android:paddingHorizontal="14dp"
+                            android:contentDescription="Select Imperial Units" />
+
+                        <Button
+                            android:id="@+id/btnUnitMetric"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:minHeight="48dp"
+                            android:text="Metric"
+                            android:textSize="13sp"
+                            android:background="@drawable/chip_inactive"
+                            android:textColor="@color/m3_on_surface"
+                            android:paddingHorizontal="14dp"
+                            android:layout_marginStart="6dp"
+                            android:contentDescription="Select Metric Units" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Dimensional Inputs Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="6dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Length"
+                            android:textSize="12sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <EditText
+                            android:id="@+id/etLength"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:hint="Length (in)"
+                            android:inputType="numberDecimal"
+                            android:imeOptions="actionDone"
+                            android:background="@drawable/edittext_m3"
+                            android:textColor="@color/m3_on_surface"
+                            android:textColorHint="@color/m3_on_surface_variant"
+                            android:paddingHorizontal="10dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginHorizontal="3dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Width"
+                            android:textSize="12sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <EditText
+                            android:id="@+id/etWidth"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:hint="Width (in)"
+                            android:inputType="numberDecimal"
+                            android:imeOptions="actionDone"
+                            android:background="@drawable/edittext_m3"
+                            android:textColor="@color/m3_on_surface"
+                            android:textColorHint="@color/m3_on_surface_variant"
+                            android:paddingHorizontal="10dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="6dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Thickness"
+                            android:textSize="12sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <EditText
+                            android:id="@+id/etThickness"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:hint="Thick (in)"
+                            android:inputType="numberDecimal"
+                            android:imeOptions="actionDone"
+                            android:background="@drawable/edittext_m3"
+                            android:textColor="@color/m3_on_surface"
+                            android:textColorHint="@color/m3_on_surface_variant"
+                            android:paddingHorizontal="10dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wood Species &amp; Target PSI"
+                    android:textSize="12sp"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:layout_marginTop="12dp" />
+
+                <Spinner
+                    android:id="@+id/spSpecies"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/edittext_m3"
+                    android:layout_marginTop="4dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Target Glue Line PSI"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant" />
+
+                    <EditText
+                        android:id="@+id/etTargetPsi"
+                        android:layout_width="96dp"
+                        android:layout_height="48dp"
+                        android:hint="PSI"
+                        android:inputType="number"
+                        android:imeOptions="actionDone"
+                        android:background="@drawable/edittext_m3"
+                        android:textColor="@color/m3_on_surface"
+                        android:paddingHorizontal="12dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Adhesive Type &amp; Open Assembly"
+                    android:textSize="12sp"
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:layout_marginTop="12dp" />
+
+                <Spinner
+                    android:id="@+id/spAdhesive"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/edittext_m3"
+                    android:layout_marginTop="4dp" />
+
+                <!-- Action Button -->
+                <Button
+                    android:id="@+id/btnCalculate"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="Recalculate Spacing"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/m3_on_primary"
+                    android:background="@drawable/btn_m3_primary"
+                    android:layout_marginTop="16dp"
+                    android:contentDescription="Recalculate clamping parameters" />
+            </LinearLayout>
+
+            <!-- Assembly Open Time Timer Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_m3"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="OPEN TIME ASSEMBLY COUNTDOWN"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08"
+                        android:textColor="@color/m3_primary" />
+
+                    <TextView
+                        android:id="@+id/tvTimerStateBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="READY TO GLUE"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvTimerDigits"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="15:00"
+                    android:textSize="44sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@color/m3_on_surface"
+                    android:layout_marginVertical="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnStartTimer"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="Start Timer"
+                        android:textStyle="bold"
+                        android:background="@drawable/btn_m3_primary"
+                        android:textColor="@color/m3_on_primary"
+                        android:layout_marginEnd="6dp"
+                        android:contentDescription="Start or Pause Assembly Timer" />
+
+                    <Button
+                        android:id="@+id/btnResetTimer"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="Reset"
+                        android:textStyle="bold"
+                        android:background="@drawable/btn_m3_outlined"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginStart="6dp"
+                        android:contentDescription="Reset Assembly Timer" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Actions Deck (Save, Share, Copy) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <Button
+                    android:id="@+id/btnSaveSession"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Save Spec"
+                    android:textSize="13sp"
+                    android:background="@drawable/btn_m3_tonal"
+                    android:textColor="@color/m3_on_surface"
+                    android:layout_marginEnd="4dp"
+                    android:contentDescription="Save Current Spec to Database" />
+
+                <Button
+                    android:id="@+id/btnShare"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Share"
+                    android:textSize="13sp"
+                    android:background="@drawable/btn_m3_tonal"
+                    android:textColor="@color/m3_on_surface"
+                    android:layout_marginHorizontal="4dp"
+                    android:contentDescription="Share Clamping Specification" />
+
+                <Button
+                    android:id="@+id/btnCopySummary"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Copy"
+                    android:textSize="13sp"
+                    android:background="@drawable/btn_m3_tonal"
+                    android:textColor="@color/m3_on_surface"
+                    android:layout_marginStart="4dp"
+                    android:contentDescription="Copy Clamping Specification to Clipboard" />
+            </LinearLayout>
+
+            <!-- Offline Saved Sessions Auxiliary Deck -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_m3"
+                android:padding="16dp"
+                android:layout_marginBottom="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="RECENT SAVED ASSEMBLIES"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08"
+                        android:textColor="@color/m3_primary" />
+
+                    <Button
+                        android:id="@+id/btnClearHistory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
+                        android:text="Clear All"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:background="@drawable/bg_topbar_button"
+                        android:paddingHorizontal="14dp"
+                        android:contentDescription="Clear All Saved Assemblies" />
+                </LinearLayout>
+
+                <!-- Empty State -->
+                <LinearLayout
+                    android:id="@+id/llEmptyState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No Saved Assemblies"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Configure dimensions above and tap 'Save Spec' to track edge-glued panel presets."
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <!-- List of items -->
+                <LinearLayout
+                    android:id="@+id/llRecentList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

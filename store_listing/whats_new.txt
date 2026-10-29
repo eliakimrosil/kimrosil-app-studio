@@ -1,0 +1,2 @@
+Release v1.1.0 - Gluewedge Clamp & Wood Glue
+Initial release: 100% offline edge-gluing clamp layout, 45-degree pressure cone visualizer & open assembly timer

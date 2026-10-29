@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 500" width="1024" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1B2A1E" />
+      <stop offset="60%" stop-color="#080D14" />
+      <stop offset="100%" stop-color="#020408" />
+    </linearGradient>
+    <radialGradient id="glowGrad" cx="25%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#00E5FF" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FFFFFF" stroke-width="0.5" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+
+  <rect width="1024" height="500" fill="url(#bgGrad)" />
+  <rect width="1024" height="500" fill="url(#glowGrad)" />
+  <rect width="1024" height="500" fill="url(#grid)" />
+
+  <g transform="translate(80, 130)">
+    <rect x="-10" y="-10" width="260" height="260" rx="54" fill="#00E5FF" fill-opacity="0.12" />
+    <rect x="0" y="0" width="240" height="240" rx="48" fill="#1B2A1E" stroke="#00E5FF" stroke-width="2" stroke-opacity="0.4" />
+    <g transform="translate(20, 20) scale(1.85185)">
+      <path fill="#24382A" d="M0,0h108v108h-108z" /><path fill="#2D4634" d="M54,14 A40,40 0 1,0 54,94 A40,40 0 1,0 54,14 Z" /><path fill="#1F3224" d="M24,24 L84,84 L24,84 Z" fill-opacity="0.35" /><path stroke="#3E5E47" stroke-width="1" d="M20,54 L88,54 M54,20 L54,88" stroke-opacity="0.3" />
+      <path fill="#68543E" d="M26,38 h24 v32 h-24 z" /><path fill="#534331" d="M26,62 h24 v8 h-24 z" /><path fill="#7E664B" d="M58,38 h24 v32 h-24 z" /><path fill="#63503B" d="M58,62 h24 v8 h-24 z" /><path fill="#F59E0B" d="M50,34 L58,34 L55,74 L53,74 Z" /><path fill="#FDE047" d="M52,34 L56,34 L54.5,70 L53.5,70 Z" /><path fill="#38BDF8" d="M54,74 C52,74 50,76.5 50,79 C50,81.5 51.8,83.5 54,83.5 C56.2,83.5 58,81.5 58,79 C58,76.5 56,74 54,74 Z" /><path fill="#BAE6FD" d="M53,77 C52.5,77.5 52,78.5 52,79.5 C52.5,79.5 53.5,79 54,78 Z" /><path fill="#94A3B8" d="M24,34 h10 v6 h-10 z M74,34 h10 v6 h-10 z" /><path stroke="#CBD5E1" stroke-width="2" stroke-linecap="round" d="M22,37 h-2 M86,37 h2 M20,71 h-2 M86,71 h2" /><path fill="#94A3B8" d="M24,68 h10 v6 h-10 z M74,68 h10 v6 h-10 z" /><path fill="#CBD5E1" d="M38,30 L44,24 L48,28 L42,34 Z" /><path fill="#F59E0B" d="M73,25 L75,21 L77,25 L81,27 L77,29 L75,33 L73,29 L69,27 Z" />
+    </g>
+  </g>
+
+  <g transform="translate(390, 150)">
+    <rect x="0" y="0" width="210" height="28" rx="6" fill="#00E5FF" fill-opacity="0.15" />
+    <text x="12" y="19" font-family="sans-serif" font-size="12" font-weight="bold" fill="#00E5FF" letter-spacing="2">KIMROSIL APP STUDIO</text>
+    <text x="0" y="85" font-family="sans-serif" font-size="44" font-weight="900" fill="#FFFFFF" letter-spacing="-0.5">GlueWedge</text>
+    <text x="0" y="125" font-family="sans-serif" font-size="19" fill="#94A3B8">Offline edge-gluing clamp layout and PSI pressure ...</text>
+
+    <g transform="translate(0, 165)">
+      <rect x="0" y="0" width="135" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="16" y="22" font-family="sans-serif" font-size="12" font-weight="bold" fill="#38BDF8">⚡ 100% OFFLINE</text>
+      <rect x="145" y="0" width="160" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="160" y="22" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34D399">🛡️ NO SUBSCRIPTION</text>
+      <rect x="315" y="0" width="165" height="34" rx="17" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="330" y="22" font-family="sans-serif" font-size="12" font-weight="bold" fill="#F472B6">🔒 PRIVATE &amp; LOCAL</text>
+    </g>
+  </g>
+</svg>
