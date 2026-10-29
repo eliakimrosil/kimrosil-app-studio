@@ -287,6 +287,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: NEC conduit fill capacity, conductor jam ratio, and pull box sizing solver.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v2.0.0-conduit-fill/conduit-fill.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/conduit-fill/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/conduit-fill)
 
+#### [CrownCut](https://apps.kimrosil.com/crowncut/) (`crowncut`) • `v1.0.0`
+> **Utility**: Offline compound miter saw angle, bevel setting & crown molding cut guide.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-crowncut/crowncut.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/crowncut/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/crowncut)
+
 #### [CueScroll](https://apps.kimrosil.com/cue-scroll/) (`cue-scroll`) • `v1.1.0`
 > **Utility**: Offline teleprompter with mirror mode, count-in, live pace and volume-key speed.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-cue-scroll/cue-scroll.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/cue-scroll/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/cue-scroll)

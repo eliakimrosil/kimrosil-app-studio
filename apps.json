@@ -1262,6 +1262,20 @@
     "privacy_policy": "https://apps.kimrosil.com/bendspec/privacy.html",
     "icon": "assets/icons/bendspec.svg",
     "updated_at": "2026-10-29T14:14:41.120947+00:00",
-    "sha256": "5ce9cf810146034bddec85816ef4ae90d060f6f9f06d396ef4294480c02af392"
+    "sha256": "f9b26b297cdeeca4a023405de6674e979adcb8e14c1b61547ed53a8967a87301"
+  },
+  {
+    "slug": "crowncut",
+    "title": "CrownCut",
+    "category": "UTILITIES",
+    "tagline": "Offline compound miter saw angle, bevel setting & crown molding cut guide.",
+    "status": "BUILT",
+    "branch": "app/crowncut",
+    "tag": "v1.0.0-crowncut",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-crowncut/crowncut.apk",
+    "landing_page": "https://apps.kimrosil.com/crowncut/",
+    "privacy_policy": "https://apps.kimrosil.com/crowncut/privacy.html",
+    "icon": "assets/icons/crowncut.svg",
+    "updated_at": "2026-10-29T16:46:20.178501+00:00"
   }
 ]
