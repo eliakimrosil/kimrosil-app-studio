@@ -460,7 +460,7 @@
     "slug": "sprout-knight-rpg",
     "title": "SproutKnight",
     "category": "Games / RPG / Adventure",
-    "tagline": "Embark on a charming 2D action fighting RPG quest\u2014upgrade acorn blades, walnut armor, and dewdrop magic at the cozy forge.",
+    "tagline": "Embark on a charming 2D action fighting RPG quest—upgrade acorn blades, walnut armor, and dewdrop magic at the cozy forge.",
     "version": "v1.5.0",
     "status": "BUILT",
     "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.5.0-sprout-knight-rpg/sprout-knight-rpg.apk",
@@ -998,7 +998,7 @@
     "slug": "gauss-meter",
     "title": "GaussMeter",
     "category": "UTILITIES",
-    "tagline": "3-axis magnetometer (\u00b5T / mG), EMF & ferrous wall stud locator with tare.",
+    "tagline": "3-axis magnetometer (µT / mG), EMF & ferrous wall stud locator with tare.",
     "status": "BUILT",
     "branch": "app/gauss-meter",
     "tag": "v1.0.0-gauss-meter",
@@ -1246,6 +1246,7 @@
     "landing_page": "https://apps.kimrosil.com/torquespec/",
     "privacy_policy": "https://apps.kimrosil.com/torquespec/privacy.html",
     "icon": "assets/icons/torquespec.svg",
-    "updated_at": "2026-10-29T10:23:43.312340+00:00"
+    "updated_at": "2026-10-29T10:23:43.312340+00:00",
+    "sha256": "a97cf9cada15a85e35284a8a4a960820e3e47c0a6d8f126d65cb5b5f65ba1710"
   }
 ]
