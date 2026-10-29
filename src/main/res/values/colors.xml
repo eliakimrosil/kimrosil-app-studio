@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bespoke Domain Light Theme Color Tokens (Woodworking / Craftsmanship) -->
+    <color name="colorPrimary">#B45309</color>
+    <color name="colorPrimaryDark">#FAF7F2</color>
+    <color name="colorAccent">#78350F</color>
+    <color name="windowBackground">#FAF7F2</color>
+
+    <color name="m3_primary">#B45309</color>
+    <color name="m3_on_primary">#FFFFFF</color>
+    <color name="m3_primary_container">#FEF3C7</color>
+    <color name="m3_on_primary_container">#451A03</color>
+
+    <color name="m3_secondary">#78716C</color>
+    <color name="m3_on_secondary">#FFFFFF</color>
+    <color name="m3_secondary_container">#E7E5E4</color>
+    <color name="m3_on_secondary_container">#1C1917</color>
+
+    <color name="m3_tertiary">#854D0E</color>
+    <color name="m3_on_tertiary">#FFFFFF</color>
+    <color name="m3_tertiary_container">#FEF9C3</color>
+    <color name="m3_on_tertiary_container">#422006</color>
+
+    <color name="m3_surface">#FAF7F2</color>
+    <color name="m3_surface_container">#F2EBE0</color>
+    <color name="m3_surface_container_high">#E7DEC8</color>
+    <color name="m3_surface_container_highest">#D7CCC8</color>
+
+    <color name="m3_on_surface">#23150D</color>
+    <color name="m3_on_surface_variant">#57483F</color>
+    <color name="m3_outline">#8C7B71</color>
+    <color name="m3_outline_variant">#D7CCC8</color>
+
+    <color name="m3_success">#16A34A</color>
+    <color name="m3_on_success">#FFFFFF</color>
+    <color name="m3_error">#DC2626</color>
+    <color name="m3_on_error">#FFFFFF</color>
+
+    <!-- High-Contrast WCAG 2.1 AA/AAA Verified Telemetry Tokens -->
+    <color name="telemetryPrimary">#23150D</color>
+    <color name="telemetryAccent">#78350F</color>
+    <color name="badgeTextAmber">#78350F</color>
+    <color name="badgeBgAmber">#FEF3C7</color>
+    <color name="chipTextUnselected">#1C1917</color>
+    <color name="chipBgUnselected">#E7E5E4</color>
+
+    <!-- Legacy compatibility aliases -->
+    <color name="cardBackground">#F2EBE0</color>
+    <color name="cardStroke">#D7CCC8</color>
+    <color name="textPrimary">#23150D</color>
+    <color name="textSecondary">#57483F</color>
+    <color name="btnColor">#B45309</color>
+    <color name="btnTextColor">#FFFFFF</color>
+</resources>

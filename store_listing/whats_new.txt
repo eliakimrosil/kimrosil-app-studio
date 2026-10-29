@@ -1,0 +1,2 @@
+Release v1.0.0 - CrownCut
+Initial release of CrownCut - Precision compound miter saw angle, bevel setting & crown molding guide

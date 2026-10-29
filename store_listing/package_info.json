@@ -1,0 +1,23 @@
+{
+  "slug": "crowncut",
+  "title": "CrownCut Crown Molding Miter",
+  "package_name": "com.kimrosil.crowncut",
+  "short_description": "Calculate exact compound miter and bevel angles for cutting crown molding flat.",
+  "full_description": "CrownCut delivers instant, mathematically precise compound miter saw calculations for finish carpenters, trim installers, cabinetmakers, and woodworkers. Cutting crown molding flat on a compound miter saw requires complex compound trigonometry to calculate accurate miter and bevel angles based on wall corner angle and crown spring angle. CrownCut eliminates calculation errors, wasted trim material, and repeated ladder trips by generating exact cutting angles, blade tilt direction, fence positioning, and multi-sided polygon joint calculations on the jobsite. CORE FEATURES: \u2022 Precise Angle Computation: Instant miter angle and bevel angle readouts calculated to two decimal places for flawless tight joints. \u2022 Standard & Custom Spring Angles: Pre-configured presets for common 38/52, 45/45, and 52/38 degree moldings, plus manual input for custom millwork profiles. \u2022 Any Corner Angle: Compute inside corners, outside corners, and non-square out-of-plumb walls ranging from acute angles to open bullnose corners. \u2022 Visual Cutting Instructions: Clear placement guidance showing whether molding lays flat face up or face down, fence orientation, and saw swing directions. \u2022 Multi-Sided Polygon Calculator: Built-in angle presets for octagons, hexagons, and custom multi-segment coffered ceiling trim. \u2022 Offline-First Reliability: Operates completely offline with zero internet permissions required, ideal for remote jobsites and basements. \u2022 Zero Distractions: No advertisements, no analytics tracking, and no subscription paywalls. Built for high-efficiency woodworking, finish carpentry, and architectural trim installation.\n\n\nData Safety & Offline Privacy Guarantee:\n- 100% Offline: This application operates entirely on your device without requiring an active internet connection.\n- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.\n- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.\n- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.",
+  "keywords": "crown molding calculator, compound miter saw, miter angle calculator, bevel angle calculator, finish carpentry tools, trim carpentry, woodworking angles, crown molding flat, polygon joint calculator",
+  "whats_new": "Initial release of CrownCut v1.0.0 featuring compound miter and bevel angle calculation for flat cutting, support for standard and custom spring angles, inside and outside corner support, multi-sided polygon joint calculations, and complete offline capability.",
+  "category": "UTILITIES",
+  "google_play_checks": {
+    "title_length": 28,
+    "title_valid": true,
+    "short_desc_length": 79,
+    "short_desc_valid": true,
+    "full_desc_length": 2183,
+    "full_desc_valid": true,
+    "zero_banned_buzzwords": true,
+    "has_512_icon": true,
+    "has_feature_graphic": true,
+    "has_privacy_policy": true,
+    "has_data_safety": true
+  }
+}
