@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#0B0F17"
+        android:pathData="M0,0h108v108h-108z" />
+    <!-- Tactical blueprint grid lines -->
+    <path
+        android:strokeColor="#1E293B"
+        android:strokeWidth="1"
+        android:pathData="M18,0v108 M36,0v108 M54,0v108 M72,0v108 M90,0v108 M0,18h108 M0,36h108 M0,54h108 M0,72h108 M0,90h108" />
+    <!-- Precision target rings -->
+    <path
+        android:strokeColor="#14233A"
+        android:strokeWidth="1"
+        android:pathData="M54,20 A34,34 0 1,1 53.9,20 M54,34 A20,20 0 1,1 53.9,34" />
+</vector>

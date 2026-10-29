@@ -1,0 +1,1080 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/m3_surface">
+
+    <!-- Top Action Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:background="@color/m3_surface_container">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BendSpec"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/m3_primary"
+                android:fontFamily="monospace" />
+
+            <TextView
+                android:id="@+id/tvHeaderSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sheet Metal Fabrication Telemetry"
+                android:textSize="12sp"
+                android:textColor="@color/m3_on_surface_variant" />
+        </LinearLayout>
+
+        <!-- Unit Badge -->
+        <TextView
+            android:id="@+id/tvUnitBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INCH"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_primary"
+            android:background="@drawable/bg_badge_safe"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Direct Theme Toggle Button -->
+        <Button
+            android:id="@+id/btnThemeToggle"
+            style="@style/CleanButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="Theme: Auto"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/m3_on_surface"
+            android:background="@drawable/bg_topbar_button"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Settings Button (CleanButton standard 48x48dp) -->
+        <Button
+            android:id="@+id/btnSettings"
+            style="@style/CleanButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_topbar_button"
+            android:drawableStart="@drawable/ic_settings"
+            android:padding="12dp"
+            android:contentDescription="Settings and Options" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/m3_outline" />
+
+    <!-- Full-Width Tab Strip (0dp with weight=1 avoids clipping) -->
+    <LinearLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:background="@color/m3_surface_container">
+
+        <Button
+            android:id="@+id/btnTabBend"
+            style="@style/CleanButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/chip_active"
+            android:text="BEND"
+            android:textColor="@color/m3_primary"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnTabVDie"
+            style="@style/CleanButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/chip_inactive"
+            android:text="V-DIE"
+            android:textColor="@color/m3_on_surface_variant"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnTabLadder"
+            style="@style/CleanButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/chip_inactive"
+            android:text="LADDER"
+            android:textColor="@color/m3_on_surface_variant"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnTabLedger"
+            style="@style/CleanButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/chip_inactive"
+            android:text="LEDGER"
+            android:textColor="@color/m3_on_surface_variant"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/m3_outline" />
+
+    <!-- Main Scrollable Content Body -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- TAB 1: BEND CALCULATOR -->
+            <LinearLayout
+                android:id="@+id/layoutTabBend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <!-- Primary Result HUD Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3_high"
+                    android:padding="16dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DEVELOPED BLANK LENGTH"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:fontFamily="monospace" />
+
+                    <TextView
+                        android:id="@+id/tvDevelopedBlank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4.895 in"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary"
+                        android:fontFamily="monospace"
+                        android:layout_marginTop="4dp" />
+
+                    <TextView
+                        android:id="@+id/tvBlankFormula"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Flange A (2.000) + Flange B (3.000) - BD (0.105)"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <!-- 2-Column Telemetry Specs -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+
+                    <!-- Col 1 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:background="@drawable/card_m3"
+                        android:padding="12dp"
+                        android:layout_marginEnd="6dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="BEND DEDUCTION (BD)"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvBendDeduction"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.105 in"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:fontFamily="monospace"
+                            android:layout_marginTop="2dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/m3_outline"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="OUTSIDE SETBACK (OSB)"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvSetback"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.120 in"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:fontFamily="monospace"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <!-- Col 2 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:background="@drawable/card_m3"
+                        android:padding="12dp"
+                        android:layout_marginStart="6dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="BEND ALLOWANCE (BA)"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvBendAllowance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.135 in"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:fontFamily="monospace"
+                            android:layout_marginTop="2dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/m3_outline"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="NEUTRAL AXIS (K)"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvActiveKFactor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="K = 0.380"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:fontFamily="monospace"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Inputs Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3"
+                    android:padding="14dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="WORKPIECE SPECIFICATIONS"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary"
+                        android:fontFamily="monospace" />
+
+                    <!-- Material Selector -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alloy &amp; Neutral K-Factor"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginTop="8dp" />
+
+                    <Spinner
+                        android:id="@+id/spMaterial"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/edittext_m3"
+                        android:layout_marginTop="4dp" />
+
+                    <!-- K-Factor Override -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="K-Factor Override:"
+                            android:textSize="12sp"
+                            android:textColor="@color/m3_on_surface" />
+
+                        <EditText
+                            android:id="@+id/etKFactor"
+                            android:layout_width="100dp"
+                            android:layout_height="48dp"
+                            android:inputType="numberDecimal"
+                            android:text="0.38"
+                            android:hint="0.38"
+                            android:gravity="center"
+                            android:background="@drawable/edittext_m3"
+                            android:textColor="@color/m3_on_surface"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <!-- Sheet Thickness -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sheet Thickness (T in inches):"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginTop="12dp" />
+
+                    <!-- Thickness Presets -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp">
+
+                        <Button
+                            android:id="@+id/btnGauge16"
+                            style="@style/CleanButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="16ga"
+                            android:textSize="11sp"
+                            android:background="@drawable/btn_stepper"
+                            android:layout_marginEnd="4dp" />
+
+                        <Button
+                            android:id="@+id/btnGauge14"
+                            style="@style/CleanButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="14ga"
+                            android:textSize="11sp"
+                            android:background="@drawable/btn_stepper"
+                            android:layout_marginEnd="4dp" />
+
+                        <Button
+                            android:id="@+id/btnGauge12"
+                            style="@style/CleanButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="12ga"
+                            android:textSize="11sp"
+                            android:background="@drawable/btn_stepper"
+                            android:layout_marginEnd="4dp" />
+
+                        <Button
+                            android:id="@+id/btnGauge10"
+                            style="@style/CleanButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="1/8&quot;"
+                            android:textSize="11sp"
+                            android:background="@drawable/btn_stepper"
+                            android:layout_marginEnd="4dp" />
+
+                        <Button
+                            android:id="@+id/btnGauge14in"
+                            style="@style/CleanButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="1/4&quot;"
+                            android:textSize="11sp"
+                            android:background="@drawable/btn_stepper" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/etThickness"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:inputType="numberDecimal"
+                        android:text="0.0598"
+                        android:hint="Enter thickness (in)"
+                        android:background="@drawable/edittext_m3"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="14sp"
+                        android:padding="12dp"
+                        android:layout_marginTop="6dp" />
+
+                    <!-- Inside Radius & Bend Angle -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginEnd="6dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Inside Radius (R in):"
+                                android:textSize="12sp"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <EditText
+                                android:id="@+id/etRadius"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:inputType="numberDecimal"
+                                android:text="0.060"
+                                android:hint="Inside radius"
+                                android:background="@drawable/edittext_m3"
+                                android:textColor="@color/m3_on_surface"
+                                android:textSize="14sp"
+                                android:padding="12dp"
+                                android:layout_marginTop="4dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="6dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Bend Angle (deg):"
+                                android:textSize="12sp"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <EditText
+                                android:id="@+id/etAngle"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:inputType="numberDecimal"
+                                android:text="90.0"
+                                android:hint="Degrees (0-180)"
+                                android:background="@drawable/edittext_m3"
+                                android:textColor="@color/m3_on_surface"
+                                android:textSize="14sp"
+                                android:padding="12dp"
+                                android:layout_marginTop="4dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Flange Legs Dimensions -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginEnd="6dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Flange Leg 1 (in):"
+                                android:textSize="12sp"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <EditText
+                                android:id="@+id/etFlangeA"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:inputType="numberDecimal"
+                                android:text="2.000"
+                                android:hint="Leg 1 length"
+                                android:background="@drawable/edittext_m3"
+                                android:textColor="@color/m3_on_surface"
+                                android:textSize="14sp"
+                                android:padding="12dp"
+                                android:layout_marginTop="4dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="6dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Flange Leg 2 (in):"
+                                android:textSize="12sp"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <EditText
+                                android:id="@+id/etFlangeB"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:inputType="numberDecimal"
+                                android:text="3.000"
+                                android:hint="Leg 2 length"
+                                android:background="@drawable/edittext_m3"
+                                android:textColor="@color/m3_on_surface"
+                                android:textSize="14sp"
+                                android:padding="12dp"
+                                android:layout_marginTop="4dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Actions -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <Button
+                        android:id="@+id/btnCopySpec"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_m3_outlined"
+                        android:text="📋 Copy Spec"
+                        android:textColor="@color/m3_primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="6dp" />
+
+                    <Button
+                        android:id="@+id/btnSaveToLedger"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_m3_primary"
+                        android:text="💾 Save Blank"
+                        android:textColor="@color/m3_on_primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:layout_marginStart="6dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- TAB 2: V-DIE & PRESS TONNAGE -->
+            <LinearLayout
+                android:id="@+id/layoutTabVDie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Tonnage Primary HUD Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3_high"
+                    android:padding="16dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="REQUIRED FORMING FORCE"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:fontFamily="monospace" />
+
+                    <TextView
+                        android:id="@+id/tvFormingTons"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3.7 US Tons"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary"
+                        android:fontFamily="monospace"
+                        android:layout_marginTop="4dp" />
+
+                    <TextView
+                        android:id="@+id/tvTonsMetric"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3.3 Metric Tonnes • 3.7 Tons / Foot"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <!-- V-Die 2-Column Limits -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:background="@drawable/card_m3"
+                        android:padding="12dp"
+                        android:layout_marginEnd="6dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MIN FLANGE (b_min)"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvMinFlange"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.336 in"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:fontFamily="monospace"
+                            android:layout_marginTop="2dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.7x Die Opening"
+                            android:textSize="11sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:background="@drawable/card_m3"
+                        android:padding="12dp"
+                        android:layout_marginStart="6dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="AIR BEND RADIUS (Ri)"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvNaturalRadius"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.080 in"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:fontFamily="monospace"
+                            android:layout_marginTop="2dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Natural ~V / 6"
+                            android:textSize="11sp"
+                            android:textColor="@color/m3_on_surface_variant" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- V-Die Inputs Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3"
+                    android:padding="14dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PRESS BRAKE TOOLING PARAMETERS"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary"
+                        android:fontFamily="monospace" />
+
+                    <!-- V-Die Opening Multiplier -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="V-Die Opening Width (V in inches):"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginTop="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp">
+
+                        <Button
+                            android:id="@+id/btnVDie6T"
+                            style="@style/CleanButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="6xT"
+                            android:textSize="11sp"
+                            android:background="@drawable/btn_stepper"
+                            android:layout_marginEnd="4dp" />
+
+                        <Button
+                            android:id="@+id/btnVDie8T"
+                            style="@style/CleanButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="8xT (Std)"
+                            android:textSize="11sp"
+                            android:background="@drawable/btn_stepper"
+                            android:layout_marginEnd="4dp" />
+
+                        <Button
+                            android:id="@+id/btnVDie10T"
+                            style="@style/CleanButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="10xT"
+                            android:textSize="11sp"
+                            android:background="@drawable/btn_stepper"
+                            android:layout_marginEnd="4dp" />
+
+                        <Button
+                            android:id="@+id/btnVDie12T"
+                            style="@style/CleanButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="12xT"
+                            android:textSize="11sp"
+                            android:background="@drawable/btn_stepper" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/etVDieWidth"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:inputType="numberDecimal"
+                        android:text="0.480"
+                        android:hint="Die opening width"
+                        android:background="@drawable/edittext_m3"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="14sp"
+                        android:padding="12dp"
+                        android:layout_marginTop="6dp" />
+
+                    <!-- Bend Length -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bend Length (L in inches):"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginTop="12dp" />
+
+                    <EditText
+                        android:id="@+id/etBendLength"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:inputType="numberDecimal"
+                        android:text="12.0"
+                        android:hint="Bend length (inches)"
+                        android:background="@drawable/edittext_m3"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="14sp"
+                        android:padding="12dp"
+                        android:layout_marginTop="4dp" />
+
+                    <!-- Ultimate Tensile Strength -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Material Tensile Strength (UTS in ksi):"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface"
+                        android:layout_marginTop="12dp" />
+
+                    <EditText
+                        android:id="@+id/etUTS"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:inputType="numberDecimal"
+                        android:text="60.0"
+                        android:hint="Tensile strength (ksi)"
+                        android:background="@drawable/edittext_m3"
+                        android:textColor="@color/m3_on_surface"
+                        android:textSize="14sp"
+                        android:padding="12dp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnCopyVDie"
+                    style="@style/CleanButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/btn_m3_outlined"
+                    android:text="📋 Copy Tonnage Telemetry"
+                    android:textColor="@color/m3_primary"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp" />
+            </LinearLayout>
+
+            <!-- TAB 3: PROFILE LADDER -->
+            <LinearLayout
+                android:id="@+id/layoutTabLadder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Ladder HUD Summary -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/card_m3_high"
+                    android:padding="16dp"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MULTI-FLANGE TOTAL FLAT BLANK"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:fontFamily="monospace" />
+
+                    <TextView
+                        android:id="@+id/tvLadderTotalBlank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="9.790 in"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary"
+                        android:fontFamily="monospace"
+                        android:layout_marginTop="4dp" />
+
+                    <TextView
+                        android:id="@+id/tvLadderSummary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3 Flange Legs • 2 Bends (90°)"
+                        android:textSize="12sp"
+                        android:textColor="@color/m3_on_surface_variant"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <!-- Dynamic Flange List Container -->
+                <LinearLayout
+                    android:id="@+id/layoutFlangeList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Add / Reset Flange Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+
+                    <Button
+                        android:id="@+id/btnAddFlange"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_m3_primary"
+                        android:text="+ Add Flange Leg"
+                        android:textColor="@color/m3_on_primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="6dp" />
+
+                    <Button
+                        android:id="@+id/btnResetLadder"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_m3_outlined"
+                        android:text="↺ Reset (3 Legs)"
+                        android:textColor="@color/m3_primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:layout_marginStart="6dp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnCopyLadder"
+                    style="@style/CleanButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/btn_m3_tonal"
+                    android:text="📋 Copy Multi-Bend Blank Plan"
+                    android:textColor="@color/m3_primary"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp" />
+            </LinearLayout>
+
+            <!-- TAB 4: CUT LEDGER -->
+            <LinearLayout
+                android:id="@+id/layoutTabLedger"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="SAVED CUT BLANK LEDGER"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/m3_primary"
+                        android:fontFamily="monospace" />
+
+                    <Button
+                        android:id="@+id/btnClearLedger"
+                        style="@style/CleanButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:background="@drawable/btn_stepper"
+                        android:text="Clear All"
+                        android:textColor="@color/m3_error"
+                        android:textSize="11sp"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvLedgerEmpty"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:gravity="center"
+                    android:text="No saved bend blanks yet.\nTap 'Save Blank' in the Bend Calc tab to record profiles."
+                    android:textColor="@color/m3_on_surface_variant"
+                    android:textSize="13sp"
+                    android:lineSpacingExtra="4dp" />
+
+                <!-- Dynamic Ledger Entries -->
+                <LinearLayout
+                    android:id="@+id/layoutLedgerList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

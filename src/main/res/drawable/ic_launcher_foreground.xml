@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group>
+        <!-- Lower V-Die Fixture -->
+        <path
+            android:fillColor="#1E293B"
+            android:strokeColor="#334155"
+            android:strokeWidth="1.5"
+            android:pathData="M26,74 L42,74 L54,62 L66,74 L82,74 L82,82 L26,82 Z" />
+        
+        <!-- Sheet Metal Plate (Formed 90° Bend Profile) -->
+        <path
+            android:fillColor="#E2E8F0"
+            android:strokeColor="#94A3B8"
+            android:strokeWidth="1"
+            android:pathData="M26,48 L54,64 L82,48 L82,55 L54,71 L26,55 Z" />
+
+        <!-- Neutral Axis Line (K-Factor Core) -->
+        <path
+            android:strokeColor="#00E5FF"
+            android:strokeWidth="1.5"
+            android:strokeLineCap="round"
+            android:pathData="M29,51.5 L54,66 L79,51.5" />
+
+        <!-- Upper Press Punch Tool -->
+        <path
+            android:fillColor="#0284C7"
+            android:strokeColor="#38BDF8"
+            android:strokeWidth="1.5"
+            android:pathData="M48,22 L60,22 L60,46 L54,58 L48,46 Z" />
+        <path
+            android:fillColor="#00E5FF"
+            android:pathData="M52,48 L56,48 L54,56 Z" />
+
+        <!-- Formed Angle Measurement Arc -->
+        <path
+            android:strokeColor="#F59E0B"
+            android:strokeWidth="2"
+            android:strokeLineCap="round"
+            android:pathData="M38,40 A22,22 0 0,1 70,40" />
+        <!-- Measurement Arrowheads -->
+        <path
+            android:fillColor="#F59E0B"
+            android:pathData="M38,36 L34,41 L41,42 Z" />
+        <path
+            android:fillColor="#F59E0B"
+            android:pathData="M70,36 L74,41 L67,42 Z" />
+    </group>
+</vector>
