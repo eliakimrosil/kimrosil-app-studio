@@ -411,6 +411,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Offline bolt torque calculator, thread pitch specs & lube friction multiplier.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-torquepitch/torquepitch.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/torquepitch/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/torquepitch)
 
+#### [TorqueSpec](https://apps.kimrosil.com/torquespec/) (`torquespec`) • `v1.1.0`
+> **Utility**: Offline bolt torque charts and fastener specs for mechanics and machinists.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-torquespec/torquespec.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/torquespec/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/torquespec)
+
 #### [VatCal PH](https://apps.kimrosil.com/ph-vat-calculator/) (`ph-vat-calculator`) • `v1.2.4`
 > **Utility**: Fast offline 12% VAT (inclusive/exclusive), Expanded Withholding Tax (EWT), and invoice net/gross calculation tool.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.4-ph-vat-calculator/ph-vat-calculator.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/ph-vat-calculator/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/ph-vat-calculator)
