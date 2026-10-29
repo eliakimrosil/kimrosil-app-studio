@@ -460,7 +460,7 @@
     "slug": "sprout-knight-rpg",
     "title": "SproutKnight",
     "category": "Games / RPG / Adventure",
-    "tagline": "Embark on a charming 2D action fighting RPG quest—upgrade acorn blades, walnut armor, and dewdrop magic at the cozy forge.",
+    "tagline": "Embark on a charming 2D action fighting RPG quest\u2014upgrade acorn blades, walnut armor, and dewdrop magic at the cozy forge.",
     "version": "v1.5.0",
     "status": "BUILT",
     "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.5.0-sprout-knight-rpg/sprout-knight-rpg.apk",
@@ -998,7 +998,7 @@
     "slug": "gauss-meter",
     "title": "GaussMeter",
     "category": "UTILITIES",
-    "tagline": "3-axis magnetometer (µT / mG), EMF & ferrous wall stud locator with tare.",
+    "tagline": "3-axis magnetometer (\u00b5T / mG), EMF & ferrous wall stud locator with tare.",
     "status": "BUILT",
     "branch": "app/gauss-meter",
     "tag": "v1.0.0-gauss-meter",
@@ -1218,5 +1218,19 @@
     "icon": "assets/icons/cue-scroll.svg",
     "updated_at": "2026-10-28T15:13:32.018203+00:00",
     "sha256": "7305fa8e100f2ec825119433c813a12457a192b2c78557d092654f24099ce391"
+  },
+  {
+    "slug": "gluewedge",
+    "title": "Gluewedge Clamp & Wood Glue",
+    "category": "UTILITIES",
+    "tagline": "Calculate clamping pressure, spacing, and glue open time for edge glue-ups.",
+    "status": "BUILT",
+    "branch": "app/gluewedge",
+    "tag": "v1.1.0-gluewedge",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-gluewedge/gluewedge.apk",
+    "landing_page": "https://apps.kimrosil.com/gluewedge/",
+    "privacy_policy": "https://apps.kimrosil.com/gluewedge/privacy.html",
+    "icon": "assets/icons/gluewedge.svg",
+    "updated_at": "2026-10-29T06:52:14.330615+00:00"
   }
 ]

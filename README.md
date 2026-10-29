@@ -311,6 +311,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: 3-axis magnetometer (µT / mG), EMF & ferrous wall stud locator with tare.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-gauss-meter/gauss-meter.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/gauss-meter/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/gauss-meter)
 
+#### [Gluewedge Clamp & Wood Glue](https://apps.kimrosil.com/gluewedge/) (`gluewedge`) • `v1.1.0`
+> **Utility**: Calculate clamping pressure, spacing, and glue open time for edge glue-ups.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-gluewedge/gluewedge.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/gluewedge/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/gluewedge)
+
 #### [GrainLine](https://apps.kimrosil.com/grainline/) (`grainline`) • `v1.1.0`
 > **Utility**: Offline textile yardage calculator and pattern layout optimizer for fabric counters and sewing tables.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-grainline/grainline.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/grainline/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/grainline)
