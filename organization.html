@@ -302,21 +302,7 @@
             background: #1E293B;
         }
 
-        /* Operational Mode Comparison */
-        .rhythm-banner {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(0, 229, 255, 0.05) 100%);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            border-radius: 18px;
-            padding: 20px 24px;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .rhythm-icon { font-size: 32px; flex-shrink: 0; }
-        .rhythm-text h4 { font-size: 17px; font-weight: 800; color: #FFFFFF; margin-bottom: 4px; }
-        .rhythm-text p { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+        /* Operational Architecture (100% On-Demand) */
         .schedule-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -332,12 +318,8 @@
             gap: 12px;
         }
         .schedule-box.active-mode {
-            border-color: rgba(16, 185, 129, 0.5);
-            background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, #0D1322 100%);
-        }
-        .schedule-box.retired-mode {
-            border-color: rgba(239, 68, 68, 0.3);
-            opacity: 0.85;
+            border-color: rgba(0, 229, 255, 0.4);
+            background: linear-gradient(180deg, rgba(0, 229, 255, 0.05) 0%, #0D1322 100%);
         }
         .schedule-header {
             display: flex;
@@ -354,8 +336,8 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        .badge-retired { background: rgba(239, 68, 68, 0.15); color: #FCA5A5; border: 1px solid rgba(239, 68, 68, 0.3); }
-        .badge-active { background: rgba(16, 185, 129, 0.2); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.4); }
+        .badge-active { background: rgba(0, 229, 255, 0.15); color: #38BDF8; border: 1px solid rgba(0, 229, 255, 0.3); }
+        .badge-emerald { background: rgba(16, 185, 129, 0.15); color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3); }
         .schedule-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
         .schedule-bullets {
             list-style: none;
@@ -750,18 +732,10 @@
             </div>
         </section>
 
-        <!-- Operational Rhythm: 100% On-Demand Studio (24/7 Freedom) -->
+        <!-- Operational Architecture: 100% On-Demand Autonomous Engineering -->
         <section class="section-card">
-            <h2 class="section-title">⏰ Operational Mode: 100% On-Demand Studio (24/7 Freedom)</h2>
-            <p class="section-desc">To guarantee maximum device longevity, thermal efficiency, battery health, and direct human-architect supervision, the studio permanently operates in an on-demand paradigm.</p>
-
-            <div class="rhythm-banner">
-                <div class="rhythm-icon">⚡</div>
-                <div class="rhythm-text">
-                    <h4>Nocturnal Background Cron Permanently Decommissioned</h4>
-                    <p>All unattended overnight background cron jobs (Job 103) are disabled. Zero background builds, wake-locks, or autonomous code mutations run unattended overnight. The studio executes with lightning speed on-demand whenever summoned.</p>
-                </div>
-            </div>
+            <h2 class="section-title">⚡ Operational Architecture: 100% On-Demand Autonomous Engineering</h2>
+            <p class="section-desc">KimRosil App Studio Company operates strictly on-demand, delivering instantaneous, human-governed mobile software engineering with maximum silicon efficiency and zero idle background overhead.</p>
 
             <div class="schedule-grid">
                 <div class="schedule-box active-mode">
@@ -769,23 +743,23 @@
                         <span class="schedule-title">User-Prompted On-Demand Creation</span>
                         <span class="schedule-badge badge-active">Active &bull; 24/7 Anytime</span>
                     </div>
-                    <p class="schedule-desc">When the founder or Antigravity invokes app creation, code styling, ADB stress testing, or release publishing at any hour of the day or night, the multi-agent system runs instantly on-demand with pure native craftsmanship.</p>
+                    <p class="schedule-desc">When the founder or Antigravity invokes app creation, code styling, ADB stress testing, or release publishing at any time, the multi-agent system runs instantly on-demand with pure native craftsmanship.</p>
                     <ul class="schedule-bullets">
                         <li>⚡ <strong>Instant Execution:</strong> Run <code>./manage_studio.sh create [slug]</code> for full concept-to-APK generation.</li>
                         <li>🛡️ <strong>Live ADB Diagnostics:</strong> Adversarial fuzzing and UI contrast verification executed on live Snapdragon silicon.</li>
                         <li>🏛️ <strong>Atomic 4-Pillar Release:</strong> Immediate cascade across app branch, GitHub Releases CDN, catalog, and gh-pages.</li>
                     </ul>
                 </div>
-                <div class="schedule-box retired-mode">
+                <div class="schedule-box active-mode">
                     <div class="schedule-header">
-                        <span class="schedule-title">Autonomous Night Shift (Job 103)</span>
-                        <span class="schedule-badge badge-retired">Permanently Disabled</span>
+                        <span class="schedule-title">Zero Background Idle Overhead</span>
+                        <span class="schedule-badge badge-emerald">100% Resource Efficiency</span>
                     </div>
-                    <p class="schedule-desc">Previously scheduled unattended nocturnal batch runs (12:00 AM – 5:00 AM PST) have been retired to eliminate battery cycle wear and CPU thermal throttling during docked rest hours.</p>
+                    <p class="schedule-desc">All processes run synchronously when commanded and cleanly exit upon completion. Zero background daemons or idle processes consume device resources.</p>
                     <ul class="schedule-bullets">
-                        <li>🔋 <strong>Zero Wake-Locks:</strong> Termux sleep state remains undisturbed during charging hours.</li>
-                        <li>🌡️ <strong>Thermal Protection:</strong> Prevents nocturnal battery warming from unprompted Gradle daemon runs.</li>
-                        <li>🎯 <strong>Human Governance:</strong> Ensures every code mutation and release is explicitly architected and verified.</li>
+                        <li>🔋 <strong>Zero Wake-Locks:</strong> Host device resources remain completely undisturbed when idle.</li>
+                        <li>🌡️ <strong>Thermal Efficiency:</strong> Full hardware power is channeled exclusively during active compilation.</li>
+                        <li>🎯 <strong>Sovereign Human Governance:</strong> Complete developer authority over every code mutation, test cycle, and deployment.</li>
                     </ul>
                 </div>
             </div>
