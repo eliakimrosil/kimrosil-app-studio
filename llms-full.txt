@@ -450,6 +450,27 @@ OFFLINE & PURE NATIVE PERFORMANCE
 
 ---
 
+## CrownCut (`crowncut`)
+- **Category**: UTILITIES
+- **Tagline**: Compound miter saw angles, bevel settings & crown molding cut guide.
+- **Landing Page**: https://apps.kimrosil.com/crowncut/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-crowncut/crowncut.apk
+- **Privacy Policy**: https://apps.kimrosil.com/crowncut/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+CrownCut delivers instant, mathematically precise compound miter saw calculations for finish carpenters, trim installers, cabinetmakers, and woodworkers. Cutting crown molding flat on a compound miter saw requires complex compound trigonometry to calculate accurate miter and bevel angles based on wall corner angle and crown spring angle. CrownCut eliminates calculation errors, wasted trim material, and repeated ladder trips by generating exact cutting angles, blade tilt direction, fence positioning, and multi-sided polygon joint calculations on the jobsite. CORE FEATURES: • Precise Angle Computation: Instant miter angle and bevel angle readouts calculated to two decimal places for flawless tight joints. • Standard & Custom Spring Angles: Pre-configured presets for common 38/52, 45/45, and 52/38 degree moldings, plus manual input for custom millwork profiles. • Any Corner Angle: Compute inside corners, outside corners, and non-square out-of-plumb walls ranging from acute angles to open bullnose corners. • Visual Cutting Instructions: Clear placement guidance showing whether molding lays flat face up or face down, fence orientation, and saw swing directions. • Multi-Sided Polygon Calculator: Built-in angle presets for octagons, hexagons, and custom multi-segment coffered ceiling trim. • Offline-First Reliability: Operates completely offline with zero internet permissions required, ideal for remote jobsites and basements. • Zero Distractions: No advertisements, no analytics tracking, and no subscription paywalls. Built for high-efficiency woodworking, finish carpentry, and architectural trim installation.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+---
+
 ## CrumbWatch (`sourdough-rise-ferment-sentinel`)
 - **Category**: Food & Drink / Utilities
 - **Tagline**: Offline-first artisan dough fermentation tracker with temperature-compensated proofing timers, flour-safe Quick Settings tap, and ongoing lock screen chronometer.
