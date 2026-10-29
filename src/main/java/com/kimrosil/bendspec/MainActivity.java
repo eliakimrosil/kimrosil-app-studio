@@ -258,10 +258,10 @@ public class MainActivity extends Activity {
         layoutTabLadder.setVisibility(index == 2 ? View.VISIBLE : View.GONE);
         layoutTabLedger.setVisibility(index == 3 ? View.VISIBLE : View.GONE);
 
-        btnTabBend.setBackgroundResource(index == 0 ? R.drawable.chip_active : R.drawable.chip_inactive);
-        btnTabVDie.setBackgroundResource(index == 1 ? R.drawable.chip_active : R.drawable.chip_inactive);
-        btnTabLadder.setBackgroundResource(index == 2 ? R.drawable.chip_active : R.drawable.chip_inactive);
-        btnTabLedger.setBackgroundResource(index == 3 ? R.drawable.chip_active : R.drawable.chip_inactive);
+        btnTabBend.setBackgroundResource(index == 0 ? R.drawable.bg_tab_active : R.drawable.bg_tab_inactive);
+        btnTabVDie.setBackgroundResource(index == 1 ? R.drawable.bg_tab_active : R.drawable.bg_tab_inactive);
+        btnTabLadder.setBackgroundResource(index == 2 ? R.drawable.bg_tab_active : R.drawable.bg_tab_inactive);
+        btnTabLedger.setBackgroundResource(index == 3 ? R.drawable.bg_tab_active : R.drawable.bg_tab_inactive);
 
         int colorOnPrimary = getColor(R.color.m3_on_primary);
         int colorDim = getColor(R.color.m3_on_surface_variant);
@@ -812,7 +812,9 @@ public class MainActivity extends Activity {
         int btnHeight = (int) (48 * density);
 
         Button btnThemeDark = new Button(this, null, 0, R.style.CleanButton);
-        btnThemeDark.setText("Dark Mode");
+        btnThemeDark.setText("Dark");
+        btnThemeDark.setTextSize(12f);
+        btnThemeDark.setSingleLine(true);
         btnThemeDark.setBackgroundResource(R.drawable.btn_stepper);
         btnThemeDark.setTextColor(getColor(R.color.m3_on_surface));
         btnThemeDark.setLayoutParams(new LinearLayout.LayoutParams(0, btnHeight, 1f));
@@ -824,7 +826,9 @@ public class MainActivity extends Activity {
         themeButtons.addView(spacer1);
 
         Button btnThemeLight = new Button(this, null, 0, R.style.CleanButton);
-        btnThemeLight.setText("Light Mode");
+        btnThemeLight.setText("Light");
+        btnThemeLight.setTextSize(12f);
+        btnThemeLight.setSingleLine(true);
         btnThemeLight.setBackgroundResource(R.drawable.btn_stepper);
         btnThemeLight.setTextColor(getColor(R.color.m3_on_surface));
         btnThemeLight.setLayoutParams(new LinearLayout.LayoutParams(0, btnHeight, 1f));
@@ -836,7 +840,9 @@ public class MainActivity extends Activity {
         themeButtons.addView(spacer2);
 
         Button btnThemeAuto = new Button(this, null, 0, R.style.CleanButton);
-        btnThemeAuto.setText("Auto System");
+        btnThemeAuto.setText("Auto");
+        btnThemeAuto.setTextSize(12f);
+        btnThemeAuto.setSingleLine(true);
         btnThemeAuto.setBackgroundResource(R.drawable.btn_stepper);
         btnThemeAuto.setTextColor(getColor(R.color.m3_on_surface));
         btnThemeAuto.setLayoutParams(new LinearLayout.LayoutParams(0, btnHeight, 1f));
@@ -852,7 +858,7 @@ public class MainActivity extends Activity {
         aboutCard.setPadding(24, 20, 24, 20);
 
         TextView aboutApp = new TextView(this);
-        aboutApp.setText("BendSpec v1.0.0");
+        aboutApp.setText("BendSpec v1.0.2");
         aboutApp.setTypeface(null, android.graphics.Typeface.BOLD);
         aboutApp.setTextColor(getColor(R.color.m3_on_surface));
         aboutCard.addView(aboutApp);
@@ -887,19 +893,16 @@ public class MainActivity extends Activity {
     private void updateThemeButtonText() {
         if (btnThemeToggle != null) {
             String mode = prefs.getString(PREF_THEME, "system");
-            if ("dark".equals(mode)) {
-                btnThemeToggle.setText("Theme: Dark");
-            } else if ("light".equals(mode)) {
-                btnThemeToggle.setText("Theme: Light");
-            } else {
-                btnThemeToggle.setText("Theme: Auto");
-            }
+            btnThemeToggle.setText("");
+            btnThemeToggle.setContentDescription("Switch theme (Current: " + mode + ")");
         }
     }
 
     private void setThemePreference(String mode) {
         prefs.edit().putString(PREF_THEME, mode).apply();
         vibrateFeedback();
+        String label = "dark".equals(mode) ? "Dark Mode" : ("light".equals(mode) ? "Light Mode" : "Auto System");
+        Toast.makeText(this, "Theme switched to " + label, Toast.LENGTH_SHORT).show();
         recreate();
     }
 
@@ -979,7 +982,9 @@ public class MainActivity extends Activity {
     private double parseDouble(String str, double def) {
         if (str == null || str.trim().isEmpty()) return def;
         try {
-            return Double.parseDouble(str.trim());
+            double v = Double.parseDouble(str.trim());
+            if (Double.isNaN(v) || Double.isInfinite(v)) return def;
+            return v;
         } catch (Exception e) {
             return def;
         }

@@ -1,2 +1,2 @@
-Release v1.0.1 - BendSpec
-Fix button text contrast, invisible tab label, and refine 1.2dp hairline outlines
+Release v1.0.3 - BendSpec
+Professional UI redesign: segmented track tab control, uncluttered action header with 48x48dp icon buttons, and unified compact tooling input grid

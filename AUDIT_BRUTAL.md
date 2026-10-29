@@ -1,5 +1,5 @@
 # 👹 Brutal User & Adversarial ADB Audit: bendspec
-*Generated on 2026-10-29 20:35:55 on 127.0.0.1:5555*
+*Generated on 2026-10-29 22:10:39 on 127.0.0.1:5555*
 
 ---
 
@@ -10,9 +10,9 @@
 
 ## 📊 Live ADB Diagnostic Telemetry
 - **Target Package**: `com.kimrosil.bendspec`
-- **Cold Boot Latency**: `160 ms`
-- **Memory Footprint (PSS)**: `19 MB` (`20075 KB`)
-- **Interactive UI Nodes Audited**: `14`
+- **Cold Boot Latency**: `153 ms`
+- **Memory Footprint (PSS)**: `20 MB` (`20510 KB`)
+- **Interactive UI Nodes Audited**: `16`
 - **Navigation Tabs Explored**: `3`
 - **Adversarial Fuzz Tests Passed**: `2 / 2`
 - **State Preserved on Rotation (90°)**: `✅ YES`

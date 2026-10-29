@@ -34,8 +34,10 @@
                 android:id="@+id/tvHeaderSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sheet Metal Fabrication Telemetry"
+                android:text="Sheet Metal Fabrication"
                 android:textSize="12sp"
+                android:singleLine="true"
+                android:ellipsize="end"
                 android:textColor="@color/m3_on_surface_variant" />
         </LinearLayout>
 
@@ -51,26 +53,21 @@
             android:background="@drawable/bg_badge_safe"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
             android:layout_marginEnd="8dp" />
 
-        <!-- Direct Theme Toggle Button -->
+        <!-- Direct Theme Toggle Icon Button -->
         <Button
             android:id="@+id/btnThemeToggle"
             style="@style/CleanButton"
-            android:layout_width="wrap_content"
+            android:layout_width="48dp"
             android:layout_height="48dp"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:text="Theme: Auto"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:textColor="@color/m3_on_surface"
             android:background="@drawable/bg_topbar_button"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:layout_marginEnd="8dp" />
+            android:drawableStart="@drawable/ic_theme_toggle"
+            android:padding="12dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Toggle Theme" />
 
         <!-- Settings Button (CleanButton standard 48x48dp) -->
         <Button
@@ -89,13 +86,17 @@
         android:layout_height="1dp"
         android:background="@color/m3_outline" />
 
-    <!-- Full-Width Tab Strip (0dp with weight=1 avoids clipping) -->
+    <!-- Bespoke Segmented Tab Control -->
     <LinearLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="6dp"
         android:orientation="horizontal"
-        android:background="@color/m3_surface_container">
+        android:background="@drawable/bg_segmented_track">
 
         <Button
             android:id="@+id/btnTabBend"
@@ -103,7 +104,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/chip_active"
+            android:background="@drawable/bg_tab_active"
             android:text="BEND"
             android:textColor="@color/m3_on_primary"
             android:textSize="12sp"
@@ -115,7 +116,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/chip_inactive"
+            android:background="@drawable/bg_tab_inactive"
             android:text="V-DIE"
             android:textColor="@color/m3_on_surface_variant"
             android:textSize="12sp"
@@ -127,7 +128,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/chip_inactive"
+            android:background="@drawable/bg_tab_inactive"
             android:text="LADDER"
             android:textColor="@color/m3_on_surface_variant"
             android:textSize="12sp"
@@ -139,17 +140,12 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/chip_inactive"
+            android:background="@drawable/bg_tab_inactive"
             android:text="LEDGER"
             android:textColor="@color/m3_on_surface_variant"
             android:textSize="12sp"
             android:textStyle="bold" />
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/m3_outline" />
 
     <!-- Main Scrollable Content Body -->
     <ScrollView
@@ -198,6 +194,8 @@
                         android:textStyle="bold"
                         android:textColor="@color/m3_primary"
                         android:fontFamily="monospace"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:layout_marginTop="4dp" />
 
                     <TextView
@@ -349,130 +347,71 @@
                         android:fontFamily="monospace" />
 
                     <!-- Material Selector -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Alloy &amp; Neutral K-Factor"
-                        android:textSize="12sp"
-                        android:textColor="@color/m3_on_surface"
-                        android:layout_marginTop="8dp" />
-
-                    <Spinner
-                        android:id="@+id/spMaterial"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:background="@drawable/edittext_m3"
-                        android:layout_marginTop="4dp" />
-
-                    <!-- K-Factor Override -->
+                    <!-- Material Alloy & K-Factor Row -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginTop="8dp">
+                        android:layout_marginTop="6dp">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="K-Factor Override:"
-                            android:textSize="12sp"
-                            android:textColor="@color/m3_on_surface" />
+                            android:orientation="vertical"
+                            android:layout_marginEnd="6dp">
 
-                        <EditText
-                            android:id="@+id/etKFactor"
-                            android:layout_width="100dp"
-                            android:layout_height="48dp"
-                            android:inputType="numberDecimal"
-                            android:text="0.38"
-                            android:hint="0.38"
-                            android:gravity="center"
-                            android:background="@drawable/edittext_m3"
-                            android:textColor="@color/m3_on_surface"
-                            android:textSize="14sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Alloy &amp; Neutral K:"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <Spinner
+                                android:id="@+id/spMaterial"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:background="@drawable/edittext_m3"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="96dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginStart="4dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="K-Override:"
+                                android:textSize="11sp"
+                                android:textColor="@color/m3_on_surface" />
+
+                            <EditText
+                                android:id="@+id/etKFactor"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:inputType="numberDecimal"
+                                android:text="0.38"
+                                android:hint="0.38"
+                                android:gravity="center"
+                                android:background="@drawable/edittext_m3"
+                                android:textColor="@color/m3_on_surface"
+                                android:textSize="14sp"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
                     </LinearLayout>
 
-                    <!-- Sheet Thickness -->
+                    <!-- Sheet Thickness Input -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sheet Thickness (T in inches):"
-                        android:textSize="12sp"
+                        android:textSize="11sp"
                         android:textColor="@color/m3_on_surface"
-                        android:layout_marginTop="12dp" />
-
-                    <!-- Thickness Presets -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="4dp">
-
-                        <Button
-                            android:id="@+id/btnGauge16"
-                            style="@style/CleanButton"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="16ga"
-                            android:textSize="11sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/m3_on_surface"
-                            android:background="@drawable/btn_stepper"
-                            android:layout_marginEnd="4dp" />
-
-                        <Button
-                            android:id="@+id/btnGauge14"
-                            style="@style/CleanButton"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="14ga"
-                            android:textSize="11sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/m3_on_surface"
-                            android:background="@drawable/btn_stepper"
-                            android:layout_marginEnd="4dp" />
-
-                        <Button
-                            android:id="@+id/btnGauge12"
-                            style="@style/CleanButton"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="12ga"
-                            android:textSize="11sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/m3_on_surface"
-                            android:background="@drawable/btn_stepper"
-                            android:layout_marginEnd="4dp" />
-
-                        <Button
-                            android:id="@+id/btnGauge10"
-                            style="@style/CleanButton"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="1/8&quot;"
-                            android:textSize="11sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/m3_on_surface"
-                            android:background="@drawable/btn_stepper"
-                            android:layout_marginEnd="4dp" />
-
-                        <Button
-                            android:id="@+id/btnGauge14in"
-                            style="@style/CleanButton"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="1/4&quot;"
-                            android:textSize="11sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/m3_on_surface"
-                            android:background="@drawable/btn_stepper" />
-                    </LinearLayout>
+                        android:layout_marginTop="8dp" />
 
                     <EditText
                         android:id="@+id/etThickness"
@@ -485,7 +424,79 @@
                         android:textColor="@color/m3_on_surface"
                         android:textSize="14sp"
                         android:padding="12dp"
-                        android:layout_marginTop="6dp" />
+                        android:layout_marginTop="2dp" />
+
+                    <!-- Quick Gauge Presets -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="6dp">
+
+                        <Button
+                            android:id="@+id/btnGauge16"
+                            style="@style/CleanButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="16ga"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper"
+                            android:layout_marginEnd="4dp" />
+
+                        <Button
+                            android:id="@+id/btnGauge14"
+                            style="@style/CleanButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="14ga"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper"
+                            android:layout_marginEnd="4dp" />
+
+                        <Button
+                            android:id="@+id/btnGauge12"
+                            style="@style/CleanButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="12ga"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper"
+                            android:layout_marginEnd="4dp" />
+
+                        <Button
+                            android:id="@+id/btnGauge10"
+                            style="@style/CleanButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="1/8&quot;"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper"
+                            android:layout_marginEnd="4dp" />
+
+                        <Button
+                            android:id="@+id/btnGauge14in"
+                            style="@style/CleanButton"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="1/4&quot;"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/m3_on_surface"
+                            android:background="@drawable/btn_stepper" />
+                    </LinearLayout>
 
                     <!-- Inside Radius & Bend Angle -->
                     <LinearLayout
@@ -686,6 +697,8 @@
                         android:textStyle="bold"
                         android:textColor="@color/m3_primary"
                         android:fontFamily="monospace"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:layout_marginTop="4dp" />
 
                     <TextView
@@ -969,6 +982,8 @@
                         android:textStyle="bold"
                         android:textColor="@color/m3_primary"
                         android:fontFamily="monospace"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:layout_marginTop="4dp" />
 
                     <TextView
