@@ -897,7 +897,7 @@ Notice of Non-Affiliation: All product and company names, logos, and brands ment
 - **Category**: Workshop
 - **Tagline**: Offline edge-gluing clamp layout and PSI pressure calculator for woodworking panels.
 - **Landing Page**: https://apps.kimrosil.com/gluewedge/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-gluewedge/gluewedge.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-gluewedge/gluewedge.apk
 - **Privacy Policy**: https://apps.kimrosil.com/gluewedge/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
@@ -2039,6 +2039,30 @@ KEY CAPABILITIES
 • Zero account creation, zero analytics, zero ads, zero background telemetry.
 • Fully functional Dark, Light, and System Auto theming for high-contrast garage drop light visibility.
 • Pure native Android framework performance with instant cold starts.
+
+---
+
+## TorqueSpec (`torquespec`)
+- **Category**: Automotive & Mechanical Trades
+- **Tagline**: Offline fastener torque calculator, thread pitch verifier, and lubricant friction adjuster for mechanics and machinists.
+- **Landing Page**: https://apps.kimrosil.com/torquespec/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-torquespec/torquespec.apk
+- **Privacy Policy**: https://apps.kimrosil.com/torquespec/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+TorqueSpec delivers instant, offline bolt torque specifications and fastener engineering data directly to your device. Built specifically for field service technicians, diesel mechanics, fabricators, and machinists working in low-connectivity environments such as pole barns, pits, and remote machine shops. Eliminate guesswork and damaged threads with immediate access to standard tightening values, thread pitches, tensile ratings, and fastener dimensions without requiring cellular reception or account sign-ins. Core Features: - Comprehensive Torque Tables: Standard tightening values for Metric (Class 8.8, 10.9, 12.9) and Imperial SAE (Grade 2, 5, 8) fasteners across dry and lubricated conditions. - Fast Offline Search: Instant query engine powered by local database indexing allows you to locate thread specs and bolt diameters in milliseconds. - Mechanical Specifications: Detailed data on coarse and fine thread pitches, tap drill sizes, proof load limits, and recommended clamping force. - Zero Connectivity Required: Fully self-contained local database functions seamlessly underground, inside metal facilities, or in remote job sites. - Clean Workshop Interface: High-contrast layout designed for quick reading and single-tap reference while wearing shop gloves. - Complete Privacy: No user tracking, no third-party analytics, and no background network connections. Whether torquing cylinder heads, servicing agricultural machinery, or assembling structural steel, TorqueSpec provides reliable mechanical reference data instantly on the shop floor.
+
+
+Data Safety & Offline Privacy Guarantee:
+- 100% Offline: This application operates entirely on your device without requiring an active internet connection.
+- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.
+- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.
+- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.
+
+
+Notice of Non-Affiliation: All product and company names, logos, and brands mentioned are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
 
 ---
 
