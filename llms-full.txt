@@ -56,6 +56,53 @@ Data Safety & Offline Privacy Guarantee:
 
 ---
 
+## Bendspec (`bendspec`)
+- **Category**: UTILITIES
+- **Tagline**: Offline Android utility.
+- **Landing Page**: https://apps.kimrosil.com/bendspec/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-bendspec/bendspec.apk
+- **Privacy Policy**: https://apps.kimrosil.com/bendspec/privacy.html
+- **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
+- **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
+
+### Detailed Overview & Capabilities
+BendSpec is a professional, 100% offline sheet metal forming calculator and flat pattern developed blank layout utility engineered for press brake operators, CNC fabricators, and mechanical engineers.
+
+Eliminate trial-and-error scrap on the press brake. BendSpec computes precise neutral-axis Bend Allowance (BA), Outside Setback (OSB), and Bend Deduction (BD), plus recommended air bend V-die openings, minimum flange heights, and required press brake forming tonnage.
+
+KEY CAPABILITIES
+
+1. Precision Bend Mechanics (BA, BD, OSB)
+• Enter material thickness (T), inside bend radius (R), and bend angle (deg).
+• Choose standard alloys with validated K-factors or input custom neutral axis ratios:
+  - Mild Steel 1008/1018 (K = 0.40, UTS = 450 MPa)
+  - Stainless Steel 304/316 (K = 0.45, UTS = 650 MPa)
+  - Aluminum 5052-H32 / 6061-T6 (K = 0.42, UTS = 230 MPa)
+  - Structural Steel A36 (K = 0.42, UTS = 400 MPa)
+  - Brass / Copper Half-Hard (K = 0.38, UTS = 300 MPa)
+• Instant calculation of Bend Allowance, Outside Setback, and Bend Deduction down to 0.01 mm / 0.001 in.
+
+2. V-Die Tooling & Press Brake Tonnage
+• Automatic V-die width recommendation (6x, 8x, 10x, or 12x material thickness).
+• Minimum safe flange length calculation to prevent sheets slipping into the V-die opening.
+• Forming tonnage per meter and total press load computation based on material ultimate tensile strength (UTS), preventing machine overload.
+
+3. Multi-Flange Flat Pattern Blank Layout
+• Sequential flange ladder builder: add sequential flange leg lengths and bend deductions.
+• Computes exact total developed blank length: Flat Length = Sum(Flanges) - Sum(Bend Deductions).
+• Formatted multi-flange sequence export to clipboard for immediate machine shop communication.
+
+4. Offline Job Ledger
+• Save and catalog forming setups by part number, job title, and material spec.
+• Instant recall of verified shop setups for repeat production runs.
+
+100% OFFLINE & PRIVACY-FIRST
+• Zero ads, zero trackers, zero cloud dependencies, zero account requirements.
+• Full Dark Mode, Light Mode, and System Auto theming for high-contrast shop visibility.
+• Pure native Android framework architecture (< 1 MB APK, < 200 ms cold boot).
+
+---
+
 ## BrazeRing (`braze-ring`)
 - **Category**: TOOLS & UTILITIES / HVAC
 - **Tagline**: Preform ring sizing and silver alloy volume calculator for copper HVAC and refrigeration brazing.
