@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090D16"/>
+      <stop offset="60%" stop-color="#0E1626"/>
+      <stop offset="100%" stop-color="#080C14"/>
+    </linearGradient>
+    <radialGradient id="cyanGlow" cx="15%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#090D16" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="accentLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00E5FF"/>
+      <stop offset="50%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#818CF8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  <rect width="1200" height="630" fill="url(#cyanGlow)"/>
+  
+  <!-- Outer Card Frame -->
+  <rect x="40" y="40" width="1120" height="550" rx="28" fill="#0D1322" stroke="#1E293B" stroke-width="2"/>
+  <rect x="40" y="40" width="1120" height="6" fill="url(#accentLine)"/>
+
+  <!-- Left Icon Frame -->
+  <rect x="90" y="150" width="220" height="220" rx="36" fill="#131D31" stroke="#1E293B" stroke-width="2"/>
+  <circle cx="200" cy="260" r="70" fill="#00E5FF" fill-opacity="0.12"/>
+  <text x="200" y="278" fill="#00E5FF" font-size="54" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, sans-serif" text-anchor="middle">KR</text>
+
+  <!-- Right Content Block -->
+  <rect x="350" y="130" width="240" height="36" rx="8" fill="#131D31" stroke="#38BDF8" stroke-width="1.2"/>
+  <text x="470" y="154" fill="#38BDF8" font-size="13.5" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, sans-serif" text-anchor="middle" letter-spacing="1.5">UTILITIES &amp; LIFESTYLE</text>
+
+  <text x="350" y="235" fill="#FFFFFF" font-size="52" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, sans-serif">ClaimSlip</text>
+  <text x="350" y="295" fill="#94A3B8" font-size="24" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Archive paper receipts, track warranties, and preserve faded thermal slips.</text>
+  <text x="350" y="335" fill="#64748B" font-size="20" font-family="-apple-system, BlinkMacSystemFont, sans-serif">100% Offline Native Android Utility &#8226; Zero Ads &#8226; Zero Trackers</text>
+
+  <!-- Feature Pills -->
+  <g transform="translate(350, 380)">
+    <rect x="0" y="0" width="160" height="42" rx="10" fill="#00E5FF"/>
+    <text x="80" y="26" fill="#090D16" font-size="15" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, sans-serif" text-anchor="middle">100% OFFLINE</text>
+    
+    <rect x="175" y="0" width="180" height="42" rx="10" fill="#131D31" stroke="#1E293B" stroke-width="1.5"/>
+    <text x="265" y="26" fill="#38BDF8" font-size="15" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, sans-serif" text-anchor="middle">PURE NATIVE ARM64</text>
+
+    <rect x="370" y="0" width="170" height="42" rx="10" fill="#131D31" stroke="#1E293B" stroke-width="1.5"/>
+    <text x="455" y="26" fill="#10B981" font-size="15" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, sans-serif" text-anchor="middle">ZERO TRACKERS</text>
+  </g>
+
+  <!-- Footer Brand -->
+  <line x1="90" y1="480" x2="1070" y2="480" stroke="#1E293B" stroke-width="1"/>
+  <text x="90" y="525" fill="#64748B" font-size="16" font-family="-apple-system, BlinkMacSystemFont, sans-serif">KimRosil App Studio &#8226; Independent Native Android Software Studio</text>
+  <text x="1070" y="525" fill="#00E5FF" font-size="16" font-weight="600" font-family="-apple-system, BlinkMacSystemFont, sans-serif" text-anchor="end">https://apps.kimrosil.com/claim-slip/</text>
+</svg>
