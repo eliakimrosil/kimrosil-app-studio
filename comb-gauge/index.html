@@ -39,26 +39,26 @@
         });
     </script>
 
-    <!-- Open Graph / Social Sharing (PNG image for universal social preview support) -->
+    <!-- Open Graph / Social Sharing (High-res 1200x630 banner for rich embeds) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://apps.kimrosil.com/comb-gauge/">
     <meta property="og:site_name" content="KimRosil App Studio">
     <meta property="og:title" content="CombGauge – Offline Android App | KimRosil Studio">
     <meta property="og:description" content="Calculate dry film thickness, wet film target, and thinner dilution offline. Download the 100% offline, zero-tracking Android APK free from KimRosil App Studio.">
-    <meta property="og:image" content="https://apps.kimrosil.com/assets/icons/comb-gauge.png">
-    <meta property="og:image:secure_url" content="https://apps.kimrosil.com/assets/icons/comb-gauge.png">
+    <meta property="og:image" content="https://apps.kimrosil.com/assets/banners/comb-gauge.png">
+    <meta property="og:image:secure_url" content="https://apps.kimrosil.com/assets/banners/comb-gauge.png">
     <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="512">
-    <meta property="og:image:height" content="512">
-    <meta property="og:image:alt" content="CombGauge App Icon">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="CombGauge Social Preview">
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
+    <!-- Twitter Card (Large Image) -->
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://apps.kimrosil.com/comb-gauge/">
     <meta name="twitter:title" content="CombGauge – Offline Android App | KimRosil Studio">
     <meta name="twitter:description" content="Calculate dry film thickness, wet film target, and thinner dilution offline. Download the 100% offline, zero-tracking Android APK free from KimRosil App Studio.">
-    <meta name="twitter:image" content="https://apps.kimrosil.com/assets/icons/comb-gauge.png">
-    <meta name="twitter:image:alt" content="CombGauge App Icon">
+    <meta name="twitter:image" content="https://apps.kimrosil.com/assets/banners/comb-gauge.png">
+    <meta name="twitter:image:alt" content="CombGauge Social Preview">
 
     <!-- Structured Data JSON-LD (SoftwareApplication, BreadcrumbList, FAQPage) -->
     <script type="application/ld+json">
@@ -425,6 +425,139 @@
         .footer a { color: #00E5FF; text-decoration: none; }
         .footer a:hover { text-decoration: underline; }
 
+        /* Interactive Web Demo Styles */
+        .interactive-demo-card {
+            background: #0E1626;
+            border: 1.5px solid #1E293B;
+            border-radius: 16px;
+            padding: 24px;
+            margin: 20px 0 24px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        .demo-top { margin-bottom: 18px; }
+        .demo-tag {
+            display: inline-block;
+            background: rgba(0, 229, 255, 0.12);
+            color: #00E5FF;
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(0, 229, 255, 0.3);
+        }
+        .demo-top h2 { font-size: 20px; color: #FFFFFF; margin-bottom: 6px; }
+        .demo-sub { font-size: 13.5px; color: #94A3B8; }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+        .demo-field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #CBD5E1;
+            margin-bottom: 6px;
+        }
+        .demo-input, .demo-select {
+            width: 100%;
+            background: #131D31;
+            border: 1px solid #1E293B;
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: #FFFFFF;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .demo-input:focus, .demo-select:focus { border-color: #00E5FF; }
+        .demo-results-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .result-tile {
+            background: #131D31;
+            border: 1px solid #1E293B;
+            border-radius: 10px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .result-tile.primary-tile {
+            background: rgba(0, 229, 255, 0.08);
+            border-color: #00E5FF;
+        }
+        .rt-label { font-size: 11px; color: #94A3B8; font-weight: 600; }
+        .rt-val { font-size: 15px; color: #FFFFFF; font-weight: 700; font-family: monospace; }
+        .result-tile.primary-tile .rt-val { color: #00E5FF; font-size: 17px; }
+        .demo-actions { margin-bottom: 18px; }
+        .btn-demo-action {
+            background: #1E293B;
+            border: 1px solid #334155;
+            color: #F1F5F9;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .btn-demo-action:hover { background: #334155; border-color: #00E5FF; }
+        .demo-cta-strip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            background: #090D16;
+            border: 1px solid #1E293B;
+            border-radius: 12px;
+            padding: 14px 18px;
+        }
+        .demo-cta-text { display: flex; flex-direction: column; gap: 2px; }
+        .demo-cta-text strong { font-size: 13px; color: #38BDF8; }
+        .demo-cta-text span { font-size: 12px; color: #94A3B8; }
+        .demo-cta-btn {
+            background: #00E5FF;
+            color: #090D16;
+            padding: 9px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: transform 0.15s, background 0.15s;
+        }
+        .demo-cta-btn:hover { background: #38BDF8; transform: translateY(-1px); }
+        .timer-demo-box { text-align: center; margin: 16px 0; }
+        .timer-display {
+            font-size: 48px;
+            font-weight: 800;
+            color: #00E5FF;
+            font-family: monospace;
+            letter-spacing: 2px;
+            margin-bottom: 14px;
+        }
+        .timer-controls { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+        .btn-timer {
+            background: #00E5FF;
+            color: #090D16;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .btn-timer-reset { background: #1E293B; color: #F1F5F9; border: 1px solid #334155; }
+        .btn-timer-preset { background: #131D31; color: #38BDF8; border: 1px solid #1E293B; }
+
         @media (max-width: 640px) {
             body { padding: 12px 8px; }
             .container { padding: 20px 14px; border-radius: 16px; }
@@ -438,6 +571,8 @@
             .specs-grid { grid-template-columns: 1fr; }
             .related-grid { grid-template-columns: 1fr; }
             .footer { margin-top: 24px; padding-top: 16px; font-size: 12px; }
+            .demo-cta-strip { flex-direction: column; text-align: center; gap: 10px; }
+            .demo-cta-btn { width: 100%; text-align: center; }
         }
     </style>
 </head>
@@ -467,12 +602,102 @@
             <span class="badge">✓ v1.0.1</span>
         </div>
 
-        <a class="btn" href="https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-comb-gauge/comb-gauge.apk">⬇ Download APK (Direct CDN)</a>
+        <a class="btn" id="download-apk" href="https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-comb-gauge/comb-gauge.apk">⬇ Download APK (Direct CDN)</a>
 
         <div class="meta-links">
             <a href="privacy.html"><strong>🛡️ Data Safety &amp; Privacy Policy →</strong></a>
             <a href="../testers.html"><strong>🧪 Join 20-Tester Beta Track →</strong></a>
         </div>
+
+        <hr>
+
+        <section class="interactive-demo-card" id="web-demo">
+            <div class="demo-top">
+                <span class="demo-tag">⚡ Live Browser Quick-Test</span>
+                <h2>Try CombGauge Online</h2>
+                <p class="demo-sub">Test the core computation right in your browser before downloading the 100% offline native APK:</p>
+            </div>
+            
+            <div class="demo-grid">
+                <div class="demo-field">
+                    <label for="demoMachDia">Cutter / Part Dia (in):</label>
+                    <input type="number" id="demoMachDia" class="demo-input" value="0.50" min="0.05" max="12.0" step="0.05" oninput="runMachiningCalc()">
+                </div>
+                <div class="demo-field">
+                    <label for="demoMachSfm">Cutting Speed (SFM):</label>
+                    <select id="demoMachSfm" class="demo-select" onchange="runMachiningCalc()">
+                        <option value="400" selected>Aluminum 6061 (400 SFM)</option>
+                        <option value="110">Carbon Steel 1018 (110 SFM)</option>
+                        <option value="75">Alloy Steel 4140 (75 SFM)</option>
+                        <option value="60">304 Stainless (60 SFM)</option>
+                        <option value="250">Brass / Bronze (250 SFM)</option>
+                    </select>
+                </div>
+                <div class="demo-field">
+                    <label for="demoMachFlutes">Flute / Insert Count:</label>
+                    <select id="demoMachFlutes" class="demo-select" onchange="runMachiningCalc()">
+                        <option value="2">2-Flute (Slotting / Plunge)</option>
+                        <option value="3">3-Flute (Aluminum High-Speed)</option>
+                        <option value="4" selected>4-Flute (General Steel)</option>
+                        <option value="6">6-Flute (Finishing / Hard Metal)</option>
+                    </select>
+                </div>
+                <div class="demo-field">
+                    <label for="demoMachFpt">Feed Per Tooth (IPT):</label>
+                    <input type="number" id="demoMachFpt" class="demo-input" value="0.003" min="0.0005" max="0.020" step="0.0005" oninput="runMachiningCalc()">
+                </div>
+            </div>
+            <div class="demo-results-panel">
+                <div class="result-tile primary-tile"><span class="rt-label">Spindle Speed</span><span class="rt-val" id="resSpindleRpm">3,056 RPM</span></div>
+                <div class="result-tile"><span class="rt-label">Table Feed Rate</span><span class="rt-val" id="resFeedIpm">36.7 in/min</span></div>
+                <div class="result-tile"><span class="rt-label">Feed Per Rev</span><span class="rt-val" id="resFeedIpr">0.012 in/rev</span></div>
+                <div class="result-tile"><span class="rt-label">Est. Chip Volume (0.5D)</span><span class="rt-val" id="resMrrVol">4.59 in³/min</span></div>
+            </div>
+            <div class="demo-actions">
+                <button type="button" class="btn-demo-action" onclick="copyMachiningSummary()">📋 Copy Speeds & Feeds</button>
+            </div>
+            <script>
+            function runMachiningCalc() {
+                const dia = parseFloat(document.getElementById('demoMachDia').value) || 0.5;
+                const sfm = parseFloat(document.getElementById('demoMachSfm').value) || 400;
+                const flutes = parseInt(document.getElementById('demoMachFlutes').value) || 4;
+                const fpt = parseFloat(document.getElementById('demoMachFpt').value) || 0.003;
+                
+                const rpm = Math.round((sfm * 3.8197) / dia);
+                const feedIpm = (rpm * flutes * fpt).toFixed(1);
+                const ipr = (flutes * fpt).toFixed(3);
+                const mrr = (dia * 0.25 * parseFloat(feedIpm)).toFixed(2);
+                
+                document.getElementById('resSpindleRpm').innerText = rpm.toLocaleString() + ' RPM';
+                document.getElementById('resFeedIpm').innerText = feedIpm + ' in/min';
+                document.getElementById('resFeedIpr').innerText = ipr + ' in/rev';
+                document.getElementById('resMrrVol').innerText = mrr + ' in³/min';
+            }
+            function copyMachiningSummary() {
+                const rpm = document.getElementById('resSpindleRpm').innerText;
+                const ipm = document.getElementById('resFeedIpm').innerText;
+                const ipr = document.getElementById('resFeedIpr').innerText;
+                const mrr = document.getElementById('resMrrVol').innerText;
+                const lines = [
+                    '--- CombGauge Machining Specs ---',
+                    'Spindle: ' + rpm,
+                    'Feed Rate: ' + ipm + ' (' + ipr + ')',
+                    'Est. MRR: ' + mrr,
+                    '[Computed via CombGauge • https://apps.kimrosil.com/comb-gauge/]'
+                ];
+                const txt = lines.join(String.fromCharCode(10));
+                navigator.clipboard.writeText(txt).then(() => alert('Speeds & feeds copied!'));
+            }
+            window.addEventListener('DOMContentLoaded', runMachiningCalc);
+            </script>
+            <div class="demo-cta-strip">
+                <div class="demo-cta-text">
+                    <strong>⚡ Need this in the workshop or field?</strong>
+                    <span>Runs 100% offline, zero battery drain, zero trackers, and instant ARM64 native response.</span>
+                </div>
+                <a href="#download-apk" class="demo-cta-btn">Download Native APK ↓</a>
+            </div>
+        </section>
 
         <hr>
 

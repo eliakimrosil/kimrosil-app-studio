@@ -675,13 +675,16 @@
                 document.getElementById('resPayable').innerText = fmt(payable);
             }
             function copyTaxSummary() {
-                const txt = `--- PH VAT Calculator Summary ---\n` +
-                    `Net: ${document.getElementById('resNet').innerText}\n` +
-                    `12% VAT: ${document.getElementById('resVat').innerText}\n` +
-                    `Gross: ${document.getElementById('resGross').innerText}\n` +
-                    `EWT: ${document.getElementById('resEwt').innerText}\n` +
-                    `Net Payable: ${document.getElementById('resPayable').innerText}\n` +
-                    `[Calculated via PH VAT Calculator • https://apps.kimrosil.com/ph-vat-calculator/]`;
+                const lines = [
+                    '--- PH VAT Calculator Summary ---',
+                    'Net: ' + document.getElementById('resNet').innerText,
+                    '12% VAT: ' + document.getElementById('resVat').innerText,
+                    'Gross: ' + document.getElementById('resGross').innerText,
+                    'EWT: ' + document.getElementById('resEwt').innerText,
+                    'Net Payable: ' + document.getElementById('resPayable').innerText,
+                    '[Calculated via PH VAT Calculator • https://apps.kimrosil.com/ph-vat-calculator/]'
+                ];
+                const txt = lines.join(String.fromCharCode(10));
                 navigator.clipboard.writeText(txt).then(() => alert('Summary copied to clipboard!'));
             }
             window.addEventListener('DOMContentLoaded', runTaxCalc);
