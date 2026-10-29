@@ -1,2 +1,2 @@
-Release v1.0.0 - BendSpec
-Initial release of BendSpec - Offline sheet metal bend allowance, deduction, K-factor & press brake tonnage calculator
+Release v1.0.1 - BendSpec
+Fix button text contrast, invisible tab label, and refine 1.2dp hairline outlines

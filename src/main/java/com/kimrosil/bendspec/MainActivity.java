@@ -6,6 +6,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
@@ -100,6 +101,21 @@ public class MainActivity extends Activity {
     }
 
     @Override
+    protected void attachBaseContext(Context newBase) {
+        SharedPreferences p = newBase.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String mode = p.getString(PREF_THEME, "system");
+        Configuration config = new Configuration(newBase.getResources().getConfiguration());
+        int nightMode = "dark".equals(mode) ? Configuration.UI_MODE_NIGHT_YES :
+                "light".equals(mode) ? Configuration.UI_MODE_NIGHT_NO :
+                        Configuration.UI_MODE_NIGHT_UNDEFINED;
+        if (nightMode != Configuration.UI_MODE_NIGHT_UNDEFINED) {
+            config.uiMode = (config.uiMode & ~Configuration.UI_MODE_NIGHT_MASK) | nightMode;
+        }
+        Context context = newBase.createConfigurationContext(config);
+        super.attachBaseContext(context);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         applyConfiguredTheme();
@@ -127,27 +143,13 @@ public class MainActivity extends Activity {
 
     private void applyConfiguredTheme() {
         String mode = prefs.getString(PREF_THEME, "system");
-        android.app.UiModeManager uiModeManager = (android.app.UiModeManager) getSystemService(Context.UI_MODE_SERVICE);
-        int nightMode;
         if ("light".equals(mode)) {
             setTheme(R.style.AppTheme_Light);
-            nightMode = android.app.UiModeManager.MODE_NIGHT_NO;
         } else if ("dark".equals(mode)) {
             setTheme(R.style.AppTheme_Dark);
-            nightMode = android.app.UiModeManager.MODE_NIGHT_YES;
         } else {
             setTheme(R.style.AppTheme);
-            nightMode = android.app.UiModeManager.MODE_NIGHT_AUTO;
         }
-        if (uiModeManager != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            uiModeManager.setApplicationNightMode(nightMode);
-        }
-        android.content.res.Configuration config = getResources().getConfiguration();
-        int currentUiNight = "dark".equals(mode) ? android.content.res.Configuration.UI_MODE_NIGHT_YES :
-                "light".equals(mode) ? android.content.res.Configuration.UI_MODE_NIGHT_NO :
-                        android.content.res.Configuration.UI_MODE_NIGHT_UNDEFINED;
-        config.uiMode = (config.uiMode & ~android.content.res.Configuration.UI_MODE_NIGHT_MASK) | currentUiNight;
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 
     private void initViews() {
@@ -247,6 +249,7 @@ public class MainActivity extends Activity {
         btnTabVDie.setOnClickListener(v -> switchTab(1));
         btnTabLadder.setOnClickListener(v -> switchTab(2));
         btnTabLedger.setOnClickListener(v -> switchTab(3));
+        switchTab(0);
     }
 
     private void switchTab(int index) {
@@ -260,13 +263,13 @@ public class MainActivity extends Activity {
         btnTabLadder.setBackgroundResource(index == 2 ? R.drawable.chip_active : R.drawable.chip_inactive);
         btnTabLedger.setBackgroundResource(index == 3 ? R.drawable.chip_active : R.drawable.chip_inactive);
 
-        int colorPrimary = getColor(R.color.m3_primary);
+        int colorOnPrimary = getColor(R.color.m3_on_primary);
         int colorDim = getColor(R.color.m3_on_surface_variant);
 
-        btnTabBend.setTextColor(index == 0 ? colorPrimary : colorDim);
-        btnTabVDie.setTextColor(index == 1 ? colorPrimary : colorDim);
-        btnTabLadder.setTextColor(index == 2 ? colorPrimary : colorDim);
-        btnTabLedger.setTextColor(index == 3 ? colorPrimary : colorDim);
+        btnTabBend.setTextColor(index == 0 ? colorOnPrimary : colorDim);
+        btnTabVDie.setTextColor(index == 1 ? colorOnPrimary : colorDim);
+        btnTabLadder.setTextColor(index == 2 ? colorOnPrimary : colorDim);
+        btnTabLedger.setTextColor(index == 3 ? colorOnPrimary : colorDim);
 
         if (index == 3) {
             refreshLedger();
