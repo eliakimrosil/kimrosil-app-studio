@@ -55,6 +55,7 @@
             "@type": "Person",
             "name": "Eliakim Rosil",
             "jobTitle": "Founder, Principal Software Architect & Developer",
+            "image": "https://github.com/eliakimrosil.png",
             "url": "https://github.com/eliakimrosil"
         },
         "numberOfItems": 83,
@@ -224,18 +225,14 @@
             flex-wrap: wrap;
         }
         .founder-avatar {
-            width: 80px;
-            height: 80px;
+            width: 86px;
+            height: 86px;
             border-radius: 22px;
-            background: linear-gradient(135deg, var(--cyan-primary), var(--emerald-accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 34px;
-            color: #080C14;
-            font-weight: 900;
+            object-fit: cover;
+            border: 2px solid var(--cyan-primary);
             flex-shrink: 0;
-            box-shadow: 0 4px 18px rgba(0, 229, 255, 0.25);
+            box-shadow: 0 4px 20px rgba(0, 229, 255, 0.3);
+            background: #162032;
         }
         .founder-info { flex: 1; min-width: 280px; }
         .founder-name { font-size: 22px; font-weight: 900; color: #FFFFFF; margin-bottom: 4px; }
@@ -694,7 +691,7 @@
             <p class="section-desc">KimRosil App Studio Company operates under strict sovereign human oversight coupled with autonomous agent execution, enforcing unyielding offline-first and zero-telemetry covenants.</p>
             
             <div class="founder-box">
-                <div class="founder-avatar">ER</div>
+                <img class="founder-avatar" src="https://github.com/eliakimrosil.png" alt="Eliakim Rosil" onerror="this.onerror=null;this.src='assets/founder.png';">
                 <div class="founder-info">
                     <div class="founder-name">Eliakim Rosil</div>
                     <div class="founder-title">Founder, Principal Software Architect &amp; Lead Developer</div>
