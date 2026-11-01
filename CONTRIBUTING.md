@@ -23,7 +23,7 @@ Have an idea for a brand new offline utility or domain sentinel?
 - Submit a [New App Proposal](https://github.com/eliakimrosil/kim-android-apps/issues/new?template=new_app_proposal.yml).
 
 ### 4. 🔒 Security Vulnerabilities
-If you discover a security flaw or unexpected permission leak, please disclose it privately per our [Security Policy](SECURITY.md) via email to **eliakimrosil@gmail.com**.
+If you discover a security flaw or unexpected permission leak, please disclose it privately per our [Security Policy](SECURITY.md) via email to **eliakimrosilarts@gmail.com**.
 
 ---
 

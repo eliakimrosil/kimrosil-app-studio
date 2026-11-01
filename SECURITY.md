@@ -29,7 +29,7 @@ We take the security and integrity of our software seriously. If you discover a 
 
 1. **Do not create a public GitHub Issue.**
 2. Send a security report directly via email to:
-   **`eliakimrosil@gmail.com`**
+   **`eliakimrosilarts@gmail.com`**
 3. Include the following details in your report:
    - Application name and package identifier
    - Affected version tag / branch

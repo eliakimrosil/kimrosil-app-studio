@@ -50,7 +50,7 @@ an individual is officially representing the project in public spaces.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the project leadership at **eliakimrosil@gmail.com**. All complaints
+reported to the project leadership at **eliakimrosilarts@gmail.com**. All complaints
 will be reviewed and investigated promptly and fairly.
 
 ## Attribution
