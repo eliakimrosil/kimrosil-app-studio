@@ -423,9 +423,9 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Offline bolt torque charts and fastener specs for mechanics and machinists.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-torquespec/torquespec.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/torquespec/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/torquespec)
 
-#### [VatCal PH](https://apps.kimrosil.com/ph-vat-calculator/) (`ph-vat-calculator`) • `v1.2.4`
+#### [VatCal PH](https://apps.kimrosil.com/ph-vat-calculator/) (`ph-vat-calculator`) • `v1.2.5`
 > **Utility**: Fast offline 12% VAT (inclusive/exclusive), Expanded Withholding Tax (EWT), and invoice net/gross calculation tool.
-> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.4-ph-vat-calculator/ph-vat-calculator.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/ph-vat-calculator/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/ph-vat-calculator)
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.5-ph-vat-calculator/ph-vat-calculator.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/ph-vat-calculator/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/ph-vat-calculator)
 
 #### [WireAmp](https://apps.kimrosil.com/wire-amp/) (`wire-amp`) • `v2.0.0`
 > **Utility**: NEC wire gauge ampacity rating, temperature and bundling derating solver.
