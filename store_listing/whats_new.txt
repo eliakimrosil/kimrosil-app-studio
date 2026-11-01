@@ -1,0 +1,2 @@
+Release v1.0.1 - StairRise
+Initial release of StairRise: 4-tab offline stair stringer, framing square, 2x12 throat check, and baluster 4-inch sphere calculator.

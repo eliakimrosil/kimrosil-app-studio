@@ -1,0 +1,23 @@
+{
+  "slug": "stair-rise",
+  "title": "StairRise",
+  "package_name": "com.kimrosil.stairrise",
+  "short_description": "Calculate stair rise, run, stringers, and headroom with code compliance checks.",
+  "full_description": "StairRise is an offline engineering and carpentry calculator designed for contractors, architects, carpenters, and DIY builders. Quickly calculate precise dimensions for straight, L-shaped, and U-shaped staircases while ensuring compliance with standard building codes (IBC/IRC). Eliminate manual layout errors and job-site recalculations. Enter your total rise, target riser height, or tread depth to instantly generate comprehensive dimensional schedules. Key Features: \u2022 Dimensional Calculation: Accurate riser height, tread run, stringer throat depth, total run, and incline angle. \u2022 Building Code Validation: Automated warnings when riser heights, tread depths, or angles exceed IBC/IRC residential and commercial safety tolerances. \u2022 Headroom Clearance Tracking: Calculate minimum vertical headroom along the stair slope to prevent ceiling clearance conflicts. \u2022 Stringer Layout Dimensions: Get exact layout points for cutting wood, steel, or concrete stringers without cumulative marking errors. \u2022 Fractional & Metric Units: Seamlessly switch between imperial fractions (down to 1/16 inch) and metric millimeters. \u2022 Material Estimation: Calculate required stringer lengths, tread counts, and riser board materials for accurate job costing. \u2022 Project Save & Export: Store job-site measurements locally and export formatted dimension summaries for blueprints or crew handoffs. \u2022 Fully Offline & Private: No internet connection required, no user accounts, no subscriptions, and zero trackers or data collection.\n\n\nData Safety & Offline Privacy Guarantee:\n- 100% Offline: This application operates entirely on your device without requiring an active internet connection.\n- Zero Data Collection: We do not collect, monitor, track, store, or transmit any personal identifiable information (PII), device identifiers, or usage telemetry.\n- No Accounts or Subscriptions: Enjoy complete utility with zero account creation, logins, or hidden recurring fees.\n- Local Storage Only: All items, history, and preferences are retained strictly within on-device sandboxed storage.",
+  "keywords": "stair calculator, stringer layout, stair builder, riser run calculator, carpenter tools, staircase design, construction calculator, building code helper, carpentry layout",
+  "whats_new": "Initial release of StairRise v1.0.0. Features accurate riser and run calculations, stringer throat measurements, IBC/IRC code compliance checks, fractional unit support, and offline project summaries.",
+  "category": "Tools & Engineering",
+  "google_play_checks": {
+    "title_length": 9,
+    "title_valid": true,
+    "short_desc_length": 79,
+    "short_desc_valid": true,
+    "full_desc_length": 2069,
+    "full_desc_valid": true,
+    "zero_banned_buzzwords": true,
+    "has_512_icon": true,
+    "has_feature_graphic": true,
+    "has_privacy_policy": true,
+    "has_data_safety": true
+  }
+}

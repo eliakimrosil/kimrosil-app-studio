@@ -1,0 +1,960 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/windowBackground"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/rootContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Unified Top Header Bar -->
+        <LinearLayout
+            android:id="@+id/headerBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAppTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvAppSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:letterSpacing="0.05"
+                    android:text="STAIR STRINGER &amp; IRC CODE ENGINE"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Direct Theme Toggle Button (48x48dp) -->
+            <Button
+                android:id="@+id/btnThemeToggle"
+                style="@style/CleanButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_topbar_button"
+                android:contentDescription="Switch theme"
+                android:drawableStart="@drawable/ic_theme_toggle"
+                android:padding="12dp" />
+
+            <!-- Settings Button (48x48dp) -->
+            <Button
+                android:id="@+id/btnSettings"
+                style="@style/CleanButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_topbar_button"
+                android:contentDescription="Settings and About"
+                android:drawableStart="@drawable/ic_settings"
+                android:padding="12dp" />
+        </LinearLayout>
+
+        <!-- Segmented Mode Track (4 Tabs, min 48dp touch targets) -->
+        <LinearLayout
+            android:id="@+id/modeSegmentedTrack"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_segmented_track"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <Button
+                android:id="@+id/tabStringer"
+                style="@style/CleanButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_tab_active"
+                android:minHeight="48dp"
+                android:text="Stringer"
+                android:textAllCaps="false"
+                android:textColor="@color/m3_on_primary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/tabLayout"
+                style="@style/CleanButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_tab_inactive"
+                android:minHeight="48dp"
+                android:text="Square"
+                android:textAllCaps="false"
+                android:textColor="@color/textPrimary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/tabBaluster"
+                style="@style/CleanButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_tab_inactive"
+                android:minHeight="48dp"
+                android:text="Baluster"
+                android:textAllCaps="false"
+                android:textColor="@color/textPrimary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/tabSaved"
+                style="@style/CleanButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_tab_inactive"
+                android:minHeight="48dp"
+                android:text="Saved"
+                android:textAllCaps="false"
+                android:textColor="@color/textPrimary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- ======================================================== -->
+        <!-- TAB 1: STAIR STRINGER GEOMETRY & IRC CODE HUD            -->
+        <!-- ======================================================== -->
+        <LinearLayout
+            android:id="@+id/containerStringer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <!-- Card 1: Total Floor-to-Floor Rise Input -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/card_m3"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TOTAL FLOOR-TO-FLOOR RISE (MM)"
+                    android:textColor="@color/textSecondary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <!-- 4 Jobsite Rise Presets -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/presetRise914"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:minHeight="48dp"
+                        android:text="36&quot; Deck"
+                        android:textAllCaps="false"
+                        android:textColor="@color/chipTextUnselected"
+                        android:textSize="11.5sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/presetRise1829"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:minHeight="48dp"
+                        android:text="72&quot; Porch"
+                        android:textAllCaps="false"
+                        android:textColor="@color/chipTextUnselected"
+                        android:textSize="11.5sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/presetRise2642"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_selected"
+                        android:minHeight="48dp"
+                        android:text="104&quot; Flr"
+                        android:textAllCaps="false"
+                        android:textColor="@color/m3_on_primary"
+                        android:textSize="11.5sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/presetRise2743"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:minHeight="48dp"
+                        android:text="108&quot; Bsmt"
+                        android:textAllCaps="false"
+                        android:textColor="@color/chipTextUnselected"
+                        android:textSize="11.5sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Stepper + EditText for Total Rise -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnRiseMinus"
+                        style="@style/CleanButton"
+                        android:layout_width="52dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/btn_stepper"
+                        android:minHeight="48dp"
+                        android:text="-10"
+                        android:textColor="@color/textPrimary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/etTotalRiseMm"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_m3"
+                        android:gravity="center"
+                        android:hint="Total rise (mm)"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
+                        android:maxLength="8"
+                        android:singleLine="true"
+                        android:text="2642"
+                        android:textColor="@color/textPrimary"
+                        android:textColorHint="@color/textSecondary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnRisePlus"
+                        style="@style/CleanButton"
+                        android:layout_width="52dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/btn_stepper"
+                        android:minHeight="48dp"
+                        android:text="+10"
+                        android:textColor="@color/textPrimary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Card 2: Tread Depth & Mount Configuration -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/card_m3"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TREAD RUN DEPTH &amp; TOP LANDING MOUNT"
+                    android:textColor="@color/textSecondary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <!-- 4 Tread Run Presets -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/chipRun254"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:minHeight="48dp"
+                        android:text="254 (10&quot;)"
+                        android:textAllCaps="false"
+                        android:textColor="@color/chipTextUnselected"
+                        android:textSize="11.5sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/chipRun267"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_selected"
+                        android:minHeight="48dp"
+                        android:text="267 (10.5&quot;)"
+                        android:textAllCaps="false"
+                        android:textColor="@color/m3_on_primary"
+                        android:textSize="11.5sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/chipRun280"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:minHeight="48dp"
+                        android:text="280 (11&quot;)"
+                        android:textAllCaps="false"
+                        android:textColor="@color/chipTextUnselected"
+                        android:textSize="11.5sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/chipMountToggle"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:minHeight="48dp"
+                        android:text="Sub-Drop"
+                        android:textAllCaps="false"
+                        android:textColor="@color/chipTextUnselected"
+                        android:textSize="11.5sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Card 3: Primary 2x2 Tabular Telemetry HUD -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/card_m3_high"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <!-- Top Row: Step Rise & Riser/Tread Count -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingEnd="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="UNIT STEP RISE"
+                            android:textColor="@color/textSecondary"
+                            android:textSize="10.5sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvStepRisePrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="176.1 mm"
+                            android:textColor="@color/telemetryAccent"
+                            android:textSize="23sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvStepRiseSub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="6.93 in (6-15/16&quot;)"
+                            android:textColor="@color/textSecondary"
+                            android:textSize="11.5sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/m3_outline_variant" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingStart="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RISERS / TREADS"
+                            android:textColor="@color/textSecondary"
+                            android:textSize="10.5sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvRiserCountPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="15 Risers"
+                            android:textColor="@color/telemetryPrimary"
+                            android:textSize="23sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvTreadCountSub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="14 Treads @ 267 mm"
+                            android:textColor="@color/textSecondary"
+                            android:textSize="11.5sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="@color/m3_outline_variant" />
+
+                <!-- Bottom Row: Stringer Length & Total Run / Pitch -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingEnd="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="STRINGER BOARD LENGTH"
+                            android:textColor="@color/textSecondary"
+                            android:textSize="10.5sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvStringerLenPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="4573 mm"
+                            android:textColor="@color/telemetryPrimary"
+                            android:textSize="21sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvStringerLenSub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="180.0 in (15.0 ft)"
+                            android:textColor="@color/textSecondary"
+                            android:textSize="11.5sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/m3_outline_variant" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingStart="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TOTAL RUN &amp; PITCH"
+                            android:textColor="@color/textSecondary"
+                            android:textSize="10.5sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvTotalRunPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="3738 mm"
+                            android:textColor="@color/telemetryPrimary"
+                            android:textSize="21sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvPitchSub"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Slope: 33.4° (147.2 in)"
+                            android:textColor="@color/textSecondary"
+                            android:textSize="11.5sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- IRC Building Code Compliance Banner -->
+                <TextView
+                    android:id="@+id/tvCodeBadge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_badge_amber"
+                    android:padding="10dp"
+                    android:text="IRC CODE PASS: Rise ≤ 196 mm (7.75&quot;) • Run ≥ 254 mm (10&quot;) • 2R+T = 619 mm"
+                    android:textColor="@color/badgeTextAmber"
+                    android:textSize="11.5sp"
+                    android:textStyle="bold" />
+
+                <!-- Action Buttons: Copy Spec & Save Job -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnCopySpec"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_m3_tonal"
+                        android:minHeight="48dp"
+                        android:text="Copy Spec"
+                        android:textAllCaps="false"
+                        android:textColor="@color/textPrimary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnSaveJob"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_m3_primary"
+                        android:minHeight="48dp"
+                        android:text="Save Stair Job"
+                        android:textAllCaps="false"
+                        android:textColor="@color/m3_on_primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ======================================================== -->
+        <!-- TAB 2: FRAMING SQUARE, THROAT DEPTH & BIRDSMOUTH LAYOUT  -->
+        <!-- ======================================================== -->
+        <LinearLayout
+            android:id="@+id/containerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/card_m3"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FINISHED TREAD THICKNESS (BOTTOM DROP)"
+                    android:textColor="@color/textSecondary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/chipTread25"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:minHeight="48dp"
+                        android:text="25 mm (1&quot; Oak)"
+                        android:textAllCaps="false"
+                        android:textColor="@color/chipTextUnselected"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/chipTread38"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_selected"
+                        android:minHeight="48dp"
+                        android:text="38 mm (2x Deck)"
+                        android:textAllCaps="false"
+                        android:textColor="@color/m3_on_primary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/chipTread50"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:minHeight="48dp"
+                        android:text="50 mm (Bullnose)"
+                        android:textAllCaps="false"
+                        android:textColor="@color/chipTextUnselected"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="12dp"
+                    android:background="@color/m3_outline_variant" />
+
+                <TextView
+                    android:id="@+id/tvSquareTongue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="• Square Tongue (Rise Gauge): 176.1 mm (6.93 in)"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="13.5sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvSquareBlade"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="• Square Blade (Run Gauge): 267.0 mm (10.51 in)"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="13.5sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvBottomDrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="• Bottom Riser Cut Height (1st Step): 138.1 mm (5.44 in)"
+                    android:textColor="@color/telemetryAccent"
+                    android:textSize="13.5sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvThroatDepth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="• Remaining 2x12 Throat Depth: 138.2 mm (5.44 in) — PASS (≥ 89 mm)"
+                    android:textColor="@color/textSecondary"
+                    android:textSize="12.5sp" />
+
+                <TextView
+                    android:id="@+id/tvHypotenuseStep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="• Per-Step Diagonal Layout Pitch: 319.9 mm (12.59 in)"
+                    android:textColor="@color/textSecondary"
+                    android:textSize="12.5sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ======================================================== -->
+        <!-- TAB 3: BALUSTER & GUARDRAIL 102 MM SPHERE SPACING        -->
+        <!-- ======================================================== -->
+        <LinearLayout
+            android:id="@+id/containerBaluster"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/card_m3"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RAILING CLEAR SPAN &amp; BALUSTER WIDTH"
+                    android:textColor="@color/textSecondary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnSpanMinus"
+                        style="@style/CleanButton"
+                        android:layout_width="52dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/btn_stepper"
+                        android:minHeight="48dp"
+                        android:text="-50"
+                        android:textColor="@color/textPrimary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvRailSpanDisplay"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_m3"
+                        android:gravity="center"
+                        android:text="1800 mm (70.9 in)"
+                        android:textColor="@color/textPrimary"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnSpanPlus"
+                        style="@style/CleanButton"
+                        android:layout_width="52dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/btn_stepper"
+                        android:minHeight="48dp"
+                        android:text="+50"
+                        android:textColor="@color/textPrimary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Baluster Spindle Width Presets -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/chipBaluster19"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:minHeight="48dp"
+                        android:text="19 mm (3/4&quot;)"
+                        android:textAllCaps="false"
+                        android:textColor="@color/chipTextUnselected"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/chipBaluster38"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_selected"
+                        android:minHeight="48dp"
+                        android:text="38 mm (2x2)"
+                        android:textAllCaps="false"
+                        android:textColor="@color/m3_on_primary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/chipBaluster44"
+                        style="@style/CleanButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_chip_unselected"
+                        android:minHeight="48dp"
+                        android:text="44 mm (1.75&quot;)"
+                        android:textAllCaps="false"
+                        android:textColor="@color/chipTextUnselected"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="12dp"
+                    android:background="@color/m3_outline_variant" />
+
+                <TextView
+                    android:id="@+id/tvBalusterCountOut"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Required Balusters: 13 Spindles"
+                    android:textColor="@color/telemetryAccent"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvBalusterGapOut"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Clear Air Gap: 93.3 mm (3.67 in) • On-Center: 131.3 mm (5.17 in)"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="✓ IRC R312.1.3 Compliant: Clear gap strictly under 100 mm (4-inch sphere rule)."
+                    android:textColor="@color/textSecondary"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ======================================================== -->
+        <!-- TAB 4: SAVED STAIR JOBS LOG (LOCAL SQLITE)               -->
+        <!-- ======================================================== -->
+        <LinearLayout
+            android:id="@+id/containerSaved"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvSavedHeader"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="SAVED STAIR STRINGER JOBS (0)"
+                    android:textColor="@color/textSecondary"
+                    android:textSize="11.5sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnClearAllJobs"
+                    style="@style/CleanButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_chip_unselected"
+                    android:minHeight="48dp"
+                    android:paddingHorizontal="14dp"
+                    android:text="Clear All"
+                    android:textAllCaps="false"
+                    android:textColor="@color/m3_error"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvEmptySavedNotice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/card_m3"
+                android:gravity="center"
+                android:padding="24dp"
+                android:text="No saved stair stringer jobs yet.\nTap 'Save Stair Job' on the Stringer tab to store calculations offline."
+                android:textColor="@color/textSecondary"
+                android:textSize="13sp" />
+
+            <LinearLayout
+                android:id="@+id/llSavedJobsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

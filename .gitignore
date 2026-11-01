@@ -1,0 +1,14 @@
+build/
+.gradle/
+*.apk
+*.aab
+*.idsig
+*.dex
+*.class
+.env*
+*.keystore
+*.jks
+*.key
+*.pem
+google-services.json
+.DS_Store
