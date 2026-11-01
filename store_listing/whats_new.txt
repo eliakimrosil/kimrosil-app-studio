@@ -1,2 +1,2 @@
-Release v1.2.9 - VatCal PH
-Add Google Play compliant BIR non-affiliation disclaimer and bir.gov.ph source link in Settings
+Release v1.2.10 - VatCal PH
+Remove BIR link and keep clean minimal About card with storefront link

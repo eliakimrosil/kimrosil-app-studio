@@ -720,7 +720,7 @@ public class MainActivity extends Activity {
             tvDiscountVal.setText("-" + currencyFmt.format(discount));
             tvVatVal.setText("₱0.00 (Exempt)");
             String vatRateNote = customVatRate == 0.0 ? "VAT-Exempt" : "12% VAT Exempt";
-            tvFormulaNote.setText("RA 9994 / 10754: Net = Amount ÷ 1.12 | " + vatRateNote + " | 20% Off");
+            tvFormulaNote.setText("Formula: Net = Amount ÷ 1.12 | " + vatRateNote + " | 20% Discount");
         } else {
             llDiscountRow.setVisibility(View.GONE);
 
@@ -794,7 +794,7 @@ public class MainActivity extends Activity {
             sb.append("Net Due/Received: ").append(tvNetAfterWhtVal.getText()).append("\n");
         }
         sb.append("───────────────────────────────\n");
-        sb.append("Standard 12% VAT · RA 9994 Senior/PWD");
+        sb.append("Standard 12% VAT · Senior/PWD 20%");
 
         ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         if (cm != null) {
@@ -1043,7 +1043,7 @@ public class MainActivity extends Activity {
         aboutTitleCol.addView(tvAboutStudio);
 
         TextView tvVersionBadge = new TextView(this);
-        tvVersionBadge.setText("v1.2.9");
+        tvVersionBadge.setText("v1.2.10");
         tvVersionBadge.setTextSize(10.5f);
         tvVersionBadge.setTypeface(null, Typeface.BOLD);
         tvVersionBadge.setTextColor(textMid);
@@ -1060,29 +1060,12 @@ public class MainActivity extends Activity {
 
         // Minimal Summary
         TextView tvAboutDesc = new TextView(this);
-        tvAboutDesc.setText("Offline Philippine VAT, Senior/PWD (RA 9994), and EWT invoice calculator. 100% free, zero ads, zero tracking.");
+        tvAboutDesc.setText("Offline 12% VAT, Senior/PWD 20% discount, and Withholding Tax invoice calculator. 100% free, zero ads, zero tracking.");
         tvAboutDesc.setTextSize(11f);
         tvAboutDesc.setTextColor(textMid);
         tvAboutDesc.setLineSpacing(dpToPx(2), 1.0f);
-        tvAboutDesc.setPadding(0, dpToPx(6), 0, dpToPx(4));
+        tvAboutDesc.setPadding(0, dpToPx(6), 0, dpToPx(10));
         aboutCard.addView(tvAboutDesc);
-
-        // Minimal Play Store Government Policy Disclaimer & Source Link
-        TextView tvGovNote = new TextView(this);
-        tvGovNote.setText("Independent tool · Not affiliated with BIR · Source: bir.gov.ph ↗");
-        tvGovNote.setTextSize(10f);
-        tvGovNote.setTextColor(accentEmerald);
-        tvGovNote.setPadding(0, 0, 0, dpToPx(10));
-        tvGovNote.setOnClickListener(v -> {
-            haptic(15);
-            String govUrl = "https://www.bir.gov.ph/";
-            try {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(govUrl)));
-            } catch (Exception e) {
-                Toast.makeText(this, "Source: " + govUrl, Toast.LENGTH_SHORT).show();
-            }
-        });
-        aboutCard.addView(tvGovNote);
 
         // Storefront Link Button
         Button btnStorefront = new Button(this);
