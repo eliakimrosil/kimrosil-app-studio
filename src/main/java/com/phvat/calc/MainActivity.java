@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
@@ -12,6 +13,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.RippleDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
@@ -1010,7 +1012,7 @@ public class MainActivity extends Activity {
         aboutCard.setLayoutParams(aboutLp);
 
         TextView tvAboutTitle = new TextView(this);
-        tvAboutTitle.setText("VatCal PH v1.2.5");
+        tvAboutTitle.setText("VatCal PH v1.2.6");
         tvAboutTitle.setTextSize(13f);
         tvAboutTitle.setTypeface(null, Typeface.BOLD);
         tvAboutTitle.setTextColor(textHigh);
@@ -1020,8 +1022,31 @@ public class MainActivity extends Activity {
         tvAboutBody.setText("KimRosil App Studio Company\n100% Offline • Zero Ads • Zero Tracking\n12% BIR Output VAT • RA 9994 Senior/PWD • EWT");
         tvAboutBody.setTextSize(11f);
         tvAboutBody.setTextColor(textMid);
-        tvAboutBody.setPadding(0, dpToPx(4), 0, 0);
+        tvAboutBody.setPadding(0, dpToPx(4), 0, dpToPx(10));
         aboutCard.addView(tvAboutBody);
+
+        Button btnStorefront = new Button(this);
+        btnStorefront.setText("🌐 apps.kimrosil.com/ph-vat-calculator");
+        btnStorefront.setTextSize(11f);
+        btnStorefront.setAllCaps(false);
+        btnStorefront.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, dpToPx(36)));
+        styleFlatKey(btnStorefront, bgCard, strokeColor, accentEmerald, rippleColor, 8);
+        btnStorefront.setOnClickListener(v -> {
+            haptic(15);
+            String url = "https://apps.kimrosil.com/ph-vat-calculator/";
+            try {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            } catch (Exception e) {
+                ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                if (cm != null) {
+                    cm.setPrimaryClip(ClipData.newPlainText("VatCal PH Storefront", url));
+                }
+                Toast.makeText(this, "Link copied: " + url, Toast.LENGTH_SHORT).show();
+            }
+        });
+        aboutCard.addView(btnStorefront);
         root.addView(aboutCard);
 
         // 6. Action Row (Reset Defaults + Done)
