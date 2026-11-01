@@ -85,7 +85,7 @@
     "privacy_policy": "https://apps.kimrosil.com/ph-vat-calculator/privacy.html",
     "icon": "assets/icons/ph-vat-calculator.svg",
     "updated_at": "2026-11-01T15:37:17.134311+00:00",
-    "sha256": "6306ff3474b5c553a40209a8251e357b74495df7072b326b23abd2444595ffc7"
+    "sha256": "c679a0ddd623d9ef47e3bb6ee1f7f178d8d6dfa5dc8454d691422f251ce46a9a"
   },
   {
     "slug": "screenstream-rtsp",
@@ -460,7 +460,7 @@
     "slug": "sprout-knight-rpg",
     "title": "SproutKnight",
     "category": "Games / RPG / Adventure",
-    "tagline": "Embark on a charming 2D action fighting RPG quest\u2014upgrade acorn blades, walnut armor, and dewdrop magic at the cozy forge.",
+    "tagline": "Embark on a charming 2D action fighting RPG quest—upgrade acorn blades, walnut armor, and dewdrop magic at the cozy forge.",
     "version": "v1.5.0",
     "status": "BUILT",
     "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.5.0-sprout-knight-rpg/sprout-knight-rpg.apk",
@@ -998,7 +998,7 @@
     "slug": "gauss-meter",
     "title": "GaussMeter",
     "category": "UTILITIES",
-    "tagline": "3-axis magnetometer (\u00b5T / mG), EMF & ferrous wall stud locator with tare.",
+    "tagline": "3-axis magnetometer (µT / mG), EMF & ferrous wall stud locator with tare.",
     "status": "BUILT",
     "branch": "app/gauss-meter",
     "tag": "v1.0.0-gauss-meter",
