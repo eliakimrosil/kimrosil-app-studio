@@ -1,2 +1,2 @@
-Release v1.2.6 - VatCal PH
-Add clickable storefront link in Settings modal
+Release v1.2.7 - VatCal PH
+Upgrade About Application section in Settings with structured statutory specifications

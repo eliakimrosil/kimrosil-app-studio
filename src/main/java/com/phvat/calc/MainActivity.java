@@ -996,10 +996,18 @@ public class MainActivity extends Activity {
         });
         root.addView(swHaptic);
 
-        // 5. About VatCal PH Card
+        // 5. About VatCal PH Section
+        TextView tvAboutSectionLbl = new TextView(this);
+        tvAboutSectionLbl.setText("ABOUT APPLICATION");
+        tvAboutSectionLbl.setTextSize(10f);
+        tvAboutSectionLbl.setTypeface(null, Typeface.BOLD);
+        tvAboutSectionLbl.setTextColor(textMid);
+        tvAboutSectionLbl.setPadding(0, 0, 0, dpToPx(6));
+        root.addView(tvAboutSectionLbl);
+
         LinearLayout aboutCard = new LinearLayout(this);
         aboutCard.setOrientation(LinearLayout.VERTICAL);
-        int cardPad = dpToPx(12);
+        int cardPad = dpToPx(14);
         aboutCard.setPadding(cardPad, cardPad, cardPad, cardPad);
         GradientDrawable aboutBg = new GradientDrawable();
         aboutBg.setColor(bgInner);
@@ -1011,27 +1019,117 @@ public class MainActivity extends Activity {
         aboutLp.bottomMargin = dpToPx(14);
         aboutCard.setLayoutParams(aboutLp);
 
+        // Brand Header + Version Badge Row
+        LinearLayout aboutHeaderRow = new LinearLayout(this);
+        aboutHeaderRow.setOrientation(LinearLayout.HORIZONTAL);
+        aboutHeaderRow.setGravity(Gravity.CENTER_VERTICAL);
+
+        LinearLayout aboutTitleCol = new LinearLayout(this);
+        aboutTitleCol.setOrientation(LinearLayout.VERTICAL);
+        aboutTitleCol.setLayoutParams(new LinearLayout.LayoutParams(
+                0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+
         TextView tvAboutTitle = new TextView(this);
-        tvAboutTitle.setText("VatCal PH v1.2.6");
-        tvAboutTitle.setTextSize(13f);
+        tvAboutTitle.setText("VatCal PH");
+        tvAboutTitle.setTextSize(15f);
         tvAboutTitle.setTypeface(null, Typeface.BOLD);
-        tvAboutTitle.setTextColor(textHigh);
-        aboutCard.addView(tvAboutTitle);
+        tvAboutTitle.setTextColor(accentEmerald);
+        aboutTitleCol.addView(tvAboutTitle);
 
-        TextView tvAboutBody = new TextView(this);
-        tvAboutBody.setText("KimRosil App Studio Company\n100% Offline • Zero Ads • Zero Tracking\n12% BIR Output VAT • RA 9994 Senior/PWD • EWT");
-        tvAboutBody.setTextSize(11f);
-        tvAboutBody.setTextColor(textMid);
-        tvAboutBody.setPadding(0, dpToPx(4), 0, dpToPx(10));
-        aboutCard.addView(tvAboutBody);
+        TextView tvAboutTag = new TextView(this);
+        tvAboutTag.setText("Philippine Tax & Invoice Computation Utility");
+        tvAboutTag.setTextSize(11f);
+        tvAboutTag.setTextColor(textMid);
+        aboutTitleCol.addView(tvAboutTag);
 
+        TextView tvVersionBadge = new TextView(this);
+        tvVersionBadge.setText("v1.2.7");
+        tvVersionBadge.setTextSize(11f);
+        tvVersionBadge.setTypeface(null, Typeface.BOLD);
+        tvVersionBadge.setTextColor(accentEmerald);
+        tvVersionBadge.setPadding(dpToPx(8), dpToPx(3), dpToPx(8), dpToPx(3));
+        GradientDrawable badgeBg = new GradientDrawable();
+        badgeBg.setColor(bgCard);
+        badgeBg.setStroke(dpToPx(1), strokeColor);
+        badgeBg.setCornerRadius(dpToPx(8));
+        tvVersionBadge.setBackground(badgeBg);
+
+        aboutHeaderRow.addView(aboutTitleCol);
+        aboutHeaderRow.addView(tvVersionBadge);
+        aboutCard.addView(aboutHeaderRow);
+
+        // Description
+        TextView tvAboutDesc = new TextView(this);
+        tvAboutDesc.setText("Precision commercial invoice calculator engineered for Philippine business owners, bookkeepers, and consumers. Computes Vatable Sales, Output VAT, Statutory Discounts, and Creditable Withholding Tax entirely on-device.");
+        tvAboutDesc.setTextSize(11f);
+        tvAboutDesc.setTextColor(textHigh);
+        tvAboutDesc.setLineSpacing(dpToPx(2), 1.0f);
+        tvAboutDesc.setPadding(0, dpToPx(8), 0, dpToPx(10));
+        aboutCard.addView(tvAboutDesc);
+
+        // Hairline Divider
+        View aboutDiv1 = new View(this);
+        aboutDiv1.setBackgroundColor(strokeColor);
+        LinearLayout.LayoutParams divLp1 = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, dpToPx(1));
+        divLp1.bottomMargin = dpToPx(8);
+        aboutDiv1.setLayoutParams(divLp1);
+        aboutCard.addView(aboutDiv1);
+
+        // Structured 2-Column Specification Rows
+        String[][] specRows = {
+            {"Publisher",     "KimRosil App Studio Company"},
+            {"VAT Standard",  "NIRC Sec. 106–108 (12% Output VAT)"},
+            {"Exemptions",    "RA 9994 (Senior) & RA 10754 (PWD)"},
+            {"Withholding",   "BIR Creditable EWT (1% / 2% / 5%)"},
+            {"Architecture",  "100% Offline • Zero Ads • No Tracking"}
+        };
+        for (String[] row : specRows) {
+            LinearLayout specLine = new LinearLayout(this);
+            specLine.setOrientation(LinearLayout.HORIZONTAL);
+            specLine.setPadding(0, dpToPx(2), 0, dpToPx(2));
+
+            TextView tvKey = new TextView(this);
+            tvKey.setText(row[0]);
+            tvKey.setTextSize(10.5f);
+            tvKey.setTextColor(textMid);
+            tvKey.setLayoutParams(new LinearLayout.LayoutParams(
+                    dpToPx(88), ViewGroup.LayoutParams.WRAP_CONTENT));
+
+            TextView tvVal = new TextView(this);
+            tvVal.setText(row[1]);
+            tvVal.setTextSize(10.5f);
+            tvVal.setTypeface(null, Typeface.BOLD);
+            tvVal.setTextColor(textHigh);
+            tvVal.setLayoutParams(new LinearLayout.LayoutParams(
+                    0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+
+            specLine.addView(tvKey);
+            specLine.addView(tvVal);
+            aboutCard.addView(specLine);
+        }
+
+        // Hairline Divider before links
+        View aboutDiv2 = new View(this);
+        aboutDiv2.setBackgroundColor(strokeColor);
+        LinearLayout.LayoutParams divLp2 = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, dpToPx(1));
+        divLp2.topMargin = dpToPx(8);
+        divLp2.bottomMargin = dpToPx(10);
+        aboutDiv2.setLayoutParams(divLp2);
+        aboutCard.addView(aboutDiv2);
+
+        // Official Storefront Button (App-Specific URL)
         Button btnStorefront = new Button(this);
-        btnStorefront.setText("🌐 apps.kimrosil.com/ph-vat-calculator");
-        btnStorefront.setTextSize(11f);
+        btnStorefront.setText("🌐 Official Storefront · apps.kimrosil.com/ph-vat-calculator");
+        btnStorefront.setTextSize(10.5f);
+        btnStorefront.setTypeface(null, Typeface.BOLD);
         btnStorefront.setAllCaps(false);
-        btnStorefront.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, dpToPx(36)));
-        styleFlatKey(btnStorefront, bgCard, strokeColor, accentEmerald, rippleColor, 8);
+        LinearLayout.LayoutParams sfLp = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, dpToPx(36));
+        sfLp.bottomMargin = dpToPx(6);
+        btnStorefront.setLayoutParams(sfLp);
+        styleFlatKey(btnStorefront, bgCard, accentEmerald, accentEmerald, rippleColor, 8);
         btnStorefront.setOnClickListener(v -> {
             haptic(15);
             String url = "https://apps.kimrosil.com/ph-vat-calculator/";
@@ -1047,6 +1145,30 @@ public class MainActivity extends Activity {
             }
         });
         aboutCard.addView(btnStorefront);
+
+        // Privacy Policy Button
+        Button btnPrivacy = new Button(this);
+        btnPrivacy.setText("Privacy Policy & Data Safety Statement");
+        btnPrivacy.setTextSize(10.5f);
+        btnPrivacy.setAllCaps(false);
+        btnPrivacy.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, dpToPx(34)));
+        styleFlatKey(btnPrivacy, bgCard, strokeColor, textMid, rippleColor, 8);
+        btnPrivacy.setOnClickListener(v -> {
+            haptic(15);
+            String url = "https://apps.kimrosil.com/ph-vat-calculator/privacy.html";
+            try {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            } catch (Exception e) {
+                ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                if (cm != null) {
+                    cm.setPrimaryClip(ClipData.newPlainText("VatCal PH Privacy Policy", url));
+                }
+                Toast.makeText(this, "Link copied: " + url, Toast.LENGTH_SHORT).show();
+            }
+        });
+        aboutCard.addView(btnPrivacy);
         root.addView(aboutCard);
 
         // 6. Action Row (Reset Defaults + Done)
