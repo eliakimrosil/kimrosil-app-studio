@@ -25,6 +25,16 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://apps.kimrosil.com/stair-rise/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://apps.kimrosil.com/assets/icons/stair-rise.svg</image:loc>
+      <image:title>StairRise</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://apps.kimrosil.com/crowncut/</loc>
     <lastmod>2026-11-02</lastmod>
     <changefreq>weekly</changefreq>
