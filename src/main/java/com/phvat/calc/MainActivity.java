@@ -1043,7 +1043,7 @@ public class MainActivity extends Activity {
         aboutTitleCol.addView(tvAboutStudio);
 
         TextView tvVersionBadge = new TextView(this);
-        tvVersionBadge.setText("v1.2.8");
+        tvVersionBadge.setText("v1.2.9");
         tvVersionBadge.setTextSize(10.5f);
         tvVersionBadge.setTypeface(null, Typeface.BOLD);
         tvVersionBadge.setTextColor(textMid);
@@ -1064,8 +1064,25 @@ public class MainActivity extends Activity {
         tvAboutDesc.setTextSize(11f);
         tvAboutDesc.setTextColor(textMid);
         tvAboutDesc.setLineSpacing(dpToPx(2), 1.0f);
-        tvAboutDesc.setPadding(0, dpToPx(6), 0, dpToPx(10));
+        tvAboutDesc.setPadding(0, dpToPx(6), 0, dpToPx(4));
         aboutCard.addView(tvAboutDesc);
+
+        // Minimal Play Store Government Policy Disclaimer & Source Link
+        TextView tvGovNote = new TextView(this);
+        tvGovNote.setText("Independent tool · Not affiliated with BIR · Source: bir.gov.ph ↗");
+        tvGovNote.setTextSize(10f);
+        tvGovNote.setTextColor(accentEmerald);
+        tvGovNote.setPadding(0, 0, 0, dpToPx(10));
+        tvGovNote.setOnClickListener(v -> {
+            haptic(15);
+            String govUrl = "https://www.bir.gov.ph/";
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(govUrl)));
+            } catch (Exception e) {
+                Toast.makeText(this, "Source: " + govUrl, Toast.LENGTH_SHORT).show();
+            }
+        });
+        aboutCard.addView(tvGovNote);
 
         // Storefront Link Button
         Button btnStorefront = new Button(this);
