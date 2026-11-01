@@ -1,12 +1,15 @@
 package com.phvat.calc;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
@@ -16,13 +19,16 @@ import android.os.Vibrator;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +42,7 @@ public class MainActivity extends Activity {
     private TextView tvAppTitle;
     private TextView tvAppSubtitle;
     private Button btnTheme;
+    private Button btnSettings;
 
     // ─── Hero Input ───────────────────────────────────────────────────────────
     private LinearLayout cardAmount;
@@ -90,6 +97,8 @@ public class MainActivity extends Activity {
 
     // ─── State ────────────────────────────────────────────────────────────────
     private boolean isDarkTheme = true;
+    private boolean hapticsEnabled = true;
+    private double defaultWhtRate = 0.02;
     private double customVatRate = 0.12;   // 12% standard
     private double whtRate = 0.0;          // 0 = no WHT selected
     private SharedPreferences prefs;
@@ -105,11 +114,19 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        prefs       = getSharedPreferences("ph_vat_prefs", MODE_PRIVATE);
-        isDarkTheme = prefs.getBoolean("dark_theme", true);
-        vibrator    = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        prefs          = getSharedPreferences("ph_vat_prefs", MODE_PRIVATE);
+        isDarkTheme    = prefs.getBoolean("dark_theme", true);
+        hapticsEnabled = prefs.getBoolean("haptics_enabled", true);
+        defaultWhtRate = Double.longBitsToDouble(
+                prefs.getLong("default_wht_bits", Double.doubleToLongBits(0.02)));
+        boolean defaultInclusive = prefs.getBoolean("default_inclusive", true);
+        vibrator       = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         initViews();
+        if (rbInclusive != null && rbExclusive != null) {
+            rbInclusive.setChecked(defaultInclusive);
+            rbExclusive.setChecked(!defaultInclusive);
+        }
         setupListeners();
         applyTheme(isDarkTheme);
         calculate();
@@ -151,6 +168,7 @@ public class MainActivity extends Activity {
         tvAppTitle        = findViewById(R.id.tv_app_title);
         tvAppSubtitle     = findViewById(R.id.tv_app_subtitle);
         btnTheme          = findViewById(R.id.btn_theme);
+        btnSettings       = findViewById(R.id.btn_settings);
 
         cardAmount        = findViewById(R.id.card_amount);
         tvAmountLabel     = findViewById(R.id.tv_amount_label);
@@ -237,6 +255,13 @@ public class MainActivity extends Activity {
             calculate();
         });
 
+        if (btnSettings != null) {
+            btnSettings.setOnClickListener(v -> {
+                haptic(20);
+                showSettingsDialog();
+            });
+        }
+
         etAmount.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int st, int c, int a) {}
             @Override public void onTextChanged(CharSequence s, int st, int b, int c) { calculate(); }
@@ -265,7 +290,7 @@ public class MainActivity extends Activity {
         swWht.setOnCheckedChangeListener((btn, checked) -> {
             updateWhtVisibility();
             if (checked && whtRate == 0.0) {
-                whtRate = 0.02; // Default to standard 2% when toggled on
+                whtRate = defaultWhtRate; // Default EWT rate from settings
                 refreshWhtRateChips();
             }
             calculate();
@@ -399,6 +424,10 @@ public class MainActivity extends Activity {
         btnTheme.setText(isDark ? "☀ Light" : "🌙 Dark");
         btnTheme.setTextColor(accentEmerald);
         applyChipBg(btnTheme, isDark ? 0xFF182235 : 0xFFF1F5F9, strokeColor);
+        if (btnSettings != null) {
+            btnSettings.setTextColor(accentEmerald);
+            applyChipBg(btnSettings, isDark ? 0xFF182235 : 0xFFF1F5F9, strokeColor);
+        }
 
         // Cards
         applyCardBg(cardAmount,    bgCard, strokeColor);
@@ -774,9 +803,329 @@ public class MainActivity extends Activity {
         haptic(35);
     }
 
+    // ─── Settings & About Modal ───────────────────────────────────────────────
+    private void showSettingsDialog() {
+        boolean isDark    = isDarkTheme;
+        int bgCard        = isDark ? 0xFF111827 : 0xFFFFFFFF;
+        int bgInner       = isDark ? 0xFF182235 : 0xFFF1F5F9;
+        int strokeColor   = isDark ? 0xFF1F2E45 : 0xFFE2E8F0;
+        int textHigh      = isDark ? 0xFFF1F5F9 : 0xFF0F172A;
+        int textMid       = isDark ? 0xFF94A3B8 : 0xFF475569;
+        int accentEmerald = isDark ? 0xFF10B981 : 0xFF059669;
+        int accentAmber   = isDark ? 0xFFF59E0B : 0xFFD97706;
+        int rippleColor   = isDark ? 0x2EFFFFFF : 0x14000000;
+
+        ScrollView scroll = new ScrollView(this);
+        scroll.setVerticalScrollBarEnabled(false);
+
+        LinearLayout root = new LinearLayout(this);
+        root.setOrientation(LinearLayout.VERTICAL);
+        int pad = dpToPx(18);
+        root.setPadding(pad, pad, pad, pad);
+
+        GradientDrawable dialogBg = new GradientDrawable();
+        dialogBg.setColor(bgCard);
+        dialogBg.setStroke(dpToPx(1), strokeColor);
+        dialogBg.setCornerRadius(dpToPx(16));
+        scroll.setBackground(dialogBg);
+        scroll.addView(root);
+
+        // Title
+        TextView tvTitle = new TextView(this);
+        tvTitle.setText("VatCal PH Settings");
+        tvTitle.setTextSize(18f);
+        tvTitle.setTypeface(null, Typeface.BOLD);
+        tvTitle.setTextColor(accentEmerald);
+        root.addView(tvTitle);
+
+        TextView tvSub = new TextView(this);
+        tvSub.setText("Preferences & Application Info");
+        tvSub.setTextSize(11f);
+        tvSub.setTextColor(textMid);
+        tvSub.setPadding(0, dpToPx(2), 0, dpToPx(14));
+        root.addView(tvSub);
+
+        // 1. Display Theme Section
+        TextView tvThemeLbl = new TextView(this);
+        tvThemeLbl.setText("DISPLAY THEME");
+        tvThemeLbl.setTextSize(10f);
+        tvThemeLbl.setTypeface(null, Typeface.BOLD);
+        tvThemeLbl.setTextColor(textMid);
+        tvThemeLbl.setPadding(0, 0, 0, dpToPx(6));
+        root.addView(tvThemeLbl);
+
+        LinearLayout themeRow = new LinearLayout(this);
+        themeRow.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout.LayoutParams rowLp = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, dpToPx(40));
+        rowLp.bottomMargin = dpToPx(14);
+        themeRow.setLayoutParams(rowLp);
+
+        Button btnDarkOpt = new Button(this);
+        btnDarkOpt.setText("🌙 Dark");
+        btnDarkOpt.setTextSize(12f);
+        btnDarkOpt.setAllCaps(false);
+        LinearLayout.LayoutParams leftLp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f);
+        leftLp.rightMargin = dpToPx(6);
+        btnDarkOpt.setLayoutParams(leftLp);
+
+        Button btnLightOpt = new Button(this);
+        btnLightOpt.setText("☀ Light");
+        btnLightOpt.setTextSize(12f);
+        btnLightOpt.setAllCaps(false);
+        LinearLayout.LayoutParams rightLp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f);
+        btnLightOpt.setLayoutParams(rightLp);
+
+        styleFlatKey(btnDarkOpt, isDark ? accentEmerald : bgInner, isDark ? accentEmerald : strokeColor,
+                isDark ? 0xFFFFFFFF : textMid, rippleColor, 10);
+        styleFlatKey(btnLightOpt, !isDark ? accentEmerald : bgInner, !isDark ? accentEmerald : strokeColor,
+                !isDark ? 0xFFFFFFFF : textMid, rippleColor, 10);
+
+        themeRow.addView(btnDarkOpt);
+        themeRow.addView(btnLightOpt);
+        root.addView(themeRow);
+
+        // 2. Default VAT Mode Section
+        TextView tvModeLbl = new TextView(this);
+        tvModeLbl.setText("DEFAULT CALCULATION MODE");
+        tvModeLbl.setTextSize(10f);
+        tvModeLbl.setTypeface(null, Typeface.BOLD);
+        tvModeLbl.setTextColor(textMid);
+        tvModeLbl.setPadding(0, 0, 0, dpToPx(6));
+        root.addView(tvModeLbl);
+
+        LinearLayout modeRow = new LinearLayout(this);
+        modeRow.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout.LayoutParams modeRowLp = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, dpToPx(40));
+        modeRowLp.bottomMargin = dpToPx(14);
+        modeRow.setLayoutParams(modeRowLp);
+
+        final boolean curDefInc = prefs.getBoolean("default_inclusive", true);
+        final Button btnDefInc = new Button(this);
+        btnDefInc.setText("VAT Inclusive");
+        btnDefInc.setTextSize(12f);
+        btnDefInc.setAllCaps(false);
+        btnDefInc.setLayoutParams(leftLp);
+
+        final Button btnDefExc = new Button(this);
+        btnDefExc.setText("VAT Exclusive");
+        btnDefExc.setTextSize(12f);
+        btnDefExc.setAllCaps(false);
+        btnDefExc.setLayoutParams(rightLp);
+
+        styleFlatKey(btnDefInc, curDefInc ? accentEmerald : bgInner, curDefInc ? accentEmerald : strokeColor,
+                curDefInc ? 0xFFFFFFFF : textMid, rippleColor, 10);
+        styleFlatKey(btnDefExc, !curDefInc ? accentEmerald : bgInner, !curDefInc ? accentEmerald : strokeColor,
+                !curDefInc ? 0xFFFFFFFF : textMid, rippleColor, 10);
+
+        modeRow.addView(btnDefInc);
+        modeRow.addView(btnDefExc);
+        root.addView(modeRow);
+
+        // 3. Default Withholding Tax (EWT) Rate
+        TextView tvEwtLbl = new TextView(this);
+        tvEwtLbl.setText("DEFAULT WITHHOLDING (EWT) RATE");
+        tvEwtLbl.setTextSize(10f);
+        tvEwtLbl.setTypeface(null, Typeface.BOLD);
+        tvEwtLbl.setTextColor(textMid);
+        tvEwtLbl.setPadding(0, 0, 0, dpToPx(6));
+        root.addView(tvEwtLbl);
+
+        LinearLayout ewtRow = new LinearLayout(this);
+        ewtRow.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout.LayoutParams ewtRowLp = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, dpToPx(38));
+        ewtRowLp.bottomMargin = dpToPx(14);
+        ewtRow.setLayoutParams(ewtRowLp);
+
+        final double[] ewtRates = {0.01, 0.02, 0.05};
+        final String[] ewtLabels = {"1% Goods", "2% Services", "5% Prof/Rent"};
+        final Button[] ewtBtns = new Button[3];
+
+        for (int i = 0; i < 3; i++) {
+            final int idx = i;
+            Button b = new Button(this);
+            b.setText(ewtLabels[i]);
+            b.setTextSize(11f);
+            b.setAllCaps(false);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f);
+            if (i < 2) lp.rightMargin = dpToPx(6);
+            b.setLayoutParams(lp);
+            boolean active = Math.abs(defaultWhtRate - ewtRates[i]) < 0.0001;
+            styleFlatKey(b, active ? accentAmber : bgInner, active ? accentAmber : strokeColor,
+                    active ? 0xFF000000 : textMid, rippleColor, 10);
+            ewtBtns[i] = b;
+            ewtRow.addView(b);
+        }
+        root.addView(ewtRow);
+
+        for (int i = 0; i < 3; i++) {
+            final int idx = i;
+            ewtBtns[i].setOnClickListener(v -> {
+                defaultWhtRate = ewtRates[idx];
+                prefs.edit().putLong("default_wht_bits", Double.doubleToLongBits(defaultWhtRate)).apply();
+                if (swWht != null && swWht.isChecked()) {
+                    whtRate = defaultWhtRate;
+                    refreshWhtRateChips();
+                    calculate();
+                }
+                for (int j = 0; j < 3; j++) {
+                    boolean act = (j == idx);
+                    styleFlatKey(ewtBtns[j], act ? accentAmber : bgInner, act ? accentAmber : strokeColor,
+                            act ? 0xFF000000 : textMid, rippleColor, 10);
+                }
+                haptic(15);
+            });
+        }
+
+        // 4. Haptic Feedback Switch
+        Switch swHaptic = new Switch(this);
+        swHaptic.setText("Haptic Keypress Vibration");
+        swHaptic.setTextSize(13f);
+        swHaptic.setTextColor(textHigh);
+        swHaptic.setChecked(hapticsEnabled);
+        swHaptic.setPadding(0, dpToPx(4), 0, dpToPx(14));
+        styleSwitch(swHaptic, isDark);
+        swHaptic.setOnCheckedChangeListener((btn, checked) -> {
+            hapticsEnabled = checked;
+            prefs.edit().putBoolean("haptics_enabled", checked).apply();
+            if (checked) haptic(20);
+        });
+        root.addView(swHaptic);
+
+        // 5. About VatCal PH Card
+        LinearLayout aboutCard = new LinearLayout(this);
+        aboutCard.setOrientation(LinearLayout.VERTICAL);
+        int cardPad = dpToPx(12);
+        aboutCard.setPadding(cardPad, cardPad, cardPad, cardPad);
+        GradientDrawable aboutBg = new GradientDrawable();
+        aboutBg.setColor(bgInner);
+        aboutBg.setStroke(dpToPx(1), strokeColor);
+        aboutBg.setCornerRadius(dpToPx(12));
+        aboutCard.setBackground(aboutBg);
+        LinearLayout.LayoutParams aboutLp = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        aboutLp.bottomMargin = dpToPx(14);
+        aboutCard.setLayoutParams(aboutLp);
+
+        TextView tvAboutTitle = new TextView(this);
+        tvAboutTitle.setText("VatCal PH v1.2.5");
+        tvAboutTitle.setTextSize(13f);
+        tvAboutTitle.setTypeface(null, Typeface.BOLD);
+        tvAboutTitle.setTextColor(textHigh);
+        aboutCard.addView(tvAboutTitle);
+
+        TextView tvAboutBody = new TextView(this);
+        tvAboutBody.setText("KimRosil App Studio Company\n100% Offline • Zero Ads • Zero Tracking\n12% BIR Output VAT • RA 9994 Senior/PWD • EWT");
+        tvAboutBody.setTextSize(11f);
+        tvAboutBody.setTextColor(textMid);
+        tvAboutBody.setPadding(0, dpToPx(4), 0, 0);
+        aboutCard.addView(tvAboutBody);
+        root.addView(aboutCard);
+
+        // 6. Action Row (Reset Defaults + Done)
+        LinearLayout actionRow = new LinearLayout(this);
+        actionRow.setOrientation(LinearLayout.HORIZONTAL);
+        actionRow.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, dpToPx(42)));
+
+        Button btnReset = new Button(this);
+        btnReset.setText("Reset Defaults");
+        btnReset.setTextSize(12f);
+        btnReset.setAllCaps(false);
+        btnReset.setLayoutParams(leftLp);
+        styleFlatKey(btnReset, bgInner, strokeColor, isDark ? 0xFFF87171 : 0xFFDC2626, rippleColor, 10);
+
+        Button btnDone = new Button(this);
+        btnDone.setText("Done");
+        btnDone.setTextSize(12f);
+        btnDone.setTypeface(null, Typeface.BOLD);
+        btnDone.setAllCaps(false);
+        btnDone.setLayoutParams(rightLp);
+        styleFlatKey(btnDone, accentEmerald, accentEmerald, 0xFFFFFFFF, rippleColor, 10);
+
+        actionRow.addView(btnReset);
+        actionRow.addView(btnDone);
+        root.addView(actionRow);
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(scroll)
+                .create();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0x00000000));
+        }
+
+        btnDarkOpt.setOnClickListener(v -> {
+            isDarkTheme = true;
+            prefs.edit().putBoolean("dark_theme", true).apply();
+            applyTheme(true);
+            calculate();
+            haptic(20);
+            dialog.dismiss();
+        });
+
+        btnLightOpt.setOnClickListener(v -> {
+            isDarkTheme = false;
+            prefs.edit().putBoolean("dark_theme", false).apply();
+            applyTheme(false);
+            calculate();
+            haptic(20);
+            dialog.dismiss();
+        });
+
+        btnDefInc.setOnClickListener(v -> {
+            prefs.edit().putBoolean("default_inclusive", true).apply();
+            if (rbInclusive != null) rbInclusive.setChecked(true);
+            styleFlatKey(btnDefInc, accentEmerald, accentEmerald, 0xFFFFFFFF, rippleColor, 10);
+            styleFlatKey(btnDefExc, bgInner, strokeColor, textMid, rippleColor, 10);
+            calculate();
+            haptic(15);
+        });
+
+        btnDefExc.setOnClickListener(v -> {
+            prefs.edit().putBoolean("default_inclusive", false).apply();
+            if (rbExclusive != null) rbExclusive.setChecked(true);
+            styleFlatKey(btnDefExc, accentEmerald, accentEmerald, 0xFFFFFFFF, rippleColor, 10);
+            styleFlatKey(btnDefInc, bgInner, strokeColor, textMid, rippleColor, 10);
+            calculate();
+            haptic(15);
+        });
+
+        btnReset.setOnClickListener(v -> {
+            hapticsEnabled = true;
+            defaultWhtRate = 0.02;
+            customVatRate  = 0.12;
+            whtRate        = 0.0;
+            prefs.edit()
+                    .putBoolean("haptics_enabled", true)
+                    .putBoolean("default_inclusive", true)
+                    .putLong("default_wht_bits", Double.doubleToLongBits(0.02))
+                    .apply();
+            if (etAmount != null) etAmount.setText("");
+            if (rbInclusive != null) rbInclusive.setChecked(true);
+            if (swSeniorPwd != null) swSeniorPwd.setChecked(false);
+            if (swWht != null) swWht.setChecked(false);
+            refreshVatRateChips();
+            refreshWhtRateChips();
+            updateWhtVisibility();
+            calculate();
+            haptic(25);
+            Toast.makeText(this, "Defaults restored", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+        });
+
+        btnDone.setOnClickListener(v -> {
+            haptic(15);
+            dialog.dismiss();
+        });
+
+        dialog.show();
+    }
+
     // ─── Haptics ──────────────────────────────────────────────────────────────
     private void haptic(int ms) {
-        if (vibrator == null || !vibrator.hasVibrator()) return;
+        if (!hapticsEnabled || vibrator == null || !vibrator.hasVibrator()) return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             vibrator.vibrate(VibrationEffect.createOneShot(ms, VibrationEffect.DEFAULT_AMPLITUDE));
         } else {

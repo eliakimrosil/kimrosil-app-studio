@@ -357,6 +357,20 @@
                     android:paddingEnd="8dp"
                     android:textSize="10sp"
                     android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btn_settings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="6dp"
+                    android:text="⚙ Settings"
+                    android:contentDescription="Settings"
+                    android:textColor="@color/accent_emerald"
+                    android:background="@drawable/chip_btn"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <!-- Mode & Adjustments -->

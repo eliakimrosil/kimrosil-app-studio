@@ -1,2 +1,2 @@
-Release v1.2.4 - VatCal PH
-Simplify title and app name strictly to VatCal PH
+Release v1.2.5 - VatCal PH
+Add Settings modal without changing original Slate & Emerald design
