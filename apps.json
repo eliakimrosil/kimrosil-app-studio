@@ -85,7 +85,7 @@
     "privacy_policy": "https://apps.kimrosil.com/ph-vat-calculator/privacy.html",
     "icon": "assets/icons/ph-vat-calculator.svg",
     "updated_at": "2026-11-01T16:01:25.765828+00:00",
-    "sha256": "19ecaae92ccea4ec517ed20645afe6bb456e6a4c79bb2c2e4a3e21ef7eb846ca"
+    "sha256": "76b7e5d8d954ffa84574df3c237a0a804240c50ad2e0cbb57fab3aaf02b7c344"
   },
   {
     "slug": "screenstream-rtsp",
@@ -460,7 +460,7 @@
     "slug": "sprout-knight-rpg",
     "title": "SproutKnight",
     "category": "Games / RPG / Adventure",
-    "tagline": "Embark on a charming 2D action fighting RPG quest\u2014upgrade acorn blades, walnut armor, and dewdrop magic at the cozy forge.",
+    "tagline": "Embark on a charming 2D action fighting RPG quest—upgrade acorn blades, walnut armor, and dewdrop magic at the cozy forge.",
     "version": "v1.5.0",
     "status": "BUILT",
     "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.5.0-sprout-knight-rpg/sprout-knight-rpg.apk",
@@ -998,7 +998,7 @@
     "slug": "gauss-meter",
     "title": "GaussMeter",
     "category": "UTILITIES",
-    "tagline": "3-axis magnetometer (\u00b5T / mG), EMF & ferrous wall stud locator with tare.",
+    "tagline": "3-axis magnetometer (µT / mG), EMF & ferrous wall stud locator with tare.",
     "status": "BUILT",
     "branch": "app/gauss-meter",
     "tag": "v1.0.0-gauss-meter",
@@ -1278,5 +1278,20 @@
     "icon": "assets/icons/crowncut.svg",
     "updated_at": "2026-10-29T16:46:20.178501+00:00",
     "sha256": "d5b33be18d1cb2fddf0e1a2a7292c52c8d31107def1de99f4d02b6afc2e0fa63"
+  },
+  {
+    "slug": "stair-rise",
+    "title": "StairRise",
+    "category": "UTILITIES",
+    "tagline": "Calculate stair rise, run, stringers, and headroom with code compliance checks.",
+    "status": "BUILT",
+    "branch": "app/stair-rise",
+    "tag": "v1.0.1-stair-rise",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-stair-rise/stair-rise.apk",
+    "landing_page": "https://apps.kimrosil.com/stair-rise/",
+    "privacy_policy": "https://apps.kimrosil.com/stair-rise/privacy.html",
+    "icon": "assets/icons/stair-rise.svg",
+    "updated_at": "2026-11-01T22:31:06.340722+00:00",
+    "sha256": "fd13c49985b2db5a0ead2603e3d39807b98ab1ea8275034b83d3dd20db354152"
   }
 ]

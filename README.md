@@ -395,6 +395,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 > **Utility**: Offline spur gear geometry, center distance, and diametral pitch calculator.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.0-spur-mesh/spur-mesh.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/spur-mesh/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/spur-mesh)
 
+#### [StairRise](https://apps.kimrosil.com/stair-rise/) (`stair-rise`) • `v1.0.1`
+> **Utility**: Calculate stair rise, run, stringers, and headroom with code compliance checks.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.0.1-stair-rise/stair-rise.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/stair-rise/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/stair-rise)
+
 #### [StealthDrop](https://apps.kimrosil.com/stealth-drop-secret-pad/) (`stealth-drop-secret-pad`) • `v1.0.0`
 > **Utility**: Instant zero-trace burner notes and sensitive snippets from your notification shade with auto-purge timers.
 > **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kim-android-apps/releases/download/v1.0.0-stealth-drop-secret-pad/stealth-drop-secret-pad.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/stealth-drop-secret-pad/) • [Source Branch](https://github.com/eliakimrosil/kimrosil-app-studio/tree/app/stealth-drop-secret-pad)
