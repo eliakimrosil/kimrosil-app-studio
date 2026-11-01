@@ -29,7 +29,7 @@
 
   <!-- Right Content Block -->
   <rect x="350" y="130" width="240" height="36" rx="8" fill="#131D31" stroke="#38BDF8" stroke-width="1.2"/>
-  <text x="470" y="154" fill="#38BDF8" font-size="13.5" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, sans-serif" text-anchor="middle" letter-spacing="1.5">UTILITIES &amp; LIFESTYLE</text>
+  <text x="470" y="154" fill="#38BDF8" font-size="13.5" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, sans-serif" text-anchor="middle" letter-spacing="1.5">AUDIO &amp; TELEMETRY</text>
 
   <text x="350" y="235" fill="#FFFFFF" font-size="52" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, sans-serif">LuxScale</text>
   <text x="350" y="295" fill="#94A3B8" font-size="24" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Hardware ambient Lux, Foot-Candles, Plant PAR (PPFD/DLI) &amp; EV100 light meter.</text>
