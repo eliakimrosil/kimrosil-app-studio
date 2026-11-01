@@ -1409,7 +1409,7 @@ Data Safety & Offline Privacy Guarantee:
 - **Category**: Finance & Business
 - **Tagline**: Fast offline 12% VAT (inclusive/exclusive), Expanded Withholding Tax (EWT), and invoice net/gross calculation tool.
 - **Landing Page**: https://apps.kimrosil.com/ph-vat-calculator/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.5-ph-vat-calculator/ph-vat-calculator.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.2.6-ph-vat-calculator/ph-vat-calculator.apk
 - **Privacy Policy**: https://apps.kimrosil.com/ph-vat-calculator/privacy.html
 - **Architecture**: 100% Offline Native Android (Zero Telemetry, Zero Third-Party SDKs)
 - **Compatibility**: Android 7.0+ (ARM64 / ARMv7)
