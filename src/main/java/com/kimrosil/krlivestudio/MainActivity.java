@@ -310,6 +310,7 @@ public class MainActivity extends Activity {
         setupListeners();
         requestNecessaryPermissions();
         handleIntent(getIntent());
+        uiHandler.postDelayed(() -> showOnboardingWalkthrough(false), 450);
     }
 
     @Override
@@ -583,6 +584,36 @@ public class MainActivity extends Activity {
             btnClose.setOnClickListener(v -> dialog.dismiss());
         }
 
+        // Interactive Walkthrough Button
+        Button btnWalkthrough = dialogView.findViewById(R.id.btnSettingsWalkthrough);
+        if (btnWalkthrough != null) {
+            btnWalkthrough.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                dialog.dismiss();
+                showOnboardingWalkthrough(true);
+            });
+        }
+
+        // FAQ & Compatibility Specs Button
+        Button btnFaq = dialogView.findViewById(R.id.btnSettingsFaq);
+        if (btnFaq != null) {
+            btnFaq.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                dialog.dismiss();
+                showFaqAndCompatibilityDialog();
+            });
+        }
+
+        // Send Feedback Button
+        Button btnFeedback = dialogView.findViewById(R.id.btnSettingsFeedback);
+        if (btnFeedback != null) {
+            btnFeedback.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                dialog.dismiss();
+                showFeedbackDialog();
+            });
+        }
+
         // Privacy Policy Link
         Button btnPrivacy = dialogView.findViewById(R.id.btnSettingsPrivacy);
         if (btnPrivacy != null) {
@@ -600,6 +631,428 @@ public class MainActivity extends Activity {
                 openWebUrl("https://apps.kimrosil.com/kim-live-studio/");
             });
         }
+
+        dialog.show();
+    }
+
+    private void showOnboardingWalkthrough(boolean forceShow) {
+        if (isFinishing() || isDestroyed()) return;
+        if (!forceShow && prefs.getBoolean("pref_onboarding_completed", false)) {
+            return;
+        }
+        prefs.edit().putBoolean("pref_onboarding_completed", true).apply();
+
+        final String[] stepBadges = {
+                "STEP 1 OF 5 • STREAMING DESTINATION",
+                "STEP 2 OF 5 • VIDEO ENCODER & ABR",
+                "STEP 3 OF 5 • SMART AUDIO MIXER",
+                "STEP 4 OF 5 • FLOATING FACECAM & VOD",
+                "STEP 5 OF 5 • PRIVACY SHIELD & TELEMETRY"
+        };
+        final String[] stepTitles = {
+                "📡 Direct Multi-Platform RTMP/RTMPS",
+                "🎬 1080p/60fps & Dynamic ABR",
+                "🎚️ Mic, Game Audio & Auto-Ducking",
+                "📷 Floating Facecam PiP & Local MP4",
+                "🛡️ One-Tap Privacy Shield (BRB Slate)"
+        };
+        final String[] stepDescriptions = {
+                "Choose YouTube, Facebook, Twitch, TikTok, Kick, or Custom RTMP/RTMPS.\n\n"
+                        + "• Tap '🌐 OPEN CREATOR STUDIO' to copy your Stream Key directly from your platform dashboard.\n"
+                        + "• Tap 'PASTE' to securely store your key per platform.",
+                "Configure hardware H.264 encoding for your device and network:\n\n"
+                        + "• Pick 1080p, 720p, or 480p at 60/30/24 FPS.\n"
+                        + "• Choose 16:9 Landscape, 9:16 Portrait, or Auto canvas.\n"
+                        + "• Enable Dynamic Adaptive Bitrate (ABR) to automatically scale bitrate during Wi-Fi/5G congestion without dropping frames.",
+                "Tailor your broadcast audio on the fly—even while live:\n\n"
+                        + "• MIC ONLY: Voice commentary with adjustable 0–200% Mic Gain.\n"
+                        + "• GAME SOUND (Android 10+): Clean internal game audio while freeing your mic for in-game team chat.\n"
+                        + "• DUAL MIX: Combines voice + game audio with Smart Voice Auto-Ducking that lowers game volume when you speak.",
+                "Engage viewers while gaming or multitasking:\n\n"
+                        + "• Floating Facecam PiP: Drag anywhere, pinch to resize, tap '⇄' to flip camera, '▯' to cycle 3:4 / 16:9 / 1:1 / Circle mask, or '▶' to Go Live.\n"
+                        + "• Local MP4 Recording: Saves a zero-CPU hardware VOD copy directly to Movies/KRLiveStudio/.",
+                "Protect sensitive screens during a live broadcast:\n\n"
+                        + "• Tap '🛡️ SHIELD' in the top telemetry bar before entering passwords or switching apps.\n"
+                        + "• Viewers see a live 'PRIVACY SHIELD ACTIVE • BE RIGHT BACK' slate and audio is muted while your RTMP connection stays 100% online."
+        };
+        final View[] stepTargets = {
+                etStreamKey,
+                seekBitrate,
+                layoutAudioModeRow,
+                switchFacecam,
+                btnPrivacyShield
+        };
+
+        float density = getResources().getDisplayMetrics().density;
+        LinearLayout root = new LinearLayout(this);
+        root.setOrientation(LinearLayout.VERTICAL);
+        root.setBackgroundResource(R.drawable.card_m3);
+        int pad = (int) (20 * density);
+        root.setPadding(pad, pad, pad, pad);
+
+        // Header Row (Step Badge + Skip Button)
+        LinearLayout headerRow = new LinearLayout(this);
+        headerRow.setOrientation(LinearLayout.HORIZONTAL);
+        headerRow.setGravity(Gravity.CENTER_VERTICAL);
+
+        TextView tvBadge = new TextView(this);
+        tvBadge.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
+        tvBadge.setTextColor(getColor(R.color.studio_cyan));
+        tvBadge.setTextSize(10f);
+        tvBadge.setTypeface(Typeface.MONOSPACE, Typeface.BOLD);
+
+        Button btnSkip = new Button(this);
+        LinearLayout.LayoutParams skipLp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, (int) (30 * density));
+        btnSkip.setLayoutParams(skipLp);
+        btnSkip.setBackgroundResource(R.drawable.btn_m3_tonal);
+        btnSkip.setMinHeight(0);
+        btnSkip.setMinWidth(0);
+        btnSkip.setPadding((int) (12 * density), 0, (int) (12 * density), 0);
+        btnSkip.setText("SKIP");
+        btnSkip.setTextColor(getColor(R.color.studio_text_muted));
+        btnSkip.setTextSize(10f);
+        btnSkip.setTypeface(Typeface.DEFAULT_BOLD);
+
+        headerRow.addView(tvBadge);
+        headerRow.addView(btnSkip);
+        root.addView(headerRow);
+
+        // Step Title
+        TextView tvTitle = new TextView(this);
+        LinearLayout.LayoutParams titleLp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        titleLp.topMargin = (int) (10 * density);
+        tvTitle.setLayoutParams(titleLp);
+        tvTitle.setTextColor(getColor(R.color.studio_text_primary));
+        tvTitle.setTextSize(16f);
+        tvTitle.setTypeface(Typeface.DEFAULT_BOLD);
+        root.addView(tvTitle);
+
+        // Step Body Card
+        LinearLayout bodyCard = new LinearLayout(this);
+        bodyCard.setOrientation(LinearLayout.VERTICAL);
+        bodyCard.setBackgroundResource(R.drawable.card_studio_recessed);
+        LinearLayout.LayoutParams bodyLp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        bodyLp.topMargin = (int) (12 * density);
+        bodyLp.bottomMargin = (int) (16 * density);
+        bodyCard.setLayoutParams(bodyLp);
+        int cardPad = (int) (14 * density);
+        bodyCard.setPadding(cardPad, cardPad, cardPad, cardPad);
+
+        TextView tvDesc = new TextView(this);
+        tvDesc.setTextColor(getColor(R.color.studio_text_secondary));
+        tvDesc.setTextSize(12f);
+        tvDesc.setLineSpacing((int) (3 * density), 1.0f);
+        bodyCard.addView(tvDesc);
+        root.addView(bodyCard);
+
+        // Progress Dots / Bar Row
+        final View[] stepDots = new View[stepTitles.length];
+        LinearLayout dotsRow = new LinearLayout(this);
+        dotsRow.setOrientation(LinearLayout.HORIZONTAL);
+        dotsRow.setGravity(Gravity.CENTER);
+        LinearLayout.LayoutParams dotsRowLp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        dotsRowLp.bottomMargin = (int) (14 * density);
+        dotsRow.setLayoutParams(dotsRowLp);
+        for (int i = 0; i < stepTitles.length; i++) {
+            View dot = new View(this);
+            LinearLayout.LayoutParams dotLp = new LinearLayout.LayoutParams((int) (24 * density), (int) (4 * density));
+            dotLp.leftMargin = (int) (3 * density);
+            dotLp.rightMargin = (int) (3 * density);
+            dot.setLayoutParams(dotLp);
+            stepDots[i] = dot;
+            dotsRow.addView(dot);
+        }
+        root.addView(dotsRow);
+
+        // Navigation Buttons Row (Back / Next)
+        LinearLayout navRow = new LinearLayout(this);
+        navRow.setOrientation(LinearLayout.HORIZONTAL);
+
+        Button btnBack = new Button(this);
+        LinearLayout.LayoutParams backLp = new LinearLayout.LayoutParams(0, (int) (38 * density), 1f);
+        backLp.rightMargin = (int) (6 * density);
+        btnBack.setLayoutParams(backLp);
+        btnBack.setBackgroundResource(R.drawable.btn_m3_tonal);
+        btnBack.setText("◀ BACK");
+        btnBack.setTextColor(getColor(R.color.studio_text_secondary));
+        btnBack.setTextSize(11f);
+        btnBack.setTypeface(Typeface.DEFAULT_BOLD);
+
+        Button btnNext = new Button(this);
+        LinearLayout.LayoutParams nextLp = new LinearLayout.LayoutParams(0, (int) (38 * density), 1.4f);
+        nextLp.leftMargin = (int) (6 * density);
+        btnNext.setLayoutParams(nextLp);
+        btnNext.setBackgroundResource(R.drawable.chip_active);
+        btnNext.setText("NEXT ▶");
+        btnNext.setTextColor(getColor(R.color.studio_chip_active_text));
+        btnNext.setTextSize(11f);
+        btnNext.setTypeface(Typeface.DEFAULT_BOLD);
+
+        navRow.addView(btnBack);
+        navRow.addView(btnNext);
+        root.addView(navRow);
+
+        AlertDialog dialog = new AlertDialog.Builder(this).setView(root).create();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+
+        final int[] currentStep = {0};
+        final Runnable renderStep = () -> {
+            int idx = currentStep[0];
+            tvBadge.setText(stepBadges[idx]);
+            tvTitle.setText(stepTitles[idx]);
+            tvDesc.setText(stepDescriptions[idx]);
+            btnBack.setVisibility(idx == 0 ? View.INVISIBLE : View.VISIBLE);
+            btnNext.setText(idx == stepTitles.length - 1 ? "START BROADCASTING ✔" : "NEXT ▶");
+            for (int i = 0; i < stepDots.length; i++) {
+                stepDots[i].setBackgroundColor(getColor(i <= idx ? R.color.studio_cyan : R.color.studio_border));
+            }
+            View target = stepTargets[idx];
+            if (target != null) {
+                target.post(() -> {
+                    android.graphics.Rect rect = new android.graphics.Rect(0, 0, target.getWidth(), target.getHeight());
+                    target.requestRectangleOnScreen(rect, false);
+                });
+            }
+        };
+
+        renderStep.run();
+
+        btnSkip.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            dialog.dismiss();
+        });
+
+        btnBack.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            if (currentStep[0] > 0) {
+                currentStep[0]--;
+                renderStep.run();
+            }
+        });
+
+        btnNext.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            if (currentStep[0] < stepTitles.length - 1) {
+                currentStep[0]++;
+                renderStep.run();
+            } else {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void showFaqAndCompatibilityDialog() {
+        float density = getResources().getDisplayMetrics().density;
+        android.widget.ScrollView scrollView = new android.widget.ScrollView(this);
+        scrollView.setBackgroundResource(R.drawable.card_m3);
+        int pad = (int) (20 * density);
+        scrollView.setPadding(pad, pad, pad, pad);
+
+        LinearLayout root = new LinearLayout(this);
+        root.setOrientation(LinearLayout.VERTICAL);
+        scrollView.addView(root);
+
+        TextView tvHeader = new TextView(this);
+        tvHeader.setText("❓ FAQ & DEVICE COMPATIBILITY");
+        tvHeader.setTextColor(getColor(R.color.studio_text_primary));
+        tvHeader.setTextSize(15f);
+        tvHeader.setTypeface(Typeface.DEFAULT_BOLD);
+        root.addView(tvHeader);
+
+        TextView tvSub = new TextView(this);
+        tvSub.setText("System specifications & answers to common streaming questions");
+        tvSub.setTextColor(getColor(R.color.studio_cyan));
+        tvSub.setTextSize(11f);
+        LinearLayout.LayoutParams subLp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        subLp.topMargin = (int) (2 * density);
+        subLp.bottomMargin = (int) (12 * density);
+        tvSub.setLayoutParams(subLp);
+        root.addView(tvSub);
+
+        String[][] items = {
+                {
+                        "📱 Device & System Compatibility",
+                        "• Minimum OS: Android 8.0+ (API 26) with hardware H.264 MediaCodec & AAC-LC encoders.\n"
+                                + "• Recommended OS: Android 10–16 (API 29–36) for Internal Game Audio capture (AudioPlaybackCapture) and zero-permission MediaStore MP4 VOD recording.\n"
+                                + "• Network: Wi-Fi or 4G/5G with at least 2.5 Mbps upload for 720p and 5+ Mbps for 1080p60."
+                },
+                {
+                        "🔑 Where do I find my Stream Key on mobile?",
+                        "Select your platform (YouTube, Facebook, Twitch, TikTok, or Kick) and tap '🌐 OPEN CREATOR STUDIO'. On Facebook/YouTube mobile browsers, open the browser menu (⋮) and enable 'Desktop site' to copy your persistent Stream Key."
+                },
+                {
+                        "🎮 How do Game Sound & In-Game Voice Chat work?",
+                        "• In 'GAME SOUND' mode, KR Live Studio captures internal system audio and releases the hardware microphone so you can use in-game team voice chat without conflict.\n"
+                                + "• In 'DUAL MIX' mode, both your voice and game audio are mixed together with optional Smart Voice Auto-Ducking."
+                },
+                {
+                        "🛡️ What does the Privacy Shield button do?",
+                        "Tapping '🛡️ SHIELD' detaches screen capture and streams a live 10 FPS 'PRIVACY SHIELD ACTIVE • BE RIGHT BACK' slate while muting audio. Your RTMP stream stays connected while you enter passwords or reply to messages."
+                },
+                {
+                        "💾 Where are Local MP4 VOD recordings saved?",
+                        "When 'Simultaneous Local MP4 Recording' is enabled, recordings are saved directly to your public Gallery / Files app under Movies/KRLiveStudio/KRLive_<timestamp>.mp4 with zero extra CPU encoding overhead."
+                }
+        };
+
+        for (String[] item : items) {
+            LinearLayout card = new LinearLayout(this);
+            card.setOrientation(LinearLayout.VERTICAL);
+            card.setBackgroundResource(R.drawable.card_studio_recessed);
+            LinearLayout.LayoutParams cardLp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            cardLp.bottomMargin = (int) (10 * density);
+            card.setLayoutParams(cardLp);
+            int cPad = (int) (12 * density);
+            card.setPadding(cPad, cPad, cPad, cPad);
+
+            TextView q = new TextView(this);
+            q.setText(item[0]);
+            q.setTextColor(getColor(R.color.studio_green));
+            q.setTextSize(12f);
+            q.setTypeface(Typeface.DEFAULT_BOLD);
+            card.addView(q);
+
+            TextView a = new TextView(this);
+            LinearLayout.LayoutParams aLp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            aLp.topMargin = (int) (4 * density);
+            a.setLayoutParams(aLp);
+            a.setText(item[1]);
+            a.setTextColor(getColor(R.color.studio_text_secondary));
+            a.setTextSize(11f);
+            a.setLineSpacing((int) (2 * density), 1.0f);
+            card.addView(a);
+
+            root.addView(card);
+        }
+
+        Button btnClose = new Button(this);
+        LinearLayout.LayoutParams closeLp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, (int) (38 * density));
+        closeLp.topMargin = (int) (4 * density);
+        btnClose.setLayoutParams(closeLp);
+        btnClose.setBackgroundResource(R.drawable.chip_active);
+        btnClose.setText("GOT IT");
+        btnClose.setTextColor(getColor(R.color.studio_chip_active_text));
+        btnClose.setTextSize(11f);
+        btnClose.setTypeface(Typeface.DEFAULT_BOLD);
+        root.addView(btnClose);
+
+        AlertDialog dialog = new AlertDialog.Builder(this).setView(scrollView).create();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        btnClose.setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
+    }
+
+    private void showFeedbackDialog() {
+        float density = getResources().getDisplayMetrics().density;
+        LinearLayout root = new LinearLayout(this);
+        root.setOrientation(LinearLayout.VERTICAL);
+        root.setBackgroundResource(R.drawable.card_m3);
+        int pad = (int) (20 * density);
+        root.setPadding(pad, pad, pad, pad);
+
+        TextView tvTitle = new TextView(this);
+        tvTitle.setText("💬 SEND FEEDBACK & SUGGESTIONS");
+        tvTitle.setTextColor(getColor(R.color.studio_text_primary));
+        tvTitle.setTextSize(15f);
+        tvTitle.setTypeface(Typeface.DEFAULT_BOLD);
+        root.addView(tvTitle);
+
+        TextView tvSub = new TextView(this);
+        LinearLayout.LayoutParams subLp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        subLp.topMargin = (int) (4 * density);
+        subLp.bottomMargin = (int) (12 * density);
+        tvSub.setLayoutParams(subLp);
+        tvSub.setText("Have a feature request, streaming tip, or issue to report? Share your feedback below:");
+        tvSub.setTextColor(getColor(R.color.studio_text_secondary));
+        tvSub.setTextSize(11f);
+        root.addView(tvSub);
+
+        EditText etFeedback = new EditText(this);
+        LinearLayout.LayoutParams etLp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, (int) (100 * density));
+        etLp.bottomMargin = (int) (14 * density);
+        etFeedback.setLayoutParams(etLp);
+        etFeedback.setBackgroundResource(R.drawable.edittext_m3);
+        etFeedback.setGravity(Gravity.TOP | Gravity.START);
+        int ePad = (int) (12 * density);
+        etFeedback.setPadding(ePad, ePad, ePad, ePad);
+        etFeedback.setHint("Describe your suggestion, device experience, or issue...");
+        etFeedback.setHintTextColor(getColor(R.color.studio_text_muted));
+        etFeedback.setTextColor(getColor(R.color.studio_text_primary));
+        etFeedback.setTextSize(12f);
+        root.addView(etFeedback);
+
+        LinearLayout btnRow = new LinearLayout(this);
+        btnRow.setOrientation(LinearLayout.HORIZONTAL);
+
+        Button btnCancel = new Button(this);
+        LinearLayout.LayoutParams cancelLp = new LinearLayout.LayoutParams(0, (int) (38 * density), 1f);
+        cancelLp.rightMargin = (int) (6 * density);
+        btnCancel.setLayoutParams(cancelLp);
+        btnCancel.setBackgroundResource(R.drawable.btn_m3_tonal);
+        btnCancel.setText("CANCEL");
+        btnCancel.setTextColor(getColor(R.color.studio_text_secondary));
+        btnCancel.setTextSize(11f);
+        btnCancel.setTypeface(Typeface.DEFAULT_BOLD);
+
+        Button btnSend = new Button(this);
+        LinearLayout.LayoutParams sendLp = new LinearLayout.LayoutParams(0, (int) (38 * density), 1.4f);
+        sendLp.leftMargin = (int) (6 * density);
+        btnSend.setLayoutParams(sendLp);
+        btnSend.setBackgroundResource(R.drawable.chip_active);
+        btnSend.setText("SEND FEEDBACK ✉");
+        btnSend.setTextColor(getColor(R.color.studio_chip_active_text));
+        btnSend.setTextSize(11f);
+        btnSend.setTypeface(Typeface.DEFAULT_BOLD);
+
+        btnRow.addView(btnCancel);
+        btnRow.addView(btnSend);
+        root.addView(btnRow);
+
+        AlertDialog dialog = new AlertDialog.Builder(this).setView(root).create();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
+        btnSend.setOnClickListener(v -> {
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            String msg = etFeedback.getText().toString().trim();
+            String deviceInfo = "Device: " + Build.MANUFACTURER + " " + Build.MODEL
+                    + " (Android " + Build.VERSION.RELEASE + " / SDK " + Build.VERSION.SDK_INT + ")\n"
+                    + "App: KR Live Studio v1.11.0\n\n"
+                    + (msg.isEmpty() ? "[Feedback / Suggestion]" : msg);
+            dialog.dismiss();
+            try {
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+                emailIntent.setData(Uri.parse("mailto:support@kimrosil.com"));
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "KR Live Studio v1.11.0 Feedback (" + Build.MODEL + ")");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, deviceInfo);
+                startActivity(Intent.createChooser(emailIntent, "Send Feedback via Email"));
+            } catch (Exception e) {
+                ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                if (cm != null) {
+                    cm.setPrimaryClip(ClipData.newPlainText("KR Live Studio Feedback", deviceInfo));
+                }
+                Toast.makeText(this, "Feedback copied! Opening Studio Portal...", Toast.LENGTH_SHORT).show();
+                openWebUrl("https://apps.kimrosil.com/kim-live-studio/");
+            }
+        });
 
         dialog.show();
     }
