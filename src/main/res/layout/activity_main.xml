@@ -1008,7 +1008,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Mic Audio Ingest Switch -->
+            <!-- Master Broadcast Audio Ingest Switch -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -1024,7 +1024,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Microphone Commentary Ingest"
+                        android:text="Broadcast Audio Ingest"
                         android:textColor="@color/studio_text_primary"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -1048,6 +1048,7 @@
 
             <!-- Audio Ingest Source Routing Selector (Android 10+) -->
             <LinearLayout
+                android:id="@+id/layoutAudioModeRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -1094,7 +1095,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <!-- Studio Dual-Audio Mixer Panel (Mic Gain, Game Sound Gain & Voice Auto-Ducking) -->
+            <!-- Studio Dual-Audio Mixer Panel (Context-Aware per Audio Mode) -->
             <LinearLayout
                 android:id="@+id/layoutAudioMixer"
                 android:layout_width="match_parent"
@@ -1104,83 +1105,98 @@
                 android:orientation="vertical"
                 android:padding="10dp">
 
-                <!-- Mic Gain Row -->
+                <!-- Mic Gain Group (Shown in MIC ONLY & DUAL MIX) -->
                 <LinearLayout
+                    android:id="@+id/layoutMicGainGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:letterSpacing="0.03"
-                        android:text="MIC VOICE GAIN"
-                        android:textColor="@color/studio_text_secondary"
-                        android:textSize="10sp"
-                        android:textStyle="bold" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tvMicGainValue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="100%"
-                        android:textColor="@color/studio_cyan"
-                        android:textSize="11sp"
-                        android:textStyle="bold"
-                        android:typeface="monospace" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:letterSpacing="0.03"
+                            android:text="MIC VOICE GAIN"
+                            android:textColor="@color/studio_text_secondary"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvMicGainValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="100%"
+                            android:textColor="@color/studio_cyan"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:typeface="monospace" />
+                    </LinearLayout>
+
+                    <SeekBar
+                        android:id="@+id/seekMicGain"
+                        android:layout_width="match_parent"
+                        android:layout_height="26dp"
+                        android:max="200"
+                        android:progress="100"
+                        android:progressDrawable="@drawable/seekbar_studio_track"
+                        android:thumb="@drawable/seekbar_studio_thumb" />
                 </LinearLayout>
 
-                <SeekBar
-                    android:id="@+id/seekMicGain"
-                    android:layout_width="match_parent"
-                    android:layout_height="26dp"
-                    android:max="200"
-                    android:progress="100"
-                    android:progressDrawable="@drawable/seekbar_studio_track"
-                    android:thumb="@drawable/seekbar_studio_thumb" />
-
-                <!-- Game / Internal Audio Gain Row -->
+                <!-- Game / Internal Audio Gain Group (Shown in GAME SOUND & DUAL MIX) -->
                 <LinearLayout
+                    android:id="@+id/layoutInternalGainGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:letterSpacing="0.03"
-                        android:text="GAME / SYSTEM AUDIO GAIN"
-                        android:textColor="@color/studio_text_secondary"
-                        android:textSize="10sp"
-                        android:textStyle="bold" />
+                        android:layout_marginTop="2dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tvInternalGainValue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="80%"
-                        android:textColor="@color/studio_green"
-                        android:textSize="11sp"
-                        android:textStyle="bold"
-                        android:typeface="monospace" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:letterSpacing="0.03"
+                            android:text="GAME / SYSTEM AUDIO GAIN"
+                            android:textColor="@color/studio_text_secondary"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvInternalGainValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="80%"
+                            android:textColor="@color/studio_green"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:typeface="monospace" />
+                    </LinearLayout>
+
+                    <SeekBar
+                        android:id="@+id/seekInternalGain"
+                        android:layout_width="match_parent"
+                        android:layout_height="26dp"
+                        android:max="200"
+                        android:progress="80"
+                        android:progressDrawable="@drawable/seekbar_studio_track"
+                        android:thumb="@drawable/seekbar_studio_thumb" />
                 </LinearLayout>
 
-                <SeekBar
-                    android:id="@+id/seekInternalGain"
-                    android:layout_width="match_parent"
-                    android:layout_height="26dp"
-                    android:max="200"
-                    android:progress="80"
-                    android:progressDrawable="@drawable/seekbar_studio_track"
-                    android:thumb="@drawable/seekbar_studio_thumb" />
-
-                <!-- Voice Auto-Ducking Toggle -->
+                <!-- Voice Auto-Ducking Group (Shown in DUAL MIX only) -->
                 <LinearLayout
+                    android:id="@+id/layoutAutoDuckGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"

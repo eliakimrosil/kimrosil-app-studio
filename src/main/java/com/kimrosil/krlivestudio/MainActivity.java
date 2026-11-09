@@ -175,6 +175,7 @@ public class MainActivity extends Activity {
     // Audio & Facecam Controls
     private Switch switchMicAudio;
     private TextView tvMicStatusHint;
+    private View layoutAudioModeRow;
     private Button btnAudioMic;
     private Button btnAudioInternal;
     private Button btnAudioDual;
@@ -184,6 +185,10 @@ public class MainActivity extends Activity {
     private int selectedAudioMode = AUDIO_MODE_MIC;
 
     // Dual-Audio Mixer & Local Recording Controls
+    private View layoutAudioMixer;
+    private View layoutMicGainGroup;
+    private View layoutInternalGainGroup;
+    private View layoutAutoDuckGroup;
     private SeekBar seekMicGain;
     private TextView tvMicGainValue;
     private SeekBar seekInternalGain;
@@ -451,6 +456,11 @@ public class MainActivity extends Activity {
 
         switchMicAudio = findViewById(R.id.switchMicAudio);
         tvMicStatusHint = findViewById(R.id.tvMicStatusHint);
+        layoutAudioModeRow = findViewById(R.id.layoutAudioModeRow);
+        layoutAudioMixer = findViewById(R.id.layoutAudioMixer);
+        layoutMicGainGroup = findViewById(R.id.layoutMicGainGroup);
+        layoutInternalGainGroup = findViewById(R.id.layoutInternalGainGroup);
+        layoutAutoDuckGroup = findViewById(R.id.layoutAutoDuckGroup);
         seekMicGain = findViewById(R.id.seekMicGain);
         tvMicGainValue = findViewById(R.id.tvMicGainValue);
         seekInternalGain = findViewById(R.id.seekInternalGain);
@@ -638,6 +648,7 @@ public class MainActivity extends Activity {
         boolean localRecord = prefs.getBoolean("pref_local_record", false);
 
         StreamService.setMicMuted(!micEnabled);
+        StreamService.setAudioMode(selectedAudioMode);
         StreamService.setAbrEnabled(abrEnabled);
         StreamService.setMicGainPercent(micGain);
         StreamService.setInternalGainPercent(internalGain);
@@ -662,13 +673,14 @@ public class MainActivity extends Activity {
         if (switchLocalRecord != null) switchLocalRecord.setChecked(localRecord);
         updateLocalRecordHint(localRecord);
 
+        switchMicAudio.setChecked(micEnabled);
+        switchFacecam.setChecked(facecamEnabled);
+
         updateResolutionButtons();
         updateFpsButtons();
         updateOrientationButtons();
         updateBitrateHint();
         updateAudioModeButtons();
-        switchMicAudio.setChecked(micEnabled);
-        switchFacecam.setChecked(facecamEnabled);
 
         if (facecamEnabled && checkOverlayPermission()) {
             startFacecamService();
@@ -860,7 +872,7 @@ public class MainActivity extends Activity {
             buttonView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             StreamService.setMicMuted(!isChecked);
             FloatingCamManager.getInstance(this).setMicMutedState(!isChecked);
-            updateMicHint(isChecked);
+            updateAudioModeButtons();
             saveCurrentPreferences();
         });
 
@@ -997,6 +1009,9 @@ public class MainActivity extends Activity {
         boolean isMic = (selectedAudioMode == AUDIO_MODE_MIC);
         boolean isInt = (selectedAudioMode == AUDIO_MODE_INTERNAL);
         boolean isDual = (selectedAudioMode == AUDIO_MODE_DUAL);
+        boolean masterEnabled = (switchMicAudio == null || switchMicAudio.isChecked());
+
+        StreamService.setAudioMode(selectedAudioMode);
 
         btnAudioMic.setBackgroundResource(isMic ? R.drawable.chip_active : R.drawable.chip_inactive);
         btnAudioMic.setTextColor(getColor(isMic ? R.color.studio_chip_active_text : R.color.studio_chip_text));
@@ -1007,7 +1022,23 @@ public class MainActivity extends Activity {
         btnAudioDual.setBackgroundResource(isDual ? R.drawable.chip_active : R.drawable.chip_inactive);
         btnAudioDual.setTextColor(getColor(isDual ? R.color.studio_chip_active_text : R.color.studio_chip_text));
 
-        updateMicHint(switchMicAudio != null && switchMicAudio.isChecked());
+        if (layoutAudioModeRow != null) {
+            layoutAudioModeRow.setVisibility(masterEnabled ? View.VISIBLE : View.GONE);
+        }
+        if (layoutAudioMixer != null) {
+            layoutAudioMixer.setVisibility(masterEnabled ? View.VISIBLE : View.GONE);
+        }
+        if (layoutMicGainGroup != null) {
+            layoutMicGainGroup.setVisibility((isMic || isDual) ? View.VISIBLE : View.GONE);
+        }
+        if (layoutInternalGainGroup != null) {
+            layoutInternalGainGroup.setVisibility((isInt || isDual) ? View.VISIBLE : View.GONE);
+        }
+        if (layoutAutoDuckGroup != null) {
+            layoutAutoDuckGroup.setVisibility(isDual ? View.VISIBLE : View.GONE);
+        }
+
+        updateMicHint(masterEnabled);
     }
 
     private void updateMicHint(boolean enabled) {
@@ -1722,6 +1753,7 @@ public class MainActivity extends Activity {
         private static volatile boolean isStreaming = false;
         private static volatile boolean isPrivacyShieldActive = false;
         private static volatile boolean isMicMuted = false;
+        private static volatile int activeAudioMode = AUDIO_MODE_MIC;
         private static volatile boolean isAbrEnabled = true;
         private static volatile int abrTargetKbps = 0;
         private static volatile int micGainPercent = 100;
@@ -1761,6 +1793,14 @@ public class MainActivity extends Activity {
 
         public static void setMicMuted(boolean muted) {
             isMicMuted = muted;
+        }
+
+        public static int getAudioMode() {
+            return activeAudioMode;
+        }
+
+        public static void setAudioMode(int mode) {
+            activeAudioMode = mode;
         }
 
         public static boolean isAbrEnabled() {
@@ -2015,6 +2055,7 @@ public class MainActivity extends Activity {
             }, new Handler(Looper.getMainLooper()));
 
             isStreaming = true;
+            activeAudioMode = audioMode;
             masterStreamStartNs = SystemClock.elapsedRealtimeNanos();
             streamStartTime = SystemClock.elapsedRealtime();
             droppedFrames = 0;
@@ -2511,7 +2552,8 @@ public class MainActivity extends Activity {
             channelCount = 2;
 
             try {
-                if (audioMode == AUDIO_MODE_MIC || audioMode == AUDIO_MODE_DUAL) {
+                // Initialize both mic and internal capture when available so audio modes can be hot-swapped live
+                try {
                     micRecord = new AudioRecord(
                             MediaRecorder.AudioSource.MIC,
                             SAMPLE_RATE,
@@ -2530,10 +2572,11 @@ public class MainActivity extends Activity {
                                 Math.max(minBufSize * 2, 8192)
                         );
                     }
+                } catch (Exception e) {
+                    Log.w("KimLive-AudioEncoder", "Microphone audio capture init failed: " + e.getMessage());
                 }
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && projection != null &&
-                        (audioMode == AUDIO_MODE_INTERNAL || audioMode == AUDIO_MODE_DUAL)) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && projection != null) {
                     try {
                         AudioPlaybackCaptureConfiguration config = new AudioPlaybackCaptureConfiguration.Builder(projection)
                                 .addMatchingUsage(AudioAttributes.USAGE_MEDIA)
@@ -2595,10 +2638,14 @@ public class MainActivity extends Activity {
 
                 while (isRunning.get()) {
                     int readBytes = 0;
+                    int currentMode = StreamService.getAudioMode();
                     boolean isPrivacyMuted = StreamService.isPrivacyShieldActive();
-                    boolean isMicMuted = StreamService.isMicMuted() || isPrivacyMuted;
-                    float micGain = isMicMuted ? 0.0f : (StreamService.getMicGainPercent() / 100.0f);
-                    float baseIntGain = isPrivacyMuted ? 0.0f : (StreamService.getInternalGainPercent() / 100.0f);
+                    boolean isMasterMuted = StreamService.isMicMuted() || isPrivacyMuted;
+                    boolean useMic = (currentMode == AUDIO_MODE_MIC || currentMode == AUDIO_MODE_DUAL);
+                    boolean useInternal = (currentMode == AUDIO_MODE_INTERNAL || currentMode == AUDIO_MODE_DUAL);
+
+                    float micGain = (isMasterMuted || !useMic) ? 0.0f : (StreamService.getMicGainPercent() / 100.0f);
+                    float baseIntGain = (isMasterMuted || !useInternal) ? 0.0f : (StreamService.getInternalGainPercent() / 100.0f);
 
                     if (micRecord != null && internalRecord != null) {
                         int mRead = micRecord.read(micPcm, 0, micPcm.length);
@@ -2615,7 +2662,7 @@ public class MainActivity extends Activity {
                         readBytes = (mRead > 0) ? mRead : iRead;
                         if (readBytes > 0) {
                             int micPeak = 0;
-                            if (!isMicMuted && mRead > 0) {
+                            if (micGain > 0.0f && mRead > 0) {
                                 for (int i = 0; i < mRead - 1; i += 2) {
                                     short sM = (short) ((micPcm[i] & 0xFF) | (micPcm[i + 1] << 8));
                                     int absM = Math.abs((int) (sM * micGain));
@@ -2623,8 +2670,8 @@ public class MainActivity extends Activity {
                                 }
                             }
 
-                            if (StreamService.isAutoDuckEnabled()) {
-                                if (!isMicMuted && micPeak > 1800) {
+                            if (currentMode == AUDIO_MODE_DUAL && StreamService.isAutoDuckEnabled()) {
+                                if (micGain > 0.0f && micPeak > 1800) {
                                     duckFactor = Math.max(0.30f, duckFactor * 0.82f);
                                 } else {
                                     duckFactor = Math.min(1.0f, duckFactor + 0.04f);
