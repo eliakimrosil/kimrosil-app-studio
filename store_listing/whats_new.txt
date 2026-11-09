@@ -1,2 +1,2 @@
-Release v1.10.5 - KR Live Studio
-Closed testing release targeting Android 16 (API 36) with embedded R8 deobfuscation mapping.
+Release v1.11.0 - KR Live Studio
+Added Dynamic Adaptive Bitrate (ABR), Mic & Game Audio Gain Mixer with Smart Voice Auto-Ducking, Privacy Shield BRB Slate Renderer, Simultaneous Local MP4 VOD Recording, RTMP Ping/Pong & Window Acknowledgement keep-alives, and 1-tap Mic/Shield/Rotate controls on the Floating Facecam PiP overlay.

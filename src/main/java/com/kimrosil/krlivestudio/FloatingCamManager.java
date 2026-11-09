@@ -63,6 +63,8 @@ public class FloatingCamManager {
         default void onRotationModeChanged(AutoRotateMode mode, int effectiveDegrees) {}
         default void onRequestStartBroadcast() {}
         default void onBroadcastToggled(boolean isLive) {}
+        default void onMicMuteToggled(boolean isMuted) {}
+        default void onPrivacyShieldToggled(boolean isShield) {}
     }
 
     public enum AutoRotateMode {
@@ -111,10 +113,15 @@ public class FloatingCamManager {
     // Camera Header Controls
     private View pipHeaderScroll;
     private View pipHeader;
+    private TextView btnPipMic;
+    private TextView btnPipShield;
+    private TextView btnPipRotate;
     private TextView btnPipFlip;
     private TextView btnPipShape;
     private TextView btnPipBroadcast;
     private TextureView tvPipCamera;
+    private boolean isMicMuted = false;
+    private boolean isPrivacyShielded = false;
 
     // Bottom Dismiss Target Overlay (Drag to Close)
     private View dismissOverlayView;
@@ -225,6 +232,29 @@ public class FloatingCamManager {
                     btnPipBroadcast.setBackgroundResource(isLive ? R.drawable.btn_pip_broadcast_live : R.drawable.btn_pip_broadcast_standby);
                     btnPipBroadcast.setContentDescription(isLive ? "Stop Broadcast" : "Start Broadcast");
                 }
+            }
+        });
+    }
+
+    public void setMicMutedState(boolean muted) {
+        this.isMicMuted = muted;
+        mainHandler.post(() -> {
+            if (btnPipMic != null) {
+                btnPipMic.setText(muted ? "🔇" : "🎙");
+                btnPipMic.setTextColor(muted ? 0xFFF59E0B : 0xFF00E5FF);
+                btnPipMic.setContentDescription(muted ? "Unmute Microphone" : "Mute Microphone");
+            }
+        });
+    }
+
+    public void setPrivacyShieldState(boolean shielded) {
+        this.isPrivacyShielded = shielded;
+        mainHandler.post(() -> {
+            if (btnPipShield != null) {
+                btnPipShield.setText("🛡");
+                btnPipShield.setTextColor(shielded ? 0xFFEF4444 : 0xFF00E5FF);
+                btnPipShield.setBackgroundResource(shielded ? R.drawable.btn_pip_broadcast_live : R.drawable.btn_pip_action);
+                btnPipShield.setContentDescription(shielded ? "Disable Privacy Shield" : "Enable Privacy Shield");
             }
         });
     }
@@ -346,6 +376,10 @@ public class FloatingCamManager {
         this.autoRotateMode = mode;
         currentRotationDegrees = getEffectiveRotationDegrees();
 
+        if (btnPipRotate != null) {
+            btnPipRotate.setText(mode == AutoRotateMode.AUTO_GAME ? "↻" : mode.badge);
+        }
+
         if (tvPipCamera != null && tvPipCamera.getWidth() > 0 && tvPipCamera.getHeight() > 0) {
             configureTransform(tvPipCamera.getWidth(), tvPipCamera.getHeight());
         }
@@ -365,7 +399,19 @@ public class FloatingCamManager {
     }
 
     public int getEffectiveRotationDegrees() {
-        return computeAutoRotationDegrees();
+        switch (autoRotateMode) {
+            case LOCK_0:
+                return computeCompensationDegrees(0);
+            case LOCK_90:
+                return computeCompensationDegrees(90);
+            case LOCK_180:
+                return computeCompensationDegrees(180);
+            case LOCK_270:
+                return computeCompensationDegrees(270);
+            case AUTO_GAME:
+            default:
+                return computeAutoRotationDegrees();
+        }
     }
 
     public int computeCompensationDegrees(int displayDegrees) {
@@ -694,6 +740,9 @@ public class FloatingCamManager {
         if (!isOverlayShowing || overlayView == null) return;
         areControlsVisible = false;
         mainHandler.post(() -> {
+            if (btnPipMic != null) btnPipMic.setVisibility(View.GONE);
+            if (btnPipShield != null) btnPipShield.setVisibility(View.GONE);
+            if (btnPipRotate != null) btnPipRotate.setVisibility(View.GONE);
             if (btnPipFlip != null) btnPipFlip.setVisibility(View.GONE);
             if (btnPipShape != null) btnPipShape.setVisibility(View.GONE);
             if (btnPipBroadcast != null) btnPipBroadcast.setVisibility(View.GONE);
@@ -708,6 +757,9 @@ public class FloatingCamManager {
         areControlsVisible = true;
         mainHandler.removeCallbacks(hideControlsRunnable);
         mainHandler.post(() -> {
+            if (btnPipMic != null) btnPipMic.setVisibility(View.VISIBLE);
+            if (btnPipShield != null) btnPipShield.setVisibility(View.VISIBLE);
+            if (btnPipRotate != null) btnPipRotate.setVisibility(View.VISIBLE);
             if (btnPipFlip != null) btnPipFlip.setVisibility(View.VISIBLE);
             if (btnPipShape != null) btnPipShape.setVisibility(View.VISIBLE);
             if (btnPipBroadcast != null) btnPipBroadcast.setVisibility(View.VISIBLE);
@@ -790,10 +842,20 @@ public class FloatingCamManager {
 
         pipHeaderScroll = overlayView.findViewById(R.id.pipHeaderScroll);
         pipHeader = overlayView.findViewById(R.id.pipHeader);
+        btnPipMic = overlayView.findViewById(R.id.pipBtnMic);
+        btnPipShield = overlayView.findViewById(R.id.pipBtnShield);
+        btnPipRotate = overlayView.findViewById(R.id.pipBtnRotate);
         btnPipFlip = overlayView.findViewById(R.id.pipBtnFlip);
         btnPipShape = overlayView.findViewById(R.id.pipBtnShape);
         btnPipBroadcast = overlayView.findViewById(R.id.pipBtnBroadcast);
         tvPipCamera = overlayView.findViewById(R.id.pipCameraView);
+
+        setMicMutedState(MainActivity.StreamService.isMicMuted());
+        setPrivacyShieldState(MainActivity.StreamService.isPrivacyShieldActive());
+
+        if (btnPipRotate != null) {
+            btnPipRotate.setText(autoRotateMode == AutoRotateMode.AUTO_GAME ? "↻" : autoRotateMode.badge);
+        }
 
         if (btnPipShape != null) {
             btnPipShape.setText(currentAspectRatio.icon);
@@ -833,6 +895,49 @@ public class FloatingCamManager {
     }
 
     private void setupOverlayListeners() {
+        if (btnPipMic != null) {
+            btnPipMic.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                boolean nextMute = !MainActivity.StreamService.isMicMuted();
+                MainActivity.StreamService.setMicMuted(nextMute);
+                setMicMutedState(nextMute);
+                Toast.makeText(appContext, nextMute ? "🔇 Mic Muted" : "🎙 Mic Live", Toast.LENGTH_SHORT).show();
+                if (stateListener != null) {
+                    stateListener.onMicMuteToggled(nextMute);
+                }
+                resetControlsTimer();
+            });
+        }
+
+        if (btnPipShield != null) {
+            btnPipShield.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                boolean nextShield = !MainActivity.StreamService.isPrivacyShieldActive();
+                MainActivity.StreamService.setPrivacyShieldActive(nextShield);
+                setPrivacyShieldState(nextShield);
+                if (MainActivity.StreamService.isStreamingActive()) {
+                    Intent pIntent = new Intent(appContext, MainActivity.StreamService.class);
+                    pIntent.setAction(MainActivity.StreamService.ACTION_TOGGLE_PRIVACY);
+                    pIntent.putExtra("privacyActive", nextShield);
+                    appContext.startService(pIntent);
+                }
+                Toast.makeText(appContext, nextShield ? "🛡 Privacy Shield ON (BRB Slate)" : "🛡 Privacy Shield OFF (Live)", Toast.LENGTH_SHORT).show();
+                if (stateListener != null) {
+                    stateListener.onPrivacyShieldToggled(nextShield);
+                }
+                resetControlsTimer();
+            });
+        }
+
+        if (btnPipRotate != null) {
+            btnPipRotate.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                cycleAutoRotateMode();
+                Toast.makeText(appContext, "Facecam Rotate: " + autoRotateMode.title, Toast.LENGTH_SHORT).show();
+                resetControlsTimer();
+            });
+        }
+
         if (btnPipFlip != null) {
             btnPipFlip.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);

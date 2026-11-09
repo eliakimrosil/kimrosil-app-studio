@@ -17,9 +17,12 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
 import android.content.res.Configuration;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.SurfaceTexture;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
@@ -36,12 +39,15 @@ import android.media.AudioRecord;
 import android.media.MediaCodec;
 import android.media.MediaCodecInfo;
 import android.media.MediaFormat;
+import android.media.MediaMuxer;
 import android.media.MediaRecorder;
+import android.media.MediaScannerConnection;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -76,6 +82,7 @@ import android.widget.Toast;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
@@ -83,8 +90,10 @@ import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -92,6 +101,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicLong;
 
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
@@ -159,6 +169,8 @@ public class MainActivity extends Activity {
     private Button btnBitrate4500;
     private Button btnBitrate6000;
     private TextView tvBitrateHint;
+    private Switch switchAbr;
+    private TextView tvAbrHint;
 
     // Audio & Facecam Controls
     private Switch switchMicAudio;
@@ -170,6 +182,15 @@ public class MainActivity extends Activity {
     public static final int AUDIO_MODE_INTERNAL = 1;
     public static final int AUDIO_MODE_DUAL = 2;
     private int selectedAudioMode = AUDIO_MODE_MIC;
+
+    // Dual-Audio Mixer & Local Recording Controls
+    private SeekBar seekMicGain;
+    private TextView tvMicGainValue;
+    private SeekBar seekInternalGain;
+    private TextView tvInternalGainValue;
+    private Switch switchAutoDuck;
+    private Switch switchLocalRecord;
+    private TextView tvLocalRecordHint;
 
     private Switch switchFacecam;
     private Button btnFlipCamera;
@@ -314,6 +335,26 @@ public class MainActivity extends Activity {
             public void onBroadcastToggled(boolean isLive) {
                 runOnUiThread(() -> updateUiStreamState(isLive));
             }
+
+            @Override
+            public void onMicMuteToggled(boolean isMuted) {
+                runOnUiThread(() -> {
+                    if (switchMicAudio != null && switchMicAudio.isChecked() == isMuted) {
+                        switchMicAudio.setChecked(!isMuted);
+                    }
+                    updateMicHint(!isMuted);
+                });
+            }
+
+            @Override
+            public void onPrivacyShieldToggled(boolean isShield) {
+                runOnUiThread(() -> {
+                    if (btnPrivacyShield != null) {
+                        btnPrivacyShield.setText(isShield ? "🛡️ SHIELD: ON" : "🛡️ SHIELD: OFF");
+                        btnPrivacyShield.setTextColor(getColor(isShield ? R.color.studio_ruby : R.color.studio_cyan));
+                    }
+                });
+            }
         });
     }
 
@@ -405,9 +446,19 @@ public class MainActivity extends Activity {
         btnBitrate4500 = findViewById(R.id.btnBitrate4500);
         btnBitrate6000 = findViewById(R.id.btnBitrate6000);
         tvBitrateHint = findViewById(R.id.tvBitrateHint);
+        switchAbr = findViewById(R.id.switchAbr);
+        tvAbrHint = findViewById(R.id.tvAbrHint);
 
         switchMicAudio = findViewById(R.id.switchMicAudio);
         tvMicStatusHint = findViewById(R.id.tvMicStatusHint);
+        seekMicGain = findViewById(R.id.seekMicGain);
+        tvMicGainValue = findViewById(R.id.tvMicGainValue);
+        seekInternalGain = findViewById(R.id.seekInternalGain);
+        tvInternalGainValue = findViewById(R.id.tvInternalGainValue);
+        switchAutoDuck = findViewById(R.id.switchAutoDuck);
+        switchLocalRecord = findViewById(R.id.switchLocalRecord);
+        tvLocalRecordHint = findViewById(R.id.tvLocalRecordHint);
+
         switchFacecam = findViewById(R.id.switchFacecam);
         btnFlipCamera = findViewById(R.id.btnFlipCamera);
         tvOverlayStatus = findViewById(R.id.tvOverlayStatus);
@@ -580,6 +631,19 @@ public class MainActivity extends Activity {
         selectedAudioMode = prefs.getInt("pref_audio_mode", AUDIO_MODE_MIC);
         boolean micEnabled = prefs.getBoolean("pref_mic_enabled", true);
         boolean facecamEnabled = prefs.getBoolean("pref_facecam_enabled", true);
+        boolean abrEnabled = prefs.getBoolean("pref_abr_enabled", true);
+        int micGain = prefs.getInt("pref_mic_gain", 100);
+        int internalGain = prefs.getInt("pref_internal_gain", 80);
+        boolean autoDuck = prefs.getBoolean("pref_auto_duck", true);
+        boolean localRecord = prefs.getBoolean("pref_local_record", false);
+
+        StreamService.setMicMuted(!micEnabled);
+        StreamService.setAbrEnabled(abrEnabled);
+        StreamService.setMicGainPercent(micGain);
+        StreamService.setInternalGainPercent(internalGain);
+        StreamService.setAutoDuckEnabled(autoDuck);
+        StreamService.setLocalRecordingEnabled(localRecord);
+        FloatingCamManager.getInstance(this).setMicMutedState(!micEnabled);
 
         selectPlatform(selectedPlatformIndex);
         if (selectedPlatformIndex == 5 && !customUrl.isEmpty()) {
@@ -588,6 +652,15 @@ public class MainActivity extends Activity {
 
         seekBitrate.setProgress(targetBitrateKbps);
         tvBitrateValue.setText(String.format(Locale.US, "%,d kbps", targetBitrateKbps));
+
+        if (switchAbr != null) switchAbr.setChecked(abrEnabled);
+        if (seekMicGain != null) seekMicGain.setProgress(micGain);
+        if (tvMicGainValue != null) tvMicGainValue.setText(micGain + "%");
+        if (seekInternalGain != null) seekInternalGain.setProgress(internalGain);
+        if (tvInternalGainValue != null) tvInternalGainValue.setText(internalGain + "%");
+        if (switchAutoDuck != null) switchAutoDuck.setChecked(autoDuck);
+        if (switchLocalRecord != null) switchLocalRecord.setChecked(localRecord);
+        updateLocalRecordHint(localRecord);
 
         updateResolutionButtons();
         updateFpsButtons();
@@ -622,6 +695,11 @@ public class MainActivity extends Activity {
         editor.putInt("pref_audio_mode", selectedAudioMode);
         editor.putBoolean("pref_mic_enabled", switchMicAudio.isChecked());
         editor.putBoolean("pref_facecam_enabled", switchFacecam.isChecked());
+        if (switchAbr != null) editor.putBoolean("pref_abr_enabled", switchAbr.isChecked());
+        if (seekMicGain != null) editor.putInt("pref_mic_gain", seekMicGain.getProgress());
+        if (seekInternalGain != null) editor.putInt("pref_internal_gain", seekInternalGain.getProgress());
+        if (switchAutoDuck != null) editor.putBoolean("pref_auto_duck", switchAutoDuck.isChecked());
+        if (switchLocalRecord != null) editor.putBoolean("pref_local_record", switchLocalRecord.isChecked());
         editor.apply();
     }
 
@@ -765,11 +843,75 @@ public class MainActivity extends Activity {
         btnBitrate4500.setOnClickListener(v -> setBitrate(4500));
         btnBitrate6000.setOnClickListener(v -> setBitrate(6000));
 
+        if (switchAbr != null) {
+            switchAbr.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                buttonView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                StreamService.setAbrEnabled(isChecked);
+                if (tvAbrHint != null) {
+                    tvAbrHint.setText(isChecked
+                            ? "Auto-scales encoder bitrate on network congestion"
+                            : "Fixed constant bitrate (CBR) locked");
+                }
+                saveCurrentPreferences();
+            });
+        }
+
         switchMicAudio.setOnCheckedChangeListener((buttonView, isChecked) -> {
             buttonView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+            StreamService.setMicMuted(!isChecked);
+            FloatingCamManager.getInstance(this).setMicMutedState(!isChecked);
             updateMicHint(isChecked);
             saveCurrentPreferences();
         });
+
+        if (seekMicGain != null) {
+            seekMicGain.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    StreamService.setMicGainPercent(progress);
+                    if (tvMicGainValue != null) tvMicGainValue.setText(progress + "%");
+                }
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {}
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                    saveCurrentPreferences();
+                }
+            });
+        }
+
+        if (seekInternalGain != null) {
+            seekInternalGain.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    StreamService.setInternalGainPercent(progress);
+                    if (tvInternalGainValue != null) tvInternalGainValue.setText(progress + "%");
+                }
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {}
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                    saveCurrentPreferences();
+                }
+            });
+        }
+
+        if (switchAutoDuck != null) {
+            switchAutoDuck.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                buttonView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                StreamService.setAutoDuckEnabled(isChecked);
+                saveCurrentPreferences();
+            });
+        }
+
+        if (switchLocalRecord != null) {
+            switchLocalRecord.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                buttonView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                StreamService.setLocalRecordingEnabled(isChecked);
+                updateLocalRecordHint(isChecked);
+                saveCurrentPreferences();
+            });
+        }
 
         switchFacecam.setOnCheckedChangeListener((buttonView, isChecked) -> {
             buttonView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
@@ -886,9 +1028,33 @@ public class MainActivity extends Activity {
         }
     }
 
+    private void updateLocalRecordHint(boolean enabled) {
+        if (tvLocalRecordHint == null) return;
+        if (enabled) {
+            String activeFile = StreamService.getLastRecordedFilePath();
+            if (StreamService.isStreamingActive() && activeFile != null && !activeFile.isEmpty()) {
+                tvLocalRecordHint.setText("🔴 REC VOD: " + new File(activeFile).getName());
+                tvLocalRecordHint.setTextColor(getColor(R.color.studio_ruby));
+            } else {
+                tvLocalRecordHint.setText("ARMED: Saves MP4 VOD to Movies/KRLiveStudio/");
+                tvLocalRecordHint.setTextColor(getColor(R.color.studio_cyan));
+            }
+        } else {
+            String lastFile = StreamService.getLastRecordedFilePath();
+            if (lastFile != null && !lastFile.isEmpty()) {
+                tvLocalRecordHint.setText("Saved: " + new File(lastFile).getName());
+                tvLocalRecordHint.setTextColor(getColor(R.color.studio_green));
+            } else {
+                tvLocalRecordHint.setText("Zero-CPU tee to Movies/KRLiveStudio/");
+                tvLocalRecordHint.setTextColor(getColor(R.color.studio_text_secondary));
+            }
+        }
+    }
+
     private void togglePrivacyShield() {
         boolean nextState = !StreamService.isPrivacyShieldActive();
         StreamService.setPrivacyShieldActive(nextState);
+        FloatingCamManager.getInstance(this).setPrivacyShieldState(nextState);
         if (btnPrivacyShield != null) {
             btnPrivacyShield.setText(nextState ? "🛡️ SHIELD: ON" : "🛡️ SHIELD: OFF");
             btnPrivacyShield.setTextColor(getColor(nextState ? R.color.studio_ruby : R.color.studio_cyan));
@@ -896,8 +1062,9 @@ public class MainActivity extends Activity {
         if (StreamService.isStreamingActive()) {
             Intent pIntent = new Intent(this, StreamService.class);
             pIntent.setAction(StreamService.ACTION_TOGGLE_PRIVACY);
+            pIntent.putExtra("privacyActive", nextState);
             startService(pIntent);
-            Toast.makeText(this, nextState ? "Privacy Shield ENABLED (Muted & Paused)" : "Privacy Shield DISABLED (Live broadcast resumed)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, nextState ? "Privacy Shield ENABLED (BRB Slate & Muted)" : "Privacy Shield DISABLED (Live broadcast resumed)", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, nextState ? "Privacy Shield armed for broadcast" : "Privacy Shield disarmed", Toast.LENGTH_SHORT).show();
         }
@@ -1424,12 +1591,16 @@ public class MainActivity extends Activity {
                 boolean shielded = StreamService.isPrivacyShieldActive();
                 String rtmpSt = StreamService.getRtmpStatus();
                 long drops = StreamService.getDroppedFramesCount();
+                int abrKbps = StreamService.getAbrTargetKbps();
                 if (shielded) {
-                    tvStreamHealth.setText("HEALTH: SHIELDED (BRB)");
+                    tvStreamHealth.setText("HEALTH: SHIELDED (BRB SLATE)");
                     tvStreamHealth.setTextColor(getColor(R.color.studio_cyan));
                 } else if (rtmpSt != null && rtmpSt.startsWith("RECONNECTING")) {
                     tvStreamHealth.setText("HEALTH: " + rtmpSt);
                     tvStreamHealth.setTextColor(getColor(R.color.studio_ruby));
+                } else if (abrKbps > 0 && abrKbps < targetBitrateKbps) {
+                    tvStreamHealth.setText("HEALTH: ABR SCALED (" + abrKbps + "k)");
+                    tvStreamHealth.setTextColor(getColor(R.color.studio_amber));
                 } else if (drops > 50) {
                     tvStreamHealth.setText("HEALTH: CONGESTED (" + drops + " drops)");
                     tvStreamHealth.setTextColor(getColor(R.color.studio_amber));
@@ -1447,6 +1618,10 @@ public class MainActivity extends Activity {
             boolean isShield = StreamService.isPrivacyShieldActive();
             btnPrivacyShield.setText(isShield ? "🛡️ SHIELD: ON" : "🛡️ SHIELD: OFF");
             btnPrivacyShield.setTextColor(getColor(isShield ? R.color.studio_ruby : R.color.studio_cyan));
+        }
+
+        if (switchLocalRecord != null) {
+            updateLocalRecordHint(switchLocalRecord.isChecked());
         }
     }
 
@@ -1546,10 +1721,18 @@ public class MainActivity extends Activity {
 
         private static volatile boolean isStreaming = false;
         private static volatile boolean isPrivacyShieldActive = false;
+        private static volatile boolean isMicMuted = false;
+        private static volatile boolean isAbrEnabled = true;
+        private static volatile int abrTargetKbps = 0;
+        private static volatile int micGainPercent = 100;
+        private static volatile int internalGainPercent = 80;
+        private static volatile boolean isAutoDuckEnabled = true;
+        private static volatile boolean isLocalRecordingEnabled = false;
+        private static volatile String lastRecordedFilePath = "";
         private static volatile String rtmpStatus = "STANDBY";
         public static volatile long masterStreamStartNs = 0;
         private static volatile long streamStartTime = 0;
-        private static volatile int currentBitrateKbps = 0;
+        static volatile int currentBitrateKbps = 0;
         static volatile float currentFps = 0.0f;
         static volatile long droppedFrames = 0;
         public static volatile int currentAudioPeak = 0;
@@ -1558,6 +1741,7 @@ public class MainActivity extends Activity {
         private VideoEncoder videoEncoder;
         private AudioEncoder audioEncoder;
         private RtmpMuxerClient rtmpClient;
+        private LocalMp4Recorder localRecorder;
 
         public static boolean isStreamingActive() {
             return isStreaming;
@@ -1569,6 +1753,66 @@ public class MainActivity extends Activity {
 
         public static void setPrivacyShieldActive(boolean active) {
             isPrivacyShieldActive = active;
+        }
+
+        public static boolean isMicMuted() {
+            return isMicMuted;
+        }
+
+        public static void setMicMuted(boolean muted) {
+            isMicMuted = muted;
+        }
+
+        public static boolean isAbrEnabled() {
+            return isAbrEnabled;
+        }
+
+        public static void setAbrEnabled(boolean enabled) {
+            isAbrEnabled = enabled;
+        }
+
+        public static int getAbrTargetKbps() {
+            return abrTargetKbps;
+        }
+
+        public static void setAbrTargetKbps(int kbps) {
+            abrTargetKbps = kbps;
+        }
+
+        public static int getMicGainPercent() {
+            return micGainPercent;
+        }
+
+        public static void setMicGainPercent(int percent) {
+            micGainPercent = Math.max(0, Math.min(200, percent));
+        }
+
+        public static int getInternalGainPercent() {
+            return internalGainPercent;
+        }
+
+        public static void setInternalGainPercent(int percent) {
+            internalGainPercent = Math.max(0, Math.min(200, percent));
+        }
+
+        public static boolean isAutoDuckEnabled() {
+            return isAutoDuckEnabled;
+        }
+
+        public static void setAutoDuckEnabled(boolean enabled) {
+            isAutoDuckEnabled = enabled;
+        }
+
+        public static boolean isLocalRecordingEnabled() {
+            return isLocalRecordingEnabled;
+        }
+
+        public static void setLocalRecordingEnabled(boolean enabled) {
+            isLocalRecordingEnabled = enabled;
+        }
+
+        public static String getLastRecordedFilePath() {
+            return lastRecordedFilePath;
         }
 
         public static String getRtmpStatus() {
@@ -1680,12 +1924,13 @@ public class MainActivity extends Activity {
                 } else {
                     isPrivacyShieldActive = !isPrivacyShieldActive;
                 }
+                FloatingCamManager.getInstance(this).setPrivacyShieldState(isPrivacyShieldActive);
                 if (videoEncoder != null) {
                     videoEncoder.onPrivacyShieldToggled(isPrivacyShieldActive);
                 }
                 NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                 if (nm != null) {
-                    nm.notify(101, buildNotification(isPrivacyShieldActive ? "KR Live Studio: PRIVACY SHIELD ACTIVE (Muted & Paused)" : "KR Live Studio is ON AIR..."));
+                    nm.notify(101, buildNotification(isPrivacyShieldActive ? "KR Live Studio: PRIVACY SHIELD ACTIVE (BRB Slate)" : "KR Live Studio is ON AIR..."));
                 }
             }
             return START_NOT_STICKY;
@@ -1770,34 +2015,54 @@ public class MainActivity extends Activity {
             }, new Handler(Looper.getMainLooper()));
 
             isStreaming = true;
-            isPrivacyShieldActive = false;
             masterStreamStartNs = SystemClock.elapsedRealtimeNanos();
             streamStartTime = SystemClock.elapsedRealtime();
             droppedFrames = 0;
             currentBitrateKbps = bitrate;
+            abrTargetKbps = bitrate;
             currentFps = (float) fps;
             rtmpStatus = "CONNECTING...";
 
             FloatingCamManager.getInstance(this).setLiveState(true);
+            FloatingCamManager.getInstance(this).setMicMutedState(!enableMic || isMicMuted);
+            FloatingCamManager.getInstance(this).setPrivacyShieldState(isPrivacyShieldActive);
             if (enableFacecam && Settings.canDrawOverlays(this)) {
                 FloatingCamManager.getInstance(this).showOverlay();
+            }
+
+            if (isLocalRecordingEnabled) {
+                localRecorder = new LocalMp4Recorder(getApplicationContext(), enableMic);
+                String outPath = localRecorder.getOutputPath();
+                if (outPath != null) {
+                    lastRecordedFilePath = outPath;
+                }
+            } else {
+                localRecorder = null;
             }
 
             rtmpClient = new RtmpMuxerClient(serverUrl, streamKey, width, height, fps, bitrate);
 
             DisplayMetrics metrics = getResources().getDisplayMetrics();
-            videoEncoder = new VideoEncoder(mediaProjection, width, height, fps, bitrate, metrics.densityDpi, rtmpClient);
+            videoEncoder = new VideoEncoder(mediaProjection, width, height, fps, bitrate, metrics.densityDpi, rtmpClient, localRecorder);
             rtmpClient.setSyncFrameListener(() -> {
                 if (videoEncoder != null) {
                     videoEncoder.requestKeyframe();
                 }
             });
+            rtmpClient.setBitrateAdjustListener(newKbps -> {
+                if (videoEncoder != null) {
+                    videoEncoder.setDynamicBitrate(newKbps);
+                }
+            });
 
             rtmpClient.start();
             videoEncoder.start();
+            if (isPrivacyShieldActive) {
+                videoEncoder.onPrivacyShieldToggled(true);
+            }
 
             if (enableMic) {
-                audioEncoder = new AudioEncoder(rtmpClient, mediaProjection, audioMode);
+                audioEncoder = new AudioEncoder(rtmpClient, mediaProjection, audioMode, localRecorder);
                 audioEncoder.start();
             }
         }
@@ -1808,7 +2073,9 @@ public class MainActivity extends Activity {
             rtmpStatus = "STANDBY";
             masterStreamStartNs = 0;
             currentAudioPeak = 0;
+            abrTargetKbps = 0;
             FloatingCamManager.getInstance(this).setLiveState(false);
+            FloatingCamManager.getInstance(this).setPrivacyShieldState(false);
 
             if (videoEncoder != null) {
                 videoEncoder.stop();
@@ -1817,6 +2084,10 @@ public class MainActivity extends Activity {
             if (audioEncoder != null) {
                 audioEncoder.stop();
                 audioEncoder = null;
+            }
+            if (localRecorder != null) {
+                localRecorder.stopAndRelease();
+                localRecorder = null;
             }
             if (mediaProjection != null) {
                 mediaProjection.stop();
@@ -1846,7 +2117,11 @@ public class MainActivity extends Activity {
         private final int bitrate;
         private final int dpi;
         private final RtmpMuxerClient rtmp;
+        private final LocalMp4Recorder localRecorder;
         private final AtomicBoolean isRunning = new AtomicBoolean(false);
+        private final Object surfaceLock = new Object();
+        private volatile boolean slateActive = false;
+        private Thread slateThread;
         private long frameCount = 0;
         private long lastFpsCalcTime = 0;
         private long baseVideoPtsUs = -1;
@@ -1857,7 +2132,7 @@ public class MainActivity extends Activity {
         private VirtualDisplay virtualDisplay;
         private Thread thread;
 
-        public VideoEncoder(MediaProjection projection, int width, int height, int fps, int bitrateKbps, int dpi, RtmpMuxerClient rtmp) {
+        public VideoEncoder(MediaProjection projection, int width, int height, int fps, int bitrateKbps, int dpi, RtmpMuxerClient rtmp, LocalMp4Recorder localRecorder) {
             this.projection = projection;
             this.width = width;
             this.height = height;
@@ -1865,12 +2140,23 @@ public class MainActivity extends Activity {
             this.bitrate = bitrateKbps * 1000;
             this.dpi = Math.max(160, dpi);
             this.rtmp = rtmp;
+            this.localRecorder = localRecorder;
         }
 
         public void start() {
             isRunning.set(true);
             thread = new Thread(this, "KimLive-VideoEncoder");
             thread.start();
+        }
+
+        public void setDynamicBitrate(int targetKbps) {
+            if (mediaCodec != null) {
+                try {
+                    Bundle b = new Bundle();
+                    b.putInt(MediaCodec.PARAMETER_KEY_VIDEO_BITRATE, Math.max(300, targetKbps) * 1000);
+                    mediaCodec.setParameters(b);
+                } catch (Exception ignored) {}
+            }
         }
 
         @Override
@@ -1921,8 +2207,12 @@ public class MainActivity extends Activity {
                         "KimLiveScreenCapture",
                         width, height, dpi,
                         DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR,
-                        inputSurface, null, null
+                        slateActive ? null : inputSurface, null, null
                 );
+
+                if (slateActive) {
+                    startSlateRenderer();
+                }
 
                 MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
 
@@ -1930,13 +2220,17 @@ public class MainActivity extends Activity {
                     int outputIndex = mediaCodec.dequeueOutputBuffer(bufferInfo, 10000);
                     if (outputIndex == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
                         MediaFormat newFormat = mediaCodec.getOutputFormat();
+                        if (localRecorder != null) {
+                            localRecorder.setVideoFormat(newFormat);
+                        }
                         ByteBuffer csd0Buf = newFormat.getByteBuffer("csd-0");
                         ByteBuffer csd1Buf = newFormat.getByteBuffer("csd-1");
                         byte[] sps = null;
                         byte[] pps = null;
                         if (csd0Buf != null) {
-                            byte[] csd0 = new byte[csd0Buf.remaining()];
-                            csd0Buf.get(csd0);
+                            ByteBuffer dup0 = csd0Buf.duplicate();
+                            byte[] csd0 = new byte[dup0.remaining()];
+                            dup0.get(csd0);
                             List<byte[]> nals0 = RtmpMuxerClient.extractNalUnits(csd0);
                             for (byte[] nal : nals0) {
                                 int type = nal[0] & 0x1F;
@@ -1945,8 +2239,9 @@ public class MainActivity extends Activity {
                             }
                         }
                         if (csd1Buf != null) {
-                            byte[] csd1 = new byte[csd1Buf.remaining()];
-                            csd1Buf.get(csd1);
+                            ByteBuffer dup1 = csd1Buf.duplicate();
+                            byte[] csd1 = new byte[dup1.remaining()];
+                            dup1.get(csd1);
                             List<byte[]> nals1 = RtmpMuxerClient.extractNalUnits(csd1);
                             for (byte[] nal : nals1) {
                                 int type = nal[0] & 0x1F;
@@ -1981,16 +2276,26 @@ public class MainActivity extends Activity {
                                     rtmp.sendAvcSequenceHeader(spsC, ppsC);
                                 }
                             } else {
-                                if (baseVideoPtsUs < 0) {
-                                    baseVideoPtsUs = bufferInfo.presentationTimeUs;
+                                long masterStartNs = StreamService.masterStreamStartNs;
+                                long videoPtsMs;
+                                if (masterStartNs > 0) {
+                                    videoPtsMs = Math.max(0, (SystemClock.elapsedRealtimeNanos() - masterStartNs) / 1000000L);
+                                } else {
+                                    if (baseVideoPtsUs < 0) {
+                                        baseVideoPtsUs = bufferInfo.presentationTimeUs;
+                                    }
+                                    videoPtsMs = Math.max(0, (bufferInfo.presentationTimeUs - baseVideoPtsUs) / 1000);
                                 }
-                                long videoPtsMs = Math.max(0, (bufferInfo.presentationTimeUs - baseVideoPtsUs) / 1000);
                                 if (videoPtsMs < lastVideoPtsMs) {
                                     videoPtsMs = lastVideoPtsMs + 1;
                                 }
                                 lastVideoPtsMs = videoPtsMs;
 
                                 rtmp.sendVideoFrame(chunk, isKeyFrame, videoPtsMs);
+
+                                if (localRecorder != null) {
+                                    localRecorder.writeVideoSample(outputBuffer, bufferInfo, videoPtsMs * 1000L);
+                                }
 
                                 frameCount++;
                                 long now = SystemClock.elapsedRealtime();
@@ -2024,26 +2329,129 @@ public class MainActivity extends Activity {
         }
 
         public void onPrivacyShieldToggled(boolean isShield) {
-            if (virtualDisplay != null && inputSurface != null) {
-                try {
-                    if (isShield) {
-                        virtualDisplay.setSurface(null);
-                    } else {
-                        virtualDisplay.setSurface(inputSurface);
-                        requestKeyframe();
+            synchronized (surfaceLock) {
+                slateActive = isShield;
+                if (virtualDisplay != null && inputSurface != null) {
+                    try {
+                        if (isShield) {
+                            virtualDisplay.setSurface(null);
+                            startSlateRenderer();
+                        } else {
+                            stopSlateRenderer();
+                            virtualDisplay.setSurface(inputSurface);
+                            requestKeyframe();
+                        }
+                    } catch (Exception ignored) {}
+                }
+            }
+        }
+
+        private void startSlateRenderer() {
+            stopSlateRenderer();
+            slateThread = new Thread(() -> {
+                Paint bgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                Paint cardPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                Paint borderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                Paint titlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                Paint subPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                Paint metaPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+                borderPaint.setStyle(Paint.Style.STROKE);
+                borderPaint.setStrokeWidth(Math.max(2f, Math.min(width, height) * 0.004f));
+                borderPaint.setColor(Color.parseColor("#00E676"));
+
+                titlePaint.setColor(Color.parseColor("#00E676"));
+                titlePaint.setTextAlign(Paint.Align.CENTER);
+                titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+
+                subPaint.setColor(Color.parseColor("#F0F4F8"));
+                subPaint.setTextAlign(Paint.Align.CENTER);
+                subPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+
+                metaPaint.setColor(Color.parseColor("#9BA3B0"));
+                metaPaint.setTextAlign(Paint.Align.CENTER);
+                metaPaint.setTypeface(Typeface.create(Typeface.MONOSPACE, Typeface.NORMAL));
+
+                boolean firstSlateFrame = true;
+                while (slateActive && isRunning.get() && !Thread.currentThread().isInterrupted()) {
+                    synchronized (surfaceLock) {
+                        if (!slateActive || inputSurface == null || !inputSurface.isValid()) {
+                            break;
+                        }
+                        try {
+                            Canvas canvas = inputSurface.lockCanvas(null);
+                            if (canvas != null) {
+                                int w = canvas.getWidth();
+                                int h = canvas.getHeight();
+                                float minDim = Math.min(w, h);
+
+                                bgPaint.setColor(Color.parseColor("#0B0E14"));
+                                canvas.drawRect(0, 0, w, h, bgPaint);
+
+                                float cardW = w * 0.80f;
+                                float cardH = h * 0.42f;
+                                float left = (w - cardW) / 2f;
+                                float top = (h - cardH) / 2f;
+
+                                cardPaint.setColor(Color.parseColor("#141923"));
+                                canvas.drawRoundRect(left, top, left + cardW, top + cardH, 24f, 24f, cardPaint);
+                                canvas.drawRoundRect(left, top, left + cardW, top + cardH, 24f, 24f, borderPaint);
+
+                                titlePaint.setTextSize(minDim * 0.048f);
+                                subPaint.setTextSize(minDim * 0.036f);
+                                metaPaint.setTextSize(minDim * 0.028f);
+
+                                float centerY = h / 2f;
+                                canvas.drawText("PRIVACY SHIELD ACTIVE", w / 2f, centerY - (minDim * 0.06f), titlePaint);
+                                canvas.drawText("STREAM PAUSED • BE RIGHT BACK", w / 2f, centerY + (minDim * 0.01f), subPaint);
+
+                                long uptimeSec = StreamService.getStreamUptimeMs() / 1000L;
+                                String clock = String.format(Locale.US, "LIVE %02d:%02d:%02d • KR LIVE STUDIO",
+                                        uptimeSec / 3600, (uptimeSec % 3600) / 60, uptimeSec % 60);
+                                canvas.drawText(clock, w / 2f, centerY + (minDim * 0.08f), metaPaint);
+
+                                inputSurface.unlockCanvasAndPost(canvas);
+                                if (firstSlateFrame) {
+                                    firstSlateFrame = false;
+                                    requestKeyframe();
+                                }
+                            }
+                        } catch (Exception ignored) {
+                            break;
+                        }
                     }
-                } catch (Exception ignored) {}
+                    try {
+                        Thread.sleep(100); // 10 FPS keep-alive slate
+                    } catch (InterruptedException e) {
+                        break;
+                    }
+                }
+            }, "KimLive-SlateRenderer");
+            slateThread.setDaemon(true);
+            slateThread.start();
+        }
+
+        private void stopSlateRenderer() {
+            slateActive = false;
+            if (slateThread != null) {
+                slateThread.interrupt();
+                try {
+                    slateThread.join(150);
+                } catch (InterruptedException ignored) {}
+                slateThread = null;
             }
         }
 
         public void stop() {
             isRunning.set(false);
+            stopSlateRenderer();
             if (thread != null) {
                 thread.interrupt();
             }
         }
 
         private void release() {
+            stopSlateRenderer();
             try {
                 if (virtualDisplay != null) {
                     virtualDisplay.release();
@@ -2073,6 +2481,7 @@ public class MainActivity extends Activity {
         private final RtmpMuxerClient rtmp;
         private final MediaProjection projection;
         private final int audioMode;
+        private final LocalMp4Recorder localRecorder;
         private final AtomicBoolean isRunning = new AtomicBoolean(false);
         private Thread thread;
         private AudioRecord micRecord;
@@ -2082,10 +2491,11 @@ public class MainActivity extends Activity {
         private int channelConfig = AudioFormat.CHANNEL_IN_STEREO;
         private long lastAudioPtsMs = 0;
 
-        public AudioEncoder(RtmpMuxerClient rtmp, MediaProjection projection, int audioMode) {
+        public AudioEncoder(RtmpMuxerClient rtmp, MediaProjection projection, int audioMode, LocalMp4Recorder localRecorder) {
             this.rtmp = rtmp;
             this.projection = projection;
             this.audioMode = audioMode;
+            this.localRecorder = localRecorder;
         }
 
         public void start() {
@@ -2136,7 +2546,7 @@ public class MainActivity extends Activity {
                                 .setAudioFormat(new AudioFormat.Builder()
                                         .setEncoding(AUDIO_FORMAT)
                                         .setSampleRate(SAMPLE_RATE)
-                                        .setChannelMask(AudioFormat.CHANNEL_IN_STEREO)
+                                        .setChannelMask(channelConfig)
                                         .build())
                                 .setBufferSizeInBytes(Math.max(minBufSize * 2, 8192))
                                 .build();
@@ -2181,30 +2591,102 @@ public class MainActivity extends Activity {
                 MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
                 long pts = 0;
                 int bytesPerFrame = channelCount * 2;
+                float duckFactor = 1.0f;
 
                 while (isRunning.get()) {
                     int readBytes = 0;
                     boolean isPrivacyMuted = StreamService.isPrivacyShieldActive();
+                    boolean isMicMuted = StreamService.isMicMuted() || isPrivacyMuted;
+                    float micGain = isMicMuted ? 0.0f : (StreamService.getMicGainPercent() / 100.0f);
+                    float baseIntGain = isPrivacyMuted ? 0.0f : (StreamService.getInternalGainPercent() / 100.0f);
 
                     if (micRecord != null && internalRecord != null) {
                         int mRead = micRecord.read(micPcm, 0, micPcm.length);
-                        int iRead = internalRecord.read(intPcm, 0, intPcm.length);
-                        readBytes = Math.max(mRead, iRead);
+                        int targetInternalBytes = (mRead > 0) ? mRead : intPcm.length;
+                        int iRead;
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            // Non-blocking read prevents silent games from stalling mic audio
+                            iRead = internalRecord.read(intPcm, 0, targetInternalBytes, AudioRecord.READ_NON_BLOCKING);
+                        } else {
+                            iRead = internalRecord.read(intPcm, 0, targetInternalBytes);
+                        }
+                        if (iRead < 0) iRead = 0;
+
+                        readBytes = (mRead > 0) ? mRead : iRead;
                         if (readBytes > 0) {
+                            int micPeak = 0;
+                            if (!isMicMuted && mRead > 0) {
+                                for (int i = 0; i < mRead - 1; i += 2) {
+                                    short sM = (short) ((micPcm[i] & 0xFF) | (micPcm[i + 1] << 8));
+                                    int absM = Math.abs((int) (sM * micGain));
+                                    if (absM > micPeak) micPeak = absM;
+                                }
+                            }
+
+                            if (StreamService.isAutoDuckEnabled()) {
+                                if (!isMicMuted && micPeak > 1800) {
+                                    duckFactor = Math.max(0.30f, duckFactor * 0.82f);
+                                } else {
+                                    duckFactor = Math.min(1.0f, duckFactor + 0.04f);
+                                }
+                            } else {
+                                duckFactor = 1.0f;
+                            }
+
+                            float effectiveIntGain = baseIntGain * duckFactor;
                             for (int i = 0; i < readBytes - 1; i += 2) {
                                 short sM = (i < mRead - 1) ? (short) ((micPcm[i] & 0xFF) | (micPcm[i + 1] << 8)) : 0;
                                 short sI = (i < iRead - 1) ? (short) ((intPcm[i] & 0xFF) | (intPcm[i + 1] << 8)) : 0;
-                                int sum = sM + sI;
-                                if (sum > 32767) sum = 32767;
-                                else if (sum < -32768) sum = -32768;
-                                pcmBuffer[i] = (byte) (sum & 0xFF);
-                                pcmBuffer[i + 1] = (byte) ((sum >> 8) & 0xFF);
+                                int mixed = Math.round(sM * micGain + sI * effectiveIntGain);
+                                if (mixed > 32767) mixed = 32767;
+                                else if (mixed < -32768) mixed = -32768;
+                                pcmBuffer[i] = (byte) (mixed & 0xFF);
+                                pcmBuffer[i + 1] = (byte) ((mixed >> 8) & 0xFF);
                             }
                         }
                     } else if (internalRecord != null) {
-                        readBytes = internalRecord.read(pcmBuffer, 0, pcmBuffer.length);
+                        int iRead;
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            iRead = internalRecord.read(pcmBuffer, 0, pcmBuffer.length, AudioRecord.READ_NON_BLOCKING);
+                        } else {
+                            iRead = internalRecord.read(pcmBuffer, 0, pcmBuffer.length);
+                        }
+                        if (iRead <= 0) {
+                            // Game/system audio is currently silent; emit paced silence so AAC encoder doesn't stall
+                            try {
+                                Thread.sleep(20);
+                            } catch (InterruptedException ie) {
+                                break;
+                            }
+                            readBytes = pcmBuffer.length;
+                            for (int i = 0; i < readBytes; i++) {
+                                pcmBuffer[i] = 0;
+                            }
+                        } else {
+                            readBytes = iRead;
+                            if (baseIntGain != 1.0f) {
+                                for (int i = 0; i < readBytes - 1; i += 2) {
+                                    short sI = (short) ((pcmBuffer[i] & 0xFF) | (pcmBuffer[i + 1] << 8));
+                                    int scaled = Math.round(sI * baseIntGain);
+                                    if (scaled > 32767) scaled = 32767;
+                                    else if (scaled < -32768) scaled = -32768;
+                                    pcmBuffer[i] = (byte) (scaled & 0xFF);
+                                    pcmBuffer[i + 1] = (byte) ((scaled >> 8) & 0xFF);
+                                }
+                            }
+                        }
                     } else if (micRecord != null) {
                         readBytes = micRecord.read(pcmBuffer, 0, pcmBuffer.length);
+                        if (readBytes > 0 && micGain != 1.0f) {
+                            for (int i = 0; i < readBytes - 1; i += 2) {
+                                short sM = (short) ((pcmBuffer[i] & 0xFF) | (pcmBuffer[i + 1] << 8));
+                                int scaled = Math.round(sM * micGain);
+                                if (scaled > 32767) scaled = 32767;
+                                else if (scaled < -32768) scaled = -32768;
+                                pcmBuffer[i] = (byte) (scaled & 0xFF);
+                                pcmBuffer[i + 1] = (byte) ((scaled >> 8) & 0xFF);
+                            }
+                        }
                     }
 
                     if (isPrivacyMuted && readBytes > 0) {
@@ -2228,8 +2710,12 @@ public class MainActivity extends Activity {
                             if (inBuf != null) {
                                 inBuf.clear();
                                 inBuf.put(pcmBuffer, 0, readBytes);
-                                mediaCodec.queueInputBuffer(inputIndex, 0, readBytes, pts, 0);
-                                pts += (readBytes * 1000000L) / (SAMPLE_RATE * bytesPerFrame);
+                                long masterStartNs = StreamService.masterStreamStartNs;
+                                long samplePtsUs = (masterStartNs > 0)
+                                        ? Math.max(pts, (SystemClock.elapsedRealtimeNanos() - masterStartNs) / 1000L)
+                                        : pts;
+                                mediaCodec.queueInputBuffer(inputIndex, 0, readBytes, samplePtsUs, 0);
+                                pts = samplePtsUs + (readBytes * 1000000L) / (SAMPLE_RATE * bytesPerFrame);
                             }
                         }
                     }
@@ -2237,10 +2723,14 @@ public class MainActivity extends Activity {
                     int outputIndex = mediaCodec.dequeueOutputBuffer(bufferInfo, 10000);
                     if (outputIndex == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
                         MediaFormat outFmt = mediaCodec.getOutputFormat();
+                        if (localRecorder != null) {
+                            localRecorder.setAudioFormat(outFmt);
+                        }
                         ByteBuffer csd0 = outFmt.getByteBuffer("csd-0");
                         if (csd0 != null) {
-                            byte[] config = new byte[csd0.remaining()];
-                            csd0.get(config);
+                            ByteBuffer dup = csd0.duplicate();
+                            byte[] config = new byte[dup.remaining()];
+                            dup.get(config);
                             rtmp.sendAacSequenceHeader(config, channelCount == 2);
                         }
                     } else {
@@ -2262,6 +2752,9 @@ public class MainActivity extends Activity {
                                     }
                                     lastAudioPtsMs = audioPtsMs;
                                     rtmp.sendAudioFrame(chunk, audioPtsMs, channelCount == 2);
+                                    if (localRecorder != null) {
+                                        localRecorder.writeAudioSample(outBuf, bufferInfo, audioPtsMs * 1000L);
+                                    }
                                 }
                             }
                             mediaCodec.releaseOutputBuffer(outputIndex, false);
@@ -2305,8 +2798,135 @@ public class MainActivity extends Activity {
     }
 
     // =========================================================================
+    // Simultaneous Local MP4 Recorder (Zero-Copy Hardware Tee via MediaMuxer)
+    // =========================================================================
+    public static class LocalMp4Recorder {
+        private final Context appContext;
+        private final boolean expectAudio;
+        private MediaMuxer muxer;
+        private String outputPath;
+        private int videoTrackIndex = -1;
+        private int audioTrackIndex = -1;
+        private boolean isStarted = false;
+        private boolean isReleased = false;
+        private int pendingVideoFrames = 0;
+
+        public LocalMp4Recorder(Context context, boolean expectAudio) {
+            this.appContext = context.getApplicationContext();
+            this.expectAudio = expectAudio;
+            try {
+                File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES), "KRLiveStudio");
+                if (!dir.exists() && !dir.mkdirs()) {
+                    File fallback = appContext.getExternalFilesDir(Environment.DIRECTORY_MOVIES);
+                    if (fallback != null) {
+                        dir = fallback;
+                    }
+                }
+                String ts = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
+                File outFile = new File(dir, "KRLive_" + ts + ".mp4");
+                outputPath = outFile.getAbsolutePath();
+                muxer = new MediaMuxer(outputPath, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4);
+                Log.i("KimLive-Recorder", "Local MP4 recorder initialized: " + outputPath);
+            } catch (Exception e) {
+                Log.e("KimLive-Recorder", "Failed to initialize LocalMp4Recorder: " + e.getMessage());
+                muxer = null;
+                outputPath = null;
+            }
+        }
+
+        public String getOutputPath() {
+            return outputPath;
+        }
+
+        public synchronized void setVideoFormat(MediaFormat format) {
+            if (muxer == null || isStarted || isReleased || videoTrackIndex != -1) return;
+            try {
+                videoTrackIndex = muxer.addTrack(format);
+                checkStartMuxer();
+            } catch (Exception e) {
+                Log.w("KimLive-Recorder", "setVideoFormat error: " + e.getMessage());
+            }
+        }
+
+        public synchronized void setAudioFormat(MediaFormat format) {
+            if (muxer == null || isStarted || isReleased || audioTrackIndex != -1) return;
+            try {
+                audioTrackIndex = muxer.addTrack(format);
+                checkStartMuxer();
+            } catch (Exception e) {
+                Log.w("KimLive-Recorder", "setAudioFormat error: " + e.getMessage());
+            }
+        }
+
+        private void checkStartMuxer() {
+            if (isStarted || muxer == null) return;
+            if (videoTrackIndex != -1 && (!expectAudio || audioTrackIndex != -1 || pendingVideoFrames > 45)) {
+                try {
+                    muxer.start();
+                    isStarted = true;
+                    Log.i("KimLive-Recorder", "MediaMuxer started (videoTrack=" + videoTrackIndex + ", audioTrack=" + audioTrackIndex + ")");
+                } catch (Exception e) {
+                    Log.e("KimLive-Recorder", "MediaMuxer start failed: " + e.getMessage());
+                }
+            }
+        }
+
+        public synchronized void writeVideoSample(ByteBuffer codecOutBuf, MediaCodec.BufferInfo origInfo, long normalizedPtsUs) {
+            if (muxer == null || isReleased || videoTrackIndex == -1) return;
+            if (!isStarted) {
+                pendingVideoFrames++;
+                checkStartMuxer();
+                if (!isStarted) return;
+            }
+            try {
+                ByteBuffer dup = codecOutBuf.duplicate();
+                dup.position(origInfo.offset);
+                dup.limit(origInfo.offset + origInfo.size);
+                MediaCodec.BufferInfo info = new MediaCodec.BufferInfo();
+                info.set(origInfo.offset, origInfo.size, normalizedPtsUs, origInfo.flags);
+                muxer.writeSampleData(videoTrackIndex, dup, info);
+            } catch (Exception ignored) {}
+        }
+
+        public synchronized void writeAudioSample(ByteBuffer codecOutBuf, MediaCodec.BufferInfo origInfo, long normalizedPtsUs) {
+            if (muxer == null || !isStarted || isReleased || audioTrackIndex == -1) return;
+            try {
+                ByteBuffer dup = codecOutBuf.duplicate();
+                dup.position(origInfo.offset);
+                dup.limit(origInfo.offset + origInfo.size);
+                MediaCodec.BufferInfo info = new MediaCodec.BufferInfo();
+                info.set(origInfo.offset, origInfo.size, normalizedPtsUs, origInfo.flags);
+                muxer.writeSampleData(audioTrackIndex, dup, info);
+            } catch (Exception ignored) {}
+        }
+
+        public synchronized void stopAndRelease() {
+            if (isReleased) return;
+            isReleased = true;
+            try {
+                if (muxer != null) {
+                    if (isStarted) {
+                        muxer.stop();
+                    }
+                    muxer.release();
+                }
+            } catch (Exception e) {
+                Log.w("KimLive-Recorder", "MediaMuxer stop error: " + e.getMessage());
+            } finally {
+                muxer = null;
+                isStarted = false;
+            }
+            if (outputPath != null) {
+                try {
+                    MediaScannerConnection.scanFile(appContext, new String[]{outputPath}, new String[]{"video/mp4"}, null);
+                } catch (Exception ignored) {}
+            }
+        }
+    }
+
+    // =========================================================================
     // Pure Java RTMP / RTMPS Streaming Protocol Engine
-    // Supports SSL & standard sockets, AMF0 Handshake & Multiplexing
+    // Supports SSL & standard sockets, AMF0 Handshake, Ping/Pong & ABR
     // =========================================================================
     public static class RtmpMuxerClient implements Runnable {
         private final String ingestUrl;
@@ -2318,6 +2938,7 @@ public class MainActivity extends Activity {
 
         private final BlockingQueue<RtmpPacket> packetQueue = new LinkedBlockingQueue<>(1000);
         private final AtomicBoolean isRunning = new AtomicBoolean(false);
+        private final Object writeLock = new Object();
 
         private Socket socket;
         private OutputStream out;
@@ -2330,6 +2951,12 @@ public class MainActivity extends Activity {
         private byte[] cachedSps;
         private byte[] cachedPps;
         private boolean hasSentAvcHeader = false;
+
+        private long bytesSentWindow = 0;
+        private long lastBitrateCalcMs = 0;
+        private int currentAbrKbps;
+        private long lastAbrAdjustMs = 0;
+        private long lowQueueSinceMs = 0;
 
         public static class RtmpPacket {
             int csid;
@@ -2354,16 +2981,26 @@ public class MainActivity extends Activity {
             this.videoHeight = videoHeight;
             this.videoFps = videoFps;
             this.videoBitrateKbps = videoBitrateKbps;
+            this.currentAbrKbps = videoBitrateKbps;
         }
 
         public interface SyncFrameListener {
             void requestSyncFrame();
         }
 
+        public interface BitrateAdjustListener {
+            void onAdjustBitrate(int newBitrateKbps);
+        }
+
         private SyncFrameListener syncFrameListener;
+        private BitrateAdjustListener bitrateAdjustListener;
 
         public void setSyncFrameListener(SyncFrameListener listener) {
             this.syncFrameListener = listener;
+        }
+
+        public void setBitrateAdjustListener(BitrateAdjustListener listener) {
+            this.bitrateAdjustListener = listener;
         }
 
         public void start() {
@@ -2545,12 +3182,15 @@ public class MainActivity extends Activity {
                     if (syncFrameListener != null) {
                         syncFrameListener.requestSyncFrame();
                     }
+                    lastBitrateCalcMs = SystemClock.elapsedRealtime();
+                    bytesSentWindow = 0;
 
                     while (isRunning.get()) {
                         RtmpPacket packet = packetQueue.poll(200, TimeUnit.MILLISECONDS);
                         if (packet != null) {
                             writeChunk(packet.csid, packet.type, packet.streamId, packet.timestamp, packet.data);
                         }
+                        evaluateTelemetryAndAbr();
                     }
                 } catch (Exception e) {
                     Log.e("KimLive-RTMP", "RTMP Streaming Exception: " + e.getMessage(), e);
@@ -2578,6 +3218,60 @@ public class MainActivity extends Activity {
             }
             closeSockets();
             isRunning.set(false);
+        }
+
+        private void evaluateTelemetryAndAbr() {
+            long now = SystemClock.elapsedRealtime();
+            long elapsed = now - lastBitrateCalcMs;
+            if (elapsed >= 1000) {
+                int measuredKbps = (int) ((bytesSentWindow * 8L) / Math.max(1L, elapsed));
+                StreamService.currentBitrateKbps = measuredKbps;
+                bytesSentWindow = 0;
+                lastBitrateCalcMs = now;
+            }
+
+            if (!StreamService.isAbrEnabled()) {
+                if (currentAbrKbps != videoBitrateKbps) {
+                    currentAbrKbps = videoBitrateKbps;
+                    StreamService.setAbrTargetKbps(currentAbrKbps);
+                    if (bitrateAdjustListener != null) {
+                        bitrateAdjustListener.onAdjustBitrate(currentAbrKbps);
+                    }
+                }
+                return;
+            }
+
+            int qSize = packetQueue.size();
+            if (qSize > 80 && now - lastAbrAdjustMs >= 2000) {
+                int minBitrate = Math.max(500, (videoBitrateKbps * 40) / 100);
+                int nextKbps = Math.max(minBitrate, (currentAbrKbps * 80) / 100);
+                if (nextKbps < currentAbrKbps) {
+                    currentAbrKbps = nextKbps;
+                    StreamService.setAbrTargetKbps(currentAbrKbps);
+                    lastAbrAdjustMs = now;
+                    lowQueueSinceMs = 0;
+                    if (bitrateAdjustListener != null) {
+                        bitrateAdjustListener.onAdjustBitrate(currentAbrKbps);
+                    }
+                    Log.i("KimLive-ABR", "Congestion detected (queue=" + qSize + "), stepping down bitrate to " + currentAbrKbps + " kbps");
+                }
+            } else if (qSize < 15) {
+                if (lowQueueSinceMs == 0) {
+                    lowQueueSinceMs = now;
+                } else if (currentAbrKbps < videoBitrateKbps && now - lowQueueSinceMs >= 6000 && now - lastAbrAdjustMs >= 3000) {
+                    int nextKbps = Math.min(videoBitrateKbps, currentAbrKbps + Math.max(150, videoBitrateKbps / 10));
+                    currentAbrKbps = nextKbps;
+                    StreamService.setAbrTargetKbps(currentAbrKbps);
+                    lastAbrAdjustMs = now;
+                    lowQueueSinceMs = now;
+                    if (bitrateAdjustListener != null) {
+                        bitrateAdjustListener.onAdjustBitrate(currentAbrKbps);
+                    }
+                    Log.i("KimLive-ABR", "Network stable, stepping up bitrate to " + currentAbrKbps + " kbps");
+                }
+            } else {
+                lowQueueSinceMs = 0;
+            }
         }
 
         private void connectAndPublish() throws Exception {
@@ -2647,16 +3341,82 @@ public class MainActivity extends Activity {
 
         private void startReaderThread() {
             readerThread = new Thread(() -> {
-                byte[] buf = new byte[8192];
+                byte[] buf = new byte[4096];
+                long totalBytesRead = 0;
+                long lastAckSentBytes = 0;
                 try {
                     while (isRunning.get() && in != null) {
                         int r = in.read(buf);
                         if (r < 0) break;
+                        if (r > 0) {
+                            totalBytesRead += r;
+                            // Send RTMP Acknowledgement (Type 3) every 250 KB received
+                            if (totalBytesRead - lastAckSentBytes >= 250000) {
+                                lastAckSentBytes = totalBytesRead;
+                                sendAcknowledgement((int) (totalBytesRead & 0xFFFFFFFFL));
+                            }
+                            // Detect RTMP User Control PingRequest (Msg Type 0x04, Event Type 0x0006)
+                            for (int i = 0; i <= r - 18; i++) {
+                                int basicHeader = buf[i] & 0xFF;
+                                // CSID 2 (Protocol Control), fmt 0 (0x02) or fmt 1 (0x42)
+                                if ((basicHeader == 0x02 || basicHeader == 0x42)
+                                        && (buf[i + 4] & 0xFF) == 0x00
+                                        && (buf[i + 5] & 0xFF) == 0x00
+                                        && (buf[i + 6] & 0xFF) == 0x06
+                                        && (buf[i + 7] & 0xFF) == 0x04) {
+                                    int payloadOffset = (basicHeader == 0x02) ? (i + 12) : (i + 8);
+                                    if (payloadOffset + 6 <= r) {
+                                        int eventType = ((buf[payloadOffset] & 0xFF) << 8) | (buf[payloadOffset + 1] & 0xFF);
+                                        if (eventType == 0x0006) { // PingRequest
+                                            byte[] pingData = new byte[4];
+                                            System.arraycopy(buf, payloadOffset + 2, pingData, 0, 4);
+                                            sendPingResponse(pingData);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 } catch (Exception ignored) {}
             }, "KimLive-RtmpReader");
             readerThread.setDaemon(true);
             readerThread.start();
+        }
+
+        private void sendAcknowledgement(int sequenceNumber) {
+            synchronized (writeLock) {
+                if (out == null) return;
+                try {
+                    out.write(0x02); // CSID 2, fmt 0
+                    out.write(0x00); out.write(0x00); out.write(0x00); // Timestamp 0
+                    out.write(0x00); out.write(0x00); out.write(0x04); // Length 4
+                    out.write(0x03); // Message Type 3: Acknowledgement
+                    out.write(0x00); out.write(0x00); out.write(0x00); out.write(0x00); // Stream ID 0
+                    out.write((sequenceNumber >> 24) & 0xFF);
+                    out.write((sequenceNumber >> 16) & 0xFF);
+                    out.write((sequenceNumber >> 8) & 0xFF);
+                    out.write(sequenceNumber & 0xFF);
+                    out.flush();
+                } catch (Exception ignored) {}
+            }
+        }
+
+        private void sendPingResponse(byte[] fourByteTimestamp) {
+            synchronized (writeLock) {
+                if (out == null || fourByteTimestamp == null || fourByteTimestamp.length < 4) return;
+                try {
+                    out.write(0x02); // CSID 2, fmt 0
+                    out.write(0x00); out.write(0x00); out.write(0x00); // Timestamp 0
+                    out.write(0x00); out.write(0x00); out.write(0x06); // Length 6
+                    out.write(0x04); // Message Type 4: User Control Message
+                    out.write(0x00); out.write(0x00); out.write(0x00); out.write(0x00); // Stream ID 0
+                    out.write(0x00); out.write(0x07); // Event Type 7: PingResponse
+                    out.write(fourByteTimestamp, 0, 4);
+                    out.flush();
+                    Log.d("KimLive-RTMP", "Sent RTMP PingResponse (Pong)");
+                } catch (Exception ignored) {}
+            }
         }
 
         private void performRtmpHandshake() throws Exception {
@@ -2666,8 +3426,10 @@ public class MainActivity extends Activity {
             c0c1[0] = 0x03;
             // Zero timestamp
             c0c1[1] = 0; c0c1[2] = 0; c0c1[3] = 0; c0c1[4] = 0;
-            out.write(c0c1);
-            out.flush();
+            synchronized (writeLock) {
+                out.write(c0c1);
+                out.flush();
+            }
 
             byte[] s0s1s2 = new byte[3073];
             int read = 0;
@@ -2680,21 +3442,25 @@ public class MainActivity extends Activity {
             // Write C2
             byte[] c2 = new byte[1536];
             System.arraycopy(s0s1s2, 1, c2, 0, 1536);
-            out.write(c2);
-            out.flush();
+            synchronized (writeLock) {
+                out.write(c2);
+                out.flush();
+            }
         }
 
         private void sendSetChunkSize(int chunkSize) throws Exception {
-            out.write(0x02); // CSID 2, Type 0
-            out.write(0x00); out.write(0x00); out.write(0x00); // Timestamp 0
-            out.write(0x00); out.write(0x00); out.write(0x04); // Length 4
-            out.write(0x01); // Message Type 1: Set Chunk Size
-            out.write(0x00); out.write(0x00); out.write(0x00); out.write(0x00); // Stream ID 0
-            out.write((chunkSize >> 24) & 0xFF);
-            out.write((chunkSize >> 16) & 0xFF);
-            out.write((chunkSize >> 8) & 0xFF);
-            out.write(chunkSize & 0xFF);
-            out.flush();
+            synchronized (writeLock) {
+                out.write(0x02); // CSID 2, Type 0
+                out.write(0x00); out.write(0x00); out.write(0x00); // Timestamp 0
+                out.write(0x00); out.write(0x00); out.write(0x04); // Length 4
+                out.write(0x01); // Message Type 1: Set Chunk Size
+                out.write(0x00); out.write(0x00); out.write(0x00); out.write(0x00); // Stream ID 0
+                out.write((chunkSize >> 24) & 0xFF);
+                out.write((chunkSize >> 16) & 0xFF);
+                out.write((chunkSize >> 8) & 0xFF);
+                out.write(chunkSize & 0xFF);
+                out.flush();
+            }
         }
 
         private void sendConnectCommand(String app) throws Exception {
@@ -2783,54 +3549,57 @@ public class MainActivity extends Activity {
         }
 
         private void writeChunk(int csid, int messageType, int streamId, long timestamp, byte[] payload) throws Exception {
-            int length = payload.length;
+            synchronized (writeLock) {
+                int length = payload.length;
 
-            boolean hasExtendedTs = timestamp >= 0xFFFFFF;
-            int tsField = hasExtendedTs ? 0xFFFFFF : (int) timestamp;
+                boolean hasExtendedTs = timestamp >= 0xFFFFFF;
+                int tsField = hasExtendedTs ? 0xFFFFFF : (int) timestamp;
 
-            // Chunk Header Type 0 (11 bytes)
-            out.write((byte) (csid & 0x3F));
-            out.write((byte) ((tsField >> 16) & 0xFF));
-            out.write((byte) ((tsField >> 8) & 0xFF));
-            out.write((byte) (tsField & 0xFF));
+                // Chunk Header Type 0 (12 bytes)
+                out.write((byte) (csid & 0x3F));
+                out.write((byte) ((tsField >> 16) & 0xFF));
+                out.write((byte) ((tsField >> 8) & 0xFF));
+                out.write((byte) (tsField & 0xFF));
 
-            out.write((byte) ((length >> 16) & 0xFF));
-            out.write((byte) ((length >> 8) & 0xFF));
-            out.write((byte) (length & 0xFF));
+                out.write((byte) ((length >> 16) & 0xFF));
+                out.write((byte) ((length >> 8) & 0xFF));
+                out.write((byte) (length & 0xFF));
 
-            out.write((byte) (messageType & 0xFF));
+                out.write((byte) (messageType & 0xFF));
 
-            // Stream ID (little-endian)
-            out.write((byte) (streamId & 0xFF));
-            out.write((byte) ((streamId >> 8) & 0xFF));
-            out.write((byte) ((streamId >> 16) & 0xFF));
-            out.write((byte) ((streamId >> 24) & 0xFF));
+                // Stream ID (little-endian)
+                out.write((byte) (streamId & 0xFF));
+                out.write((byte) ((streamId >> 8) & 0xFF));
+                out.write((byte) ((streamId >> 16) & 0xFF));
+                out.write((byte) ((streamId >> 24) & 0xFF));
 
-            if (hasExtendedTs) {
-                out.write((byte) ((timestamp >> 24) & 0xFF));
-                out.write((byte) ((timestamp >> 16) & 0xFF));
-                out.write((byte) ((timestamp >> 8) & 0xFF));
-                out.write((byte) (timestamp & 0xFF));
-            }
+                if (hasExtendedTs) {
+                    out.write((byte) ((timestamp >> 24) & 0xFF));
+                    out.write((byte) ((timestamp >> 16) & 0xFF));
+                    out.write((byte) ((timestamp >> 8) & 0xFF));
+                    out.write((byte) (timestamp & 0xFF));
+                }
 
-            // Chunk Body with Type 3 Continuation (Chunk size = 4096)
-            int offset = 0;
-            int chunkSize = 4096;
-            while (offset < length) {
-                int sendBytes = Math.min(chunkSize, length - offset);
-                out.write(payload, offset, sendBytes);
-                offset += sendBytes;
-                if (offset < length) {
-                    out.write((byte) (0xC0 | (csid & 0x3F))); // Header Type 3
-                    if (hasExtendedTs) {
-                        out.write((byte) ((timestamp >> 24) & 0xFF));
-                        out.write((byte) ((timestamp >> 16) & 0xFF));
-                        out.write((byte) ((timestamp >> 8) & 0xFF));
-                        out.write((byte) (timestamp & 0xFF));
+                // Chunk Body with Type 3 Continuation (Chunk size = 4096)
+                int offset = 0;
+                int chunkSize = 4096;
+                while (offset < length) {
+                    int sendBytes = Math.min(chunkSize, length - offset);
+                    out.write(payload, offset, sendBytes);
+                    offset += sendBytes;
+                    if (offset < length) {
+                        out.write((byte) (0xC0 | (csid & 0x3F))); // Header Type 3
+                        if (hasExtendedTs) {
+                            out.write((byte) ((timestamp >> 24) & 0xFF));
+                            out.write((byte) ((timestamp >> 16) & 0xFF));
+                            out.write((byte) ((timestamp >> 8) & 0xFF));
+                            out.write((byte) (timestamp & 0xFF));
+                        }
                     }
                 }
+                out.flush();
+                bytesSentWindow += length + 12;
             }
-            out.flush();
         }
 
         private void writeAmfString(ByteArrayOutputStream baos, String s) throws Exception {
@@ -2870,10 +3639,12 @@ public class MainActivity extends Activity {
                 readerThread.interrupt();
                 readerThread = null;
             }
-            try {
-                if (out != null) out.close();
-            } catch (Exception ignored) {}
-            out = null;
+            synchronized (writeLock) {
+                try {
+                    if (out != null) out.close();
+                } catch (Exception ignored) {}
+                out = null;
+            }
             try {
                 if (in != null) in.close();
             } catch (Exception ignored) {}

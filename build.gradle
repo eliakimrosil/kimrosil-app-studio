@@ -3,7 +3,19 @@ plugins {
 }
 
 ext {
-    sdkDir = file("${System.getProperty('user.home')}/.android-sdk/platforms/android-33")
+    sdkRoot = System.getenv('ANDROID_HOME') ?: (file("${System.getProperty('user.home')}/android-sdk").exists()
+        ? "${System.getProperty('user.home')}/android-sdk"
+        : "${System.getProperty('user.home')}/.android-sdk")
+    sdkDir = file("${sdkRoot}/platforms/android-34").exists()
+        ? file("${sdkRoot}/platforms/android-34")
+        : file("${sdkRoot}/platforms/android-33")
+    buildToolsDir = file("${sdkRoot}/build-tools/34.0.0")
+    aapt2Bin = file("${buildToolsDir}/aapt2").exists() ? "${buildToolsDir}/aapt2" : "aapt2"
+    zipalignBin = file("${buildToolsDir}/zipalign").exists() ? "${buildToolsDir}/zipalign" : "zipalign"
+    apksignerBin = file("${buildToolsDir}/apksigner").exists() ? "${buildToolsDir}/apksigner" : "apksigner"
+    d8Jar = file("${buildToolsDir}/lib/d8.jar").exists()
+        ? "${buildToolsDir}/lib/d8.jar"
+        : "/data/data/com.termux/files/usr/share/java/d8.jar"
     androidJar = file("${sdkDir}/android.jar")
     debugKeystore = file("${System.getProperty('user.home')}/.android/debug.keystore")
     buildDir = file("build")
@@ -11,6 +23,7 @@ ext {
     intermediatesDir = file("${buildDir}/intermediates")
     classesDir = file("${intermediatesDir}/classes")
     outputsDir = file("${buildDir}/outputs")
+    downloadApkOut = file("/sdcard/Download/KRLiveStudio-debug.apk")
     targetSerial = System.getenv('ANDROID_SERIAL') ?: '127.0.0.1:5555'
 }
 
@@ -25,8 +38,8 @@ task compileResources(type: Exec) {
     }
 
     commandLine 'bash', '-c', """
-        aapt2 compile --dir src/main/res -o ${intermediatesDir}/compiled_res.zip && \\
-        aapt2 link --manifest src/main/AndroidManifest.xml -I ${androidJar} \\
+        ${aapt2Bin} compile --dir src/main/res -o ${intermediatesDir}/compiled_res.zip && \\
+        ${aapt2Bin} link --manifest src/main/AndroidManifest.xml -I ${androidJar} \\
             ${intermediatesDir}/compiled_res.zip -o ${intermediatesDir}/resources.apk \\
             --java ${genDir}
     """
@@ -42,6 +55,7 @@ task compileJava(type: Exec) {
     }
 
     commandLine 'bash', '-c', """
+        rm -rf ${classesDir}/* && \\
         javac --release 8 -cp ${androidJar} -d ${classesDir} \$(find src/main/java ${genDir} -name "*.java")
     """
 }
@@ -52,7 +66,7 @@ task dex(type: Exec) {
     dependsOn compileJava
 
     commandLine 'bash', '-c', """
-        java -cp /data/data/com.termux/files/usr/share/java/d8.jar com.android.tools.r8.R8 \\
+        java -cp ${d8Jar} com.android.tools.r8.R8 \\
             --release --min-api 26 --lib ${androidJar} --output ${intermediatesDir}/ \\
             --pg-conf proguard-rules.pro --pg-map-output ${outputsDir}/mapping.txt \\
             \$(find ${classesDir} -name "*.class")
@@ -60,27 +74,32 @@ task dex(type: Exec) {
 }
 
 task packageApk(type: Exec) {
-    description = 'Packages DEX and resources into an unaligned APK'
+    description = 'Packages DEX and resources into an aligned APK'
     group = 'build'
     dependsOn dex
 
     commandLine 'python3', '-c', """
-import shutil, zipfile, os
+import shutil, zipfile, os, subprocess
 shutil.copyfile("${intermediatesDir}/resources.apk", "${intermediatesDir}/unaligned.apk")
 with zipfile.ZipFile("${intermediatesDir}/unaligned.apk", "a") as z:
     z.write("${intermediatesDir}/classes.dex", "classes.dex")
+subprocess.check_call(["${zipalignBin}", "-f", "-p", "4", "${intermediatesDir}/unaligned.apk", "${intermediatesDir}/aligned.apk"])
 """
 }
 
 task signApk(type: Exec) {
-    description = 'Signs the APK using apksigner with debug keystore'
+    description = 'Signs the APK using apksigner with debug keystore and copies to /sdcard/Download'
     group = 'build'
     dependsOn packageApk
 
     commandLine 'bash', '-c', """
-        apksigner sign --ks ${debugKeystore} --ks-pass pass:android \\
+        ${apksignerBin} sign --ks ${debugKeystore} --ks-pass pass:android \\
             --ks-key-alias androiddebugkey --key-pass pass:android \\
-            --out ${outputsDir}/${rootProject.name}-debug.apk ${intermediatesDir}/unaligned.apk
+            --out ${outputsDir}/${rootProject.name}-debug.apk ${intermediatesDir}/aligned.apk && \\
+        if [ -d /sdcard/Download ]; then \\
+            cp -f ${outputsDir}/${rootProject.name}-debug.apk ${downloadApkOut} && \\
+            echo ">>> Copied APK to: ${downloadApkOut}"; \\
+        fi
     """
 }
 
@@ -88,7 +107,6 @@ task assembleDebug {
     description = 'Builds and packages the debug APK'
     group = 'build'
     dependsOn signApk
-    finalizedBy 'assembleAab'
 
     doLast {
         println ">>> Build Successful! APK generated at: ${outputsDir}/${rootProject.name}-debug.apk"
@@ -112,8 +130,9 @@ import os, subprocess, zipfile, shutil
 intermediates = '${intermediatesDir}'
 outputs = '${outputsDir}'
 android_jar = '${androidJar}'
+aapt2_bin = '${aapt2Bin}'
 
-cmd = f'aapt2 link --proto-format --manifest src/main/AndroidManifest.xml -I {android_jar} {intermediates}/compiled_res.zip -o {intermediates}/proto_res.apk'
+cmd = f'{aapt2_bin} link --proto-format --manifest src/main/AndroidManifest.xml -I {android_jar} {intermediates}/compiled_res.zip -o {intermediates}/proto_res.apk'
 subprocess.check_call(cmd, shell=True)
 
 base_dir = f'{intermediates}/base_module'

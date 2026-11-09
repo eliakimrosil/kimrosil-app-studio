@@ -44,13 +44,61 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:minWidth="6dp" />
+                    android:minWidth="4dp" />
+
+                <!-- Quick Mic Mute / Unmute -->
+                <TextView
+                    android:id="@+id/pipBtnMic"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:background="@drawable/btn_pip_action"
+                    android:clickable="true"
+                    android:contentDescription="Toggle Microphone Mute"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="🎙"
+                    android:textColor="#00E5FF"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <!-- Quick Privacy Shield (BRB Slate) -->
+                <TextView
+                    android:id="@+id/pipBtnShield"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/btn_pip_action"
+                    android:clickable="true"
+                    android:contentDescription="Toggle Privacy Shield"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="🛡"
+                    android:textColor="#00E5FF"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <!-- Rotate Camera (Auto / 0° / 90° / 180° / 270°) -->
+                <TextView
+                    android:id="@+id/pipBtnRotate"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/btn_pip_action"
+                    android:clickable="true"
+                    android:contentDescription="Rotate Camera Orientation"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="↻"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
 
                 <!-- Flip Front/Back Camera -->
                 <TextView
                     android:id="@+id/pipBtnFlip"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginStart="2dp"
                     android:background="@drawable/btn_pip_action"
                     android:clickable="true"
                     android:contentDescription="Flip Camera"
@@ -58,15 +106,15 @@
                     android:gravity="center"
                     android:text="⇄"
                     android:textColor="#FFFFFF"
-                    android:textSize="12sp"
+                    android:textSize="11sp"
                     android:textStyle="bold" />
 
                 <!-- Cycle Aspect Ratio & Mask (3:4 ➔ 16:9 ➔ 1:1 ➔ ◯) -->
                 <TextView
                     android:id="@+id/pipBtnShape"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="3dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginStart="2dp"
                     android:background="@drawable/btn_pip_action"
                     android:clickable="true"
                     android:contentDescription="Cycle Aspect Ratio"
@@ -74,15 +122,15 @@
                     android:gravity="center"
                     android:text="▯"
                     android:textColor="#00E5FF"
-                    android:textSize="11sp"
+                    android:textSize="10sp"
                     android:textStyle="bold" />
 
                 <!-- Start / Stop Broadcast (Go Live) -->
                 <TextView
                     android:id="@+id/pipBtnBroadcast"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="3dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginStart="2dp"
                     android:background="@drawable/btn_pip_broadcast_standby"
                     android:clickable="true"
                     android:contentDescription="Start Broadcast"
@@ -90,7 +138,7 @@
                     android:gravity="center"
                     android:text="▶"
                     android:textColor="#EF4444"
-                    android:textSize="12sp"
+                    android:textSize="11sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </HorizontalScrollView>

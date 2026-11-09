@@ -953,6 +953,50 @@
                 android:text="Recommended: 2500 kbps for clean 720p 60fps streaming"
                 android:textColor="@color/studio_text_muted"
                 android:textSize="11sp" />
+
+            <!-- Dynamic Adaptive Bitrate (ABR) Toggle -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/card_studio_recessed"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="10dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dynamic Adaptive Bitrate (ABR)"
+                        android:textColor="@color/studio_text_primary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvAbrHint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:text="Auto-scales encoder bitrate on network congestion"
+                        android:textColor="@color/studio_text_muted"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <Switch
+                    android:id="@+id/switchAbr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true" />
+            </LinearLayout>
         </LinearLayout>
 
         <!-- Audio & Facecam Controls Card -->
@@ -1048,6 +1092,160 @@
                     android:textColor="@color/studio_chip_text"
                     android:textSize="10sp"
                     android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Studio Dual-Audio Mixer Panel (Mic Gain, Game Sound Gain & Voice Auto-Ducking) -->
+            <LinearLayout
+                android:id="@+id/layoutAudioMixer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/card_studio_recessed"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <!-- Mic Gain Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:letterSpacing="0.03"
+                        android:text="MIC VOICE GAIN"
+                        android:textColor="@color/studio_text_secondary"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvMicGainValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100%"
+                        android:textColor="@color/studio_cyan"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:typeface="monospace" />
+                </LinearLayout>
+
+                <SeekBar
+                    android:id="@+id/seekMicGain"
+                    android:layout_width="match_parent"
+                    android:layout_height="26dp"
+                    android:max="200"
+                    android:progress="100"
+                    android:progressDrawable="@drawable/seekbar_studio_track"
+                    android:thumb="@drawable/seekbar_studio_thumb" />
+
+                <!-- Game / Internal Audio Gain Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:letterSpacing="0.03"
+                        android:text="GAME / SYSTEM AUDIO GAIN"
+                        android:textColor="@color/studio_text_secondary"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvInternalGainValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="80%"
+                        android:textColor="@color/studio_green"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:typeface="monospace" />
+                </LinearLayout>
+
+                <SeekBar
+                    android:id="@+id/seekInternalGain"
+                    android:layout_width="match_parent"
+                    android:layout_height="26dp"
+                    android:max="200"
+                    android:progress="80"
+                    android:progressDrawable="@drawable/seekbar_studio_track"
+                    android:thumb="@drawable/seekbar_studio_thumb" />
+
+                <!-- Voice Auto-Ducking Toggle -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Smart Voice Auto-Ducking (Lowers game audio on speech)"
+                        android:textColor="@color/studio_text_muted"
+                        android:textSize="10sp" />
+
+                    <Switch
+                        android:id="@+id/switchAutoDuck"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/studio_border" />
+
+            <!-- Simultaneous Local MP4 VOD Recording Switch -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Simultaneous Local MP4 Recording (VOD)"
+                        android:textColor="@color/studio_text_primary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvLocalRecordHint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Zero-CPU tee to Movies/KRLiveStudio/"
+                        android:textColor="@color/studio_text_secondary"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <Switch
+                    android:id="@+id/switchLocalRecord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false" />
             </LinearLayout>
 
             <View
