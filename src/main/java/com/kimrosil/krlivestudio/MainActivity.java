@@ -3,6 +3,7 @@ package com.kimrosil.krlivestudio;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.KeyguardManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -10,6 +11,8 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -51,8 +54,10 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.os.ParcelFileDescriptor;
 import android.os.PowerManager;
 import android.os.SystemClock;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -284,6 +289,14 @@ public class MainActivity extends Activity {
             setTurnScreenOn(true);
         } else {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            try {
+                KeyguardManager km = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+                if (km != null && km.isKeyguardLocked()) {
+                    km.requestDismissKeyguard(this, null);
+                }
+            } catch (Exception ignored) {}
         }
 
         setContentView(R.layout.activity_main);
@@ -1900,6 +1913,15 @@ public class MainActivity extends Activity {
             String action = intent.getAction();
 
             if (ACTION_START.equals(action)) {
+                int resultCode = intent.getIntExtra("resultCode", Activity.RESULT_CANCELED);
+                Intent resultData = intent.getParcelableExtra("resultData");
+                if (resultCode != Activity.RESULT_OK || resultData == null) {
+                    Log.w("KimLive-Service", "Ignoring ACTION_START without valid MediaProjection token");
+                    if (!FloatingCamManager.getInstance(this).isShowing()) {
+                        stopSelf();
+                    }
+                    return START_NOT_STICKY;
+                }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     int fgsType = ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION;
                     boolean enableMic = intent.getBooleanExtra("enableMic", true);
@@ -2618,7 +2640,8 @@ public class MainActivity extends Activity {
                 mediaCodec.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);
                 mediaCodec.start();
 
-                if (micRecord != null && micRecord.getState() == AudioRecord.STATE_INITIALIZED) {
+                if (micRecord != null && micRecord.getState() == AudioRecord.STATE_INITIALIZED
+                        && (audioMode == AUDIO_MODE_MIC || audioMode == AUDIO_MODE_DUAL || internalRecord == null)) {
                     micRecord.startRecording();
                 }
                 if (internalRecord != null && internalRecord.getState() == AudioRecord.STATE_INITIALIZED) {
@@ -2641,13 +2664,26 @@ public class MainActivity extends Activity {
                     int currentMode = StreamService.getAudioMode();
                     boolean isPrivacyMuted = StreamService.isPrivacyShieldActive();
                     boolean isMasterMuted = StreamService.isMicMuted() || isPrivacyMuted;
-                    boolean useMic = (currentMode == AUDIO_MODE_MIC || currentMode == AUDIO_MODE_DUAL);
+                    boolean useMic = (currentMode == AUDIO_MODE_MIC || currentMode == AUDIO_MODE_DUAL || internalRecord == null);
                     boolean useInternal = (currentMode == AUDIO_MODE_INTERNAL || currentMode == AUDIO_MODE_DUAL);
+
+                    // Release hardware mic in GAME SOUND mode so status-bar mic indicator turns off & games can use voice chat
+                    if (micRecord != null && micRecord.getState() == AudioRecord.STATE_INITIALIZED) {
+                        if (useMic && micRecord.getRecordingState() != AudioRecord.RECORDSTATE_RECORDING) {
+                            try {
+                                micRecord.startRecording();
+                            } catch (Exception ignored) {}
+                        } else if (!useMic && micRecord.getRecordingState() == AudioRecord.RECORDSTATE_RECORDING) {
+                            try {
+                                micRecord.stop();
+                            } catch (Exception ignored) {}
+                        }
+                    }
 
                     float micGain = (isMasterMuted || !useMic) ? 0.0f : (StreamService.getMicGainPercent() / 100.0f);
                     float baseIntGain = (isMasterMuted || !useInternal) ? 0.0f : (StreamService.getInternalGainPercent() / 100.0f);
 
-                    if (micRecord != null && internalRecord != null) {
+                    if (useMic && micRecord != null && internalRecord != null) {
                         int mRead = micRecord.read(micPcm, 0, micPcm.length);
                         int targetInternalBytes = (mRead > 0) ? mRead : intPcm.length;
                         int iRead;
@@ -2846,11 +2882,14 @@ public class MainActivity extends Activity {
 
     // =========================================================================
     // Simultaneous Local MP4 Recorder (Zero-Copy Hardware Tee via MediaMuxer)
+    // Uses MediaStore Scoped Storage on Android 10+ (zero permissions required)
     // =========================================================================
     public static class LocalMp4Recorder {
         private final Context appContext;
         private final boolean expectAudio;
         private MediaMuxer muxer;
+        private ParcelFileDescriptor mediaStorePfd;
+        private Uri mediaStoreUri;
         private String outputPath;
         private int videoTrackIndex = -1;
         private int audioTrackIndex = -1;
@@ -2861,6 +2900,33 @@ public class MainActivity extends Activity {
         public LocalMp4Recorder(Context context, boolean expectAudio) {
             this.appContext = context.getApplicationContext();
             this.expectAudio = expectAudio;
+            String ts = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
+            String fileName = "KRLive_" + ts + ".mp4";
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                try {
+                    ContentResolver resolver = appContext.getContentResolver();
+                    ContentValues values = new ContentValues();
+                    values.put(MediaStore.Video.Media.DISPLAY_NAME, fileName);
+                    values.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4");
+                    values.put(MediaStore.Video.Media.RELATIVE_PATH, Environment.DIRECTORY_MOVIES + "/KRLiveStudio");
+                    values.put(MediaStore.Video.Media.IS_PENDING, 1);
+
+                    mediaStoreUri = resolver.insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, values);
+                    if (mediaStoreUri != null) {
+                        mediaStorePfd = resolver.openFileDescriptor(mediaStoreUri, "rw");
+                        if (mediaStorePfd != null) {
+                            muxer = new MediaMuxer(mediaStorePfd.getFileDescriptor(), MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4);
+                            outputPath = "Movies/KRLiveStudio/" + fileName;
+                            Log.i("KimLive-Recorder", "MediaStore Local MP4 recorder initialized: " + outputPath);
+                            return;
+                        }
+                    }
+                } catch (Exception e) {
+                    Log.w("KimLive-Recorder", "MediaStore init failed, falling back to app-external dir: " + e.getMessage());
+                }
+            }
+
             try {
                 File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES), "KRLiveStudio");
                 if (!dir.exists() && !dir.mkdirs()) {
@@ -2869,8 +2935,7 @@ public class MainActivity extends Activity {
                         dir = fallback;
                     }
                 }
-                String ts = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
-                File outFile = new File(dir, "KRLive_" + ts + ".mp4");
+                File outFile = new File(dir, fileName);
                 outputPath = outFile.getAbsolutePath();
                 muxer = new MediaMuxer(outputPath, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4);
                 Log.i("KimLive-Recorder", "Local MP4 recorder initialized: " + outputPath);
@@ -2950,6 +3015,7 @@ public class MainActivity extends Activity {
         public synchronized void stopAndRelease() {
             if (isReleased) return;
             isReleased = true;
+            boolean hadWrittenData = isStarted;
             try {
                 if (muxer != null) {
                     if (isStarted) {
@@ -2963,7 +3029,25 @@ public class MainActivity extends Activity {
                 muxer = null;
                 isStarted = false;
             }
-            if (outputPath != null) {
+            if (mediaStorePfd != null) {
+                try {
+                    mediaStorePfd.close();
+                } catch (Exception ignored) {}
+                mediaStorePfd = null;
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && mediaStoreUri != null) {
+                try {
+                    ContentResolver resolver = appContext.getContentResolver();
+                    if (hadWrittenData) {
+                        ContentValues values = new ContentValues();
+                        values.put(MediaStore.Video.Media.IS_PENDING, 0);
+                        resolver.update(mediaStoreUri, values, null, null);
+                    } else {
+                        resolver.delete(mediaStoreUri, null, null);
+                    }
+                } catch (Exception ignored) {}
+                mediaStoreUri = null;
+            } else if (outputPath != null && hadWrittenData) {
                 try {
                     MediaScannerConnection.scanFile(appContext, new String[]{outputPath}, new String[]{"video/mp4"}, null);
                 } catch (Exception ignored) {}
