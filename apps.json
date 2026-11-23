@@ -6,13 +6,13 @@
     "tagline": "Offline mobile phone repair shop manager for device intake, issue checklists, before/after photos, customer signatures, release billing, warranty tracking & PDF receipts.",
     "status": "BUILT",
     "branch": "private/jf-gadget-repair",
-    "tag": "v1.1.2-jf-gadget-repair",
-    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.2-jf-gadget-repair/jf-gadget-repair.apk",
+    "tag": "v1.1.3-jf-gadget-repair",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.3-jf-gadget-repair/jf-gadget-repair.apk",
     "landing_page": "https://apps.kimrosil.com/jf-gadget-repair/",
     "privacy_policy": "https://apps.kimrosil.com/jf-gadget-repair/privacy.html",
     "icon": "assets/icons/jf-gadget-repair.svg",
-    "updated_at": "2026-11-23T07:18:00+00:00",
-    "sha256": "948d0390160364f97c9f5dceb25bef8194fbc2c6b120cbc2dd091d0a8259df68"
+    "updated_at": "2026-11-23T07:23:30+00:00",
+    "sha256": "c03dd48cd6facf5f5fa9a6fbaac86d4dbdcfc6101659a5223f974659e43b9b52"
   },
   {
     "slug": "return-guard-receipt-countdown",
