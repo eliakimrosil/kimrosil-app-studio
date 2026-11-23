@@ -3,16 +3,16 @@
     "slug": "jf-gadget-repair",
     "title": "JF Gadget Repair",
     "category": "Business & Productivity",
-    "tagline": "Offline-first mobile phone repair shop manager for device intake, parts & products inventory, walk-in sales, photos, signatures, release billing, warranty tracking, PDF receipts & optional Google cloud sync.",
+    "tagline": "Offline-first mobile phone repair shop manager for device intake, parts & products inventory, walk-in sales, photos, signatures, release billing, warranty tracking, PDF receipts & automatic Google cloud sync.",
     "status": "BUILT",
     "branch": "private/jf-gadget-repair",
-    "tag": "v1.3.3-jf-gadget-repair",
-    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.3.3-jf-gadget-repair/jf-gadget-repair.apk",
+    "tag": "v1.4.0-jf-gadget-repair",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.4.0-jf-gadget-repair/jf-gadget-repair.apk",
     "landing_page": "https://apps.kimrosil.com/jf-gadget-repair/",
     "privacy_policy": "https://apps.kimrosil.com/jf-gadget-repair/privacy.html",
     "icon": "assets/icons/jf-gadget-repair.svg",
-    "updated_at": "2026-11-23T10:18:00+00:00",
-    "sha256": "c8f7f5fe2945de169042680204efe5d7cc0afa49d82b058f603f15d1a31a7a2c"
+    "updated_at": "2026-11-23T11:58:00+00:00",
+    "sha256": "da42efca375a6264ce6cdd98c912b2e8c08e94f5bbd42a1a15c992062afe1a32"
   },
   {
     "slug": "return-guard-receipt-countdown",
