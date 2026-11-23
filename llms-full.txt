@@ -2312,15 +2312,15 @@ KEY CAPABILITIES:
 
 ## JF Gadget Repair (`jf-gadget-repair`)
 - **Category**: Business & Productivity
-- **Tagline**: Offline-first mobile phone repair shop manager for device intake, parts & products inventory, walk-in sales, before/after photos, customer signatures, release billing, warranty tracking, PDF receipts & optional Google cloud sync.
+- **Tagline**: Offline-first mobile phone repair shop manager for device intake, parts & products inventory, walk-in sales, before/after photos, customer signatures, release billing, warranty tracking, PDF receipts & automatic real-time Google cloud sync.
 - **Landing Page**: https://apps.kimrosil.com/jf-gadget-repair/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.3.3-jf-gadget-repair/jf-gadget-repair.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.4.0-jf-gadget-repair/jf-gadget-repair.apk
 - **Privacy Policy**: https://apps.kimrosil.com/jf-gadget-repair/privacy.html
-- **Architecture**: Offline-First Native Android (Kotlin + Jetpack Compose Material 3 + SQLite + Optional Firebase Google Sign-In & Cloud Firestore Sync)
+- **Architecture**: Offline-First Native Android (Kotlin + Jetpack Compose Material 3 + SQLite + Automatic Real-Time Firebase Google Sign-In & Cloud Firestore Sync)
 - **Compatibility**: Android 8.0+ (API 26–34)
 
 ### Detailed Overview & Capabilities
-JF Gadget Repair is an offline-first mobile phone repair shop management application built for cellphone technicians and gadget repair counters. It handles the complete customer service lifecycle from phone receiving (intake) through parts inventory management, walk-in accessory sales, repair progress tracking, final release, payment collection, warranty tracking, PDF receipt printing, and optional multi-device Google cloud sync.
+JF Gadget Repair is an offline-first mobile phone repair shop management application built for cellphone technicians and gadget repair counters. It handles the complete customer service lifecycle from phone receiving (intake) through parts inventory management, walk-in accessory sales, repair progress tracking, final release, payment collection, warranty tracking, PDF receipt printing, and automatic real-time multi-device Google cloud sync.
 
 KEY CAPABILITIES:
 • Phone Receiving (Intake): Sequential daily ticket numbers (JF-YYYYMMDD-001), customer contact info, phone brand/model/color/IMEI, privacy-masked passcode note, accessories left & pre-existing condition checklists, issue tags, deposit, and promised target date.
@@ -2329,6 +2329,6 @@ KEY CAPABILITIES:
 • On-Screen Customer Signatures: Interactive intake and release signature pads automatically embedded onto generated PDF receipts.
 • Phone Release & Warranty Tracker: Post-repair QA checklist, final price, parts cost, payment method (Cash, GCash, Maya, Bank Transfer, Card), warranty period countdowns, and 1-tap warranty return re-opening.
 • Vector PDF Claim Stubs & Release Receipts with Series Numbers: Native Android PdfDocument generation with collision-proof sequential Receipt Series Numbers (customizable prefix & starting number, e.g. SR-000001), PrintManager printing, and 1-tap Share PDF / Text / Ready-for-Pickup SMS.
-• Shop Dashboard, Portable JSON Backup & Optional Cloud Sync: Combined repair & retail revenue, estimated net profit, unpaid collectibles, low-stock & overdue alerts, customizable shop branding & currency (default PHP ₱), Light/Dark theme, portable JSON backup/restore, and optional Firebase Google Sign-In cross-device Firestore sync.
+• Shop Dashboard, Portable JSON Backup & Automatic Real-Time Cloud Sync: Combined repair & retail revenue, estimated net profit, unpaid collectibles, low-stock & overdue alerts, customizable shop branding & currency (default PHP ₱), Light/Dark theme, portable JSON backup/restore, and optional Google Sign-In with automatic real-time Cloud Firestore listeners, network-reconnect recovery, and cross-device delete sync.
 
 ---
