@@ -2314,7 +2314,7 @@ KEY CAPABILITIES:
 - **Category**: Business & Productivity
 - **Tagline**: Offline-first mobile phone repair shop manager for device intake, parts & products inventory, walk-in sales, before/after photos, customer signatures, release billing, warranty tracking, PDF receipts & automatic real-time Google cloud sync.
 - **Landing Page**: https://apps.kimrosil.com/jf-gadget-repair/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.4.0-jf-gadget-repair/jf-gadget-repair.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.4.1-jf-gadget-repair/jf-gadget-repair.apk
 - **Privacy Policy**: https://apps.kimrosil.com/jf-gadget-repair/privacy.html
 - **Architecture**: Offline-First Native Android (Kotlin + Jetpack Compose Material 3 + SQLite + Automatic Real-Time Firebase Google Sign-In & Cloud Firestore Sync)
 - **Compatibility**: Android 8.0+ (API 26–34)
