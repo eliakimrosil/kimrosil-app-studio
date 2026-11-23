@@ -76,11 +76,11 @@
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock"
     },
-    "description": "Offline mobile phone repair shop manager for device intake, issue checklists, before/after photos, customer signatures, release billing, warranty tracking, and printable PDF receipts.",
+    "description": "Offline-first mobile phone repair shop manager for device intake, parts & products inventory, walk-in sales, before/after photos, customer signatures, release billing, warranty tracking, printable PDF receipts, and optional Google cloud sync.",
     "image": "https://apps.kimrosil.com/assets/icons/jf-gadget-repair.png",
-    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.3-jf-gadget-repair/jf-gadget-repair.apk",
-    "softwareVersion": "1.1.3",
-    "fileSize": "15 MB",
+    "downloadUrl": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.3.1-jf-gadget-repair/jf-gadget-repair.apk",
+    "softwareVersion": "1.3.1",
+    "fileSize": "20 MB",
     "author": {
         "@type": "Organization",
         "name": "KimRosil App Studio",
@@ -91,15 +91,16 @@
         "name": "KimRosil App Studio",
         "url": "https://apps.kimrosil.com/"
     },
-    "permissions": "android.permission.CAMERA (Optional - Local Before/After Device Condition Photos Only)",
+    "permissions": "android.permission.CAMERA (Optional - Local Device Condition Photos); android.permission.INTERNET, ACCESS_NETWORK_STATE (Optional - Google Sign-In & Firebase Cloud Firestore Sync)",
     "featureList": [
         "Complete Phone Receiving (Intake) & Release Workflow",
+        "Parts & Retail Products Inventory with Smart Ticket Auto-Deduct, Walk-In Quick Sales & Low-Stock Alerts",
         "Before & After Device Condition Photos + On-Screen Customer Signatures",
         "Printable & Shareable Vector PDF Claim Stubs & Release Receipts",
         "Live Warranty Countdown Tracker & Warranty Return Ticket Re-Opening",
-        "Revenue, Parts Cost, Net Profit & Collectibles Shop Dashboard",
+        "Combined Repair & Retail Revenue, Parts Cost, Net Profit & Collectibles Shop Dashboard",
         "One-Tap Customer Call & Ready-for-Pickup SMS Templates",
-        "100% Offline SQLite Database + Portable JSON Backup & Restore"
+        "Offline-First SQLite Database + Portable JSON Backup & Optional Google Cloud Firestore Sync"
     ]
 }
     </script>
@@ -131,10 +132,10 @@
     "mainEntity": [
         {
             "@type": "Question",
-            "name": "Is JF Gadget Repair completely offline?",
+            "name": "Does JF Gadget Repair work offline, and is Google Sign-In optional?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Yes. JF Gadget Repair stores all repair tickets, customer records, condition photos, signatures, and shop settings strictly in local SQLite storage on your Android phone without requiring internet access or cloud accounts."
+                "text": "Yes. JF Gadget Repair works 100% offline in local SQLite storage with zero account required. Technicians who want multi-device backup can optionally sign in with Google to sync repair tickets, timelines, signatures, shop settings, and parts/products inventory via Firebase Cloud Firestore."
             }
         },
         {
@@ -455,17 +456,17 @@
             </div>
             <div class="app-titles">
                 <h1>JF Gadget Repair</h1>
-                <p class="tagline">Offline mobile phone repair shop manager for device receiving, issue tracking, customer signatures, release billing, warranty countdowns &amp; PDF receipts.</p>
+                <p class="tagline">Offline-first mobile phone repair shop manager for device receiving, parts &amp; products inventory, walk-in sales, signatures, release billing, warranty countdowns, PDF receipts &amp; optional Google cloud sync.</p>
             </div>
         </header>
 
         <div class="badge-row">
             <span class="badge">✓ Google Play Data Safety Certified</span>
-            <span class="badge badge-domain">✓ 100% Offline Native</span>
-            <span class="badge">✓ v1.1.3</span>
+            <span class="badge badge-domain">✓ Offline-First + Optional Cloud Sync</span>
+            <span class="badge">✓ v1.3.1</span>
         </div>
 
-        <a class="btn" id="download-apk" href="https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.3-jf-gadget-repair/jf-gadget-repair.apk">⬇ Download APK (Direct CDN)</a>
+        <a class="btn" id="download-apk" href="https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.3.1-jf-gadget-repair/jf-gadget-repair.apk">⬇ Download APK (Direct CDN)</a>
 
         <div class="meta-links">
             <a href="privacy.html"><strong>🛡️ Data Safety &amp; Privacy Policy →</strong></a>
@@ -477,17 +478,18 @@
         <section class="content-section">
             <h2>Overview &amp; Core Capabilities</h2>
             <div class="desc">
-                <p><strong>JF Gadget Repair</strong> is a purpose-built, 100% offline Android job manager engineered for mobile phone repair technicians and gadget service counters. Track every customer phone from walk-in receiving through bench diagnostics to final repaired release without cloud subscriptions, ads, or paper notebooks.</p>
+                <p><strong>JF Gadget Repair</strong> is a purpose-built, offline-first Android shop manager engineered for mobile phone repair technicians and gadget service counters. Track every customer phone, spare part, and retail accessory from intake to release without ads, subscriptions, or paper notebooks.</p>
                 <ul>
                     <li><strong>Fast Phone Receiving (Intake):</strong> Auto-generates sequential ticket numbers (<code>JF-YYYYMMDD-001</code>), records customer contact info, phone brand/model, IMEI/serial, privacy-masked lock passcode notes, accessories left, pre-existing condition flags, issue tags, deposit, and target release date.</li>
-                    <li><strong>Before &amp; After Condition Photos:</strong> Capture or import condition proof photos before opening the phone and after completing the repair to protect your shop from disputes.</li>
+                    <li><strong>Parts &amp; Retail Products Inventory:</strong> Manage repair parts (LCDs, batteries, charging ports, flex cables, ICs) and retail accessories (tempered glass, chargers, cables, cases) in the dedicated Stock tab with cost/sell margins, drawer/shelf bins, restock &amp; adjustment logs, low-stock alerts, and 1-tap Walk-In Quick Sales.</li>
+                    <li><strong>Smart Repair Ticket Auto-Deduct:</strong> Pick parts directly from stock inside any ticket or release checkout (auto-ranked by matching device model) to atomically deduct inventory, update parts cost, preserve manual part notes, and restore stock automatically on undo.</li>
+                    <li><strong>Before &amp; After Condition Photos:</strong> Capture or import local condition proof photos before opening the phone and after completing the repair to protect your shop from disputes.</li>
                     <li><strong>On-Screen Customer Signatures:</strong> Capture fingertip/stylus customer signatures at both intake and release, automatically embedded into generated PDF claim stubs and release receipts.</li>
                     <li><strong>Complete Release &amp; Payment Checkout:</strong> Log repaired or pull-out outcomes, post-repair QA verification checks, final price, parts cost, payment method (Cash, GCash, Maya, Bank Transfer, Card), claimant name, and warranty duration.</li>
                     <li><strong>Printable &amp; Shareable PDF Receipts:</strong> Generate crisp vector PDF Claim Stubs and Official Release Receipts ready for Android Print or 1-tap sharing via Messenger, WhatsApp, or SMS.</li>
-                    <li><strong>One-Tap Call &amp; Ready-for-Pickup SMS:</strong> Contact customers directly with pre-filled status-aware SMS messages displaying ticket #, device model, and exact remaining balance.</li>
-                    <li><strong>Shop Dashboard, Warranty Tracker &amp; JSON Backup:</strong> Monitor revenue, parts cost, net profit, receivables, overdue units, active warranty countdowns, Light/Dark themes, and portable JSON backups.</li>
+                    <li><strong>Shop Dashboard, JSON Backup &amp; Optional Google Cloud Sync:</strong> Monitor combined repair &amp; retail revenue, net profit, collectibles, low-stock &amp; overdue alerts, active warranties, Light/Dark themes, portable JSON backups, and optional Google Sign-In cross-device Firestore sync.</li>
                 </ul>
-                <p><strong>Data Safety &amp; Offline Privacy Guarantee:</strong> Operates 100% offline in sandboxed local SQLite storage with zero ads, zero tracking SDKs, and zero mandatory accounts.</p>
+                <p><strong>Data Safety &amp; Privacy Guarantee:</strong> Works 100% offline in sandboxed local SQLite storage with zero ads and zero ad trackers. Google Sign-In &amp; Cloud Firestore sync are strictly optional.</p>
             </div>
         </section>
 
@@ -496,9 +498,9 @@
             <div class="specs-grid">
                 <div class="spec-item"><span class="spec-label">Operating System</span><span class="spec-val">Android 8.0+ (API 26–34)</span></div>
                 <div class="spec-item"><span class="spec-label">Architecture</span><span class="spec-val">Kotlin + Jetpack Compose M3 + SQLite</span></div>
-                <div class="spec-item"><span class="spec-label">Network Requirement</span><span class="spec-val">0 KB / 100% Offline</span></div>
-                <div class="spec-item"><span class="spec-label">Data Privacy</span><span class="spec-val">Zero Cloud Tracking / Sandboxed</span></div>
-                <div class="spec-item"><span class="spec-label">Receipt Engine</span><span class="spec-val">Native Vector PDF &amp; PrintManager</span></div>
+                <div class="spec-item"><span class="spec-label">Network Mode</span><span class="spec-val">Offline-First + Optional Cloud Sync</span></div>
+                <div class="spec-item"><span class="spec-label">Data Privacy</span><span class="spec-val">Zero Ads / Isolated User Sync</span></div>
+                <div class="spec-item"><span class="spec-label">Inventory &amp; POS</span><span class="spec-val">Parts Auto-Deduct + Walk-In Sales</span></div>
                 <div class="spec-item"><span class="spec-label">Distribution</span><span class="spec-val">100% Free &bull; Open CDN</span></div>
             </div>
         </section>
@@ -506,8 +508,8 @@
         <section class="app-faq-card">
             <h2>Frequently Asked Questions</h2>
             <details class="faq-accordion" open>
-                <summary>Is JF Gadget Repair completely offline?</summary>
-                <p>Yes. All repair tickets, condition photos, signatures, warranties, and shop settings are stored locally in on-device SQLite storage with zero server calls or cloud logins required.</p>
+                <summary>Does JF Gadget Repair work offline, and is Google Sign-In optional?</summary>
+                <p>Yes. All repair tickets, inventory stock, photos, signatures, warranties, and shop settings work 100% offline in local SQLite storage with no account required. If you want multi-device backup, you can optionally sign in with Google in Settings or on the Jobs screen to sync with Firebase Cloud Firestore.</p>
             </details>
             <details class="faq-accordion">
                 <summary>Can I print or send Claim Stubs and Release Receipts to customers?</summary>

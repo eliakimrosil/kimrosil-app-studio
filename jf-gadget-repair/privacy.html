@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
     <title>Privacy Policy - JF Gadget Repair | KimRosil App Studio</title>
-    <meta name="description" content="Privacy policy and zero-telemetry data safety declaration for JF Gadget Repair. 100% offline, zero data collection.">
+    <meta name="description" content="Privacy policy and data safety declaration for JF Gadget Repair. Offline-first Android shop manager with optional Google Sign-In and Firebase Cloud Firestore sync.">
     <meta name="robots" content="noindex, follow">
     <link rel="canonical" href="https://apps.kimrosil.com/jf-gadget-repair/privacy.html">
     <link rel="icon" type="image/svg+xml" href="https://apps.kimrosil.com/favicon.svg">
@@ -23,7 +23,7 @@
     <meta property="og:url" content="https://apps.kimrosil.com/jf-gadget-repair/privacy.html">
     <meta property="og:site_name" content="KimRosil App Studio">
     <meta property="og:title" content="Privacy Policy - JF Gadget Repair">
-    <meta property="og:description" content="100% offline, zero data collection privacy policy for JF Gadget Repair.">
+    <meta property="og:description" content="Offline-first privacy policy with optional Google Sign-In & Cloud Firestore sync declaration for JF Gadget Repair.">
     <meta property="og:image" content="https://apps.kimrosil.com/assets/icons/jf-gadget-repair.png">
 
     <style>
@@ -103,29 +103,36 @@
         <p>This privacy policy applies to the Android mobile application <strong>JF Gadget Repair</strong> (the "Application"), developed and published by Eliakim Rosil ("we", "us", or "our") under the KimRosil App Studio developer portfolio (<a href="https://apps.kimrosil.com">https://apps.kimrosil.com</a>).</p>
         <p>The Application is distributed via official APK releases and <a href="https://apps.kimrosil.com/jf-gadget-repair/">https://apps.kimrosil.com/jf-gadget-repair/</a>.</p>
         <hr>
-        <h3>1. 100% Offline-First Architecture &amp; Sandboxed Local Storage</h3>
-        <p>The Application is engineered strictly as an offline-first business utility for repair technicians.</p>
+        <h3>1. Offline-First Architecture &amp; Local Storage</h3>
+        <p>The Application is engineered as an offline-first business utility for mobile phone repair technicians and gadget shops.</p>
         <ul>
-            <li><strong>Zero Developer Data Collection:</strong> We do NOT collect, harvest, transmit, or access any customer repair records, phone numbers, IMEI numbers, photos, signatures, or billing data entered by the shop owner.</li>
-            <li><strong>Sandboxed Local Storage:</strong> All repair tickets, status timelines, condition photos, customer signatures, and shop preferences remain exclusively inside Android's sandboxed local app storage (local SQLite database and app-private media directories).</li>
+            <li><strong>Works 100% Offline Without an Account:</strong> Full repair intake, parts &amp; retail inventory management, walk-in sales, warranty tracking, PDF receipts, and portable JSON backups work completely offline with zero registration required.</li>
+            <li><strong>Sandboxed Local Storage:</strong> All repair tickets, status timelines, inventory stock, movement logs, condition photos, customer signatures, and shop preferences are stored inside Android's sandboxed local app storage (SQLite database and app-private media directories).</li>
             <li><strong>User-Initiated Sharing &amp; Backups Only:</strong> Claim Stub PDFs, Release Receipt PDFs, SMS messages, phone calls, and JSON backups are created or shared strictly when you explicitly tap Share, Print, Call, SMS, or Export Backup via Android system intents.</li>
-            <li><strong>Zero Internet Requirement:</strong> The Application operates 100% offline and does not request the <code>INTERNET</code> permission.</li>
-            <li><strong>Data Deletion:</strong> Deleting tickets inside the app, clearing app storage via Android Settings, or uninstalling the Application permanently deletes local records and attached media.</li>
+            <li><strong>Data Deletion:</strong> Deleting records inside the app, clearing app storage via Android Settings, or uninstalling the Application permanently deletes local records and attached media.</li>
         </ul>
-        <h3>2. Zero Advertising &amp; Zero Third-Party SDKs</h3>
+        <h3>2. Optional Google Sign-In &amp; Firebase Cloud Firestore Sync</h3>
+        <p>Cloud backup and multi-device synchronization are strictly optional and remain disabled until you explicitly choose <strong>Continue with Google</strong> inside the app.</p>
         <ul>
-            <li><strong>Zero Ads:</strong> We do not display advertisements.</li>
-            <li><strong>Zero Trackers / Analytics:</strong> No analytics SDKs, ad networks, or crash telemetry frameworks are embedded in the APK.</li>
-            <li><strong>No Accounts or Paywalls:</strong> Full functionality works immediately without registration or subscriptions.</li>
+            <li><strong>Authentication Data:</strong> If you choose to sign in, Firebase Authentication receives your Google account identifier (UID), display name, and email address solely to identify your private cloud workspace.</li>
+            <li><strong>Synced Business Data:</strong> When signed in, your repair tickets, status timelines, customer signatures, shop settings, inventory items, ticket part links, and stock movement logs are synchronized to your isolated Cloud Firestore path (<code>jf_gadget_repair_users/{uid}/...</code>) via Google Firebase so you can restore or access your shop records across your devices.</li>
+            <li><strong>Device Condition Photos Stay Local:</strong> Before/after camera and gallery photos remain exclusively in local device storage and are not uploaded to Cloud Firestore.</li>
+            <li><strong>Sign Out &amp; Control:</strong> You may sign out at any time in Settings or the Account dialog; signing out stops all cloud sync while keeping all of your local offline data intact. To request deletion of synced cloud data, contact the developer at the email below.</li>
         </ul>
-        <h3>3. Permissions &amp; Device Access</h3>
+        <h3>3. Zero Advertising &amp; Zero Ad Trackers</h3>
         <ul>
-            <li><strong>Camera (<code>android.permission.CAMERA</code>, optional):</strong> Requested only when you tap Camera to photograph a customer's device condition before or after repair. Photos are saved exclusively in local app storage and are never uploaded anywhere.</li>
+            <li><strong>Zero Ads:</strong> We do not display advertisements or integrate ad networks.</li>
+            <li><strong>No Data Selling or Profiling:</strong> We never sell, rent, or share user or customer shop data with third-party data brokers or advertisers.</li>
+        </ul>
+        <h3>4. Permissions &amp; Device Access</h3>
+        <ul>
+            <li><strong>Camera (<code>android.permission.CAMERA</code>, optional):</strong> Requested only when you tap Camera to photograph a customer's device condition before or after repair. Photos are saved exclusively in local app storage.</li>
+            <li><strong>Internet &amp; Network State (<code>INTERNET</code>, <code>ACCESS_NETWORK_STATE</code>, optional usage):</strong> Used solely if you voluntarily sign in with Google to synchronize your own shop database with Firebase Authentication and Cloud Firestore.</li>
             <li><strong>Dialer / SMS / Print / Storage Access Framework:</strong> Calling, SMS messaging, receipt printing, gallery selection, and JSON backup export/import use standard Android system intents and do not require intrusive contact, call-log, SMS-sending, or broad storage permissions.</li>
         </ul>
-        <h3>4. Children's Privacy</h3>
-        <p>The Application is a professional repair shop management utility and is not directed at children under 13. We do not collect personal data from any user.</p>
-        <h3>5. Contact Information</h3>
+        <h3>5. Children's Privacy</h3>
+        <p>The Application is a professional repair shop management utility and is not directed at children under 13. We do not knowingly collect personal data from children.</p>
+        <h3>6. Contact Information</h3>
         <ul>
             <li><strong>Developer:</strong> Eliakim Rosil</li>
             <li><strong>Email:</strong> eliakimrosilarts@gmail.com</li>
