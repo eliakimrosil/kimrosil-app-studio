@@ -38,19 +38,19 @@
   <text x="490" y="154" fill="#38BDF8" font-size="13.5" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, sans-serif" text-anchor="middle" letter-spacing="1.5">BUSINESS &amp; PRODUCTIVITY</text>
 
   <text x="350" y="232" fill="#FFFFFF" font-size="50" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, sans-serif">JF Gadget Repair</text>
-  <text x="350" y="286" fill="#94A3B8" font-size="22" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Offline mobile repair shop intake, release, signatures &amp; PDF receipts.</text>
-  <text x="350" y="326" fill="#64748B" font-size="19" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Before/After Photos &#8226; Warranty Tracker &#8226; Revenue Dashboard &#8226; Zero Ads</text>
+  <text x="350" y="286" fill="#94A3B8" font-size="22" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Phone repair intake, parts inventory, series receipts &amp; cloud sync.</text>
+  <text x="350" y="326" fill="#64748B" font-size="19" font-family="-apple-system, BlinkMacSystemFont, sans-serif">Walk-In Sales &#8226; Warranty Tracker &#8226; PDF Receipts &#8226; Google Sign-In</text>
 
   <!-- Feature Pills -->
   <g transform="translate(350, 375)">
-    <rect x="0" y="0" width="160" height="42" rx="10" fill="#00E5FF"/>
-    <text x="80" y="26" fill="#090D16" font-size="15" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, sans-serif" text-anchor="middle">100% OFFLINE</text>
+    <rect x="0" y="0" width="225" height="42" rx="10" fill="#00E5FF"/>
+    <text x="112" y="26" fill="#090D16" font-size="15" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, sans-serif" text-anchor="middle">OFFLINE + CLOUD SYNC</text>
 
-    <rect x="175" y="0" width="205" height="42" rx="10" fill="#131D31" stroke="#1E293B" stroke-width="1.5"/>
-    <text x="277" y="26" fill="#38BDF8" font-size="15" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, sans-serif" text-anchor="middle">KOTLIN + COMPOSE M3</text>
+    <rect x="240" y="0" width="185" height="42" rx="10" fill="#131D31" stroke="#1E293B" stroke-width="1.5"/>
+    <text x="332" y="26" fill="#38BDF8" font-size="15" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, sans-serif" text-anchor="middle">PARTS INVENTORY</text>
 
-    <rect x="395" y="0" width="170" height="42" rx="10" fill="#131D31" stroke="#1E293B" stroke-width="1.5"/>
-    <text x="480" y="26" fill="#10B981" font-size="15" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, sans-serif" text-anchor="middle">ZERO TRACKERS</text>
+    <rect x="440" y="0" width="135" height="42" rx="10" fill="#131D31" stroke="#1E293B" stroke-width="1.5"/>
+    <text x="507" y="26" fill="#10B981" font-size="15" font-weight="bold" font-family="-apple-system, BlinkMacSystemFont, sans-serif" text-anchor="middle">ZERO ADS</text>
   </g>
 
   <!-- Footer Brand -->
