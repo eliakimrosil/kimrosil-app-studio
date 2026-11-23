@@ -874,4 +874,14 @@
       <image:title>Weld Bead</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://apps.kimrosil.com/jf-gadget-repair/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://apps.kimrosil.com/assets/icons/jf-gadget-repair.svg</image:loc>
+      <image:title>JF Gadget Repair</image:title>
+    </image:image>
+  </url>
 </urlset>

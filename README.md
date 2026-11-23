@@ -257,6 +257,10 @@ Browse the complete portfolio categorized across five core operational domains. 
 
 ### 💼 Privacy, Finance, Organization & Daily Utilities
 
+#### [JF Gadget Repair](https://apps.kimrosil.com/jf-gadget-repair/) (`jf-gadget-repair`) • `v1.1.0`
+> **Utility**: Offline mobile phone repair shop manager for device intake, issue checklists, before/after photos, customer signatures, release billing, warranty tracking & PDF receipts.
+> **Links**: [⬇ Download APK (CDN)](https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-jf-gadget-repair/jf-gadget-repair.apk) • [🌐 Web Documentation](https://apps.kimrosil.com/jf-gadget-repair/) • [🛡️ Privacy Policy](https://apps.kimrosil.com/jf-gadget-repair/privacy.html)
+
 *Private receipt vaults, BIR tax calculators, ephemeral secret scratchpads, and tracking-parameter sanitizers that protect user sovereignty.*
 
 #### [BendSpec](https://apps.kimrosil.com/bendspec/) (`bendspec`) • `v1.0.3`

@@ -1,5 +1,20 @@
 [
   {
+    "slug": "jf-gadget-repair",
+    "title": "JF Gadget Repair",
+    "category": "Business & Productivity",
+    "tagline": "Offline mobile phone repair shop manager for device intake, issue checklists, before/after photos, customer signatures, release billing, warranty tracking & PDF receipts.",
+    "status": "BUILT",
+    "branch": "private/jf-gadget-repair",
+    "tag": "v1.1.0-jf-gadget-repair",
+    "apk_url": "https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-jf-gadget-repair/jf-gadget-repair.apk",
+    "landing_page": "https://apps.kimrosil.com/jf-gadget-repair/",
+    "privacy_policy": "https://apps.kimrosil.com/jf-gadget-repair/privacy.html",
+    "icon": "assets/icons/jf-gadget-repair.svg",
+    "updated_at": "2026-11-23T06:50:00+00:00",
+    "sha256": "5be5273033579dc7ece4b212273d380ed691cd49bebdc9fd141daf4ace47ccc1"
+  },
+  {
     "slug": "return-guard-receipt-countdown",
     "title": "ReturnGuard Return Tracker",
     "category": "Shopping & Lifestyle",

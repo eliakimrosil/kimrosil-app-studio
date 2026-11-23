@@ -2310,3 +2310,24 @@ KEY CAPABILITIES:
 
 ---
 
+## JF Gadget Repair (`jf-gadget-repair`)
+- **Category**: Business & Productivity
+- **Tagline**: Offline mobile phone repair shop manager for device intake, issue checklists, before/after photos, customer signatures, release billing, warranty tracking & PDF receipts.
+- **Landing Page**: https://apps.kimrosil.com/jf-gadget-repair/
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.1.0-jf-gadget-repair/jf-gadget-repair.apk
+- **Privacy Policy**: https://apps.kimrosil.com/jf-gadget-repair/privacy.html
+- **Architecture**: 100% Offline Native Android (Kotlin + Jetpack Compose Material 3 + SQLite, Zero Telemetry)
+- **Compatibility**: Android 8.0+ (API 26–34)
+
+### Detailed Overview & Capabilities
+JF Gadget Repair is an offline-first mobile phone repair shop management application built for cellphone technicians and gadget repair counters. It handles the complete customer service lifecycle from phone receiving (intake) through repair progress tracking to final release, payment collection, warranty tracking, and PDF receipt printing.
+
+KEY CAPABILITIES:
+• Phone Receiving (Intake): Sequential daily ticket numbers (JF-YYYYMMDD-001), customer contact info, phone brand/model/color/IMEI, privacy-masked passcode note, accessories left & pre-existing condition checklists, issue tags, deposit, and promised target date.
+• Before & After Condition Photos: Camera and gallery photo documentation stored locally to prevent physical-damage disputes.
+• On-Screen Customer Signatures: Interactive intake and release signature pads automatically embedded onto generated PDF receipts.
+• Phone Release & Warranty Tracker: Post-repair QA checklist, final price, parts cost, payment method (Cash, GCash, Maya, Bank Transfer, Card), warranty period countdowns, and 1-tap warranty return re-opening.
+• Vector PDF Claim Stubs & Release Receipts: Native Android PdfDocument generation, PrintManager printing, and 1-tap Share PDF / Text / Ready-for-Pickup SMS.
+• Shop Dashboard & Portable Backup: Revenue, estimated net profit, unpaid collectibles, overdue alerts, customizable shop branding & currency (default PHP ₱), Light/Dark theme, and JSON backup/restore.
+
+---
