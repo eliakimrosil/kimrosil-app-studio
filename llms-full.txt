@@ -2314,7 +2314,7 @@ KEY CAPABILITIES:
 - **Category**: Business & Productivity
 - **Tagline**: Offline-first mobile phone repair shop manager for device intake, parts & products inventory, walk-in sales, before/after photos, customer signatures, release billing, warranty tracking, PDF receipts & optional Google cloud sync.
 - **Landing Page**: https://apps.kimrosil.com/jf-gadget-repair/
-- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.3.1-jf-gadget-repair/jf-gadget-repair.apk
+- **Direct APK CDN**: https://github.com/eliakimrosil/kimrosil-app-studio/releases/download/v1.3.3-jf-gadget-repair/jf-gadget-repair.apk
 - **Privacy Policy**: https://apps.kimrosil.com/jf-gadget-repair/privacy.html
 - **Architecture**: Offline-First Native Android (Kotlin + Jetpack Compose Material 3 + SQLite + Optional Firebase Google Sign-In & Cloud Firestore Sync)
 - **Compatibility**: Android 8.0+ (API 26–34)
@@ -2328,7 +2328,7 @@ KEY CAPABILITIES:
 • Before & After Condition Photos: Camera and gallery photo documentation stored locally to prevent physical-damage disputes.
 • On-Screen Customer Signatures: Interactive intake and release signature pads automatically embedded onto generated PDF receipts.
 • Phone Release & Warranty Tracker: Post-repair QA checklist, final price, parts cost, payment method (Cash, GCash, Maya, Bank Transfer, Card), warranty period countdowns, and 1-tap warranty return re-opening.
-• Vector PDF Claim Stubs & Release Receipts: Native Android PdfDocument generation, PrintManager printing, and 1-tap Share PDF / Text / Ready-for-Pickup SMS.
+• Vector PDF Claim Stubs & Release Receipts with Series Numbers: Native Android PdfDocument generation with collision-proof sequential Receipt Series Numbers (customizable prefix & starting number, e.g. SR-000001), PrintManager printing, and 1-tap Share PDF / Text / Ready-for-Pickup SMS.
 • Shop Dashboard, Portable JSON Backup & Optional Cloud Sync: Combined repair & retail revenue, estimated net profit, unpaid collectibles, low-stock & overdue alerts, customizable shop branding & currency (default PHP ₱), Light/Dark theme, portable JSON backup/restore, and optional Firebase Google Sign-In cross-device Firestore sync.
 
 ---
